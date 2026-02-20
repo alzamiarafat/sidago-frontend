@@ -16,7 +16,7 @@ export default function Navbar() {
     <header className="sticky">
       <div className="container mx-auto">
         {/* Logo */}
-        <div className="flex w-full px-20 justify-between">
+        <div className="flex w-full px-20 items-center justify-between">
           <div className="flex-shrink-0">
             <Link href="/">
               <img src="/images/logo1.png" alt="logo" className="h-10 w-auto" />
