@@ -2,7 +2,7 @@ import { FaDollarSign } from "react-icons/fa";
 import { FaRetweet } from "react-icons/fa";
 import { FaStackOverflow } from "react-icons/fa";
 
-export default function Solutions() {
+export default function ServicesGrid() {
   return (
     <div className="section no-padding" style={{ backgroundColor: "#e5e5e5" }}>
       <div className="container mx-auto px-20 flex items-center justify-between">

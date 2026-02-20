@@ -6,7 +6,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { TiSocialGooglePlus } from "react-icons/ti";
 import { FaRss } from "react-icons/fa";
 
-export default function Foorter() {
+export default function Footer() {
   return (
     <footer id="footWrapper">
       <div

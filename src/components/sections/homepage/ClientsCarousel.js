@@ -54,7 +54,7 @@ const ITEMS_TO_SHOW = 5;
 const AUTO_PLAY_SPEED = 2000;
 const TRANSITION_SPEED = 500;
 
-export default function Client() {
+export default function ClientsCarousel() {
   // Triple clone for infinite effect
   const clonedClients = [...clients, ...clients, ...clients];
 

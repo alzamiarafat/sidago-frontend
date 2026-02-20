@@ -1,4 +1,4 @@
-export default function Work() {
+export default function ContactSection() {
   return (
     <div
       className="section md-padding"

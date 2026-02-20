@@ -1,16 +1,14 @@
-import Button from "../ui/Button";
-
 export default function AboutSection() {
   return (
     <div
       className="section sm-padding gry-bg"
       style={{ backgroundColor: "#ffffff" }}
     >
-      <div className="container">
+      <div className="container mx-auto px-20 flex items-center justify-between">
         <div className="row">
-          <div className="col-md-12">
+          <div className="flex flex-col items-center justify-center">
             <div
-              className="wpb_single_image wpb_content_element home_cursor_image vc_align_center fx"
+              className="wpb_single_image wpb_content_element home_cursor_image vc_align_center"
               data-animate="fadeInDown"
               data-animation-delay="300"
             >
@@ -37,16 +35,19 @@ export default function AboutSection() {
                   className="block-head center sidago-homepage-title-fix fx animated fadeInUp"
                   data-animate="fadeInUp"
                   data-animation-delay="200"
-                  style={{ animationDelay: "200ms", lineHeight: "50px" }}
+                  style={{
+                    animationDelay: "200ms",
+                    lineHeight: "50px",
+                  }}
                 >
                   <span>Sidago Integrated Solutions</span>
                 </p>
               </div>
             </div>
 
-            <div className="fx" data-animate="fadeInUp">
+            <div className="" data-animate="fadeInUp">
               <div className="wpb_wrapper">
-                <p style={{ textAlign: "center" }}>
+                <p className="text-center">
                   We work hand in hand with our customers to make their business
                   better. Together, we find your true potential and seek out the
                   business you deserve. You have other things to worry about;
@@ -57,16 +58,12 @@ export default function AboutSection() {
                 </p>
               </div>
             </div>
-
-            <Button
-              variant="primary"
-              size="xl"
-              className="fx vc_button-2-align-center"
-              data-animate="fadeInDown"
-              data-animation-delay="200"
+            <a
+              id="it_1NUFt0aTbm"
+              className="btn btn-xl btn-3d vc_button-2-align-center bg-[#e7512f] !text-white shadow-[0_6px_0_#d23c1a] hover:bg-[#da4422]"
             >
-              LEARN MORE
-            </Button>
+              <span>LEARN MORE</span>
+            </a>
           </div>
         </div>
       </div>

@@ -1,35 +1,22 @@
-import Image from "next/image";
-import Topbar from "../components/Topbar";
 import "../app/globals.css";
-import Navbar from "../components/Navbar";
-import Banner from "../components/Banner";
-import Solutions from "../components/Solutions";
-import HeroBanner from "../components/HeroBanner";
-import Overview from "../components/Overview";
-import Portfolio from "../components/Portfolio";
-import Work from "../components/Work";
-import Client from "../components/Client";
-import Footer from "../components/Footer";
+import Banner from "../components/sections/homepage/Banner";
+import LogoBanner from "../components/sections/homepage/LogoBanner";
+import Portfolio from "../components/sections/homepage/Portfolio";
+import Footer from "../components/sections/homepage/Footer";
+import ServicesGrid from "../components/sections/homepage/ServicesGrid";
+import AboutSection from "../components/sections/homepage/AboutSection";
+import ContactSection from "../components/sections/homepage/ContactSection";
+import ClientsCarousel from "../components/sections/homepage/ClientsCarousel";
 
 export default function Home() {
   return (
-    <div className="home wp-singular page-template page-template-home-template page-template-home-template-php page page-id-11 page-parent custom-background wp-theme-exception wp-child-theme-exception-child wpb-js-composer js-comp-ver-4.12.1 vc_responsive">
-      <div className="pageWrapper">
-        <div id="headWrapper" className="head-style1 clearfix">
-          <Topbar />
-          <Navbar />
-          <div id="contentWrapper">
-            <Banner />
-            <Solutions />
-            <Overview />
-            <HeroBanner />
-            <Portfolio />
-            <Work />
-            <Client />
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <Banner />
+      <ServicesGrid />
+      <AboutSection />
+      <LogoBanner />
+      <Portfolio />
+      <ContactSection />
+    </>
   );
 }

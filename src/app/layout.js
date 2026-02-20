@@ -8,6 +8,10 @@ import "../styles/jquery-ui.css";
 import "../styles/style.min_2.css";
 import "../styles/js_composer.css";
 import "../styles/case-study-style.css";
+import Topbar from "../components/sections/homepage/Topbar";
+import Navbar from "../components/sections/homepage/Navbar";
+import ClientsCarousel from "../components/sections/homepage/ClientsCarousel";
+import Footer from "../components/sections/homepage/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +34,19 @@ export default function RootLayout({ children }) {
       <body
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="home wp-singular page-template page-template-home-template page-template-home-template-php page page-id-11 page-parent custom-background wp-theme-exception wp-child-theme-exception-child wpb-js-composer js-comp-ver-4.12.1 vc_responsive">
+          <div className="pageWrapper">
+            <div id="headWrapper" className="head-style1 clearfix">
+              <Topbar />
+              <Navbar />
+              <div id="contentWrapper">
+                {children}
+                <ClientsCarousel />
+                <Footer />
+              </div>
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );

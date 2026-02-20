@@ -13,7 +13,7 @@ export default function Navbar() {
   const toggleSearch = () => setIsOpenSearch((prev) => !prev);
 
   return (
-    <header className="sticky">
+    <header className="sticky top-head">
       <div className="container mx-auto">
         {/* Logo */}
         <div className="flex w-full px-20 items-center justify-between">
