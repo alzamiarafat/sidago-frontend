@@ -19,6 +19,16 @@ export const mainMenu = [
           {
             label: "System Administration",
             href: "/services/amazon-aws-administration/",
+            children: [
+              {
+                label: "DNS Service",
+                href: "/dns",
+              },
+              {
+                label: "Email Service",
+                href: "/email",
+              },
+            ],
           },
           { label: "E-Commerce", href: "/services/e-commerce/" },
           {
