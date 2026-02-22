@@ -23,7 +23,10 @@ export default function Navbar({ settings }) {
     // Async function inside useEffect
     const getSettings = async () => {
       try {
-        const data = await fetchAPI("menus?populate=*&sort=createdAt:asc"); // your API call
+        const data = await fetchAPI("menus?populate=*&sort=createdAt:asc");
+        if (!data) {
+          return <div>No data found</div>;
+        }
         setMenus(data.data);
       } catch (err) {
         console.error("Failed to fetch settings:", err);

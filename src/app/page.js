@@ -1,22 +1,18 @@
+"use client";
 import "../app/globals.css";
-import Banner from "../components/sections/homepage/Banner";
-import LogoBanner from "../components/sections/homepage/LogoBanner";
-import Portfolio from "../components/sections/homepage/Portfolio";
-import Footer from "../components/sections/homepage/Footer";
-import ServicesGrid from "../components/sections/homepage/ServicesGrid";
-import AboutSection from "../components/sections/homepage/AboutSection";
-import ContactSection from "../components/sections/homepage/ContactSection";
-import ClientsCarousel from "../components/sections/homepage/ClientsCarousel";
+import { useGlobal } from "../hooks/useGlobal";
+import VersionTwoLayout from "../components/layouts/VersionTwo";
+import VersionOneLayout from "../components/layouts/VersionOne";
 
 export default function Home() {
+  const settings = useGlobal();
   return (
     <>
-      <Banner />
-      <ServicesGrid />
-      <AboutSection />
-      <LogoBanner />
-      <Portfolio />
-      <ContactSection />
+      {settings?.version?.label === "v1" ? (
+        <VersionOneLayout settings={settings}></VersionOneLayout>
+      ) : (
+        <VersionTwoLayout></VersionTwoLayout>
+      )}
     </>
   );
 }

@@ -8,11 +8,8 @@ import "../styles/jquery-ui.css";
 import "../styles/style.min_2.css";
 import "../styles/js_composer.css";
 import "../styles/case-study-style.css";
-import Topbar from "../components/sections/homepage/Topbar";
-import Navbar from "../components/sections/homepage/Navbar";
-import ClientsCarousel from "../components/sections/homepage/ClientsCarousel";
-import Footer from "../components/sections/homepage/Footer";
-import { fetchAPI } from "../lib/api";
+import { getGlobalSettings } from "../lib/api";
+import { GlobalProvider } from "../hooks/useGlobal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,27 +27,16 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const data = await fetchAPI("global?populate=*");
+  const settings = await getGlobalSettings();
 
-  const settings = data.data;
+  if (!settings) {
+    return <div>No data found</div>;
+  }
+
   return (
     <html lang="en">
-      <body
-      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="home wp-singular page-template page-template-home-template page-template-home-template-php page page-id-11 page-parent custom-background wp-theme-exception wp-child-theme-exception-child wpb-js-composer js-comp-ver-4.12.1 vc_responsive">
-          <div className="pageWrapper">
-            <div id="headWrapper" className="head-style1 clearfix">
-              <Topbar settings={settings} />
-              <Navbar settings={settings} />
-              <div id="contentWrapper">
-                {children}
-                <ClientsCarousel />
-                <Footer />
-              </div>
-            </div>
-          </div>
-        </div>
+      <body>
+        <GlobalProvider settings={settings}>{children}</GlobalProvider>
       </body>
     </html>
   );
