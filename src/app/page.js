@@ -11,7 +11,7 @@ export default function Home() {
       {settings?.version?.label === "v1" ? (
         <VersionOneLayout settings={settings}></VersionOneLayout>
       ) : (
-        <VersionTwoLayout></VersionTwoLayout>
+        <VersionTwoLayout settings={settings}></VersionTwoLayout>
       )}
     </>
   );

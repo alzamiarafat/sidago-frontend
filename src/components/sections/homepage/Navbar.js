@@ -9,8 +9,11 @@ import ServicesMenu from "../../ui/Menus/Services";
 import IndustriesMenu from "../../ui/Menus/Industries";
 import StrategyMenu from "../../ui/Menus/Strategy";
 import SingleMenu from "../../ui/Menus/Single";
+import { useGlobal } from "@/src/hooks/useGlobal";
 
-export default function Navbar({ settings }) {
+export default function Navbar() {
+  const settings = useGlobal();
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [openMega, setOpenMega] = useState(null);

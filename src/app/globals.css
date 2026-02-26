@@ -1,1 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Blender:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Blender';
+  src: url('/fonts/Blender-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Blender', sans-serif;
+}
+/* Dotted number effect */
+.dotted-text {
+  color: transparent;
+  background-image: radial-gradient(circle, rgb(245, 235, 235) 1px, transparent 1px);
+  background-size: 4px 4px;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.polygon-card {
+  clip-path: polygon(
+    12px 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    12px 100%,
+    0 calc(100% - 12px),
+    0 12px
+  );
+}
+
+.grid-cols-2 {
+  grid-auto-rows: min-content; /* ensures row height fits content */
+}
