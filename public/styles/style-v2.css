@@ -2632,15 +2632,15 @@ strong {
 }
 .bg-green-dark {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 245 84 / var(--tw-bg-opacity, 1));
+  background-color: rgb(231 81 47 / var(--tw-bg-opacity, 1));
 }
 .bg-green-light {
   --tw-bg-opacity: 1;
-  background-color: rgb(168 245 194 / var(--tw-bg-opacity, 1));
+  background-color: rgb(248 124 99 / var(--tw-bg-opacity, 1));
 }
 .bg-green-mid {
   --tw-bg-opacity: 1;
-  background-color: rgb(102 255 154 / var(--tw-bg-opacity, 1));
+  background-color: rgb(255 93 61 / var(--tw-bg-opacity, 1));
 }
 .bg-green-tradfi {
   --tw-bg-opacity: 1;
@@ -3455,7 +3455,7 @@ strong {
 }
 .text-green-dark {
   --tw-text-opacity: 1;
-  color: rgb(0 245 84 / var(--tw-text-opacity, 1));
+  color: rgb(231 81 47)
 }
 .text-green-light {
   --tw-text-opacity: 1;
@@ -4165,7 +4165,7 @@ strong {
 }
 .group\/interactive:hover .group-hover\/interactive\:text-green-dark {
   --tw-text-opacity: 1;
-  color: rgb(0 245 84 / var(--tw-text-opacity, 1));
+  color: rgb(231 81 47)
 }
 .group\/interactive:hover .group-hover\/interactive\:text-green-light {
   --tw-text-opacity: 1;
@@ -4221,7 +4221,7 @@ strong {
 }
 .group\/motion-accordion:hover .group-hover\/motion-accordion\:text-green-dark {
   --tw-text-opacity: 1;
-  color: rgb(0 245 84 / var(--tw-text-opacity, 1));
+  color: rgb(231 81 47)
 }
 .group\/motion-accordion:hover
   .group-hover\/motion-accordion\:text-green-tradfi {
@@ -5123,7 +5123,7 @@ strong {
 }
 .\[\&_a\]\:text-green-dark a {
   --tw-text-opacity: 1;
-  color: rgb(0 245 84 / var(--tw-text-opacity, 1));
+  color: rgb(231 81 47)
 }
 .\[\&_a\]\:text-green-tradfi a {
   --tw-text-opacity: 1;
@@ -5176,7 +5176,7 @@ strong {
 }
 .hs-form-required {
   --tw-text-opacity: 1;
-  color: rgb(0 245 84 / var(--tw-text-opacity, 1));
+  color: rgb(231 81 47)
 }
 .hs-form-field > .input {
   flex-direction: column-reverse;
@@ -5547,4 +5547,32 @@ strong {
 .styles-module_info__BWdHW {
   background-color: var(--rt-color-info);
   color: var(--rt-color-white);
+}
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark left overlay */
+.video-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7) 0%,   /* dark left */
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.1) 70%,
+    rgba(0, 0, 0, 0) 100%   /* transparent right */
+  );
 }

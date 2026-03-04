@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+// import "./globals.css";
 // import "../styles/default.css";
 // import "../styles/light.css";
 // import "../styles/responsive.css";
@@ -50,7 +50,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const settings = await getGlobalSettings();
-  console.log("🚀 ~ RootLayout ~ settings:", settings);
 
   if (!settings) {
     return <div>No data found</div>;
@@ -60,6 +59,7 @@ export default async function RootLayout({ children }) {
   const versionCSS =
     version === "v1"
       ? [
+          "./globals.css",
           "/styles/default.css",
           "/styles/light.css",
           "/styles/responsive.css",
@@ -69,7 +69,7 @@ export default async function RootLayout({ children }) {
           "/styles/js_composer.css",
           "/styles/case-study-style.css",
         ]
-      : [];
+      : ["/styles/style-v2.css"];
 
   return (
     // <html lang="en" className={blender.className}>

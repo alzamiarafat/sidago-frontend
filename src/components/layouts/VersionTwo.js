@@ -11,6 +11,7 @@ import LatestInsight from "../sections/v2/homepage/LatestInsight";
 import Navigation from "../sections/v2/homepage/Navbar";
 import Statistics from "../sections/v2/homepage/Statistics";
 import MarketTicker from "../sections/v2/homepage/Tracker";
+import LiquidStats from "../ui/TextAnimation";
 
 // ============ CONSTANTS ============
 const SCROLL_MT = "[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)]";
@@ -118,12 +119,38 @@ function Section({ id, bg, wrapper, components }) {
 // ============ PAGE ============
 export default function Home() {
   return (
-    <>
-      <Navigation />
-      {sections.map((section) => (
-        <Section key={section.id} {...section} />
-      ))}
-      <Footer />
-    </>
+    // <>
+    //   <Navigation />
+    //   {sections.map((section) => (
+    //     <Section key={section.id} {...section} />
+    //   ))}
+    //   <Footer />
+    // </>
+
+
+
+
+
+
+    <div class="flex h-svh flex-col text-base">
+      <div hidden=""></div>
+      <div class="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+        <Navigation/>
+        <main
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
+          style={{ colorScheme: "dark" }}
+        >
+          <HeroBannerSection />
+          <InsightNews />
+          <Statistics />
+           <MarketTicker />
+          <Capabilities /> 
+          {/* <LatestInsight /> */}
+          <CardsGrid />
+          <CTASection />
+          <Footer />
+        </main>
+      </div>
+    </div>
   );
 }
