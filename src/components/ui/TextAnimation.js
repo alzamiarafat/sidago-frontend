@@ -13,6 +13,11 @@ function MobileStatCard({ stat }) {
   useEffect(() => {
     if (!cardRef.current) return;
 
+    // Remove any leftover canvas from previous renders (StrictMode / remount)
+    while (cardRef.current.firstChild) {
+      cardRef.current.removeChild(cardRef.current.firstChild);
+    }
+
     const W = cardRef.current.clientWidth;
     const H = 130;
 
@@ -205,7 +210,6 @@ function DesktopStatsBar({ statsData }) {
   const pointsRefs = useRef([]);
   const hoverStates = useRef(new Array(statsData.length).fill(0));
   const currentHover = useRef(new Array(statsData.length).fill(0));
-  // ✅ useState so label re-renders on hover
   const [hoveredIdx, setHoveredIdx] = useState(-1);
 
   useEffect(() => {
@@ -342,39 +346,59 @@ function DesktopStatsBar({ statsData }) {
     };
   }, []);
 
-  // ✅ Both ref (for Three.js) AND state (for React label re-render)
   const handleHover = (index, entering) => {
     hoverStates.current[index] = entering ? 1 : 0;
     setHoveredIdx(entering ? index : -1);
   };
 
   return (
-    <section
-      style={{ width: "100%", position: "relative", overflow: "hidden" }}
-    >
-      <div ref={containerRef} style={{ height: "300px", width: "100%" }} />
-      {statsData.map((stat, i) => (
-        <div
-          key={i}
-          onMouseEnter={() => handleHover(i, true)}
-          onMouseLeave={() => handleHover(i, false)}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: `${(i / statsData.length) * 100}%`,
-            width: `${100 / statsData.length}%`,
-            height: "100%",
-            cursor: "pointer",
-            zIndex: 20,
-          }}
-        >
+    // ✅ FIX: overflow:hidden removed, section is NOT position:relative
+    // Labels are in normal document flow — they scroll naturally with the page
+    <section style={{ width: "100%" }}>
+      {/* Canvas wrapper is self-contained with position:relative */}
+      {/* Hover zones are scoped inside this fixed-height div only */}
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "240px",
+          overflow: "hidden",
+          marginTop: "-30px",
+        }}
+      >
+        <div ref={containerRef} style={{ height: "300px", width: "100%" }} />
+
+        {/* Hover zones — strictly contained within the 300px canvas area */}
+        {statsData.map((_, i) => (
           <div
+            key={`hz-${i}`}
+            onMouseEnter={() => handleHover(i, true)}
+            onMouseLeave={() => handleHover(i, false)}
             style={{
               position: "absolute",
-              bottom: "60px",
-              width: "100%",
+              top: 0,
+              left: `${(i / statsData.length) * 100}%`,
+              width: `${100 / statsData.length}%`,
+              height: "100%",
+              cursor: "pointer",
+              zIndex: 20,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ✅ Labels in normal flow — scroll with the page, never sticky */}
+      <div className="pb-8" style={{ display: "flex", width: "100%" }}>
+        {statsData.map((stat, i) => (
+          <div
+            key={`lbl-${i}`}
+            onMouseEnter={() => handleHover(i, true)}
+            onMouseLeave={() => handleHover(i, false)}
+            style={{
+              flex: 1,
+              cursor: "pointer",
               textAlign: "center",
-              pointerEvents: "none",
+              padding: "8px 4px 16px",
             }}
           >
             <p
@@ -383,12 +407,13 @@ function DesktopStatsBar({ statsData }) {
                 fontSize: "14px",
                 fontWeight: 700,
                 letterSpacing: "0.15em",
-                // ✅ uses hoveredIdx state — re-renders correctly
                 color: hoveredIdx === i ? "#ffffff" : "#555",
                 textTransform: "uppercase",
                 whiteSpace: "pre-line",
                 transition: "color 0.3s ease",
                 margin: 0,
+                marginTop: "-40px",
+                pointerEvents: "none",
               }}
             >
               {stat.label}
@@ -405,8 +430,8 @@ function DesktopStatsBar({ statsData }) {
               }}
             />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 }
@@ -428,7 +453,7 @@ export default function StatsBar({ statsData }) {
     return (
       <section
         key="mobile"
-        style={{ width: "100%", paddingTop: "4px", paddingBottom: "4px" }}
+        style={{ width: "100%", marginTop: "-40px", paddingBottom: "4px" }}
       >
         {statsData.map((stat, i) => (
           <MobileStatCard key={i} stat={stat} />
