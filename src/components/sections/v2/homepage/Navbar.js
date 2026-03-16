@@ -433,7 +433,32 @@ export default function Navigation() {
     <>
       <header className="header sticky top-0 z-50 -mb-[4.5rem] bg-gray-night-green bg-opacity-90 pb-md text-gray-off-white lg:hidden">
         <div className="container flex items-center justify-between">
-          <a className="z-10 flex h-3xl flex-col justify-center" href="#">
+          <a class="z-10 flex h-3xl flex-col justify-center" href="#">
+            <div class="flex items-center gap-md">
+              <img
+                alt="Wintermute"
+                loading="lazy"
+                width="33"
+                height="24"
+                decoding="async"
+                data-nimg="1"
+                style={{ color: "transparent" }}
+                src="images/logo.svg"
+              />
+              <div class="flex items-center gap-xs">
+                <img
+                  alt="Wintermute"
+                  width="170"
+                  height="16"
+                  decoding="async"
+                  data-nimg="1"
+                  style={{ color: "transparent" }}
+                  src="images/wintermute.svg"
+                />
+              </div>
+            </div>
+          </a>
+          {/* <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center gap-md">
               <div className="flex items-center gap-xs bg-white p-3">
                 <img
@@ -447,7 +472,7 @@ export default function Navigation() {
                 />
               </div>
             </div>
-          </a>
+          </a> */}
           <button
             type="button"
             aria-label="Menu"
@@ -1628,7 +1653,39 @@ export default function Navigation() {
       </nav>
       <header className="header sticky top-0 z-20 hidden bg-gray-night-green pb-md pt-3xl text-gray-off-white lg:block">
         <div className="container flex items-center justify-between">
-          <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">
+          <a class="z-10 flex h-3xl flex-col justify-center" href="#">
+            <div class="flex items-center">
+              <img
+                alt="Wintermute"
+                loading="lazy"
+                width="33"
+                height="24"
+                decoding="async"
+                data-nimg="1"
+                style={{ color: "transparent" }}
+                src="images/favicon-1.ico"
+              />
+              <div class="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
+                <span
+                  className="text-2xl tracking-wide font-normal"
+                  style={{ letterSpacing: "5px" }}
+                >
+                  SIDAGO
+                </span>
+
+                {/* <img
+                  alt="Wintermute"
+                  width="170"
+                  height="16"
+                  decoding="async"
+                  data-nimg="1"
+                  style={{ color: "transparent" }}
+                  src="images/wintermute.svg"
+                /> */}
+              </div>
+            </div>
+          </a>
+          {/* <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">
             <div className="flex items-center gap-md">
               <div className="flex items-center gap-xs bg-white bg-opacity-10 px-3 py-2">
                 <img
@@ -1642,7 +1699,7 @@ export default function Navigation() {
                 />
               </div>
             </div>
-          </a>
+          </a> */}
           <nav
             itemScope=""
             className="hidden items-center gap-2xl lg:flex"
