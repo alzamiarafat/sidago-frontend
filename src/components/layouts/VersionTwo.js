@@ -3,12 +3,12 @@
 import { motion, wrap } from "framer-motion";
 import Capabilities from "../sections/v2/homepage/Capabilities";
 import CardsGrid from "../sections/v2/homepage/CardGrid";
-import CTASection from "../sections/v2/homepage/CTA";
-import Footer from "../sections/v2/homepage/Footer";
+import CTASection from "../sections/v2/common/CTA";
+import Footer from "../sections/v2/common/Footer";
 import HeroBannerSection from "../sections/v2/homepage/HeroBanner";
 import InsightNews from "../sections/v2/homepage/InsightNews";
 import LatestInsight from "../sections/v2/homepage/LatestInsight";
-import Navigation from "../sections/v2/homepage/Navbar";
+import Navigation from "../sections/v2/common/Navbar";
 import Statistics from "../sections/v2/homepage/Statistics";
 import MarketTicker from "../sections/v2/homepage/Tracker";
 import LiquidStats from "../ui/TextAnimation";
@@ -17,10 +17,42 @@ import LiquidStats from "../ui/TextAnimation";
 const SCROLL_MT = "[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)]";
 const BASE_TEXT = "text-gray-off-white dark:bg-gray-night-green";
 
+const items = [
+  {
+    title: "Digital asset OTC market 2025",
+    href: "https://www.wintermute.com/insights/market-color/reports/digital-asset-otc-markets-2025#%3Cstrong%3Ehow-crypto-in-2025-moved-beyond-the-traditional-four-year-cycle%3C/strong%3E",
+    srText:
+      "Insights › Market color › Reports › Digital asset otc markets 2025",
+  },
+  {
+    title: "Wintermute Trader Assessment Day",
+    href: "https://www.wintermute.com/insights/news/announcements/wintermute-trader-assessment-day",
+    srText:
+      "Insights › News › Announcements › Wintermute trader assessment day",
+  },
+  {
+    title: "Introducing NODE Insights",
+    href: "https://www.wintermute.com/insights/news/announcements/introducing-node-insights",
+    srText: "Insights › News › Announcements › Introducing node insights",
+  },
+];
+
+const stats = [
+  { label: "Saving Costing", value: "75%" },
+  { label: "Increased Output", value: "81%" },
+  { label: "Return on Investment", value: "87%" },
+  { label: "Client Retention", value: "92%" },
+];
+
 // ============ SECTIONS CONFIG ============
 const sections = [
   { id: "hero", wrapper: true, components: [HeroBannerSection] },
-  { id: "insight-news", bg: "bg-stone-900",wrapper:false, components: [InsightNews] },
+  {
+    id: "insight-news",
+    bg: "bg-stone-900",
+    wrapper: false,
+    components: [InsightNews],
+  },
   { id: "statistics", bg: "bg-stone-800", components: [Statistics] },
   { id: "ticker", bg: "bg-stone-200", components: [MarketTicker] },
   { id: "capabilities", bg: "bg-stone-700", components: [Capabilities] },
@@ -69,7 +101,6 @@ const sections = [
 //     </section>
 //   );
 // }
-
 
 function Section({ id, bg, wrapper, components }) {
   const isHero = id === "hero";
@@ -127,24 +158,26 @@ export default function Home() {
     //   <Footer />
     // </>
 
-
-
-
-
-
     <div class="flex h-svh flex-col text-base">
       <div hidden=""></div>
       <div class="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
-        <Navigation/>
+        <Navigation />
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection />
-          <InsightNews />
-          <Statistics />
-           <MarketTicker />
-          <Capabilities /> 
+          <HeroBannerSection
+            useVideo={true}
+            videoSrc="/videos/home2.mp4"
+            firstTitle="WE UNDERSTAND"
+            secondTitle="THE ONLINE WORLD"
+            subtitle="Sidago makes digital asset markets liquid and efficient"
+          />
+
+          <InsightNews items={items} />
+          <Statistics stats={stats} />
+          <MarketTicker />
+          <Capabilities />
           {/* <LatestInsight /> */}
           <CardsGrid />
           <CTASection />

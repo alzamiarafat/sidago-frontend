@@ -3,14 +3,11 @@
 import LiquidStats from "@/src/components/ui/TextAnimation";
 import { motion } from "framer-motion";
 
-export default function Statistics() {
-  const stats = [
-    { label: "Saving Costing", value: "75%" },
-    { label: "Increased Output", value: "81%" },
-    { label: "Return on Investment", value: "87%" },
-    { label: "Client Retention", value: "92%" },
-  ];
-
+export default function Statistics({
+  stats,
+  bgColor = "bg-gray-defi-shadow",
+  textColor = "text-gray-off-white",
+}) {
   return (
     // <div className="bg-[#151619] ">
     //   <div className="container mx-auto px-6 lg:px-20">
@@ -43,10 +40,7 @@ export default function Statistics() {
     //   </div>
     // </div>
 
-    <section
-      className="bg-gray-defi-shadow text-gray-off-white"
-      style={{ width: "full" }}
-    >
+    <section className={`${bgColor} text-green-500`} style={{ width: "full" }}>
       <div className="flex flex-col gap-2xl container py-block lg:flex-row lg:py-0">
         <LiquidStats statsData={stats} />
         {/* <div
