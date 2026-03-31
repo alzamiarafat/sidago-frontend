@@ -269,7 +269,7 @@ export default function Navigation() {
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center gap-md">
-              <img
+              {/* <img
                 alt="Wintermute"
                 loading="lazy"
                 width="33"
@@ -286,7 +286,7 @@ export default function Navigation() {
                 >
                   SIDAGO
                 </span>
-              </div>
+              </div> */}
             </div>
           </a>
           {/* <a className="z-10 flex h-3xl flex-col justify-center" href="#">
@@ -1504,7 +1504,7 @@ export default function Navigation() {
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center">
-              <img
+              {/* <img
                 alt="Wintermute"
                 loading="lazy"
                 width="33"
@@ -1522,16 +1522,8 @@ export default function Navigation() {
                   SIDAGO
                 </span>
 
-                {/* <img
-                  alt="Wintermute"
-                  width="170"
-                  height="16"
-                  decoding="async"
-                  data-nimg="1"
-                  style={{ color: "transparent" }}
-                  src="images/wintermute.svg"
-                /> */}
-              </div>
+                
+              </div> */}
             </div>
           </a>
           {/* <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">

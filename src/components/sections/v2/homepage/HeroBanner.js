@@ -4,8 +4,8 @@ export default function HeroBannerSection({
   secondTitle,
   subtitle,
   useVideo = false,
-  bgClass,
-  textClass,
+  videoSectionClass,
+  videoClass,
   fontWeight,
   lighterTheme = false,
 }) {
@@ -26,16 +26,16 @@ export default function HeroBannerSection({
     // </section>
 
     <section
-      className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${bgClass} ${textClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
+      className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
     >
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-black">
         {/* Keep your exact structure */}
         {useVideo && (
           <div
-            className={`video-wrapper ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
+            className={`video-wrapper ${videoClass} ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
           >
             <video
-              className="h-full w-full lg:object-cover object-cover text-green-dark"
+              className="h-full w-full lg:object-cover object-cover text-green-dark bg-blue-200"
               autoPlay
               muted
               loop
