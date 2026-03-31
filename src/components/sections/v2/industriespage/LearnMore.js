@@ -340,7 +340,7 @@ export default function LearnMore() {
             </div>
             <div
               class="flex-col gap-2xl lg:flex-col-reverse lg:gap-4xl hidden lg:flex"
-              style="clip-path: inset(-100rem -100rem -100rem -100rem)"
+              style={{ clipPath: "inset(-100rem -100rem -100rem -100rem)" }}
             >
               <div class="flex justify-between gap-3xl lg:items-center">
                 <div class="relative flex flex-1 gap-md lg:hidden">
