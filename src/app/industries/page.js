@@ -13,12 +13,38 @@ import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselO
 
 export default function Industries() {
   const stats = [
-    { label: "Annual OTC trading volume", value: "65B" },
-    { label: "OTC trades per second", value: "1K" },
-    { label: "Largest OTC trade execution", value: "$0.5" },
-    { label: "Tokens traded via OTC", value: "700" },
-    { label: "OTC volume growth YoY", value: "4x" },
+    {
+      stat: "$65B",
+      label: "Annual OTC trading volume",
+      width: 244,
+      activeDotColor: "#E7512F",
+    },
+    {
+      stat: "1K",
+      label: "OTC trades per second",
+      width: 248,
+      activeDotColor: "#B48CFF",
+    },
+    {
+      stat: "$0.5",
+      label: "Largest OTC trade execution",
+      width: 198,
+      activeDotColor: "#E7512F",
+    },
+    {
+      stat: "70",
+      label: "Tokens traded via OTC",
+      width: 192,
+      activeDotColor: "#3C85DD",
+    },
+    {
+      stat: "4K",
+      label: "OTC volume growth YoY",
+      width: 192,
+      activeDotColor: "#F075E4",
+    },
   ];
+
   return (
     <div className="flex h-svh flex-col text-base">
       <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
