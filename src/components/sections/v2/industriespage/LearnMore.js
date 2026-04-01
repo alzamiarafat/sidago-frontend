@@ -215,7 +215,7 @@ export default function LearnMore() {
                             Media
                           </div>
                           <div class="ellipsis-3 text-lg h-[3lh] lg:text-xl">
-                            Empire: Inside Crypto's Liquidity Chess Game
+                            Empire: Inside Cryptos Liquidity Chess Game
                           </div>
                         </div>
                         <div class="font-blender uppercase text-sm">
@@ -453,7 +453,7 @@ export default function LearnMore() {
                   <div class="h-[0.25rem] transition-all bg-purple-mid w-0 opacity-30"></div>
                   <div
                     class="h-[0.25rem] w-sm transition-all bg-purple-mid"
-                    style="width: calc(0.75rem * 0)"
+                    style={{ width: "calc(0.75rem * 0)" }}
                   ></div>
                   <div class="h-[0.25rem] transition-all bg-purple-mid opacity-30 ml-[0.125rem] w-sm"></div>
                   <div class="h-[0.25rem] transition-all bg-purple-mid opacity-30 ml-[0.125rem] w-sm"></div>
@@ -465,7 +465,9 @@ export default function LearnMore() {
               <div class="relative -mx-[100rem] flex overflow-x-auto px-[100rem] scrollbar-none group/cards">
                 <div
                   class="w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem]"
-                  style="--link-card-desktop-width: calc(100% / 3 + 1rem)"
+                  style={{
+                    "--link-card-desktop-width": "calc(100% / 3 + 1rem)",
+                  }}
                 >
                   <a
                     referrerpolicy="no-referrer"
@@ -523,7 +525,9 @@ export default function LearnMore() {
                 </div>
                 <div
                   class="w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem]"
-                  style="--link-card-desktop-width: calc(100% / 3 + 1rem)"
+                  style={{
+                    "--link-card-desktop-width": "calc(100% / 3 + 1rem)",
+                  }}
                 >
                   <a
                     referrerpolicy="no-referrer"
@@ -581,7 +585,9 @@ export default function LearnMore() {
                 </div>
                 <div
                   class="w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem]"
-                  style="--link-card-desktop-width: calc(100% / 3 + 1rem)"
+                  style={{
+                    "--link-card-desktop-width": "calc(100% / 3 + 1rem)",
+                  }}
                 >
                   <a
                     referrerpolicy="no-referrer"
@@ -641,7 +647,9 @@ export default function LearnMore() {
                 </div>
                 <div
                   class="w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem]"
-                  style="--link-card-desktop-width: calc(100% / 3 + 1rem)"
+                  style={{
+                    "--link-card-desktop-width": "calc(100% / 3 + 1rem)",
+                  }}
                 >
                   <a
                     referrerpolicy="no-referrer"
@@ -673,7 +681,7 @@ export default function LearnMore() {
                             Media
                           </div>
                           <div class="ellipsis-3 text-lg h-[3lh] lg:text-xl">
-                            Empire: Inside Crypto's Liquidity Chess Game
+                            Empire: Inside Cryptos Liquidity Chess Game
                           </div>
                         </div>
                         <div class="font-blender uppercase text-sm">
@@ -702,7 +710,9 @@ export default function LearnMore() {
                 </div>
                 <div
                   class="w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem]"
-                  style="--link-card-desktop-width: calc(100% / 3 + 1rem)"
+                  style={{
+                    "--link-card-desktop-width": "calc(100% / 3 + 1rem)",
+                  }}
                 >
                   <a
                     style={{ position: "relative" }}

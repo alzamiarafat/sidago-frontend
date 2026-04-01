@@ -11,7 +11,7 @@ import PartnerTrading from "@/src/components/sections/v2/industriespage/PartnerT
 import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackPerformance";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
 
-export default function Industries() {
+export default function Strategy() {
   const stats = [
     { label: "Annual OTC trading volume", value: "65B" },
     { label: "OTC trades per second", value: "1K" },

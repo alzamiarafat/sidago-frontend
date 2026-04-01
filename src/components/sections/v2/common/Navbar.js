@@ -8,12 +8,25 @@ import Image1 from "@/src/data/image-1";
 import Image2 from "@/src/data/image-2";
 import Image3 from "@/src/data/image-3";
 import Image4 from "@/src/data/image-4";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const settings = useGlobal();
   const [openMenu, setOpenMenu] = useState(null); // "services", "industries", or null
   const [hideTimeout, setHideTimeout] = useState(null);
 
+  const pathname = usePathname();
+  console.log("dsds", pathname);
+
+  const activeRoutes = ["/industries", "/services", "/strategy"];
+  // const menuItems = [
+  //   { title: "Sales", href: "/ventures" },
+  //   { title: "Contact", href: "/insights" },
+  // ];
+
+  // const isActive = activeRoutes.some((route) => pathname.startsWith(route));
+
+  // const isActive = pathname.startsWith(item.href); // checks if route matches
   // === Services Dropdown ===
   const productSections = [
     {
@@ -1847,7 +1860,7 @@ export default function Navigation() {
                 className="relative font-blender text-sm uppercase transition-all hover:opacity-80"
                 itemprop="url"
                 target=""
-                href="/company"
+                href="/strategy"
               >
                 <span itemprop="name">Our Strategy</span>
                 <span className="sr-only">Our Strategy</span>
@@ -1939,24 +1952,28 @@ export default function Navigation() {
                 </div>
               </div>
             </div>
-            <div className="group/menu-item relative">
+            <div
+              className={`group/menu-item relative ${pathname === "/sales" ? "text-green-dark" : ""}`}
+            >
               <a
                 className="relative font-blender text-sm uppercase transition-all hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/ventures"
+                href="/sales"
               >
                 <span itemProp="name">Sales</span>
                 <span className="sr-only">Sales</span>
               </a>
             </div>
 
-            <div className="group/menu-item relative">
+            <div
+              className={`group/menu-item relative ${pathname === "/contact" ? "text-green-dark" : ""}`}
+            >
               <a
                 className="relative font-blender text-sm uppercase transition-all hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/insights"
+                href="/contact"
               >
                 <span itemProp="name">Contact</span>
                 <span className="sr-only">Contact</span>
