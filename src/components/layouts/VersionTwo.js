@@ -209,7 +209,7 @@ export default function Home() {
             useVideo={true}
             videoSrc="/videos/home2.mp4"
             firstTitle="WE UNDERSTAND"
-            secondTitle="THE ONLINE WORLD"
+            lastTitle="THE ONLINE WORLD"
             subtitle="Sidago makes digital asset markets liquid and efficient"
           />
 

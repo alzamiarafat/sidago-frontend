@@ -1,7 +1,9 @@
 export default function HeroBannerSection({
   videoSrc,
+  titles,
   firstTitle,
-  secondTitle,
+  middleTitle,
+  lastTitle,
   subtitle,
   useVideo = false,
   videoSectionClass,
@@ -32,7 +34,7 @@ export default function HeroBannerSection({
         {/* Keep your exact structure */}
         {useVideo && (
           <div
-            className={`video-wrapper ${videoClass} ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
+            className={`video-wrapper w-3/4 ${videoClass} ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
           >
             <video
               className="h-full w-full lg:object-cover object-cover text-green-dark bg-blue-200"
@@ -61,7 +63,21 @@ export default function HeroBannerSection({
       <div className="z-10 grid-cols-4 items-center lg:grid container py-block">
         <div className="col-span-2 flex flex-col items-start gap-2xl lg:pr-2xl">
           <h1 className="text-2xl lg:text-3xl" style={{ fontWeight }}>
-            <span className="text-green-dark">{firstTitle}</span> {secondTitle}
+            {titles.map((item, index) => (
+              <span
+                key={index}
+                className={item.className}
+                style={{ color: item.color }}
+              >
+                {" "}
+                {item.title}{" "}
+              </span>
+            ))}
+            {/* <span className={`${!middleTitle ? "text-green-dark" : ""}`}>
+              {firstTitle}
+            </span>
+            <span className="text-green-dark"> {middleTitle} </span>
+            <span className="text-green-dark"> {lastTitle} </span> */}
           </h1>
 
           <div className="text-base lg:text-lg">{subtitle}</div>

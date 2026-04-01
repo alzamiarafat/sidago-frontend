@@ -75,6 +75,19 @@ const stats = [
   },
 ];
 
+const titles = [
+  {
+    title: "Institutional OTC liquidity",
+    color: "",
+    className: "text-green-dark",
+  },
+  {
+    title: "at your fingertips",
+    color: "",
+    className: "",
+  },
+];
+
 const accordionItems = [
   {
     title: "Spot",
@@ -136,8 +149,7 @@ export default function Service() {
             useVideo={true}
             lighterTheme={true}
             videoSrc="https://www.wintermute.com/videos/heroes/otc.mp4"
-            firstTitle="Institutional OTC liquidity"
-            secondTitle="at your fingertips"
+            titles={titles}
             subtitle="Trade directly with the source of liquidity in digital markets"
             videoSectionClass="bg-gray-tradfi-dust text-gray-night-green"
           />
