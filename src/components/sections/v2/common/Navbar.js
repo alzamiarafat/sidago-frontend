@@ -1517,7 +1517,7 @@ export default function Navigation() {
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center">
-              {/* <img
+              <img
                 alt="Wintermute"
                 loading="lazy"
                 width="33"
@@ -1534,9 +1534,7 @@ export default function Navigation() {
                 >
                   SIDAGO
                 </span>
-
-                
-              </div> */}
+              </div>
             </div>
           </a>
           {/* <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">
