@@ -9,9 +9,11 @@ import LearnMore from "@/src/components/sections/v2/industriespage/LearnMore";
 import PartnerTrading from "@/src/components/sections/v2/industriespage/PartnerTrading";
 import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackPerformance";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
+import BuildingProduct from "@/src/components/sections/v2/strategypage/BuildingProduct";
 import Investment from "@/src/components/sections/v2/strategypage/Investment";
 import MissionThesis from "@/src/components/sections/v2/strategypage/MissionThesis";
 import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBenefit";
+import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
 
 export default function Strategy() {
   const stats = [
@@ -215,6 +217,8 @@ export default function Strategy() {
           <PartnerBenefit />
           <MissionThesis />
           <Investment />
+          <BuildingProduct />
+          <WorkOverview />
           {/* <TrackPerformance />
           <CarouselOverview
             bgColor="bg-[#454a47]"

@@ -34,13 +34,6 @@ const items = [
     srText: "Insights › News › Announcements › Introducing node insights",
   },
 ];
-// const stats = [
-//   { label: "Annual OTC trading volume", value: "65B" },
-//   { label: "OTC trades per second", value: "1K" },
-//   { label: "Largest OTC trade execution", value: "$0.5" },
-//   { label: "Tokens traded via OTC", value: "700" },
-//   { label: "OTC volume growth YoY", value: "4x" },
-// ];
 
 const stats = [
   {

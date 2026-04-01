@@ -76,12 +76,18 @@ const stats = [
     width: 192,
     activeDotColor: "#E7512F",
   },
-  // {
-  //   stat: "92%",
-  //   label: "Client Retention",
-  //   width: 192,
-  //   activeDotColor: "#B48CFF",
-  // },
+];
+const titles = [
+  {
+    title: "WE UNDERSTAND",
+    color: "",
+    className: "text-[#E7512F]",
+  },
+  {
+    title: "THE ONLINE WORLD",
+    color: "",
+    className: "",
+  },
 ];
 // ============ SECTIONS CONFIG ============
 const sections = [
@@ -208,8 +214,7 @@ export default function Home() {
           <HeroBannerSection
             useVideo={true}
             videoSrc="/videos/home2.mp4"
-            firstTitle="WE UNDERSTAND"
-            lastTitle="THE ONLINE WORLD"
+            titles={titles}
             subtitle="Sidago makes digital asset markets liquid and efficient"
           />
 

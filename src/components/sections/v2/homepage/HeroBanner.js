@@ -30,7 +30,7 @@ export default function HeroBannerSection({
     <section
       className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
     >
-      <div className="absolute inset-0 bg-black">
+      <div className="absolute inset-0 bg-[#020405]">
         {/* Keep your exact structure */}
         {useVideo && (
           <div
