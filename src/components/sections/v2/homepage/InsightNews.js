@@ -30,7 +30,7 @@ export default function InsightNews({
             >
               <span className="sr-only">{item.srText}</span>
 
-              <div className="container flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
+              <div className="flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
                 <div className="flex flex-1 items-center justify-between gap-xs">
                   {/* Title */}
                   <div className="text-xl lg:text-lg group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">

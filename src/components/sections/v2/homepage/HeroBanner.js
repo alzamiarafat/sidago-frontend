@@ -53,7 +53,7 @@ export default function HeroBannerSection({
 
         <div className="absolute inset-0 bg-gradient-to-t from-gray-night-green to-transparent opacity-30 lg:bg-gradient-to-r lg:from-gray-night-green lg:to-transparent"></div>
 
-        <div className="h-full w-full lg:object-cover object-cover text-green-dark"></div>
+        {/* <div className="h-full w-full lg:object-cover object-cover text-green-dark"></div> */}
       </div>
 
       <div className="absolute inset-0 bg-opacity-70 bg-gradient-to-t to-transparent to-50% lg:bg-gradient-to-r lg:to-100% from-gray-night-green"></div>

@@ -37,13 +37,52 @@ const items = [
   },
 ];
 
-const stats = [
-  { label: "Saving Costing", value: "75%" },
-  { label: "Increased Output", value: "81%" },
-  { label: "Return on Investment", value: "87%" },
-  { label: "Client Retention", value: "92%" },
-];
+// const stats = [
+//   { stat: "$12.3B", label: "Cumulative liquidity provided", width: 244 },
+//   { stat: "120+", label: "Increased Output", width: 248 },
+//   { stat: "35+", label: "Cefi exchanges integrated", width: 198 },
+//   { stat: "90+", label: "DeFi venues integrated", width: 192 },
+//   { stat: "25+", label: "DAOs running delegates in", width: 152 },
+// ];
 
+const stats = [
+  {
+    stat: "75%",
+    label: "Saving Costing",
+    width: 244,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "81%",
+    label: "Token liquidity partners",
+    width: 248,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "87%",
+    label: "Return on Investment",
+    width: 198,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "92%",
+    label: "Client Retention",
+    width: 192,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "88%",
+    label: "Client Retention",
+    width: 192,
+    activeDotColor: "#E7512F",
+  },
+  // {
+  //   stat: "92%",
+  //   label: "Client Retention",
+  //   width: 192,
+  //   activeDotColor: "#B48CFF",
+  // },
+];
 // ============ SECTIONS CONFIG ============
 const sections = [
   { id: "hero", wrapper: true, components: [HeroBannerSection] },

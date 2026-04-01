@@ -34,12 +34,45 @@ const items = [
     srText: "Insights › News › Announcements › Introducing node insights",
   },
 ];
+// const stats = [
+//   { label: "Annual OTC trading volume", value: "65B" },
+//   { label: "OTC trades per second", value: "1K" },
+//   { label: "Largest OTC trade execution", value: "$0.5" },
+//   { label: "Tokens traded via OTC", value: "700" },
+//   { label: "OTC volume growth YoY", value: "4x" },
+// ];
+
 const stats = [
-  { label: "Annual OTC trading volume", value: "65B" },
-  { label: "OTC trades per second", value: "1K" },
-  { label: "Largest OTC trade execution", value: "$0.5" },
-  { label: "Tokens traded via OTC", value: "700" },
-  { label: "OTC volume growth YoY", value: "4x" },
+  {
+    stat: "$65B",
+    label: "Annual OTC trading volume",
+    width: 244,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "1K",
+    label: "OTC trades per second",
+    width: 248,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "$0.5",
+    label: "Largest OTC trade execution",
+    width: 198,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "700",
+    label: "Tokens traded via OTC",
+    width: 192,
+    activeDotColor: "#E7512F",
+  },
+  {
+    stat: "4K",
+    label: "OTC volume growth YoY",
+    width: 192,
+    activeDotColor: "#E7512F",
+  },
 ];
 
 const accordionItems = [
@@ -117,7 +150,8 @@ export default function Service() {
           <Statistics
             stats={stats}
             bgColor="bg-gray-200"
-            textColor="text-black"
+            lighterTheme={true}
+            dotColor="#4D4D4D"
           />
           <VideoOverview />
 
