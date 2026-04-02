@@ -98,7 +98,7 @@ export default function Strategy() {
       viewBox: "0 0 18 18",
     },
     {
-      text: "Added exposure to institutional investors via Wintermute OTC",
+      text: "Added exposure to institutional investors via SIDAGO OTC",
       svgPath: (
         <>
           <path

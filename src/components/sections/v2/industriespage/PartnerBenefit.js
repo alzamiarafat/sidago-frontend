@@ -7,10 +7,10 @@ export default function PartnerBenefit({ benefits }) {
         <div className="mb-3xl flex flex-col gap-xl">
           <div className="flex flex-col gap-xs">
             <h2
-              id="wintermute-as-your-liquidity-partner"
+              id="sidago-as-your-liquidity-partner"
               className="font-blender text-xl uppercase text-green-dark"
             >
-              Wintermute as your liquidity partner
+              SIDAGO as your liquidity partner
             </h2>
           </div>
           <hr className="!border-[#AB290E]" />

@@ -279,7 +279,7 @@ const cards = [
     bgClass: "bg-orange-100",
     textClass: "text-gray-900",
     colSpan: "col-span-12 lg:col-span-6",
-    title: "Wintermute Research",
+    title: "SIDAGO Research",
     subtitle: "Deep dives into DeFi & governance",
     decoration: null,
     top: <ResearchDecoration />,
@@ -291,7 +291,7 @@ const cards = [
     bgClass: "bg-purple-100",
     textClass: "text-gray-900",
     colSpan: "col-span-12 xl:col-span-4",
-    title: "Wintermute Events",
+    title: "SIDAGO Events",
     subtitle: "Conferences, meetups & more",
     decoration: <EventsDecoration />,
     top: null,
@@ -463,7 +463,7 @@ export default function CardsGrid() {
                   </svg>
                   <div className="z-10 flex items-end justify-between gap-md">
                     <div className="flex flex-col gap-md">
-                      <div className="text-2xl">Wintermute Research</div>
+                      <div className="text-2xl">SIDAGO Research</div>
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -539,7 +539,7 @@ export default function CardsGrid() {
                   <div></div>
                   <div className="z-10 flex items-end justify-between gap-md">
                     <div className="flex flex-col gap-md">
-                      <div className="text-2xl">Wintermute Events</div>
+                      <div className="text-2xl">SIDAGO Events</div>
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

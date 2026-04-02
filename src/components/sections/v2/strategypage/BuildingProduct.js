@@ -11,8 +11,8 @@ export default function BuildingProduct() {
               Building through incubation
             </h2>
             <div class="text-gray-off-white">
-              Building products is central to Wintermute’s mode of operation.
-              Over the years, Wintermute has incubated innovative protocols in
+              Building products is central to SIDAGO’s mode of operation. Over
+              the years, SIDAGO has incubated innovative protocols in
               cooperation with partners and separate teams that have grown to be
               independent businesses.
             </div>

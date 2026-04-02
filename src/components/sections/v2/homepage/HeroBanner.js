@@ -21,7 +21,7 @@ export default function HeroBannerSection({
     //         WORLD
     //       </h1>
     //       <p className="text-base lg:text-lg text-white">
-    //         Wintermute makes digital asset markets liquid and efficient
+    //         SIDAGO makes digital asset markets liquid and efficient
     //       </p>
     //     </div>
     //   </div>

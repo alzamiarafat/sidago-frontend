@@ -5,10 +5,10 @@ export default function PartnerBenefit({ benefits }) {
         <div class="mb-3xl flex flex-col gap-xl">
           <div class="flex flex-col gap-xs">
             <h2
-              id="partner-with-wintermute-ventures"
+              id="partner-with-sidago-ventures"
               class="font-blender text-xl uppercase text-green-dark"
             >
-              Partner with Wintermute Ventures
+              Partner with SIDAGO Ventures
             </h2>
           </div>
           <hr class="!border-[#AB290E]" />

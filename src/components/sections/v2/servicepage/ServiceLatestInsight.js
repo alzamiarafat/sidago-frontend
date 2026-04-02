@@ -15,7 +15,7 @@ export default function ServiceLatestInsight() {
   const cards = [
     {
       title:
-        "Wintermute launches 24/7 crude oil CFD trading to meet demand for weekend liquidity",
+        "SIDAGO launches 24/7 crude oil CFD trading to meet demand for weekend liquidity",
       category: "Announcements",
       date: "24 Mar 2026",
       img: "images/image_1.png",
@@ -36,7 +36,7 @@ export default function ServiceLatestInsight() {
       href: "#",
     },
     {
-      title: "Wintermute OTC Market Review 1H25",
+      title: "SIDAGO OTC Market Review 1H25",
       category: "Reports",
       date: "14 Jul 2025",
       img: "images/image_6.png",
@@ -58,14 +58,14 @@ export default function ServiceLatestInsight() {
       href: "#",
     },
     {
-      title: "GMUSA: Trade the ‘Made in USA’ narrative with Wintermute",
+      title: "GMUSA: Trade the ‘Made in USA’ narrative with SIDAGO",
       category: "Announcements",
       date: "27 Jan 2025",
       img: "images/image_4.png",
       href: "#",
     },
     {
-      title: "Wintermute OTC: 2024 in review & 2025 outlook",
+      title: "SIDAGO OTC: 2024 in review & 2025 outlook",
       category: "Reports",
       date: "17 Jan 2025",
       img: "images/image_8.png",
@@ -81,7 +81,7 @@ export default function ServiceLatestInsight() {
     },
     {
       title:
-        "Wintermute becomes a Eurex member, expanding its derivatives offering",
+        "SIDAGO becomes a Eurex member, expanding its derivatives offering",
       category: "Announcements",
       date: "3 Oct 2024",
       img: "images/image_5.png",

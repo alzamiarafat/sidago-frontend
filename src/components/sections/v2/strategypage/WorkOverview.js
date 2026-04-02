@@ -2402,9 +2402,9 @@ export default function WorkOverview() {
               <div class="z-10 flex flex-col items-start md:w-[60%]">
                 <div class="text-2xl">Work at the frontier of crypto</div>
                 <div class="mt-10 text-sm md:text-base">
-                  Browse open roles across the Wintermute Ventures portfolio of
-                  100+ early-stage and growth-stage companies shaping the future
-                  of finance
+                  Explore open roles and opportunities across the SIDAGO
+                  ecosystem — teams building products and infrastructure shaping
+                  the future of finance.
                 </div>
                 <a
                   referrerpolicy="no-referrer"

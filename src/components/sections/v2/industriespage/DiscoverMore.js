@@ -112,7 +112,7 @@ export default function DiscoverMore() {
                     <div className="text-xl">DeFi</div>
                     <div className="mr-4xl text-sm lg:text-base">
                       Explore the latest DeFi research, discover the best
-                      practices for DAO governance, and learn how Wintermute has
+                      practices for DAO governance, and learn how SIDAGO has
                       advised on protocol design and collaborated with our
                       partners.
                     </div>

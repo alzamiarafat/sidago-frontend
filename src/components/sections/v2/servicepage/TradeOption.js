@@ -5,10 +5,10 @@ export default function TradeOption() {
         <div className="mb-3xl flex flex-col gap-xl">
           <div className="flex flex-col gap-xs">
             <h2
-              id="trade-with-wintermute"
+              id="trade-with-sidago"
               className="font-blender text-xl uppercase text-black"
             >
-              Trade with Wintermute
+              Trade with SIDAGO
             </h2>
           </div>
           <hr className="border-gray-tradfi-steel" />

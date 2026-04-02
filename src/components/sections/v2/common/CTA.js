@@ -47,7 +47,7 @@ const cards = [
   {
     id: "apply",
     title: "Apply",
-    text: "To join the Wintermute team",
+    text: "To join the SIDAGO team",
     href: "/company/opportunities",
     bg: "bg-[#D94E2B]", // right side color matches right background
     text_color: "text-white",
@@ -288,7 +288,7 @@ export default function CTASection() {
               </svg>
             </div>
             <div className="font-blender text-sm uppercase group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
-              To join the Wintermute team
+              To join the SIDAGO team
             </div>
           </div>
         </a>

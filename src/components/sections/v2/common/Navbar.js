@@ -283,7 +283,7 @@ export default function Navigation() {
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center gap-md">
               <img
-                alt="Wintermute"
+                alt="SIDAGO"
                 loading="lazy"
                 width="33"
                 height="24"
@@ -909,7 +909,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="https://node.wintermute.com/?utm_source=corpsite&utm_medium=referral&utm_content=login"
+                href="/login"
               >
                 <span itemProp="name">Log-In</span>
                 <svg
@@ -1518,7 +1518,7 @@ export default function Navigation() {
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center">
               <img
-                alt="Wintermute"
+                alt="SIDAGO"
                 loading="lazy"
                 width="33"
                 height="24"
@@ -1984,7 +1984,7 @@ export default function Navigation() {
                 style={{ position: "relative" }}
                 target=""
                 className="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-gray-defi-charcoal text-[0.875rem] text-green-dark"
-                href="https://node.wintermute.com/?utm_source=corpsite&utm_medium=referral&utm_content=login"
+                href="/login"
                 itemProp="url"
               >
                 <span className="sr-only">Node.Sidago.Com</span>Log-In
