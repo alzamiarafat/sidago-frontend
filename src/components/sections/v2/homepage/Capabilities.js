@@ -1,4 +1,12 @@
-export default function Capabilities() {
+import React, { useRef } from "react";
+
+export default function Capabilities({
+  items,
+  bgColor = "bg-gray-night-green",
+  textColor = "text-gray-off-white",
+  hoverColor = "bg-gray-defi-shadow",
+  borderColor = "border-gray-defi-shadow",
+}) {
   return (
     // <>
     //   <div className="bg-[#151619] ">
@@ -174,163 +182,87 @@ export default function Capabilities() {
     //   {/* <section className="w-full bg-[#151619] text-gray-off-white group hover:bg-gray-900 transition-colors duration-500 border-b border-gray-700/20"> */}
     // </>
 
-    <section className="hidden flex-col lg:flex bg-gray-night-green text-gray-off-white">
-      <a
-        style={{ position: "relative" }}
-        className="group/motion-accordion transition-all duration-500 hover:bg-gray-defi-shadow"
-        href="otc"
-      >
-        <span className="sr-only">Otc</span>
-        <div className="relative my-xl flex gap-2xl overflow-hidden transition-all duration-500 group-hover/motion-accordion:my-4xl container">
-          <div className="relative top-[3.3rem] flex flex-1 flex-col justify-between transition-all delay-500 group-hover/motion-accordion:top-0">
-            <div className="text-3xl transition-all delay-500 group-hover/motion-accordion:text-green-dark">
-              Savings
-            </div>
-            <div className="text-xl opacity-0 transition-all delay-500 group-hover/motion-accordion:opacity-100">
-              Trade spot or derivatives across the widest range of digital
-              assets, with an OTC desk that sits at the source of liquidity.
-            </div>
-          </div>
-          <div className="relative overflow-hidden bevel">
-            <div className="absolute h-full w-full animate-pulse bevel bg-gray-defi-charcoal"></div>
-            <video
-              playsInline=""
-              preload="metadata"
-              loop
-              muted
-              autoPlay
-              className="aspect-video w-[17rem] origin-center scale-[2] object-cover bevel"
-              style={{
-                transform: "rotate(30deg)",
-              }}
+    <section className={`hidden flex-col lg:flex ${bgColor} ${textColor}`}>
+      {items?.map((item, index) => {
+        const videoRef = useRef(null);
+
+        const handleMouseEnter = () => {
+          videoRef.current?.play();
+        };
+
+        const handleMouseLeave = () => {
+          videoRef.current?.pause();
+          videoRef.current.currentTime = 0; // reset
+        };
+
+        return (
+          <React.Fragment key={index}>
+            <a
+              href={item.href}
+              style={{ position: "relative" }}
+              className={`group/motion-accordion transition-all duration-500 hover:${hoverColor}`}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <source src="/media/Accordion-OTC.mp4#t=2" />
-            </video>
-          </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 40 40"
-            className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] duration-500"
-            style={{
-              "--arrow-offset": "1rem",
-              width: "2.5rem",
-            }}
-          >
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </div>
-      </a>
-      <hr className="hidden lg:block border-gray-defi-shadow" />
-      <a
-        style={{ position: "relative" }}
-        className="group/motion-accordion transition-all duration-500 hover:bg-gray-defi-shadow"
-        href="liquidity"
-      >
-        <span className="sr-only">Liquidity</span>
-        <div className="relative my-xl flex gap-2xl overflow-hidden transition-all duration-500 group-hover/motion-accordion:my-4xl container">
-          <div className="relative top-[3.3rem] flex flex-1 flex-col justify-between transition-all delay-500 group-hover/motion-accordion:top-0">
-            <div className="text-3xl transition-all delay-500 group-hover/motion-accordion:text-green-dark">
-              Solutions
-            </div>
-            <div className="text-xl opacity-0 transition-all delay-500 group-hover/motion-accordion:opacity-100">
-              Create liquid and efficient markets for your token globally, with
-              the partner of choice for top-tier protocols.
-            </div>
-          </div>
-          <div className="relative overflow-hidden bevel">
-            <div className="absolute h-full w-full animate-pulse bevel bg-gray-defi-charcoal"></div>
-            <video
-              playsInline=""
-              preload="metadata"
-              loop
-              muted
-              autoPlay
-              className="aspect-video w-[17rem] origin-center scale-[2] object-cover bevel"
-              style={{
-                transform: "rotate(-25deg)",
-              }}
-            >
-              <source src="/media/Accordion-Liquidity.mp4#t=3.15" />
-            </video>
-          </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 40 40"
-            className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] duration-500"
-            style={{
-              "--arrow-offset": "1rem",
-              width: "2.5rem",
-            }}
-          >
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </div>
-      </a>
-      <hr className="hidden lg:block border-gray-defi-shadow" />
-      <a
-        style={{ position: "relative" }}
-        className="group/motion-accordion transition-all duration-500 hover:bg-gray-defi-shadow"
-        href="defi"
-      >
-        <span className="sr-only">Defi</span>
-        <div className="relative my-xl flex gap-2xl overflow-hidden transition-all duration-500 group-hover/motion-accordion:my-4xl container">
-          <div className="relative top-[3.3rem] flex flex-1 flex-col justify-between transition-all delay-500 group-hover/motion-accordion:top-0">
-            <div className="text-3xl transition-all delay-500 group-hover/motion-accordion:text-green-dark">
-              Implementation
-            </div>
-            <div className="text-xl opacity-0 transition-all delay-500 group-hover/motion-accordion:opacity-100">
-              Partner with a leading builder, liquidity provider, blockchain
-              researcher, and governance contributor in DeFi.
-            </div>
-          </div>
-          <div className="relative overflow-hidden bevel">
-            <div className="absolute h-full w-full animate-pulse bevel bg-gray-defi-charcoal"></div>
-            <video
-              playsInline=""
-              preload="metadata"
-              loop
-              autoPlay
-              muted
-              className="aspect-video w-[17rem] origin-center scale-[2] object-cover bevel"
-              style={{
-                transform: "rotate(0deg)",
-              }}
-            >
-              <source src="media/Accordion-Governance-DeFi.mp4#t=1" />
-            </video>
-          </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 40 40"
-            className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] duration-500"
-            style={{
-              "--arrow-offset": "1rem",
-              width: "2.5rem",
-            }}
-          >
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </div>
-      </a>
-      <hr className="hidden lg:block border-gray-defi-shadow" />
+              <span className="sr-only">{item.sr}</span>
+
+              <div className="relative my-xl flex gap-2xl overflow-hidden transition-all duration-500 group-hover/motion-accordion:my-4xl container">
+                {/* TEXT */}
+                <div className="relative top-[3.3rem] flex flex-1 flex-col justify-between transition-all delay-500 group-hover/motion-accordion:top-0">
+                  <div className="text-3xl transition-all delay-500 group-hover/motion-accordion:text-green-dark">
+                    {item.title}
+                  </div>
+
+                  <div className="text-xl opacity-0 transition-all delay-500 group-hover/motion-accordion:opacity-100">
+                    {item.description}
+                  </div>
+                </div>
+
+                {/* VIDEO */}
+                <div className="relative overflow-hidden bevel">
+                  <div className="absolute h-full w-full animate-pulse bevel bg-gray-defi-charcoal"></div>
+
+                  <video
+                    ref={videoRef}
+                    playsInline
+                    preload="metadata"
+                    loop
+                    muted
+                    className="aspect-video w-[17rem] origin-center scale-[2] object-cover bevel"
+                    style={{ transform: item.rotate }}
+                  >
+                    <source src={item.video} />
+                  </video>
+                </div>
+
+                {/* ARROW (UNCHANGED) */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 40 40"
+                  className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] duration-500"
+                  style={{
+                    "--arrow-offset": "1rem",
+                    width: "2.5rem",
+                  }}
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </a>
+
+            {/* Divider */}
+            {index !== items.length - 1 && (
+              <hr className={`hidden lg:block ${borderColor}`} />
+            )}
+          </React.Fragment>
+        );
+      })}
     </section>
   );
 }

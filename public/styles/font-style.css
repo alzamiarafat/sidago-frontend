@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Blender:wght@400;500;600;700&display=swap");
+
+@font-face {
+  font-family: "Blender";
+  src: url("/fonts/Blender-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Blender", sans-serif;
+}
