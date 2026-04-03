@@ -19,59 +19,50 @@ const BASE_TEXT = "text-gray-off-white dark:bg-gray-night-green";
 
 const items = [
   {
-    title: "Digital asset OTC market 2025",
-    href: "https://www.wintermute.com/insights/market-color/reports/digital-asset-otc-markets-2025#%3Cstrong%3Ehow-crypto-in-2025-moved-beyond-the-traditional-four-year-cycle%3C/strong%3E",
+    title: "Digital asset OTC market 2026",
+    href: "#",
     srText:
-      "Insights › Market color › Reports › Digital asset otc markets 2025",
+      "Insights › Market color › Reports › Digital asset otc markets 2026",
   },
   {
-    title: "Wintermute Trader Assessment Day",
-    href: "https://www.wintermute.com/insights/news/announcements/wintermute-trader-assessment-day",
-    srText:
-      "Insights › News › Announcements › Wintermute trader assessment day",
+    title: "Sidago Trader Assessment Day",
+    href: "#",
+    srText: "Insights › News › Announcements › Sidago trader assessment day",
   },
   {
     title: "Introducing NODE Insights",
-    href: "https://www.wintermute.com/insights/news/announcements/introducing-node-insights",
+    href: "",
     srText: "Insights › News › Announcements › Introducing node insights",
   },
 ];
 
-// const stats = [
-//   { stat: "$12.3B", label: "Cumulative liquidity provided", width: 244 },
-//   { stat: "120+", label: "Increased Output", width: 248 },
-//   { stat: "35+", label: "Cefi exchanges integrated", width: 198 },
-//   { stat: "90+", label: "DeFi venues integrated", width: 192 },
-//   { stat: "25+", label: "DAOs running delegates in", width: 152 },
-// ];
-
 const stats = [
   {
-    stat: "75%",
+    stat: "75",
     label: "Saving Costing",
     width: 244,
     activeDotColor: "#E7512F",
   },
   {
-    stat: "81%",
+    stat: "81",
     label: "Token liquidity partners",
     width: 248,
     activeDotColor: "#E7512F",
   },
   {
-    stat: "87%",
+    stat: "87",
     label: "Return on Investment",
     width: 198,
     activeDotColor: "#E7512F",
   },
   {
-    stat: "92%",
+    stat: "92",
     label: "Client Retention",
     width: 192,
     activeDotColor: "#E7512F",
   },
   {
-    stat: "88%",
+    stat: "88",
     label: "Client Retention",
     width: 192,
     activeDotColor: "#E7512F",
@@ -79,12 +70,12 @@ const stats = [
 ];
 const titles = [
   {
-    title: "WE UNDERSTAND",
+    title: "We understand",
     color: "",
     className: "text-[#E7512F]",
   },
   {
-    title: "THE ONLINE WORLD",
+    title: "the online world",
     color: "",
     className: "",
   },
@@ -195,14 +186,6 @@ function Section({ id, bg, wrapper, components }) {
 // ============ PAGE ============
 export default function Home() {
   return (
-    // <>
-    //   <Navigation />
-    //   {sections.map((section) => (
-    //     <Section key={section.id} {...section} />
-    //   ))}
-    //   <Footer />
-    // </>
-
     <div class="flex h-svh flex-col text-base">
       <div hidden=""></div>
       <div class="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">

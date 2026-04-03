@@ -1,23 +1,22 @@
+import "../../app/globals.css";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
-import RecommendedInsight from "@/src/components/sections/v2/sales/RecommendedInsight";
+import FilterBy from "@/src/components/sections/v2/salespage/FilterBy";
+import RecommendedInsight from "@/src/components/sections/v2/salespage/RecommendedInsight";
+import Series from "@/src/components/sections/v2/salespage/Series";
+import Subscribe from "@/src/components/sections/v2/salespage/Subscribe";
 
 const titles = [
   {
-    title: "Building",
+    title: "Digital asset",
     color: "",
-    className: "",
+    className: "text-black",
   },
   {
-    title: "deep, scalable liquidity",
-    color: "#958dec",
-    className: "",
-  },
-  {
-    title: "for your token",
-    color: "",
-    className: "",
+    title: "OTC market 2025",
+    color: "#00d64a",
+    className: "block mt-1",
   },
 ];
 export default function SalesPage() {
@@ -31,15 +30,18 @@ export default function SalesPage() {
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection
-            useVideo={true}
-            lighterTheme={false}
-            videoSrc="https://www.wintermute.com/videos/heroes/liquidity.mp4"
+            useVideo={false}
+            lighterTheme={true}
+            imageSrc="images/OTC-report-2025_svg.svg"
             titles={titles}
-            subtitle="Trade directly with the source of liquidity in digital markets"
+            subtitle="Sidago 2025 digital asset OTC market review analyzes crypto liquidity flows, institutional trading behavior and derivatives growth to explain how traditional cycle dynamics are changing."
             videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
           />
 
           <RecommendedInsight />
+          <FilterBy />
+          <Series />
+          {/* <Subscribe /> */}
           <Footer />
         </main>
       </div>

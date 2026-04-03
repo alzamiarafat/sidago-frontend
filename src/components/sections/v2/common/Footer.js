@@ -215,44 +215,44 @@ export default function Footer() {
         <hr className="my-0 border-gray-defi-ash" />
         <div className="flex flex-col gap-md text-xs text-gray-defi-ash">
           <div>
-            Wintermute Trading Ltd., a company registered in England & Wales
+            Sidago Trading Ltd., a company registered in England & Wales
             (Company No. 10882520), is registered with the UK Financial Conduct
             Authority for its cryptoasset activities under the Money Laundering,
             Terrorist Financing and Transfer for Funds (Information on the
-            Payer) Regulations 2017 as amended (FRN:928764). Wintermute Asia
-            Pte. Ltd. is incorporated in Singapore (Company No. 202108542H), and
+            Payer) Regulations 2017 as amended (FRN:928764). Sidago Asia Pte.
+            Ltd. is incorporated in Singapore (Company No. 202108542H), and
             primarily trades certain derivatives referencing cryptoassets. Each
-            of Wintermute Trading Ltd. and Wintermute Asia Pte. Ltd. is
-            hereafter referred to as Wintermute Entity. Neither Wintermute
-            Entity is authorised or regulated by any regulatory authority. Any
-            party trading with either Wintermute Entity may not benefit from the
-            protections typically provided when trading with regulated entities,
-            such as any compensation or ombudsman schemes.
+            of Sidago Trading Ltd. and Sidago Asia Pte. Ltd. is hereafter
+            referred to as Sidago Entity. Neither Sidago Entity is authorised or
+            regulated by any regulatory authority. Any party trading with either
+            Sidago Entity may not benefit from the protections typically
+            provided when trading with regulated entities, such as any
+            compensation or ombudsman schemes.
           </div>
           <div>
-            Each Wintermute Entity trades for its own account and with assets
-            (including digital assets) that belong to it. Neither Wintermute
-            Entity engages in the management, custody or holding of any assets,
+            Each Sidago Entity trades for its own account and with assets
+            (including digital assets) that belong to it. Neither Sidago Entity
+            engages in the management, custody or holding of any assets,
             including cryptoassets or fiat currency, on behalf of investors or
             customers.
           </div>
           <div>
-            No communication, whether verbal or written, by either of Wintermute
-            Entities or by any persons on behalf of Wintermute Entities is
-            intended to, or shall be construed as or deemed to, establish a
-            customer relationship with or a provision of services by either
-            Wintermute Entity. Any references to market making, market maker,
-            liquidity provisioning or similar terms on this website or otherwise
-            in connection with our activities do not refer to liquidity
+            No communication, whether verbal or written, by either of Sidago
+            Entities or by any persons on behalf of Sidago Entities is intended
+            to, or shall be construed as or deemed to, establish a customer
+            relationship with or a provision of services by either Sidago
+            Entity. Any references to market making, market maker, liquidity
+            provisioning or similar terms on this website or otherwise in
+            connection with our activities do not refer to liquidity
             provisioning services, market making services or any other regulated
             activities which may be referred to using the same, or similar name,
             by any regulatory or self regulatory organizations.
           </div>
           <div>
-            Neither Wintermute Entity provides any warranty, whether express or
+            Neither Sidago Entity provides any warranty, whether express or
             implied, as to any results, including, but not limited to, in
             relation to prices and the timing, speed or likelihood of any
-            transactions with Wintermute.
+            transactions with Sidago.
           </div>
           <div>
             The material provided on this website is provided for information

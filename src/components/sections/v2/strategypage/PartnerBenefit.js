@@ -24,15 +24,15 @@ export default function PartnerBenefit({ benefits }) {
               >
                 <path
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="m20.47 21.53.53-1.28h42v1.5H22.81l40.72 40.72-.53 1.28H21v-1.5h40.19z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
                 <path
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M42.75 10.5v63h-1.5v-63z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               <div class="text-lg lg:text-xl lg:text-gray-off-white">
@@ -48,14 +48,14 @@ export default function PartnerBenefit({ benefits }) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linejoin="bevel"
-                  stroke-width="0.7"
+                  strokeLinejoin="bevel"
+                  strokeWidth="0.7"
                   d="M15.001 7.5h12.5l-2.5 5 7.5 5 2.5 7.5-2.5 5-5 5h-15l-5-5-2.5-5 2.5-7.5 7.5-5-2.5-5z"
                 ></path>
                 <path
                   stroke="currentColor"
-                  stroke-linejoin="bevel"
-                  stroke-width="0.7"
+                  strokeLinejoin="bevel"
+                  strokeWidth="0.7"
                   d="M25.001 20h-10l10 7.5h-10M20 30V17.5"
                 ></path>
               </svg>
@@ -72,20 +72,20 @@ export default function PartnerBenefit({ benefits }) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linejoin="bevel"
-                  stroke-width="0.7"
+                  strokeLinejoin="bevel"
+                  strokeWidth="0.7"
                   d="M35 5H25l10 10z"
                 ></path>
                 <path
                   stroke="currentColor"
-                  stroke-linejoin="bevel"
-                  stroke-width="0.7"
+                  strokeLinejoin="bevel"
+                  strokeWidth="0.7"
                   d="M25 5 15 15l10 10 10-10"
                 ></path>
                 <path
                   stroke="currentColor"
-                  stroke-linejoin="bevel"
-                  stroke-width="0.7"
+                  strokeLinejoin="bevel"
+                  strokeWidth="0.7"
                   d="M25 25v10L5 15h10M15 25H5l10 10z"
                 ></path>
               </svg>
@@ -102,8 +102,8 @@ export default function PartnerBenefit({ benefits }) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-width="0.7"
+                  strokeMiterlimit="10"
+                  strokeWidth="0.7"
                   d="M35 5H21.364v13.636H35zM35 21.364H21.364V35H35zM18.636 21.364H5V35h13.636z"
                 ></path>
               </svg>
@@ -120,8 +120,8 @@ export default function PartnerBenefit({ benefits }) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-width="0.7"
+                  strokeMiterlimit="10"
+                  strokeWidth="0.7"
                   d="M20 5v2.5M20 12.5v15M20 32.5V35M12.5 30h15M12.5 10h15M17.5 20H5M22.5 20H35M32.5 30H35M7.5 30H5M32.5 10H35M7.5 10H5M10 5v12.5M10 22.5V35M30 22.5V35M30 17.5V5"
                 ></path>
               </svg>
@@ -138,14 +138,14 @@ export default function PartnerBenefit({ benefits }) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-width="0.7"
+                  strokeMiterlimit="10"
+                  strokeWidth="0.7"
                   d="M3 9h30L18 23.828z"
                 ></path>
                 <path
                   stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-width="0.7"
+                  strokeMiterlimit="10"
+                  strokeWidth="0.7"
                   d="M3 16.414 18 31.24l15-14.827"
                 ></path>
               </svg>

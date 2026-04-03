@@ -18,19 +18,18 @@ import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner"
 const items = [
   {
     title: "Report: Digital asset OTC market 2025",
-    href: "https://www.wintermute.com/insights/market-color/reports/digital-asset-otc-markets-2025#%3Cstrong%3Ehow-crypto-in-2025-moved-beyond-the-traditional-four-year-cycle%3C/strong%3E",
+    href: "#",
     srText:
       "Insights › Market color › Reports › Digital asset otc markets 2025",
   },
   {
     title: "Discover NODE Insights: trader curated market insights",
-    href: "https://www.wintermute.com/insights/news/announcements/wintermute-trader-assessment-day",
-    srText:
-      "Insights › News › Announcements › Wintermute trader assessment day",
+    href: "#",
+    srText: "Insights › News › Announcements › Sidago trader assessment day",
   },
   {
     title: "Trade crypto indexes via CFDs on Node",
-    href: "https://www.wintermute.com/insights/news/announcements/introducing-node-insights",
+    href: "#",
     srText: "Insights › News › Announcements › Introducing node insights",
   },
 ];

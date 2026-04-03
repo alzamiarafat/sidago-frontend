@@ -15,7 +15,7 @@ export default function TrackPerformance() {
           data-nimg="1"
           class="w-full object-cover bevel bevel-[0.25rem]"
           style={{ color: "transparent" }}
-          src="images/LP-report.svg"
+          src="images/report.png"
         />
       </div>
     </section>

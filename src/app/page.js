@@ -1,6 +1,6 @@
 "use client";
 import "../app/globals.css";
-import "../../public/styles/font-style.css";
+// import "../../public/styles/font-style.css";
 import { useGlobal } from "../hooks/useGlobal";
 import VersionTwoLayout from "../components/layouts/VersionTwo";
 import VersionOneLayout from "../components/layouts/VersionOne";

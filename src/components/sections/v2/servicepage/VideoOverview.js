@@ -29,13 +29,13 @@ export default function VideoOverview() {
         </div>
         <div className="pt-container">
           <video
-            playsinline
-            autoplay
+            playsInline
+            autoPlay={false}
             preload="metadata"
             className="bevel w-full"
             controls
           >
-            <source src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/01/17212703/Node_2023_V2_1000.mp4" />
+            <source src="videos/overview.mp4" />
           </video>
         </div>
         <div className="pt-container flex">
