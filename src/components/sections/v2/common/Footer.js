@@ -42,7 +42,7 @@ export default function Footer() {
     //         </a>
     //         {/* X */}
     //         <a
-    //           href="https://x.com/wintermute_t"
+    //           href="https://x.com/sidago"
     //           className="hover:text-gray-tradfi-silver relative text-white"
     //         >
     //           <span className="sr-only">X</span>
@@ -56,7 +56,7 @@ export default function Footer() {
     //         </a>
     //         {/* LinkedIn */}
     //         <a
-    //           href="https://www.linkedin.com/company/wintermute-trading"
+    //           href="https://www.linkedin.com/company/sidago"
     //           className="hover:text-gray-tradfi-silver relative text-white"
     //         >
     //           <span className="sr-only">LinkedIn</span>
@@ -76,32 +76,32 @@ export default function Footer() {
     //     {/* Legal info */}
     //     <div className="flex flex-col gap-4 text-xs text-gray-400">
     //       <p>
-    //         Wintermute Trading Ltd., a company registered in England & Wales
+    //         SIDAGO, a company registered in England & Wales
     //         (Company No. 10882520), is registered with the UK Financial Conduct
     //         Authority for its cryptoasset activities under the Money Laundering,
     //         Terrorist Financing and Transfer for Funds (Information on the
-    //         Payer) Regulations 2017 as amended (FRN:928764). Wintermute Asia
+    //         Payer) Regulations 2017 as amended. SIDAGO Asia
     //         Pte. Ltd. is incorporated in Singapore (Company No. 202108542H), and
     //         primarily trades certain derivatives referencing cryptoassets.
     //       </p>
     //       <p>
-    //         Each Wintermute Entity trades for its own account and with assets
-    //         (including digital assets) that belong to it. Neither Wintermute
+    //         Each SIDAGO Entity trades for its own account and with assets
+    //         (including digital assets) that belong to it. Neither SIDAGO
     //         Entity engages in the management, custody or holding of any assets,
     //         including cryptoassets or fiat currency, on behalf of investors or
     //         customers.
     //       </p>
     //       <p>
-    //         No communication, whether verbal or written, by either of Wintermute
-    //         Entities or by any persons on behalf of Wintermute Entities is
+    //         No communication, whether verbal or written, by either of SIDAGO
+    //         Entities or by any persons on behalf of SIDAGO Entities is
     //         intended to establish a customer relationship with or a provision of
-    //         services by either Wintermute Entity.
+    //         services by either SIDAGO Entity.
     //       </p>
     //       <p>
-    //         Neither Wintermute Entity provides any warranty, whether express or
+    //         Neither SIDAGO Entity provides any warranty, whether express or
     //         implied, as to any results, including, but not limited to, in
     //         relation to prices and the timing, speed or likelihood of any
-    //         transactions with Wintermute.
+    //         transactions with SIDAGO.
     //       </p>
     //       <p>
     //         The material provided on this website is for information purposes
@@ -161,7 +161,7 @@ export default function Footer() {
           <div className="hidden gap-2xl lg:flex">
             <a
               className="relative hover:text-gray-tradfi-silver"
-              href="https://www.youtube.com/@W_cryptoevents"
+              href="https://www.youtube.com/@sidago"
             >
               <span className="sr-only">YouTube</span>
               <svg
@@ -178,7 +178,7 @@ export default function Footer() {
             </a>
             <a
               className="relative hover:text-gray-tradfi-silver"
-              href="https://x.com/wintermute_t"
+              href="https://x.com/sidago"
             >
               <span className="sr-only">X</span>
               <svg
@@ -195,7 +195,7 @@ export default function Footer() {
             </a>
             <a
               className="relative hover:text-gray-tradfi-silver"
-              href="https://www.linkedin.com/company/wintermute-trading"
+              href="https://www.linkedin.com/company/sidago"
             >
               <span className="sr-only">LinkedIn</span>
               <svg
@@ -215,44 +215,44 @@ export default function Footer() {
         <hr className="my-0 border-gray-defi-ash" />
         <div className="flex flex-col gap-md text-xs text-gray-defi-ash">
           <div>
-            Wintermute Trading Ltd., a company registered in England & Wales
+            Sidago Trading Ltd., a company registered in England & Wales
             (Company No. 10882520), is registered with the UK Financial Conduct
             Authority for its cryptoasset activities under the Money Laundering,
             Terrorist Financing and Transfer for Funds (Information on the
-            Payer) Regulations 2017 as amended (FRN:928764). Wintermute Asia
-            Pte. Ltd. is incorporated in Singapore (Company No. 202108542H), and
+            Payer) Regulations 2017 as amended (FRN:928764). Sidago Asia Pte.
+            Ltd. is incorporated in Singapore (Company No. 202108542H), and
             primarily trades certain derivatives referencing cryptoassets. Each
-            of Wintermute Trading Ltd. and Wintermute Asia Pte. Ltd. is
-            hereafter referred to as Wintermute Entity. Neither Wintermute
-            Entity is authorised or regulated by any regulatory authority. Any
-            party trading with either Wintermute Entity may not benefit from the
-            protections typically provided when trading with regulated entities,
-            such as any compensation or ombudsman schemes.
+            of Sidago Trading Ltd. and Sidago Asia Pte. Ltd. is hereafter
+            referred to as Sidago Entity. Neither Sidago Entity is authorised or
+            regulated by any regulatory authority. Any party trading with either
+            Sidago Entity may not benefit from the protections typically
+            provided when trading with regulated entities, such as any
+            compensation or ombudsman schemes.
           </div>
           <div>
-            Each Wintermute Entity trades for its own account and with assets
-            (including digital assets) that belong to it. Neither Wintermute
-            Entity engages in the management, custody or holding of any assets,
+            Each Sidago Entity trades for its own account and with assets
+            (including digital assets) that belong to it. Neither Sidago Entity
+            engages in the management, custody or holding of any assets,
             including cryptoassets or fiat currency, on behalf of investors or
             customers.
           </div>
           <div>
-            No communication, whether verbal or written, by either of Wintermute
-            Entities or by any persons on behalf of Wintermute Entities is
-            intended to, or shall be construed as or deemed to, establish a
-            customer relationship with or a provision of services by either
-            Wintermute Entity. Any references to market making, market maker,
-            liquidity provisioning or similar terms on this website or otherwise
-            in connection with our activities do not refer to liquidity
+            No communication, whether verbal or written, by either of Sidago
+            Entities or by any persons on behalf of Sidago Entities is intended
+            to, or shall be construed as or deemed to, establish a customer
+            relationship with or a provision of services by either Sidago
+            Entity. Any references to market making, market maker, liquidity
+            provisioning or similar terms on this website or otherwise in
+            connection with our activities do not refer to liquidity
             provisioning services, market making services or any other regulated
             activities which may be referred to using the same, or similar name,
             by any regulatory or self regulatory organizations.
           </div>
           <div>
-            Neither Wintermute Entity provides any warranty, whether express or
+            Neither Sidago Entity provides any warranty, whether express or
             implied, as to any results, including, but not limited to, in
             relation to prices and the timing, speed or likelihood of any
-            transactions with Wintermute.
+            transactions with Sidago.
           </div>
           <div>
             The material provided on this website is provided for information

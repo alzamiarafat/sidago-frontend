@@ -7,10 +7,10 @@ export default function LatestInsight() {
           <div className="w-full lg:w-1/2">
             <div className="mb-12 flex flex-col gap-6">
               <h2
-                id="@wintermute-feed"
+                id="@sidago-feed"
                 className="font-blender text-xl uppercase text-green-dark"
               >
-                @wintermute feed
+                @sidago feed
               </h2>
               <hr className="border-[#006623]" />
             </div>

@@ -1,15 +1,14 @@
 export default function HeroBannerSection({
   videoSrc,
+  imageSrc,
   titles,
-  firstTitle,
-  middleTitle,
-  lastTitle,
   subtitle,
   useVideo = false,
   videoSectionClass,
   videoClass,
   fontWeight,
   lighterTheme = false,
+  loop = true,
 }) {
   return (
     // <section className="relative flex flex-col justify-center items-center min-h-[70svh] lg:flex-row lg:items-center lg:justify-center text-gray-off-white lg:min-h-[calc(100svh - var(--header-height) - 6.125rem)]">
@@ -21,7 +20,7 @@ export default function HeroBannerSection({
     //         WORLD
     //       </h1>
     //       <p className="text-base lg:text-lg text-white">
-    //         Wintermute makes digital asset markets liquid and efficient
+    //         SIDAGO makes digital asset markets liquid and efficient
     //       </p>
     //     </div>
     //   </div>
@@ -30,19 +29,31 @@ export default function HeroBannerSection({
     <section
       className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
     >
-      <div className="absolute inset-0 bg-[#020405]">
+      <div
+        className={`absolute inset-0 ${lighterTheme ? "bg-[#f0f1f1]" : "bg-[#020405]"}`}
+      >
         {/* Keep your exact structure */}
         {useVideo && (
           <div
-            className={`video-wrapper w-3/4 ${videoClass} ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
+            className={`video-wrapper ${videoClass} ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
           >
             <video
-              className="h-full w-full lg:object-cover object-cover text-green-dark bg-blue-200"
+              className="h-full w-full lg:object-cover object-cover text-green-dark"
               autoPlay
               muted
-              loop
+              loop={loop}
               playsInline
               src={videoSrc}
+            />
+          </div>
+        )}
+
+        {!useVideo && imageSrc && (
+          <div className="absolute top-0 right-0 w-3/4 h-full overflow-hidden">
+            <img
+              src={imageSrc}
+              alt="Report Focus"
+              className="h-full w-full object-scale-down object-right opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
             />
           </div>
         )}
@@ -51,14 +62,14 @@ export default function HeroBannerSection({
           <div className="h-full w-full lg:object-cover object-cover text-green-dark"></div>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-70"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-10"></div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-night-green to-transparent opacity-30 lg:bg-gradient-to-r lg:from-gray-night-green lg:to-transparent"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-gray-night-green to-transparent opacity-30 lg:bg-gradient-to-r lg:from-gray-night-green lg:to-transparent"></div> */}
 
         {/* <div className="h-full w-full lg:object-cover object-cover text-green-dark"></div> */}
       </div>
 
-      <div className="absolute inset-0 bg-opacity-70 bg-gradient-to-t to-transparent to-50% lg:bg-gradient-to-r lg:to-100% from-gray-night-green"></div>
+      {/* <div className="absolute inset-0 bg-opacity-90 bg-gradient-to-t to-transparent to-50% lg:bg-gradient-to-r lg:to-100% from-gray-night-green"></div> */}
 
       <div className="z-10 grid-cols-4 items-center lg:grid container py-block">
         <div className="col-span-2 flex flex-col items-start gap-2xl lg:pr-2xl">
@@ -73,14 +84,13 @@ export default function HeroBannerSection({
                 {item.title}{" "}
               </span>
             ))}
-            {/* <span className={`${!middleTitle ? "text-green-dark" : ""}`}>
-              {firstTitle}
-            </span>
-            <span className="text-green-dark"> {middleTitle} </span>
-            <span className="text-green-dark"> {lastTitle} </span> */}
           </h1>
 
-          <div className="text-base lg:text-lg">{subtitle}</div>
+          <div
+            className={`text-base ${lighterTheme ? "text-black" : ""} lg:text-lg`}
+          >
+            {subtitle}
+          </div>
         </div>
       </div>
     </section>

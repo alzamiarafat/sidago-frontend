@@ -72,7 +72,7 @@ export default function MissionInvestmentThesisExact() {
               <div className="h-[15.75rem] bevel md:h-full md:flex-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  alt="Wintermute Ventures, the strategic investment arm of Wintermute, focuses on early-stage startups across the crypto value chain, having backed over 100 companies and protocols since 2020. Unlike traditional VCs, Wintermute Ventures exclusively invests its own funds, ensuring full alignment with founders and a focus on long-term growth."
+                  alt="SIDAGO Ventures, the strategic investment arm of SIDAGO, focuses on early-stage startups across the crypto value chain. We invest proprietary capital with a long-term, founder-aligned approach."
                   width="1152"
                   height="1152"
                   decoding="async"
@@ -84,12 +84,10 @@ export default function MissionInvestmentThesisExact() {
               </div>
               <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
                 <div className="text-sm md:text-xl">
-                  Wintermute Ventures, the strategic investment arm of
-                  Wintermute, focuses on early-stage startups across the crypto
-                  value chain, having backed over 100 companies and protocols
-                  since 2020. Unlike traditional VCs, Wintermute Ventures
-                  exclusively invests its own funds, ensuring full alignment
-                  with founders and a focus on long-term growth.
+                  SIDAGO Ventures, the strategic investment arm of SIDAGO,
+                  focuses on early-stage startups across the crypto value chain.
+                  We invest proprietary capital, aligning closely with founders
+                  and prioritizing durable, long-term value creation.
                 </div>
               </div>
             </div>
@@ -103,7 +101,7 @@ export default function MissionInvestmentThesisExact() {
               <div className="h-[15.75rem] bevel md:h-full md:flex-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  alt="Wintermute Ventures envisions a truly diverse and decentralized future, where no single entity or ecosystem dominates. Instead, various trading platforms and financial applications coexist harmoniously, powered by blockchain technology. Our ultimate goal is to transform the world of finance by leveraging crypto and blockchain to drive innovation."
+                  alt="SIDAGO Ventures envisions a diverse and decentralized future where no single ecosystem dominates, and financial applications coexist and interoperate through blockchain technology."
                   width="1152"
                   height="1152"
                   decoding="async"
@@ -115,13 +113,12 @@ export default function MissionInvestmentThesisExact() {
               </div>
               <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
                 <div className="text-sm md:text-xl">
-                  Wintermute Ventures envisions a truly diverse and
-                  decentralized future, where no single entity or ecosystem
-                  dominates. Instead, various trading platforms and financial
-                  applications coexist harmoniously, powered by blockchain
-                  technology. Our ultimate goal is to transform the world of
-                  finance by leveraging crypto and blockchain to drive
-                  innovation.
+                  SIDAGO Ventures envisions a truly diverse and decentralized
+                  future, where no single entity or ecosystem dominates.
+                  Instead, various trading platforms and financial applications
+                  coexist harmoniously, powered by blockchain technology. Our
+                  ultimate goal is to help transform finance by leveraging
+                  crypto and blockchain to drive innovation.
                 </div>
               </div>
             </div>
@@ -135,7 +132,7 @@ export default function MissionInvestmentThesisExact() {
               <div className="h-[15.75rem] bevel md:h-full md:flex-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  alt="Wintermute Ventures is more than an investor – we’re a strategic partner, providing capital, expertise, and hands-on support to help founders shape the future of finance. As one of the largest crypto trading firms across centralized and decentralized venues, we help founders achieve their goals by sharing our successes and lessons learned along the way."
+                  alt="SIDAGO Ventures is more than an investor — we’re a strategic partner, providing capital, expertise, and hands-on support to help founders shape the future of finance."
                   width="4800"
                   height="1152"
                   decoding="async"
@@ -148,12 +145,11 @@ export default function MissionInvestmentThesisExact() {
               </div>
               <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
                 <div className="text-sm md:text-xl">
-                  Wintermute Ventures is more than an investor – we’re a
-                  strategic partner, providing capital, expertise, and hands-on
-                  support to help founders shape the future of finance. As one
-                  of the largest crypto trading firms across centralized and
-                  decentralized venues, we help founders achieve their goals by
-                  sharing our successes and lessons learned along the way.
+                  SIDAGO Ventures is more than an investor — we’re a strategic
+                  partner, providing capital, expertise, and hands-on support to
+                  help founders shape the future of finance. We help teams move
+                  faster by sharing lessons learned from building and operating
+                  in digital asset markets.
                 </div>
               </div>
             </div>

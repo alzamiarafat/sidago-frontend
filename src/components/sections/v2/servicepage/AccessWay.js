@@ -182,8 +182,8 @@ export default function AccessWay() {
                 <div className="z-10 flex flex-col items-start md:w-[60%]">
                   <div className="text-xl">Chat trading</div>
                   <div className="mt-10 text-sm md:text-base">
-                    Access white-glove service from Wintermute traders around
-                    the clock.
+                    Access white-glove service from SIDAGO traders around the
+                    clock.
                   </div>
                 </div>
               </div>

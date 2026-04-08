@@ -11,8 +11,8 @@ export default function BuildingProduct() {
               Building through incubation
             </h2>
             <div class="text-gray-off-white">
-              Building products is central to Wintermute’s mode of operation.
-              Over the years, Wintermute has incubated innovative protocols in
+              Building products is central to SIDAGO’s mode of operation. Over
+              the years, SIDAGO has incubated innovative protocols in
               cooperation with partners and separate teams that have grown to be
               independent businesses.
             </div>
@@ -79,9 +79,9 @@ export default function BuildingProduct() {
               >
                 <path
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </a>
@@ -143,9 +143,9 @@ export default function BuildingProduct() {
               >
                 <path
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </a>
@@ -207,9 +207,9 @@ export default function BuildingProduct() {
               >
                 <path
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </a>

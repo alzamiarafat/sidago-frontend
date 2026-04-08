@@ -47,7 +47,7 @@ const cards = [
   {
     id: "apply",
     title: "Apply",
-    text: "To join the Wintermute team",
+    text: "To join the SIDAGO team",
     href: "/company/opportunities",
     bg: "bg-[#D94E2B]", // right side color matches right background
     text_color: "text-white",
@@ -133,19 +133,19 @@ export default function CTASection() {
 
     <section className="relative bg-gray-night-green text-gray-night-green">
       <div className="absolute inset-0 flex">
-        <div className="flex-1 bg-green-dark"></div>
-        <div className="flex-1 bg-green-light"></div>
+        <div className="flex-1 bg-[#FF5D3C]"></div>
+        <div className="flex-1 bg-[#FF8C69] "></div>
       </div>
       <div className="relative z-10 flex flex-col lg:flex-row lg:container">
         <a
           style={{ position: "relative" }}
-          className="group/interactive flex-1 bg-green-dark"
+          className="group/interactive flex-1 bg-[#FF5D3C]"
           href="/contact"
         >
           <span className="sr-only">Contact</span>
           <div className="container flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
             <div className="flex flex-1 items-center justify-between gap-xs">
-              <div className="text-xl lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
+              <div className="text-xl font-medium lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
                 Contact
               </div>
               <svg
@@ -191,13 +191,13 @@ export default function CTASection() {
         <div className="-mx-[0.0625rem] w-[0.125rem] lg:my-xl"></div>
         <a
           style={{ position: "relative" }}
-          className="group/interactive flex-1 bg-green-mid"
+          className="group/interactive flex-1 bg-[#FA7248]"
           href="/insights#subscribe"
         >
           <span className="sr-only">Insights</span>
           <div className="container flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
             <div className="flex flex-1 items-center justify-between gap-xs">
-              <div className="text-xl lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
+              <div className="text-xl font-medium lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
                 Subscribe
               </div>
               <svg
@@ -243,13 +243,13 @@ export default function CTASection() {
         <div className="-mx-[0.0625rem] w-[0.125rem] lg:my-xl"></div>
         <a
           style={{ position: "relative" }}
-          className="group/interactive flex-1 bg-green-light"
+          className="group/interactive flex-1 bg-[#FF8C69]"
           href="/company/opportunities"
         >
           <span className="sr-only">Company › Opportunities</span>
           <div className="container flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
             <div className="flex flex-1 items-center justify-between gap-xs">
-              <div className="text-xl lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
+              <div className="text-xl font-medium lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
                 Apply
               </div>
               <svg
@@ -288,7 +288,7 @@ export default function CTASection() {
               </svg>
             </div>
             <div className="font-blender text-sm uppercase group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
-              To join the Wintermute team
+              To join the SIDAGO team
             </div>
           </div>
         </a>

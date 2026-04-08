@@ -3,25 +3,25 @@ import { useState, useEffect, useRef } from "react";
 
 const quotes = [
   {
-    text: `Our goal is to be the most trusted crypto provider in the UK and the EEA. Wintermute helps us to achieve that with deep liquidity, fast listings, and competitive pricing — ensuring that our crypto offering remains best in class.`,
+    text: `Our goal is to be the most trusted crypto provider in the UK and the EEA. SIDAGO helps us achieve that with deep liquidity, fast listings, and competitive pricing — ensuring that our crypto offering remains best in class.`,
     author: "Edoardo Busetti, Senior Market Maker at Revolut",
     logo: "images/Quote-Revolut-1.svg",
     alt: "Edoardo Busetti, Senior Market Maker at Revolut",
   },
   {
-    text: `With the rising institutional interest in digital assets, we saw Wintermute as a dependable partner, capable of managing substantial volumes in a dynamic market. Their dedication to upholding the highest standards of compliance & risk management were pivotal in this decision.`,
+    text: `With rising institutional interest in digital assets, we saw SIDAGO as a dependable partner, capable of managing substantial volumes in a dynamic market. Their dedication to upholding high standards of compliance and risk management was pivotal in this decision.`,
     author: "Eugene Cheung, Chief Commercial Officer at OSL",
     logo: "images/Quote-OSL-1.svg",
     alt: "Eugene Cheung, Chief Commercial Officer at OSL",
   },
   {
-    text: `Wintermute are in a class of their own when it comes to liquidity and settlement ability. Willingness to be flexible and meet our needs on a daily basis is hugely valuable to us and has been instrumental in building our trading desk.`,
+    text: `SIDAGO is in a class of its own when it comes to liquidity and settlement. Their willingness to stay flexible and meet our needs on a daily basis has been hugely valuable and instrumental in building our trading desk.`,
     author: "Hans-Stefan von Haenisch, Director of OTC Trading APAC at BitGo",
     logo: "images/Quote-BitGo.svg",
     alt: "Hans-Stefan von Haenisch, Director of OTC Trading APAC at BitGo",
   },
   {
-    text: `Wintermute is a key trading counterparty for CROSSx, our execution-only ECN. Their ability to provide stable liquidity in fast-moving markets is vital to our institutional marketplace. Their adaptability across regions and broad coin coverage have been key to our growth.`,
+    text: `SIDAGO is a key trading counterparty for CROSSx, our execution-only ECN. Their ability to provide stable liquidity in fast-moving markets is vital to our institutional marketplace. Their adaptability across regions and broad coin coverage have been key to our growth.`,
     author: "Anthony Mazzarese, Co-founder of Crossover",
     logo: "images/Quote-Crossover-1.svg",
     alt: "Anthony Mazzarese, Co-founder of Crossover",
