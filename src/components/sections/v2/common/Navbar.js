@@ -285,7 +285,7 @@ export default function Navigation() {
     <>
       <header className="header sticky top-0 z-50 -mb-[4.5rem] bg-gray-night-green bg-opacity-90 pb-md text-gray-off-white lg:hidden">
         <div className="container flex items-center justify-between">
-          {/* <a className="z-10 flex h-3xl flex-col justify-center" href="#">
+          <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center gap-md">
               <img
                 alt="SIDAGO"
@@ -306,7 +306,7 @@ export default function Navigation() {
                 </span>
               </div>
             </div>
-          </a> */}
+          </a>
 
           <button
             type="button"
@@ -1506,7 +1506,7 @@ export default function Navigation() {
       </nav>
       <header className="header sticky top-0 z-20 hidden bg-gray-night-green pb-md pt-3xl text-gray-off-white lg:block">
         <div className="container flex items-center justify-between">
-          {/* <a className="z-10 flex h-3xl flex-col justify-center" href="#">
+          <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center">
               <img
                 alt="SIDAGO"
@@ -1527,7 +1527,7 @@ export default function Navigation() {
                 </span>
               </div>
             </div>
-          </a> */}
+          </a>
 
           <nav
             itemScope=""
@@ -1550,7 +1550,9 @@ export default function Navigation() {
             <div className="group/menu-item">
               <a
                 className={`relative font-blender text-sm uppercase transition-all hover:opacity-80  ${
-                  pathname === "/services" ? "text-green-dark" : ""
+                  pathname === "/services" || pathname.startsWith("/services/")
+                    ? "text-green-dark"
+                    : ""
                 }`}
                 itemProp="url"
                 target=""
@@ -1670,7 +1672,10 @@ export default function Navigation() {
             <div className="group/menu-item relative">
               <a
                 className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${
-                  pathname === "/industries" ? "text-green-dark" : ""
+                  pathname === "/industries" ||
+                  pathname.startsWith("/industries/")
+                    ? "text-green-dark"
+                    : ""
                 }`}
                 itemProp="url"
                 target=""
@@ -1733,7 +1738,9 @@ export default function Navigation() {
             <div className="group/menu-item">
               <a
                 className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${
-                  pathname === "/strategy" ? "text-green-dark" : ""
+                  pathname === "/strategy" || pathname.startsWith("/strategy/")
+                    ? "text-green-dark"
+                    : ""
                 }`}
                 itemProp="url"
                 target=""
@@ -1803,7 +1810,7 @@ export default function Navigation() {
                               className="group/interactive relative flex items-center gap-md text-sm group-hover/sub-menu:[&:not(:hover)]:opacity-70"
                               itemProp="url"
                               target=""
-                              href="/who-we-serve"
+                              href={item.href}
                             >
                               <span className="sr-only">{item.title}</span>
                               <div className="relative aspect-[1.4] w-[6.25rem] shrink-0 bg-gray-defi-shadow bevel">

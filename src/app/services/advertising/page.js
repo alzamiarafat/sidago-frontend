@@ -14,6 +14,10 @@ import AvailablePartner from "@/src/components/sections/v2/servicepage/Available
 import AccessWay from "@/src/components/sections/v2/servicepage/AccessWay";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
+import OurVision from "@/src/components/sections/v2/servicepage/OurVision";
+import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
+import Support from "@/src/components/sections/v2/servicepage/Support";
+import DelegateProfile from "@/src/components/sections/v2/servicepage/DelegateProfile";
 
 const items = [
   {
@@ -69,14 +73,19 @@ const stats = [
 
 const titles = [
   {
-    title: "Institutional OTC liquidity",
+    title: "Governance for a",
     color: "",
-    className: "text-green-dark",
+    className: "text-white",
   },
   {
-    title: "at your fingertips",
-    color: "",
+    title: "truly decentralized",
+    color: "#EC5B5B",
     className: "",
+  },
+  {
+    title: "world",
+    color: "",
+    className: "text-white",
   },
 ];
 
@@ -127,7 +136,7 @@ const accordionItems = [
     sr: "Defi",
   },
 ];
-export default function ECommerce() {
+export default function Advertising() {
   return (
     <div className="flex h-svh flex-col text-base">
       <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -139,38 +148,17 @@ export default function ECommerce() {
         >
           <HeroBannerSection
             useVideo={true}
-            lighterTheme={true}
-            videoSrc="https://www.wintermute.com/videos/heroes/otc.mp4"
+            lighterTheme={false}
+            videoSrc="https://www.wintermute.com/videos/heroes/governance.mp4"
             titles={titles}
-            subtitle="Trade directly with the source of liquidity in digital markets"
-            videoSectionClass="bg-gray-tradfi-dust text-gray-night-green"
+            subtitle="Sidago supports DAOs with governance solutions that drive transparency and long-term value"
+            videoClass="left-[500px]  !w-3/4"
+            bgColor="bg-[#161917]"
           />
-
-          <InsightNews
-            items={items}
-            bgColor="bg-white"
-            textColor="text-black"
-          />
-          <Statistics
-            stats={stats}
-            bgColor="bg-gray-200"
-            lighterTheme={true}
-            dotColor="#4D4D4D"
-          />
-          <VideoOverview />
-
-          <Capabilities
-            items={accordionItems}
-            bgColor="bg-[#E5E6E5]"
-            textColor="text-black"
-            hoverColor="bg-gray-tradfi-frost"
-            borderColor="border-gray-tradfi-frost"
-          />
-          <TradeOption />
-          <CarouselOverview />
-          <AccessWay />
-          <AvailablePartner />
-          <ServiceLatestInsight />
+          <OurVision />
+          <ContentTab />
+          <Support />
+          <DelegateProfile />
           <CTASection />
           <Footer />
         </main>

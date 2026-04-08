@@ -14,6 +14,10 @@ import AvailablePartner from "@/src/components/sections/v2/servicepage/Available
 import AccessWay from "@/src/components/sections/v2/servicepage/AccessWay";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
+import OurVision from "@/src/components/sections/v2/servicepage/OurVision";
+import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
+import Support from "@/src/components/sections/v2/servicepage/Support";
+import DelegateProfile from "@/src/components/sections/v2/servicepage/DelegateProfile";
 
 const items = [
   {
@@ -148,35 +152,13 @@ export default function ECommerce() {
             videoSrc="https://www.wintermute.com/videos/heroes/governance.mp4"
             titles={titles}
             subtitle="Sidago supports DAOs with governance solutions that drive transparency and long-term value"
-            videoClass="left-[500px]  !w-3/4"
+            videoClass="left-[500px] !w-3/4"
             bgColor="bg-[#161917]"
           />
-
-          <InsightNews
-            items={items}
-            bgColor="bg-white"
-            textColor="text-black"
-          />
-          <Statistics
-            stats={stats}
-            bgColor="bg-gray-200"
-            lighterTheme={true}
-            dotColor="#4D4D4D"
-          />
-          <VideoOverview />
-
-          <Capabilities
-            items={accordionItems}
-            bgColor="bg-[#E5E6E5]"
-            textColor="text-black"
-            hoverColor="bg-gray-tradfi-frost"
-            borderColor="border-gray-tradfi-frost"
-          />
-          <TradeOption />
-          <CarouselOverview />
-          <AccessWay />
-          <AvailablePartner />
-          <ServiceLatestInsight />
+          <OurVision />
+          <ContentTab />
+          <Support />
+          <DelegateProfile />
           <CTASection />
           <Footer />
         </main>

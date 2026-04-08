@@ -4,35 +4,38 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
+import Algorithmic from "@/src/components/sections/v2/industriespage/Algorithmic";
 import DiscoverMore from "@/src/components/sections/v2/industriespage/DiscoverMore";
 import LearnMore from "@/src/components/sections/v2/industriespage/LearnMore";
 import PartnerBenefit from "@/src/components/sections/v2/industriespage/PartnerBenefit";
 import PartnerTrading from "@/src/components/sections/v2/industriespage/PartnerTrading";
 import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackPerformance";
+import Trading from "@/src/components/sections/v2/industriespage/Trading";
+import AvailablePartner from "@/src/components/sections/v2/servicepage/AvailablePartner";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
 
-export default function Industries() {
+export default function B2BCommercial() {
   const stats = [
     {
-      stat: "$65B",
+      stat: "$15B",
       label: "Annual OTC trading volume",
       width: 244,
       activeDotColor: "#E7512F",
     },
     {
-      stat: "1K",
+      stat: "10M",
       label: "OTC trades per second",
       width: 248,
       activeDotColor: "#B48CFF",
     },
     {
-      stat: "$0.5",
+      stat: "70",
       label: "Largest OTC trade execution",
       width: 198,
       activeDotColor: "#E7512F",
     },
     {
-      stat: "70",
+      stat: "70K",
       label: "Tokens traded via OTC",
       width: 192,
       activeDotColor: "#3C85DD",
@@ -46,17 +49,17 @@ export default function Industries() {
   ];
   const titles = [
     {
-      title: "Building",
+      title: "Unlocking",
       color: "",
       className: "",
     },
     {
-      title: "deep, scalable liquidity",
-      color: "#958dec",
+      title: "sustainable alpha",
+      color: "#66ff9a",
       className: "",
     },
     {
-      title: "for your token",
+      title: "in digital assets",
       color: "",
       className: "",
     },
@@ -196,51 +199,17 @@ export default function Industries() {
           <HeroBannerSection
             useVideo={true}
             lighterTheme={false}
-            videoSrc="https://www.wintermute.com/videos/heroes/liquidity.mp4"
+            videoSrc="https://www.wintermute.com/videos/heroes/prop-trading.mp4"
             titles={titles}
             subtitle="Trade directly with the source of liquidity in digital markets"
-            videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
+            videoClass="left-[500px] !w-3/4"
           />
-          <Statistics stats={stats} />
-          <PartnerBenefit benefits={benefits} />
-          <TrackPerformance />
-          <CarouselOverview
-            bgColor="bg-[#454a47]"
-            textColor="text-white"
-            svgColor="text-[#606663]"
-          />
-          <PartnerTrading />
-          <LearnMore />
-          <DiscoverMore />
+          <Statistics stats={stats} bgColor="bg-black" />
+          <Algorithmic />
+          {/* <AvailablePartner /> */}
+          <Trading />
           <CTASection />
           <Footer />
-
-          {/* <InsightNews
-               items={items}
-               bgColor="bg-white"
-               textColor="text-black"
-             />
-             <Statistics
-               stats={stats}
-               bgColor="bg-gray-200"
-               textColor="text-black"
-             />
-             <VideoOverview />
-   
-             <Capabilities
-               items={accordionItems}
-               bgColor="bg-[#E5E6E5]"
-               textColor="text-black"
-               hoverColor="bg-gray-tradfi-frost"
-               borderColor="border-gray-tradfi-frost"
-             />
-             <TradeOption />
-             <CarouselOverview />
-             <AccessWay />
-             <AvailablePartner />
-             <ServiceLatestInsight />
-             <CTASection />
-             <Footer /> */}
         </main>
       </div>
     </div>
