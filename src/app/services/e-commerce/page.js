@@ -69,14 +69,19 @@ const stats = [
 
 const titles = [
   {
-    title: "Institutional OTC liquidity",
+    title: "Governance for a",
     color: "",
-    className: "text-green-dark",
+    className: "text-white",
   },
   {
-    title: "at your fingertips",
-    color: "",
+    title: "truly decentralized",
+    color: "#EC5B5B",
     className: "",
+  },
+  {
+    title: "world",
+    color: "",
+    className: "text-white",
   },
 ];
 
@@ -139,11 +144,12 @@ export default function ECommerce() {
         >
           <HeroBannerSection
             useVideo={true}
-            lighterTheme={true}
-            videoSrc="https://www.wintermute.com/videos/heroes/otc.mp4"
+            lighterTheme={false}
+            videoSrc="https://www.wintermute.com/videos/heroes/governance.mp4"
             titles={titles}
-            subtitle="Trade directly with the source of liquidity in digital markets"
-            videoSectionClass="bg-gray-tradfi-dust text-gray-night-green"
+            subtitle="Sidago supports DAOs with governance solutions that drive transparency and long-term value"
+            videoClass="left-[500px]  !w-3/4"
+            bgColor="bg-[#161917]"
           />
 
           <InsightNews
