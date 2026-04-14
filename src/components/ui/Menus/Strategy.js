@@ -20,17 +20,17 @@ export default function StrategyMenu() {
         className="div-mega main-bg animated fadeIn"
         style={{
           padding: "25px 10px",
-          width: "80%",
+          width: "max-content",
           display: openMega === "strategy" ? "block" : "none",
         }}
       >
-        <ul className="sub-menu">
+        <ul className="sub-menu !flex flex-wrap">
           <li
             id="menu-item-3741"
-            className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hasChildren"
+            className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="/capabilities">
+              <a href="/strategy/capabilities">
                 <span>Capabilities</span>
               </a>
             </p>
@@ -40,8 +40,8 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/case-study-main-point/">
-                    <span>Case study</span>
+                  <a href="/strategy/capabilities#core">
+                    <span>Core Competencies</span>
                   </a>
                 </p>
               </li>
@@ -50,8 +50,8 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/b2b-solutions/">
-                    <span>B2B Solutions</span>
+                  <a href="/strategy/capabilities#technical">
+                    <span>Technical Skills</span>
                   </a>
                 </p>
               </li>
@@ -60,8 +60,8 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/entire-plan/">
-                    <span>Entire plan</span>
+                  <a href="/strategy/capabilities#industry">
+                    <span>Industry Expertise</span>
                   </a>
                 </p>
               </li>
@@ -69,11 +69,11 @@ export default function StrategyMenu() {
           </li>
           <li
             id="menu-item-3742"
-            className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children hasChildren"
+            className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="/employee-quality">
-                <span>Employee Advantage</span>
+              <a href="/strategy/employee-quality">
+                <span>Employee Quality</span>
               </a>
             </p>
             <ul className="sub-menu">
@@ -82,8 +82,8 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/employee-quality/">
-                    <span>Employee Quality</span>
+                  <a href="/strategy/employee-quality#benefits">
+                    <span>Our Benefits</span>
                   </a>
                 </p>
               </li>
@@ -92,18 +92,8 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/established-management/">
-                    <span>Established Management</span>
-                  </a>
-                </p>
-              </li>
-              <li
-                id="menu-item-3966"
-                className="menu-item menu-item-type-post_type menu-item-object-page"
-              >
-                <p>
-                  <a href="/our-strategy/employee-advantage/hiring-model/">
-                    <span>Hiring Model</span>
+                  <a href="/strategy/employee-quality#process">
+                    <span>The Process</span>
                   </a>
                 </p>
               </li>
@@ -111,10 +101,10 @@ export default function StrategyMenu() {
           </li>
           <li
             id="menu-item-4036"
-            className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children hasChildren"
+            className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="/our-benefits/">
+              <a href="/strategy/our-benefits">
                 <span>Our Benefits</span>
               </a>
             </p>
@@ -124,8 +114,8 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/benefit-savings/">
-                    <span>Benefit Savings</span>
+                  <a href="/strategy/our-benefits#advantages">
+                    <span>Employee Advantages</span>
                   </a>
                 </p>
               </li>
@@ -134,8 +124,8 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/employee-reassignment/">
-                    <span>Employee Reassignment</span>
+                  <a href="/strategy/our-benefits#culture">
+                    <span>Workplace Culture</span>
                   </a>
                 </p>
               </li>
@@ -143,13 +133,35 @@ export default function StrategyMenu() {
           </li>
           <li
             id="menu-item-3744"
-            className="menu-item menu-item-type-custom menu-item-object-custom col-md-12"
+            className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="#">
+              <a href="/strategy/the-process">
                 <span>The Process</span>
               </a>
             </p>
+            <ul className="sub-menu">
+              <li
+                id="menu-item-4044"
+                className="menu-item menu-item-type-post_type menu-item-object-page"
+              >
+                <p>
+                  <a href="/strategy/the-process#methodology">
+                    <span>Methodology</span>
+                  </a>
+                </p>
+              </li>
+              <li
+                id="menu-item-4045"
+                className="menu-item menu-item-type-post_type menu-item-object-page"
+              >
+                <p>
+                  <a href="/strategy/the-process#implementation">
+                    <span>Implementation</span>
+                  </a>
+                </p>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
