@@ -1778,6 +1778,19 @@ export default function Navigation() {
                                         </a>
                                       ),
                                     )}
+                                    <a
+                                      className="group/more mt-2 inline-flex w-fit items-center gap-2 bg-gray-defi-graphite px-2.5 py-1.5 font-blender text-xs uppercase text-gray-off-white transition hover:bg-green-tradfi hover:text-gray-night-green"
+                                      href="/services"
+                                    >
+                                      <span
+                                        aria-hidden="true"
+                                        className="relative flex size-5 items-center justify-center border border-green-tradfi bg-green-tradfi text-white shadow-[0_0_0_1px_rgba(255,255,255,0.18)] transition group-hover/more:border-gray-night-green group-hover/more:bg-gray-night-green group-hover/more:text-white"
+                                      >
+                                        <span className="absolute h-0.5 w-3 bg-current"></span>
+                                        <span className="absolute h-3 w-0.5 bg-current"></span>
+                                      </span>
+                                      More
+                                    </a>
                                   </div>
                                 )}
                               </div>
@@ -1811,11 +1824,11 @@ export default function Navigation() {
                   <div className="ml-auto translate-x-4 pt-2xl group-hover/menu-item:pointer-events-auto sm:translate-x-6 lg:translate-x-10 xl:translate-x-14">
                     <div className="-mt-1.5">
                       <div
-                        className="group/sub-menu relative w-fit left-[250px]"
+                        className="group/sub-menu relative w-fit"
                         onMouseLeave={() => setActiveIndustryTitle(null)}
                       >
-                        <div className="bg-gray-defi-charcoal bg-opacity-98 p-xl bevel">
-                          <div className="flex flex-col gap-3 min-w-[24rem]">
+                        <div className="w-[2rem] bg-gray-defi-charcoal bg-opacity-98 p-xl bevel">
+                          <div className="flex w-full flex-col gap-3">
                             {menuItems.map((item, index) => {
                               const isActive =
                                 activeIndustryData?.title === item.title;
@@ -1863,10 +1876,10 @@ export default function Navigation() {
 
                                   <div className="flex flex-1 items-center justify-between gap-md">
                                     <div className="flex flex-col gap-xs">
-                                      <span className="font-blender uppercase leading-none">
+                                      <span className="whitespace-nowrap font-blender uppercase leading-none">
                                         {item.title}
                                       </span>
-                                      <span className="max-w-[12rem] text-[0.72rem] leading-tight text-gray-defi-ash opacity-70 break-words">
+                                      <span className="max-w-[12rem] whitespace-normal break-words text-[0.72rem] leading-tight text-gray-defi-ash opacity-70">
                                         {item.description}
                                       </span>
                                     </div>
@@ -1911,13 +1924,13 @@ export default function Navigation() {
                                   initial="hidden"
                                   animate="visible"
                                   exit="exit"
-                                  className="flex min-w-[15rem] flex-col gap-2 bg-gray-defi-charcoal bg-opacity-98 p-md bevel"
+                                  className="flex min-w-[30rem] flex-col gap-2 bg-gray-defi-charcoal bg-opacity-98 p-md bevel"
                                 >
                                   {activeIndustryLinks.map((link) => (
                                     <a
                                       key={link.href}
                                       href={link.href}
-                                      className="text-sm text-gray-tradfi-steel transition hover:text-white"
+                                      className="whitespace-nowrap text-sm text-gray-tradfi-steel transition hover:text-white"
                                     >
                                       <span>{link.title}</span>
                                     </a>
