@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function StrategyMenu() {
@@ -30,9 +31,9 @@ export default function StrategyMenu() {
             className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="/strategy/capabilities">
+              <Link href="/strategy/capabilities">
                 <span>Capabilities</span>
-              </a>
+              </Link>
             </p>
             <ul className="sub-menu">
               <li
@@ -40,9 +41,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/capabilities#core">
+                  <Link href="/strategy/core-competencies">
                     <span>Core Competencies</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
               <li
@@ -50,9 +51,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/capabilities#technical">
+                  <Link href="/strategy/technical-skills">
                     <span>Technical Skills</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
               <li
@@ -60,9 +61,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/capabilities#industry">
+                  <Link href="/strategy/industry-expertise">
                     <span>Industry Expertise</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
             </ul>
@@ -72,9 +73,9 @@ export default function StrategyMenu() {
             className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="/strategy/employee-quality">
+              <Link href="/strategy/employee-quality">
                 <span>Employee Quality</span>
-              </a>
+              </Link>
             </p>
             <ul className="sub-menu">
               <li
@@ -82,9 +83,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/employee-quality#benefits">
+                  <Link href="/strategy/our-benefits">
                     <span>Our Benefits</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
               <li
@@ -92,9 +93,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/employee-quality#process">
+                  <Link href="/strategy/the-process">
                     <span>The Process</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
             </ul>
@@ -104,9 +105,9 @@ export default function StrategyMenu() {
             className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="/strategy/our-benefits">
+              <Link href="/strategy/our-benefits">
                 <span>Our Benefits</span>
-              </a>
+              </Link>
             </p>
             <ul className="sub-menu">
               <li
@@ -114,9 +115,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/our-benefits#advantages">
+                  <Link href="/strategy/employee-advantages">
                     <span>Employee Advantages</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
               <li
@@ -124,9 +125,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/our-benefits#culture">
+                  <Link href="/strategy/workplace-culture">
                     <span>Workplace Culture</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
             </ul>
@@ -136,9 +137,9 @@ export default function StrategyMenu() {
             className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children w-full md:w-1/3 hasChildren"
           >
             <p>
-              <a href="/strategy/the-process">
+              <Link href="/strategy/the-process">
                 <span>The Process</span>
-              </a>
+              </Link>
             </p>
             <ul className="sub-menu">
               <li
@@ -146,9 +147,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/the-process#methodology">
+                  <Link href="/strategy/methodology">
                     <span>Methodology</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
               <li
@@ -156,9 +157,9 @@ export default function StrategyMenu() {
                 className="menu-item menu-item-type-post_type menu-item-object-page"
               >
                 <p>
-                  <a href="/strategy/the-process#implementation">
+                  <Link href="/strategy/implementation">
                     <span>Implementation</span>
-                  </a>
+                  </Link>
                 </p>
               </li>
             </ul>
