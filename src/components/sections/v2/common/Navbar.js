@@ -8,6 +8,7 @@ import Image1 from "@/src/data/image-1";
 import Image2 from "@/src/data/image-2";
 import Image3 from "@/src/data/image-3";
 import Image4 from "@/src/data/image-4";
+import { strategyMenuItems } from "@/src/data/strategy-menu";
 import { usePathname } from "next/navigation";
 
 export default function Navigation() {
@@ -279,78 +280,17 @@ export default function Navigation() {
 
   const activeIndustryLinks = activeIndustryData?.children ?? [];
 
-  const strategyItems = [
-    {
-      title: "Capabilities",
-      href: "/strategy/capabilities",
-      description: "Expertise and skills",
-      Icon: Image1,
-      children: [
-        { title: "Case Study", href: "/strategy/case-study-main-point" },
-        { title: "B2B Solution", href: "/strategy/b2b-solutions" },
-        {
-          title: "Entire Plan",
-          href: "/strategy/entire-plan",
-        },
-      ],
-    },
-    {
-      title: "Employee Advantage",
-      href: "/strategy/employee-quality",
-      description: "Benefits for employees",
-      Icon: Image2,
-      children: [
-        {
-          title: "Employee Quality",
-          href: "/strategy/employee-quality",
-        },
-        {
-          title: "Established Management ",
-          href: "/strategy/established-management",
-        },
-        {
-          title: "Hiring Model",
-          href: "/strategy/employee-advantage/hiring-model",
-        },
-      ],
-    },
-    {
-      title: "Our Benefits",
-      href: "/strategy/our-benefits",
-      description: "Perks and value",
-      Icon: Image3,
-      // iconClass: "left-[0.625rem] -top-[1.575rem] -rotate-[25.7deg]",
-      children: [
-        { title: "Benefit Savings", href: "/strategy/benefit-savings" },
-        {
-          title: "Employee Reassignment",
-          href: "/strategy/employee-reassignment",
-        },
-        {
-          title: "Management Savings",
-          href: "/strategy/management-savings",
-        },
-      ],
-    },
-    {
-      title: "Our Proccess",
-      href: "/strategy/the-process",
-      description: "Structured step approach",
-      Icon: Image4,
-      children: [
-        {
-          title: "Initial Consultation",
-          href: "/strategy/initial-consultation",
-        },
-        {
-          title: "General Business Review",
-          href: "/strategy/general-business-review",
-        },
-        ,
-        { title: "Propose Action Plan", href: "/strategy/propose-action-plan" },
-      ],
-    },
-  ];
+  const strategyIcons = {
+    capabilities: Image1,
+    employeeAdvantage: Image2,
+    benefits: Image3,
+    process: Image4,
+  };
+
+  const strategyItems = strategyMenuItems.map((item) => ({
+    ...item,
+    Icon: strategyIcons[item.iconKey],
+  }));
 
   // === Handlers ===
   const handleMouseEnter = (menu) => {
@@ -2031,7 +1971,8 @@ export default function Navigation() {
                         </a>
                         {strategyItems.map((item, index) => {
                           const { Icon } = item;
-                          const hasChildren = (item.children?.length ?? 0) > 0;
+                          const navbarChildren = item.children?.slice(0, 3) ?? [];
+                          const hasChildren = navbarChildren.length > 0;
                           return (
                             <div
                               key={index}
@@ -2063,7 +2004,7 @@ export default function Navigation() {
                               </a>
                               {hasChildren && (
                                 <div className="ml-[calc(5.5rem+1rem)] mt-1 grid gap-0.5 text-[0.8rem] leading-5">
-                                  {item.children.map((subItem) => (
+                                  {navbarChildren.map((subItem) => (
                                     <a
                                       key={subItem.href}
                                       className="text-gray-tradfi-steel transition hover:text-white"

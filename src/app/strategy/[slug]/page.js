@@ -1,32 +1,9 @@
 import "../../globals.css";
 import StrategyPageTemplate from "@/src/components/sections/v2/strategypage/StrategyPageTemplate";
-
-const strategySlugs = [
-  "capabilities",
-  "core-competencies",
-  "technical-skills",
-  "industry-expertise",
-  "employee-quality",
-  "training-and-development",
-  "career-growth",
-  "work-life-balance",
-  "our-benefits",
-  "health-and-wellness",
-  "financial-benefits",
-  "team-perks",
-  "the-process",
-  "discovery-phase",
-  "planning",
-  "execution",
-  "review",
-  "employee-advantages",
-  "workplace-culture",
-  "methodology",
-  "implementation",
-];
+import { getStrategySlugs } from "@/src/data/strategy-menu";
 
 export function generateStaticParams() {
-  return strategySlugs.map((slug) => ({ slug }));
+  return [...new Set(getStrategySlugs())].map((slug) => ({ slug }));
 }
 
 export default function StrategyDetailPage() {

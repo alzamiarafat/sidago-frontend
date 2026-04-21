@@ -7,9 +7,15 @@ import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner"
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import BuildingProduct from "@/src/components/sections/v2/strategypage/BuildingProduct";
 import Investment from "@/src/components/sections/v2/strategypage/Investment";
-import MissionThesis from "@/src/components/sections/v2/strategypage/MissionThesis";
 import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBenefit";
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
+import VerticalTab from "@/src/components/sections/v2/strategypage/VerticalTab";
+import {
+  getActiveStrategyItem,
+  normalizeStrategyPath,
+  strategyMenuItems,
+} from "@/src/data/strategy-menu";
+import { usePathname } from "next/navigation";
 
 const stats = [
   {
@@ -62,7 +68,56 @@ const titles = [
   },
 ];
 
+const tabAssets = [
+  {
+    backgroundClassName: "bg-purple-light",
+    imageSrc: "/images/Secondary-About.svg",
+  },
+  {
+    backgroundClassName: "bg-blue-dark",
+    imageSrc: "/images/Secondary-Vision.svg",
+  },
+  {
+    backgroundClassName: "bg-purple-light",
+    imageSrc: "/images/image_1.png",
+    imageSrcSet: "/images/image_1.png 1x",
+    imageWidth: 4800,
+  },
+  {
+    backgroundClassName: "bg-purple-dark",
+    imageSrc: "/images/Secondary-Strategy-1.svg",
+  },
+  {
+    backgroundClassName: "bg-blue-dark",
+    imageSrc: "/images/Secondary-Focus-1.svg",
+  },
+];
+
+function buildVerticalTabs(items) {
+  return items.map((item, index) => {
+    const asset = tabAssets[index % tabAssets.length];
+
+    return {
+      key: item.key,
+      label: item.title,
+      href: item.href,
+      imageAlt: `${item.title}: ${item.description}`,
+      content: item.description,
+      ...asset,
+    };
+  });
+}
+
 export default function StrategyPageTemplate() {
+  const pathname = usePathname();
+  const currentPath = normalizeStrategyPath(pathname);
+  const activeStrategyItem = getActiveStrategyItem(pathname) ?? strategyMenuItems[0];
+  const tabSource = activeStrategyItem?.children ?? [];
+  const strategyTabs = buildVerticalTabs(tabSource);
+  const initialActiveKey =
+    tabSource.find((item) => normalizeStrategyPath(item.href) === currentPath)
+      ?.key ?? tabSource[0]?.key;
+
   return (
     <div className="flex h-svh flex-col text-base">
       <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -82,7 +137,13 @@ export default function StrategyPageTemplate() {
           />
           <Statistics stats={stats} />
           <PartnerBenefit />
-          <MissionThesis />
+          <VerticalTab
+            key={currentPath}
+            title={activeStrategyItem?.title ?? "Our Strategy"}
+            titleId={activeStrategyItem?.key ?? "our-strategy"}
+            initialActiveKey={initialActiveKey}
+            tabs={strategyTabs}
+          />
           <Investment />
           <BuildingProduct />
           <WorkOverview />
