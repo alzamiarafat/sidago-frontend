@@ -1,5 +1,64 @@
 import { mainMenu } from "@/src/data/navigation";
 
+const getIndustryHref = (slug) => `/industries/${slug}`;
+
+const industryMenuGroups = [
+  {
+    title: "B2B Commercial",
+    href: getIndustryHref("b2b-commercial"),
+    children: [
+      { title: "Commercial GTM", href: getIndustryHref("commercial-gtm") },
+      { title: "Sales Operations", href: getIndustryHref("sales-operations") },
+      {
+        title: "Channel Partnerships",
+        href: getIndustryHref("channel-partnerships"),
+      },
+    ],
+  },
+  {
+    title: "Financial",
+    href: getIndustryHref("accounting-firms"),
+    children: [
+      { title: "Accounting Firms", href: getIndustryHref("accounting-firms") },
+      {
+        title: "Financial Analytics",
+        href: getIndustryHref("financial-analytics"),
+      },
+      {
+        title: "Payments Modernization",
+        href: getIndustryHref("payments-modernization"),
+      },
+    ],
+  },
+  {
+    title: "Technology",
+    href: getIndustryHref("ad-networks"),
+    children: [
+      { title: "Software Platforms", href: getIndustryHref("software-platforms") },
+    ],
+  },
+  {
+    title: "Health Care",
+    href: getIndustryHref("healthcare"),
+    children: [],
+  },
+  {
+    title: "Aerospace/Defense",
+    href: getIndustryHref("aerospace-defense"),
+    children: [],
+  },
+  {
+    title: "Automotive",
+    href: getIndustryHref("automotive"),
+    children: [],
+  },
+  {
+    title: "Consumer Product and Retail",
+    href: getIndustryHref("consumer-product-and-retail"),
+    children: [],
+  },
+];
+
 export function normalizePath(pathname = "") {
   if (!pathname) {
     return "";
@@ -35,27 +94,10 @@ function getServicesMenuGroups() {
 }
 
 function getIndustriesMenuGroups() {
-  return (
-    mainMenu
-      .find((item) => item.id === "industries")
-      ?.children?.map((item) => {
-        const mappedChildren = mapMenuChildren(item.children ?? []);
-
-        return {
-          ...item,
-          title: item.title ?? item.label,
-          children:
-            mappedChildren.length > 0
-              ? mappedChildren
-              : [
-                  {
-                    title: item.title ?? item.label,
-                    href: item.href,
-                  },
-                ],
-        };
-      }) ?? []
-  );
+  return industryMenuGroups.map((item) => ({
+    ...item,
+    children: mapMenuChildren(item.children ?? []),
+  }));
 }
 
 function getMenuContext(pathname, groups) {
@@ -90,4 +132,8 @@ export function getServiceMenuContext(slug) {
 
 export function getIndustryMenuContext(slug) {
   return getMenuContext(`/industries/${slug}`, getIndustriesMenuGroups());
+}
+
+export function getIndustryMenuGroups() {
+  return getIndustriesMenuGroups();
 }
