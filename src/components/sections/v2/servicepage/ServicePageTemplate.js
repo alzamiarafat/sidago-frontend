@@ -136,7 +136,8 @@ const pageContent = {
           className: "",
         },
       ],
-      subtitle: "Trade directly with the source of liquidity in digital markets",
+      subtitle:
+        "Trade directly with the source of liquidity in digital markets",
       videoSectionClass: "bg-gray-tradfi-dust text-gray-night-green",
     },
   },
@@ -170,7 +171,7 @@ const pageContent = {
   },
 };
 
-export default function ServicePageTemplate({ variant = "otc" }) {
+export default function ServicePageTemplate({ variant = "otc", slug = "" }) {
   const page = pageContent[variant] ?? pageContent.otc;
   const isGovernancePage = variant === "governance";
 
@@ -188,7 +189,7 @@ export default function ServicePageTemplate({ variant = "otc" }) {
           {isGovernancePage ? (
             <>
               <OurVision />
-              <ContentTab />
+              <ContentTab slug={slug} />
               <Support />
               <DelegateProfile />
             </>
@@ -205,6 +206,7 @@ export default function ServicePageTemplate({ variant = "otc" }) {
                 lighterTheme={true}
                 dotColor="#4D4D4D"
               />
+              <ContentTab slug={slug} />
               <VideoOverview />
               <Capabilities
                 items={accordionItems}

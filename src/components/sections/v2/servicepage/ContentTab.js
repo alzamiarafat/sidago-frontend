@@ -1,4 +1,31 @@
-export default function ContentTab() {
+"use client";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { getServiceMenuContext } from "@/src/utils/serviceUtils";
+
+export default function ContentTab({ slug = "" }) {
+  const menuContext = getServiceMenuContext(slug);
+
+  if (!menuContext || !menuContext.tabs?.length) {
+    return null;
+  }
+
+  const { group, currentItem, tabs } = menuContext;
+  const [activeHref, setActiveHref] = useState(currentItem?.href ?? tabs[0]?.href);
+  const activeTab =
+    tabs.find((item) => item.href === activeHref) ?? tabs[0] ?? currentItem;
+  const activeTitle = activeTab?.title || group?.title;
+  const activeDescription = `${activeTitle} is one of the child menu items under ${group?.title} in the navbar submenu.`;
+  const getTabId = (item) =>
+    `${group?.title?.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${item.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")}-tab`;
+  const getPanelId = (item) =>
+    `${group?.title?.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${item.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")}-panel`;
+
   return (
     <section className="bg-gray-defi-shadow">
       <div className="container py-block">
@@ -18,131 +45,123 @@ export default function ContentTab() {
           </div>
           <hr className="!border-[#AB290E]" />
         </div>
-        <section>
-          <div className="overflow-x-auto scrollbar-none">
-            <div className="bevel inline-flex bg-gray-defi-graphite scrollbar-none bevel-2 md:gap-4 md:bg-transparent">
-              <div className="bg-purple-light text-gray-night-green flex cursor-pointer select-none justify-center whitespace-nowrap px-[1.375rem] py-3.5 bevel bevel-2 w-[8.8125rem] md:w-auto">
-                Pyth
-              </div>
-              <div className="flex cursor-pointer select-none justify-center whitespace-nowrap px-[1.375rem] py-3.5 bevel bevel-2 hover:text-gray-tradfi-silver w-[8.8125rem] md:w-auto">
-                Arbitrum
-              </div>
-              <div className="flex cursor-pointer select-none justify-center whitespace-nowrap px-[1.375rem] py-3.5 bevel bevel-2 hover:text-gray-tradfi-silver w-[8.8125rem] md:w-auto">
-                Uniswap
-              </div>
-              <div className="flex cursor-pointer select-none justify-center whitespace-nowrap px-[1.375rem] py-3.5 bevel bevel-2 hover:text-gray-tradfi-silver w-[8.8125rem] md:w-auto">
-                dYdX
-              </div>
-              <div className="flex cursor-pointer select-none justify-center whitespace-nowrap px-[1.375rem] py-3.5 bevel bevel-2 hover:text-gray-tradfi-silver w-[8.8125rem] md:w-auto">
-                Ethena
-              </div>
+
+        <section className="flex flex-col gap-5 md:flex-row md:items-stretch">
+          <div className="md:h-[23.75rem] md:w-[16rem] md:shrink-0">
+            <div
+              role="tablist"
+              aria-label={`${group?.title} child menu`}
+              aria-orientation="vertical"
+              className="flex h-full flex-col gap-2"
+            >
+              {tabs.map((item) => {
+                const isActive = item.href === activeHref;
+                const tabId = getTabId(item);
+                const panelId = getPanelId(item);
+
+                return (
+                  <button
+                    key={item.href}
+                    id={tabId}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls={panelId}
+                    tabIndex={isActive ? 0 : -1}
+                    onClick={() => setActiveHref(item.href)}
+                    className={`relative flex min-h-[3.7rem] flex-1 cursor-pointer select-none items-center justify-start overflow-hidden bg-transparent px-5 py-3 text-left transition duration-300 ${
+                      isActive
+                        ? "text-gray-off-white"
+                        : "hover:text-gray-tradfi-silver"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="content-tab-active-pill"
+                        className="absolute inset-0 bg-[#e7512f]"
+                        transition={{
+                          type: "spring",
+                          stiffness: 240,
+                          damping: 26,
+                          mass: 0.9,
+                        }}
+                      />
+                    )}
+                    <motion.span
+                      className="relative z-10"
+                      animate={{
+                        x: isActive ? 6 : 0,
+                        opacity: isActive ? 1 : 0.82,
+                      }}
+                      transition={{ duration: 0.22, ease: "easeOut" }}
+                    >
+                      {item.title}
+                    </motion.span>
+                  </button>
+                );
+              })}
             </div>
           </div>
-          <div className="relative mt-8 flex md:h-[23.75rem] md:flex-row">
-            <div className="flex flex-col overflow-hidden transition-all bevel md:flex-row-reverse bg-purple-light">
-              <div className="h-[15.75rem] bevel md:h-full md:flex-1">
-                <img
-                  alt="Published Pyth’s first DAO proposal to establish the Pyth DAO Constitution, the decision-making and governing framework for PYTH Token holders."
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  className="h-full w-full object-cover"
-                  style={{ color: "transparent" }}
-                  src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212522/Governance-Pyth.svg"
-                />
-              </div>
-              <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
-                <div className="text-sm md:text-xl">
-                  Published Pyth’s first DAO proposal to establish the Pyth DAO
-                  Constitution, the decision-making and governing framework for
-                  PYTH Token holders.
+
+          <div className="relative min-w-0 flex-1 md:h-[23.75rem]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab.href}
+                id={getPanelId(activeTab)}
+                role="tabpanel"
+                aria-labelledby={getTabId(activeTab)}
+                initial={{ opacity: 0, scale: 0.992, filter: "blur(8px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.996, filter: "blur(6px)" }}
+                transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-col overflow-hidden transition-all bevel md:h-full md:flex-row-reverse bg-purple-light shadow-[0_24px_50px_rgba(0,0,0,0.2)]"
+              >
+                <div className="h-[15.75rem] bevel md:h-full md:flex-1">
+                  <img
+                    alt={activeDescription}
+                    width="1152"
+                    height="1152"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-full w-full object-cover"
+                    style={{ color: "transparent" }}
+                    src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212522/Governance-Pyth.svg"
+                  />
                 </div>
-              </div>
-            </div>
-            <div className="flex-col overflow-hidden transition-all bevel md:flex-row-reverse bg-blue-light pointer-events-none hidden opacity-0">
-              <div className="h-[15.75rem] bevel md:h-full md:flex-1">
-                <img
-                  alt="Served as Council Members of Arbitrum’s Long-Term Incentive Program, responsible for screening and approving applicants for 35m ARB disbursement."
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  className="h-full w-full object-cover"
-                  style={{ color: "transparent" }}
-                  src="images/Governance-Arbitrum-1.svg"
-                />
-              </div>
-              <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
-                <div className="text-sm md:text-xl">
-                  Served as Council Members of Arbitrum’s Long-Term Incentive
-                  Program, responsible for screening and approving applicants
-                  for 35m ARB disbursement.
-                </div>
-              </div>
-            </div>
-            <div className="flex-col overflow-hidden transition-all bevel md:flex-row-reverse bg-pink-light pointer-events-none hidden opacity-0">
-              <div className="h-[15.75rem] bevel md:h-full md:flex-1">
-                <img
-                  alt="Published Uniswap DAO’s proposal to delegate UNI to select delegates, ensuring a fair vote for active yet underrepresented delegates."
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  className="h-full w-full object-cover"
-                  style={{ color: "transparent" }}
-                  src="images/Governance-Uniswap.svg"
-                />
-              </div>
-              <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
-                <div className="text-sm md:text-xl">
-                  Published Uniswap DAO’s proposal to delegate UNI to select
-                  delegates, ensuring a fair vote for active yet
-                  underrepresented delegates.
-                </div>
-              </div>
-            </div>
-            <div className="flex-col overflow-hidden transition-all bevel md:flex-row-reverse bg-blue-light pointer-events-none hidden opacity-0">
-              <div className="h-[15.75rem] bevel md:h-full md:flex-1">
-                <img
-                  alt="Supported dYdX governance, contributing to the redesign of their reward structure to ensure active liquidity and attract new liquidity partners."
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  className="h-full w-full object-cover"
-                  style={{ color: "transparent" }}
-                  src="images/Governance-dYdX.svg"
-                />
-              </div>
-              <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
-                <div className="text-sm md:text-xl">
-                  Supported dYdX governance, contributing to the redesign of
-                  their reward structure to ensure active liquidity and attract
-                  new liquidity partners.
-                </div>
-              </div>
-            </div>
-            <div className="flex-col overflow-hidden transition-all bevel md:flex-row-reverse bg-orange-light pointer-events-none hidden opacity-0">
-              <div className="h-[15.75rem] bevel md:h-full md:flex-1">
-                <img
-                  alt="Published a proposal, successfully establishing a protocol fee switch based on key growth and risk milestones."
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  className="h-full w-full object-cover"
-                  style={{ color: "transparent" }}
-                  src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212522/Governance-Pyth.svg"
-                />
-              </div>
-              <div className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green">
-                <div className="text-sm md:text-xl">
-                  Published a proposal, successfully establishing a protocol fee
-                  switch based on key growth and risk milestones.
-                </div>
-              </div>
-            </div>
+                <motion.div
+                  className="flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6 text-gray-night-green"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: { staggerChildren: 0.08, delayChildren: 0.06 },
+                    },
+                  }}
+                >
+                  <motion.div
+                    className="text-sm md:text-xl"
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1 },
+                    }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                  >
+                    {activeDescription}
+                  </motion.div>
+                  <motion.div
+                    className="mt-4 text-xs uppercase tracking-[0.18em] opacity-80"
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1 },
+                    }}
+                    transition={{ duration: 0.24, ease: "easeOut" }}
+                  >
+                    {group?.title}
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </section>
       </div>

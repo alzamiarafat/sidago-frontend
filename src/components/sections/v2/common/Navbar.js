@@ -33,14 +33,45 @@ export default function Navigation() {
       items: [
         {
           title: "System Administration",
-          href: "/services/amazon-aws-administration",
+          href: "/services/server-administration/",
         },
-        { title: "E-Commerce", href: "/services/e-commerce" },
         {
           title: "Application Interface Design",
-          href: "/services/application-interface-design",
+          href: "/services/application-interface-design/",
         },
-        // { title: "Cloud Services", href: "/services/cloud-services" },
+        {
+          title: "Desktop Applications",
+          href: "/services/desktop-applications/",
+        },
+        { title: "E-Commerce", href: "/services/e-commerce/" },
+        {
+          title: "Game Development",
+          href: "/services/game-development/",
+        },
+        {
+          title: "Mobile Apps",
+          href: "/services/mobile-apps/",
+        },
+        {
+          title: "Plugin Development",
+          href: "/services/plugin-development/",
+        },
+        {
+          title: "Scripts and Utilities",
+          href: "/services/scripts-and-utilities/",
+        },
+        {
+          title: "Software Development",
+          href: "/services/software-developement/",
+        },
+        {
+          title: "Software Project Management",
+          href: "/services/project-management/",
+        },
+        {
+          title: "Software QA",
+          href: "/services/software-qa/",
+        },
       ],
     },
     {
@@ -51,21 +82,73 @@ export default function Navigation() {
           href: "/services/administrative-services",
         },
         {
+          title: "Data Entry",
+          href: "/services/data-entry/",
+        },
+        {
           title: "Email Response Handling",
           href: "/services/email-response-handling",
         },
+        {
+          title: "Personal Assistant",
+          href: "/services/personal-assistant/",
+        },
         { title: "Transcription", href: "/services/transcription/" },
+        {
+          title: "Web Research",
+          href: "/services/web-research/",
+        },
+        {
+          title: "What We Write",
+          href: "/services/what-we-write/",
+        },
+        {
+          title: "Data Mining",
+          href: "/services/data-mining/",
+        },
+        {
+          title: "Translation Services",
+          href: "/services/translation-services/",
+        },
       ],
     },
     {
       title: "Advertising & Marketing",
       items: [
         { title: "Advertising", href: "/services/advertising" },
+        {
+          title: "Customer Acquisition & Sales",
+          href: "/services/customer-acquisition-sales/",
+        },
         { title: "Email Marketing", href: "/services/email-marketing/" },
+        { title: "Lead Generation", href: "/services/lead-generation/" },
+        { title: "Market Research", href: "/services/market-research/" },
+        {
+          title: "Negotiation Management",
+          href: "/services/negotiation-management/",
+        },
         {
           title: "Online Marketing Strategy",
           href: "/services/online-marketing-strategy/",
         },
+        {
+          title: "Public Relations",
+          href: "/services/public-relations/",
+        },
+        {
+          title: "Social Media Marketing",
+          href: "/services/social-media-marketing/",
+        },
+        {
+          title: "Telemarketing & Telesales",
+          href: "/services/telemarketing-telesales/",
+        },
+        { title: "Branding", href: "/services/branding/" },
+        {
+          title: "Display Marketing",
+          href: "/services/display-marketing/",
+        },
+        { title: "Viral Marketing", href: "/services/viral-marketing/" },
       ],
     },
     {
@@ -74,25 +157,108 @@ export default function Navigation() {
         { title: "3D Modelling", href: "/services/3d-modelling" },
         { title: "Animation", href: "/services/animation" },
         {
+          title: "Audio Production",
+          href: "/services/audio-production/",
+        },
+        {
           title: "Design & Multimedia",
           href: "/services/design-multimedia/",
+        },
+        {
+          title: "Engineering & Technical Design",
+          href: "/services/engineering-technical-design/",
+        },
+        {
+          title: "Graphics Design",
+          href: "/services/graphics-design/",
+        },
+        {
+          title: "Illustration",
+          href: "/services/illustration/",
+        },
+        {
+          title: "Logo Design",
+          href: "/services/logo-design/",
+        },
+        {
+          title: "Presentations",
+          href: "/services/presentations/",
+        },
+        {
+          title: "Print Design",
+          href: "/services/print-design/",
+        },
+        {
+          title: "UI Design",
+          href: "/services/ui-design/",
+        },
+        {
+          title: "Video Production",
+          href: "/services/video-production/",
+        },
+        {
+          title: "Voice Talent",
+          href: "/services/voice-talent/",
+        },
+        {
+          title: "Web Design",
+          href: "/services/web-design/",
         },
       ],
     },
     {
       title: "Business Services",
       items: [
+        {
+          title: "Business Services",
+          href: "/services/business-services/",
+        },
         { title: "Accounting", href: "/services/accounting" },
-        // { title: "Bookkeeping", href: "/services/bookkeeping/" },
+        {
+          title: "Back Office Solutions",
+          href: "/services/back-office-solutions/",
+        },
+        { title: "Bookkeeping", href: "/services/bookkeeping/" },
         {
           title: "Business Consulting",
           href: "/services/business-consulting",
         },
         {
-          title: "Construction Supply",
-          href: "/services/construction-supply",
+          title: "Financial Services & Planning",
+          href: "/services/financial-services-planning/",
         },
-        // { title: "HR Consulting", href: "/services/hr-consulting/" },
+        {
+          title: "Legal Assistance",
+          href: "/services/legal-assistance/",
+        },
+        {
+          title: "Recruiting",
+          href: "/services/recruiting/",
+        },
+        {
+          title: "Statistical Analysis",
+          href: "/services/statistical-analysis/",
+        },
+        {
+          title: "Translation",
+          href: "/services/translation/",
+        },
+        {
+          title: "Customer Service",
+          href: "/services/customer-service/",
+        },
+        {
+          title: "Data Science And Analysis",
+          href: "/services/data-science-analysis/",
+        },
+        {
+          title: "Paralegal Services",
+          href: "/services/paralegal-services/",
+        },
+        {
+          title: "Technical Writing",
+          href: "/services/technical-writing/",
+        },
       ],
     },
   ];
@@ -1554,7 +1720,7 @@ export default function Navigation() {
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center">
-              <img
+              {/* <img
                 alt="SIDAGO"
                 loading="lazy"
                 width="33"
@@ -1571,7 +1737,7 @@ export default function Navigation() {
                 >
                   SIDAGO
                 </span>
-              </div>
+              </div> */}
             </div>
           </a>
           {/* <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">
@@ -1726,7 +1892,7 @@ export default function Navigation() {
                                 </span>
                                 {productSections[index]?.items && (
                                   <div className="mt-2 grid gap-1 text-sm">
-                                    {productSections[index].items.map(
+                                    {productSections[index].items.slice(0, 3).map(
                                       (subItem) => (
                                         <a
                                           key={subItem.href}
@@ -1739,7 +1905,10 @@ export default function Navigation() {
                                     )}
                                     <Link
                                       className="group/more mt-2 inline-flex min-w-[9rem] items-center gap-2 bg-gray-defi-graphite px-2.5 py-1.5 font-blender text-xs uppercase text-gray-off-white transition hover:bg-green-tradfi hover:text-gray-night-green"
-                                      href="/services"
+                                      href={
+                                        productSections[index]?.items?.[0]?.href ??
+                                        item.href
+                                      }
                                     >
                                       <span
                                         aria-hidden="true"
@@ -1971,7 +2140,8 @@ export default function Navigation() {
                         </a>
                         {strategyItems.map((item, index) => {
                           const { Icon } = item;
-                          const navbarChildren = item.children?.slice(0, 3) ?? [];
+                          const navbarChildren =
+                            item.children?.slice(0, 3) ?? [];
                           const hasChildren = navbarChildren.length > 0;
                           return (
                             <div

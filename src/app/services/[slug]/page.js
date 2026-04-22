@@ -4,5 +4,10 @@ import { getServiceTemplateVariant } from "@/src/utils/serviceUtils";
 
 export default async function ServiceDetailPage({ params }) {
   const { slug } = await params;
-  return <ServicePageTemplate variant={getServiceTemplateVariant(slug)} />;
+  return (
+    <ServicePageTemplate
+      slug={slug}
+      variant={getServiceTemplateVariant(slug)}
+    />
+  );
 }

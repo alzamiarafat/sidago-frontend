@@ -18,23 +18,44 @@ export const mainMenu = [
         children: [
           {
             label: "System Administration",
-            href: "/services/amazon-aws-administration/",
-            children: [
-              {
-                label: "DNS Service",
-                href: "/dns",
-              },
-              {
-                label: "Email Service",
-                href: "/email",
-              },
-            ],
+            href: "/services/server-administration/",
+          },
+          {
+            label: "Application Interface Design",
+            href: "/services/application-interface-design/",
+          },
+          {
+            label: "Desktop Applications",
+            href: "/services/desktop-applications/",
           },
           { label: "E-Commerce", href: "/services/e-commerce/" },
           {
-            label: "More",
-            href: "/services/application-interface-design/",
-            isMore: true,
+            label: "Game Development",
+            href: "/services/game-development/",
+          },
+          {
+            label: "Mobile Apps",
+            href: "/services/mobile-apps/",
+          },
+          {
+            label: "Plugin Development",
+            href: "/services/plugin-development/",
+          },
+          {
+            label: "Scripts and Utilities",
+            href: "/services/scripts-and-utilities/",
+          },
+          {
+            label: "Software Development",
+            href: "/services/software-developement/",
+          },
+          {
+            label: "Software Project Management",
+            href: "/services/project-management/",
+          },
+          {
+            label: "Software QA",
+            href: "/services/software-qa/",
           },
         ],
       },
@@ -48,14 +69,33 @@ export const mainMenu = [
             href: "/services/administrative-services/",
           },
           {
+            label: "Data Entry",
+            href: "/services/data-entry/",
+          },
+          {
             label: "Email Response Handling",
             href: "/services/email-response-handling/",
           },
+          {
+            label: "Personal Assistant",
+            href: "/services/personal-assistant/",
+          },
           { label: "Transcription", href: "/services/transcription/" },
           {
-            label: "More",
-            href: "/services/administrative-service/",
-            isMore: true,
+            label: "Web Research",
+            href: "/services/web-research/",
+          },
+          {
+            label: "What We Write",
+            href: "/services/what-we-write/",
+          },
+          {
+            label: "Data Mining",
+            href: "/services/data-mining/",
+          },
+          {
+            label: "Translation Services",
+            href: "/services/translation-services/",
           },
         ],
       },
@@ -65,12 +105,39 @@ export const mainMenu = [
         href: "/services/advertising/",
         children: [
           { label: "Advertising", href: "/services/advertising/" },
+          {
+            label: "Customer Acquisition & Sales",
+            href: "/services/customer-acquisition-sales/",
+          },
           { label: "Email Marketing", href: "/services/email-marketing/" },
+          { label: "Lead Generation", href: "/services/lead-generation/" },
+          { label: "Market Research", href: "/services/market-research/" },
+          {
+            label: "Negotiation Management",
+            href: "/services/negotiation-management/",
+          },
           {
             label: "Online Marketing Strategy",
             href: "/services/online-marketing-strategy/",
           },
-          { label: "More", href: "/services/advertising/", isMore: true },
+          {
+            label: "Public Relations",
+            href: "/services/public-relations/",
+          },
+          {
+            label: "Social Media Marketing",
+            href: "/services/social-media-marketing/",
+          },
+          {
+            label: "Telemarketing & Telesales",
+            href: "/services/telemarketing-telesales/",
+          },
+          { label: "Branding", href: "/services/branding/" },
+          {
+            label: "Display Marketing",
+            href: "/services/display-marketing/",
+          },
+          { label: "Viral Marketing", href: "/services/viral-marketing/" },
         ],
       },
       {
@@ -81,10 +148,53 @@ export const mainMenu = [
           { label: "3D Modelling", href: "/services/3d-modelling/" },
           { label: "Animation", href: "/services/animation/" },
           {
+            label: "Audio Production",
+            href: "/services/audio-production/",
+          },
+          {
             label: "Design & Multimedia",
             href: "/services/design-multimedia/",
           },
-          { label: "More", href: "/services/3d-modelling/", isMore: true },
+          {
+            label: "Engineering & Technical Design",
+            href: "/services/engineering-technical-design/",
+          },
+          {
+            label: "Graphics Design",
+            href: "/services/graphics-design/",
+          },
+          {
+            label: "Illustration",
+            href: "/services/illustration/",
+          },
+          {
+            label: "Logo Design",
+            href: "/services/logo-design/",
+          },
+          {
+            label: "Presentations",
+            href: "/services/presentations/",
+          },
+          {
+            label: "Print Design",
+            href: "/services/print-design/",
+          },
+          {
+            label: "UI Design",
+            href: "/services/ui-design/",
+          },
+          {
+            label: "Video Production",
+            href: "/services/video-production/",
+          },
+          {
+            label: "Voice Talent",
+            href: "/services/voice-talent/",
+          },
+          {
+            label: "Web Design",
+            href: "/services/web-design/",
+          },
         ],
       },
       {
@@ -92,20 +202,55 @@ export const mainMenu = [
         label: "Business Services",
         href: "/services/business-services/",
         children: [
+          {
+            label: "Business Services",
+            href: "/services/business-services/",
+          },
           { label: "Accounting", href: "/services/accounting/" },
           { label: "Bookkeeping", href: "/services/bookkeeping/" },
+          {
+            label: "Back Office Solutions",
+            href: "/services/back-office-solutions/",
+          },
           {
             label: "Business Consulting",
             href: "/services/business-consulting/",
           },
           {
-            label: "Construction Supply",
-            href: "/services/construction-supply",
+            label: "Financial Services & Planning",
+            href: "/services/financial-services-planning/",
           },
           {
-            label: "More",
-            href: "/services/business-services-main-point/",
-            isMore: true,
+            label: "Legal Assistance",
+            href: "/services/legal-assistance/",
+          },
+          {
+            label: "Recruiting",
+            href: "/services/recruiting/",
+          },
+          {
+            label: "Statistical Analysis",
+            href: "/services/statistical-analysis/",
+          },
+          {
+            label: "Translation",
+            href: "/services/translation/",
+          },
+          {
+            label: "Customer Service",
+            href: "/services/customer-service/",
+          },
+          {
+            label: "Data Science And Analysis",
+            href: "/services/data-science-analysis/",
+          },
+          {
+            label: "Paralegal Services",
+            href: "/services/paralegal-services/",
+          },
+          {
+            label: "Technical Writing",
+            href: "/services/technical-writing/",
           },
         ],
       },

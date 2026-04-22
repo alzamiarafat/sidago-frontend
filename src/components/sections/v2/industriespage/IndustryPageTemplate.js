@@ -13,6 +13,11 @@ import PartnerTrading from "@/src/components/sections/v2/industriespage/PartnerT
 import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackPerformance";
 import Trading from "@/src/components/sections/v2/industriespage/Trading";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
+import VerticalTab from "@/src/components/sections/v2/strategypage/VerticalTab";
+import {
+  getIndustryMenuContext,
+  normalizePath,
+} from "@/src/utils/navigationTabUtils";
 
 const defaultStats = [
   {
@@ -239,8 +244,27 @@ const benefits = [
   },
 ];
 
-export default function IndustryPageTemplate({ variant = "default" }) {
+export default function IndustryPageTemplate({ variant = "default", slug = "" }) {
   const isB2B = variant === "b2b";
+  const industryMenuContext = getIndustryMenuContext(slug);
+  const industryTabs =
+    industryMenuContext?.tabs?.map((item, index) => ({
+      key: `${slug}-${index}-${item.href}`,
+      label: item.title,
+      href: item.href,
+      imageAlt: `${item.title}: ${industryMenuContext.group?.title}`,
+      content: `${item.title} is one of the child menu items under ${industryMenuContext.group?.title} in the industries submenu.`,
+      backgroundClassName:
+        index % 2 === 0 ? "bg-purple-light" : "bg-blue-dark",
+      imageSrc: "/images/Secondary-About.svg",
+      contentClassName:
+        index % 2 === 0 ? "text-gray-night-green" : "text-gray-off-white",
+    })) ?? [];
+  const initialIndustryTabKey =
+    industryTabs.find(
+      (item) => normalizePath(item.href) === normalizePath(`/industries/${slug}`),
+    )?.key ??
+    industryTabs[0]?.key;
 
   return (
     <div className="flex h-svh flex-col text-base">
@@ -270,12 +294,26 @@ export default function IndustryPageTemplate({ variant = "default" }) {
           {isB2B ? (
             <>
               <Statistics stats={b2bStats} bgColor="bg-black" />
+              <VerticalTab
+                key={slug || "industries-b2b"}
+                title={industryMenuContext?.group?.title ?? "Industries"}
+                titleId={industryMenuContext?.group?.title ?? "industries"}
+                initialActiveKey={initialIndustryTabKey}
+                tabs={industryTabs}
+              />
               <Algorithmic />
               <Trading />
             </>
           ) : (
             <>
               <Statistics stats={defaultStats} />
+              <VerticalTab
+                key={slug || "industries-default"}
+                title={industryMenuContext?.group?.title ?? "Industries"}
+                titleId={industryMenuContext?.group?.title ?? "industries"}
+                initialActiveKey={initialIndustryTabKey}
+                tabs={industryTabs}
+              />
               <PartnerBenefit benefits={benefits} />
               <TrackPerformance />
               <CarouselOverview

@@ -5,5 +5,5 @@ export default async function IndustryDetailPage({ params }) {
   const { slug } = await params;
   const variant = slug === "b2b-commercial" ? "b2b" : "default";
 
-  return <IndustryPageTemplate variant={variant} />;
+  return <IndustryPageTemplate slug={slug} variant={variant} />;
 }
