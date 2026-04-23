@@ -34,7 +34,10 @@ const industryMenuGroups = [
     title: "Technology",
     href: getIndustryHref("ad-networks"),
     children: [
-      { title: "Software Platforms", href: getIndustryHref("software-platforms") },
+      {
+        title: "Software Platforms",
+        href: getIndustryHref("software-platforms"),
+      },
     ],
   },
   {
@@ -83,13 +86,13 @@ function getVisibleTabs(items = []) {
 
 function getServicesMenuGroups() {
   return (
-    mainMenu.find((item) => item.id === "services")?.megaColumns?.map(
-      (column) => ({
+    mainMenu
+      .find((item) => item.id === "services")
+      ?.megaColumns?.map((column) => ({
         ...column,
         title: column.label,
         children: mapMenuChildren(column.children ?? []),
-      }),
-    ) ?? []
+      })) ?? []
   );
 }
 
@@ -136,4 +139,8 @@ export function getIndustryMenuContext(slug) {
 
 export function getIndustryMenuGroups() {
   return getIndustriesMenuGroups();
+}
+
+export function getServiceMenuGroups() {
+  return getServicesMenuGroups();
 }
