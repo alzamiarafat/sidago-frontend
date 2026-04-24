@@ -192,7 +192,7 @@ export default function CTASection() {
         <a
           style={{ position: "relative" }}
           className="group/interactive flex-1 bg-[#FA7248]"
-          href="/insights#subscribe"
+          href="/contact"
         >
           <span className="sr-only">Insights</span>
           <div className="container flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
@@ -244,7 +244,7 @@ export default function CTASection() {
         <a
           style={{ position: "relative" }}
           className="group/interactive flex-1 bg-[#FF8C69]"
-          href="/company/opportunities"
+          href="/contact"
         >
           <span className="sr-only">Company › Opportunities</span>
           <div className="container flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">

@@ -369,9 +369,9 @@ export default function CardsGrid() {
           <a
             style={{ position: "relative" }}
             className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-6"
-            href="node"
+            href="services"
           >
-            <span className="sr-only">Node</span>
+            <span className="sr-only">Services</span>
             <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-defi-ash text-gray-off-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -395,7 +395,7 @@ export default function CardsGrid() {
               <div></div>
               <div className="z-10 flex items-end justify-between gap-md">
                 <div className="flex flex-col gap-md">
-                  <div className="text-2xl">Node</div>
+                  <div className="text-2xl">Services</div>
                 </div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -437,7 +437,7 @@ export default function CardsGrid() {
           <a
             style={{ position: "relative" }}
             className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-6"
-            href="/insights/discover?category=defi-research&category=governance-digest"
+            href="/research"
           >
             <span className="sr-only">Insights › Discover</span>
             <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-orange-light text-gray-night-green">
@@ -580,7 +580,7 @@ export default function CardsGrid() {
           <a
             style={{ position: "relative" }}
             className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-5 xl:col-span-4"
-            href="/defi/governance"
+            href="/governance"
           >
             <span className="sr-only">Defi › Governance</span>
             <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-blue-light text-gray-night-green">
@@ -629,7 +629,7 @@ export default function CardsGrid() {
           <a
             style={{ position: "relative" }}
             className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-7 xl:col-span-4"
-            href="/insights/discover?category=reports&category=market-update"
+            href="/marketplace"
           >
             <span className="sr-only">Insights › Discover</span>
             <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-defi-graphite text-gray-off-white">

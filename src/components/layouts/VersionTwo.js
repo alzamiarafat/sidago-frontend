@@ -12,6 +12,7 @@ import Navigation from "../sections/v2/common/Navbar";
 import Statistics from "../sections/v2/homepage/Statistics";
 import MarketTicker from "../sections/v2/homepage/Tracker";
 import LiquidStats from "../ui/TextAnimation";
+import PartnerTrading from "../sections/v2/industriespage/PartnerTrading";
 
 // ============ CONSTANTS ============
 const SCROLL_MT = "[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)]";
@@ -207,6 +208,7 @@ export default function Home() {
           <Capabilities />
           {/* <LatestInsight /> */}
           <CardsGrid />
+          <PartnerTrading titleColor="text-[#e7512f]" />
           <CTASection />
           <Footer />
         </main>

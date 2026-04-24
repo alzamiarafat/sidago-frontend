@@ -85,13 +85,6 @@ export const strategyMenuItems = [
         description:
           "Our approach to managing and optimizing business operations.",
       },
-      {
-        key: "outsourceing-philosophy",
-        title: "Outsourcing Philosophy",
-        href: "/strategy/outsourceing-philosophy",
-        description:
-          "Our approach to managing and optimizing business operations.",
-      },
     ],
   },
   {

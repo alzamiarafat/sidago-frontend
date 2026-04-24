@@ -147,7 +147,7 @@ export default function Footer() {
             </a>
             <a
               className="relative hover:text-gray-tradfi-silver"
-              href="/company/careers"
+              href="/contact"
             >
               <span className="sr-only">Careers</span>Careers
             </a>
@@ -265,22 +265,13 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex gap-2xl text-sm text-gray-off-white lg:justify-end lg:text-xs">
-          <a
-            className="relative hover:text-gray-tradfi-silver"
-            href="/privacy-policy"
-          >
+          <a className="relative hover:text-gray-tradfi-silver" href="#">
             <span className="sr-only">Privacy Policy</span>Privacy Policy
           </a>
-          <a
-            className="relative hover:text-gray-tradfi-silver"
-            href="/cookies-policy"
-          >
+          <a className="relative hover:text-gray-tradfi-silver" href="#">
             <span className="sr-only">Cookies Policy</span>Cookies Policy
           </a>
-          <a
-            className="relative hover:text-gray-tradfi-silver"
-            href="/modern-slavery-statement"
-          >
+          <a className="relative hover:text-gray-tradfi-silver" href="#">
             <span className="sr-only">Modern Slavery Statement</span>Modern
             Slavery Statement
           </a>

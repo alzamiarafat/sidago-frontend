@@ -15,6 +15,8 @@ export default function Navigation() {
   const settings = useGlobal();
   const [openMenu, setOpenMenu] = useState(null); // "services", "industries", or null
   const [hideTimeout, setHideTimeout] = useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileOpenSection, setMobileOpenSection] = useState(null);
 
   const pathname = usePathname();
 
@@ -458,6 +460,36 @@ export default function Navigation() {
     Icon: strategyIcons[item.iconKey],
   }));
 
+  const mobileSections = [
+    {
+      key: "services",
+      title: "Services",
+      items: productSections.map((section) => ({
+        title: section.title,
+        href: section.items[0]?.href ?? "#",
+      })),
+    },
+    {
+      key: "industries",
+      title: "Industries",
+      items: menuItems.map((item) => ({
+        title: item.title,
+        href: item.href,
+      })),
+    },
+    {
+      key: "strategy",
+      title: "Strategy",
+      items: strategyItems.flatMap((item) => [
+        { title: item.title, href: item.href },
+        ...((item.children ?? []).map((child) => ({
+          title: child.title,
+          href: child.href,
+        }))),
+      ]),
+    },
+  ];
+
   // === Handlers ===
   const handleMouseEnter = (menu) => {
     if (hideTimeout) clearTimeout(hideTimeout);
@@ -523,6 +555,8 @@ export default function Navigation() {
           <button
             type="button"
             aria-label="Menu"
+            aria-expanded={mobileNavOpen}
+            onClick={() => setMobileNavOpen((current) => !current)}
             className="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] p-[0.625rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 z-10 bg-green-dark text-gray-night-green lg:hidden"
           >
             <svg
@@ -541,6 +575,143 @@ export default function Navigation() {
           </button>
         </div>
       </header>
+      <AnimatePresence>
+        {mobileNavOpen ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 z-[60] lg:hidden"
+          >
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setMobileNavOpen(false)}
+              className="absolute inset-0 bg-black/55 backdrop-blur-[2px]"
+            />
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-y-0 right-0 flex w-[88vw] max-w-[26rem] flex-col bg-gray-night-green text-gray-off-white shadow-[-24px_0_60px_rgba(0,0,0,0.35)]"
+            >
+              <div className="border-b border-white/10 px-5 py-5">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <img
+                      alt="SIDAGO"
+                      loading="lazy"
+                      width="33"
+                      height="24"
+                      decoding="async"
+                      data-nimg="1"
+                      style={{ color: "transparent" }}
+                      src="images/favicon-1.ico"
+                    />
+                    <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
+                      <span
+                        className="text-xl tracking-wide font-normal"
+                        style={{ letterSpacing: "4px" }}
+                      >
+                        SIDAGO
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    aria-label="Close menu"
+                    onClick={() => setMobileNavOpen(false)}
+                    className="group/interactive inline-flex items-center justify-center bevel bevel-[0.25rem] bg-green-dark p-[0.625rem] text-gray-night-green"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      className="h-lg w-lg"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6 6 18" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex-1 overflow-y-auto px-5 py-5">
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href="/"
+                    onClick={() => setMobileNavOpen(false)}
+                    className="bevel bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.18em] text-gray-off-white/92"
+                  >
+                    Home
+                  </Link>
+
+                  {mobileSections.map((section) => {
+                    const isOpen = mobileOpenSection === section.key;
+
+                    return (
+                      <div key={section.key} className="overflow-hidden bevel bg-white/5">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setMobileOpenSection((current) =>
+                              current === section.key ? null : section.key,
+                            )
+                          }
+                          className="flex w-full items-center justify-between px-4 py-3 text-left"
+                        >
+                          <span className="text-sm uppercase tracking-[0.18em] text-gray-off-white/92">
+                            {section.title}
+                          </span>
+                          <motion.span
+                            animate={{ rotate: isOpen ? 180 : 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                            className="text-xs text-gray-off-white/70"
+                          >
+                            ▼
+                          </motion.span>
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {isOpen ? (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <div className="flex flex-col gap-1 px-2 py-2">
+                                {section.items.map((item) => (
+                                  <Link
+                                    key={`${section.key}-${item.href}-${item.title}`}
+                                    href={item.href}
+                                    onClick={() => setMobileNavOpen(false)}
+                                    className={`px-3 py-2 text-[0.78rem] uppercase tracking-[0.14em] transition ${
+                                      pathname?.startsWith(item.href)
+                                        ? "bg-[#E7512F] text-gray-off-white"
+                                        : "text-gray-off-white/78 hover:bg-white/5 hover:text-gray-off-white"
+                                    }`}
+                                  >
+                                    {item.title}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          ) : null}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.aside>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
       <nav
         itemScope=""
         className="left-0 top-0 z-40 h-svh w-dvw gap-xl bg-gray-defi-shadow font-blender uppercase text-gray-off-white hidden"
@@ -1720,7 +1891,7 @@ export default function Navigation() {
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center">
-              {/* <img
+              <img
                 alt="SIDAGO"
                 loading="lazy"
                 width="33"
@@ -1737,7 +1908,7 @@ export default function Navigation() {
                 >
                   SIDAGO
                 </span>
-              </div> */}
+              </div>
             </div>
           </a>
           {/* <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">
@@ -1892,8 +2063,9 @@ export default function Navigation() {
                                 </span>
                                 {productSections[index]?.items && (
                                   <div className="mt-2 grid gap-1 text-sm">
-                                    {productSections[index].items.slice(0, 3).map(
-                                      (subItem) => (
+                                    {productSections[index].items
+                                      .slice(0, 3)
+                                      .map((subItem) => (
                                         <a
                                           key={subItem.href}
                                           className="text-gray-tradfi-steel transition hover:text-white"
@@ -1901,13 +2073,12 @@ export default function Navigation() {
                                         >
                                           {subItem.title}
                                         </a>
-                                      ),
-                                    )}
+                                      ))}
                                     <Link
                                       className="group/more mt-2 inline-flex min-w-[9rem] items-center gap-2 bg-gray-defi-graphite px-2.5 py-1.5 font-blender text-xs uppercase text-gray-off-white transition hover:bg-green-tradfi hover:text-gray-night-green"
                                       href={
-                                        productSections[index]?.items?.[0]?.href ??
-                                        item.href
+                                        productSections[index]?.items?.[0]
+                                          ?.href ?? item.href
                                       }
                                     >
                                       <span

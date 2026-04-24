@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function PartnerTrading() {
+export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
   const rowOneRef = useRef(null);
   const rowTwoRef = useRef(null);
 
@@ -90,8 +90,7 @@ export default function PartnerTrading() {
                 className="z-10 inline-block max-w-[60%] text-2xl lg:text-3xl"
                 id="our-partner-trading-venues"
               >
-                Our <span className="text-purple-mid"> partner trading</span>{" "}
-                venues
+                Our <span className={titleColor}> partner trading</span> venues
               </h2>
             </div>
           </div>
