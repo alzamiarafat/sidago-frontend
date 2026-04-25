@@ -1,5 +1,17 @@
 import React, { useRef } from "react";
 
+function getDividerClass(borderColor) {
+  if (borderColor === "bg-gray-defi-shadow") {
+    return "bg-white/8";
+  }
+
+  if (borderColor?.startsWith("border-")) {
+    return borderColor.replace("border-", "bg-");
+  }
+
+  return borderColor || "bg-white/8";
+}
+
 export default function Capabilities({
   items,
   bgColor = "bg-gray-night-green",
@@ -8,6 +20,8 @@ export default function Capabilities({
   borderColor = "border-gray-defi-shadow",
 }) {
   const videoRefs = useRef([]);
+  const dividerClass = getDividerClass(borderColor);
+
   return (
     <section className={`hidden flex-col lg:flex ${bgColor} ${textColor}`}>
       {items?.map((item, index) => {
@@ -18,8 +32,12 @@ export default function Capabilities({
         };
 
         const handleMouseLeave = () => {
-          videoRefs.current[index]?.pause();
-          videoRefs.current[index].currentTime = 0; // reset
+          const activeVideo = videoRefs.current[index];
+          activeVideo?.pause();
+
+          if (activeVideo) {
+            activeVideo.currentTime = 0;
+          }
         };
 
         return (
@@ -46,11 +64,13 @@ export default function Capabilities({
                 </div>
 
                 {/* VIDEO */}
-                <div className="relative overflow-hidden bevel">
-                  <div className="absolute h-full w-full animate-pulse bevel bg-gray-defi-charcoal"></div>
+                <div className="relative overflow-hidden bevel bg-[#1e2423]">
+                  <div className="absolute h-full w-full bevel bg-[#1e2423]"></div>
 
                   <video
-                    ref={videoRefs}
+                    ref={(node) => {
+                      videoRefs.current[index] = node;
+                    }}
                     playsInline
                     preload="metadata"
                     loop
@@ -85,7 +105,7 @@ export default function Capabilities({
 
             {/* Divider */}
             {index !== items.length - 1 && (
-              <hr className={`hidden lg:block ${borderColor}`} />
+              <div className={`hidden h-px lg:block ${dividerClass} opacity-80`} />
             )}
           </React.Fragment>
         );

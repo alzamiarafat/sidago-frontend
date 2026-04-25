@@ -482,10 +482,10 @@ export default function Navigation() {
       title: "Strategy",
       items: strategyItems.flatMap((item) => [
         { title: item.title, href: item.href },
-        ...((item.children ?? []).map((child) => ({
+        ...(item.children ?? []).map((child) => ({
           title: child.title,
           href: child.href,
-        }))),
+        })),
       ]),
     },
   ];
@@ -633,7 +633,11 @@ export default function Navigation() {
                       strokeWidth="1.8"
                       className="h-lg w-lg"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6 6 18" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 6l12 12M18 6 6 18"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -653,7 +657,10 @@ export default function Navigation() {
                     const isOpen = mobileOpenSection === section.key;
 
                     return (
-                      <div key={section.key} className="overflow-hidden bevel bg-white/5">
+                      <div
+                        key={section.key}
+                        className="overflow-hidden bevel bg-white/5"
+                      >
                         <button
                           type="button"
                           onClick={() =>
@@ -681,7 +688,10 @@ export default function Navigation() {
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                              transition={{
+                                duration: 0.24,
+                                ease: [0.22, 1, 0.36, 1],
+                              }}
                               className="overflow-hidden"
                             >
                               <div className="flex flex-col gap-1 px-2 py-2">
@@ -1889,7 +1899,7 @@ export default function Navigation() {
       </nav>
       <header className="header sticky top-0 z-20 hidden bg-gray-night-green pb-md pt-3xl text-gray-off-white lg:block">
         <div className="container flex items-center justify-between">
-          <a className="z-10 flex h-3xl flex-col justify-center" href="#">
+          <a className="z-10 flex h-3xl flex-col justify-center" href="/">
             <div className="flex items-center">
               <img
                 alt="SIDAGO"
@@ -1953,7 +1963,7 @@ export default function Navigation() {
                 }`}
                 itemProp="url"
                 target=""
-                href="/services"
+                href="#"
               >
                 <span itemProp="name">Services</span>
                 <span className="sr-only">Services</span>
@@ -2112,7 +2122,7 @@ export default function Navigation() {
                 }`}
                 itemProp="url"
                 target=""
-                href="/industries"
+                href="#"
                 onMouseEnter={() => setActiveIndustryTitle(null)}
               >
                 <span itemProp="name">Industries</span>
@@ -2251,7 +2261,7 @@ export default function Navigation() {
                 }`}
                 itemProp="url"
                 target=""
-                href="/strategy"
+                href="#"
               >
                 <span itemProp="name">Our Strategy</span>
                 <span className="sr-only">Our Strategy</span>

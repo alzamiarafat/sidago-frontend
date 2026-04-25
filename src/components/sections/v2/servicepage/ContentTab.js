@@ -506,7 +506,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
 
   return (
     <section className="bg-gray-defi-shadow">
-      <div className="container py-block">
+      <div className="container pb-block pt-10 md:pt-12 lg:pt-14">
         {introTitle ? (
           <div className="mb-3xl flex flex-col gap-xl">
             <div className="flex flex-col gap-xs">
@@ -522,14 +522,14 @@ export default function ContentTab({ slug = "", type = "service" }) {
           </div>
         ) : null}
 
-        <section className="flex flex-col gap-5 md:h-[23.75rem] md:flex-row md:items-stretch">
-          <div className="md:h-[23.75rem] md:w-[18rem] md:shrink-0">
-            <div className="overflow-x-auto pb-2 md:h-full md:overflow-hidden md:pb-0">
+        <section className="flex flex-col gap-5 lg:min-h-[30rem] lg:flex-row lg:items-stretch xl:min-h-[34rem]">
+          <div className="lg:w-[18rem] lg:shrink-0">
+            <div className="overflow-x-auto pb-2 lg:h-full lg:overflow-hidden lg:pb-0">
               <div
                 role="tablist"
                 aria-label={`${group?.title} child menu`}
                 aria-orientation="vertical"
-                className="flex h-full min-h-0 flex-col gap-2 overflow-y-auto overscroll-contain pr-1 md:pr-2"
+                className="flex h-full min-h-0 flex-col gap-2 overflow-y-auto overscroll-contain pr-1 lg:max-h-[34rem] lg:pr-2"
               >
                 {groups?.length
                   ? groups.map((menuGroup) => {
@@ -685,7 +685,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
             </div>
           </div>
 
-          <div className="relative min-w-0 flex-1 md:h-[23.75rem]">
+          <div className="relative min-w-0 flex-1">
             <motion.div
               id={getPanelId(activeItem)}
               role="tabpanel"
@@ -697,7 +697,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
               } ${panelClassName} shadow-[0_24px_50px_rgba(0,0,0,0.2)]`}
             >
                 {!detailContent ? (
-                  <div className="h-[15.75rem] bevel md:h-full md:flex-1">
+                  <div className="h-[16rem] bevel sm:h-[18rem] lg:h-full lg:flex-1">
                     <img
                       alt={activeDescription}
                       width="1152"
@@ -712,7 +712,9 @@ export default function ContentTab({ slug = "", type = "service" }) {
                 ) : null}
                 <motion.div
                   className={`flex flex-col ${
-                    detailContent ? "h-full min-h-0 p-0" : "justify-end px-4 py-6 md:flex-1 md:px-6"
+                    detailContent
+                      ? "h-full min-h-0 p-0"
+                      : "justify-end px-4 py-6 sm:px-5 lg:flex-1 lg:px-6"
                   } text-gray-night-green`}
                   initial="hidden"
                   animate="visible"
@@ -725,7 +727,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
                 >
                   {detailContent ? (
                     <motion.div
-                      className="flex h-full min-h-0 flex-col bg-gray-defi-charcoal/95"
+                      className="flex h-full min-h-0 flex-col bg-gray-defi-charcoal/95 lg:max-h-[34rem]"
                       variants={{
                         hidden: { opacity: 0, y: 8 },
                         visible: { opacity: 1, y: 0 },
@@ -754,7 +756,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
                       </div>
 
                       <div className="flex min-h-0 flex-1 flex-col px-4 py-4 md:px-6 md:py-5">
-                        <div className="min-h-0 flex-1 overflow-y-auto pr-2 [scrollbar-color:#e7512f_rgba(255,255,255,0.08)] [scrollbar-width:thin]">
+                        <div className="min-h-0 flex-1 overflow-y-auto pr-1 md:pr-2 [scrollbar-color:#e7512f_rgba(255,255,255,0.08)] [scrollbar-width:thin]">
                           <div className="space-y-5 text-[0.95rem] leading-8 text-gray-off-white/88 md:text-base">
                             {detailContent.paragraphs.map((paragraph) => (
                               <p key={paragraph}>{paragraph}</p>

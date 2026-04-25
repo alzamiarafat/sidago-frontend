@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const quotes = [
   {
@@ -46,12 +46,21 @@ export default function CarouselOverview({
   const DURATION = 4000;
   const STEP = 50;
 
-  const startAutoPlay = () => {
+  const triggerChange = useCallback((cb) => {
+    setProgress(0);
+    setAnimate(false);
+
+    setTimeout(() => {
+      setCurrent(cb);
+      setAnimate(true);
+    }, 200);
+  }, []);
+
+  useEffect(() => {
     clearInterval(intervalRef.current);
     clearInterval(progressRef.current);
 
     let elapsed = 0;
-    setProgress(0);
 
     progressRef.current = setInterval(() => {
       elapsed += STEP;
@@ -61,25 +70,12 @@ export default function CarouselOverview({
     intervalRef.current = setInterval(() => {
       triggerChange((i) => (i + 1) % total);
     }, DURATION);
-  };
-
-  const triggerChange = (cb) => {
-    setAnimate(false);
-
-    setTimeout(() => {
-      setCurrent(cb);
-      setAnimate(true);
-    }, 200);
-  };
-
-  useEffect(() => {
-    startAutoPlay();
 
     return () => {
       clearInterval(intervalRef.current);
       clearInterval(progressRef.current);
     };
-  }, [current]);
+  }, [current, total, triggerChange]);
 
   const prev = () => triggerChange((i) => (i - 1 + total) % total);
   const next = () => triggerChange((i) => (i + 1) % total);
@@ -108,16 +104,15 @@ export default function CarouselOverview({
         </svg>
         {/* KEEP YOUR FULL SVG HERE EXACTLY AS IT WAS */}
 
-        <div className="flex flex-col pl-8 lg:pl-0 gap-2xl lg:gap-4xl">
-          {/* ✅ ONLY THIS LINE MODIFIED (animation added) */}
+        <div className="flex flex-col gap-2xl lg:gap-4xl">
           <div
             className={`relative flex flex-col gap-6 lg:gap-12 transition-all duration-1000 ease-out ${
               animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <div className="absolute -left-8 top-0 text-3xl lg:-left-10 lg:text-4xl"></div>
-
-            <div className="lg:text-2xl">{q.text}</div>
+            <div className="max-w-5xl text-lg leading-8 md:text-xl lg:text-2xl lg:leading-10">
+              {q.text}
+            </div>
 
             <div className="font-blender text-sm uppercase lg:text-xl">
               {q.author}
@@ -132,38 +127,39 @@ export default function CarouselOverview({
             </div>
           </div>
 
-          {/* Controls — unchanged */}
           <div className="relative">
             <div className="mb-3 font-blender">
               {current + 1} / {total}
             </div>
 
-            <div className="relative h-[0.125rem] w-[calc(100%-8.25rem)] bg-gray-off-white">
-              <div
-                className="absolute h-full bg-green-tradfi transition-all"
-                style={{
-                  width: `${progress}%`,
-                  transitionDuration: `${STEP}ms`,
-                  transitionTimingFunction: "linear",
-                }}
-              />
-            </div>
+            <div className="relative pr-24 sm:pr-28">
+              <div className="relative h-[0.125rem] w-full bg-gray-off-white">
+                <div
+                  className="absolute h-full bg-green-tradfi transition-all"
+                  style={{
+                    width: `${progress}%`,
+                    transitionDuration: `${STEP}ms`,
+                    transitionTimingFunction: "linear",
+                  }}
+                />
+              </div>
 
-            <div className="absolute bottom-0 right-0 flex w-max gap-md">
-              <button
-                type="button"
-                onClick={prev}
-                className="group/interactive gap-md inline-flex items-center justify-between font-medium bevel p-[0.625rem] text-gray-night-green bg-green-tradfi"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                className="group/interactive gap-md inline-flex items-center justify-between font-medium bevel p-[0.625rem] text-gray-night-green bg-green-tradfi"
-              >
-                →
-              </button>
+              <div className="absolute right-0 top-1/2 flex -translate-y-1/2 gap-md">
+                <button
+                  type="button"
+                  onClick={prev}
+                  className="group/interactive inline-flex items-center justify-center bevel bg-green-tradfi p-[0.625rem] font-medium text-gray-night-green"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={next}
+                  className="group/interactive inline-flex items-center justify-center bevel bg-green-tradfi p-[0.625rem] font-medium text-gray-night-green"
+                >
+                  →
+                </button>
+              </div>
             </div>
           </div>
         </div>

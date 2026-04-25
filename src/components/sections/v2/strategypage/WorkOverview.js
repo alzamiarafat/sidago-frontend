@@ -1,9 +1,9 @@
 export default function WorkOverview() {
   return (
     <section class="bg-gray-night-green">
-      <div class="container py-block pt-4xl">
+      <div class="container pb-block pt-10 md:pt-12 lg:pt-14">
         <section class="bg-gray-night-green text-gray-off-white">
-          <div class="flex flex-col gap-[4rem]">
+          <div class="flex flex-col gap-3xl lg:gap-[4rem]">
             <div class="relative flex flex-col gap-md overflow-hidden px-xl py-2xl bevel bg-gray-defi-charcoal">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

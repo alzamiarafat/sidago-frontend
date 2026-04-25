@@ -13,6 +13,7 @@ import Statistics from "../sections/v2/homepage/Statistics";
 import MarketTicker from "../sections/v2/homepage/Tracker";
 import LiquidStats from "../ui/TextAnimation";
 import PartnerTrading from "../sections/v2/industriespage/PartnerTrading";
+import AvailablePartner from "../sections/v2/servicepage/AvailablePartner";
 
 // ============ CONSTANTS ============
 const SCROLL_MT = "[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)]";
@@ -34,6 +35,59 @@ const items = [
     title: "Introducing NODE Insights",
     href: "",
     srText: "Insights › News › Announcements › Introducing node insights",
+  },
+];
+
+const accordionItems = [
+  {
+    title: "Spot",
+    description:
+      "Trade spot or derivatives across the widest range of digital assets, with an OTC desk that sits at the source of liquidity.",
+    href: "/spots",
+    video:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200719/Accordion-OTC.mp4#t=2",
+    rotate: "rotate(30deg)",
+    sr: "Otc",
+  },
+  {
+    title: "Options",
+    description:
+      "Create liquid and efficient markets for your token globally, with the partner of choice for top-tier protocols.",
+    href: "/options",
+    video:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200829/Accordion-Liquidity.mp4#t=3.15",
+    rotate: "rotate(-25deg)",
+    sr: "Liquidity",
+  },
+  {
+    title: "Forwards",
+    description:
+      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
+    href: "forwards",
+    video:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200844/Accordion-Governance-DeFi.mp4#t=1",
+    rotate: "rotate(0deg)",
+    sr: "Defi",
+  },
+  {
+    title: "Ventures",
+    description:
+      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
+    href: "ventures",
+    video:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200933/Accordion-Ventures.mp4#t=1.65",
+    rotate: "rotate(0deg)",
+    sr: "Defi",
+  },
+  {
+    title: "Tailored products",
+    description:
+      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
+    href: "tailored-products",
+    video:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212516/Accordion-Prop-trading.mp4#t=4.14",
+    rotate: "rotate(0deg)",
+    sr: "Defi",
   },
 ];
 
@@ -201,14 +255,20 @@ export default function Home() {
             titles={titles}
             subtitle="Sidago makes digital asset markets liquid and efficient"
           />
-
           <InsightNews items={items} />
           <Statistics stats={stats} />
           <MarketTicker />
-          <Capabilities />
+          <Capabilities
+            items={accordionItems}
+            bgColor="bg-black"
+            textColor="text-white"
+            hoverColor="bg-gray-defi-shadow"
+            borderColor="bg-gray-defi-shadow"
+          />
           {/* <LatestInsight /> */}
           <CardsGrid />
-          <PartnerTrading titleColor="text-[#e7512f]" />
+          <AvailablePartner bgColor="bg-[#151916]" titleColor="text-white" />
+          {/* <PartnerTrading titleColor="text-[#e7512f]" /> */}
           <CTASection />
           <Footer />
         </main>

@@ -1,4 +1,5 @@
 "use client";
+import "../../app/globals.css";
 
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
@@ -171,31 +172,31 @@ const pageContent = {
   },
 };
 
-export default function ServicePageTemplate({ variant = "otc", slug = "" }) {
+export default function Research({ variant = "governance", slug = "" }) {
   const page = pageContent[variant] ?? pageContent.otc;
   const isGovernancePage = variant === "governance";
 
   return (
-    <div className="flex min-h-svh flex-col text-base">
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex h-svh flex-col text-base">
+      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
 
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-gray-night-green text-gray-off-white"
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          {/* <HeroBannerSection {...page.hero} /> */}
+          <HeroBannerSection {...page.hero} />
 
           {isGovernancePage ? (
             <>
-              {/* <OurVision /> */}
+              <OurVision />
               <ContentTab slug={slug} />
-              {/* <Support />
-              <DelegateProfile /> */}
+              <Support />
+              <DelegateProfile />
             </>
           ) : (
             <>
-              {/* <InsightNews
+              <InsightNews
                 items={insightItems}
                 bgColor="bg-white"
                 textColor="text-black"
@@ -205,24 +206,21 @@ export default function ServicePageTemplate({ variant = "otc", slug = "" }) {
                 bgColor="bg-gray-200"
                 lighterTheme={true}
                 dotColor="#4D4D4D"
-              /> */}
+              />
               <ContentTab slug={slug} />
-              {/* <VideoOverview /> */}
-              {/* <Capabilities
+              <VideoOverview />
+              <Capabilities
                 items={accordionItems}
                 bgColor="bg-[#E5E6E5]"
                 textColor="text-black"
                 hoverColor="bg-gray-tradfi-frost"
                 borderColor="border-gray-tradfi-frost"
-              /> */}
-              {/* <TradeOption /> */}
-              {/* <CarouselOverview /> */}
-              {/* <AccessWay /> */}
-              <AvailablePartner
-                bgColor="bg-stone-800"
-                titleColor="text-white"
               />
-              {/* <ServiceLatestInsight /> */}
+              <TradeOption />
+              <CarouselOverview />
+              <AccessWay />
+              <AvailablePartner />
+              <ServiceLatestInsight />
             </>
           )}
 

@@ -1,4 +1,5 @@
 "use client";
+import "../../app/globals.css";
 
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
@@ -108,7 +109,7 @@ function buildVerticalTabs(items) {
   });
 }
 
-export default function StrategyPageTemplate() {
+export default function Node() {
   const pathname = usePathname();
   const currentPath = normalizeStrategyPath(pathname);
   const activeStrategyItem =
@@ -118,38 +119,29 @@ export default function StrategyPageTemplate() {
   const initialActiveKey =
     tabSource.find((item) => normalizeStrategyPath(item.href) === currentPath)
       ?.key ?? tabSource[0]?.key;
-  const strategySubtitle =
-    "Empowering growth-focused teams with clear strategic direction, operational alignment, and dependable execution across every stage of business development.";
 
   return (
-    <div className="flex min-h-svh flex-col text-base">
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex h-svh flex-col text-base">
+      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
 
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-gray-night-green text-gray-off-white"
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          {/* <HeroBannerSection
+          <HeroBannerSection
             useVideo={true}
             lighterTheme={false}
             videoSrc="https://www.wintermute.com/videos/heroes/ventures.mp4"
             titles={titles}
             subtitle="Partner with the leading early-stage investor in the DeFi ecosystem to fuel your long-term growth"
             videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
-          /> */}
-          {/* <Statistics stats={stats} /> */}
-          {/* <PartnerBenefit /> */}
-          <VerticalTab
-            key={currentPath}
-            title={"Our Strategy"}
-            titleId={activeStrategyItem?.key ?? "our-strategy"}
-            subtitle={strategySubtitle}
-            initialActiveKey={initialActiveKey}
-            tabs={strategyTabs}
           />
-          {/* <Investment /> */}
-          {/* <BuildingProduct /> */}
+          <Statistics stats={stats} />
+          <PartnerBenefit />
+
+          <Investment />
+          <BuildingProduct />
           <WorkOverview />
           <CTASection />
           <Footer />

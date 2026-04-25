@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function VerticalTab({
   title = "Our mission & Investment thesis",
   titleId = "our-mission-&-investment-thesis",
+  subtitle = "",
   initialActiveKey,
   tabs = [],
 }) {
@@ -26,8 +27,8 @@ export default function VerticalTab({
   }
 
   return (
-    <section>
-      <div className="container py-block">
+    <section className="bg-stone-800">
+      <div className="container pb-block pt-10 md:pt-12 lg:pt-14">
         <div className="mb-3xl flex flex-col gap-xl">
           <div className="flex flex-col gap-xs">
             <h2
@@ -36,18 +37,21 @@ export default function VerticalTab({
             >
               {title}
             </h2>
+            {subtitle ? (
+              <p className="max-w-4xl text-gray-off-white">{subtitle}</p>
+            ) : null}
           </div>
           <hr className="!border-[#AB290E]" />
         </div>
 
-        <section className="flex flex-col gap-6 md:h-[23.75rem] md:flex-row md:items-stretch">
-          <div className="md:h-full md:w-[18rem] md:shrink-0">
-            <div className="overflow-x-auto pb-2 md:h-full md:overflow-hidden md:pb-0">
+        <section className="flex flex-col gap-6 lg:min-h-[30rem] lg:flex-row lg:items-stretch xl:min-h-[34rem]">
+          <div className="lg:w-[18rem] lg:shrink-0">
+            <div className="overflow-x-auto pb-2 lg:h-full lg:overflow-hidden lg:pb-0">
               <div
                 role="tablist"
                 aria-label={`${title} tabs`}
                 aria-orientation="vertical"
-                className="flex min-w-max max-w-full gap-3 md:h-full md:min-w-0 md:flex-col md:gap-2 md:overflow-y-scroll md:pr-2"
+                className="flex min-w-max max-w-full gap-3 lg:h-full lg:min-w-0 lg:flex-col lg:gap-2 lg:max-h-[34rem] lg:overflow-y-auto lg:pr-2"
               >
                 {tabs.map((tab) => (
                   <button
@@ -72,7 +76,8 @@ export default function VerticalTab({
                       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
                         e.preventDefault();
                         setActive(
-                          tabs[(currentIndex + 1) % tabs.length]?.key ?? tab.key,
+                          tabs[(currentIndex + 1) % tabs.length]?.key ??
+                            tab.key,
                         );
                       }
 
@@ -87,7 +92,7 @@ export default function VerticalTab({
                     className={[
                       tabBase,
                       activeKey === tab.key ? tabActive : tabInactive,
-                      "bevel bevel-2 md:w-full",
+                      "bevel bevel-2 lg:w-full",
                     ].join(" ")}
                   >
                     <span className="font-blender text-sm uppercase leading-none md:text-base">
@@ -105,13 +110,13 @@ export default function VerticalTab({
               role="tabpanel"
               aria-labelledby={`${activeTab.key}-tab`}
               className={[
-                "flex flex-col overflow-hidden bevel md:h-full md:flex-row-reverse",
+                "flex flex-col overflow-hidden bevel lg:max-h-[34rem] lg:h-full lg:flex-row-reverse",
                 activeTab.backgroundClassName,
               ]
                 .filter(Boolean)
                 .join(" ")}
             >
-              <div className="h-[15.75rem] md:h-full md:flex-1">
+              <div className="h-[16rem] sm:h-[18rem] lg:h-full lg:flex-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   alt={activeTab.imageAlt}
@@ -126,7 +131,7 @@ export default function VerticalTab({
               </div>
               <div
                 className={[
-                  "flex flex-col justify-end px-4 py-6 md:flex-1 md:px-6",
+                  "flex flex-col justify-end px-4 py-6 sm:px-5 lg:flex-1 lg:px-6",
                   activeTab.contentClassName ?? "text-gray-night-green",
                 ].join(" ")}
               >

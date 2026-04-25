@@ -42,16 +42,21 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
     "Hashflow-1",
   ];
 
+  const duplicatedRowOne = [...rowOne, ...rowOne];
+  const duplicatedRowTwo = [...rowTwo, ...rowTwo];
+
   useEffect(() => {
+    const track1 = rowOneRef.current;
+    const track2 = rowTwoRef.current;
+    if (!track1 || !track2) {
+      return undefined;
+    }
+
     let animationFrame;
     let position = 0;
     const speed = 0.9;
 
     const scroll = () => {
-      const track1 = rowOneRef.current;
-      const track2 = rowTwoRef.current;
-      if (!track1 || !track2) return;
-
       position += speed;
       const halfWidth = track1.scrollWidth / 2;
 
@@ -59,10 +64,7 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
         position = 0;
       }
 
-      // Row 1: Right to Left
       track1.style.transform = `translateX(-${position}px)`;
-
-      // Row 2: Left to Right
       track2.style.transform = `translateX(${-halfWidth + position}px)`;
 
       animationFrame = requestAnimationFrame(scroll);
@@ -72,22 +74,21 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
     return () => cancelAnimationFrame(animationFrame);
   }, []);
 
-  // Shared Mask Style
   const maskStyle = {
     WebkitMaskImage:
-      "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+      "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
     maskImage:
-      "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+      "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
   };
 
   return (
     <section className="bg-gray-defi-shadow">
       <div className="container py-block">
-        <div className="pb-xl">
+        <div className="pb-xl md:pb-2xl">
           <div className="relative">
             <div className="flex flex-col gap-6 lg:gap-8">
               <h2
-                className="z-10 inline-block max-w-[60%] text-2xl lg:text-3xl"
+                className="z-10 inline-block max-w-xl text-2xl sm:text-[1.85rem] lg:text-3xl"
                 id="our-partner-trading-venues"
               >
                 Our <span className={titleColor}> partner trading</span> venues
@@ -97,32 +98,34 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
         </div>
 
         <section className="bg-gray-defi-shadow text-gray-off-white">
-          {/* Apply the mask here to cover both rows */}
           <div
             className="relative flex flex-col overflow-hidden"
             style={maskStyle}
           >
-            {/* Row 1: Right to Left */}
-            <div ref={rowOneRef} className="flex w-max">
-              {rowOne.map((logo, index) => (
+            <div ref={rowOneRef} className="flex w-max items-center gap-10 md:gap-16">
+              {duplicatedRowOne.map((logo, index) => (
                 <img
                   key={`row1-${index}`}
-                  alt="Logo"
-                  className="pr-[6.25rem] shrink-0"
-                  style={{ color: "transparent", height: "100px" }}
+                  alt="Partner trading venue logo"
+                  aria-hidden={index >= rowOne.length}
+                  className="h-10 w-auto shrink-0 md:h-14 lg:h-16"
+                  style={{ color: "transparent" }}
                   src={`images/partner-trading/Liquidity-–-${logo}.svg`}
                 />
               ))}
             </div>
 
-            {/* Row 2: Left to Right */}
-            <div ref={rowTwoRef} className="flex w-max">
-              {rowTwo.map((logo, index) => (
+            <div
+              ref={rowTwoRef}
+              className="mt-6 flex w-max items-center gap-10 md:mt-8 md:gap-16"
+            >
+              {duplicatedRowTwo.map((logo, index) => (
                 <img
                   key={`row2-${index}`}
-                  alt="Logo"
-                  className="pr-[6.25rem] shrink-0"
-                  style={{ color: "transparent", height: "100px" }}
+                  alt="Partner trading venue logo"
+                  aria-hidden={index >= rowTwo.length}
+                  className="h-10 w-auto shrink-0 md:h-14 lg:h-16"
+                  style={{ color: "transparent" }}
                   src={`images/partner-trading/Liquidity-–-${logo}.svg`}
                 />
               ))}

@@ -1,5 +1,5 @@
 "use client";
-
+import "../../app/globals.css";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -240,22 +240,19 @@ const benefits = [
   },
 ];
 
-export default function IndustryPageTemplate({
-  variant = "default",
-  slug = "",
-}) {
-  const isB2B = variant === "b2b";
+export default function TailoredProducts({ variant = "default", slug = "" }) {
+  const isB2B = true;
 
   return (
-    <div className="flex min-h-svh flex-col text-base">
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex h-svh flex-col text-base">
+      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
 
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-gray-night-green text-gray-off-white"
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          {/* <HeroBannerSection
+          <HeroBannerSection
             useVideo={true}
             lighterTheme={false}
             videoSrc={
@@ -270,34 +267,26 @@ export default function IndustryPageTemplate({
                 ? "left-[500px] !w-3/4"
                 : "left-[500px] top-[70px] !w-3/4 !h-3/4"
             }
-          /> */}
+          />
           {isB2B ? (
             <>
-              {/* <Statistics stats={b2bStats} bgColor="bg-black" /> */}
-              <ContentTab slug={slug} type="industry" />
-              <CarouselOverview
-                bgColor="bg-[#454a47]"
-                textColor="text-white"
-                svgColor="text-[#606663]"
-              />
-              <PartnerTrading />
-              {/* <Algorithmic /> */}
-              {/* <Trading /> */}
+              <Statistics stats={b2bStats} bgColor="bg-black" />
+              <Algorithmic />
+              <Trading />
             </>
           ) : (
             <>
-              {/* <Statistics stats={defaultStats} /> */}
-              <ContentTab slug={slug} type="industry" />
-              {/* <PartnerBenefit benefits={benefits} /> */}
-              {/* <TrackPerformance /> */}
+              <Statistics stats={defaultStats} />
+              <PartnerBenefit benefits={benefits} />
+              <TrackPerformance />
               <CarouselOverview
                 bgColor="bg-[#454a47]"
                 textColor="text-white"
                 svgColor="text-[#606663]"
               />
               <PartnerTrading />
-              {/* <LearnMore /> */}
-              {/* <DiscoverMore /> */}
+              <LearnMore />
+              <DiscoverMore />
             </>
           )}
           <CTASection />
