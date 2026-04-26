@@ -9,6 +9,7 @@ export default function HeroBannerSection({
   fontWeight,
   lighterTheme = false,
   loop = true,
+  lighterBgColor = "bg-[#f0f1f1]",
 }) {
   return (
     // <section className="relative flex flex-col justify-center items-center min-h-[70svh] lg:flex-row lg:items-center lg:justify-center text-gray-off-white lg:min-h-[calc(100svh - var(--header-height) - 6.125rem)]">
@@ -30,7 +31,7 @@ export default function HeroBannerSection({
       className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
     >
       <div
-        className={`absolute inset-0 ${lighterTheme ? "bg-[#f0f1f1]" : "bg-[#020405]"}`}
+        className={`absolute inset-0 ${lighterTheme ? lighterBgColor : "bg-[#020405]"}`}
       >
         {/* Keep your exact structure */}
         {useVideo && (

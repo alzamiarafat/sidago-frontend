@@ -1293,7 +1293,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/login"
+                href="#"
               >
                 <span itemProp="name">Log-In</span>
                 <svg
@@ -2422,7 +2422,7 @@ export default function Navigation() {
                 style={{ position: "relative" }}
                 target=""
                 className="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-gray-defi-charcoal text-[0.875rem] text-green-dark"
-                href="/login"
+                href="#"
                 itemProp="url"
               >
                 <span className="sr-only">Node.Sidago.Com</span>Log-In

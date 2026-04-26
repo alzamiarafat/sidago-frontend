@@ -25,7 +25,7 @@ export default function About() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-6"
-              href="/algorithmic-trading"
+              href="#"
             >
               <span className="sr-only">Algorithmic trading</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-defi-ash text-gray-off-white">
@@ -92,7 +92,7 @@ export default function About() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-6"
-              href="/otc"
+              href="#"
             >
               <span className="sr-only">Otc</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-tradfi-steel text-gray-night-green">
@@ -163,7 +163,7 @@ export default function About() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-12 xl:col-span-4"
-              href="/ventures"
+              href="#"
             >
               <span className="sr-only">Ventures</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-blue-light text-gray-night-green">
@@ -216,7 +216,7 @@ export default function About() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-5 xl:col-span-4"
-              href="/liquidity"
+              href="#"
             >
               <span className="sr-only">Liquidity</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-tradfi-frost text-gray-night-green">
@@ -269,7 +269,7 @@ export default function About() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 col-span-7 xl:col-span-4"
-              href="/defi"
+              href="#"
             >
               <span className="sr-only">Defi</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-orange-light text-gray-night-green">

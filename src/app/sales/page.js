@@ -31,14 +31,14 @@ export default function SalesPage() {
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection
-            useVideo={false}
+            useVideo={true}
             lighterTheme={true}
-            imageSrc="images/OTC-report-2025_svg.svg"
+            videoSrc="https://www.wintermute.com/videos/heroes/cfds.mp4"
             titles={titles}
-            subtitle="Sidago 2025 digital asset OTC market review analyzes crypto liquidity flows, institutional trading behavior and derivatives growth to explain how traditional cycle dynamics are changing."
-            videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
+            subtitle="Partner with the leading early-stage investor in the DeFi ecosystem to fuel your long-term growth"
+            videoClass={"left-[500px] !w-3/4"}
+            lighterBgColor="bg-[#f8f8f8]"
           />
-
           <RecommendedInsight />
           <FilterBy />
           <Series />
