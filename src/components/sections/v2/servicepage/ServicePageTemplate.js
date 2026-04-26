@@ -219,7 +219,7 @@ export default function ServicePageTemplate({ variant = "otc", slug = "" }) {
               {/* <CarouselOverview /> */}
               {/* <AccessWay /> */}
               <AvailablePartner
-                bgColor="bg-stone-800"
+                bgColor="bg-[#151916]"
                 titleColor="text-white"
               />
               {/* <ServiceLatestInsight /> */}

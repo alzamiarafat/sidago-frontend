@@ -10,7 +10,7 @@ export default function DelegateProfile() {
               id="stay-updated-on-wintermute-governance"
               className="font-blender text-xl uppercase text-green-dark"
             >
-              Stay updated on Wintermute governance
+              Stay updated on Sidago governance
             </h2>
           </div>
           <hr className="!border-[#AB290E]" />
@@ -48,11 +48,9 @@ export default function DelegateProfile() {
                   style={{ position: "relative" }}
                   target="_blank"
                   className="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-green-tradfi text-gray-night-green md:w-max"
-                  href="https://dune.com/wintermute_research/wintergov"
+                  href="research"
                 >
-                  <span className="sr-only">
-                    Wintermute research › Wintergov
-                  </span>
+                  <span className="sr-only">Sidago research › Wintergov</span>
                   Explore
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +99,7 @@ export default function DelegateProfile() {
                 <a
                   style={{ position: "relative" }}
                   className="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-green-tradfi text-gray-night-green md:w-max"
-                  href="/insights/discover?category=governance-digest"
+                  href="/sales"
                 >
                   <span className="sr-only">Insights › Discover</span>Discover
                   <svg
@@ -153,7 +151,7 @@ export default function DelegateProfile() {
                   style={{ position: "relative" }}
                   target="_blank"
                   className="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-purple-dark mt-6 text-gray-night-green"
-                  href="https://linktr.ee/wintermutegovernance"
+                  href="/contact"
                 >
                   <span className="sr-only">Wintermutegovernance</span>View
                   delegate profiles

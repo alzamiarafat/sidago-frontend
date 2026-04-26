@@ -18,7 +18,7 @@ export default function DiscoverMore() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto col-span-6 h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/otc"
+              href="#"
             >
               <span className="sr-only">Otc</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-defi-graphite text-gray-off-white">
@@ -83,7 +83,7 @@ export default function DiscoverMore() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto col-span-6 h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/defi"
+              href="#"
             >
               <span className="sr-only">Defi</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-defi-graphite text-gray-off-white">

@@ -8,10 +8,10 @@ export const strategyMenuItems = [
     children: [
       {
         key: "b2b-solutions",
-        title: "B2B Solutions",
+        title: "Case Study",
         href: "/strategy/b2b-solutions",
         description:
-          "Business solutions shaped around capability, delivery, and measurable outcomes.",
+          "Research-led case studies that help businesses evaluate planning, efficiency, scalability, and overhead reduction.",
       },
       {
         key: "entire-plan",
@@ -85,6 +85,20 @@ export const strategyMenuItems = [
         description:
           "Our approach to managing and optimizing business operations.",
       },
+      {
+        key: "quality-assurance",
+        title: "Quality Assurance",
+        href: "/strategy/quality-assurance",
+        description:
+          "Our approach to managing and optimizing business operations.",
+      },
+      {
+        key: "sidago-hiring",
+        title: "Sidago Hiring",
+        href: "/strategy/sidago-hiring",
+        description:
+          "Our approach to managing and optimizing business operations.",
+      },
     ],
   },
   {
@@ -109,17 +123,66 @@ export const strategyMenuItems = [
           "Reassigning talent where it can create stronger business value.",
       },
       {
+        key: "employee-specialization",
+        title: "Employee Specialization",
+        href: "/strategy/employee-specialization",
+        description:
+          "Focus on developing specialized skills and expertise in key areas.",
+      },
+      {
+        key: "external-team-entirely-managed",
+        title: "External Team Entirely Managed",
+        href: "/strategy/external-team-entirely-managed",
+        description:
+          "Focus on developing specialized skills and expertise in key areas.",
+      },
+      {
+        key: "major-cost-savings",
+        title: "Major Cost Savings",
+        href: "/strategy/major-cost-savings",
+        description:
+          "Focus on developing specialized skills and expertise in key areas.",
+      },
+      {
+        key: "managed-human-resources",
+        title: "Managed Human Resources",
+        href: "/strategy/managed-human-resources",
+        description:
+          "Structured support for people operations.",
+      },
+      {
         key: "management-savings",
         title: "Management Savings",
         href: "/strategy/management-savings",
         description:
-          "Operational savings from clear management structure and repeatable processes.",
+          "Focus on developing specialized skills and expertise in key areas.",
+      },
+      {
+        key: "rapid-scalability-options",
+        title: "Rapid Scalability Options",
+        href: "/strategy/rapid-scalability-options",
+        description:
+          "Focus on developing specialized skills and expertise in key areas.",
+      },
+      {
+        key: "remain-competitive",
+        title: "Remain Competitive",
+        href: "/strategy/remain-competitive",
+        description:
+          "Focus on developing specialized skills and expertise in key areas.",
+      },
+      {
+        key: "workflow-efficiency",
+        title: "Workflow Efficiency",
+        href: "/strategy/workflow-efficiency",
+        description:
+          "Focus on developing specialized skills and expertise in key areas.",
       },
     ],
   },
   {
     key: "our-process",
-    title: "Our Proccess",
+    title: "Our Processes",
     href: "/strategy/the-process",
     description: "Structured step approach",
     iconKey: "process",
@@ -139,11 +202,39 @@ export const strategyMenuItems = [
           "A review of current operations, constraints, and improvement opportunities.",
       },
       {
+        key: "job-and-work-reviews",
+        title: "Job & Work Reviews",
+        href: "/strategy/job-and-work-reviews",
+        description:
+          "Role and workflow reviews that identify inefficiencies and improvement opportunities.",
+      },
+      {
+        key: "employee-interviewing",
+        title: "Employee Interviewing",
+        href: "/strategy/employee-interviewing",
+        description:
+          "Structured employee interviews to surface bottlenecks, context, and process issues.",
+      },
+      {
+        key: "estimated-cost-savings",
+        title: "Estimated Cost Savings",
+        href: "/strategy/estimated-cost-savings",
+        description:
+          "Projected savings based on the proposed operational and process improvements.",
+      },
+      {
         key: "propose-action-plan",
         title: "Propose Action Plan",
         href: "/strategy/propose-action-plan",
         description:
           "A clear action plan for priorities, ownership, and next steps.",
+      },
+      {
+        key: "implementation",
+        title: "Implementation",
+        href: "/strategy/implementation",
+        description:
+          "Execution support to put the recommended changes into practice effectively.",
       },
     ],
   },

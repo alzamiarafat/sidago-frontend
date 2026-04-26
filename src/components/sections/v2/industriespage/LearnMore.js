@@ -671,8 +671,8 @@ export default function LearnMore() {
                       data-nimg="1"
                       class="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      srcset="images/image_3.png 1x, images/image.png 2x"
-                      src="images/image.png"
+                      srcset="images/yield_png.webp 1x, images/yield_png.webp 2x"
+                      src="/images/yield_png.webp"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">

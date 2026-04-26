@@ -83,8 +83,8 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
 
   return (
     <section className="bg-gray-defi-shadow">
-      <div className="container py-block">
-        <div className="pb-xl md:pb-2xl">
+      <div className="container py-12 md:py-14 lg:py-16">
+        <div className="pb-8 md:pb-10 lg:pb-12">
           <div className="relative">
             <div className="flex flex-col gap-6 lg:gap-8">
               <h2
@@ -117,7 +117,7 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
 
             <div
               ref={rowTwoRef}
-              className="mt-6 flex w-max items-center gap-10 md:mt-8 md:gap-16"
+              className="mt-0.5 flex w-max items-center gap-10 md:mt-1 md:gap-16"
             >
               {duplicatedRowTwo.map((logo, index) => (
                 <img

@@ -75,7 +75,7 @@ const accordionItems = [
     title: "Spot",
     description:
       "Trade spot or derivatives across the widest range of digital assets, with an OTC desk that sits at the source of liquidity.",
-    href: "otc",
+    href: "spots",
     video: "/media/Accordion-Spot.mp4#t=2",
     rotate: "rotate(30deg)",
     sr: "Otc",
@@ -84,7 +84,7 @@ const accordionItems = [
     title: "Options",
     description:
       "Create liquid and efficient markets for your token globally, with the partner of choice for top-tier protocols.",
-    href: "liquidity",
+    href: "options",
     video: "/media/Accordion-Options.mp4#t=3.15",
     rotate: "rotate(-25deg)",
     sr: "Liquidity",
@@ -93,16 +93,16 @@ const accordionItems = [
     title: "Forwards",
     description:
       "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "defi",
+    href: "forwards",
     video: "/media/Accordion-Forwards.mp4#t=1",
     rotate: "rotate(0deg)",
     sr: "Defi",
   },
   {
-    title: "CFDs",
+    title: "Ventures",
     description:
       "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "defi",
+    href: "ventures",
     video: "/media/Accordion-CFDs.mp4#t=1",
     rotate: "rotate(0deg)",
     sr: "Defi",
@@ -111,7 +111,7 @@ const accordionItems = [
     title: "Tailored products",
     description:
       "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "defi",
+    href: "tailored-products",
     video: "/media/Accordion-Tailored-products.mp4#t=1",
     rotate: "rotate(0deg)",
     sr: "Defi",

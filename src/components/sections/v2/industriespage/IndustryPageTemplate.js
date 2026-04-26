@@ -14,6 +14,7 @@ import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackP
 import Trading from "@/src/components/sections/v2/industriespage/Trading";
 import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
+import AvailablePartner from "../servicepage/AvailablePartner";
 
 const defaultStats = [
   {
@@ -275,12 +276,12 @@ export default function IndustryPageTemplate({
             <>
               {/* <Statistics stats={b2bStats} bgColor="bg-black" /> */}
               <ContentTab slug={slug} type="industry" />
-              <CarouselOverview
+              {/* <CarouselOverview
                 bgColor="bg-[#454a47]"
                 textColor="text-white"
                 svgColor="text-[#606663]"
               />
-              <PartnerTrading />
+              <PartnerTrading /> */}
               {/* <Algorithmic /> */}
               {/* <Trading /> */}
             </>
@@ -288,14 +289,18 @@ export default function IndustryPageTemplate({
             <>
               {/* <Statistics stats={defaultStats} /> */}
               <ContentTab slug={slug} type="industry" />
+              <AvailablePartner
+                bgColor="bg-[#151916]"
+                titleColor="text-white"
+              />
               {/* <PartnerBenefit benefits={benefits} /> */}
               {/* <TrackPerformance /> */}
-              <CarouselOverview
+              {/* <CarouselOverview
                 bgColor="bg-[#454a47]"
                 textColor="text-white"
                 svgColor="text-[#606663]"
               />
-              <PartnerTrading />
+              <PartnerTrading /> */}
               {/* <LearnMore /> */}
               {/* <DiscoverMore /> */}
             </>

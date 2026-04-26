@@ -525,7 +525,7 @@ export default function Navigation() {
                 decoding="async"
                 data-nimg="1"
                 style={{ color: "transparent" }}
-                src="images/favicon-1.ico"
+                src="/images/favicon-1.ico"
               />
               <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
                 <span
@@ -608,7 +608,7 @@ export default function Navigation() {
                       decoding="async"
                       data-nimg="1"
                       style={{ color: "transparent" }}
-                      src="images/favicon-1.ico"
+                      src="/images/favicon-1.ico"
                     />
                     <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
                       <span
@@ -1909,7 +1909,7 @@ export default function Navigation() {
                 decoding="async"
                 data-nimg="1"
                 style={{ color: "transparent" }}
-                src="images/favicon-1.ico"
+                src="/images/favicon-1.ico"
               />
               <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
                 <span

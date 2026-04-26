@@ -91,7 +91,7 @@ export default function AccessWay() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto col-span-6 h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/api"
+              href="/events"
             >
               <span className="sr-only">Api</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-gray-tradfi-frost text-gray-night-green">

@@ -18,7 +18,7 @@ export function Discover() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto col-span-6 h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/defi/governance"
+              href="/governance"
             >
               <span className="sr-only">Defi › Governance</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-orange-mid text-gray-night-green">
@@ -84,9 +84,9 @@ export function Discover() {
             <a
               style={{ position: "relative" }}
               className="group/interactive pointer-events-auto col-span-6 h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/construct"
+              href="/marketplace"
             >
-              <span className="sr-only">Construct</span>
+              <span className="sr-only">Marketplace</span>
               <div className="relative flex h-full flex-col justify-between overflow-hidden p-lg bevel bg-purple-mid text-gray-night-green">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ export function Discover() {
                 <div></div>
                 <div className="z-10 flex items-end justify-between gap-md">
                   <div className="flex flex-col gap-md">
-                    <div className="text-xl">Construct</div>
+                    <div className="text-xl">Marketplace</div>
                     <div className="mr-4xl text-sm lg:text-base">
                       Apply to take part in an accelerator built by proven
                       operators

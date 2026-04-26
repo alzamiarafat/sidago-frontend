@@ -9,16 +9,16 @@ export default function AvailablePartner({
   const trackRef = useRef(null);
 
   const logos = [
-    "images/OTC-Carousel-%E2%80%93-CME-Group.svg",
-    "images/OTC-Carousel-%E2%80%93-Talos.svg",
-    "images/OTC-Carousel-%E2%80%93-Elwood.svg",
-    "images/OTC-Carousel-%E2%80%93-Eurex.svg",
-    "images/OTC-Carousel-%E2%80%93-Wyden.svg",
-    "images/OTC-Carousel-%E2%80%93-Lucera.svg",
-    "images/OTC-Carousel-%E2%80%93-oneZero.svg",
-    "images/OTC-Carousel-%E2%80%93-Cypator.svg",
-    "images/OTC-Carousel-%E2%80%93-Crossover.svg",
-    "images/OTC-Carousel-%E2%80%93-Integral.svg",
+    "/images/OTC-Carousel-%E2%80%93-CME-Group.svg",
+    "/images/OTC-Carousel-%E2%80%93-Talos.svg",
+    "/images/OTC-Carousel-%E2%80%93-Elwood.svg",
+    "/images/OTC-Carousel-%E2%80%93-Eurex.svg",
+    "/images/OTC-Carousel-%E2%80%93-Wyden.svg",
+    "/images/OTC-Carousel-%E2%80%93-Lucera.svg",
+    "/images/OTC-Carousel-%E2%80%93-oneZero.svg",
+    "/images/OTC-Carousel-%E2%80%93-Cypator.svg",
+    "/images/OTC-Carousel-%E2%80%93-Crossover.svg",
+    "/images/OTC-Carousel-%E2%80%93-Integral.svg",
   ];
 
   const duplicatedLogos = [...logos, ...logos];
@@ -51,8 +51,8 @@ export default function AvailablePartner({
 
   return (
     <section className={`${bgColor}`}>
-      <div className="container py-block">
-        <div className="pb-xl md:pb-2xl">
+      <div className="container py-8 md:py-10 lg:py-12">
+        <div className="pb-5 md:pb-6 lg:pb-7">
           <div className="relative">
             <div className="flex flex-col gap-6 lg:gap-8">
               <h2
@@ -92,7 +92,7 @@ export default function AvailablePartner({
                     height="1152"
                     decoding="async"
                     data-nimg="1"
-                    className="h-10 w-auto shrink-0 md:h-14 lg:h-16"
+                    className="h-[0.9rem] w-auto shrink-0 md:h-[1.32rem] lg:h-[1.56rem]"
                     style={{
                       color: "transparent",
                     }}

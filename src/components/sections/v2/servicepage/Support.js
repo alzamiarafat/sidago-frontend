@@ -1,4 +1,114 @@
+"use client";
+
+import { useState } from "react";
+
+const supportItems = [
+  {
+    title: "Protocol design",
+    expandedClassName: "bg-green-light",
+    description:
+      "From adjusting inflation schedules to redesigning reward programs and token utility, the Sidago Governance team can help to ensure that your protocol’s incentives are well-balanced, promote key growth objectives, and align key stakeholders.",
+  },
+  {
+    title: "Governance structures",
+    expandedClassName: "bg-orange-light",
+    description:
+      "Sidago can help you select and set up the highest quality and industry-leading on-chain and off-chain governance architecture solutions, from initialising your voting parameters on OpenZeppelin’s Governor Bravo smart contracts to setting up voting strategies for your off-chain Snapshots.",
+  },
+  {
+    title: "Active DAO contribution",
+    expandedClassName: "bg-purple-light",
+    description:
+      "Sidago sits on large multisigs for DAOs, ensuring the safekeeping of treasury funds and closely overseeing smart contract upgrades, while participating in councils that are mandated with incentive expenditure, treasury management, and grants on behalf of DAOs.",
+  },
+  {
+    title: "Delegate duties",
+    expandedClassName: "bg-blue-light",
+    description:
+      "As an active delegate, Sidago contributes proposals and casts votes, deploys on-chain/off-chain proposals, assesses risk and growth objectives, and streams coverage and analysis of key votes and proposals to our institutional and corporate channels.",
+  },
+];
+
+function ToggleIcon({ open, dark }) {
+  const tone = dark ? "bg-gray-night-green" : "bg-orange-dark";
+
+  return (
+    <div
+      className={`relative flex h-3xl w-3xl items-center justify-center transition-all ${
+        dark ? "text-gray-night-green" : "text-orange-dark"
+      }`}
+    >
+      <div className={`absolute h-[3.75%] w-[50%] ${tone}`} />
+      <div
+        className={`absolute h-[50%] w-[3.75%] transition-all duration-500 ${tone} ${
+          open ? "scale-y-0 opacity-0" : "scale-y-100 opacity-100"
+        }`}
+      />
+    </div>
+  );
+}
+
+function SupportAccordionItem({
+  item,
+  open,
+  onMouseEnter,
+  onMouseLeave,
+  desktop = false,
+}) {
+  const textTone = open ? "text-gray-night-green" : "text-gray-off-white";
+  const sectionTone = open ? item.expandedClassName : "bg-gray-night-green";
+  const copyTone = open ? "text-gray-night-green/90" : "text-gray-off-white/0";
+
+  return (
+    <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={`w-full border-t border-white/10 text-left transition-all duration-500 ${sectionTone}`}
+    >
+      <div
+        className={`container overflow-hidden py-xl transition-all duration-500 ${
+          open ? "lg:py-3xl" : "lg:py-xl"
+        }`}
+      >
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center gap-2xl lg:gap-lg">
+            <ToggleIcon open={open} dark={open} />
+            <div
+              className={`flex-1 text-xl transition-colors duration-500 lg:text-2xl ${textTone}`}
+            >
+              {item.title}
+            </div>
+          </div>
+
+          <div
+            className={`grid overflow-hidden transition-all duration-500 ease-in-out ${
+              open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            }`}
+          >
+            <div className="min-h-0">
+              <div className="flex gap-2xl lg:gap-lg">
+                {desktop ? <div className="hidden w-3xl lg:block" /> : null}
+                <div className="flex-1">
+                  <div
+                    className={`max-w-[61rem] text-sm transition-all duration-500 lg:text-lg ${copyTone} ${
+                      open ? "translate-y-0 pt-2 lg:pt-3" : "translate-y-8"
+                    }`}
+                  >
+                    {item.description}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Support() {
+  const [desktopActiveIndex, setDesktopActiveIndex] = useState(null);
+
   return (
     <>
       <section>
@@ -13,7 +123,7 @@ export default function Support() {
                 <span className="text-orange-dark"> at every stage</span>
               </h2>
               <div className="z-10 max-w-[85%] md:max-w-[70%]">
-                Wintermute supports protocols across various stages of growth
+                Sidago supports protocols across various stages of growth
               </div>
             </div>
             <img
@@ -30,287 +140,30 @@ export default function Support() {
           </div>
         </div>
       </section>
-      <section className="hidden flex-col lg:flex bg-gray-night-green text-gray-off-white">
-        <div className="group/accordion transition-all" data-index="0">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl lg:flex-row lg:gap-20 lg:py-3xl">
-            <div>
-              <div className="flex items-center gap-2xl lg:gap-lg">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl lg:text-2xl">Protocol design</div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl overflow-hidden transition-[height] lg:gap-lg"
-                style={{ height: 0 }}
-              >
-                <div className="hidden w-3xl lg:block"></div>
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end transition-[transform] delay-250 group-hover/accordion:translate-y-0 lg:text-lg">
-                      <div className="mt-6 opacity-0 transition-[opacity] delay-250 duration-700 group-hover/accordion:opacity-100 text-gray-night-green">
-                        From adjusting inflation schedules to redesigning reward
-                        programs and token utility, the Wintermute Governance
-                        team can help to ensure that your protocol’s incentives
-                        are well-balanced, promote key growth objectives, and
-                        align key stakeholders.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="group/accordion transition-all" data-index="1">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl lg:flex-row lg:gap-20 lg:py-3xl">
-            <div>
-              <div className="flex items-center gap-2xl lg:gap-lg">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl lg:text-2xl">
-                    Governance structures
-                  </div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl overflow-hidden transition-[height] lg:gap-lg"
-                style={{ height: 0 }}
-              >
-                <div className="hidden w-3xl lg:block"></div>
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end transition-[transform] delay-250 group-hover/accordion:translate-y-0 lg:text-lg">
-                      <div className="mt-6 opacity-0 transition-[opacity] delay-250 duration-700 group-hover/accordion:opacity-100 text-gray-night-green">
-                        Wintermute can help you select and set up the highest
-                        quality and industry-leading on-chain and off-chain
-                        governance architecture solutions, from initialising
-                        your voting parameters on OpenZeppelin’s Governor Bravo
-                        smart contracts to setting up voting strategies for your
-                        off-chain Snapshots.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="group/accordion transition-all" data-index="2">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl lg:flex-row lg:gap-20 lg:py-3xl">
-            <div>
-              <div className="flex items-center gap-2xl lg:gap-lg">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl lg:text-2xl">
-                    Active DAO contribution
-                  </div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl overflow-hidden transition-[height] lg:gap-lg"
-                style={{ height: 0 }}
-              >
-                <div className="hidden w-3xl lg:block"></div>
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end transition-[transform] delay-250 group-hover/accordion:translate-y-0 lg:text-lg">
-                      <div className="mt-6 opacity-0 transition-[opacity] delay-250 duration-700 group-hover/accordion:opacity-100 text-gray-night-green">
-                        Wintermute sits on large multisigs for DAOs, ensuring
-                        the safekeeping of treasury funds and closely overseeing
-                        smart contract upgrades, while participating in councils
-                        that are mandated with incentive expenditure, treasury
-                        management, and grants on behalf of DAOs.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="group/accordion transition-all" data-index="3">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl lg:flex-row lg:gap-20 lg:py-3xl">
-            <div>
-              <div className="flex items-center gap-2xl lg:gap-lg">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl lg:text-2xl">Delegate duties</div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl overflow-hidden transition-[height] lg:gap-lg"
-                style={{ height: 0 }}
-              >
-                <div className="hidden w-3xl lg:block"></div>
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end transition-[transform] delay-250 group-hover/accordion:translate-y-0 lg:text-lg">
-                      <div className="mt-6 opacity-0 transition-[opacity] delay-250 duration-700 group-hover/accordion:opacity-100 text-gray-night-green">
-                        As an active delegate, Wintermute contributes proposals
-                        and casts votes, deploys on-chain/off-chain proposals,
-                        assesses risk and growth objectives, and streams
-                        coverage and analysis of key votes and proposals to our
-                        institutional and corporate channels.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+      <section className="hidden bg-gray-night-green text-gray-off-white lg:flex lg:flex-col">
+        {supportItems.map((item, index) => (
+          <SupportAccordionItem
+            key={item.title}
+            item={item}
+            open={desktopActiveIndex === index}
+            onMouseEnter={() => setDesktopActiveIndex(index)}
+            onMouseLeave={() => setDesktopActiveIndex(null)}
+            desktop
+          />
+        ))}
       </section>
-      <section className="flex flex-col lg:hidden bg-gray-night-green text-gray-off-white">
-        <div className="cursor-pointer transition-all" data-index="0">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl">
-            <div className="flex flex-col">
-              <div className="flex cursor-pointer items-center gap-2xl">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl">Protocol design</div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl transition-[height]"
-                style={{ height: 0 }}
-              >
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end gap-lg transition-[transform] delay-250 opacity-0">
-                      <div className="opacity-0 transition-[opacity] delay-250 duration-700 text-gray-night-green">
-                        From adjusting inflation schedules to redesigning reward
-                        programs and token utility, the Wintermute Governance
-                        team can help to ensure that your protocol’s incentives
-                        are well-balanced, promote key growth objectives, and
-                        align key stakeholders.
-                      </div>
-                      <div className="flex flex-wrap gap-lg"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="cursor-pointer transition-all" data-index="1">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl">
-            <div className="flex flex-col">
-              <div className="flex cursor-pointer items-center gap-2xl">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl">Governance structures</div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl transition-[height]"
-                style={{ height: 0 }}
-              >
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end gap-lg transition-[transform] delay-250 opacity-0">
-                      <div className="opacity-0 transition-[opacity] delay-250 duration-700 text-gray-night-green">
-                        Wintermute can help you select and set up the highest
-                        quality and industry-leading on-chain and off-chain
-                        governance architecture solutions, from initialising
-                        your voting parameters on OpenZeppelin’s Governor Bravo
-                        smart contracts to setting up voting strategies for your
-                        off-chain Snapshots.
-                      </div>
-                      <div className="flex flex-wrap gap-lg"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="cursor-pointer transition-all" data-index="2">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl">
-            <div className="flex flex-col">
-              <div className="flex cursor-pointer items-center gap-2xl">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl">Active DAO contribution</div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl transition-[height]"
-                style={{ height: 0 }}
-              >
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end gap-lg transition-[transform] delay-250 opacity-0">
-                      <div className="opacity-0 transition-[opacity] delay-250 duration-700 text-gray-night-green">
-                        Wintermute sits on large multisigs for DAOs, ensuring
-                        the safekeeping of treasury funds and closely overseeing
-                        smart contract upgrades, while participating in councils
-                        that are mandated with incentive expenditure, treasury
-                        management, and grants on behalf of DAOs.
-                      </div>
-                      <div className="flex flex-wrap gap-lg"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="cursor-pointer transition-all" data-index="3">
-          <div className="container flex flex-col-reverse gap-6 overflow-hidden py-xl">
-            <div className="flex flex-col">
-              <div className="flex cursor-pointer items-center gap-2xl">
-                <div className="relative flex h-3xl w-3xl items-center justify-center transition-all text-orange-dark">
-                  <div className="absolute h-[3.75%] w-[50%] transition-all duration-500 bg-orange-dark"></div>
-                  <div className="absolute h-[50%] w-[3.75%] rotate-0 transform transition-all duration-500 bg-orange-dark"></div>
-                </div>
-                <div className="flex-1">
-                  <div className="text-xl">Delegate duties</div>
-                </div>
-              </div>
-              <div
-                className="flex gap-2xl transition-[height]"
-                style={{ height: 0 }}
-              >
-                <div className="flex-1">
-                  <div>
-                    <div className="flex translate-y-[4rem] flex-col justify-end gap-lg transition-[transform] delay-250 opacity-0">
-                      <div className="opacity-0 transition-[opacity] delay-250 duration-700 text-gray-night-green">
-                        As an active delegate, Wintermute contributes proposals
-                        and casts votes, deploys on-chain/off-chain proposals,
-                        assesses risk and growth objectives, and streams
-                        coverage and analysis of key votes and proposals to our
-                        institutional and corporate channels.
-                      </div>
-                      <div className="flex flex-wrap gap-lg"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+      <section className="flex flex-col bg-gray-night-green text-gray-off-white lg:hidden">
+        {supportItems.map((item, index) => (
+          <SupportAccordionItem
+            key={item.title}
+            item={item}
+            open={false}
+            onMouseEnter={() => {}}
+            onMouseLeave={() => {}}
+          />
+        ))}
       </section>
     </>
   );

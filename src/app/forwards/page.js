@@ -190,7 +190,7 @@ export default function Research({ variant = "governance", slug = "" }) {
           {isGovernancePage ? (
             <>
               <OurVision />
-              <ContentTab slug={slug} />
+              {/* <ContentTab slug={slug} /> */}
               <Support />
               <DelegateProfile />
             </>

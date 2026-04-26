@@ -16,11 +16,9 @@ export default function VerticalTab({
   const activeTab = tabs.find((tab) => tab.key === activeKey) ?? tabs[0];
 
   const tabBase =
-    "group relative flex w-full shrink-0 cursor-pointer select-none items-center justify-start overflow-hidden px-4 py-3 text-left transition md:min-h-[4.75rem] md:rounded-none";
-  const tabActive =
-    "bg-purple-light text-gray-night-green md:border-l-[0.2rem] md:border-[#e7512f]";
-  const tabInactive =
-    "bg-gray-defi-graphite text-gray-tradfi-steel hover:text-gray-off-white";
+    "group relative flex w-full shrink-0 cursor-pointer select-none items-center justify-start overflow-hidden border-b border-[#d9d9d3] bg-[#f3f3f0] px-4 py-4 text-left transition md:min-h-[3.25rem] md:px-4";
+  const tabActive = "bg-[#ecece7] text-[#4e5451]";
+  const tabInactive = "text-[#666b67] hover:bg-[#efefea] hover:text-[#4e5451]";
 
   if (!tabs.length) {
     return null;
@@ -45,13 +43,13 @@ export default function VerticalTab({
         </div>
 
         <section className="flex flex-col gap-6 lg:min-h-[30rem] lg:flex-row lg:items-stretch xl:min-h-[34rem]">
-          <div className="lg:w-[18rem] lg:shrink-0">
+          <div className="lg:w-[23.125rem] lg:shrink-0">
             <div className="overflow-x-auto pb-2 lg:h-full lg:overflow-hidden lg:pb-0">
               <div
                 role="tablist"
                 aria-label={`${title} tabs`}
                 aria-orientation="vertical"
-                className="flex min-w-max max-w-full gap-3 lg:h-full lg:min-w-0 lg:flex-col lg:gap-2 lg:max-h-[34rem] lg:overflow-y-auto lg:pr-2"
+                className="flex min-w-max max-w-full gap-3 lg:h-auto lg:min-w-0 lg:flex-col lg:gap-0 lg:overflow-hidden"
               >
                 {tabs.map((tab) => (
                   <button
@@ -92,10 +90,10 @@ export default function VerticalTab({
                     className={[
                       tabBase,
                       activeKey === tab.key ? tabActive : tabInactive,
-                      "bevel bevel-2 lg:w-full",
+                      "lg:w-full",
                     ].join(" ")}
                   >
-                    <span className="font-blender text-sm uppercase leading-none md:text-base">
+                    <span className="text-[0.7rem] uppercase tracking-[0.02em] md:text-[0.82rem]">
                       {tab.label}
                     </span>
                   </button>

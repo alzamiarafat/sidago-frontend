@@ -4,7 +4,7 @@ const getIndustryHref = (slug) => `/industries/${slug}`;
 
 const industryMenuGroups = [
   {
-    title: "B2B Commercial",
+    title: "B2B / Commercial",
     href: getIndustryHref("b2b-commercial"),
     children: [
       { title: "Commercial GTM", href: getIndustryHref("commercial-gtm") },
@@ -40,10 +40,12 @@ const industryMenuGroups = [
   {
     title: "Health Care",
     href: getIndustryHref("healthcare"),
-    children: [],
+    children: [
+      { title: "Healthcare Operations", href: getIndustryHref("healthcare") },
+    ],
   },
   {
-    title: "Aerospace/Defense",
+    title: "Aerospace / Defense",
     href: getIndustryHref("aerospace-defense"),
     children: [],
   },
@@ -55,6 +57,26 @@ const industryMenuGroups = [
   {
     title: "Consumer Product and Retail",
     href: getIndustryHref("consumer-product-and-retail"),
+    children: [],
+  },
+  {
+    title: "Distribution and Transportation",
+    href: getIndustryHref("distribution-and-transportation"),
+    children: [],
+  },
+  {
+    title: "Insurance",
+    href: getIndustryHref("insurance"),
+    children: [],
+  },
+  {
+    title: "Restaurants",
+    href: getIndustryHref("restaurants"),
+    children: [],
+  },
+  {
+    title: "Construction",
+    href: getIndustryHref("construction"),
     children: [],
   },
 ];

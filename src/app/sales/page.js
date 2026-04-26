@@ -1,3 +1,4 @@
+import CTASection from "@/src/components/sections/v2/common/CTA";
 import "../../app/globals.css";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -41,7 +42,7 @@ export default function SalesPage() {
           <RecommendedInsight />
           <FilterBy />
           <Series />
-          {/* <Subscribe /> */}
+          <CTASection />
           <Footer />
         </main>
       </div>

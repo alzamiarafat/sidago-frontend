@@ -9,11 +9,9 @@ import BuildingProduct from "@/src/components/sections/v2/strategypage/BuildingP
 import Investment from "@/src/components/sections/v2/strategypage/Investment";
 import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBenefit";
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
-import VerticalTab from "@/src/components/sections/v2/strategypage/VerticalTab";
+import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
 import {
-  getActiveStrategyItem,
   normalizeStrategyPath,
-  strategyMenuItems,
 } from "@/src/data/strategy-menu";
 import { usePathname } from "next/navigation";
 
@@ -68,58 +66,10 @@ const titles = [
   },
 ];
 
-const tabAssets = [
-  {
-    backgroundClassName: "bg-purple-light",
-    imageSrc: "/images/Secondary-About.svg",
-  },
-  {
-    backgroundClassName: "bg-blue-dark",
-    imageSrc: "/images/Secondary-Vision.svg",
-  },
-  {
-    backgroundClassName: "bg-purple-light",
-    imageSrc: "/images/image_1.png",
-    imageSrcSet: "/images/image_1.png 1x",
-    imageWidth: 4800,
-  },
-  {
-    backgroundClassName: "bg-purple-dark",
-    imageSrc: "/images/Secondary-Strategy-1.svg",
-  },
-  {
-    backgroundClassName: "bg-blue-dark",
-    imageSrc: "/images/Secondary-Focus-1.svg",
-  },
-];
-
-function buildVerticalTabs(items) {
-  return items.map((item, index) => {
-    const asset = tabAssets[index % tabAssets.length];
-
-    return {
-      key: item.key,
-      label: item.title,
-      href: item.href,
-      imageAlt: `${item.title}: ${item.description}`,
-      content: item.description,
-      ...asset,
-    };
-  });
-}
-
 export default function StrategyPageTemplate() {
   const pathname = usePathname();
   const currentPath = normalizeStrategyPath(pathname);
-  const activeStrategyItem =
-    getActiveStrategyItem(pathname) ?? strategyMenuItems[0];
-  const tabSource = activeStrategyItem?.children ?? [];
-  const strategyTabs = buildVerticalTabs(tabSource);
-  const initialActiveKey =
-    tabSource.find((item) => normalizeStrategyPath(item.href) === currentPath)
-      ?.key ?? tabSource[0]?.key;
-  const strategySubtitle =
-    "Empowering growth-focused teams with clear strategic direction, operational alignment, and dependable execution across every stage of business development.";
+  const currentSlug = currentPath.split("/").filter(Boolean).at(-1) ?? "capabilities";
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -140,14 +90,7 @@ export default function StrategyPageTemplate() {
           /> */}
           {/* <Statistics stats={stats} /> */}
           {/* <PartnerBenefit /> */}
-          <VerticalTab
-            key={currentPath}
-            title={"Our Strategy"}
-            titleId={activeStrategyItem?.key ?? "our-strategy"}
-            subtitle={strategySubtitle}
-            initialActiveKey={initialActiveKey}
-            tabs={strategyTabs}
-          />
+          <ContentTab key={currentPath} slug={currentSlug} type="strategy" />
           {/* <Investment /> */}
           {/* <BuildingProduct /> */}
           <WorkOverview />

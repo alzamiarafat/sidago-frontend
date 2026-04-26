@@ -19,7 +19,7 @@ export default function Investment() {
             <a
               style={{ position: "relative" }}
               class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70 lg:col-span-2"
-              href="/ventures/portfolio?category=defi-applications"
+              href="#"
             >
               <span class="sr-only">Ventures › Portfolio</span>
               <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
@@ -152,7 +152,7 @@ export default function Investment() {
             <a
               style={{ position: "relative" }}
               class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/ventures/portfolio?category=data-and-analytics"
+              href="#"
             >
               <span class="sr-only">Ventures › Portfolio</span>
               <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
@@ -241,7 +241,7 @@ export default function Investment() {
             <a
               style={{ position: "relative" }}
               class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/ventures/portfolio?category=institutional"
+              href="#"
             >
               <span class="sr-only">Ventures › Portfolio</span>
               <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
@@ -341,7 +341,7 @@ export default function Investment() {
             <a
               style={{ position: "relative" }}
               class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70 lg:col-span-2"
-              href="/ventures/portfolio?category=trading-platforms"
+              href="#"
             >
               <span class="sr-only">Ventures › Portfolio</span>
               <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
@@ -485,7 +485,7 @@ export default function Investment() {
             <a
               style={{ position: "relative" }}
               class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/ventures/portfolio?category=infrastructure"
+              href="#"
             >
               <span class="sr-only">Ventures › Portfolio</span>
               <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
@@ -596,7 +596,7 @@ export default function Investment() {
             <a
               style={{ position: "relative" }}
               class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/ventures/portfolio?category=blockchains"
+              href="#"
             >
               <span class="sr-only">Ventures › Portfolio</span>
               <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
@@ -696,7 +696,7 @@ export default function Investment() {
             <a
               style={{ position: "relative" }}
               class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="/ventures/portfolio?category=stablecoins-rwa-and-payments"
+              href="#"
             >
               <span class="sr-only">Ventures › Portfolio</span>
               <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
@@ -810,7 +810,7 @@ export default function Investment() {
           <a
             style={{ position: "relative" }}
             class="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-green-tradfi text-gray-night-green"
-            href="/ventures/portfolio"
+            href="#"
           >
             <span class="sr-only">Ventures › Portfolio</span>View full portfolio
             <svg
