@@ -16,6 +16,9 @@ import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselO
 import { MeetUs } from "@/src/components/sections/v2/events/MeetUs";
 import { MeetBuilders } from "@/src/components/sections/v2/events/MeetBuliders";
 import { Catchup } from "@/src/components/sections/v2/events/CatchUp";
+import { routeMetadata } from "@/src/lib/seo";
+
+export const metadata = routeMetadata.events;
 
 const defaultTitles = [
   {

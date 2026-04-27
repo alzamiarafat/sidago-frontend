@@ -8,6 +8,9 @@ import TeamMeet from "@/src/components/sections/v2/contactpage/TeamMeet";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import ExploreCareer from "@/src/components/sections/v2/contactpage/ExploreCareer";
 import ContactUs from "@/src/components/sections/v2/contactpage/ContactUs";
+import { routeMetadata } from "@/src/lib/seo";
+
+export const metadata = routeMetadata.contact;
 
 const titles = [
   {

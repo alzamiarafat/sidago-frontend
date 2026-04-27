@@ -7,6 +7,9 @@ import FilterBy from "@/src/components/sections/v2/salespage/FilterBy";
 import RecommendedInsight from "@/src/components/sections/v2/salespage/RecommendedInsight";
 import Series from "@/src/components/sections/v2/salespage/Series";
 import Subscribe from "@/src/components/sections/v2/salespage/Subscribe";
+import { routeMetadata } from "@/src/lib/seo";
+
+export const metadata = routeMetadata.sales;
 
 const titles = [
   {

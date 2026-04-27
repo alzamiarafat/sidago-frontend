@@ -16,6 +16,9 @@ import ServiceLatestInsight from "@/src/components/sections/v2/servicepage/Servi
 import Support from "@/src/components/sections/v2/servicepage/Support";
 import TradeOption from "@/src/components/sections/v2/servicepage/TradeOption";
 import VideoOverview from "@/src/components/sections/v2/servicepage/VideoOverview";
+import { routeMetadata } from "@/src/lib/seo";
+
+export const metadata = routeMetadata.spots;
 
 const insightItems = [
   {

@@ -1,5 +1,11 @@
 import "../../globals.css";
 import IndustryPageTemplate from "@/src/components/sections/v2/industriespage/IndustryPageTemplate";
+import { getIndustryMetadata } from "@/src/lib/seo";
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  return getIndustryMetadata(slug);
+}
 
 export default async function IndustryDetailPage({ params }) {
   const { slug } = await params;

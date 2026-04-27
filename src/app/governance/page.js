@@ -14,6 +14,9 @@ import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackP
 import Trading from "@/src/components/sections/v2/industriespage/Trading";
 import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
+import { routeMetadata } from "@/src/lib/seo";
+
+export const metadata = routeMetadata.governance;
 
 const defaultStats = [
   {
