@@ -1,4 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
 // import "./globals.css";
 // import "../styles/default.css";
 // import "../styles/light.css";
@@ -8,19 +7,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 // import "../styles/style.min_2.css";
 // import "../styles/js_composer.css";
 // import "../styles/case-study-style.css";
-import { getGlobalSettings } from "../lib/api";
+import { getGlobalSiteSettings } from "../lib/cms";
 import { GlobalProvider } from "../hooks/useGlobal";
 import { SITE_NAME, SITE_URL, routeMetadata } from "../lib/seo";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -73,7 +62,7 @@ export const metadata = {
 
 
 export default async function RootLayout({ children }) {
-  const settings = await getGlobalSettings();
+  const settings = await getGlobalSiteSettings();
 
   if (!settings) {
     return <div>No data found</div>;
@@ -104,9 +93,7 @@ export default async function RootLayout({ children }) {
           <link key={href} rel="stylesheet" href={href} />
         ))}
       </head>
-      <body
-        className={`version-${version} ${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`version-${version} antialiased`}>
         <GlobalProvider settings={settings}>{children}</GlobalProvider>
       </body>
     </html>

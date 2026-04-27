@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_hero_titles",
+  "info": {
+    "displayName": "Hero Title"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    }
+  }
+}

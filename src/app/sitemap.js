@@ -1,26 +1,14 @@
-import { mainMenu } from "@/src/data/navigation";
-import { getStrategySlugs } from "@/src/data/strategy-menu";
 import { SITE_URL } from "@/src/lib/seo";
-import { getIndustryMenuGroups } from "@/src/utils/navigationTabUtils";
+import { getContentPageNavigation } from "@/src/lib/cms";
 
-function flatServiceUrls() {
-  const servicesItem = mainMenu.find((item) => item.id === "services");
-  const groups = servicesItem?.megaColumns ?? [];
-
+function flattenNavigationUrls(groups = []) {
   return groups.flatMap((group) => [
     group.href,
-    ...(group.children ?? []).map((child) => child.href),
+    ...((group.children ?? []).map((child) => child.href)),
   ]);
 }
 
-function flatIndustryUrls() {
-  return getIndustryMenuGroups().flatMap((group) => [
-    group.href,
-    ...(group.children ?? []).map((child) => child.href),
-  ]);
-}
-
-export default function sitemap() {
+export default async function sitemap() {
   const staticRoutes = [
     "/",
     "/contact",
@@ -40,10 +28,16 @@ export default function sitemap() {
     "/ventures",
   ];
 
+  const [serviceGroups, industryGroups, strategyGroups] = await Promise.all([
+    getContentPageNavigation("service"),
+    getContentPageNavigation("industry"),
+    getContentPageNavigation("strategy"),
+  ]);
+
   const dynamicRoutes = [
-    ...flatServiceUrls(),
-    ...flatIndustryUrls(),
-    ...getStrategySlugs().map((slug) => `/strategy/${slug}`),
+    ...flattenNavigationUrls(serviceGroups),
+    ...flattenNavigationUrls(industryGroups),
+    ...flattenNavigationUrls(strategyGroups),
   ];
 
   return [...new Set([...staticRoutes, ...dynamicRoutes])].map((route) => ({
@@ -53,4 +47,3 @@ export default function sitemap() {
     priority: route === "/" ? 1 : 0.7,
   }));
 }
-

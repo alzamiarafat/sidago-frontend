@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_insight_items",
+  "info": {
+    "displayName": "Insight Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string"
+    },
+    "srText": {
+      "type": "string"
+    }
+  }
+}

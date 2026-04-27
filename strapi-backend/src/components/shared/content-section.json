@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_content_sections",
+  "info": {
+    "displayName": "Content Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "bullets": {
+      "type": "json"
+    }
+  }
+}

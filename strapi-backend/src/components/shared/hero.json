@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_shared_heroes",
+  "info": {
+    "displayName": "Hero"
+  },
+  "options": {},
+  "attributes": {
+    "useVideo": {
+      "type": "boolean",
+      "default": false
+    },
+    "videoSrc": {
+      "type": "string"
+    },
+    "imageSrc": {
+      "type": "string"
+    },
+    "titles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.hero-title"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "videoSectionClass": {
+      "type": "string"
+    },
+    "videoClass": {
+      "type": "string"
+    },
+    "fontWeight": {
+      "type": "string"
+    },
+    "lighterTheme": {
+      "type": "boolean",
+      "default": false
+    },
+    "loop": {
+      "type": "boolean",
+      "default": true
+    },
+    "lighterBgColor": {
+      "type": "string"
+    }
+  }
+}

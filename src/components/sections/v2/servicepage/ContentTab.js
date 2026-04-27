@@ -527,7 +527,103 @@ function getStrategyMenuGroups() {
   }));
 }
 
-function resolveConfig(type, slug) {
+function buildCmsHref(type, page) {
+  if (page?.href) {
+    return page.href;
+  }
+
+  if (!page?.slug) {
+    return "";
+  }
+
+  if (type === "service") {
+    return `/services/${page.slug}`;
+  }
+
+  if (type === "industry") {
+    return `/industries/${page.slug}`;
+  }
+
+  if (type === "strategy") {
+    return `/strategy/${page.slug}`;
+  }
+
+  return `/${page.slug}`;
+}
+
+function buildCmsGroups(pages = [], type = "service") {
+  const visiblePages = pages
+    .filter((page) => page?.showInNavigation !== false)
+    .sort((left, right) => (left.menuOrder ?? 0) - (right.menuOrder ?? 0));
+
+  const roots = visiblePages.filter((page) => !page.parentSlug);
+
+  if (roots.length) {
+    return roots.map((root) => ({
+      title: root.navLabel || root.title,
+      href: buildCmsHref(type, root),
+      children: visiblePages
+        .filter((page) => page.parentSlug === root.slug)
+        .map((child) => ({
+          title: child.navLabel || child.title,
+          href: buildCmsHref(type, child),
+        })),
+    }));
+  }
+
+  const groupedPages = visiblePages.reduce((accumulator, page) => {
+    const key = page.menuGroup || "General";
+    accumulator[key] = accumulator[key] ?? [];
+    accumulator[key].push(page);
+    return accumulator;
+  }, {});
+
+  return Object.entries(groupedPages).map(([title, groupPages]) => ({
+    title,
+    href: buildCmsHref(type, groupPages[0]),
+    children: groupPages.map((page) => ({
+      title: page.navLabel || page.title,
+      href: buildCmsHref(type, page),
+    })),
+  }));
+}
+
+function resolveConfig(type, slug, pages = [], pageData = null) {
+  if (pages.length) {
+    const groups = buildCmsGroups(pages, type);
+    const activeHref =
+      buildCmsHref(type, pageData) ||
+      buildCmsHref(
+        type,
+        pages.find((page) => page.slug === slug),
+      );
+
+    return {
+      menuContext: null,
+      groups,
+      initialActiveHref:
+        activeHref || groups[0]?.children?.[0]?.href || groups[0]?.href || "",
+      introTitle:
+        pageData?.introTitle ||
+        (type === "strategy"
+          ? "Our Strategy"
+          : type === "industry"
+            ? "Specialized solutions for modern industries"
+            : "Specialized services designed for execution"),
+      introDescription:
+        pageData?.introDescription ||
+        (type === "strategy"
+          ? "Empowering growth-focused teams with clear strategic direction, operational alignment, and dependable execution across every stage of business development."
+          : type === "industry"
+            ? "Empowering industry-focused teams with adaptable service models, strategic execution, and dependable delivery across every business function."
+            : "We provide practical service support across business-critical functions, helping teams improve delivery quality, operational consistency, and day-to-day execution."),
+      imageSrc: pageData?.featuredImage?.url || "/images/Secondary-About.svg",
+      imageAltPrefix: type === "industry" ? "industries" : type,
+      panelClassName: type === "industry" ? "" : "bg-purple-light",
+      cmsPages: pages,
+    };
+  }
+
   if (type === "strategy") {
     const pathname = `/strategy/${slug}`;
     const activeStrategyItem =
@@ -551,6 +647,8 @@ function resolveConfig(type, slug) {
         tabs: activeStrategyItem.children ?? [],
       },
       groups: getStrategyMenuGroups(),
+      initialActiveHref:
+        activeStrategyItem.children?.[0]?.href ?? activeStrategyItem.href ?? "",
       introTitle: "Our Strategy",
       introDescription:
         "Empowering growth-focused teams with clear strategic direction, operational alignment, and dependable execution across every stage of business development.",
@@ -564,6 +662,7 @@ function resolveConfig(type, slug) {
     return {
       menuContext: getIndustryMenuContext(slug),
       groups: getIndustryMenuGroups(),
+      initialActiveHref: "",
       introTitle: "Specialized solutions for modern industries",
       introDescription:
         "Empowering industry-focused teams with adaptable service models, strategic execution, and dependable delivery across every business function.",
@@ -581,6 +680,7 @@ function resolveConfig(type, slug) {
   return {
     menuContext,
     groups: null,
+    initialActiveHref: "",
     introTitle,
     introDescription,
     imageSrc:
@@ -590,16 +690,31 @@ function resolveConfig(type, slug) {
   };
 }
 
-export default function ContentTab({ slug = "", type = "service" }) {
+export default function ContentTab({
+  slug = "",
+  type = "service",
+  pages = [],
+  pageData = null,
+}) {
   const {
     menuContext,
     groups,
+    initialActiveHref,
     introTitle,
     introDescription,
     imageSrc,
     imageAltPrefix,
     panelClassName,
-  } = resolveConfig(type, slug);
+    cmsPages,
+  } = resolveConfig(type, slug, pages, pageData);
+
+  const cmsPageMap = useMemo(
+    () =>
+      new Map(
+        (cmsPages ?? []).map((page) => [buildCmsHref(type, page), page]),
+      ),
+    [cmsPages, type],
+  );
 
   const [expandedGroup, setExpandedGroup] = useState(
     menuContext?.group?.title ?? groups?.[0]?.title ?? "",
@@ -610,10 +725,15 @@ export default function ContentTab({ slug = "", type = "service" }) {
     }
 
     if (groups?.length) {
-      return groups[0]?.children?.[0]?.href ?? groups[0]?.href ?? "";
+      return (
+        initialActiveHref ||
+        groups[0]?.children?.[0]?.href ||
+        groups[0]?.href ||
+        ""
+      );
     }
 
-    return menuContext?.tabs?.[0]?.href ?? "";
+    return initialActiveHref || menuContext?.tabs?.[0]?.href || "";
   });
 
   const activeEntry = useMemo(() => {
@@ -665,8 +785,17 @@ export default function ContentTab({ slug = "", type = "service" }) {
     (activeItem?.href === group?.href || !(group?.children ?? []).length)
       ? `${activeTitle} is one of the industries submenu items in the navbar.`
       : `${activeTitle} is one of the child menu items under ${group?.title} in the navbar submenu.`;
-  const detailContent =
-    type === "industry"
+  const cmsDetailPage = cmsPageMap.get(activeItem?.href);
+  const detailContent = cmsDetailPage
+    ? {
+        eyebrow: cmsDetailPage.menuGroup || group?.title || introTitle,
+        title: cmsDetailPage.title,
+        summary: cmsDetailPage.summary || "",
+        paragraphs: cmsDetailPage.paragraphs || [],
+        sections: cmsDetailPage.detailSections || [],
+        closing: cmsDetailPage.closing || "",
+      }
+    : type === "industry"
       ? getIndustryDetailContent(activeItem?.href)
       : type === "strategy"
         ? getStrategyDetailContent(activeItem?.href)

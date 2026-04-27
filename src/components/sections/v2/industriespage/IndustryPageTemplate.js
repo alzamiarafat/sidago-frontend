@@ -242,6 +242,8 @@ const benefits = [
 export default function IndustryPageTemplate({
   variant = "default",
   slug = "",
+  pages = [],
+  pageData = null,
 }) {
   const isB2B = variant === "b2b";
 
@@ -273,7 +275,12 @@ export default function IndustryPageTemplate({
           {isB2B ? (
             <>
               {/* <Statistics stats={b2bStats} bgColor="bg-black" /> */}
-              <ContentTab slug={slug} type="industry" />
+              <ContentTab
+                slug={slug}
+                type="industry"
+                pages={pages}
+                pageData={pageData}
+              />
               {/* <CarouselOverview
                 bgColor="bg-[#454a47]"
                 textColor="text-white"
@@ -286,7 +293,12 @@ export default function IndustryPageTemplate({
           ) : (
             <>
               {/* <Statistics stats={defaultStats} /> */}
-              <ContentTab slug={slug} type="industry" />
+              <ContentTab
+                slug={slug}
+                type="industry"
+                pages={pages}
+                pageData={pageData}
+              />
               <AvailablePartner
                 bgColor="bg-[#151916]"
                 titleColor="text-white"

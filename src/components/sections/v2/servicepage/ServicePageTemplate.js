@@ -169,7 +169,12 @@ const pageContent = {
   },
 };
 
-export default function ServicePageTemplate({ variant = "otc", slug = "" }) {
+export default function ServicePageTemplate({
+  variant = "otc",
+  slug = "",
+  pages = [],
+  pageData = null,
+}) {
   const page = pageContent[variant] ?? pageContent.otc;
   const isGovernancePage = variant === "governance";
 
@@ -187,7 +192,7 @@ export default function ServicePageTemplate({ variant = "otc", slug = "" }) {
           {isGovernancePage ? (
             <>
               {/* <OurVision /> */}
-              <ContentTab slug={slug} />
+              <ContentTab slug={slug} pages={pages} pageData={pageData} />
               {/* <Support />
               <DelegateProfile /> */}
             </>
@@ -204,7 +209,7 @@ export default function ServicePageTemplate({ variant = "otc", slug = "" }) {
                 lighterTheme={true}
                 dotColor="#4D4D4D"
               /> */}
-              <ContentTab slug={slug} />
+              <ContentTab slug={slug} pages={pages} pageData={pageData} />
               {/* <VideoOverview /> */}
               {/* <Capabilities
                 items={accordionItems}

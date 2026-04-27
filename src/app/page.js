@@ -1,17 +1,18 @@
 import "../app/globals.css";
 import VersionTwoLayout from "../components/layouts/VersionTwo";
 import VersionOneLayout from "../components/layouts/VersionOne";
-import { getGlobalSettings } from "../lib/api";
+import { getContentPageBySlug, getGlobalSiteSettings } from "../lib/cms";
 
 export default async function Home() {
-  const settings = await getGlobalSettings();
+  const settings = await getGlobalSiteSettings();
+  const homePage = await getContentPageBySlug("home", "home");
 
   return (
     <>
       {settings?.version?.label === "v1" ? (
         <VersionOneLayout settings={settings}></VersionOneLayout>
       ) : (
-        <VersionTwoLayout settings={settings}></VersionTwoLayout>
+        <VersionTwoLayout settings={settings} pageContent={homePage}></VersionTwoLayout>
       )}
     </>
   );

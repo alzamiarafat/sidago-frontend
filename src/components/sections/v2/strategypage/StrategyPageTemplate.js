@@ -1,5 +1,3 @@
-"use client";
-
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -10,10 +8,6 @@ import Investment from "@/src/components/sections/v2/strategypage/Investment";
 import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBenefit";
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
 import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
-import {
-  normalizeStrategyPath,
-} from "@/src/data/strategy-menu";
-import { usePathname } from "next/navigation";
 
 const stats = [
   {
@@ -66,11 +60,11 @@ const titles = [
   },
 ];
 
-export default function StrategyPageTemplate() {
-  const pathname = usePathname();
-  const currentPath = normalizeStrategyPath(pathname);
-  const currentSlug = currentPath.split("/").filter(Boolean).at(-1) ?? "capabilities";
-
+export default function StrategyPageTemplate({
+  slug = "capabilities",
+  pages = [],
+  pageData = null,
+}) {
   return (
     <div className="flex min-h-svh flex-col text-base">
       <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -90,7 +84,13 @@ export default function StrategyPageTemplate() {
           /> */}
           {/* <Statistics stats={stats} /> */}
           {/* <PartnerBenefit /> */}
-          <ContentTab key={currentPath} slug={currentSlug} type="strategy" />
+          <ContentTab
+            key={slug}
+            slug={slug}
+            type="strategy"
+            pages={pages}
+            pageData={pageData}
+          />
           {/* <Investment /> */}
           {/* <BuildingProduct /> */}
           <WorkOverview />

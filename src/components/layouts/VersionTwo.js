@@ -233,27 +233,47 @@ function Section({ id, bg, wrapper, components }) {
 }
 
 // ============ PAGE ============
-export default function Home() {
+export default function Home({ pageContent = null }) {
+  const hero = pageContent?.hero;
+  const pageItems = pageContent?.insightItems?.length
+    ? pageContent.insightItems
+    : items;
+  const pageStats = pageContent?.stats?.length ? pageContent.stats : stats;
+  const pageAccordionItems = pageContent?.accordionItems?.length
+    ? pageContent.accordionItems
+    : accordionItems;
+  const pageTitles = hero?.titles?.length ? hero.titles : titles;
+  const pageSubtitle =
+    hero?.subtitle ??
+    "Sidago makes digital asset markets liquid and efficient";
+
   return (
-    <div class="flex h-svh flex-col text-base">
-      <div hidden=""></div>
-      <div class="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex h-svh flex-col text-base">
+      <div hidden></div>
+      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection
-            useVideo={true}
-            videoSrc="/videos/home2.mp4"
-            titles={titles}
-            subtitle="Sidago makes digital asset markets liquid and efficient"
+            useVideo={hero?.useVideo ?? true}
+            videoSrc={hero?.videoSrc ?? "/videos/home2.mp4"}
+            imageSrc={hero?.imageSrc}
+            titles={pageTitles}
+            subtitle={pageSubtitle}
+            videoSectionClass={hero?.videoSectionClass}
+            videoClass={hero?.videoClass}
+            fontWeight={hero?.fontWeight}
+            lighterTheme={hero?.lighterTheme}
+            loop={hero?.loop ?? true}
+            lighterBgColor={hero?.lighterBgColor}
           />
-          <InsightNews items={items} />
-          <Statistics stats={stats} />
+          <InsightNews items={pageItems} />
+          <Statistics stats={pageStats} />
           <MarketTicker />
           <Capabilities
-            items={accordionItems}
+            items={pageAccordionItems}
             bgColor="bg-black"
             textColor="text-white"
             hoverColor="bg-gray-defi-shadow"

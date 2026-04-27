@@ -29,7 +29,7 @@ export default function Navigation() {
   // const isActive = activeRoutes.some((route) => pathname.startsWith(route));
 
   // const isActive = pathname.startsWith(item.href); // checks if route matches
-  const productSections = [
+  const fallbackProductSections = [
     {
       title: "Development & IT",
       items: [
@@ -265,7 +265,7 @@ export default function Navigation() {
     },
   ];
 
-  const servicesMenuItems = [
+  const fallbackServicesMenuItems = [
     {
       title: "Development & IT",
       subtitle: "Innovation through technology",
@@ -352,7 +352,7 @@ export default function Navigation() {
 
   const getIndustryHref = (slug) => `/industries/${slug}`;
 
-  const menuItems = [
+  const fallbackMenuItems = [
     {
       title: "B2B Commercial",
       href: getIndustryHref("b2b-commercial"),
@@ -443,11 +443,6 @@ export default function Navigation() {
   const [activeIndustryTitle, setActiveIndustryTitle] = useState(null);
   const [activeItemTop, setActiveItemTop] = useState(0);
 
-  const activeIndustryData =
-    menuItems.find((item) => item.title === activeIndustryTitle) ?? null;
-
-  const activeIndustryLinks = activeIndustryData?.children ?? [];
-
   const strategyIcons = {
     capabilities: Image1,
     employeeAdvantage: Image2,
@@ -455,10 +450,70 @@ export default function Navigation() {
     process: Image4,
   };
 
-  const strategyItems = strategyMenuItems.map((item) => ({
+  const fallbackStrategyItems = strategyMenuItems.map((item) => ({
     ...item,
     Icon: strategyIcons[item.iconKey],
   }));
+
+  const strategyIconList = Object.values(strategyIcons);
+  const serviceNavigation = settings?.serviceNavigation ?? [];
+  const industryNavigation = settings?.industryNavigation ?? [];
+  const strategyNavigation = settings?.strategyNavigation ?? [];
+
+  const productSections = serviceNavigation.length
+    ? serviceNavigation.map((group) => ({
+        title: group.title,
+        items: (group.children ?? []).map((child) => ({
+          title: child.title,
+          href: child.href,
+        })),
+      }))
+    : fallbackProductSections;
+
+  const servicesMenuItems = serviceNavigation.length
+    ? serviceNavigation.map((group, index) => ({
+        title: group.title,
+        subtitle: group.subtitle || "",
+        href: group.href || group.children?.[0]?.href || "#",
+        paths: fallbackServicesMenuItems[index]?.paths ?? [],
+      }))
+    : fallbackServicesMenuItems;
+
+  const menuItems = industryNavigation.length
+    ? industryNavigation.map((group) => ({
+        title: group.title,
+        href: group.href,
+        children: (group.children ?? []).map((child) => ({
+          title: child.title,
+          href: child.href,
+        })),
+      }))
+    : fallbackMenuItems;
+
+  const activeIndustryData =
+    menuItems.find((item) => item.title === activeIndustryTitle) ?? null;
+
+  const activeIndustryLinks = activeIndustryData?.children ?? [];
+
+  const strategyItems = strategyNavigation.length
+    ? strategyNavigation.map((group, index) => ({
+        key: group.href || group.title,
+        title: group.title,
+        href: group.href,
+        description: group.subtitle || "",
+        children: (group.children ?? []).map((child) => ({
+          title: child.title,
+          href: child.href,
+          description: child.subtitle || "",
+        })),
+        Icon:
+          strategyIconList[index % strategyIconList.length] ??
+          fallbackStrategyItems[0]?.Icon,
+        iconClass:
+          fallbackStrategyItems[index % fallbackStrategyItems.length]
+            ?.iconClass,
+      }))
+    : fallbackStrategyItems;
 
   const mobileSections = [
     {

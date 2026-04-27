@@ -1,9 +1,13 @@
+import {
+  getContentPageBySlug,
+  getContentPageNavigation,
+  getPageMetadataFromContent,
+} from "@/src/lib/cms";
 import { mainMenu } from "@/src/data/navigation";
 import {
   getStrategyChildMenuItems,
   strategyMenuItems,
 } from "@/src/data/strategy-menu";
-import { getIndustryMenuGroups } from "@/src/utils/navigationTabUtils";
 
 export const SITE_URL = "https://www.sidago.com";
 export const SITE_NAME = "Sidago";
@@ -179,87 +183,130 @@ function flattenServices() {
   ]);
 }
 
-export function getServiceMetadata(slug) {
-  const allServices = flattenServices();
-  const match = allServices.find((item) => item.href.includes(`/${slug}`));
-
-  if (!match) {
-    return buildPageMetadata({
-      title: "Service Detail",
-      description:
-        "Explore specialized services from Sidago for digital delivery, operations, and business support.",
-      path: `/services/${slug}`,
-    });
-  }
-
-  return buildPageMetadata({
-    title: match.title,
-    description: match.description,
-    path: match.href,
-  });
-}
-
-export function getIndustryMetadata(slug) {
-  const allIndustries = getIndustryMenuGroups().flatMap((group) => [
+function flattenNavigationGroups(groups = [], groupDescription, childDescription) {
+  return groups.flatMap((group) => [
     {
       title: group.title,
       href: group.href,
-      description: `Explore Sidago solutions for the ${group.title} industry.`,
+      description: group.subtitle || groupDescription(group),
     },
     ...(group.children ?? []).map((child) => ({
       title: child.title,
       href: child.href,
-      description: `Learn how Sidago supports ${child.title} within ${group.title}.`,
+      description: childDescription(group, child),
     })),
   ]);
+}
+
+export async function getServiceMetadata(slug) {
+  const serviceGroups = await getContentPageNavigation("service");
+  const allServices = serviceGroups.length
+    ? flattenNavigationGroups(
+        serviceGroups,
+        (group) => group.subtitle || `Explore ${group.title} services from Sidago.`,
+        (_group, child) =>
+          child.subtitle || `Learn about ${child.title} services from Sidago.`,
+      )
+    : flattenServices();
+  const match = allServices.find((item) => item.href.includes(`/${slug}`));
+  const cmsPage = await getContentPageBySlug("service", slug);
+
+  if (!match) {
+    return buildPageMetadata({
+      ...getPageMetadataFromContent(cmsPage, {
+        title: "Service Detail",
+        description:
+          "Explore specialized services from Sidago for digital delivery, operations, and business support.",
+        path: `/services/${slug}`,
+      }),
+    });
+  }
+
+  return buildPageMetadata({
+    ...getPageMetadataFromContent(cmsPage, {
+      title: match.title,
+      description: match.description,
+      path: match.href,
+    }),
+  });
+}
+
+export async function getIndustryMetadata(slug) {
+  const industryGroups = await getContentPageNavigation("industry");
+  const allIndustries = flattenNavigationGroups(
+    industryGroups,
+    (group) => `Explore Sidago solutions for the ${group.title} industry.`,
+    (group, child) =>
+      `Learn how Sidago supports ${child.title} within ${group.title}.`,
+  );
 
   const match = allIndustries.find((item) => item.href.endsWith(`/${slug}`));
+  const cmsPage = await getContentPageBySlug("industry", slug);
 
   if (!match) {
     return buildPageMetadata({
-      title: "Industry Detail",
-      description:
-        "Explore Sidago industry-focused support and business solutions tailored to operational needs.",
-      path: `/industries/${slug}`,
+      ...getPageMetadataFromContent(cmsPage, {
+        title: "Industry Detail",
+        description:
+          "Explore Sidago industry-focused support and business solutions tailored to operational needs.",
+        path: `/industries/${slug}`,
+      }),
     });
   }
 
   return buildPageMetadata({
-    title: match.title,
-    description: match.description,
-    path: match.href,
+    ...getPageMetadataFromContent(cmsPage, {
+      title: match.title,
+      description: match.description,
+      path: match.href,
+    }),
   });
 }
 
-export function getStrategyMetadata(slug) {
-  const strategyItems = [
-    ...strategyMenuItems.map((item) => ({
-      title: item.title,
-      href: item.href,
-      description: item.description,
-    })),
-    ...getStrategyChildMenuItems().map((item) => ({
-      title: item.title,
-      href: item.href,
-      description: item.description,
-    })),
-  ];
+export async function getStrategyMetadata(slug) {
+  const strategyGroups = await getContentPageNavigation("strategy");
+  const strategyItems = strategyGroups.length
+    ? flattenNavigationGroups(
+        strategyGroups,
+        (group) =>
+          group.subtitle ||
+          `Explore Sidago strategy resources for ${group.title}.`,
+        (_group, child) =>
+          child.subtitle ||
+          `Explore Sidago strategy content for ${child.title}.`,
+      )
+    : [
+        ...strategyMenuItems.map((item) => ({
+          title: item.title,
+          href: item.href,
+          description: item.description,
+        })),
+        ...getStrategyChildMenuItems().map((item) => ({
+          title: item.title,
+          href: item.href,
+          description: item.description,
+        })),
+      ];
 
   const match = strategyItems.find((item) => item.href.endsWith(`/${slug}`));
+  const cmsPage = await getContentPageBySlug("strategy", slug);
 
   if (!match) {
     return buildPageMetadata({
-      title: "Strategy Detail",
-      description:
-        "Explore Sidago strategy pages covering capabilities, benefits, processes, and business execution models.",
-      path: `/strategy/${slug}`,
+      ...getPageMetadataFromContent(cmsPage, {
+        title: "Strategy Detail",
+        description:
+          "Explore Sidago strategy pages covering capabilities, benefits, processes, and business execution models.",
+        path: `/strategy/${slug}`,
+      }),
     });
   }
 
   return buildPageMetadata({
-    title: match.title,
-    description: match.description,
-    path: match.href,
+    ...getPageMetadataFromContent(cmsPage, {
+      title: match.title,
+      description: match.description,
+      path: match.href,
+    }),
   });
 }
-

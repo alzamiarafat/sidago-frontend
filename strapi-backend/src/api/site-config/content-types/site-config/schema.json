@@ -1,0 +1,80 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_configs",
+  "info": {
+    "singularName": "site-config",
+    "pluralName": "site-configs",
+    "displayName": "Site Config"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "required": true
+    },
+    "siteUrl": {
+      "type": "string"
+    },
+    "siteContactEmail": {
+      "type": "string"
+    },
+    "siteLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "versionLabel": {
+      "type": "enumeration",
+      "enum": [
+        "v1",
+        "v2"
+      ],
+      "default": "v2"
+    },
+    "defaultSeo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.social-link"
+    },
+    "ctaCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cta-card"
+    },
+    "primaryNavigation": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.menu-link"
+    },
+    "footerPrimaryLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    },
+    "footerSecondaryLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    },
+    "footerLegalText": {
+      "type": "json"
+    },
+    "partnerLogos": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

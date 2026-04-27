@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_cta_cards",
+  "info": {
+    "displayName": "CTA Card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "bg": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "dividerColor": {
+      "type": "string"
+    },
+    "hoverBg": {
+      "type": "string"
+    }
+  }
+}
