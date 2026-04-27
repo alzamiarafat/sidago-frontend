@@ -1,4 +1,3 @@
-"use client";
 import "../../app/globals.css";
 
 import CTASection from "@/src/components/sections/v2/common/CTA";

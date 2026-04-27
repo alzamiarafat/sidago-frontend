@@ -1,18 +1,12 @@
-"use client";
-
-import { motion, wrap } from "framer-motion";
 import Capabilities from "../sections/v2/homepage/Capabilities";
 import CardsGrid from "../sections/v2/homepage/CardGrid";
 import CTASection from "../sections/v2/common/CTA";
 import Footer from "../sections/v2/common/Footer";
 import HeroBannerSection from "../sections/v2/homepage/HeroBanner";
 import InsightNews from "../sections/v2/homepage/InsightNews";
-import LatestInsight from "../sections/v2/homepage/LatestInsight";
 import Navigation from "../sections/v2/common/Navbar";
 import Statistics from "../sections/v2/homepage/Statistics";
 import MarketTicker from "../sections/v2/homepage/Tracker";
-import LiquidStats from "../ui/TextAnimation";
-import PartnerTrading from "../sections/v2/industriespage/PartnerTrading";
 import AvailablePartner from "../sections/v2/servicepage/AvailablePartner";
 
 // ============ CONSTANTS ============

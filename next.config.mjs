@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
+  poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ["react-icons", "@heroicons/react"],
+  },
   images: {
-    domains: ["sidago.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "sidago.com",
+      },
+    ],
     unoptimized: true,
   },
 };

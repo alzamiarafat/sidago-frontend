@@ -42,6 +42,42 @@ function matchesScreen(bp) {
   return window.matchMedia(`(min-width: ${min}px)`).matches;
 }
 
+function drawDotMatrixFrame({
+  ctx,
+  pairs,
+  canvasW,
+  fontPx,
+  dotSize,
+  dotColor,
+  activeDotColor,
+  progress,
+}) {
+  const half = Math.floor(dotSize / 2);
+  const drawDot = (p) => ctx.fillRect(p.x - half, p.y - half, dotSize, dotSize);
+
+  ctx.clearRect(0, 0, canvasW, fontPx);
+
+  for (const pair of pairs) {
+    const c = 1 - pair.start.y / fontPx;
+    const r = 2 * progress - c;
+
+    if (r < 0) {
+      ctx.fillStyle = matchesScreen("lg") ? dotColor : activeDotColor;
+      drawDot(pair.start);
+    } else if (r > 1) {
+      ctx.fillStyle = activeDotColor;
+      drawDot(pair.end);
+    } else {
+      ctx.fillStyle = activeDotColor;
+      const ease = (Math.cos((r + 1) * Math.PI) + 1) / 2;
+      const p = pair.start
+        .clone()
+        .add(pair.end.clone().subtract(pair.start).multiplyScalar(ease));
+      drawDot(p);
+    }
+  }
+}
+
 function nearestPointToSegment(p, a, b) {
   const ap = p.clone().subtract(a);
   const ab = b.clone().subtract(a);
@@ -68,7 +104,6 @@ export function DotMatrixText({
   const rafRef = useRef(null);
   const lastTRef = useRef(0);
   const progRef = useRef(0);
-  const lastProgRef = useRef(-1);
   const wasActivatedRef = useRef(false);
 
   const [canvasW, setCanvasW] = useState(0);
@@ -172,11 +207,23 @@ export function DotMatrixText({
     if (!ctx) return;
 
     const half = Math.floor(dotSize / 2);
-    const drawDot = (p) =>
-      ctx.fillRect(p.x - half, p.y - half, dotSize, dotSize);
+    ctx.clearRect(0, 0, canvasW, fontPx);
+
+    if (progRef.current <= 0 && !active && !wasActivatedRef.current) {
+      for (const pair of pairs) {
+        ctx.fillStyle = matchesScreen("lg") ? dotColor : activeDotColor;
+        ctx.fillRect(
+          pair.start.x - half,
+          pair.start.y - half,
+          dotSize,
+          dotSize,
+        );
+      }
+
+      return;
+    }
 
     const tick = (t) => {
-      rafRef.current = requestAnimationFrame(tick);
       if (!drawCanvasRef.current) return;
 
       const dt = t - lastTRef.current;
@@ -186,39 +233,49 @@ export function DotMatrixText({
       else progRef.current -= dt / 1000;
 
       progRef.current = Math.min(Math.max(0, progRef.current), 1);
-
-      if (progRef.current === lastProgRef.current) return;
-      lastProgRef.current = progRef.current;
-
       if (progRef.current === 1) wasActivatedRef.current = false;
 
-      ctx.clearRect(0, 0, canvasW, fontPx);
+      drawDotMatrixFrame({
+        ctx,
+        pairs,
+        canvasW,
+        fontPx,
+        dotSize,
+        dotColor,
+        activeDotColor,
+        progress: progRef.current,
+      });
 
-      for (const pair of pairs) {
-        const c = 1 - pair.start.y / fontPx;
-        const r = 2 * progRef.current - c;
-
-        if (r < 0) {
-          ctx.fillStyle = matchesScreen("lg") ? dotColor : activeDotColor;
-          drawDot(pair.start);
-        } else if (r > 1) {
-          ctx.fillStyle = activeDotColor;
-          drawDot(pair.end);
-        } else {
-          ctx.fillStyle = activeDotColor;
-          const ease = (Math.cos((r + 1) * Math.PI) + 1) / 2;
-          const p = pair.start
-            .clone()
-            .add(pair.end.clone().subtract(pair.start).multiplyScalar(ease));
-          drawDot(p);
-        }
+      if (
+        (active && progRef.current < 1) ||
+        (!active && progRef.current > 0) ||
+        wasActivatedRef.current
+      ) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        rafRef.current = null;
       }
     };
 
-    rafRef.current = requestAnimationFrame((t) => {
-      lastTRef.current = t;
-      tick(t);
+    drawDotMatrixFrame({
+      ctx,
+      pairs,
+      canvasW,
+      fontPx,
+      dotSize,
+      dotColor,
+      activeDotColor,
+      progress: progRef.current,
     });
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    if (active || progRef.current > 0 || wasActivatedRef.current) {
+      rafRef.current = requestAnimationFrame((t) => {
+        lastTRef.current = t;
+        tick(t);
+      });
+    }
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);

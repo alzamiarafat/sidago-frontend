@@ -1,12 +1,11 @@
-"use client";
 import "../app/globals.css";
-// import "../../public/styles/font-style.css";
-import { useGlobal } from "../hooks/useGlobal";
 import VersionTwoLayout from "../components/layouts/VersionTwo";
 import VersionOneLayout from "../components/layouts/VersionOne";
+import { getGlobalSettings } from "../lib/api";
 
-export default function Home() {
-  const settings = useGlobal();
+export default async function Home() {
+  const settings = await getGlobalSettings();
+
   return (
     <>
       {settings?.version?.label === "v1" ? (
