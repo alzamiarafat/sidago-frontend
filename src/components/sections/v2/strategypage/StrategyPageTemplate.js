@@ -90,7 +90,12 @@ export default function StrategyPageTemplate() {
           /> */}
           {/* <Statistics stats={stats} /> */}
           {/* <PartnerBenefit /> */}
-          <ContentTab key={currentPath} slug={currentSlug} type="strategy" />
+          <ContentTab
+            key={currentPath}
+            slug={currentSlug}
+            type="strategy"
+            hideMenuOnMobile={true}
+          />
           {/* <Investment /> */}
           {/* <BuildingProduct /> */}
           <WorkOverview />

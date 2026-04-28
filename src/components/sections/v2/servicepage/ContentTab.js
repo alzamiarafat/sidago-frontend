@@ -590,7 +590,11 @@ function resolveConfig(type, slug) {
   };
 }
 
-export default function ContentTab({ slug = "", type = "service" }) {
+export default function ContentTab({
+  slug = "",
+  type = "service",
+  hideMenuOnMobile = type === "service",
+}) {
   const {
     menuContext,
     groups,
@@ -715,7 +719,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
 
         <section className="flex flex-col gap-5 lg:min-h-[33rem] lg:flex-row lg:items-stretch xl:min-h-[37rem]">
           <div
-            className={`${type === "service" ? "hidden lg:block" : ""} ${isIndustryMenu ? "lg:w-[21rem] xl:w-[22rem]" : "lg:w-[18rem]"} lg:shrink-0`}
+            className={`${hideMenuOnMobile ? "hidden lg:block" : ""} ${isIndustryMenu ? "lg:w-[21rem] xl:w-[22rem]" : "lg:w-[18rem]"} lg:shrink-0`}
           >
             <div
               className={

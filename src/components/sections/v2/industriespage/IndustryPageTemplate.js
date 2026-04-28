@@ -273,7 +273,11 @@ export default function IndustryPageTemplate({
           {isB2B ? (
             <>
               {/* <Statistics stats={b2bStats} bgColor="bg-black" /> */}
-              <ContentTab slug={slug} type="industry" />
+              <ContentTab
+                slug={slug}
+                type="industry"
+                hideMenuOnMobile={true}
+              />
               {/* <CarouselOverview
                 bgColor="bg-[#454a47]"
                 textColor="text-white"
@@ -286,7 +290,11 @@ export default function IndustryPageTemplate({
           ) : (
             <>
               {/* <Statistics stats={defaultStats} /> */}
-              <ContentTab slug={slug} type="industry" />
+              <ContentTab
+                slug={slug}
+                type="industry"
+                hideMenuOnMobile={true}
+              />
               <AvailablePartner
                 bgColor="bg-[#151916]"
                 titleColor="text-white"
