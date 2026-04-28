@@ -17,6 +17,7 @@ export default function Navigation() {
   const [hideTimeout, setHideTimeout] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [mobileOpenSection, setMobileOpenSection] = useState(null);
+  const [mobileOpenServiceGroup, setMobileOpenServiceGroup] = useState(null);
 
   const pathname = usePathname();
 
@@ -265,6 +266,11 @@ export default function Navigation() {
     },
   ];
 
+  const activeServiceGroupTitle =
+    productSections.find(
+      (group) => group.items.some((item) => pathname?.startsWith(item.href)),
+    )?.title ?? productSections[0]?.title;
+
   const servicesMenuItems = [
     {
       title: "Development & IT",
@@ -464,31 +470,74 @@ export default function Navigation() {
     {
       key: "services",
       title: "Services",
-      items: productSections.map((section) => ({
+      groups: productSections.map((section) => ({
         title: section.title,
         href: section.items[0]?.href ?? "#",
+        items: section.items,
       })),
     },
     {
       key: "industries",
       title: "Industries",
-      items: menuItems.map((item) => ({
+      groups: menuItems.map((item) => ({
         title: item.title,
         href: item.href,
+        items: item.children?.length
+          ? item.children
+          : [{ title: item.title, href: item.href }],
       })),
     },
     {
       key: "strategy",
       title: "Strategy",
-      items: strategyItems.flatMap((item) => [
-        { title: item.title, href: item.href },
-        ...(item.children ?? []).map((child) => ({
-          title: child.title,
-          href: child.href,
-        })),
-      ]),
+      groups: strategyItems.map((item) => ({
+        title: item.title,
+        href: item.href,
+        items:
+          item.children?.length
+            ? item.children.map((child) => ({
+                title: child.title,
+                href: child.href,
+              }))
+            : [{ title: item.title, href: item.href }],
+      })),
     },
   ];
+
+  const getActiveMobileGroupKey = (sectionKey) => {
+    if (sectionKey === "services") {
+      const activeTitle =
+        productSections.find((group) =>
+          group.items.some((item) => pathname?.startsWith(item.href)),
+        )?.title ?? productSections[0]?.title;
+
+      return activeTitle ? `${sectionKey}:${activeTitle}` : null;
+    }
+
+    if (sectionKey === "industries") {
+      const activeTitle =
+        menuItems.find(
+          (item) =>
+            pathname?.startsWith(item.href) ||
+            item.children?.some((child) => pathname?.startsWith(child.href)),
+        )?.title ?? menuItems[0]?.title;
+
+      return activeTitle ? `${sectionKey}:${activeTitle}` : null;
+    }
+
+    if (sectionKey === "strategy") {
+      const activeTitle =
+        strategyItems.find(
+          (item) =>
+            pathname?.startsWith(item.href) ||
+            item.children?.some((child) => pathname?.startsWith(child.href)),
+        )?.title ?? strategyItems[0]?.title;
+
+      return activeTitle ? `${sectionKey}:${activeTitle}` : null;
+    }
+
+    return null;
+  };
 
   // === Handlers ===
   const handleMouseEnter = (menu) => {
@@ -595,7 +644,7 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-y-0 right-0 flex w-[88vw] max-w-[26rem] flex-col bg-gray-night-green text-gray-off-white shadow-[-24px_0_60px_rgba(0,0,0,0.35)]"
+              className="absolute inset-y-0 right-0 flex w-screen max-w-none flex-col bg-gray-night-green text-gray-off-white shadow-[-24px_0_60px_rgba(0,0,0,0.35)]"
             >
               <div className="border-b border-white/10 px-5 py-5">
                 <div className="flex items-center justify-between gap-4">
@@ -648,35 +697,49 @@ export default function Navigation() {
                   <Link
                     href="/"
                     onClick={() => setMobileNavOpen(false)}
-                    className="bevel bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.18em] text-gray-off-white/92"
+                    className="flex min-h-[3.3rem] items-center rounded-[1.15rem] bg-white/5 px-4 py-3 text-left text-sm uppercase tracking-[0.18em] text-gray-off-white/92"
                   >
-                    Home
+                    <span className="block flex-1 leading-none">Home</span>
                   </Link>
 
                   {mobileSections.map((section) => {
                     const isOpen = mobileOpenSection === section.key;
+                    const isGroupedSection = Boolean(section.groups);
 
                     return (
                       <div
                         key={section.key}
-                        className="overflow-hidden bevel bg-white/5"
+                        className="overflow-hidden rounded-[1.15rem] bg-white/5"
                       >
                         <button
                           type="button"
-                          onClick={() =>
-                            setMobileOpenSection((current) =>
-                              current === section.key ? null : section.key,
-                            )
-                          }
-                          className="flex w-full items-center justify-between px-4 py-3 text-left"
+                          onClick={() => {
+                            setMobileOpenSection((current) => {
+                              const nextSection =
+                                current === section.key ? null : section.key;
+
+                              if (nextSection && isGroupedSection) {
+                                setMobileOpenServiceGroup(
+                                  getActiveMobileGroupKey(nextSection),
+                                );
+                              }
+
+                              return nextSection;
+                            });
+                          }}
+                          className={`flex w-full items-center gap-4 px-4 py-3 text-left ${
+                            isGroupedSection
+                              ? "min-h-[3.3rem] rounded-[1.15rem] bg-transparent"
+                              : "min-h-[3.3rem] rounded-[1.15rem]"
+                          }`}
                         >
-                          <span className="text-sm uppercase tracking-[0.18em] text-gray-off-white/92">
+                          <span className="block flex-1 leading-none text-sm uppercase tracking-[0.18em] text-gray-off-white/92">
                             {section.title}
                           </span>
                           <motion.span
                             animate={{ rotate: isOpen ? 180 : 0 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="text-xs text-gray-off-white/70"
+                            className="flex h-5 w-5 shrink-0 items-center justify-center text-xs leading-none text-gray-off-white/70"
                           >
                             ▼
                           </motion.span>
@@ -694,21 +757,187 @@ export default function Navigation() {
                               }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-1 px-2 py-2">
-                                {section.items.map((item) => (
-                                  <Link
-                                    key={`${section.key}-${item.href}-${item.title}`}
-                                    href={item.href}
-                                    onClick={() => setMobileNavOpen(false)}
-                                    className={`px-3 py-2 text-[0.78rem] uppercase tracking-[0.14em] transition ${
-                                      pathname?.startsWith(item.href)
-                                        ? "bg-[#E7512F] text-gray-off-white"
-                                        : "text-gray-off-white/78 hover:bg-white/5 hover:text-gray-off-white"
-                                    }`}
-                                  >
-                                    {item.title}
-                                  </Link>
-                                ))}
+                              <div
+                                className={`flex flex-col gap-2 px-2 py-2 ${
+                                  isGroupedSection ? "px-3 pb-3 pt-2" : ""
+                                }`}
+                              >
+                                {section.groups
+                                  ? section.groups.map((group) => {
+                                      const groupKey = `${section.key}:${group.title}`;
+                                      const hasNestedItems = group.items.some(
+                                        (item) =>
+                                          item.href !== group.href ||
+                                          item.title !== group.title,
+                                      );
+                                      const isGroupActive =
+                                        mobileOpenServiceGroup === groupKey ||
+                                        pathname?.startsWith(group.href) ||
+                                        group.items.some((item) =>
+                                          pathname?.startsWith(item.href),
+                                        );
+
+                                      return (
+                                        <div
+                                          key={`${section.key}-${group.title}`}
+                                          className="overflow-hidden rounded-[1.7rem] bg-[#121614] p-3"
+                                        >
+                                          {hasNestedItems ? (
+                                            <>
+                                              <button
+                                                type="button"
+                                                onClick={() =>
+                                                  setMobileOpenServiceGroup(
+                                                    (current) =>
+                                                      current === groupKey
+                                                        ? null
+                                                        : groupKey,
+                                                  )
+                                                }
+                                                className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${
+                                                  isGroupActive
+                                                    ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                                    : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                                }`}
+                                              >
+                                                <span className="flex min-w-0 flex-1 items-center gap-3">
+                                                  <span
+                                                    className={`h-2 w-2 shrink-0 rounded-full transition ${
+                                                      isGroupActive
+                                                        ? "bg-[#ff8a67]"
+                                                        : "bg-white/20"
+                                                    }`}
+                                                  />
+                                                  <span className="block leading-none">
+                                                    {group.title}
+                                                  </span>
+                                                </span>
+                                                <motion.span
+                                                  animate={{
+                                                    rotate:
+                                                      mobileOpenServiceGroup ===
+                                                      groupKey
+                                                        ? 180
+                                                        : 0,
+                                                  }}
+                                                  transition={{
+                                                    duration: 0.2,
+                                                    ease: "easeOut",
+                                                  }}
+                                                  className="flex h-5 w-5 shrink-0 items-center justify-center text-[0.95rem] leading-none text-[#ff8a67]"
+                                                >
+                                                  ▲
+                                                </motion.span>
+                                              </button>
+                                              <AnimatePresence initial={false}>
+                                                {mobileOpenServiceGroup ===
+                                                groupKey ? (
+                                                  <motion.div
+                                                    initial={{
+                                                      height: 0,
+                                                      opacity: 0,
+                                                    }}
+                                                    animate={{
+                                                      height: "auto",
+                                                      opacity: 1,
+                                                    }}
+                                                    exit={{
+                                                      height: 0,
+                                                      opacity: 0,
+                                                    }}
+                                                    transition={{
+                                                      duration: 0.22,
+                                                      ease: [0.22, 1, 0.36, 1],
+                                                    }}
+                                                    className="overflow-hidden"
+                                                  >
+                                                    <div className="flex flex-col gap-1.5 px-3 pb-1 pt-4">
+                                                      {group.items.map((item) => (
+                                                        <Link
+                                                          key={`${section.key}-${item.href}-${item.title}`}
+                                                          href={item.href}
+                                                          onClick={() =>
+                                                            setMobileNavOpen(
+                                                              false,
+                                                            )
+                                                          }
+                                                          className={`flex items-center gap-3 rounded-[0.95rem] px-4 py-3 text-[0.82rem] uppercase tracking-[0.16em] leading-[1.35] transition ${
+                                                            pathname?.startsWith(
+                                                              item.href,
+                                                            )
+                                                              ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
+                                                              : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
+                                                          }`}
+                                                        >
+                                                          <span
+                                                            className={`shrink-0 ${
+                                                              pathname?.startsWith(
+                                                                item.href,
+                                                              )
+                                                                ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                : "h-[1px] w-3 bg-white/30"
+                                                            }`}
+                                                          />
+                                                          <span className="block flex-1 leading-[1.35]">
+                                                            {item.title}
+                                                          </span>
+                                                        </Link>
+                                                      ))}
+                                                    </div>
+                                                  </motion.div>
+                                                ) : null}
+                                              </AnimatePresence>
+                                            </>
+                                          ) : (
+                                            <Link
+                                              href={group.href}
+                                              onClick={() =>
+                                                setMobileNavOpen(false)
+                                              }
+                                              className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${
+                                                pathname?.startsWith(group.href)
+                                                  ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                                  : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                              }`}
+                                            >
+                                              <span
+                                                className={`h-2 w-2 shrink-0 rounded-full transition ${
+                                                  pathname?.startsWith(group.href)
+                                                    ? "bg-[#ff8a67]"
+                                                    : "bg-white/20"
+                                                }`}
+                                              />
+                                              <span className="block flex-1 leading-none">
+                                                {group.title}
+                                              </span>
+                                            </Link>
+                                          )}
+                                        </div>
+                                      );
+                                    })
+                                  : section.items.map((item) => (
+                                      <Link
+                                        key={`${section.key}-${item.href}-${item.title}`}
+                                        href={item.href}
+                                        onClick={() => setMobileNavOpen(false)}
+                                        className={`flex min-h-[3.3rem] items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${
+                                          pathname?.startsWith(item.href)
+                                            ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                            : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                        }`}
+                                      >
+                                        <span
+                                          className={`h-2 w-2 shrink-0 rounded-full transition ${
+                                            pathname?.startsWith(item.href)
+                                              ? "bg-[#ff8a67]"
+                                              : "bg-white/20"
+                                          }`}
+                                        />
+                                        <span className="block flex-1 leading-none">
+                                          {item.title}
+                                        </span>
+                                      </Link>
+                                    ))}
                               </div>
                             </motion.div>
                           ) : null}

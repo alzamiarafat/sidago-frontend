@@ -697,7 +697,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
 
   return (
     <section className="bg-[#1C211E]">
-      <div className="container pb-block pt-10 md:pt-12 lg:pt-14">
+      <div className="container pb-block pt-24 sm:pt-28 md:pt-12 lg:pt-14">
         {introTitle ? (
           <div className="mb-3xl flex flex-col gap-xl">
             <div className="flex flex-col gap-xs">
@@ -715,7 +715,7 @@ export default function ContentTab({ slug = "", type = "service" }) {
 
         <section className="flex flex-col gap-5 lg:min-h-[33rem] lg:flex-row lg:items-stretch xl:min-h-[37rem]">
           <div
-            className={`${isIndustryMenu ? "lg:w-[21rem] xl:w-[22rem]" : "lg:w-[18rem]"} lg:shrink-0`}
+            className={`${type === "service" ? "hidden lg:block" : ""} ${isIndustryMenu ? "lg:w-[21rem] xl:w-[22rem]" : "lg:w-[18rem]"} lg:shrink-0`}
           >
             <div
               className={
