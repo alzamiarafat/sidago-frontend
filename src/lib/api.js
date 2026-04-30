@@ -1,15 +1,414 @@
 import { cache } from "react";
-export async function fetchAPI(path) {
+import {
+  defaultGlobalSettings,
+  defaultHomepage,
+} from "@/src/data/cms/defaults";
+
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
+const STRAPI_TOKEN =
+  process.env.STRAPI_API_TOKEN || process.env.STRAPI_SEED_TOKEN;
+
+function unwrapEntity(entity) {
+  if (!entity) {
+    return null;
+  }
+
+  if (entity.data) {
+    return unwrapEntity(entity.data);
+  }
+
+  if (entity.attributes) {
+    return {
+      id: entity.id,
+      ...entity.attributes,
+    };
+  }
+
+  return entity;
+}
+
+function resolveMedia(media) {
+  const resolved = unwrapEntity(media);
+  const url = resolved?.url;
+
+  if (!url) {
+    return null;
+  }
+
+  return {
+    ...resolved,
+    url: url.startsWith("http") ? url : `${STRAPI_URL}${url}`,
+  };
+}
+
+function normalizeGlobalSettings(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultGlobalSettings;
+  }
+
+  const footer = item.footer;
+
+  return {
+    siteName: item.siteName || defaultGlobalSettings.siteName,
+    siteContactEmail:
+      item.siteContactEmail
+        ? `mailto:${item.siteContactEmail.replace(/^mailto:/, "")}`
+        : defaultGlobalSettings.siteContactEmail,
+    siteLogo: resolveMedia(item.siteLogo) || defaultGlobalSettings.siteLogo,
+    version: item.version || defaultGlobalSettings.version,
+    socialLinks:
+      item.socialLinks?.length > 0
+        ? item.socialLinks
+        : defaultGlobalSettings.socialLinks,
+    footer: footer ? normalizeFooter(footer) : defaultGlobalSettings.footer,
+  };
+}
+
+function normalizeHero(hero) {
+  if (!hero) {
+    return defaultHomepage.hero;
+  }
+
+  const titles =
+    hero.titles
+      ?.filter((title) => title?.title)
+      .slice()
+      .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0)) ||
+    defaultHomepage.hero.titles;
+
+  return {
+    ...defaultHomepage.hero,
+    ...hero,
+    titles,
+  };
+}
+
+function normalizeInsightNewsItem(item, fallbackItem) {
+  if (!item?.title) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    href: item.href?.trim() || fallbackItem.href || "#",
+    srText: item.srText?.trim() || item.title,
+  };
+}
+
+function normalizeStatisticItem(item, fallbackItem) {
+  if (!item?.label || !item?.stat) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    stat: `${item.stat}`.trim() || fallbackItem.stat,
+    label: item.label.trim(),
+    activeDotColor: item.activeDotColor || fallbackItem.activeDotColor,
+  };
+}
+
+function normalizeMarketTickerItem(item, fallbackItem) {
+  if (!item?.title || !item?.price || !item?.avg) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    title: item.title.trim(),
+    price: item.price.trim(),
+    avg: item.avg.trim(),
+  };
+}
+
+function normalizeCapabilityItem(item, fallbackItem) {
+  if (!item?.title || !item?.description || !item?.href || !item?.video) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    title: item.title.trim(),
+    description: item.description.trim(),
+    href: item.href.trim(),
+    video: item.video.trim(),
+    rotate: item.rotate?.trim() || fallbackItem.rotate || "rotate(0deg)",
+    sr: item.sr?.trim() || item.title,
+  };
+}
+
+function normalizeCardsGridItem(item, fallbackItem) {
+  if (!item?.cardId || !item?.href || !item?.title) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    cardId: item.cardId.trim(),
+    href: item.href.trim(),
+    srLabel: item.srLabel?.trim() || fallbackItem.srLabel || item.title,
+    bgClass: item.bgClass?.trim() || fallbackItem.bgClass,
+    textClass: item.textClass?.trim() || fallbackItem.textClass,
+    colSpan: item.colSpan?.trim() || fallbackItem.colSpan,
+    title: item.title.trim(),
+    subtitle: item.subtitle?.trim() || "",
+    decorationType: item.decorationType || fallbackItem.decorationType || "none",
+    topType: item.topType || fallbackItem.topType || "none",
+  };
+}
+
+function normalizeFooterLink(item, fallbackItem) {
+  if (!item?.label || !item?.href) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    label: item.label.trim(),
+    href: item.href.trim(),
+    srLabel: item.srLabel?.trim() || item.label,
+  };
+}
+
+function normalizeFooterSocialLink(item, fallbackItem) {
+  if (!item?.label || !item?.href || !item?.platform) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    label: item.label.trim(),
+    href: item.href.trim(),
+    platform: item.platform,
+  };
+}
+
+function normalizeFooterLegalBlock(item, fallbackItem) {
+  if (!item?.text) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    text: item.text.trim(),
+  };
+}
+
+function normalizeFooter(footer) {
+  return {
+    navLinks:
+      footer.navLinks?.length > 0
+        ? footer.navLinks
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((link, index) =>
+              normalizeFooterLink(
+                link,
+                defaultGlobalSettings.footer.navLinks[index] ||
+                  defaultGlobalSettings.footer.navLinks[0],
+              ),
+            )
+        : defaultGlobalSettings.footer.navLinks,
+    socialLinks:
+      footer.socialLinks?.length > 0
+        ? footer.socialLinks
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((link, index) =>
+              normalizeFooterSocialLink(
+                link,
+                defaultGlobalSettings.footer.socialLinks[index] ||
+                  defaultGlobalSettings.footer.socialLinks[0],
+              ),
+            )
+        : defaultGlobalSettings.footer.socialLinks,
+    legalBlocks:
+      footer.legalBlocks?.length > 0
+        ? footer.legalBlocks
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((block, index) =>
+              normalizeFooterLegalBlock(
+                block,
+                defaultGlobalSettings.footer.legalBlocks[index] ||
+                  defaultGlobalSettings.footer.legalBlocks[0],
+              ),
+            )
+        : defaultGlobalSettings.footer.legalBlocks,
+    policyLinks:
+      footer.policyLinks?.length > 0
+        ? footer.policyLinks
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((link, index) =>
+              normalizeFooterLink(
+                link,
+                defaultGlobalSettings.footer.policyLinks[index] ||
+                  defaultGlobalSettings.footer.policyLinks[0],
+              ),
+            )
+        : defaultGlobalSettings.footer.policyLinks,
+  };
+}
+
+function normalizeCtaItem(item, fallbackItem) {
+  if (!item?.title || !item?.description || !item?.href) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    title: item.title.trim(),
+    description: item.description.trim(),
+    href: item.href.trim(),
+    srLabel: item.srLabel?.trim() || item.title,
+    backgroundColor: item.backgroundColor?.trim() || fallbackItem.backgroundColor,
+  };
+}
+
+function normalizeHomepage(entry) {
+  const item = unwrapEntity(entry);
+  const hero = item?.hero;
+  const insightNews = item?.insightNews;
+  const statistics = item?.statistics;
+  const marketTicker = item?.marketTicker;
+  const capabilities = item?.capabilities;
+  const cardsGrid = item?.cardsGrid;
+  const cta = item?.cta;
+
+  if (
+    !hero &&
+    !insightNews &&
+    !statistics &&
+    !marketTicker &&
+    !capabilities &&
+    !cardsGrid &&
+    !cta
+  ) {
+    return defaultHomepage;
+  }
+
+  return {
+    hero: normalizeHero(hero),
+    insightNews:
+      insightNews?.length > 0
+        ? insightNews
+            .filter((newsItem) => newsItem?.title)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((newsItem, index) =>
+              normalizeInsightNewsItem(
+                newsItem,
+                defaultHomepage.insightNews[index] || defaultHomepage.insightNews[0],
+              ),
+            )
+        : defaultHomepage.insightNews,
+    statistics:
+      statistics?.length > 0
+        ? statistics
+            .filter((statItem) => statItem?.label && statItem?.stat)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((statItem, index) =>
+              normalizeStatisticItem(
+                statItem,
+                defaultHomepage.statistics[index] || defaultHomepage.statistics[0],
+              ),
+            )
+        : defaultHomepage.statistics,
+    marketTicker:
+      marketTicker?.length > 0
+        ? marketTicker
+            .filter((tickerItem) => tickerItem?.title && tickerItem?.price && tickerItem?.avg)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((tickerItem, index) =>
+              normalizeMarketTickerItem(
+                tickerItem,
+                defaultHomepage.marketTicker[index] || defaultHomepage.marketTicker[0],
+              ),
+            )
+        : defaultHomepage.marketTicker,
+    capabilities:
+      capabilities?.length > 0
+        ? capabilities
+            .filter(
+              (capabilityItem) =>
+                capabilityItem?.title &&
+                capabilityItem?.description &&
+                capabilityItem?.href &&
+                capabilityItem?.video,
+            )
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((capabilityItem, index) =>
+              normalizeCapabilityItem(
+                capabilityItem,
+                defaultHomepage.capabilities[index] ||
+                  defaultHomepage.capabilities[0],
+              ),
+            )
+        : defaultHomepage.capabilities,
+    cardsGrid:
+      cardsGrid?.length > 0
+        ? cardsGrid
+            .filter((cardItem) => cardItem?.cardId && cardItem?.href && cardItem?.title)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((cardItem, index) =>
+              normalizeCardsGridItem(
+                cardItem,
+                defaultHomepage.cardsGrid[index] || defaultHomepage.cardsGrid[0],
+              ),
+            )
+        : defaultHomepage.cardsGrid,
+    cta:
+      cta?.length > 0
+        ? cta
+            .filter((ctaItem) => ctaItem?.title && ctaItem?.description && ctaItem?.href)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((ctaItem, index) =>
+              normalizeCtaItem(
+                ctaItem,
+                defaultHomepage.cta[index] || defaultHomepage.cta[0],
+              ),
+            )
+        : defaultHomepage.cta,
+  };
+}
+
+export async function fetchAPI(path, options = {}) {
+  if (!STRAPI_URL) {
+    return null;
+  }
+
+  const { headers = {}, revalidate = 60, ...fetchOptions } = options;
+
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${path}`,
-      {
-        next: { revalidate: 60 },
+    const res = await fetch(`${STRAPI_URL}/api/${path}`, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
+        ...headers,
       },
-    );
+      next: { revalidate },
+      ...fetchOptions,
+    });
 
     if (!res.ok) {
-      console.error("API Error:", res.status);
+      console.error("API Error:", res.status, path);
       return null;
     }
 
@@ -20,8 +419,16 @@ export async function fetchAPI(path) {
   }
 }
 
-// Cached version to ensure API is called only once per request
 export const getGlobalSettings = cache(async () => {
-  const data = await fetchAPI("global?populate=*");
-  return data?.data || null;
+  const data = await fetchAPI(
+    "global?populate[siteLogo]=*&populate[socialLinks]=*&populate[version]=*&populate[footer][populate][navLinks]=*&populate[footer][populate][socialLinks]=*&populate[footer][populate][legalBlocks]=*&populate[footer][populate][policyLinks]=*",
+  );
+  return normalizeGlobalSettings(data?.data);
+});
+
+export const getHomepage = cache(async () => {
+  const data = await fetchAPI(
+    "homepage?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[marketTicker]=*&populate[capabilities]=*&populate[cardsGrid]=*&populate[cta]=*",
+  );
+  return normalizeHomepage(data?.data);
 });

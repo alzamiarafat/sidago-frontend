@@ -8,127 +8,12 @@ import Navigation from "../sections/v2/common/Navbar";
 import Statistics from "../sections/v2/homepage/Statistics";
 import MarketTicker from "../sections/v2/homepage/Tracker";
 import AvailablePartner from "../sections/v2/servicepage/AvailablePartner";
+import { defaultHomepage } from "@/src/data/cms/defaults";
 
 // ============ CONSTANTS ============
 const SCROLL_MT = "[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)]";
 const BASE_TEXT = "text-gray-off-white dark:bg-gray-night-green";
 
-const items = [
-  {
-    title: "Digital asset OTC market 2026",
-    href: "#",
-    srText:
-      "Insights › Market color › Reports › Digital asset otc markets 2026",
-  },
-  {
-    title: "Sidago Trader Assessment Day",
-    href: "#",
-    srText: "Insights › News › Announcements › Sidago trader assessment day",
-  },
-  {
-    title: "Introducing NODE Insights",
-    href: "",
-    srText: "Insights › News › Announcements › Introducing node insights",
-  },
-];
-
-const accordionItems = [
-  {
-    title: "Spot",
-    description:
-      "Trade spot or derivatives across the widest range of digital assets, with an OTC desk that sits at the source of liquidity.",
-    href: "/spots",
-    video:
-      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200719/Accordion-OTC.mp4#t=2",
-    rotate: "rotate(30deg)",
-    sr: "Otc",
-  },
-  {
-    title: "Options",
-    description:
-      "Create liquid and efficient markets for your token globally, with the partner of choice for top-tier protocols.",
-    href: "/options",
-    video:
-      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200829/Accordion-Liquidity.mp4#t=3.15",
-    rotate: "rotate(-25deg)",
-    sr: "Liquidity",
-  },
-  {
-    title: "Forwards",
-    description:
-      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "forwards",
-    video:
-      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200844/Accordion-Governance-DeFi.mp4#t=1",
-    rotate: "rotate(0deg)",
-    sr: "Defi",
-  },
-  {
-    title: "Ventures",
-    description:
-      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "ventures",
-    video:
-      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200933/Accordion-Ventures.mp4#t=1.65",
-    rotate: "rotate(0deg)",
-    sr: "Defi",
-  },
-  {
-    title: "Tailored products",
-    description:
-      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "tailored-products",
-    video:
-      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212516/Accordion-Prop-trading.mp4#t=4.14",
-    rotate: "rotate(0deg)",
-    sr: "Defi",
-  },
-];
-
-const stats = [
-  {
-    stat: "75",
-    label: "Saving Costing",
-    width: 244,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "81",
-    label: "Token liquidity partners",
-    width: 248,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "87",
-    label: "Return on Investment",
-    width: 198,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "92",
-    label: "Client Retention",
-    width: 192,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "88",
-    label: "Client Retention",
-    width: 192,
-    activeDotColor: "#E7512F",
-  },
-];
-const titles = [
-  {
-    title: "We understand",
-    color: "",
-    className: "text-[#E7512F]",
-  },
-  {
-    title: "the online world",
-    color: "",
-    className: "",
-  },
-];
 // ============ SECTIONS CONFIG ============
 const sections = [
   { id: "hero", wrapper: true, components: [HeroBannerSection] },
@@ -233,38 +118,45 @@ function Section({ id, bg, wrapper, components }) {
 }
 
 // ============ PAGE ============
-export default function Home() {
+export default function Home({
+  homepage = defaultHomepage,
+  settings,
+}) {
+  const hero = homepage?.hero || defaultHomepage.hero;
+  const insightNews = homepage?.insightNews || defaultHomepage.insightNews;
+  const statistics = homepage?.statistics || defaultHomepage.statistics;
+  const marketTicker = homepage?.marketTicker || defaultHomepage.marketTicker;
+  const capabilities = homepage?.capabilities || defaultHomepage.capabilities;
+  const cardsGrid = homepage?.cardsGrid || defaultHomepage.cardsGrid;
+  const cta = homepage?.cta || defaultHomepage.cta;
+  const footer = settings?.footer;
+
   return (
-    <div class="flex h-svh flex-col text-base">
+    <div className="flex h-svh flex-col text-base">
       <div hidden=""></div>
-      <div class="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection
-            useVideo={true}
-            videoSrc="/videos/home2.mp4"
-            titles={titles}
-            subtitle="Sidago makes digital asset markets liquid and efficient"
-          />
-          <InsightNews items={items} />
-          <Statistics stats={stats} />
-          <MarketTicker />
+          <HeroBannerSection {...hero} />
+          <InsightNews items={insightNews} />
+          <Statistics stats={statistics} />
+          <MarketTicker items={marketTicker} />
           <Capabilities
-            items={accordionItems}
+            items={capabilities}
             bgColor="bg-black"
             textColor="text-white"
             hoverColor="bg-gray-defi-shadow"
             borderColor="bg-gray-defi-shadow"
           />
           {/* <LatestInsight /> */}
-          <CardsGrid />
+          <CardsGrid items={cardsGrid} />
           <AvailablePartner bgColor="bg-[#151916]" titleColor="text-white" />
           {/* <PartnerTrading titleColor="text-[#e7512f]" /> */}
-          <CTASection />
-          <Footer />
+          <CTASection items={cta} />
+          <Footer footer={footer} />
         </main>
       </div>
     </div>

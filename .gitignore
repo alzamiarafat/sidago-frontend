@@ -34,6 +34,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!strapi/.env.example
 
 # vercel
 .vercel
@@ -41,3 +43,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+strapi/.cache
+strapi/.strapi
+strapi/.tmp
+strapi/build
+strapi/node_modules
+strapi/public/uploads
+!strapi/public/uploads/.gitkeep

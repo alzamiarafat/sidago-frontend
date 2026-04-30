@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 9005",
-    "lint": "eslint"
+    "lint": "eslint",
+    "strapi:dev": "npm --prefix strapi run develop",
+    "strapi:build": "npm --prefix strapi run build",
+    "strapi:seed": "npm --prefix strapi run seed",
+    "strapi:seed:push": "npm --prefix strapi run seed:push"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",

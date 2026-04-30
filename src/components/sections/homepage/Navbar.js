@@ -47,8 +47,8 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link href="/">
               <img
-                src={`/images/${settings.siteLogo.name}`}
-                alt="logo"
+                src={settings.siteLogo?.url || "/images/logo1.png"}
+                alt={settings.siteLogo?.alternativeText || "Sidago logo"}
                 className="h-10 w-auto"
               />
             </Link>

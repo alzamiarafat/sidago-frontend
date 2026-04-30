@@ -3,19 +3,6 @@
 import { useEffect, useState } from "react";
 import { TiArrowSortedDown } from "react-icons/ti";
 
-const COINS = [
-  { title: "BTC", price: "$ 0.097", avg: "-6.21%" },
-  { title: "ETH", price: "$ 0.097", avg: "-6.21%" },
-  { title: "DGE", price: "$ 0.097", avg: "-6.21%" },
-  { title: "DYX", price: "$ 0.097", avg: "-6.21%" },
-  { title: "OPC", price: "$ 0.097", avg: "-6.21%" },
-  { title: "AVE", price: "$ 0.097", avg: "-6.21%" },
-  { title: "UNI", price: "$ 0.097", avg: "-6.21%" },
-  { title: "SOL", price: "$ 0.097", avg: "-6.21%" },
-];
-
-const TICKER_ROWS = [...COINS, COINS[0]];
-
 function TrackerRow({ coin, dimmed = false }) {
   return (
     <div
@@ -45,21 +32,29 @@ function TrackerRow({ coin, dimmed = false }) {
   );
 }
 
-export default function MarketTicker() {
+export default function MarketTicker({ items = [] }) {
+  const coins = items?.filter(
+    (item) => item?.title && item?.price && item?.avg,
+  ) || [];
+  const tickerRows = coins.length > 0 ? [...coins, coins[0]] : [];
   const [activeIndex, setActiveIndex] = useState(0);
   const [animate, setAnimate] = useState(true);
 
   useEffect(() => {
+    if (coins.length <= 1) {
+      return undefined;
+    }
+
     const interval = setInterval(() => {
       setActiveIndex((prev) => prev + 1);
       setAnimate(true);
     }, 2200);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [coins.length]);
 
   useEffect(() => {
-    if (activeIndex !== COINS.length) return undefined;
+    if (coins.length <= 1 || activeIndex !== coins.length) return undefined;
 
     const timeout = setTimeout(() => {
       setAnimate(false);
@@ -67,7 +62,11 @@ export default function MarketTicker() {
     }, 750);
 
     return () => clearTimeout(timeout);
-  }, [activeIndex]);
+  }, [activeIndex, coins.length]);
+
+  if (tickerRows.length === 0) {
+    return null;
+  }
 
   return (
     <section
@@ -91,7 +90,7 @@ export default function MarketTicker() {
                 transform: `translateY(calc(var(--ticker-row-height) * -${activeIndex}))`,
               }}
             >
-              {TICKER_ROWS.map((coin, index) => (
+              {tickerRows.map((coin, index) => (
                 <TrackerRow
                   key={`${coin.title}-${index}`}
                   coin={coin}
