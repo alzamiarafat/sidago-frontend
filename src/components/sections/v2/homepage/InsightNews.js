@@ -18,7 +18,7 @@ export default function InsightNews({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col lg:flex-row lg:container">
+      <div className="container relative z-10 flex flex-col lg:flex-row">
         {newsItems.map((item, index) => {
           const href = item.href?.trim() || "#";
           const isExternal = /^https?:\/\//i.test(href);

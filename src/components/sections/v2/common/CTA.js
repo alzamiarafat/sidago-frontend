@@ -84,7 +84,7 @@ export default function CTASection({ items = defaultHomepage.cta }) {
           }}
         ></div>
       </div>
-      <div className="relative z-10 flex flex-col lg:flex-row lg:container">
+      <div className="container relative z-10 flex flex-col lg:flex-row">
         {ctaItems.map((item, index) => (
           <CTAItem
             key={`${item.title}-${index}`}

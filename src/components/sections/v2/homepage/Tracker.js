@@ -73,7 +73,7 @@ export default function MarketTicker({ items = [] }) {
       className="overflow-hidden bg-gray-defi-graphite text-gray-off-white"
       style={{ backgroundColor: "rgb(50 57 53 / var(--tw-bg-opacity, 1))" }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-26">
+      <div className="container mx-auto">
         <div className="relative py-2">
           <div
             className="relative overflow-hidden"
