@@ -20,7 +20,9 @@ export function buildPageMetadata({
   path = "/",
   keywords = [],
 }) {
-  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const fullTitle = title.includes(SITE_NAME)
+    ? title
+    : `${title} | ${SITE_NAME}`;
   const url = absoluteUrl(path);
 
   return {
@@ -79,19 +81,19 @@ export const routeMetadata = {
     title: "Sidago Events",
     description:
       "Explore Sidago events, meetups, speakers, and industry conversations shaping business strategy and digital transformation.",
-    path: "/events",
+    path: "/marketing-growth",
   }),
-  forwards: buildPageMetadata({
-    title: "Forwards",
+  support: buildPageMetadata({
+    title: "Support",
     description:
       "Explore Sidago Forwards services, governance support, and strategic solutions for decentralized and digital-first organizations.",
-    path: "/forwards",
+    path: "/support",
   }),
   governance: buildPageMetadata({
     title: "Governance",
     description:
       "Governance-focused support and strategic guidance from Sidago for structured decision-making and organizational execution.",
-    path: "/governance",
+    path: "/support-compliance",
   }),
   industries: buildPageMetadata({
     title: "Industries",
@@ -109,13 +111,13 @@ export const routeMetadata = {
     title: "NODE",
     description:
       "Discover Sidago NODE insights, research, and decentralized finance perspectives designed for modern digital markets.",
-    path: "/node",
+    path: "/business-processes",
   }),
-  options: buildPageMetadata({
-    title: "Options",
+  insights: buildPageMetadata({
+    title: "Insights",
     description:
       "Explore Sidago options research, market insights, and strategic content for modern digital finance and business operations.",
-    path: "/options",
+    path: "/insights",
   }),
   research: buildPageMetadata({
     title: "Research",
@@ -139,7 +141,7 @@ export const routeMetadata = {
     title: "Spots",
     description:
       "Discover Sidago Spots offerings, capabilities, and strategic service support for digital-first business environments.",
-    path: "/spots",
+    path: "/operations",
   }),
   strategy: buildPageMetadata({
     title: "Strategy",
@@ -147,17 +149,17 @@ export const routeMetadata = {
       "Explore Sidago strategy capabilities, benefits, employee advantage, and structured process support for business growth.",
     path: "/strategy",
   }),
-  tailoredProducts: buildPageMetadata({
-    title: "Tailored Products",
+  compliance: buildPageMetadata({
+    title: "Compliance",
     description:
       "Custom, industry-focused product and service solutions from Sidago designed around operational and strategic needs.",
-    path: "/tailored-products",
+    path: "/compliance",
   }),
-  ventures: buildPageMetadata({
-    title: "Ventures",
+  execution: buildPageMetadata({
+    title: "Execution",
     description:
-      "Sidago ventures, strategic collaboration, and decentralized finance support for innovation-focused organizations.",
-    path: "/ventures",
+      "Sidago execution, strategic implementation, and decentralized finance support for innovation-focused organizations.",
+    path: "/execution",
   }),
 };
 
@@ -262,4 +264,3 @@ export function getStrategyMetadata(slug) {
     path: match.href,
   });
 }
-

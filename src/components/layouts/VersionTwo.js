@@ -118,10 +118,7 @@ function Section({ id, bg, wrapper, components }) {
 }
 
 // ============ PAGE ============
-export default function Home({
-  homepage = defaultHomepage,
-  settings,
-}) {
+export default function Home({ homepage = defaultHomepage, settings }) {
   const hero = homepage?.hero || defaultHomepage.hero;
   const insightNews = homepage?.insightNews || defaultHomepage.insightNews;
   const statistics = homepage?.statistics || defaultHomepage.statistics;

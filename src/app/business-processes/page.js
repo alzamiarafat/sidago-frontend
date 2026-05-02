@@ -1,5 +1,6 @@
 "use client";
 import "../../app/globals.css";
+
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -108,7 +109,7 @@ function buildVerticalTabs(items) {
   });
 }
 
-export default function StrategyPageTemplate() {
+export default function BusinessProcesses() {
   const pathname = usePathname();
   const currentPath = normalizeStrategyPath(pathname);
   const activeStrategyItem =
@@ -136,8 +137,9 @@ export default function StrategyPageTemplate() {
             subtitle="Partner with the leading early-stage investor in the DeFi ecosystem to fuel your long-term growth"
             videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
           />
-          <Statistics stats={stats} bgColor="bg-[#333935]" />
+          <Statistics stats={stats} />
           <PartnerBenefit />
+
           <Investment />
           <BuildingProduct />
           <WorkOverview />

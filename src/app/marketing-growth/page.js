@@ -13,9 +13,9 @@ import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackP
 import Trading from "@/src/components/sections/v2/industriespage/Trading";
 import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
-import { MeetUs } from "@/src/components/sections/v2/events/MeetUs";
-import { MeetBuilders } from "@/src/components/sections/v2/events/MeetBuliders";
-import { Catchup } from "@/src/components/sections/v2/events/CatchUp";
+import { MeetUs } from "@/src/components/sections/v2/marketing-growth/MeetUs";
+import { MeetBuilders } from "@/src/components/sections/v2/marketing-growth/MeetBuliders";
+import { Catchup } from "@/src/components/sections/v2/marketing-growth/CatchUp";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.events;
@@ -53,7 +53,9 @@ export default function Events({ variant = "default", slug = "" }) {
           <HeroBannerSection
             useVideo={true}
             lighterTheme={false}
-            videoSrc={"https://www.wintermute.com/videos/heroes/events.mp4"}
+            videoSrc={
+              "https://www.wintermute.com/videos/heroes/marketing-growth.mp4"
+            }
             titles={defaultTitles}
             subtitle="Find out where to meet, talk, and build with us next"
             videoClass={

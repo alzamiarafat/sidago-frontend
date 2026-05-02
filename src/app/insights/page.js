@@ -17,6 +17,13 @@ import {
   strategyMenuItems,
 } from "@/src/data/strategy-menu";
 import { usePathname } from "next/navigation";
+import { LatestAbout } from "@/src/components/sections/v2/insights/LatestAbout";
+import { BuildChallenge } from "@/src/components/sections/v2/insights/BuildChallenge";
+import { ChainActivity } from "@/src/components/sections/v2/insights/ChainActivity";
+import { TradingMarket } from "@/src/components/sections/v2/insights/TradingMarket";
+import { Initiatives } from "@/src/components/sections/v2/insights/Initiatives";
+import { LatestResearch } from "@/src/components/sections/v2/insights/LatestResearch";
+import { Discover } from "@/src/components/sections/v2/insights/Discover";
 
 const stats = [
   {
@@ -53,18 +60,13 @@ const stats = [
 
 const titles = [
   {
-    title: "Team up with an",
+    title: "Operating at every level of",
     color: "",
     className: "",
   },
   {
-    title: "established builder",
-    color: "#3c85dd",
-    className: "",
-  },
-  {
-    title: "of decentralized finance",
-    color: "",
+    title: "decentralized finance",
+    color: "#ed9b9b",
     className: "",
   },
 ];
@@ -109,7 +111,7 @@ function buildVerticalTabs(items) {
   });
 }
 
-export default function Node() {
+export default function InsightsPage() {
   const pathname = usePathname();
   const currentPath = normalizeStrategyPath(pathname);
   const activeStrategyItem =
@@ -132,17 +134,25 @@ export default function Node() {
           <HeroBannerSection
             useVideo={true}
             lighterTheme={false}
-            videoSrc="https://www.wintermute.com/videos/heroes/ventures.mp4"
+            videoSrc="https://www.wintermute.com/videos/heroes/defi.mp4"
             titles={titles}
-            subtitle="Partner with the leading early-stage investor in the DeFi ecosystem to fuel your long-term growth"
-            videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
+            subtitle="Deeply embedded into the ecosystem, we understand DeFi’s infrastructure and improve its on-chain efficiency"
+            // videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
           />
-          <Statistics stats={stats} />
-          <PartnerBenefit />
+          <Statistics stats={stats} bgColor="bg-[#333935]" />
+          <LatestAbout />
+          <BuildChallenge />
+          <ChainActivity />
+          <TradingMarket />
+          {/* <Initiatives /> */}
+          <LatestResearch />
+          <Discover />
+
+          {/* <PartnerBenefit />
 
           <Investment />
           <BuildingProduct />
-          <WorkOverview />
+          <WorkOverview /> */}
           <CTASection />
           <Footer />
         </main>

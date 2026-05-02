@@ -242,7 +242,7 @@ const benefits = [
   },
 ];
 
-export default function TailoredProducts({ variant = "default", slug = "" }) {
+export default function PerformancePage({ variant = "default", slug = "" }) {
   const isB2B = true;
 
   return (

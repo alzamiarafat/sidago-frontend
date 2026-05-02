@@ -29,7 +29,12 @@ export const defaultGlobalSettings = {
     navLinks: [
       { label: "Contact", href: "/contact", srLabel: "Contact", sortOrder: 1 },
       { label: "Careers", href: "/contact", srLabel: "Careers", sortOrder: 2 },
-      { label: "Events", href: "/events", srLabel: "Events", sortOrder: 3 },
+      {
+        label: "Events",
+        href: "/marketing-growth",
+        srLabel: "Events",
+        sortOrder: 3,
+      },
     ],
     socialLinks: [
       {
@@ -139,7 +144,7 @@ export const defaultHomepage = {
     },
     {
       title: "Scalable Operations Management",
-      href: "",
+      href: "#",
       srText: "Scalable Operations Management",
       sortOrder: 3,
     },
@@ -236,7 +241,7 @@ export const defaultHomepage = {
       title: "Operations",
       description:
         "Process-driven operational support that helps businesses reduce friction, manage workloads, and improve day-to-day efficiency.",
-      href: "/spots",
+      href: "/operations",
       video:
         "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200719/Accordion-OTC.mp4#t=2",
       rotate: "rotate(30deg)",
@@ -247,7 +252,7 @@ export const defaultHomepage = {
       title: "Insights",
       description:
         "Research and reporting services that turn business data into clearer decisions, planning, and measurable performance insight.",
-      href: "/options",
+      href: "/insights",
       video:
         "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200829/Accordion-Liquidity.mp4#t=3.15",
       rotate: "rotate(-25deg)",
@@ -255,21 +260,21 @@ export const defaultHomepage = {
       sortOrder: 2,
     },
     {
-      title: "Support",
+      title: "Infrastructure",
       description:
-        "Reliable back-office and customer support that keeps teams responsive, organized, and focused on core business goals.",
-      href: "forwards",
+        "Infrastructure support that helps businesses maintain systems, workflows, and stable operational foundations for scale.",
+      href: "/infrastructure",
       video:
         "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200844/Accordion-Governance-DeFi.mp4#t=1",
       rotate: "rotate(0deg)",
-      sr: "Support",
+      sr: "Infrastructure",
       sortOrder: 3,
     },
     {
       title: "Execution",
       description:
         "Hands-on project execution that helps companies deliver tasks faster, maintain standards, and scale output with confidence.",
-      href: "ventures",
+      href: "/execution",
       video:
         "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200933/Accordion-Ventures.mp4#t=1.65",
       rotate: "rotate(0deg)",
@@ -277,21 +282,21 @@ export const defaultHomepage = {
       sortOrder: 4,
     },
     {
-      title: "Analytics",
+      title: "Performance",
       description:
-        "Analytics support that helps teams track trends, measure outcomes, and improve business decisions with practical data visibility.",
-      href: "tailored-products",
+        "Performance support that helps companies improve results, increase efficiency, and strengthen long-term business outcomes.",
+      href: "/performance",
       video:
         "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212516/Accordion-Prop-trading.mp4#t=4.14",
       rotate: "rotate(0deg)",
-      sr: "Analytics",
+      sr: "Performance",
       sortOrder: 5,
     },
   ],
   cardsGrid: [
     {
       cardId: "bpo",
-      href: "/node",
+      href: "/business-processes",
       srLabel: "Business Process Outsourcing",
       bgClass: "bg-gray-defi-ash",
       textClass: "text-gray-off-white",
@@ -304,7 +309,7 @@ export const defaultHomepage = {
     },
     {
       cardId: "research-data",
-      href: "/insights/discover?category=defi-research&category=governance-digest",
+      href: "/research-data",
       srLabel: "Research and Data",
       bgClass: "bg-purple-light",
       textClass: "text-gray-night-green",
@@ -317,7 +322,7 @@ export const defaultHomepage = {
     },
     {
       cardId: "marketing-growth",
-      href: "/events",
+      href: "/marketing-growth",
       srLabel: "Marketing and Growth",
       bgClass: "bg-purple-dark",
       textClass: "text-gray-night-green",
@@ -330,7 +335,7 @@ export const defaultHomepage = {
     },
     {
       cardId: "support-compliance",
-      href: "/defi/governance",
+      href: "/support-compliance",
       srLabel: "Business Support and Compliance",
       bgClass: "bg-gray-defi-shadow",
       textClass: "text-gray-off-white",
@@ -343,7 +348,7 @@ export const defaultHomepage = {
     },
     {
       cardId: "consulting-strategy",
-      href: "/insights/discover?category=reports&category=market-update",
+      href: "/strategy",
       srLabel: "Consulting and Strategy",
       bgClass: "bg-gray-defi-slate",
       textClass: "text-gray-off-white",

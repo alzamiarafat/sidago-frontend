@@ -267,8 +267,8 @@ export default function Navigation() {
   ];
 
   const activeServiceGroupTitle =
-    productSections.find(
-      (group) => group.items.some((item) => pathname?.startsWith(item.href)),
+    productSections.find((group) =>
+      group.items.some((item) => pathname?.startsWith(item.href)),
     )?.title ?? productSections[0]?.title;
 
   const servicesMenuItems = [
@@ -493,13 +493,12 @@ export default function Navigation() {
       groups: strategyItems.map((item) => ({
         title: item.title,
         href: item.href,
-        items:
-          item.children?.length
-            ? item.children.map((child) => ({
-                title: child.title,
-                href: child.href,
-              }))
-            : [{ title: item.title, href: item.href }],
+        items: item.children?.length
+          ? item.children.map((child) => ({
+              title: child.title,
+              href: child.href,
+            }))
+          : [{ title: item.title, href: item.href }],
       })),
     },
   ];
@@ -852,37 +851,39 @@ export default function Navigation() {
                                                     className="overflow-hidden"
                                                   >
                                                     <div className="flex flex-col gap-1.5 px-3 pb-1 pt-4">
-                                                      {group.items.map((item) => (
-                                                        <Link
-                                                          key={`${section.key}-${item.href}-${item.title}`}
-                                                          href={item.href}
-                                                          onClick={() =>
-                                                            setMobileNavOpen(
-                                                              false,
-                                                            )
-                                                          }
-                                                          className={`flex items-center gap-3 rounded-[0.95rem] px-4 py-3 text-[0.82rem] uppercase tracking-[0.16em] leading-[1.35] transition ${
-                                                            pathname?.startsWith(
-                                                              item.href,
-                                                            )
-                                                              ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
-                                                              : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
-                                                          }`}
-                                                        >
-                                                          <span
-                                                            className={`shrink-0 ${
+                                                      {group.items.map(
+                                                        (item) => (
+                                                          <Link
+                                                            key={`${section.key}-${item.href}-${item.title}`}
+                                                            href={item.href}
+                                                            onClick={() =>
+                                                              setMobileNavOpen(
+                                                                false,
+                                                              )
+                                                            }
+                                                            className={`flex items-center gap-3 rounded-[0.95rem] px-4 py-3 text-[0.82rem] uppercase tracking-[0.16em] leading-[1.35] transition ${
                                                               pathname?.startsWith(
                                                                 item.href,
                                                               )
-                                                                ? "h-2 w-2 rounded-full bg-[#ff8a67]"
-                                                                : "h-[1px] w-3 bg-white/30"
+                                                                ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
+                                                                : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
                                                             }`}
-                                                          />
-                                                          <span className="block flex-1 leading-[1.35]">
-                                                            {item.title}
-                                                          </span>
-                                                        </Link>
-                                                      ))}
+                                                          >
+                                                            <span
+                                                              className={`shrink-0 ${
+                                                                pathname?.startsWith(
+                                                                  item.href,
+                                                                )
+                                                                  ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                  : "h-[1px] w-3 bg-white/30"
+                                                              }`}
+                                                            />
+                                                            <span className="block flex-1 leading-[1.35]">
+                                                              {item.title}
+                                                            </span>
+                                                          </Link>
+                                                        ),
+                                                      )}
                                                     </div>
                                                   </motion.div>
                                                 ) : null}
@@ -902,7 +903,9 @@ export default function Navigation() {
                                             >
                                               <span
                                                 className={`h-2 w-2 shrink-0 rounded-full transition ${
-                                                  pathname?.startsWith(group.href)
+                                                  pathname?.startsWith(
+                                                    group.href,
+                                                  )
                                                     ? "bg-[#ff8a67]"
                                                     : "bg-white/20"
                                                 }`}
@@ -1706,7 +1709,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/node"
+                href="/business-processes"
               >
                 <span itemProp="name">Node</span>
                 <svg
@@ -2076,7 +2079,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/events"
+                href="/marketing-growth"
               >
                 <span itemProp="name">Events</span>
                 <svg

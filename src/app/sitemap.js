@@ -24,20 +24,20 @@ export default function sitemap() {
   const staticRoutes = [
     "/",
     "/contact",
-    "/events",
-    "/forwards",
-    "/governance",
+    "/marketing-growth",
+    "/support",
+    "/support-compliance",
     "/industries",
     "/marketplace",
-    "/node",
-    "/options",
+    "/business-processes",
+    "/insights",
     "/research",
     "/sales",
     "/services",
-    "/spots",
+    "/operations",
     "/strategy",
-    "/tailored-products",
-    "/ventures",
+    "/compliance",
+    "/execution",
   ];
 
   const dynamicRoutes = [
@@ -53,4 +53,3 @@ export default function sitemap() {
     priority: route === "/" ? 1 : 0.7,
   }));
 }
-

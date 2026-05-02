@@ -108,7 +108,7 @@ const MarketDecoration = () => (
 );
 
 function resolveDecoration(type) {
-  if (type === "node") {
+  if (type === "business-processes") {
     return <NodeDecoration />;
   }
 
@@ -165,7 +165,8 @@ function Card({ card }) {
 }
 
 export default function CardsGrid({ items = [] }) {
-  const cards = items?.filter((item) => item?.cardId && item?.href && item?.title) || [];
+  const cards =
+    items?.filter((item) => item?.cardId && item?.href && item?.title) || [];
 
   if (cards.length === 0) {
     return null;

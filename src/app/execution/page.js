@@ -1,6 +1,5 @@
 "use client";
 import "../../app/globals.css";
-
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -17,13 +16,6 @@ import {
   strategyMenuItems,
 } from "@/src/data/strategy-menu";
 import { usePathname } from "next/navigation";
-import { LatestAbout } from "@/src/components/sections/v2/options/LatestAbout";
-import { BuildChallenge } from "@/src/components/sections/v2/options/BuildChallenge";
-import { ChainActivity } from "@/src/components/sections/v2/options/ChainActivity";
-import { TradingMarket } from "@/src/components/sections/v2/options/TradingMarket";
-import { Initiatives } from "@/src/components/sections/v2/options/Initiatives";
-import { LatestResearch } from "@/src/components/sections/v2/options/LatestResearch";
-import { Discover } from "@/src/components/sections/v2/options/Discover";
 
 const stats = [
   {
@@ -60,13 +52,18 @@ const stats = [
 
 const titles = [
   {
-    title: "Operating at every level of",
+    title: "Team up with an",
     color: "",
     className: "",
   },
   {
-    title: "decentralized finance",
-    color: "#ed9b9b",
+    title: "established builder",
+    color: "#3c85dd",
+    className: "",
+  },
+  {
+    title: "of decentralized finance",
+    color: "",
     className: "",
   },
 ];
@@ -111,7 +108,7 @@ function buildVerticalTabs(items) {
   });
 }
 
-export default function Market() {
+export default function ExecutionPage() {
   const pathname = usePathname();
   const currentPath = normalizeStrategyPath(pathname);
   const activeStrategyItem =
@@ -134,25 +131,16 @@ export default function Market() {
           <HeroBannerSection
             useVideo={true}
             lighterTheme={false}
-            videoSrc="https://www.wintermute.com/videos/heroes/defi.mp4"
+            videoSrc="https://www.wintermute.com/videos/heroes/ventures.mp4"
             titles={titles}
-            subtitle="Deeply embedded into the ecosystem, we understand DeFi’s infrastructure and improve its on-chain efficiency"
-            // videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
+            subtitle="Partner with the leading early-stage investor in the DeFi ecosystem to fuel your long-term growth"
+            videoClass="left-[500px] top-[70px] !w-3/4 !h-3/4"
           />
           <Statistics stats={stats} bgColor="bg-[#333935]" />
-          <LatestAbout />
-          <BuildChallenge />
-          <ChainActivity />
-          <TradingMarket />
-          {/* <Initiatives /> */}
-          <LatestResearch />
-          <Discover />
-
-          {/* <PartnerBenefit />
-
+          <PartnerBenefit />
           <Investment />
           <BuildingProduct />
-          <WorkOverview /> */}
+          <WorkOverview />
           <CTASection />
           <Footer />
         </main>

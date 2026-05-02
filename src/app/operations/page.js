@@ -1,5 +1,4 @@
 import "../../app/globals.css";
-
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -19,7 +18,7 @@ import TradeOption from "@/src/components/sections/v2/servicepage/TradeOption";
 import VideoOverview from "@/src/components/sections/v2/servicepage/VideoOverview";
 import { routeMetadata } from "@/src/lib/seo";
 
-export const metadata = routeMetadata.forwards;
+export const metadata = routeMetadata.spots;
 
 const insightItems = [
   {
@@ -78,7 +77,7 @@ const accordionItems = [
     title: "Spot",
     description:
       "Trade spot or derivatives across the widest range of digital assets, with an OTC desk that sits at the source of liquidity.",
-    href: "otc",
+    href: "spots",
     video: "/media/Accordion-Spot.mp4#t=2",
     rotate: "rotate(30deg)",
     sr: "Otc",
@@ -87,7 +86,7 @@ const accordionItems = [
     title: "Options",
     description:
       "Create liquid and efficient markets for your token globally, with the partner of choice for top-tier protocols.",
-    href: "liquidity",
+    href: "options",
     video: "/media/Accordion-Options.mp4#t=3.15",
     rotate: "rotate(-25deg)",
     sr: "Liquidity",
@@ -96,16 +95,16 @@ const accordionItems = [
     title: "Forwards",
     description:
       "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "defi",
+    href: "forwards",
     video: "/media/Accordion-Forwards.mp4#t=1",
     rotate: "rotate(0deg)",
     sr: "Defi",
   },
   {
-    title: "CFDs",
+    title: "Execution",
     description:
       "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "defi",
+    href: "execution",
     video: "/media/Accordion-CFDs.mp4#t=1",
     rotate: "rotate(0deg)",
     sr: "Defi",
@@ -114,7 +113,7 @@ const accordionItems = [
     title: "Tailored products",
     description:
       "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "defi",
+    href: "tailored-products",
     video: "/media/Accordion-Tailored-products.mp4#t=1",
     rotate: "rotate(0deg)",
     sr: "Defi",
@@ -174,17 +173,17 @@ const pageContent = {
   },
 };
 
-export default function Research({ variant = "governance", slug = "" }) {
+export default function OperationsPage({ variant = "otc", slug = "" }) {
   const page = pageContent[variant] ?? pageContent.otc;
   const isGovernancePage = variant === "governance";
 
   return (
-    <div className="flex h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex min-h-svh flex-col text-base">
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
 
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection {...page.hero} />
@@ -192,7 +191,7 @@ export default function Research({ variant = "governance", slug = "" }) {
           {isGovernancePage ? (
             <>
               <OurVision />
-              {/* <ContentTab slug={slug} /> */}
+              <ContentTab slug={slug} />
               <Support />
               <DelegateProfile />
             </>
