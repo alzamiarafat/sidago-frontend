@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-03T13:07:17.981Z",
+  "generatedAt": "2026-05-03T19:28:12.459Z",
   "global": {
     "siteName": "Sidago",
     "siteContactEmail": "hello@sidago.com",
@@ -654,7 +654,7 @@
       {
         "title": "Customer Operations",
         "description": "Dedicated support teams for call handling, live chat, email response, and customer experience workflows.",
-        "href": "customer-operations",
+        "href": "/operations",
         "video": "/media/Accordion-Spot.mp4#t=2",
         "rotate": "rotate(30deg)",
         "sr": "Customer operations",
@@ -663,7 +663,7 @@
       {
         "title": "Back-Office Delivery",
         "description": "Reliable administrative support for documentation, records, task coordination, and daily process execution.",
-        "href": "back-office-delivery",
+        "href": "/business-processes",
         "video": "/media/Accordion-Options.mp4#t=3.15",
         "rotate": "rotate(-25deg)",
         "sr": "Back-office delivery",
@@ -672,7 +672,7 @@
       {
         "title": "Data & Reporting",
         "description": "Accurate data entry, processing, reporting, and operational visibility for better business decisions.",
-        "href": "data-reporting",
+        "href": "/research-data",
         "video": "/media/Accordion-Forwards.mp4#t=1",
         "rotate": "rotate(0deg)",
         "sr": "Data and reporting",
@@ -681,7 +681,7 @@
       {
         "title": "Process Improvement",
         "description": "Workflow reviews and practical improvements that reduce friction, improve handoffs, and increase delivery speed.",
-        "href": "process-improvement",
+        "href": "/strategy/operational-philosophy",
         "video": "/media/Accordion-CFDs.mp4#t=1",
         "rotate": "rotate(0deg)",
         "sr": "Process improvement",
@@ -690,13 +690,125 @@
       {
         "title": "Flexible Team Scaling",
         "description": "On-demand operational capacity that helps your business respond to changing workloads without hiring overhead.",
-        "href": "flexible-team-scaling",
+        "href": "/growth",
         "video": "/media/Accordion-Tailored-products.mp4#t=1",
         "rotate": "rotate(0deg)",
         "sr": "Flexible team scaling",
         "sortOrder": 5
       }
     ],
+    "benefits": [
+      {
+        "title": "Structured Delivery",
+        "description": "Defined workflows, documented steps, and clear accountability that keep recurring operations consistent.",
+        "iconPath": "M8 9h24v22H8zM13 15h14M13 20h14M13 25h8"
+      },
+      {
+        "title": "Dedicated Teams",
+        "description": "Sidago assigns trained specialists who own day-to-day execution across support, admin, and process work.",
+        "iconPath": "M13 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM27 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM5 33c1-6 4-10 8-10s7 4 8 10M19 33c1-5 4-8 8-8s7 3 8 8"
+      },
+      {
+        "title": "Real-Time Visibility",
+        "description": "Reporting and service tracking make it easier to measure throughput, quality, and operational bottlenecks.",
+        "iconPath": "M7 31h26M11 27v-8M19 27V9M27 27V15"
+      },
+      {
+        "title": "Flexible Capacity",
+        "description": "Operational capacity can expand with workload spikes without the cost of rebuilding your internal team.",
+        "iconPath": "M7 29V11h6v18M17 29V7h6v22M27 29V15h6v14"
+      },
+      {
+        "title": "Cost Control",
+        "description": "Sidago helps reduce delivery overhead while maintaining dependable service quality and response standards.",
+        "iconPath": "M20 6v28M26 12c-2-2-5-3-8-2-4 1-5 6-1 8l7 3c4 2 3 7-1 8-4 1-8-1-10-3"
+      },
+      {
+        "title": "Continuous Improvement",
+        "description": "We review workflows, identify friction, and refine execution so performance improves over time.",
+        "iconPath": "M6 29h28M10 25l6-6 5 4 9-11M28 12h6v6"
+      }
+    ],
+    "serviceGroups": [
+      {
+        "title": "Customer Support",
+        "description": "Inbound response handling, chat support, email coverage, and customer issue coordination.",
+        "short": "Support"
+      },
+      {
+        "title": "Back-Office Processing",
+        "description": "Documentation, data handling, records management, and day-to-day administrative workflows.",
+        "short": "Back Office"
+      },
+      {
+        "title": "Data & Reporting",
+        "description": "Structured reporting, operational dashboards, and cleaner business data for decision-making.",
+        "short": "Data"
+      },
+      {
+        "title": "Team Coordination",
+        "description": "Task routing, follow-up management, and execution support across distributed teams and time zones.",
+        "short": "Coordination"
+      },
+      {
+        "title": "Process Management",
+        "description": "Workflow oversight that improves consistency, reduces handoff delays, and supports quality control.",
+        "short": "Process"
+      },
+      {
+        "title": "Commerce Support",
+        "description": "Order flow, customer updates, and operational assistance for digital and service-based businesses.",
+        "short": "Commerce"
+      },
+      {
+        "title": "Technical Operations",
+        "description": "Operational system support, internal tooling coordination, and issue management for business teams.",
+        "short": "Technical"
+      },
+      {
+        "title": "Scalable Staffing",
+        "description": "Flexible delivery teams that help businesses expand operational output without long hiring cycles.",
+        "short": "Scaling"
+      }
+    ],
+    "solutions": [
+      {
+        "title": "Customer Operations",
+        "description": "Support coverage models designed to improve response speed, customer satisfaction, and service consistency.",
+        "label": "Solution"
+      },
+      {
+        "title": "Back-Office Execution",
+        "description": "Structured administrative delivery that keeps records, workflows, and internal coordination running smoothly.",
+        "label": "Solution"
+      },
+      {
+        "title": "Performance Reporting",
+        "description": "Clear measurement frameworks that help leadership track quality, output, and improvement opportunities.",
+        "label": "Solution"
+      }
+    ],
+    "workOverview": {
+      "eyebrow": "Ready to strengthen operations?",
+      "title": "Build a More Reliable Delivery Engine with Sidago",
+      "description": "Sidago helps organizations improve coverage, reduce operating friction, and scale execution with structured operational support.",
+      "buttonText": "Talk to Sidago",
+      "href": "/contact",
+      "metrics": [
+        {
+          "value": "24/7",
+          "label": "Support coverage"
+        },
+        {
+          "value": "95%",
+          "label": "Service satisfaction"
+        },
+        {
+          "value": "60%",
+          "label": "Average cost reduction"
+        }
+      ]
+    },
     "cta": [
       {
         "title": "Build your operations team",
