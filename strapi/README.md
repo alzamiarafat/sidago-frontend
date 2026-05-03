@@ -50,13 +50,14 @@ This writes `strapi/scripts/seed-data.json` using the current frontend hero and 
 
 To insert that frontend hero data directly into Strapi:
 
-1. Create a Strapi API token with write access.
-2. Set `STRAPI_SEED_TOKEN` in `strapi/.env`.
-3. Run:
+1. Set `STRAPI_SEED_TOKEN` in `strapi/.env` to a long secret value.
+2. Run:
 
 ```bash
 npm run seed:push
 ```
+
+The seed script calls the project-owned `/api/seed` endpoint. The token is only used as a shared secret for that endpoint, so it does not need to be created in the Strapi admin panel.
 
 That updates:
 

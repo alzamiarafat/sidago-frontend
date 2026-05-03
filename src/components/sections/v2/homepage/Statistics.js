@@ -8,16 +8,23 @@ export default function Statistics({
   bgColor = "bg-gray-defi-shadow",
   lighterTheme = false,
   dotColor = "#E9EEE9",
+  compact = false,
 }) {
   const [active, setActive] = useState(-1);
 
   return (
     <section className={`${bgColor} text-green-500`} style={{ width: "full" }}>
-      <div className="flex flex-col gap-2xl container py-block lg:flex-row lg:py-0">
+      <div
+        className={
+          compact
+            ? "container grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6 lg:py-14"
+            : "flex flex-col gap-2xl container py-block lg:flex-row lg:py-0"
+        }
+      >
         {stats.map((s, i) => (
           <div
             key={s.label}
-            className="group stat flex flex-col lg:flex-1 lg:py-16"
+            className={`group stat flex min-w-0 flex-col ${compact ? "items-start overflow-hidden" : "lg:flex-1 lg:py-16"}`}
             style={{
               ["--stat-width"]: s.width ? `${s.width}px` : undefined,
               "--active-color": s.activeDotColor,
@@ -32,11 +39,11 @@ export default function Statistics({
               dotSpacing={2}
               dotColor={dotColor}
               activeDotColor={s.activeDotColor}
-              fontSizeMobile={56}
-              fontSizeDesktop={97}
+              fontSizeMobile={compact ? 46 : 56}
+              fontSizeDesktop={compact ? 58 : 97}
             />
             <div
-              className={`mt-4 text-xl uppercase tracking-wide transition-all duration-1000 lg:text-base ${!lighterTheme ? "text-white" : "text-black"}`}
+              className={`mt-4 max-w-full text-sm uppercase leading-snug tracking-wide transition-all duration-1000 lg:text-base ${compact ? "text-[0.72rem] lg:text-[0.78rem]" : "text-xl"} ${!lighterTheme ? "text-white" : "text-black"}`}
               style={{
                 color: active === i ? "var(--active-color)" : undefined,
               }}

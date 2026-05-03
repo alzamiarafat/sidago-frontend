@@ -1,837 +1,101 @@
-export default function Investment() {
+const defaultServiceGroups = [
+  {
+    title: "Customer Support",
+    description:
+      "Call center, email handling, live chat, and customer experience management.",
+    short: "Support",
+  },
+  {
+    title: "Data & Analytics",
+    description:
+      "Data entry, data processing, reporting, and business insights.",
+    short: "Data",
+  },
+  {
+    title: "Finance & Accounting",
+    description:
+      "Bookkeeping, payroll support, invoicing, and financial reports.",
+    short: "Finance",
+  },
+  {
+    title: "E-commerce Operations",
+    description:
+      "Order management, product listing, inventory updates, and support.",
+    short: "Commerce",
+  },
+  {
+    title: "Back-Office Operations",
+    description:
+      "Administrative tasks, documentation, records, and workflow support.",
+    short: "Back Office",
+  },
+  {
+    title: "HR & Recruitment",
+    description:
+      "Talent sourcing, candidate coordination, onboarding, and HR admin.",
+    short: "People",
+  },
+  {
+    title: "IT & Technical Support",
+    description:
+      "System support, troubleshooting, ticket handling, and user assistance.",
+    short: "Technical",
+  },
+  {
+    title: "Sales & Lead Generation",
+    description:
+      "Outbound calling, lead qualification, CRM updates, and follow-ups.",
+    short: "Growth",
+  },
+];
+
+export default function Investment({
+  title = "Business Processes We Support",
+  subtitle = "Flexible teams for the operational work that keeps your business moving, from customer care to back-office execution.",
+  items = defaultServiceGroups,
+}) {
   return (
-    <section>
-      <div class="container py-block">
-        <div class="pb-container">
-          <div class="relative">
-            <div class="flex flex-col gap-6 lg:gap-8">
-              <h2
-                class="z-10 inline-block max-w-[60%] text-2xl lg:text-3xl"
-                id="venture-investments"
-              >
-                Venture investments
-              </h2>
-            </div>
+    <section className="bg-gray-defi-shadow">
+      <div className="container py-block">
+        <div className="mb-3xl flex flex-col gap-xl">
+          <div className="flex max-w-4xl flex-col gap-xs">
+            <h2 className="font-blender text-xl uppercase text-green-dark">
+              {title}
+            </h2>
+            <p className="text-sm leading-relaxed text-gray-off-white/70 lg:text-base">
+              {subtitle}
+            </p>
           </div>
+          <hr className="!border-[#AB290E]" />
         </div>
-        <section class="relative bg-gray-night-green text-gray-off-white">
-          <div class="group/cards grid gap-md lg:grid-cols-3 lg:gap-xl">
-            <a
-              style={{ position: "relative" }}
-              class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70 lg:col-span-2"
-              href="#"
-            >
-              <span class="sr-only">Ventures › Portfolio</span>
-              <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
-                DeFi Applications
-              </div>
-              <div class="flex flex-wrap gap-x-[3.125rem] gap-y-2 overflow-hidden">
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Euler.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-OneBalance.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-1inch.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Zerion.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Bluefin.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Aave.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Infinex.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Aerodrome-Finance.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Wildcat-Finance-1.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Bebop.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Treehouse-1.svg"
-                />
-              </div>
-            </a>
-            <a
-              style={{ position: "relative" }}
-              class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="#"
-            >
-              <span class="sr-only">Ventures › Portfolio</span>
-              <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
-                Data & Analytics
-              </div>
-              <div class="flex flex-wrap gap-x-[3.125rem] gap-y-2 overflow-hidden">
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Silicon-Data.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Stork.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Arkham-1.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Synnax.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Chaos-Labs.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Pyth.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-GMCI.svg"
-                />
-              </div>
-            </a>
-            <a
-              style={{ position: "relative" }}
-              class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="#"
-            >
-              <span class="sr-only">Ventures › Portfolio</span>
-              <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
-                Institutional
-              </div>
-              <div class="flex flex-wrap gap-x-[3.125rem] gap-y-2 overflow-hidden">
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Notabene.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Kiln.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Raven.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Dfns.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Portfolio-map-Pavebank-2.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-BCB-Group.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Crossover.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Hex-Trust.svg"
-                />
-              </div>
-            </a>
-            <a
-              style={{ position: "relative" }}
-              class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70 lg:col-span-2"
-              href="#"
-            >
-              <span class="sr-only">Ventures › Portfolio</span>
-              <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
-                Trading Platforms
-              </div>
-              <div class="flex flex-wrap gap-x-[3.125rem] gap-y-2 overflow-hidden">
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Bitpanda.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-dYdX.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Backpack.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Reya.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-GTE.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Blum.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Portfolio-map-Bulk-1.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Portfolio-map-Pump-1.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-One-Trading.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Portfolio-map-Bullet-1.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Thalex.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-SynFutures.svg"
-                />
-              </div>
-            </a>
-            <a
-              style={{ position: "relative" }}
-              class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="#"
-            >
-              <span class="sr-only">Ventures › Portfolio</span>
-              <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
-                Infrastructure
-              </div>
-              <div class="flex flex-wrap gap-x-[3.125rem] gap-y-2 overflow-hidden">
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Hyperbolic.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Noble.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Portfolio-map-Turnkey.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Portfolio-map-DoubleZero.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Silicon-Data-2.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Bloxroute-Labs.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Dawn.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-GasZip.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Lens.svg"
-                />
-              </div>
-            </a>
-            <a
-              style={{ position: "relative" }}
-              class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="#"
-            >
-              <span class="sr-only">Ventures › Portfolio</span>
-              <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
-                Blockchains
-              </div>
-              <div class="flex flex-wrap gap-x-[3.125rem] gap-y-2 overflow-hidden">
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Monad.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Solana.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-TON.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Optimism.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Starknet.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Matter-Labs.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Taiko.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Flare.svg"
-                />
-              </div>
-            </a>
-            <a
-              style={{ position: "relative" }}
-              class="group/interactive flex h-[12.5rem] flex-col gap-[1.185rem] bg-gray-defi-graphite p-xl transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              href="#"
-            >
-              <span class="sr-only">Ventures › Portfolio</span>
-              <div class="flex items-center justify-between font-blender text-xl uppercase text-blue-mid">
-                Stablecoins RWA & Payments
-              </div>
-              <div class="flex flex-wrap gap-x-[3.125rem] gap-y-2 overflow-hidden">
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Portfolio-map-Ethena.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Usual.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Agora.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Ondo.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-M0.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-CODEX.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Centrifuge.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Angle.svg"
-                />
-                <img
-                  alt="Logo"
-                  loading="lazy"
-                  width="1152"
-                  height="1152"
-                  decoding="async"
-                  data-nimg="1"
-                  class="h-2xl w-auto"
-                  style={{ color: "transparent" }}
-                  src="images/Ventures-Logo-%E2%80%93-Noah.svg"
-                />
-              </div>
-            </a>
+
+        <section className="relative text-gray-off-white">
+          <div className="group/cards grid gap-md md:grid-cols-2 xl:grid-cols-4 xl:gap-xl">
+            {items.map((service) => (
+              <a
+                key={service.title}
+                style={{ position: "relative" }}
+                className="group/interactive relative flex min-h-[17rem] flex-col justify-between overflow-hidden bg-gray-defi-graphite p-xl transition-all bevel hover:-translate-y-1 hover:bg-gray-defi-charcoal lg:group-hover/cards:[&:not(:hover)]:opacity-70"
+                href="#"
+              >
+                <span className="sr-only">{service.title}</span>
+                <div className="pointer-events-none absolute inset-x-xl top-0 h-[0.18rem] bg-blue-mid/35 transition-colors group-hover/interactive:bg-green-dark" />
+                <div className="font-blender text-lg uppercase leading-tight text-blue-mid">
+                  {service.title}
+                </div>
+
+                <div className="flex flex-col gap-md">
+                  <div className="w-max bevel border border-blue-mid/25 bg-gray-night-green/35 px-xs py-[0.35rem] font-blender text-sm uppercase text-green-dark">
+                    {service.short}
+                  </div>
+                  <p className="text-sm leading-relaxed text-gray-off-white/72 lg:text-base">
+                    {service.description}
+                  </p>
+                </div>
+              </a>
+            ))}
           </div>
         </section>
-        <div class="pt-container flex">
-          <a
-            style={{ position: "relative" }}
-            class="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-green-tradfi text-gray-night-green"
-            href="#"
-          >
-            <span class="sr-only">Ventures › Portfolio</span>View full portfolio
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 40 40"
-              class="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset]"
-              style={{
-                "--arrow-offset": "0.4rem",
-                width: "1rem",
-              }}
-            >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   );

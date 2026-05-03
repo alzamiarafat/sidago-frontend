@@ -1,3 +1,7 @@
+"use client";
+
+import { useGlobal } from "@/src/hooks/useGlobal";
+
 function YoutubeIcon() {
   return (
     <svg
@@ -63,12 +67,20 @@ function FooterSocialIcon({ platform }) {
 }
 
 export default function Footer({ footer }) {
-  const navLinks = footer?.navLinks || [];
-  const socialLinks = footer?.socialLinks || [];
-  const legalBlocks = footer?.legalBlocks || [];
-  const policyLinks = footer?.policyLinks || [];
+  const settings = useGlobal();
+  const footerData = footer || settings?.footer;
 
-  if (navLinks.length === 0 && legalBlocks.length === 0 && policyLinks.length === 0) {
+  const navLinks = footerData?.navLinks || [];
+  const socialLinks = footerData?.socialLinks || [];
+  const legalBlocks = footerData?.legalBlocks || [];
+  const policyLinks = footerData?.policyLinks || [];
+
+  if (
+    navLinks.length === 0 &&
+    socialLinks.length === 0 &&
+    legalBlocks.length === 0 &&
+    policyLinks.length === 0
+  ) {
     return null;
   }
 

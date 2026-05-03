@@ -1,158 +1,89 @@
-export default function PartnerBenefit({ benefits }) {
+const defaultBenefits = [
+  {
+    title: "Results-Driven Operations",
+    description:
+      "We focus on measurable outcomes that improve efficiency, service quality, and operating cost.",
+    iconPath: "M6 29h28M10 25l6-6 5 4 9-11M28 12h6v6",
+  },
+  {
+    title: "Skilled Dedicated Teams",
+    description:
+      "Trained specialists support daily business tasks with accuracy, consistency, and clear ownership.",
+    iconPath:
+      "M13 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM27 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM5 33c1-6 4-10 8-10s7 4 8 10M19 33c1-5 4-8 8-8s7 3 8 8",
+  },
+  {
+    title: "Flexible Scaling",
+    description:
+      "Scale capacity up or down based on demand without the overhead of constant hiring.",
+    iconPath: "M7 29V11h6v18M17 29V7h6v22M27 29V15h6v14",
+  },
+  {
+    title: "End-to-End Management",
+    description:
+      "From onboarding to execution, we manage workflows, handoffs, reporting, and continuous improvement.",
+    iconPath: "M8 9h24v22H8zM13 15h14M13 20h14M13 25h8",
+  },
+  {
+    title: "Cost Efficiency",
+    description:
+      "Optimize operational expenses while maintaining reliable, high-quality service delivery.",
+    iconPath:
+      "M20 6v28M26 12c-2-2-5-3-8-2-4 1-5 6-1 8l7 3c4 2 3 7-1 8-4 1-8-1-10-3",
+  },
+  {
+    title: "Performance Reporting",
+    description:
+      "Track delivery with practical insights, regular reporting, and improvement plans your team can act on.",
+    iconPath: "M7 31h26M11 27v-8M19 27V9M27 27V15",
+  },
+];
+
+export default function PartnerBenefit({
+  title = "Why Choose Our BPO Services",
+  benefits = defaultBenefits,
+}) {
   return (
-    <section class="bg-gray-defi-shadow">
-      <div class="container py-block">
-        <div class="mb-3xl flex flex-col gap-xl">
-          <div class="flex flex-col gap-xs">
-            <h2
-              id="partner-with-sidago-ventures"
-              class="font-blender text-xl uppercase text-green-dark"
-            >
-              Partner with SIDAGO Ventures
+    <section className="">
+      <div className="container py-block">
+        <div className="mb-3xl flex flex-col gap-xl">
+          <div className="flex flex-col gap-xs">
+            <h2 className="font-blender text-xl uppercase text-green-dark">
+              {title}
             </h2>
           </div>
-          <hr class="!border-[#AB290E]" />
+          <hr className="!border-[#AB290E]" />
         </div>
-        <section class="bg-gray-defi-shadow text-gray-off-white">
-          <div class="grid gap-xl lg:grid-cols-2">
-            <div class="flex flex-row items-center gap-md bevel lg:gap-2xl lg:bg-gray-defi-charcoal lg:p-xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 84 84"
-                class="h-[3.5rem] w-[3.5rem] shrink-0 lg:h-[6.5rem] lg:w-[6.5rem] text-purple-mid"
+
+        <section className="text-gray-off-white">
+          <div className="grid gap-xl lg:grid-cols-2">
+            {benefits.map((benefit) => (
+              <article
+                key={benefit.title}
+                className="flex min-h-[10.5rem] flex-row items-start gap-md bevel bg-gray-defi-charcoal p-xl transition-colors hover:bg-gray-defi-graphite lg:gap-2xl"
               >
-                <path
-                  fill="currentColor"
-                  fillRule="evenodd"
-                  d="m20.47 21.53.53-1.28h42v1.5H22.81l40.72 40.72-.53 1.28H21v-1.5h40.19z"
-                  clipRule="evenodd"
-                ></path>
-                <path
-                  fill="currentColor"
-                  fillRule="evenodd"
-                  d="M42.75 10.5v63h-1.5v-63z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              <div class="text-lg lg:text-xl lg:text-gray-off-white">
-                Value add first -approach
-              </div>
-            </div>
-            <div class="flex flex-row items-center gap-md bevel lg:gap-2xl lg:bg-gray-defi-charcoal lg:p-xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 40 40"
-                class="h-[3.5rem] w-[3.5rem] shrink-0 lg:h-[6.5rem] lg:w-[6.5rem] text-purple-mid"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinejoin="bevel"
-                  strokeWidth="0.7"
-                  d="M15.001 7.5h12.5l-2.5 5 7.5 5 2.5 7.5-2.5 5-5 5h-15l-5-5-2.5-5 2.5-7.5 7.5-5-2.5-5z"
-                ></path>
-                <path
-                  stroke="currentColor"
-                  strokeLinejoin="bevel"
-                  strokeWidth="0.7"
-                  d="M25.001 20h-10l10 7.5h-10M20 30V17.5"
-                ></path>
-              </svg>
-              <div class="text-lg lg:text-xl lg:text-gray-off-white">
-                Investments using own capital
-              </div>
-            </div>
-            <div class="flex flex-row items-center gap-md bevel lg:gap-2xl lg:bg-gray-defi-charcoal lg:p-xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 40 40"
-                class="h-[3.5rem] w-[3.5rem] shrink-0 lg:h-[6.5rem] lg:w-[6.5rem] text-purple-mid"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinejoin="bevel"
-                  strokeWidth="0.7"
-                  d="M35 5H25l10 10z"
-                ></path>
-                <path
-                  stroke="currentColor"
-                  strokeLinejoin="bevel"
-                  strokeWidth="0.7"
-                  d="M25 5 15 15l10 10 10-10"
-                ></path>
-                <path
-                  stroke="currentColor"
-                  strokeLinejoin="bevel"
-                  strokeWidth="0.7"
-                  d="M25 25v10L5 15h10M15 25H5l10 10z"
-                ></path>
-              </svg>
-              <div class="text-lg lg:text-xl lg:text-gray-off-white">
-                Founded by web3 founders
-              </div>
-            </div>
-            <div class="flex flex-row items-center gap-md bevel lg:gap-2xl lg:bg-gray-defi-charcoal lg:p-xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 40 40"
-                class="h-[3.5rem] w-[3.5rem] shrink-0 lg:h-[6.5rem] lg:w-[6.5rem] text-purple-mid"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeMiterlimit="10"
-                  strokeWidth="0.7"
-                  d="M35 5H21.364v13.636H35zM35 21.364H21.364V35H35zM18.636 21.364H5V35h13.636z"
-                ></path>
-              </svg>
-              <div class="text-lg lg:text-xl lg:text-gray-off-white">
-                In-house builders across web3
-              </div>
-            </div>
-            <div class="flex flex-row items-center gap-md bevel lg:gap-2xl lg:bg-gray-defi-charcoal lg:p-xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 40 40"
-                class="h-[3.5rem] w-[3.5rem] shrink-0 lg:h-[6.5rem] lg:w-[6.5rem] text-purple-mid"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeMiterlimit="10"
-                  strokeWidth="0.7"
-                  d="M20 5v2.5M20 12.5v15M20 32.5V35M12.5 30h15M12.5 10h15M17.5 20H5M22.5 20H35M32.5 30H35M7.5 30H5M32.5 10H35M7.5 10H5M10 5v12.5M10 22.5V35M30 22.5V35M30 17.5V5"
-                ></path>
-              </svg>
-              <div class="text-lg lg:text-xl lg:text-gray-off-white">
-                Governance and DeFi expertise
-              </div>
-            </div>
-            <div class="flex flex-row items-center gap-md bevel lg:gap-2xl lg:bg-gray-defi-charcoal lg:p-xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 40 40"
-                class="h-[3.5rem] w-[3.5rem] shrink-0 lg:h-[6.5rem] lg:w-[6.5rem] text-purple-mid"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeMiterlimit="10"
-                  strokeWidth="0.7"
-                  d="M3 9h30L18 23.828z"
-                ></path>
-                <path
-                  stroke="currentColor"
-                  strokeMiterlimit="10"
-                  strokeWidth="0.7"
-                  d="M3 16.414 18 31.24l15-14.827"
-                ></path>
-              </svg>
-              <div class="text-lg lg:text-xl lg:text-gray-off-white">
-                Deep liquidity understanding
-              </div>
-            </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 40 40"
+                  className="h-[3.5rem] w-[3.5rem] shrink-0 text-purple-mid lg:h-[6.5rem] lg:w-[6.5rem]"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinejoin="bevel"
+                    strokeWidth="0.9"
+                    d={benefit.iconPath}
+                  />
+                </svg>
+                <div className="flex flex-col gap-xs">
+                  <h3 className="text-lg lg:text-xl">{benefit.title}</h3>
+                  <p className="text-sm leading-relaxed text-gray-off-white/70 lg:text-base">
+                    {benefit.description}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
       </div>

@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import {
+  defaultBusinessProcessesPage,
   defaultGlobalSettings,
   defaultHomepage,
 } from "../../src/data/cms/defaults.mjs";
@@ -15,19 +16,19 @@ async function writeSeedFile(payload) {
   await fs.writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`);
 }
 
-async function pushSingleType(endpoint, data) {
-  const response = await fetch(`${baseUrl}/api/${endpoint}?status=published`, {
-    method: "PUT",
+async function pushSeedPayload(payload) {
+  const response = await fetch(`${baseUrl}/api/seed`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ data }),
+    body: JSON.stringify({ data: payload }),
   });
 
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`Failed to seed ${endpoint}: ${response.status} ${body}`);
+    throw new Error(`Failed to push seed payload: ${response.status} ${body}`);
   }
 }
 
@@ -45,6 +46,7 @@ async function main() {
       footer: defaultGlobalSettings.footer,
     },
     homepage: defaultHomepage,
+    businessProcess: defaultBusinessProcessesPage,
   };
 
   await writeSeedFile(payload);
@@ -60,8 +62,7 @@ async function main() {
     throw new Error("STRAPI_SEED_TOKEN is required when using --push.");
   }
 
-  await pushSingleType("global", payload.global);
-  await pushSingleType("homepage", payload.homepage);
+  await pushSeedPayload(payload);
   process.stdout.write(
     `Seed data pushed and published at ${baseUrl}/api\n`,
   );

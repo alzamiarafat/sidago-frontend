@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-02T20:32:30.216Z",
+  "generatedAt": "2026-05-03T12:48:01.861Z",
   "global": {
     "siteName": "Sidago",
     "siteContactEmail": "hello@sidago.com",
@@ -325,7 +325,7 @@
         "colSpan": "col-span-12 xl:col-span-4",
         "title": "Marketing & Growth",
         "subtitle": "Campaign support that builds reach and demand",
-        "decorationType": "events",
+  ~ StudentService ~ listStudents ~ filters: { page: 1, filter: '' }       "decorationType": "events",
         "topType": "none",
         "sortOrder": 3
       },
@@ -343,14 +343,14 @@
         "sortOrder": 4
       },
       {
-        "cardId": "consulting-strategy",
-        "href": "/strategy",
-        "srLabel": "Consulting and Strategy",
+        "cardId": "process-improvement",
+        "href": "/process-improvement",
+        "srLabel": "Process Improvement",
         "bgClass": "bg-gray-defi-slate",
         "textClass": "text-gray-off-white",
         "colSpan": "col-span-7 xl:col-span-4",
-        "title": "Consulting & Strategy",
-        "subtitle": "Practical guidance for growth, planning, and scale",
+        "title": "Process Improvement",
+        "subtitle": "Smarter workflows for lower costs and better output",
         "decorationType": "market",
         "topType": "none",
         "sortOrder": 5
@@ -382,5 +382,193 @@
         "sortOrder": 3
       }
     ]
+  },
+  "businessProcess": {
+    "hero": {
+      "useVideo": true,
+      "videoSrc": "https://www.wintermute.com/videos/heroes/ventures.mp4",
+      "imageSrc": "",
+      "subtitle": "Work with a high-performance BPO partner to optimize workflows, cut overhead, and accelerate growth",
+      "fontWeight": 400,
+      "lighterTheme": false,
+      "loop": true,
+      "lighterBgColor": "bg-[#f0f1f1]",
+      "videoSectionClass": "",
+      "videoClass": "left-[500px] top-[70px] !w-3/4 !h-3/4",
+      "titles": [
+        {
+          "title": "Turn operations into",
+          "color": "",
+          "className": "",
+          "sortOrder": 1
+        },
+        {
+          "title": "your competitive advantage",
+          "color": "#3c85dd",
+          "className": "",
+          "sortOrder": 2
+        }
+      ]
+    },
+    "statistics": [
+      {
+        "stat": "60%",
+        "label": "Average cost reduction",
+        "width": 244,
+        "activeDotColor": "#3C85DD",
+        "sortOrder": 1
+      },
+      {
+        "stat": "40+",
+        "label": "Dedicated operations specialists",
+        "width": 248,
+        "activeDotColor": "#3C85DD",
+        "sortOrder": 2
+      },
+      {
+        "stat": "95%",
+        "label": "Client satisfaction rate",
+        "width": 198,
+        "activeDotColor": "#3C85DD",
+        "sortOrder": 3
+      },
+      {
+        "stat": "3X",
+        "label": "Faster workflow execution",
+        "width": 192,
+        "activeDotColor": "#3C85DD",
+        "sortOrder": 4
+      },
+      {
+        "stat": "24/7",
+        "label": "Operational support coverage",
+        "width": 192,
+        "activeDotColor": "#3C85DD",
+        "sortOrder": 5
+      }
+    ],
+    "partnerBenefit": {
+      "title": "Why Choose Our BPO Services",
+      "benefits": [
+        {
+          "title": "Results-Driven Operations",
+          "description": "We focus on measurable outcomes that improve efficiency, service quality, and operating cost.",
+          "iconPath": "M6 29h28M10 25l6-6 5 4 9-11M28 12h6v6"
+        },
+        {
+          "title": "Skilled Dedicated Teams",
+          "description": "Trained specialists support daily business tasks with accuracy, consistency, and clear ownership.",
+          "iconPath": "M13 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM27 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM5 33c1-6 4-10 8-10s7 4 8 10M19 33c1-5 4-8 8-8s7 3 8 8"
+        },
+        {
+          "title": "Flexible Scaling",
+          "description": "Scale capacity up or down based on demand without the overhead of constant hiring.",
+          "iconPath": "M7 29V11h6v18M17 29V7h6v22M27 29V15h6v14"
+        },
+        {
+          "title": "End-to-End Management",
+          "description": "From onboarding to execution, we manage workflows, handoffs, reporting, and continuous improvement.",
+          "iconPath": "M8 9h24v22H8zM13 15h14M13 20h14M13 25h8"
+        },
+        {
+          "title": "Cost Efficiency",
+          "description": "Optimize operational expenses while maintaining reliable, high-quality service delivery.",
+          "iconPath": "M20 6v28M26 12c-2-2-5-3-8-2-4 1-5 6-1 8l7 3c4 2 3 7-1 8-4 1-8-1-10-3"
+        },
+        {
+          "title": "Performance Reporting",
+          "description": "Track delivery with practical insights, regular reporting, and improvement plans your team can act on.",
+          "iconPath": "M7 31h26M11 27v-8M19 27V9M27 27V15"
+        }
+      ]
+    },
+    "processes": {
+      "title": "Business Processes We Support",
+      "subtitle": "Flexible teams for the operational work that keeps your business moving, from customer care to back-office execution.",
+      "items": [
+        {
+          "title": "Customer Support",
+          "short": "Support",
+          "description": "Call center, email handling, live chat, and customer experience management."
+        },
+        {
+          "title": "Data & Analytics",
+          "short": "Data",
+          "description": "Data entry, data processing, reporting, and business insights."
+        },
+        {
+          "title": "Finance & Accounting",
+          "short": "Finance",
+          "description": "Bookkeeping, payroll support, invoicing, and financial reports."
+        },
+        {
+          "title": "E-commerce Operations",
+          "short": "Commerce",
+          "description": "Order management, product listing, inventory updates, and support."
+        },
+        {
+          "title": "Back-Office Operations",
+          "short": "Back Office",
+          "description": "Administrative tasks, documentation, records, and workflow support."
+        },
+        {
+          "title": "HR & Recruitment",
+          "short": "People",
+          "description": "Talent sourcing, candidate coordination, onboarding, and HR admin."
+        },
+        {
+          "title": "IT & Technical Support",
+          "short": "Technical",
+          "description": "System support, troubleshooting, ticket handling, and user assistance."
+        },
+        {
+          "title": "Sales & Lead Generation",
+          "short": "Growth",
+          "description": "Outbound calling, lead qualification, CRM updates, and follow-ups."
+        }
+      ]
+    },
+    "solutions": {
+      "title": "Solutions We Deliver",
+      "subtitle": "Dedicated support models built around the daily workflows your business needs to run smoothly and scale confidently.",
+      "items": [
+        {
+          "title": "Customer Support Solutions",
+          "label": "Solution",
+          "description": "End-to-end support operations designed to improve response quality, customer satisfaction, and retention."
+        },
+        {
+          "title": "Back-Office Management",
+          "label": "Solution",
+          "description": "Reliable administrative and operational support that keeps daily workflows accurate and organized."
+        },
+        {
+          "title": "Process Optimization",
+          "label": "Solution",
+          "description": "Practical workflow improvements that reduce friction, speed up execution, and make performance easier to track."
+        }
+      ]
+    },
+    "workOverview": {
+      "eyebrow": "Ready to streamline operations?",
+      "title": "Focus on Growth. We Handle the Operations.",
+      "description": "Partner with Sidago to streamline business processes, reduce operating costs, and scale your team with confidence.",
+      "buttonText": "Get Started",
+      "href": "/contact",
+      "metrics": [
+        {
+          "value": "60%",
+          "label": "Cost reduction"
+        },
+        {
+          "value": "3X",
+          "label": "Faster execution"
+        },
+        {
+          "value": "24/7",
+          "label": "Operational support"
+        }
+      ]
+    }
   }
 }

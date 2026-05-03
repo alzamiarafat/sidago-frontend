@@ -1,12 +1,12 @@
 import { cache } from "react";
 import {
+  defaultBusinessProcessesPage,
   defaultGlobalSettings,
   defaultHomepage,
 } from "@/src/data/cms/defaults";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
-const STRAPI_TOKEN =
-  process.env.STRAPI_API_TOKEN || process.env.STRAPI_SEED_TOKEN;
+const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
 
 function unwrapEntity(entity) {
   if (!entity) {
@@ -66,9 +66,9 @@ function normalizeGlobalSettings(entry) {
   };
 }
 
-function normalizeHero(hero) {
+function normalizeHero(hero, fallbackHero = defaultHomepage.hero) {
   if (!hero) {
-    return defaultHomepage.hero;
+    return fallbackHero;
   }
 
   const titles =
@@ -76,10 +76,10 @@ function normalizeHero(hero) {
       ?.filter((title) => title?.title)
       .slice()
       .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0)) ||
-    defaultHomepage.hero.titles;
+    fallbackHero.titles;
 
   return {
-    ...defaultHomepage.hero,
+    ...fallbackHero,
     ...hero,
     titles,
   };
@@ -389,6 +389,71 @@ function normalizeHomepage(entry) {
   };
 }
 
+function normalizeJsonSection(section, fallbackSection, childKey = "items") {
+  if (!section?.title) {
+    return fallbackSection;
+  }
+
+  const children = Array.isArray(section[childKey])
+    ? section[childKey].filter((item) => item?.title)
+    : fallbackSection[childKey];
+
+  return {
+    ...fallbackSection,
+    ...section,
+    [childKey]: children?.length > 0 ? children : fallbackSection[childKey],
+  };
+}
+
+function normalizeBusinessProcessesPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultBusinessProcessesPage;
+  }
+
+  return {
+    hero: normalizeHero(item.hero, defaultBusinessProcessesPage.hero),
+    statistics:
+      item.statistics?.length > 0
+        ? item.statistics
+            .filter((statItem) => statItem?.label && statItem?.stat)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((statItem, index) =>
+              normalizeStatisticItem(
+                statItem,
+                defaultBusinessProcessesPage.statistics[index] ||
+                  defaultBusinessProcessesPage.statistics[0],
+              ),
+            )
+        : defaultBusinessProcessesPage.statistics,
+    partnerBenefit: normalizeJsonSection(
+      item.partnerBenefit,
+      defaultBusinessProcessesPage.partnerBenefit,
+      "benefits",
+    ),
+    processes: normalizeJsonSection(
+      item.processes,
+      defaultBusinessProcessesPage.processes,
+    ),
+    solutions: normalizeJsonSection(
+      item.solutions,
+      defaultBusinessProcessesPage.solutions,
+    ),
+    workOverview: item.workOverview?.title
+      ? {
+          ...defaultBusinessProcessesPage.workOverview,
+          ...item.workOverview,
+          metrics:
+            item.workOverview.metrics?.length > 0
+              ? item.workOverview.metrics
+              : defaultBusinessProcessesPage.workOverview.metrics,
+        }
+      : defaultBusinessProcessesPage.workOverview,
+  };
+}
+
 export async function fetchAPI(path, options = {}) {
   if (!STRAPI_URL) {
     return null;
@@ -421,7 +486,7 @@ export async function fetchAPI(path, options = {}) {
 
 export const getGlobalSettings = cache(async () => {
   const data = await fetchAPI(
-    "global?populate[siteLogo]=*&populate[socialLinks]=*&populate[version]=*&populate[footer][populate][navLinks]=*&populate[footer][populate][socialLinks]=*&populate[footer][populate][legalBlocks]=*&populate[footer][populate][policyLinks]=*",
+    "global?populate[siteLogo][fields][0]=url&populate[siteLogo][fields][1]=alternativeText&populate[socialLinks]=*&populate[version]=*&populate[footer][populate][navLinks]=*&populate[footer][populate][socialLinks]=*&populate[footer][populate][legalBlocks]=*&populate[footer][populate][policyLinks]=*",
   );
   return normalizeGlobalSettings(data?.data);
 });
@@ -431,4 +496,11 @@ export const getHomepage = cache(async () => {
     "homepage?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[marketTicker]=*&populate[capabilities]=*&populate[cardsGrid]=*&populate[cta]=*",
   );
   return normalizeHomepage(data?.data);
+});
+
+export const getBusinessProcessesPage = cache(async () => {
+  const data = await fetchAPI(
+    "business-process?populate[hero][populate][titles]=*&populate[statistics]=*",
+  );
+  return normalizeBusinessProcessesPage(data?.data);
 });

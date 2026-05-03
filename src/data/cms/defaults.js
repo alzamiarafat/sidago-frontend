@@ -1,1 +1,5 @@
-export { defaultGlobalSettings, defaultHomepage } from "./defaults.mjs";
+export {
+  defaultBusinessProcessesPage,
+  defaultGlobalSettings,
+  defaultHomepage,
+} from "./defaults.mjs";
