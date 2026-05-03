@@ -16,109 +16,10 @@ import ServiceLatestInsight from "@/src/components/sections/v2/servicepage/Servi
 import Support from "@/src/components/sections/v2/servicepage/Support";
 import TradeOption from "@/src/components/sections/v2/servicepage/TradeOption";
 import VideoOverview from "@/src/components/sections/v2/servicepage/VideoOverview";
+import { getGlobalSettings, getOperationsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.spots;
-
-const insightItems = [
-  {
-    title: "Report: Digital asset OTC market 2025",
-    href: "#",
-    srText:
-      "Insights › Market color › Reports › Digital asset otc markets 2025",
-  },
-  {
-    title: "Discover NODE Insights: trader curated market insights",
-    href: "#",
-    srText: "Insights › News › Announcements › Sidago trader assessment day",
-  },
-  {
-    title: "Trade crypto indexes via CFDs on Node",
-    href: "#",
-    srText: "Insights › News › Announcements › Introducing node insights",
-  },
-];
-
-const stats = [
-  {
-    stat: "$65B",
-    label: "Annual OTC trading volume",
-    width: 244,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "1K",
-    label: "OTC trades per second",
-    width: 248,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "$0.5",
-    label: "Largest OTC trade execution",
-    width: 198,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "700",
-    label: "Tokens traded via OTC",
-    width: 192,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "4K",
-    label: "OTC volume growth YoY",
-    width: 192,
-    activeDotColor: "#E7512F",
-  },
-];
-
-const accordionItems = [
-  {
-    title: "Spot",
-    description:
-      "Trade spot or derivatives across the widest range of digital assets, with an OTC desk that sits at the source of liquidity.",
-    href: "spots",
-    video: "/media/Accordion-Spot.mp4#t=2",
-    rotate: "rotate(30deg)",
-    sr: "Otc",
-  },
-  {
-    title: "Options",
-    description:
-      "Create liquid and efficient markets for your token globally, with the partner of choice for top-tier protocols.",
-    href: "options",
-    video: "/media/Accordion-Options.mp4#t=3.15",
-    rotate: "rotate(-25deg)",
-    sr: "Liquidity",
-  },
-  {
-    title: "Forwards",
-    description:
-      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "forwards",
-    video: "/media/Accordion-Forwards.mp4#t=1",
-    rotate: "rotate(0deg)",
-    sr: "Defi",
-  },
-  {
-    title: "Execution",
-    description:
-      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "execution",
-    video: "/media/Accordion-CFDs.mp4#t=1",
-    rotate: "rotate(0deg)",
-    sr: "Defi",
-  },
-  {
-    title: "Tailored products",
-    description:
-      "Partner with a leading builder, liquidity provider, blockchain researcher, and governance contributor in DeFi.",
-    href: "tailored-products",
-    video: "/media/Accordion-Tailored-products.mp4#t=1",
-    rotate: "rotate(0deg)",
-    sr: "Defi",
-  },
-];
 
 const pageContent = {
   otc: {
@@ -173,8 +74,12 @@ const pageContent = {
   },
 };
 
-export default function OperationsPage({ variant = "otc", slug = "" }) {
-  const page = pageContent[variant] ?? pageContent.otc;
+export default async function OperationsPage({ variant = "otc", slug = "" }) {
+  const [cmsPage, settings] = await Promise.all([
+    getOperationsPage(),
+    getGlobalSettings(),
+  ]);
+  const page = variant === "otc" ? cmsPage : (pageContent[variant] ?? cmsPage);
   const isGovernancePage = variant === "governance";
 
   return (
@@ -198,12 +103,12 @@ export default function OperationsPage({ variant = "otc", slug = "" }) {
           ) : (
             <>
               <InsightNews
-                items={insightItems}
+                items={cmsPage.insightNews}
                 bgColor="bg-white"
                 textColor="text-black"
               />
               <Statistics
-                stats={stats}
+                stats={cmsPage.statistics}
                 bgColor="bg-gray-200"
                 lighterTheme={true}
                 dotColor="#4D4D4D"
@@ -211,7 +116,7 @@ export default function OperationsPage({ variant = "otc", slug = "" }) {
               <ContentTab slug={slug} />
               <VideoOverview />
               <Capabilities
-                items={accordionItems}
+                items={cmsPage.capabilities}
                 bgColor="bg-[#E5E6E5]"
                 textColor="text-black"
                 hoverColor="bg-gray-tradfi-frost"
@@ -225,8 +130,8 @@ export default function OperationsPage({ variant = "otc", slug = "" }) {
             </>
           )}
 
-          <CTASection />
-          <Footer />
+          <CTASection items={cmsPage.cta} />
+          <Footer footer={settings?.footer} />
         </main>
       </div>
     </div>

@@ -4,6 +4,7 @@ import {
   defaultBusinessProcessesPage,
   defaultGlobalSettings,
   defaultHomepage,
+  defaultOperationsPage,
 } from "../../src/data/cms/defaults.mjs";
 
 const outputPath = path.resolve(process.cwd(), "scripts", "seed-data.json");
@@ -47,6 +48,7 @@ async function main() {
     },
     homepage: defaultHomepage,
     businessProcess: defaultBusinessProcessesPage,
+    operation: defaultOperationsPage,
   };
 
   await writeSeedFile(payload);

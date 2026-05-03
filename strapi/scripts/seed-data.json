@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-03T12:48:01.861Z",
+  "generatedAt": "2026-05-03T13:07:17.981Z",
   "global": {
     "siteName": "Sidago",
     "siteContactEmail": "hello@sidago.com",
@@ -325,7 +325,7 @@
         "colSpan": "col-span-12 xl:col-span-4",
         "title": "Marketing & Growth",
         "subtitle": "Campaign support that builds reach and demand",
-  ~ StudentService ~ listStudents ~ filters: { page: 1, filter: '' }       "decorationType": "events",
+        "decorationType": "events",
         "topType": "none",
         "sortOrder": 3
       },
@@ -570,5 +570,150 @@
         }
       ]
     }
+  },
+  "operation": {
+    "hero": {
+      "useVideo": true,
+      "lighterTheme": true,
+      "videoSrc": "https://www.wintermute.com/videos/heroes/otc.mp4",
+      "titles": [
+        {
+          "title": "Operations built for",
+          "color": "",
+          "className": "text-green-dark",
+          "sortOrder": 1
+        },
+        {
+          "title": "consistent execution",
+          "color": "",
+          "className": "",
+          "sortOrder": 2
+        }
+      ],
+      "subtitle": "Scale daily workflows with dedicated Sidago teams, structured processes, and clear performance visibility.",
+      "videoSectionClass": "bg-gray-tradfi-dust text-gray-night-green"
+    },
+    "insightNews": [
+      {
+        "title": "Operational playbooks for scalable teams",
+        "href": "/business-processes",
+        "srText": "Operations insights - Operational playbooks for scalable teams",
+        "sortOrder": 1
+      },
+      {
+        "title": "How Sidago improves back-office delivery",
+        "href": "/services",
+        "srText": "Operations insights - How Sidago improves back-office delivery",
+        "sortOrder": 2
+      },
+      {
+        "title": "Building reliable support coverage across time zones",
+        "href": "/contact",
+        "srText": "Operations insights - Building reliable support coverage across time zones",
+        "sortOrder": 3
+      }
+    ],
+    "statistics": [
+      {
+        "stat": "24/7",
+        "label": "Operational support coverage",
+        "width": 244,
+        "activeDotColor": "#E7512F",
+        "sortOrder": 1
+      },
+      {
+        "stat": "40+",
+        "label": "Dedicated operations specialists",
+        "width": 248,
+        "activeDotColor": "#E7512F",
+        "sortOrder": 2
+      },
+      {
+        "stat": "95%",
+        "label": "Client satisfaction rate",
+        "width": 198,
+        "activeDotColor": "#E7512F",
+        "sortOrder": 3
+      },
+      {
+        "stat": "3X",
+        "label": "Faster workflow execution",
+        "width": 192,
+        "activeDotColor": "#E7512F",
+        "sortOrder": 4
+      },
+      {
+        "stat": "60%",
+        "label": "Average cost reduction",
+        "width": 192,
+        "activeDotColor": "#E7512F",
+        "sortOrder": 5
+      }
+    ],
+    "capabilities": [
+      {
+        "title": "Customer Operations",
+        "description": "Dedicated support teams for call handling, live chat, email response, and customer experience workflows.",
+        "href": "customer-operations",
+        "video": "/media/Accordion-Spot.mp4#t=2",
+        "rotate": "rotate(30deg)",
+        "sr": "Customer operations",
+        "sortOrder": 1
+      },
+      {
+        "title": "Back-Office Delivery",
+        "description": "Reliable administrative support for documentation, records, task coordination, and daily process execution.",
+        "href": "back-office-delivery",
+        "video": "/media/Accordion-Options.mp4#t=3.15",
+        "rotate": "rotate(-25deg)",
+        "sr": "Back-office delivery",
+        "sortOrder": 2
+      },
+      {
+        "title": "Data & Reporting",
+        "description": "Accurate data entry, processing, reporting, and operational visibility for better business decisions.",
+        "href": "data-reporting",
+        "video": "/media/Accordion-Forwards.mp4#t=1",
+        "rotate": "rotate(0deg)",
+        "sr": "Data and reporting",
+        "sortOrder": 3
+      },
+      {
+        "title": "Process Improvement",
+        "description": "Workflow reviews and practical improvements that reduce friction, improve handoffs, and increase delivery speed.",
+        "href": "process-improvement",
+        "video": "/media/Accordion-CFDs.mp4#t=1",
+        "rotate": "rotate(0deg)",
+        "sr": "Process improvement",
+        "sortOrder": 4
+      },
+      {
+        "title": "Flexible Team Scaling",
+        "description": "On-demand operational capacity that helps your business respond to changing workloads without hiring overhead.",
+        "href": "flexible-team-scaling",
+        "video": "/media/Accordion-Tailored-products.mp4#t=1",
+        "rotate": "rotate(0deg)",
+        "sr": "Flexible team scaling",
+        "sortOrder": 5
+      }
+    ],
+    "cta": [
+      {
+        "title": "Build your operations team",
+        "description": "Talk to Sidago about workflow coverage and delivery needs",
+        "href": "/contact",
+        "srLabel": "Contact Sidago about operations support",
+        "backgroundColor": "#FF5D3C",
+        "sortOrder": 1
+      },
+      {
+        "title": "Explore business processes",
+        "description": "See the services Sidago can manage for your business",
+        "href": "/business-processes",
+        "srLabel": "Explore Sidago business process services",
+        "backgroundColor": "#FF8C69",
+        "sortOrder": 2
+      }
+    ]
   }
 }

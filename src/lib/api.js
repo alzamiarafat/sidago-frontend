@@ -3,6 +3,7 @@ import {
   defaultBusinessProcessesPage,
   defaultGlobalSettings,
   defaultHomepage,
+  defaultOperationsPage,
 } from "@/src/data/cms/defaults";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
@@ -454,6 +455,79 @@ function normalizeBusinessProcessesPage(entry) {
   };
 }
 
+function normalizeOperationsPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultOperationsPage;
+  }
+
+  return {
+    hero: normalizeHero(item.hero, defaultOperationsPage.hero),
+    insightNews:
+      item.insightNews?.length > 0
+        ? item.insightNews
+            .filter((newsItem) => newsItem?.title)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((newsItem, index) =>
+              normalizeInsightNewsItem(
+                newsItem,
+                defaultOperationsPage.insightNews[index] ||
+                  defaultOperationsPage.insightNews[0],
+              ),
+            )
+        : defaultOperationsPage.insightNews,
+    statistics:
+      item.statistics?.length > 0
+        ? item.statistics
+            .filter((statItem) => statItem?.label && statItem?.stat)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((statItem, index) =>
+              normalizeStatisticItem(
+                statItem,
+                defaultOperationsPage.statistics[index] ||
+                  defaultOperationsPage.statistics[0],
+              ),
+            )
+        : defaultOperationsPage.statistics,
+    capabilities:
+      item.capabilities?.length > 0
+        ? item.capabilities
+            .filter(
+              (capabilityItem) =>
+                capabilityItem?.title &&
+                capabilityItem?.description &&
+                capabilityItem?.href &&
+                capabilityItem?.video,
+            )
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((capabilityItem, index) =>
+              normalizeCapabilityItem(
+                capabilityItem,
+                defaultOperationsPage.capabilities[index] ||
+                  defaultOperationsPage.capabilities[0],
+              ),
+            )
+        : defaultOperationsPage.capabilities,
+    cta:
+      item.cta?.length > 0
+        ? item.cta
+            .filter((ctaItem) => ctaItem?.title && ctaItem?.description && ctaItem?.href)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((ctaItem, index) =>
+              normalizeCtaItem(
+                ctaItem,
+                defaultOperationsPage.cta[index] || defaultOperationsPage.cta[0],
+              ),
+            )
+        : defaultOperationsPage.cta,
+  };
+}
+
 export async function fetchAPI(path, options = {}) {
   if (!STRAPI_URL) {
     return null;
@@ -503,4 +577,11 @@ export const getBusinessProcessesPage = cache(async () => {
     "business-process?populate[hero][populate][titles]=*&populate[statistics]=*",
   );
   return normalizeBusinessProcessesPage(data?.data);
+});
+
+export const getOperationsPage = cache(async () => {
+  const data = await fetchAPI(
+    "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
+  );
+  return normalizeOperationsPage(data?.data);
 });
