@@ -151,23 +151,23 @@ const pageContent = {
       videoSrc: "https://www.wintermute.com/videos/heroes/governance.mp4",
       titles: [
         {
-          title: "Governance for a",
+          title: "Infrastructure for a truly",
           color: "",
           className: "text-white",
         },
         {
-          title: "truly decentralized",
+          title: "scalable",
           color: "#EC5B5B",
           className: "",
         },
         {
-          title: "world",
+          title: "business-driven world",
           color: "",
           className: "text-white",
         },
       ],
       subtitle:
-        "Sidago supports DAOs with governance solutions that drive transparency and long-term value",
+        "Sidago delivers reliable systems and global support to ensure performance, security, and continuous growth",
       videoClass: "left-[500px] !w-3/4",
       bgColor: "bg-[#161917]",
     },

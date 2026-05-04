@@ -31,11 +31,11 @@ services:
       - "9012:9012"
     restart: always
 
-  sidago-frontend:
+  sidago-nextjs-frontend:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: sidago-frontend
+    container_name: sidago-nextjs-frontend
     env_file:
       - .env
     depends_on:
