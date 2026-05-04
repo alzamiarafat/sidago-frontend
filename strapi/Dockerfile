@@ -8,8 +8,10 @@ RUN npm install
 
 COPY . .
 
+RUN mkdir -p /app/public/uploads
+
 RUN npm run build
 
 EXPOSE 9012
 
-CMD ["npm", "run", "start"]
+CMD ["sh", "-c", "mkdir -p /app/public/uploads && npm run start"]
