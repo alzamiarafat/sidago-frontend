@@ -632,7 +632,7 @@ export default function OperationsPageContent() {
             <OperationsMetrics
               metrics={metrics.map((metric) => ({
                 ...metric,
-                activeDotColor: "#1EEB63",
+                activeDotColor: "#168b50",
               }))}
             />
           </div>

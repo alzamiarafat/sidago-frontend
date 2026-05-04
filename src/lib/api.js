@@ -54,10 +54,9 @@ function normalizeGlobalSettings(entry) {
 
   return {
     siteName: item.siteName || defaultGlobalSettings.siteName,
-    siteContactEmail:
-      item.siteContactEmail
-        ? `mailto:${item.siteContactEmail.replace(/^mailto:/, "")}`
-        : defaultGlobalSettings.siteContactEmail,
+    siteContactEmail: item.siteContactEmail
+      ? `mailto:${item.siteContactEmail.replace(/^mailto:/, "")}`
+      : defaultGlobalSettings.siteContactEmail,
     siteLogo: resolveMedia(item.siteLogo) || defaultGlobalSettings.siteLogo,
     version: item.version || defaultGlobalSettings.version,
     socialLinks:
@@ -161,7 +160,8 @@ function normalizeCardsGridItem(item, fallbackItem) {
     colSpan: item.colSpan?.trim() || fallbackItem.colSpan,
     title: item.title.trim(),
     subtitle: item.subtitle?.trim() || "",
-    decorationType: item.decorationType || fallbackItem.decorationType || "none",
+    decorationType:
+      item.decorationType || fallbackItem.decorationType || "none",
     topType: item.topType || fallbackItem.topType || "none",
   };
 }
@@ -212,7 +212,9 @@ function normalizeFooter(footer) {
       footer.navLinks?.length > 0
         ? footer.navLinks
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((link, index) =>
               normalizeFooterLink(
                 link,
@@ -225,7 +227,9 @@ function normalizeFooter(footer) {
       footer.socialLinks?.length > 0
         ? footer.socialLinks
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((link, index) =>
               normalizeFooterSocialLink(
                 link,
@@ -238,7 +242,9 @@ function normalizeFooter(footer) {
       footer.legalBlocks?.length > 0
         ? footer.legalBlocks
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((block, index) =>
               normalizeFooterLegalBlock(
                 block,
@@ -251,7 +257,9 @@ function normalizeFooter(footer) {
       footer.policyLinks?.length > 0
         ? footer.policyLinks
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((link, index) =>
               normalizeFooterLink(
                 link,
@@ -275,7 +283,8 @@ function normalizeCtaItem(item, fallbackItem) {
     description: item.description.trim(),
     href: item.href.trim(),
     srLabel: item.srLabel?.trim() || item.title,
-    backgroundColor: item.backgroundColor?.trim() || fallbackItem.backgroundColor,
+    backgroundColor:
+      item.backgroundColor?.trim() || fallbackItem.backgroundColor,
   };
 }
 
@@ -308,11 +317,14 @@ function normalizeHomepage(entry) {
         ? insightNews
             .filter((newsItem) => newsItem?.title)
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((newsItem, index) =>
               normalizeInsightNewsItem(
                 newsItem,
-                defaultHomepage.insightNews[index] || defaultHomepage.insightNews[0],
+                defaultHomepage.insightNews[index] ||
+                  defaultHomepage.insightNews[0],
               ),
             )
         : defaultHomepage.insightNews,
@@ -321,24 +333,33 @@ function normalizeHomepage(entry) {
         ? statistics
             .filter((statItem) => statItem?.label && statItem?.stat)
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((statItem, index) =>
               normalizeStatisticItem(
                 statItem,
-                defaultHomepage.statistics[index] || defaultHomepage.statistics[0],
+                defaultHomepage.statistics[index] ||
+                  defaultHomepage.statistics[0],
               ),
             )
         : defaultHomepage.statistics,
     marketTicker:
       marketTicker?.length > 0
         ? marketTicker
-            .filter((tickerItem) => tickerItem?.title && tickerItem?.price && tickerItem?.avg)
+            .filter(
+              (tickerItem) =>
+                tickerItem?.title && tickerItem?.price && tickerItem?.avg,
+            )
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((tickerItem, index) =>
               normalizeMarketTickerItem(
                 tickerItem,
-                defaultHomepage.marketTicker[index] || defaultHomepage.marketTicker[0],
+                defaultHomepage.marketTicker[index] ||
+                  defaultHomepage.marketTicker[0],
               ),
             )
         : defaultHomepage.marketTicker,
@@ -353,7 +374,9 @@ function normalizeHomepage(entry) {
                 capabilityItem?.video,
             )
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((capabilityItem, index) =>
               normalizeCapabilityItem(
                 capabilityItem,
@@ -365,22 +388,33 @@ function normalizeHomepage(entry) {
     cardsGrid:
       cardsGrid?.length > 0
         ? cardsGrid
-            .filter((cardItem) => cardItem?.cardId && cardItem?.href && cardItem?.title)
+            .filter(
+              (cardItem) =>
+                cardItem?.cardId && cardItem?.href && cardItem?.title,
+            )
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((cardItem, index) =>
               normalizeCardsGridItem(
                 cardItem,
-                defaultHomepage.cardsGrid[index] || defaultHomepage.cardsGrid[0],
+                defaultHomepage.cardsGrid[index] ||
+                  defaultHomepage.cardsGrid[0],
               ),
             )
         : defaultHomepage.cardsGrid,
     cta:
       cta?.length > 0
         ? cta
-            .filter((ctaItem) => ctaItem?.title && ctaItem?.description && ctaItem?.href)
+            .filter(
+              (ctaItem) =>
+                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+            )
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((ctaItem, index) =>
               normalizeCtaItem(
                 ctaItem,
@@ -421,7 +455,9 @@ function normalizeBusinessProcessesPage(entry) {
         ? item.statistics
             .filter((statItem) => statItem?.label && statItem?.stat)
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((statItem, index) =>
               normalizeStatisticItem(
                 statItem,
@@ -470,7 +506,9 @@ function normalizeOperationsPage(entry) {
         ? item.insightNews
             .filter((newsItem) => newsItem?.title)
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((newsItem, index) =>
               normalizeInsightNewsItem(
                 newsItem,
@@ -484,7 +522,9 @@ function normalizeOperationsPage(entry) {
         ? item.statistics
             .filter((statItem) => statItem?.label && statItem?.stat)
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((statItem, index) =>
               normalizeStatisticItem(
                 statItem,
@@ -504,7 +544,9 @@ function normalizeOperationsPage(entry) {
                 capabilityItem?.video,
             )
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((capabilityItem, index) =>
               normalizeCapabilityItem(
                 capabilityItem,
@@ -516,13 +558,19 @@ function normalizeOperationsPage(entry) {
     cta:
       item.cta?.length > 0
         ? item.cta
-            .filter((ctaItem) => ctaItem?.title && ctaItem?.description && ctaItem?.href)
+            .filter(
+              (ctaItem) =>
+                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+            )
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((ctaItem, index) =>
               normalizeCtaItem(
                 ctaItem,
-                defaultOperationsPage.cta[index] || defaultOperationsPage.cta[0],
+                defaultOperationsPage.cta[index] ||
+                  defaultOperationsPage.cta[0],
               ),
             )
         : defaultOperationsPage.cta,
@@ -559,7 +607,9 @@ function normalizeInsightsPage(entry) {
         ? item.statistics
             .filter((statItem) => statItem?.label && statItem?.stat)
             .slice()
-            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
             .map((statItem, index) =>
               normalizeStatisticItem(
                 statItem,
@@ -568,7 +618,10 @@ function normalizeInsightsPage(entry) {
               ),
             )
         : defaultInsightsPage.statistics,
-    benefits: normalizeInsightsSection(item.benefits, defaultInsightsPage.benefits),
+    benefits: normalizeInsightsSection(
+      item.benefits,
+      defaultInsightsPage.benefits,
+    ),
     featuredInsights: normalizeInsightsSection(
       item.featuredInsights,
       defaultInsightsPage.featuredInsights,
@@ -577,8 +630,14 @@ function normalizeInsightsPage(entry) {
       item.coverageMatrix,
       defaultInsightsPage.coverageMatrix,
     ),
-    timeline: normalizeInsightsSection(item.timeline, defaultInsightsPage.timeline),
-    discover: normalizeInsightsSection(item.discover, defaultInsightsPage.discover),
+    timeline: normalizeInsightsSection(
+      item.timeline,
+      defaultInsightsPage.timeline,
+    ),
+    discover: normalizeInsightsSection(
+      item.discover,
+      defaultInsightsPage.discover,
+    ),
   };
 }
 

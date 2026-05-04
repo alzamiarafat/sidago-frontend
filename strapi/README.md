@@ -17,7 +17,7 @@ This backend manages the homepage hero and global website settings for the Next.
 1. Copy `strapi/.env.example` to `strapi/.env`.
 2. Install backend dependencies with `npm install` inside `strapi/`.
 3. Start the backend with `npm run develop` inside `strapi/`.
-4. Open `http://localhost:9001/admin` and create the first admin user.
+4. Open `http://localhost:9012/admin` and create the first admin user.
 
 ## PostgreSQL with Docker
 
@@ -37,6 +37,9 @@ Required database env values:
 - `DATABASE_NAME=sidago_strapi`
 - `DATABASE_USERNAME=sidago`
 - `DATABASE_PASSWORD=sidago`
+
+Inside Docker Compose, Strapi should keep using `sidago-postgres:5432`.
+From your host machine, PostgreSQL is exposed on `localhost:5343`.
 
 ## Seed from frontend defaults
 

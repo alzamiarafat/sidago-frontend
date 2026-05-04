@@ -13,7 +13,7 @@ This repository now contains:
 Frontend:
 
 ```bash
-NEXT_PUBLIC_STRAPI_URL=http://localhost:9001
+NEXT_PUBLIC_STRAPI_URL=http://localhost:9012
 STRAPI_API_TOKEN=
 ```
 
@@ -41,6 +41,7 @@ docker compose up --build sidago-postgres sidago-strapi
 ```
 
 Strapi connects to the Docker database service `sidago-postgres` on port `5432`.
+If you connect to PostgreSQL directly from your host machine, use port `5343`.
 
 The frontend reads:
 
@@ -81,3 +82,9 @@ Run both services with Docker Compose after creating the two env files:
 ```bash
 docker compose up --build
 ```
+
+Published ports:
+
+- Frontend: `http://localhost:9010`
+- Strapi: `http://localhost:9012`
+- PostgreSQL: `localhost:5343`

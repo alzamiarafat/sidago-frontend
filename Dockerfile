@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 9005
+EXPOSE 9010
 
 # Start the production server
 CMD ["npm", "run", "start"]

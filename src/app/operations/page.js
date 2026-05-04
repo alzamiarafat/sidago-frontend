@@ -31,10 +31,7 @@ export default async function OperationsPage() {
   );
   const hero = {
     ...operationsPage.hero,
-    lighterTheme: true,
-    lighterBgColor: "bg-[#eef0ee]",
     titles: heroTitles,
-    videoSectionClass: "bg-[#eef0ee] text-gray-night-green",
     videoClass: `${operationsPage.hero?.videoClass} operations-hero-video`,
   };
 

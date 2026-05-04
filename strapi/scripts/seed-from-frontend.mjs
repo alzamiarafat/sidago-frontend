@@ -10,7 +10,7 @@ import {
 
 const outputPath = path.resolve(process.cwd(), "scripts", "seed-data.json");
 const shouldPush = process.argv.includes("--push");
-const baseUrl = process.env.STRAPI_SEED_URL || "http://localhost:9001";
+const baseUrl = process.env.STRAPI_SEED_URL || "http://localhost:9012";
 const token = process.env.STRAPI_SEED_TOKEN;
 
 async function writeSeedFile(payload) {
