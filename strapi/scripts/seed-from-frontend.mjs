@@ -1,10 +1,10 @@
 import fs from "node:fs/promises";
-import { createRequire } from "node:module";
 import path from "node:path";
 import {
   defaultBusinessProcessesPage,
   defaultGlobalSettings,
   defaultHomepage,
+  defaultInsightsPage,
   defaultOperationsPage,
 } from "../../src/data/cms/defaults.mjs";
 
@@ -12,8 +12,6 @@ const outputPath = path.resolve(process.cwd(), "scripts", "seed-data.json");
 const shouldPush = process.argv.includes("--push");
 const baseUrl = process.env.STRAPI_SEED_URL || "http://localhost:9001";
 const token = process.env.STRAPI_SEED_TOKEN;
-const require = createRequire(import.meta.url);
-const { createStrapi } = require("@strapi/strapi");
 
 async function writeSeedFile(payload) {
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
@@ -54,6 +52,10 @@ async function upsertSingleType(strapi, uid, data) {
 }
 
 async function pushViaLocalStrapi(payload) {
+  const { createRequire } = await import("node:module");
+  const require = createRequire(import.meta.url);
+  const { createStrapi } = require("@strapi/strapi");
+
   if (process.env.DATABASE_HOST === "sidago-postgres") {
     process.env.DATABASE_HOST =
       process.env.STRAPI_LOCAL_DATABASE_HOST || "127.0.0.1";
@@ -64,6 +66,7 @@ async function pushViaLocalStrapi(payload) {
   await strapi.load();
   await upsertSingleType(strapi, "api::global.global", payload.global);
   await upsertSingleType(strapi, "api::homepage.homepage", payload.homepage);
+  await upsertSingleType(strapi, "api::insight.insight", payload.insight);
   await upsertSingleType(
     strapi,
     "api::business-process.business-process",
@@ -90,6 +93,7 @@ async function main() {
       footer: defaultGlobalSettings.footer,
     },
     homepage: defaultHomepage,
+    insight: defaultInsightsPage,
     businessProcess: defaultBusinessProcessesPage,
     operation: defaultOperationsPage,
   };

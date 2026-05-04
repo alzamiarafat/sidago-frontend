@@ -595,12 +595,13 @@ export const defaultOperationsPage = {
   hero: {
     useVideo: true,
     lighterTheme: true,
-    videoSrc: "https://www.wintermute.com/videos/heroes/otc.mp4",
+    videoSrc: "https://www.wintermute.com/videos/heroes/spot.mp4",
+    imageSrc: null,
     titles: [
       {
         title: "Operations built for",
-        color: "",
-        className: "text-green-dark",
+        color: "#1F8F4E",
+        className: null,
         sortOrder: 1,
       },
       {
@@ -612,7 +613,11 @@ export const defaultOperationsPage = {
     ],
     subtitle:
       "Scale daily workflows with dedicated Sidago teams, structured processes, and clear performance visibility.",
-    videoSectionClass: "bg-gray-tradfi-dust text-gray-night-green",
+    videoSectionClass: "bg-[#e5e6e5] text-gray-night-green",
+    videoClass: "left-[500px] !w-3/4",
+    fontWeight: 400,
+    loop: true,
+    lighterBgColor: "bg-[#e5e6e5]",
   },
   insightNews: [
     {
@@ -742,4 +747,238 @@ export const defaultOperationsPage = {
       sortOrder: 2,
     },
   ],
+};
+
+export const defaultInsightsPage = {
+  hero: {
+    useVideo: true,
+    lighterTheme: false,
+    videoSrc: "https://www.wintermute.com/videos/heroes/liquidity.mp4",
+    imageSrc: "",
+    subtitle:
+      "Make smarter decisions with clear, data-driven strategies that improve performance and support long-term business growth",
+    fontWeight: 400,
+    loop: true,
+    lighterBgColor: "bg-[#f0f1f1]",
+    videoSectionClass: "",
+    videoClass: "left-[500px] top-[70px] !w-3/4 !h-3/4",
+    titles: [
+      {
+        title: "Turning data into",
+        color: "",
+        className: "",
+        sortOrder: 1,
+      },
+      {
+        title: "actionable business insights",
+        color: "#958dec",
+        className: "",
+        sortOrder: 2,
+      },
+    ],
+  },
+  statistics: [
+    {
+      stat: "10+",
+      label: "Years experience",
+      width: 170,
+      activeDotColor: "#3C85DD",
+      sortOrder: 1,
+    },
+    {
+      stat: "500+",
+      label: "Projects delivered",
+      width: 190,
+      activeDotColor: "#3C85DD",
+      sortOrder: 2,
+    },
+    {
+      stat: "50+",
+      label: "Global clients",
+      width: 170,
+      activeDotColor: "#3C85DD",
+      sortOrder: 3,
+    },
+    {
+      stat: "100+",
+      label: "Team members",
+      width: 180,
+      activeDotColor: "#3C85DD",
+      sortOrder: 4,
+    },
+    {
+      stat: "24/7",
+      label: "Support coverage",
+      width: 170,
+      activeDotColor: "#3C85DD",
+      sortOrder: 5,
+    },
+  ],
+  benefits: {
+    title: "Insights That Scale",
+    subtitle:
+      "Clarity, efficiency, and performance built for modern business growth",
+    items: [
+      {
+        title: "Operational Efficiency",
+        description:
+          "Streamlined processes that reduce costs and improve productivity",
+        iconKey: "coverage",
+      },
+      {
+        title: "Global Workforce Access",
+        description:
+          "Skilled talent across regions to support scalable operations",
+        iconKey: "octagon",
+      },
+      {
+        title: "Process Optimization",
+        description:
+          "Continuous improvement to enhance workflows and performance",
+        iconKey: "process",
+      },
+      {
+        title: "Data-Driven Decisions",
+        description: "Insights that guide smarter business strategies and outcomes",
+        iconKey: "badge",
+      },
+      {
+        title: "24/7 Business Support",
+        description:
+          "Round-the-clock services to ensure uninterrupted operations",
+        iconKey: "support",
+      },
+      {
+        title: "Performance Transparency",
+        description: "Clear reporting and measurable results you can trust",
+        iconKey: "reporting",
+      },
+    ],
+  },
+  featuredInsights: {
+    title: "Featured service insights",
+    subtitle: "Practical insight areas connected to real Sidago delivery.",
+    items: [
+      {
+        title: "Research and data intelligence",
+        category: "Research",
+        metric: "01",
+        accent: "#958dec",
+        description:
+          "Market research, web research, data mining, and verified source collection for clearer business decisions.",
+        services: ["Web research", "Data mining", "Lead research"],
+      },
+      {
+        title: "Operational workflow support",
+        category: "Operations",
+        metric: "02",
+        accent: "#3C85DD",
+        description:
+          "Repeatable admin, documentation, reporting, and task coordination that keeps daily work moving.",
+        services: ["Back office", "Reporting", "Task support"],
+      },
+      {
+        title: "Growth and content execution",
+        category: "Marketing",
+        metric: "03",
+        accent: "#FF5D3C",
+        description:
+          "Website content, campaign support, digital marketing assistance, and publishing workflows for steady growth.",
+        services: ["Content", "Campaigns", "Publishing"],
+      },
+      {
+        title: "Business support at scale",
+        category: "Support",
+        metric: "04",
+        accent: "#5FE18B",
+        description:
+          "Virtual assistance, customer support, bookkeeping support, and process help for teams that need dependable capacity.",
+        services: ["Virtual assistants", "Customer support", "Bookkeeping"],
+      },
+    ],
+  },
+  coverageMatrix: {
+    title: "Coverage Matrix",
+    subtitle: "Insight categories mapped to real Sidago services.",
+    items: [
+      {
+        title: "Research",
+        description:
+          "Market scans, data gathering, source validation, competitor research",
+        image: "/images/Market-Research2.jpg",
+      },
+      {
+        title: "Data",
+        description:
+          "Entry, cleanup, mining, dashboards, recurring operational reports",
+        image: "/images/Data-Mining2.png",
+      },
+      {
+        title: "Admin",
+        description:
+          "Inbox support, scheduling, document preparation, task coordination",
+        image: "/images/Administrative-Assistants2-1.jpg",
+      },
+      {
+        title: "Marketing",
+        description:
+          "Content planning, website updates, campaign support, publishing",
+        image: "/images/Web-Content3-1.png",
+      },
+      {
+        title: "Business",
+        description: "Bookkeeping support, documentation, process organization",
+        image: "/images/Paralegal-and-Bookkeeping2.jpg",
+      },
+      {
+        title: "Strategy",
+        description: "Planning support, vendor comparison, decision preparation",
+        image: "/images/Expert-Negotiation2.png",
+      },
+    ],
+  },
+  timeline: {
+    title: "Editorial Timeline",
+    subtitle: "Recent Sidago insight releases.",
+    items: [
+      {
+        date: "4 May 2026",
+        category: "Operations",
+        title: "Designing a dependable delivery rhythm for growing teams",
+      },
+      {
+        date: "30 Apr 2026",
+        category: "Research",
+        title: "How Sidago structures better research handoffs",
+      },
+      {
+        date: "24 Apr 2026",
+        category: "Data",
+        title: "Turning raw sheets into operational reporting",
+      },
+      {
+        date: "18 Apr 2026",
+        category: "Admin",
+        title: "Reducing daily friction with repeatable support workflows",
+      },
+    ],
+  },
+  discover: {
+    title: "Discover More",
+    variant: "animated-svg",
+    items: [
+      {
+        title: "Research & Data Insights",
+        text: "Explore how Sidago turns market research, web data, competitor tracking, and source validation into clear decision support.",
+        href: "/research-data",
+        image: "/images/Market-Research2.jpg",
+      },
+      {
+        title: "Workflow & Support Insights",
+        text: "See how Sidago structures admin support, reporting, documentation, and back-office workflows for dependable business execution.",
+        href: "/operations",
+        image: "/images/Administrative-Assistants2-1.jpg",
+      },
+    ],
+  },
 };

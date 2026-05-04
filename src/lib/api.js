@@ -3,6 +3,7 @@ import {
   defaultBusinessProcessesPage,
   defaultGlobalSettings,
   defaultHomepage,
+  defaultInsightsPage,
   defaultOperationsPage,
 } from "@/src/data/cms/defaults";
 
@@ -528,6 +529,59 @@ function normalizeOperationsPage(entry) {
   };
 }
 
+function normalizeInsightsSection(section, fallbackSection) {
+  if (!section?.title) {
+    return fallbackSection;
+  }
+
+  const items = Array.isArray(section.items)
+    ? section.items.filter((item) => item?.title)
+    : fallbackSection.items;
+
+  return {
+    ...fallbackSection,
+    ...section,
+    items: items?.length > 0 ? items : fallbackSection.items,
+  };
+}
+
+function normalizeInsightsPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultInsightsPage;
+  }
+
+  return {
+    hero: normalizeHero(item.hero, defaultInsightsPage.hero),
+    statistics:
+      item.statistics?.length > 0
+        ? item.statistics
+            .filter((statItem) => statItem?.label && statItem?.stat)
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((statItem, index) =>
+              normalizeStatisticItem(
+                statItem,
+                defaultInsightsPage.statistics[index] ||
+                  defaultInsightsPage.statistics[0],
+              ),
+            )
+        : defaultInsightsPage.statistics,
+    benefits: normalizeInsightsSection(item.benefits, defaultInsightsPage.benefits),
+    featuredInsights: normalizeInsightsSection(
+      item.featuredInsights,
+      defaultInsightsPage.featuredInsights,
+    ),
+    coverageMatrix: normalizeInsightsSection(
+      item.coverageMatrix,
+      defaultInsightsPage.coverageMatrix,
+    ),
+    timeline: normalizeInsightsSection(item.timeline, defaultInsightsPage.timeline),
+    discover: normalizeInsightsSection(item.discover, defaultInsightsPage.discover),
+  };
+}
+
 export async function fetchAPI(path, options = {}) {
   if (!STRAPI_URL) {
     return null;
@@ -584,4 +638,11 @@ export const getOperationsPage = cache(async () => {
     "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
   );
   return normalizeOperationsPage(data?.data);
+});
+
+export const getInsightsPage = cache(async () => {
+  const data = await fetchAPI(
+    "insight?populate[hero][populate][titles]=*&populate[statistics]=*",
+  );
+  return normalizeInsightsPage(data?.data);
 });

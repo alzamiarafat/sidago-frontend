@@ -5,124 +5,14 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
-import Algorithmic from "@/src/components/sections/v2/industriespage/Algorithmic";
-import DiscoverMore from "@/src/components/sections/v2/industriespage/DiscoverMore";
-import LearnMore from "@/src/components/sections/v2/industriespage/LearnMore";
-import PartnerBenefit from "@/src/components/sections/v2/industriespage/PartnerBenefit";
-import PartnerTrading from "@/src/components/sections/v2/industriespage/PartnerTrading";
-import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackPerformance";
-import Trading from "@/src/components/sections/v2/industriespage/Trading";
-import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
-import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
+import { Discover } from "@/src/components/sections/v2/insights/Discover";
+import { getGlobalSettings, getInsightsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
-export const metadata = routeMetadata.governance;
+export const metadata = routeMetadata.insights;
 
-const defaultStats = [
+const benefitIcons = [
   {
-    stat: "$65B",
-    label: "Annual OTC trading volume",
-    width: 244,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "1K",
-    label: "OTC trades per second",
-    width: 248,
-    activeDotColor: "#B48CFF",
-  },
-  {
-    stat: "$0.5",
-    label: "Largest OTC trade execution",
-    width: 198,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "70",
-    label: "Tokens traded via OTC",
-    width: 192,
-    activeDotColor: "#3C85DD",
-  },
-  {
-    stat: "4K",
-    label: "OTC volume growth YoY",
-    width: 192,
-    activeDotColor: "#F075E4",
-  },
-];
-
-const b2bStats = [
-  {
-    stat: "$15B",
-    label: "Annual OTC trading volume",
-    width: 244,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "10M",
-    label: "OTC trades per second",
-    width: 248,
-    activeDotColor: "#B48CFF",
-  },
-  {
-    stat: "70",
-    label: "Largest OTC trade execution",
-    width: 198,
-    activeDotColor: "#E7512F",
-  },
-  {
-    stat: "70K",
-    label: "Tokens traded via OTC",
-    width: 192,
-    activeDotColor: "#3C85DD",
-  },
-  {
-    stat: "4K",
-    label: "OTC volume growth YoY",
-    width: 192,
-    activeDotColor: "#F075E4",
-  },
-];
-
-const defaultTitles = [
-  {
-    title: "Building",
-    color: "",
-    className: "",
-  },
-  {
-    title: "deep, scalable liquidity",
-    color: "#958dec",
-    className: "",
-  },
-  {
-    title: "for your token",
-    color: "",
-    className: "",
-  },
-];
-
-const b2bTitles = [
-  {
-    title: "Unlocking",
-    color: "",
-    className: "",
-  },
-  {
-    title: "sustainable alpha",
-    color: "#66ff9a",
-    className: "",
-  },
-  {
-    title: "in digital assets",
-    color: "",
-    className: "",
-  },
-];
-
-const benefits = [
-  {
-    text: "Broad venue coverage: exchanges, aggregators, retail brokers, etc.",
     svgPath: (
       <path
         stroke="currentColor"
@@ -134,7 +24,6 @@ const benefits = [
     viewBox: "0 0 40 40",
   },
   {
-    text: "Expertise in top exchange listing requirements",
     svgPath: (
       <path
         stroke="currentColor"
@@ -144,7 +33,6 @@ const benefits = [
     viewBox: "0 0 18 18",
   },
   {
-    text: "Added exposure to institutional investors via SIDAGO OTC",
     svgPath: (
       <>
         <path
@@ -170,7 +58,6 @@ const benefits = [
     viewBox: "0 0 40 40",
   },
   {
-    text: "Best-in-class DeFi expertise",
     svgPath: (
       <>
         <path
@@ -190,7 +77,6 @@ const benefits = [
     viewBox: "0 0 40 40",
   },
   {
-    text: "24/7/365 uninterrupted liquidity provision",
     svgPath: (
       <>
         <path
@@ -222,7 +108,6 @@ const benefits = [
     viewBox: "0 0 40 40",
   },
   {
-    text: "Transparent liquidity reporting",
     svgPath: (
       <>
         <path
@@ -243,8 +128,257 @@ const benefits = [
   },
 ];
 
-export default function InsightPage({ variant = "default", slug = "" }) {
-  const isB2B = variant === "b2b";
+function ArrowIcon({ className = "" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 40 40"
+      className={className}
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
+
+function InsightBenefitsSection({ section }) {
+  const items = section?.items?.length > 0 ? section.items : [];
+
+  return (
+    <section className="bg-gray-night-green text-gray-off-white">
+      <div className="container py-block">
+        <div className="mb-3xl flex flex-col gap-xl">
+          <div className="flex max-w-4xl flex-col gap-md">
+            <h2
+              id="insights-that-scale"
+              className="font-blender text-xl uppercase text-green-dark"
+            >
+              {section?.title}
+            </h2>
+            <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
+              {section?.subtitle}
+            </p>
+          </div>
+          <hr className="!border-[#AB290E]" />
+        </div>
+
+        <div className="grid gap-xl lg:grid-cols-2">
+          {items.map((benefit, index) => {
+            const icon = benefitIcons[index] || benefitIcons[0];
+            return (
+            <article
+              key={benefit.title}
+              className="flex flex-row items-center gap-md bevel lg:gap-2xl lg:bg-gray-defi-charcoal lg:p-xl"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox={icon.viewBox}
+                className="h-[3.5rem] w-[3.5rem] shrink-0 text-purple-mid lg:h-[6.5rem] lg:w-[6.5rem]"
+              >
+                {icon.svgPath}
+              </svg>
+              <div>
+                <h3 className="text-lg lg:text-xl">{benefit.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-tradfi-silver">
+                  {benefit.description}
+                </p>
+              </div>
+            </article>
+          );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StudioRail({ section }) {
+  const cards = section?.items?.length > 0 ? section.items : [];
+
+  return (
+    <section className="bg-gray-defi-shadow text-gray-off-white">
+      <div className="container py-block">
+        <div className="mb-3xl flex flex-col gap-xl">
+          <div className="flex max-w-4xl flex-col gap-md">
+            <h2 className="font-blender text-xl uppercase text-green-dark">
+              {section?.title}
+            </h2>
+            <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
+              {section?.subtitle}
+            </p>
+          </div>
+          <hr className="!border-[#AB290E]" />
+        </div>
+
+        <div className="grid gap-lg md:grid-cols-2 xl:grid-cols-4">
+          {cards.map((card, index) => (
+            <a
+              key={card.title}
+              href="#"
+              className="group/interactive relative flex min-h-[20rem] overflow-hidden bevel bg-gray-defi-charcoal p-lg transition-colors duration-300 hover:bg-[#202725] lg:p-xl"
+              style={{
+                "--card-accent": card.accent,
+                position: "relative",
+              }}
+            >
+              <div className="relative z-10 flex w-full flex-col">
+                <div className="flex items-start justify-between gap-md">
+                  <div className="font-blender text-xs uppercase tracking-[0.22em] text-green-dark">
+                    {card.category}
+                  </div>
+                  <div
+                    className="font-blender text-3xl leading-none opacity-80"
+                    style={{ color: card.accent }}
+                  >
+                    {card.metric}
+                  </div>
+                </div>
+
+                <div className="mt-auto border-t border-gray-defi-ash pt-lg">
+                  <h3 className="max-w-[15rem] text-xl leading-tight lg:text-2xl">
+                    {card.title}
+                  </h3>
+                  <p className="mt-md text-sm leading-6 text-gray-tradfi-silver">
+                    {card.description}
+                  </p>
+                </div>
+
+                <div className="mt-lg flex flex-wrap gap-xs">
+                  {card.services.map((service) => (
+                    <span
+                      key={service}
+                      className="font-blender text-xs uppercase text-gray-tradfi-silver"
+                    >
+                      {service}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-lg flex items-center justify-between font-blender text-xs uppercase text-green-dark">
+                  <span>Read insight</span>
+                  <ArrowIcon className="h-4 w-4 transition-transform group-hover/interactive:translate-x-1" />
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MatrixSection({ section }) {
+  const items = section?.items?.length > 0 ? section.items : [];
+
+  return (
+    <section className="bg-gray-night-green text-gray-off-white">
+      <div className="container py-block">
+        <div className="mb-3xl flex flex-col gap-xl">
+          <div className="flex max-w-4xl flex-col gap-md">
+            <h2 className="font-blender text-xl uppercase text-green-dark">
+              {section?.title}
+            </h2>
+            <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
+              {section?.subtitle}
+            </p>
+          </div>
+          <hr className="!border-[#AB290E]" />
+        </div>
+
+        <div className="grid gap-lg md:grid-cols-2 xl:grid-cols-3">
+          {items.map((item) => (
+            <article
+              key={item.title}
+              className="group overflow-hidden bevel bg-gray-defi-charcoal transition-colors hover:bg-[#202725]"
+            >
+              <div className="relative aspect-[1.7] overflow-hidden bg-gray-night-green">
+                <img
+                  src={item.image}
+                  alt=""
+                  loading="lazy"
+                  className="h-full w-full object-cover opacity-75 grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:opacity-90 group-hover:grayscale-0"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-defi-charcoal via-gray-defi-charcoal/20 to-transparent" />
+              </div>
+
+              <div className="p-lg lg:p-xl">
+                <div className="font-blender text-sm uppercase tracking-[0.2em] text-green-dark">
+                  {item.title}
+                </div>
+                <p className="mt-lg text-sm leading-6 text-gray-tradfi-silver">
+                  {item.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TimelineSection({ section }) {
+  const items = section?.items?.length > 0 ? section.items : [];
+
+  return (
+    <section
+      id="timeline"
+      className="bg-gray-defi-charcoal text-gray-off-white"
+    >
+      <div className="container py-block">
+        <div className="mb-3xl flex flex-col gap-xl">
+          <div className="flex max-w-4xl flex-col gap-md">
+            <h2 className="font-blender text-xl uppercase text-green-dark">
+              {section?.title}
+            </h2>
+            <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
+              {section?.subtitle}
+            </p>
+          </div>
+          <hr className="!border-[#AB290E]" />
+        </div>
+
+        <div className="grid gap-md">
+          {items.map((item, index) => (
+            <a
+              key={item.title}
+              href="#"
+              className="group/interactive relative overflow-hidden bevel bg-gray-night-green p-lg transition-all duration-300 hover:-translate-y-1 hover:bg-[#202725] lg:p-xl"
+              style={{
+                position: "relative",
+                transitionDelay: `${index * 35}ms`,
+              }}
+            >
+              <div className="absolute inset-y-0 left-0 w-[0.125rem] origin-bottom scale-y-0 bg-[#958dec] transition-transform duration-300 group-hover/interactive:scale-y-100" />
+              <div className="grid gap-lg md:grid-cols-[12rem_1fr_2rem] md:items-center">
+                <div className="font-blender text-xs uppercase tracking-[0.2em] text-gray-tradfi-silver">
+                  <span className="block text-green-dark">{item.category}</span>
+                  <span className="mt-2 block">{item.date}</span>
+                </div>
+                <h3 className="max-w-4xl text-xl leading-tight transition-transform duration-300 group-hover/interactive:translate-x-2 lg:text-2xl">
+                  {item.title}
+                </h3>
+                <ArrowIcon className="h-5 w-5 text-green-dark transition-transform duration-300 group-hover/interactive:translate-x-2" />
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default async function InsightPage() {
+  const [settings, insightsPage] = await Promise.all([
+    getGlobalSettings(),
+    getInsightsPage(),
+  ]);
 
   return (
     <div className="flex h-svh flex-col text-base">
@@ -256,27 +390,17 @@ export default function InsightPage({ variant = "default", slug = "" }) {
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection
-            useVideo={true}
-            lighterTheme={false}
-            videoSrc={"https://www.wintermute.com/videos/heroes/liquidity.mp4"}
-            titles={defaultTitles}
-            subtitle="Trade directly with the source of liquidity in digital markets"
-            videoClass={"left-[500px] top-[70px] !w-3/4 !h-3/4"}
+            {...insightsPage.hero}
           />
 
-          <Statistics stats={defaultStats} />
-          <PartnerBenefit benefits={benefits} />
-          <TrackPerformance />
-          <CarouselOverview
-            bgColor="bg-[#454a47]"
-            textColor="text-white"
-            svgColor="text-[#606663]"
-          />
-          <PartnerTrading />
-          <LearnMore />
-          <DiscoverMore />
+          <Statistics stats={insightsPage.statistics} compact />
+          <InsightBenefitsSection section={insightsPage.benefits} />
+          <StudioRail section={insightsPage.featuredInsights} />
+          <MatrixSection section={insightsPage.coverageMatrix} />
+          <TimelineSection section={insightsPage.timeline} />
+          <Discover section={insightsPage.discover} />
           <CTASection />
-          <Footer />
+          <Footer footer={settings?.footer} />
         </main>
       </div>
     </div>

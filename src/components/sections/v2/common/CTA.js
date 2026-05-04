@@ -1,5 +1,4 @@
 import { defaultHomepage } from "@/src/data/cms/defaults";
-
 function CTAItem({ item, isLast }) {
   return (
     <>
@@ -10,7 +9,7 @@ function CTAItem({ item, isLast }) {
         aria-label={item.srLabel}
       >
         <div
-          className="flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl"
+          className="flex h-full flex-col gap-sm px-md py-md lg:px-md lg:py-xl"
           style={{ backgroundColor: item.backgroundColor }}
         >
           <div className="flex flex-1 items-center justify-between gap-xs">
@@ -57,18 +56,17 @@ function CTAItem({ item, isLast }) {
           </div>
         </div>
       </a>
-      {!isLast && <div className="-mx-[0.0625rem] w-[0.125rem] lg:my-xl"></div>}
+      {!isLast && (
+        <div className="hidden -mx-[0.0625rem] w-[0.125rem] lg:my-xl lg:block"></div>
+      )}
     </>
   );
 }
-
 export default function CTASection({ items = defaultHomepage.cta }) {
   const ctaItems = items?.filter((item) => item?.title && item?.href) || [];
-
   if (ctaItems.length === 0) {
     return null;
   }
-
   return (
     <section className="relative bg-gray-night-green text-gray-night-green">
       <div className="absolute inset-0 flex">
@@ -84,7 +82,7 @@ export default function CTASection({ items = defaultHomepage.cta }) {
           }}
         ></div>
       </div>
-      <div className="container relative z-10 flex flex-col lg:flex-row">
+      <div className="relative z-10 flex flex-col lg:container lg:flex-row">
         {ctaItems.map((item, index) => (
           <CTAItem
             key={`${item.title}-${index}`}

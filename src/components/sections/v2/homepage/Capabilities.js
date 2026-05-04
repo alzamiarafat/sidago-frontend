@@ -25,8 +25,61 @@ export default function Capabilities({
   const dividerClass = getDividerClass(borderColor);
 
   return (
-    <section className={`hidden flex-col lg:flex ${bgColor} ${textColor}`}>
-      {items?.map((item, index) => {
+    <section className={`flex flex-col ${bgColor} ${textColor}`}>
+      <div className="container flex flex-col gap-md py-block lg:hidden">
+        {items?.map((item, index) => (
+          <a
+            key={index}
+            href={item.href}
+            style={{ position: "relative" }}
+            className="group/interactive relative flex min-h-[352px] flex-col justify-end overflow-hidden bevel bg-[#1e2423] p-lg"
+          >
+            <span className="sr-only">{item.sr}</span>
+
+            <div className="pointer-events-none absolute right-[-1.5rem] top-[-0.75rem] h-[58%] w-[76%] overflow-hidden">
+              <div className="absolute inset-0 bg-[#1e2423]" />
+              <video
+                playsInline
+                preload="metadata"
+                autoPlay
+                loop
+                muted
+                className="h-full w-full origin-center scale-[1.85] object-cover opacity-95"
+              >
+                <source src={item.video} />
+              </video>
+            </div>
+
+            <div className="relative z-10 pr-2xl">
+              <h3 className="text-[50px] leading-none text-gray-off-white">
+                {item.title}
+              </h3>
+              <p className="mt-lg text-base leading-6 text-gray-off-white">
+                {item.description}
+              </p>
+            </div>
+
+            <div className="relative z-10 mt-xl flex justify-end">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 40 40"
+                className="h-9 w-9 text-gray-off-white transition-transform group-hover/interactive:translate-x-1"
+              >
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div className="hidden lg:block">
+        {items?.map((item, index) => {
         // const videoRef = useRef(null);
 
         const handleMouseEnter = () => {
@@ -112,6 +165,7 @@ export default function Capabilities({
           </React.Fragment>
         );
       })}
+      </div>
     </section>
   );
 }

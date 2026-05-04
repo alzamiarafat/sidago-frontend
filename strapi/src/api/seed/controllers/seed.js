@@ -24,6 +24,7 @@ module.exports = {
     if (
       !payload?.global ||
       !payload?.homepage ||
+      !payload?.insight ||
       !payload?.businessProcess ||
       !payload?.operation
     ) {
@@ -32,6 +33,7 @@ module.exports = {
 
     await upsertSingleType("api::global.global", payload.global);
     await upsertSingleType("api::homepage.homepage", payload.homepage);
+    await upsertSingleType("api::insight.insight", payload.insight);
     await upsertSingleType(
       "api::business-process.business-process",
       payload.businessProcess,
@@ -40,7 +42,7 @@ module.exports = {
 
     ctx.body = {
       data: {
-        seeded: ["global", "homepage", "businessProcess", "operation"],
+        seeded: ["global", "homepage", "insight", "businessProcess", "operation"],
       },
     };
   },
