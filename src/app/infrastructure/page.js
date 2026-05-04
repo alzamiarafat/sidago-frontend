@@ -179,12 +179,12 @@ export default function SupportPage({ variant = "governance", slug = "" }) {
   const isGovernancePage = variant === "governance";
 
   return (
-    <div className="flex h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex min-h-svh flex-col bg-gray-night-green text-base">
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
 
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection {...page.hero} />

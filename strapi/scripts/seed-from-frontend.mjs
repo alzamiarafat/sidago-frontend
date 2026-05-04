@@ -1,17 +1,76 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import {
-  defaultBusinessProcessesPage,
-  defaultGlobalSettings,
-  defaultHomepage,
-  defaultInsightsPage,
-  defaultOperationsPage,
-} from "../../src/data/cms/defaults.mjs";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const outputPath = path.resolve(process.cwd(), "scripts", "seed-data.json");
 const shouldPush = process.argv.includes("--push");
 const baseUrl = process.env.STRAPI_SEED_URL || "http://localhost:9012";
 const token = process.env.STRAPI_SEED_TOKEN;
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+
+async function fileExists(targetPath) {
+  try {
+    await fs.access(targetPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function loadPayloadFromFrontendDefaults() {
+  const candidatePaths = [
+    path.resolve(scriptDir, "../../src/data/cms/defaults.mjs"),
+    path.resolve(scriptDir, "../../../src/data/cms/defaults.mjs"),
+  ];
+
+  for (const candidatePath of candidatePaths) {
+    if (!(await fileExists(candidatePath))) {
+      continue;
+    }
+
+    const defaultsModule = await import(pathToFileURL(candidatePath).href);
+    const {
+      defaultBusinessProcessesPage,
+      defaultGlobalSettings,
+      defaultHomepage,
+      defaultInsightsPage,
+      defaultOperationsPage,
+    } = defaultsModule;
+
+    return {
+      generatedAt: new Date().toISOString(),
+      global: {
+        siteName: defaultGlobalSettings.siteName,
+        siteContactEmail: defaultGlobalSettings.siteContactEmail.replace(
+          /^mailto:/,
+          "",
+        ),
+        version: defaultGlobalSettings.version,
+        socialLinks: defaultGlobalSettings.socialLinks,
+        footer: defaultGlobalSettings.footer,
+      },
+      homepage: defaultHomepage,
+      insight: defaultInsightsPage,
+      businessProcess: defaultBusinessProcessesPage,
+      operation: defaultOperationsPage,
+    };
+  }
+
+  return null;
+}
+
+async function loadPayloadFromSeedFile() {
+  const seedFilePath = path.resolve(process.cwd(), "scripts", "seed-data.json");
+
+  if (!(await fileExists(seedFilePath))) {
+    throw new Error(
+      "Unable to locate frontend defaults or scripts/seed-data.json for seeding.",
+    );
+  }
+
+  const raw = await fs.readFile(seedFilePath, "utf8");
+  return JSON.parse(raw);
+}
 
 async function writeSeedFile(payload) {
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
@@ -80,23 +139,9 @@ async function pushViaLocalStrapi(payload) {
 }
 
 async function main() {
-  const payload = {
-    generatedAt: new Date().toISOString(),
-    global: {
-      siteName: defaultGlobalSettings.siteName,
-      siteContactEmail: defaultGlobalSettings.siteContactEmail.replace(
-        /^mailto:/,
-        "",
-      ),
-      version: defaultGlobalSettings.version,
-      socialLinks: defaultGlobalSettings.socialLinks,
-      footer: defaultGlobalSettings.footer,
-    },
-    homepage: defaultHomepage,
-    insight: defaultInsightsPage,
-    businessProcess: defaultBusinessProcessesPage,
-    operation: defaultOperationsPage,
-  };
+  const payload =
+    (await loadPayloadFromFrontendDefaults()) ??
+    (await loadPayloadFromSeedFile());
 
   await writeSeedFile(payload);
   process.stdout.write(
