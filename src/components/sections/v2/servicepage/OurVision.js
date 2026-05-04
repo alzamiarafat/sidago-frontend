@@ -206,6 +206,11 @@ export default function OurVision() {
             >
               Principles that guide our vision
             </h2>
+            <p className="max-w-3xl text-base leading-relaxed text-[#A7ACA8] md:text-lg">
+              The infrastructure behind Sidago is designed for resilience,
+              security, and the operational clarity teams need to scale with
+              confidence.
+            </p>
           </div>
           <hr className="!border-[#AB290E]" />
         </div>

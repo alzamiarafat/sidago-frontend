@@ -4,28 +4,28 @@ import { useState } from "react";
 
 const supportItems = [
   {
-    title: "Protocol design",
+    title: "Business infrastructure setup",
     expandedClassName: "bg-green-light",
     description:
-      "From adjusting inflation schedules to redesigning reward programs and token utility, the Sidago Governance team can help to ensure that your protocol’s incentives are well-balanced, promote key growth objectives, and align key stakeholders.",
+      "Sidago helps businesses set up the operational infrastructure behind daily execution, from core systems and workflow design to the stable foundations teams need to work efficiently at scale.",
   },
   {
-    title: "Governance structures",
+    title: "Process continuity",
     expandedClassName: "bg-orange-light",
     description:
-      "Sidago can help you select and set up the highest quality and industry-leading on-chain and off-chain governance architecture solutions, from initialising your voting parameters on OpenZeppelin’s Governor Bravo smart contracts to setting up voting strategies for your off-chain Snapshots.",
+      "We build dependable operating rhythms, fallback processes, and support structures that reduce disruption and keep business-critical work moving even as demand changes.",
   },
   {
-    title: "Active DAO contribution",
+    title: "Visibility and support",
     expandedClassName: "bg-purple-light",
     description:
-      "Sidago sits on large multisigs for DAOs, ensuring the safekeeping of treasury funds and closely overseeing smart contract upgrades, while participating in councils that are mandated with incentive expenditure, treasury management, and grants on behalf of DAOs.",
+      "Sidago gives clients clearer visibility into performance, bottlenecks, and operational risk through structured oversight, responsive support, and consistent day-to-day management.",
   },
   {
-    title: "Delegate duties",
+    title: "Control and reliability",
     expandedClassName: "bg-blue-light",
     description:
-      "As an active delegate, Sidago contributes proposals and casts votes, deploys on-chain/off-chain proposals, assesses risk and growth objectives, and streams coverage and analysis of key votes and proposals to our institutional and corporate channels.",
+      "Our infrastructure approach focuses on control, consistency, and reliability so businesses can scale service delivery, protect essential workflows, and maintain confidence in execution.",
   },
 ];
 
@@ -119,11 +119,13 @@ export default function Support() {
                 className="z-10 inline-block max-w-[60%] text-2xl lg:text-3xl"
                 id="supporting-<alt>at-every-stage</alt>"
               >
-                Supporting
+                Supporting infrastructure
                 <span className="text-orange-dark"> at every stage</span>
               </h2>
               <div className="z-10 max-w-[85%] md:max-w-[70%]">
-                Sidago supports protocols across various stages of growth
+                Sidago builds the operational infrastructure that helps
+                businesses run with more control, consistency, and confidence
+                as they grow.
               </div>
             </div>
             <img

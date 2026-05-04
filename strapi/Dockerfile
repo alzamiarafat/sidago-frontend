@@ -12,6 +12,6 @@ RUN mkdir -p /app/public/uploads
 
 RUN npm run build
 
-EXPOSE 9001
+EXPOSE 9012
 
 CMD ["sh", "-c", "mkdir -p /app/public/uploads && npm run start"]

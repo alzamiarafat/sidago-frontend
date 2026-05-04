@@ -30,7 +30,7 @@ services:
       sidago-postgres:
         condition: service_healthy
     ports:
-      - "9012:9001"
+      - "9012:9012"
     restart: always
 
   sidago-nextjs-frontend:
