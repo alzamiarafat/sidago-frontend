@@ -26,14 +26,16 @@ export default async function OperationsPage() {
     getGlobalSettings(),
     getOperationsPage(),
   ]);
+  const heroTitles = operationsPage.hero?.titles?.map((title, index) =>
+    index === 0 ? { ...title, className: "", color: "#168b50" } : title,
+  );
   const hero = {
     ...operationsPage.hero,
-    useVideo: true,
     lighterTheme: true,
-    videoSrc: "https://www.wintermute.com/videos/heroes/otc.mp4",
-    videoSectionClass:
-      operationsPage.hero?.videoSectionClass ||
-      "bg-gray-tradfi-dust text-gray-night-green",
+    lighterBgColor: "bg-[#eef0ee]",
+    titles: heroTitles,
+    videoSectionClass: "bg-[#eef0ee] text-gray-night-green",
+    videoClass: `${operationsPage.hero?.videoClass} operations-hero-video`,
   };
 
   return (
