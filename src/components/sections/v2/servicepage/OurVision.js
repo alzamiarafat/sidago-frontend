@@ -4,9 +4,9 @@ import { useState } from "react";
 
 const visionItems = [
   {
-    title: "Sustainable value creation",
+    title: "Reliable uptime",
     description:
-      "Creating lasting impact by prioritizing long-term value creation for the industry over short-term opportunism",
+      "Build resilient systems with stable hosting, proactive monitoring, and rapid issue response to keep operations running without interruption.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -30,9 +30,9 @@ const visionItems = [
     ),
   },
   {
-    title: "Engaged transparency",
+    title: "Secure by design",
     description:
-      "Leading with clear and transparent communication and taking initiative in protocol development",
+      "Protect business-critical systems through controlled access, hardened environments, backup discipline, and continuous risk awareness.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +50,9 @@ const visionItems = [
     ),
   },
   {
-    title: "Objective decision-making",
+    title: "Scalable architecture",
     description:
-      "Making data-driven governance decisions guided by research and measurable outcomes",
+      "Design infrastructure that can grow with demand, support expansion, and adapt to new workflows without creating operational friction.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -70,9 +70,9 @@ const visionItems = [
     ),
   },
   {
-    title: "True decentralization",
+    title: "Operational visibility",
     description:
-      "Maintaining an unwavering dedication to decentralized principles in every action",
+      "Give teams clear insight into system health, performance, and dependencies so decisions can be made faster and with confidence.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
