@@ -530,33 +530,6 @@ body {
   }
 }
 
-@keyframes execution-stat-scan {
-  0% {
-    opacity: 0;
-    transform: translateX(-22%);
-  }
-  30%,
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(22%);
-  }
-}
-
-@keyframes execution-stat-trend {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.84;
-  }
-  50% {
-    transform: translateY(-2px);
-    opacity: 1;
-  }
-}
-
 .execution-stat-dots {
   pointer-events: none;
   background-image: radial-gradient(
@@ -568,23 +541,6 @@ body {
   -webkit-mask-image: linear-gradient(to bottom left, black 35%, transparent 100%);
   mask-image: linear-gradient(to bottom left, black 35%, transparent 100%);
   animation: execution-dot-drift 4.2s ease-in-out infinite;
-}
-
-.execution-stat-scan {
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(60, 133, 221, 0.04) 35%,
-    rgba(60, 133, 221, 0.18) 50%,
-    rgba(60, 133, 221, 0.04) 65%,
-    transparent 100%
-  );
-  animation: execution-stat-scan 4.8s ease-in-out infinite;
-}
-
-.execution-stat-trend {
-  animation: execution-stat-trend 2.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -599,9 +555,7 @@ body {
   .execution-lane,
   .execution-progress,
   .execution-carousel-track,
-  .execution-stat-dots,
-  .execution-stat-scan,
-  .execution-stat-trend {
+  .execution-stat-dots {
     animation: none;
   }
 }
