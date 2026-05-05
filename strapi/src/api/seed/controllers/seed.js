@@ -26,7 +26,8 @@ module.exports = {
       !payload?.homepage ||
       !payload?.insight ||
       !payload?.businessProcess ||
-      !payload?.operation
+      !payload?.operation ||
+      !payload?.execution
     ) {
       ctx.throw(400, "Missing required seed payload.");
     }
@@ -39,10 +40,18 @@ module.exports = {
       payload.businessProcess,
     );
     await upsertSingleType("api::operation.operation", payload.operation);
+    await upsertSingleType("api::execution.execution", payload.execution);
 
     ctx.body = {
       data: {
-        seeded: ["global", "homepage", "insight", "businessProcess", "operation"],
+        seeded: [
+          "global",
+          "homepage",
+          "insight",
+          "businessProcess",
+          "operation",
+          "execution",
+        ],
       },
     };
   },

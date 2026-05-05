@@ -31,6 +31,7 @@ async function loadPayloadFromFrontendDefaults() {
     const defaultsModule = await import(pathToFileURL(candidatePath).href);
     const {
       defaultBusinessProcessesPage,
+      defaultExecutionPage,
       defaultGlobalSettings,
       defaultHomepage,
       defaultInsightsPage,
@@ -53,6 +54,7 @@ async function loadPayloadFromFrontendDefaults() {
       insight: defaultInsightsPage,
       businessProcess: defaultBusinessProcessesPage,
       operation: defaultOperationsPage,
+      execution: defaultExecutionPage,
     };
   }
 
@@ -118,6 +120,8 @@ async function pushViaLocalStrapi(payload) {
   if (process.env.DATABASE_HOST === "sidago-postgres") {
     process.env.DATABASE_HOST =
       process.env.STRAPI_LOCAL_DATABASE_HOST || "127.0.0.1";
+    process.env.DATABASE_PORT =
+      process.env.STRAPI_LOCAL_DATABASE_PORT || "5343";
   }
 
   const strapi = createStrapi();
@@ -135,6 +139,11 @@ async function pushViaLocalStrapi(payload) {
     strapi,
     "api::operation.operation",
     payload.operation,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::execution.execution",
+    payload.execution,
   );
 }
 
@@ -161,11 +170,14 @@ async function main() {
   try {
     await pushSeedPayload(payload);
   } catch (error) {
-    const isMethodOrRouteIssue =
+    const shouldUseLocalFallback =
       error instanceof Error &&
-      (error.message.includes("404") || error.message.includes("405"));
+      (error.message.includes("404") ||
+        error.message.includes("405") ||
+        error.message.includes("500") ||
+        error.message.includes("fetch failed"));
 
-    if (!isMethodOrRouteIssue) {
+    if (!shouldUseLocalFallback) {
       throw error;
     }
 

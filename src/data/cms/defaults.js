@@ -1,5 +1,6 @@
 export {
   defaultBusinessProcessesPage,
+  defaultExecutionPage,
   defaultGlobalSettings,
   defaultHomepage,
   defaultInsightsPage,

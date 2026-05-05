@@ -1,6 +1,7 @@
 import { cache } from "react";
 import {
   defaultBusinessProcessesPage,
+  defaultExecutionPage,
   defaultGlobalSettings,
   defaultHomepage,
   defaultInsightsPage,
@@ -640,6 +641,57 @@ function normalizeInsightsSection(section, fallbackSection) {
   };
 }
 
+function normalizeExecutionPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultExecutionPage;
+  }
+
+  const normalizeSection = (section, fallbackSection) => ({
+    ...fallbackSection,
+    ...(section || {}),
+  });
+
+  return {
+    hero: normalizeHero(item.hero, defaultExecutionPage.hero),
+    aboutSection: normalizeSection(
+      item.aboutSection,
+      defaultExecutionPage.aboutSection,
+    ),
+    coreSection: normalizeSection(
+      item.coreSection,
+      defaultExecutionPage.coreSection,
+    ),
+    workflowSection: normalizeSection(
+      item.workflowSection,
+      defaultExecutionPage.workflowSection,
+    ),
+    resultsSection: normalizeSection(
+      item.resultsSection,
+      defaultExecutionPage.resultsSection,
+    ),
+    cta:
+      item.cta?.length > 0
+        ? item.cta
+            .filter(
+              (ctaItem) =>
+                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+            )
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((ctaItem, index) =>
+              normalizeCtaItem(
+                ctaItem,
+                defaultExecutionPage.cta[index] || defaultExecutionPage.cta[0],
+              ),
+            )
+        : defaultExecutionPage.cta,
+  };
+}
+
 function normalizeInsightsPage(entry) {
   const item = unwrapEntity(entry);
 
@@ -764,4 +816,11 @@ export const getInsightsPage = cache(async () => {
     "insight?populate[hero][populate][titles]=*&populate[statistics]=*",
   );
   return normalizeInsightsPage(data?.data);
+});
+
+export const getExecutionPage = cache(async () => {
+  const data = await fetchAPI(
+    "execution?populate[hero][populate][titles]=*&populate[cta]=*",
+  );
+  return normalizeExecutionPage(data?.data);
 });

@@ -322,8 +322,8 @@ body {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 9999px;
-  background: #168b50;
-  box-shadow: 0 0 1rem rgba(22, 139, 80, 0.58);
+  background: #3c85dd;
+  box-shadow: 0 0 1rem rgba(60, 133, 221, 0.58);
 }
 
 .execution-orbit-slow {
@@ -350,7 +350,7 @@ body {
     115deg,
     transparent 0%,
     transparent 42%,
-    rgba(22, 139, 80, 0.18) 50%,
+    rgba(60, 133, 221, 0.18) 50%,
     transparent 58%,
     transparent 100%
   );
@@ -515,6 +515,78 @@ body {
   }
 }
 
+@keyframes execution-dot-drift {
+  0% {
+    opacity: 0.38;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate3d(-4px, 4px, 0);
+  }
+  100% {
+    opacity: 0.38;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes execution-stat-scan {
+  0% {
+    opacity: 0;
+    transform: translateX(-22%);
+  }
+  30%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(22%);
+  }
+}
+
+@keyframes execution-stat-trend {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.84;
+  }
+  50% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+}
+
+.execution-stat-dots {
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    rgba(60, 133, 221, 0.8) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 12px 12px;
+  -webkit-mask-image: linear-gradient(to bottom left, black 35%, transparent 100%);
+  mask-image: linear-gradient(to bottom left, black 35%, transparent 100%);
+  animation: execution-dot-drift 4.2s ease-in-out infinite;
+}
+
+.execution-stat-scan {
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(60, 133, 221, 0.04) 35%,
+    rgba(60, 133, 221, 0.18) 50%,
+    rgba(60, 133, 221, 0.04) 65%,
+    transparent 100%
+  );
+  animation: execution-stat-scan 4.8s ease-in-out infinite;
+}
+
+.execution-stat-trend {
+  animation: execution-stat-trend 2.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .execution-visual-glow,
   .execution-grid,
@@ -526,7 +598,10 @@ body {
   .execution-card,
   .execution-lane,
   .execution-progress,
-  .execution-carousel-track {
+  .execution-carousel-track,
+  .execution-stat-dots,
+  .execution-stat-scan,
+  .execution-stat-trend {
     animation: none;
   }
 }
