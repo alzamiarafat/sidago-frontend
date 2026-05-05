@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T16:47:41.919Z",
+  "generatedAt": "2026-05-05T07:08:43.952Z",
   "global": {
     "siteName": "Sidago",
     "siteContactEmail": "hello@sidago.com",
@@ -827,11 +827,11 @@
         }
       ],
       "subtitle": "Scale daily workflows with dedicated Sidago teams, structured processes, and clear performance visibility.",
-      "videoSectionClass": "bg-[#e5e6e5] text-gray-night-green",
+      "videoSectionClass": "bg-[#f0f1f1] text-gray-night-green",
       "videoClass": "left-[500px] !w-3/4",
       "fontWeight": 400,
       "loop": true,
-      "lighterBgColor": "bg-[#e5e6e5]"
+      "lighterBgColor": "bg-[#f0f1f1]"
     },
     "insightNews": [
       {
@@ -935,6 +935,38 @@
         "rotate": "rotate(0deg)",
         "sr": "Flexible team scaling",
         "sortOrder": 5
+      }
+    ],
+    "infrastructureProfiles": [
+      {
+        "eyebrow": "Infrastructure Visibility",
+        "title": "Operations Control Dashboard",
+        "description": "Track workflow health, delivery coverage, issue queues, and execution trends through a clear operational view built for day-to-day management.",
+        "cta": "Explore dashboard",
+        "href": "/contact",
+        "visualType": "dashboard",
+        "srText": "Sidago infrastructure - Operations Control Dashboard",
+        "sortOrder": 1
+      },
+      {
+        "eyebrow": "Infrastructure Updates",
+        "title": "Weekly Operations Brief",
+        "description": "Receive structured updates on performance trends, delivery priorities, support risks, and system changes that affect business continuity.",
+        "cta": "View brief",
+        "href": "/contact",
+        "visualType": "brief",
+        "srText": "Sidago infrastructure - Weekly Operations Brief",
+        "sortOrder": 2
+      },
+      {
+        "eyebrow": "Infrastructure Partnership",
+        "title": "Build a more reliable operating foundation",
+        "description": "Sidago works with businesses that need stronger delivery structure, clearer visibility, and operational systems that can scale without losing control.",
+        "cta": "Talk to Sidago",
+        "href": "/contact",
+        "visualType": "partnership",
+        "srText": "Sidago infrastructure partnership",
+        "sortOrder": 3
       }
     ],
     "cta": [

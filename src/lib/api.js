@@ -288,6 +288,30 @@ function normalizeCtaItem(item, fallbackItem) {
   };
 }
 
+function normalizeInfrastructureProfileItem(item, fallbackItem) {
+  if (
+    !item?.eyebrow ||
+    !item?.title ||
+    !item?.description ||
+    !item?.cta ||
+    !item?.href
+  ) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    eyebrow: item.eyebrow.trim(),
+    title: item.title.trim(),
+    description: item.description.trim(),
+    cta: item.cta.trim(),
+    href: item.href.trim(),
+    visualType: item.visualType || fallbackItem.visualType || "dashboard",
+    srText: item.srText?.trim() || item.title,
+  };
+}
+
 function normalizeHomepage(entry) {
   const item = unwrapEntity(entry);
   const hero = item?.hero;
@@ -574,6 +598,29 @@ function normalizeOperationsPage(entry) {
               ),
             )
         : defaultOperationsPage.cta,
+    infrastructureProfiles:
+      item.infrastructureProfiles?.length > 0
+        ? item.infrastructureProfiles
+            .filter(
+              (profileItem) =>
+                profileItem?.eyebrow &&
+                profileItem?.title &&
+                profileItem?.description &&
+                profileItem?.cta &&
+                profileItem?.href,
+            )
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((profileItem, index) =>
+              normalizeInfrastructureProfileItem(
+                profileItem,
+                defaultOperationsPage.infrastructureProfiles[index] ||
+                  defaultOperationsPage.infrastructureProfiles[0],
+              ),
+            )
+        : defaultOperationsPage.infrastructureProfiles,
   };
 }
 
@@ -646,7 +693,12 @@ export async function fetchAPI(path, options = {}) {
     return null;
   }
 
-  const { headers = {}, revalidate = 60, ...fetchOptions } = options;
+  const {
+    headers = {},
+    logErrors = true,
+    revalidate = 60,
+    ...fetchOptions
+  } = options;
 
   try {
     const res = await fetch(`${STRAPI_URL}/api/${path}`, {
@@ -660,7 +712,9 @@ export async function fetchAPI(path, options = {}) {
     });
 
     if (!res.ok) {
-      console.error("API Error:", res.status, path);
+      if (logErrors) {
+        console.error("API Error:", res.status, path);
+      }
       return null;
     }
 
@@ -693,9 +747,15 @@ export const getBusinessProcessesPage = cache(async () => {
 });
 
 export const getOperationsPage = cache(async () => {
-  const data = await fetchAPI(
-    "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
+  const dataWithInfrastructure = await fetchAPI(
+    "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[infrastructureProfiles]=*&populate[cta]=*",
+    { logErrors: false },
   );
+  const data =
+    dataWithInfrastructure ||
+    (await fetchAPI(
+      "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
+    ));
   return normalizeOperationsPage(data?.data);
 });
 

@@ -17,6 +17,7 @@ import ServiceLatestInsight from "@/src/components/sections/v2/servicepage/Servi
 import Support from "@/src/components/sections/v2/servicepage/Support";
 import TradeOption from "@/src/components/sections/v2/servicepage/TradeOption";
 import VideoOverview from "@/src/components/sections/v2/servicepage/VideoOverview";
+import { getOperationsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.forwards;
@@ -174,9 +175,13 @@ const pageContent = {
   },
 };
 
-export default function SupportPage({ variant = "governance", slug = "" }) {
+export default async function SupportPage({
+  variant = "governance",
+  slug = "",
+}) {
   const page = pageContent[variant] ?? pageContent.otc;
   const isGovernancePage = variant === "governance";
+  const operationsPage = await getOperationsPage();
 
   return (
     <div className="flex min-h-svh flex-col bg-gray-night-green text-base">
@@ -194,7 +199,7 @@ export default function SupportPage({ variant = "governance", slug = "" }) {
               <OurVision />
               {/* <ContentTab slug={slug} /> */}
               <Support />
-              <DelegateProfile />
+              <DelegateProfile profiles={operationsPage.infrastructureProfiles} />
             </>
           ) : (
             <>

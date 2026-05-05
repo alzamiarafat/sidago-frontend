@@ -77,3 +77,456 @@ body {
   ) !important;
   z-index: 2;
 }
+
+@keyframes sidago-cta-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(236, 91, 91, 0);
+  }
+  50% {
+    box-shadow: 0 10px 28px rgba(236, 91, 91, 0.2);
+  }
+}
+
+@keyframes sidago-ops-glow {
+  0%,
+  100% {
+    opacity: 0.82;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(1.5%, -1%, 0) scale(1.04);
+  }
+}
+
+@keyframes sidago-bar-pulse {
+  0%,
+  100% {
+    transform: scaleX(0.78);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes sidago-cell-blink {
+  0%,
+  100% {
+    opacity: 0.48;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes sidago-load-wave {
+  0%,
+  100% {
+    transform: scaleX(0.88);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes sidago-card-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.35rem);
+  }
+}
+
+@keyframes sidago-status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(22, 139, 80, 0);
+  }
+  50% {
+    box-shadow: 0 0 0.9rem rgba(22, 139, 80, 0.42);
+  }
+}
+
+.sidago-feature-card {
+  transition:
+    transform 420ms ease,
+    box-shadow 420ms ease,
+    filter 420ms ease;
+}
+
+.sidago-feature-card:hover {
+  transform: translateY(-0.45rem);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.32);
+  filter: brightness(1.04);
+}
+
+.sidago-scan-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -35%;
+  width: 28%;
+  z-index: 3;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(236, 91, 91, 0.24),
+    transparent
+  );
+  transform: skewX(-16deg);
+  animation: sidago-scan-sweep 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.sidago-scan-line--dark {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(22, 139, 80, 0.24),
+    transparent
+  );
+}
+
+.sidago-ops-glow {
+  animation: sidago-ops-glow 4s ease-in-out infinite;
+}
+
+.sidago-mini-panel {
+  animation: sidago-panel-pop 3s ease-in-out infinite;
+}
+
+.sidago-live-bar {
+  animation: sidago-bar-pulse 1.8s ease-in-out infinite;
+}
+
+.sidago-cell-blink {
+  animation: sidago-cell-blink 1.5s ease-in-out infinite;
+}
+
+.sidago-load-wave {
+  animation: sidago-load-wave 2.1s ease-in-out infinite;
+}
+
+.sidago-brief-panel {
+  animation: sidago-card-float 3s ease-in-out infinite;
+}
+
+.sidago-status-badge {
+  animation: sidago-status-pulse 1.6s ease-in-out infinite;
+}
+
+.sidago-orbit {
+  animation: sidago-orbit-spin 5s linear infinite;
+}
+
+.sidago-orbit::after {
+  content: "";
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #ec5b5b;
+  box-shadow: 0 0 1rem rgba(236, 91, 91, 0.6);
+}
+
+.sidago-orbit-line {
+  animation: sidago-line-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes sidago-scan-sweep {
+  0% {
+    left: -35%;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    left: 115%;
+    opacity: 0;
+  }
+}
+
+@keyframes sidago-panel-pop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-0.35rem) scale(1.02);
+  }
+}
+
+@keyframes sidago-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sidago-line-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleX(0.72);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidago-feature-card,
+  .sidago-scan-line,
+  .sidago-ops-glow,
+  .sidago-mini-panel,
+  .sidago-live-bar,
+  .sidago-cell-blink,
+  .sidago-load-wave,
+  .sidago-brief-panel,
+  .sidago-status-badge,
+  .sidago-orbit,
+  .sidago-orbit-line {
+    animation: none;
+    transition: none;
+  }
+}
+
+.execution-visual-glow {
+  animation: execution-glow-shift 5s ease-in-out infinite;
+}
+
+.execution-grid {
+  animation: execution-grid-drift 12s linear infinite;
+}
+
+.execution-orbit {
+  animation: execution-orbit-spin 9s linear infinite;
+}
+
+.execution-orbit::after {
+  content: "";
+  position: absolute;
+  top: -0.25rem;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #168b50;
+  box-shadow: 0 0 1rem rgba(22, 139, 80, 0.58);
+}
+
+.execution-orbit-slow {
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+
+.execution-pulse-line {
+  transform-origin: right;
+  animation: execution-line-pulse 2.4s ease-in-out infinite;
+}
+
+.execution-pulse-line-delay {
+  transform-origin: left;
+  animation-delay: 0.7s;
+}
+
+.execution-scan {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(22, 139, 80, 0.18) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  transform: translateX(-80%);
+  animation: execution-scan-sweep 4.5s ease-in-out infinite;
+}
+
+.execution-node {
+  animation: execution-node-blink 2.6s ease-in-out infinite;
+}
+
+.execution-flow-panel {
+  animation: execution-panel-float 4s ease-in-out infinite;
+}
+
+.execution-card {
+  animation: execution-card-rise 560ms ease-out both;
+}
+
+.execution-card:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.execution-card:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.execution-card:nth-child(4) {
+  animation-delay: 240ms;
+}
+
+.execution-card:nth-child(5) {
+  animation-delay: 320ms;
+}
+
+.execution-card:nth-child(6) {
+  animation-delay: 400ms;
+}
+
+.execution-lane {
+  animation: execution-lane-in 620ms ease-out both;
+}
+
+.execution-progress {
+  transform-origin: left;
+  animation: execution-progress-breathe 2.8s ease-in-out infinite;
+}
+
+.execution-carousel-track {
+  animation: execution-carousel-slide 24s linear infinite;
+}
+
+@keyframes execution-glow-shift {
+  0%,
+  100% {
+    opacity: 0.78;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04) translate3d(-1%, 1%, 0);
+  }
+}
+
+@keyframes execution-grid-drift {
+  to {
+    transform: translate3d(28px, 28px, 0);
+  }
+}
+
+@keyframes execution-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes execution-line-pulse {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: scaleX(0.62);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.16);
+  }
+}
+
+@keyframes execution-scan-sweep {
+  0%,
+  28% {
+    opacity: 0;
+    transform: translateX(-80%);
+  }
+  40%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(80%);
+  }
+}
+
+@keyframes execution-node-blink {
+  0%,
+  100% {
+    opacity: 0.46;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes execution-panel-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.4rem);
+  }
+}
+
+@keyframes execution-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes execution-lane-in {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes execution-progress-breathe {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scaleX(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes execution-carousel-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .execution-visual-glow,
+  .execution-grid,
+  .execution-orbit,
+  .execution-pulse-line,
+  .execution-scan,
+  .execution-node,
+  .execution-flow-panel,
+  .execution-card,
+  .execution-lane,
+  .execution-progress,
+  .execution-carousel-track {
+    animation: none;
+  }
+}

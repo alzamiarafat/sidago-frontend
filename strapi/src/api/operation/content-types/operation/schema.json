@@ -32,6 +32,11 @@
       "repeatable": true,
       "component": "shared.capability-item"
     },
+    "infrastructureProfiles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.infrastructure-profile-item"
+    },
     "cta": {
       "type": "component",
       "repeatable": true,
