@@ -424,7 +424,7 @@ export default async function ExecutionPage() {
         >
           <HeroBannerSection {...executionContent.hero} />
           <ExecutionSection content={executionContent} />
-          <CTASection items={executionContent.cta} />
+          <CTASection />
           <Footer footer={settings?.footer} />
         </main>
       </div>
