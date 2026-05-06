@@ -1,222 +1,26 @@
-"use client";
-
 import "../../app/globals.css";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
+import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
+import { getExecutionPage, getGlobalSettings } from "@/src/lib/api";
+import { buildPageMetadata } from "@/src/lib/seo";
 
-const executionContent = {
-  hero: {
-    useVideo: true,
-    lighterTheme: false,
-    videoSrc: "https://www.wintermute.com/videos/heroes/ventures.mp4",
-    imageSrc: "",
-    subtitle:
-      "Sidago ensures consistent performance with optimized workflows and dedicated global support",
-    fontWeight: 400,
-    loop: true,
-    lighterBgColor: "bg-[#f0f1f1]",
-    videoSectionClass: "",
-    videoClass: "left-[500px] top-[70px] !w-3/4 !h-3/4",
-    titles: [
-      {
-        title: "Work with experts focused on",
-        color: "",
-        className: "",
-      },
-      {
-        title: "efficient operational execution",
-        color: "#3c85dd",
-        className: "",
-      },
-    ],
-  },
-  aboutSection: {
-    label: "About Sidago Execution",
-    title: "Build a simple system for",
-    highlight: "consistent execution",
-    subtitle:
-      "Sidago Execution helps organizations turn strategy into disciplined implementation. We align priorities, workflows, teams, and reporting so business operations move with more speed, clarity, and efficiency.",
-    supportChips: [
-      "Strategy implementation",
-      "Operating rhythm",
-      "Delivery governance",
-      "Performance visibility",
-      "Process discipline",
-      "Scalable growth",
-    ],
-    visual: {
-      eyebrow: "Execution snapshot",
-      title: "Simple. Visible. Moving.",
-      statusText: "Active",
-      imageSrc: "/images/Paralegal-and-Bookkeeping2.jpg",
-      imageAlt: "Sidago execution operations team at work",
-      imageEyebrow: "Active delivery view",
-      imageTitle:
-        "Teams, workflow, and reporting aligned in one operating rhythm.",
-      coordinationLabel: "Live coordination",
-      coordinationText:
-        "Clear owners, cleaner handoffs, faster follow-through.",
-      deliveryStatusLabel: "Delivery status",
-      deliveryStatusValue: "Stable",
-      planningLabel: "Planning",
-      planningValue: "92%",
-      reportingLabel: "Reporting",
-      reportingValue: "84%",
-    },
-    overviewItems: [
-      {
-        value: "42%",
-        title: "Faster cycle time",
-        description:
-          "Execution models designed to reduce friction, improve decisions, and shorten delivery loops.",
-      },
-      {
-        value: "6",
-        title: "Core operating lanes",
-        description:
-          "Strategy, planning, process, delivery, reporting, and growth support aligned in one system.",
-      },
-      {
-        value: "90%",
-        title: "Clearer visibility",
-        description:
-          "Practical dashboards and routines help leaders see progress, blockers, and next actions.",
-      },
-    ],
-  },
-  coreSection: {
-    label: "Core Capabilities",
-    title: "Everything needed to move work forward.",
-    subtitle:
-      "Focused services for planning, delivery, process, performance, and growth.",
-    cards: [
-      {
-        title: "Strategic Execution",
-        description:
-          "Translate priorities into focused initiatives, clear owners, and measurable execution plans.",
-        iconPath: "M6 29h28M10 25l6-6 5 4 9-11M28 12h6v6",
-      },
-      {
-        title: "Operational Planning",
-        description:
-          "Build capacity plans, cadences, and delivery routines that keep work moving with less drag.",
-        iconPath: "M9 10h22M9 18h14M9 26h22M28 15l4 4-4 4M13 7v6M24 23v6",
-      },
-      {
-        title: "Process Optimization",
-        description:
-          "Refine workflows, handoffs, controls, and documentation so teams can deliver repeatedly.",
-        iconPath: "M8 9h24v22H8zM13 15h14M13 20h14M13 25h8",
-      },
-      {
-        title: "Project Delivery",
-        description:
-          "Coordinate milestones, dependencies, risks, and follow-through across strategic initiatives.",
-        iconPath: "M8 20h7l4-9 5 18 4-9h4M9 31h22M9 9h22",
-      },
-      {
-        title: "Performance Tracking",
-        description:
-          "Create scorecards and operating reviews that show progress, blockers, and accountability.",
-        iconPath: "M7 31h26M11 27v-8M19 27V9M27 27V15",
-      },
-      {
-        title: "Growth Support",
-        description:
-          "Strengthen execution capacity as teams, markets, and operational demands expand.",
-        iconPath: "M7 29V11h6v18M17 29V7h6v22M27 29V15h6v14",
-      },
-    ],
-  },
-  workflowSection: {
-    label: "Execution Workflow",
-    title: "A clean four-step workflow.",
-    subtitle:
-      "A practical execution sequence that keeps priorities, delivery, and improvement moving in one direction.",
-    steps: [
-      {
-        title: "Discover",
-        description:
-          "Assess priorities, operating gaps, current workflows, and the outcomes that matter most.",
-        tag: "Priority mapping",
-      },
-      {
-        title: "Plan",
-        description:
-          "Define owners, milestones, capacity, governance, and the operating cadence for delivery.",
-        tag: "Delivery planning",
-      },
-      {
-        title: "Execute",
-        description:
-          "Coordinate teams, track dependencies, remove blockers, and keep decisions moving.",
-        tag: "Live execution",
-      },
-      {
-        title: "Optimize",
-        description:
-          "Measure performance, improve workflows, and scale the system as the business grows.",
-        tag: "Performance tuning",
-      },
-    ],
-  },
-  resultsSection: {
-    label: "Results / Impact",
-    title: "Clear improvements without extra complexity.",
-    subtitle:
-      "Visible delivery gains, cleaner execution, and stronger reporting without adding operational drag.",
-    metrics: [
-      {
-        value: "35%",
-        label: "Faster Delivery",
-        description:
-          "Shorter planning-to-launch cycles through clearer ownership.",
-        progress: "78%",
-      },
-      {
-        value: "48%",
-        label: "Improved Workflow",
-        description:
-          "Less rework with cleaner handoffs and stronger operating rhythm.",
-        progress: "84%",
-      },
-      {
-        value: "90%",
-        label: "Better Visibility",
-        description:
-          "Transparent progress reporting for decisions and accountability.",
-        progress: "90%",
-      },
-      {
-        value: "3X",
-        label: "Scalable Growth",
-        description:
-          "Execution capacity that adapts as new initiatives expand.",
-        progress: "72%",
-      },
-    ],
-  },
-  cta: [
-    {
-      title: "Start execution planning",
-      description: "Talk to Sidago about your execution priorities",
-      href: "/contact",
-      srLabel: "Start execution planning with Sidago",
-      backgroundColor: "#3c85dd",
-    },
-    {
-      title: "Explore our services",
-      description: "See how Sidago supports planning, delivery, and growth",
-      href: "/services",
-      srLabel: "Explore Sidago services",
-      backgroundColor: "#eef0ee",
-    },
+export const metadata = buildPageMetadata({
+  title: "Execution",
+  description:
+    "Sidago Execution aligns priorities, workflows, delivery, and reporting so business operations move with more speed and clarity.",
+  path: "/execution",
+  keywords: [
+    "Sidago execution",
+    "operational execution",
+    "workflow execution",
+    "project delivery",
+    "performance tracking",
   ],
-};
+});
 
 function ExecutionIcon({ path, className = "h-7 w-7", strokeWidth = "1" }) {
   return (
@@ -269,84 +73,6 @@ function SectionHeading({ label, title, subtitle, className = "max-w-4xl" }) {
       ) : null}
       <div className="mt-8 h-px w-full bg-[#d66243]/80" />
     </div>
-  );
-}
-
-function CountUpStat({ value }) {
-  const ref = useRef(null);
-  const [displayValue, setDisplayValue] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  const numericValue = Number.parseInt(value, 10);
-  const suffix = value.replace(String(numericValue), "");
-
-  useEffect(() => {
-    const node = ref.current;
-
-    if (!node || hasAnimated || Number.isNaN(numericValue)) {
-      return undefined;
-    }
-
-    const mediaQuery =
-      typeof window !== "undefined"
-        ? window.matchMedia("(prefers-reduced-motion: reduce)")
-        : null;
-
-    if (mediaQuery?.matches) {
-      window.requestAnimationFrame(() => {
-        setDisplayValue(numericValue);
-        setHasAnimated(true);
-      });
-      return undefined;
-    }
-
-    const runAnimation = () => {
-      const duration = 1400;
-      const startTime = performance.now();
-
-      setHasAnimated(true);
-
-      const tick = (currentTime) => {
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        const easedProgress = 1 - (1 - progress) * (1 - progress);
-        const nextValue = Math.round(numericValue * easedProgress);
-
-        setDisplayValue(nextValue);
-
-        if (progress < 1) {
-          window.requestAnimationFrame(tick);
-        }
-      };
-
-      window.requestAnimationFrame(tick);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            runAnimation();
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.45 },
-    );
-
-    observer.observe(node);
-
-    return () => observer.disconnect();
-  }, [hasAnimated, numericValue]);
-
-  if (Number.isNaN(numericValue)) {
-    return <span>{value}</span>;
-  }
-
-  return (
-    <span ref={ref}>
-      {displayValue}
-      {suffix}
-    </span>
   );
 }
 
@@ -681,7 +407,12 @@ function ExecutionSection({ content }) {
   );
 }
 
-export default function ExecutionPage() {
+export default async function ExecutionPage() {
+  const [settings, executionContent] = await Promise.all([
+    getGlobalSettings(),
+    getExecutionPage(),
+  ]);
+
   return (
     <div className="flex h-svh flex-col text-base">
       <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -693,8 +424,8 @@ export default function ExecutionPage() {
         >
           <HeroBannerSection {...executionContent.hero} />
           <ExecutionSection content={executionContent} />
-          <CTASection />
-          <Footer />
+          <CTASection items={executionContent.cta} />
+          <Footer footer={settings?.footer} />
         </main>
       </div>
     </div>

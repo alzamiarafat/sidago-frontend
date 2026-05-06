@@ -648,28 +648,49 @@ function normalizeExecutionPage(entry) {
     return defaultExecutionPage;
   }
 
-  const normalizeSection = (section, fallbackSection) => ({
-    ...fallbackSection,
-    ...(section || {}),
-  });
+  const normalizeSection = (section, fallbackSection, arrayKeys = []) => {
+    const normalized = {
+      ...fallbackSection,
+      ...(section || {}),
+    };
+
+    arrayKeys.forEach((key) => {
+      normalized[key] =
+        Array.isArray(section?.[key]) && section[key].length > 0
+          ? section[key]
+          : fallbackSection[key];
+    });
+
+    return normalized;
+  };
+
+  const aboutSection = normalizeSection(
+    item.aboutSection,
+    defaultExecutionPage.aboutSection,
+    ["supportChips", "overviewItems"],
+  );
+  aboutSection.visual = {
+    ...defaultExecutionPage.aboutSection.visual,
+    ...(item.aboutSection?.visual || {}),
+  };
 
   return {
     hero: normalizeHero(item.hero, defaultExecutionPage.hero),
-    aboutSection: normalizeSection(
-      item.aboutSection,
-      defaultExecutionPage.aboutSection,
-    ),
+    aboutSection,
     coreSection: normalizeSection(
       item.coreSection,
       defaultExecutionPage.coreSection,
+      ["cards"],
     ),
     workflowSection: normalizeSection(
       item.workflowSection,
       defaultExecutionPage.workflowSection,
+      ["steps"],
     ),
     resultsSection: normalizeSection(
       item.resultsSection,
       defaultExecutionPage.resultsSection,
+      ["metrics"],
     ),
     cta:
       item.cta?.length > 0
