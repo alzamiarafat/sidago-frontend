@@ -543,6 +543,102 @@ body {
   animation: execution-dot-drift 4.2s ease-in-out infinite;
 }
 
+.performance-rise-card {
+  animation: performance-card-rise 680ms ease-out both;
+}
+
+.performance-bar {
+  transform-origin: bottom;
+  animation: performance-bar-breathe 2.7s ease-in-out infinite;
+}
+
+.performance-carousel-track {
+  animation: performance-carousel-slide 34s linear infinite;
+}
+
+.performance-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.performance-tab-image {
+  animation: performance-image-in 520ms ease-out both;
+}
+
+.performance-tab-glow {
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 12%, rgba(240, 117, 228, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 88%, rgba(60, 133, 221, 0.13), transparent 32%);
+  animation: performance-glow-shift 5.5s ease-in-out infinite;
+}
+
+.performance-load-line {
+  transform-origin: left;
+  animation: performance-load-line 2.6s ease-in-out infinite;
+}
+
+@keyframes performance-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes performance-load-line {
+  0%,
+  100% {
+    opacity: 0.54;
+    transform: scaleX(0.42);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes performance-bar-breathe {
+  0%,
+  100% {
+    transform: scaleY(0.84);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes performance-carousel-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes performance-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes performance-glow-shift {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(1.5%, -1%, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .execution-visual-glow,
   .execution-grid,
@@ -556,6 +652,15 @@ body {
   .execution-progress,
   .execution-carousel-track,
   .execution-stat-dots {
+    animation: none;
+  }
+
+  .performance-rise-card,
+  .performance-bar,
+  .performance-carousel-track,
+  .performance-tab-image,
+  .performance-tab-glow,
+  .performance-load-line {
     animation: none;
   }
 }
