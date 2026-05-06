@@ -67,7 +67,7 @@ export default function PerformanceTabsSlider() {
             </p>
           </div>
 
-          <div className="flex rounded-lg bg-white p-1 shadow-[0_12px_34px_rgba(17,21,17,0.08)]">
+          <div className="flex w-full rounded-lg bg-white p-1 shadow-[0_12px_34px_rgba(17,21,17,0.08)] sm:w-auto">
             {tabs.map((tab, index) => {
               const isActive = index === activeIndex;
 
@@ -75,10 +75,11 @@ export default function PerformanceTabsSlider() {
                 <button
                   key={tab.label}
                   type="button"
+                  aria-pressed={isActive}
                   onClick={() => setActiveIndex(index)}
-                  className={`min-h-11 rounded-md px-5 text-sm transition-colors duration-300 md:min-w-28 md:text-base ${
+                  className={`min-h-11 flex-1 rounded-md px-5 text-sm transition-colors duration-300 sm:flex-none md:min-w-28 md:text-base ${
                     isActive
-                      ? "bg-[#111511] text-white"
+                      ? "performance-active-tab bg-[#F075E4] font-medium text-[#111511] shadow-[0_8px_18px_rgba(240,117,228,0.3)]"
                       : "text-[#3d463f] hover:bg-[#eef0ee] hover:text-[#111511]"
                   }`}
                 >
@@ -89,7 +90,7 @@ export default function PerformanceTabsSlider() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch">
+        <div className="mt-10 grid gap-4 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch">
           <div className="relative min-h-[15.5rem] overflow-hidden rounded-lg bg-white shadow-[0_24px_70px_rgba(17,21,17,0.12)] md:min-h-[21rem]">
             <Image
               key={activeTab.image}

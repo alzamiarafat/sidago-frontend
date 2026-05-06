@@ -564,6 +564,11 @@ body {
   animation: performance-image-in 520ms ease-out both;
 }
 
+.performance-active-tab {
+  animation: performance-tab-pop 420ms ease-out both,
+    performance-tab-glow-pulse 1.9s ease-in-out infinite;
+}
+
 .performance-tab-glow {
   pointer-events: none;
   background:
@@ -627,6 +632,25 @@ body {
   }
 }
 
+@keyframes performance-tab-pop {
+  from {
+    transform: translateY(0.18rem) scale(0.96);
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes performance-tab-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 8px 18px rgba(240, 117, 228, 0.26);
+  }
+  50% {
+    box-shadow: 0 10px 28px rgba(240, 117, 228, 0.44);
+  }
+}
+
 @keyframes performance-glow-shift {
   0%,
   100% {
@@ -659,6 +683,7 @@ body {
   .performance-bar,
   .performance-carousel-track,
   .performance-tab-image,
+  .performance-active-tab,
   .performance-tab-glow,
   .performance-load-line {
     animation: none;
