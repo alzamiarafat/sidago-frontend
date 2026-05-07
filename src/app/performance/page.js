@@ -101,22 +101,22 @@ const performanceSignals = [
 
 const performanceSteps = [
   {
-    step: "01",
-    title: "Map Sidago performance flows",
+    icon: "flow",
+    title: "Map the work clearly",
     description:
-      "Sidago Performance documents workflows, ownership, standards, data sources, and the moments where performance is lost.",
+      "Understand how work moves, who owns each step, and where progress starts to slow down.",
   },
   {
-    step: "02",
-    title: "Build the Sidago scorecard",
+    icon: "scorecard",
+    title: "Measure what matters",
     description:
-      "Sidago Performance defines useful metrics around speed, quality, capacity, risk, and customer-facing outcomes.",
+      "Create simple metrics for speed, quality, capacity, risk, and customer-facing outcomes.",
   },
   {
-    step: "03",
-    title: "Run the performance rhythm",
+    icon: "rhythm",
+    title: "Improve every cycle",
     description:
-      "Sidago Performance installs review routines, escalation paths, and reporting loops that make improvement repeatable.",
+      "Use review routines, escalation paths, and reporting loops to make improvement repeatable.",
   },
 ];
 
@@ -270,7 +270,7 @@ function PerformanceDashboard() {
           eyebrow="Performance System"
           title="Sidago Performance creates a clearer operating view for faster decisions."
           description="Sidago Performance connects measurement, workflow discipline, and leadership reporting so teams can see what is healthy, what is blocked, and where improvement will matter most."
-          className="[&_*]:text-[#111511] [&>div]:!text-[#E7512F] [&>p]:!text-[#3d463f]"
+          className="[&>div]:!text-[#111511] [&>h2]:!text-[#111511] [&>p]:!text-[#3d463f]"
         />
 
         <div className="rounded-lg bg-[#111511] p-5 text-gray-off-white shadow-[0_24px_70px_rgba(0,0,0,0.22)] md:p-6">
@@ -347,7 +347,7 @@ function PerformanceDashboard() {
 
 function PerformanceCapabilities() {
   return (
-    <section className="bg-[#141914] text-gray-off-white">
+    <section id="performance-capabilities" className="bg-[#141914] text-gray-off-white">
       <div className="container py-16 md:py-20">
         <SectionHeader
           eyebrow="Sidago Performance Capabilities"
@@ -443,6 +443,40 @@ function PerformanceImageCarousel() {
 }
 
 function PerformanceMethod() {
+  const renderMethodIcon = (icon) => {
+    if (icon === "scorecard") {
+      return (
+        <svg viewBox="0 0 56 56" aria-hidden="true" className="h-14 w-14">
+          <rect x="9" y="9" width="38" height="38" rx="8" fill="none" stroke="currentColor" strokeWidth="2.5" />
+          <path d="M18 22h9M18 31h20M18 40h13" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M35 18l3 3 6-7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    }
+
+    if (icon === "rhythm") {
+      return (
+        <svg viewBox="0 0 56 56" aria-hidden="true" className="h-14 w-14">
+          <path d="M10 34c7-16 15 16 22 0s12-10 14-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="14" cy="34" r="4" fill="currentColor" />
+          <circle cx="30" cy="34" r="4" fill="currentColor" />
+          <circle cx="44" cy="28" r="4" fill="currentColor" />
+          <path d="M12 45h32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.45" />
+        </svg>
+      );
+    }
+
+    return (
+      <svg viewBox="0 0 56 56" aria-hidden="true" className="h-14 w-14">
+        <path d="M13 18h14c6 0 9 3 9 8v4c0 5 3 8 9 8h2" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M42 32l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="13" cy="18" r="5" fill="currentColor" />
+        <circle cx="28" cy="18" r="3" fill="currentColor" opacity="0.5" />
+        <circle cx="36" cy="30" r="3" fill="currentColor" opacity="0.5" />
+      </svg>
+    );
+  };
+
   return (
     <section className="bg-[#202620] text-gray-off-white">
       <div className="container py-16 md:py-20">
@@ -450,21 +484,24 @@ function PerformanceMethod() {
           <SectionHeader
             eyebrow="Sidago Performance Method"
             title="From unclear performance to managed improvement."
-            description="Sidago Performance helps teams move from scattered updates to a practical operating rhythm: clear metrics, visible blockers, and consistent action."
+            description="Sidago Performance helps teams turn scattered updates into clear priorities, visible blockers, and steady action."
+            className="[&>div]:!text-xs [&>div]:md:!text-sm [&>h2]:!text-2xl [&>h2]:md:!text-[2.65rem] [&>p]:!text-sm [&>p]:md:!text-base"
           />
 
           <div className="space-y-4">
             {performanceSteps.map((item) => (
               <article
-                key={item.step}
-                className="grid gap-5 rounded-lg bg-[#111711] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] md:grid-cols-[5rem_1fr]"
+                key={item.title}
+                className="grid gap-5 rounded-lg bg-[#111711] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] transition duration-300 hover:bg-[#131a13] md:grid-cols-[5rem_1fr]"
               >
-                <div className="font-blender text-4xl text-[#f075e4]">
-                  {item.step}
+                <div className="flex h-20 w-20 items-center justify-center rounded-md bg-[#f075e4]/10 text-[#f075e4] shadow-[inset_0_0_0_1px_rgba(240,117,228,0.24)]">
+                  {renderMethodIcon(item.icon)}
                 </div>
                 <div>
-                  <h3 className="text-2xl text-white">{item.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-gray-off-white/62">
+                  <h3 className="text-lg leading-tight text-white md:text-xl">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 max-w-xl text-xs leading-relaxed text-gray-off-white/64 md:text-sm">
                     {item.description}
                   </p>
                 </div>
