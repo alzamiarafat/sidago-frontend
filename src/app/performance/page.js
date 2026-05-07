@@ -4,6 +4,7 @@ import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
+import PerformanceCapabilitiesCarousel from "@/src/components/sections/v2/performancepage/PerformanceCapabilitiesCarousel";
 import PerformanceTabsSlider from "@/src/components/sections/v2/performancepage/PerformanceTabsSlider";
 import { buildPageMetadata } from "@/src/lib/seo";
 
@@ -67,21 +68,25 @@ const performanceCapabilities = [
     title: "Performance Measurement",
     description:
       "Sidago Performance defines the KPIs, service levels, and quality signals that show how work is actually moving.",
+    image: "/images/performance-measurement-capabilities.png",
   },
   {
     title: "Workflow Diagnostics",
     description:
       "Sidago Performance finds the friction points behind missed deadlines, unclear ownership, duplicate effort, and slow approvals.",
+    image: "/images/workflow-diagnostics-capabilities.png",
   },
   {
-    title: "Operating Reviews",
+    title: "Sidago Performance rhythm",
     description:
-      "Sidago Performance creates a reliable cadence for decisions, blockers, accountability, and continuous improvement.",
+      "Sidago Performance connects reviews, risks, actions, and measurable service movement.",
+    image: "/images/performance-rhythm-slide-v2.png",
   },
   {
     title: "Reporting Systems",
     description:
       "Sidago Performance turns fragmented updates into concise dashboards that leaders and delivery teams can use every week.",
+    image: "/images/performance-capabilities-illustration.png",
   },
 ];
 
@@ -123,6 +128,8 @@ const performanceCarouselItems = [
     metric: "96%",
     label: "Coverage",
     visual: "dashboard",
+    imageFit: "contain",
+    imageBackground: "#eef4fb",
   },
   {
     title: "Sidago Performance quality",
@@ -131,6 +138,9 @@ const performanceCarouselItems = [
     metric: "28%",
     label: "Less rework",
     visual: "quality",
+    image: "/images/performance-quality-slide.png",
+    imageFit: "contain",
+    imageBackground: "#eef4fb",
   },
   {
     title: "Sidago Performance rhythm",
@@ -139,6 +149,9 @@ const performanceCarouselItems = [
     metric: "3.4x",
     label: "Review pace",
     visual: "rhythm",
+    image: "/images/performance-rhythm-slide-v2.png",
+    imageFit: "contain",
+    imageBackground: "#edf3ff",
   },
   {
     title: "Sidago Performance capacity",
@@ -147,6 +160,8 @@ const performanceCarouselItems = [
     metric: "86%",
     label: "Owner coverage",
     visual: "capacity",
+    imageFit: "contain",
+    imageBackground: "#f2efe8",
   },
   {
     title: "Sidago Performance control",
@@ -340,26 +355,7 @@ function PerformanceCapabilities() {
           description="Sidago Performance is not more reporting. It is a sharper system for seeing progress, protecting quality, and making work easier to manage at scale."
         />
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
-          {performanceCapabilities.map((item, index) => (
-            <article
-              key={item.title}
-              className="performance-rise-card group rounded-lg bg-[#0d120e] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] transition-colors duration-300 hover:bg-[#191f1a]"
-              style={{ animationDelay: `${index * 90}ms` }}
-            >
-              <div className="font-blender text-sm uppercase tracking-[0.24em] text-[#f075e4]/78">
-                0{index + 1}
-              </div>
-              <h3 className="mt-5 text-2xl text-white">{item.title}</h3>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-off-white/62">
-                {item.description}
-              </p>
-              <div className="mt-6 h-px w-full bg-white/10">
-                <div className="h-px w-24 bg-[#f075e4] transition-all duration-300 group-hover:w-40" />
-              </div>
-            </article>
-          ))}
-        </div>
+        <PerformanceCapabilitiesCarousel items={performanceCapabilities} />
       </div>
     </section>
   );
@@ -372,7 +368,7 @@ function PerformanceImageCarousel() {
   ];
   const carouselItems = performanceCarouselItems.slice(0, 4).map((item, index) => ({
     ...item,
-    image: carouselImages[index % carouselImages.length],
+    image: item.image || carouselImages[index % carouselImages.length],
   }));
   const loopItems = [...carouselItems, ...carouselItems];
 
@@ -386,33 +382,56 @@ function PerformanceImageCarousel() {
         />
 
         <div className="mt-10 overflow-hidden">
-          <div className="performance-carousel-track flex w-max gap-4 md:gap-5">
+          <div className="performance-carousel-track flex w-max gap-5 md:gap-6 will-change-transform">
             {loopItems.map((item, index) => (
               <article
                 key={`${item.title}-${index}`}
-                className="group relative h-[19rem] w-[16rem] shrink-0 overflow-hidden rounded-lg bg-[#151b15] shadow-[0_12px_32px_rgba(0,0,0,0.18)] ring-1 ring-white/8 transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_46px_rgba(0,0,0,0.26)] md:h-[20rem] md:w-[19rem]"
+                className="group relative flex h-[25rem] w-[17rem] shrink-0 flex-col overflow-hidden rounded-[1.2rem] bg-[#f5f4ef] text-[#243047] shadow-[0_18px_44px_rgba(0,0,0,0.14)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(0,0,0,0.18)] md:h-[27rem] md:w-[20rem]"
               >
-                <Image
-                  src={item.image}
-                  alt={`${item.title} visual`}
-                  fill
-                  className="object-cover opacity-92 transition duration-700 group-hover:scale-[1.04]"
-                  sizes="(min-width: 768px) 19rem, 16rem"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050805]/94 via-[#050805]/34 to-transparent" />
-                <div className="absolute inset-x-0 top-0 h-px bg-white/18" />
-                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050805] to-transparent" />
-                <div className="absolute inset-x-4 bottom-4 md:inset-x-5 md:bottom-5">
-                  <div className="font-blender text-[0.68rem] uppercase tracking-[0.2em] text-gray-off-white/58">
-                    Sidago Performance
+                <div className="p-0">
+                  <div
+                    className="relative h-[12.8rem] overflow-hidden md:h-[14.5rem]"
+                    style={
+                      item.imageBackground
+                        ? { backgroundColor: item.imageBackground }
+                        : { backgroundColor: "#e9edf3" }
+                    }
+                  >
+                    <Image
+                      src={item.image}
+                      alt={`${item.title} visual`}
+                      fill
+                      className={`transition duration-700 ${
+                        item.imageFit === "contain"
+                          ? "object-contain p-4"
+                          : "object-cover object-center group-hover:scale-[1.03]"
+                      }`}
+                      sizes="(min-width: 768px) 19rem, 16rem"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-1 flex-col justify-between px-5 pb-5 pt-5 md:px-6 md:pb-6">
+                  <div>
+                    <div className="font-blender text-[0.68rem] uppercase tracking-[0.2em] text-[#7f8898]">
+                      Sidago Performance
+                    </div>
+                    <h3 className="mt-3 text-[2rem] font-medium leading-[1.04] text-[#243047] md:text-[2.2rem]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-4 min-h-[6rem] text-[1.02rem] leading-[1.6] text-[#536179]">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <h3 className="mt-3 text-xl leading-[1.08] text-white md:text-2xl">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-gray-off-white/74">
-                    {item.description}
-                  </p>
+                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#d8dde6] pt-4">
+                    <div className="text-xs uppercase tracking-[0.18em] text-[#7f8898]">
+                      {item.label}
+                    </div>
+                    <div className="font-blender text-2xl leading-none text-[#4d5d7a]">
+                      {item.metric}
+                    </div>
+                  </div>
                 </div>
               </article>
             ))}

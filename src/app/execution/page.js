@@ -413,6 +413,17 @@ export default async function ExecutionPage() {
     getExecutionPage(),
   ]);
 
+  const contentWithReplacementImage = {
+    ...executionContent,
+    aboutSection: {
+      ...executionContent.aboutSection,
+      visual: {
+        ...executionContent.aboutSection?.visual,
+        imageSrc: "/images/execution-hero-visual.png",
+      },
+    },
+  };
+
   return (
     <div className="flex h-svh flex-col text-base">
       <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
@@ -423,7 +434,7 @@ export default async function ExecutionPage() {
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection {...executionContent.hero} />
-          <ExecutionSection content={executionContent} />
+          <ExecutionSection content={contentWithReplacementImage} />
           <CTASection />
           <Footer footer={settings?.footer} />
         </main>
