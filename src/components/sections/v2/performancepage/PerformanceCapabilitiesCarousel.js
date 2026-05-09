@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
+import { useMemo, useState } from "react";
 
 function ArrowIcon({ className = "" }) {
   return (
@@ -10,149 +9,59 @@ function ArrowIcon({ className = "" }) {
       aria-hidden="true"
       className={className}
       fill="none"
-      viewBox="0 0 40 40"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-        fill="currentColor"
-        fillRule="evenodd"
-        clipRule="evenodd"
+        d="M4 12h14m-5-5 5 5-5 5"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
       />
     </svg>
   );
 }
 
-function CapabilityOrb() {
-  const mountRef = useRef(null);
-
-  useEffect(() => {
-    const mount = mountRef.current;
-
-    if (!mount) {
-      return undefined;
-    }
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-    camera.position.set(0, 0, 4.2);
-
-    const testCanvas = document.createElement("canvas");
-    const hasWebGL =
-      testCanvas.getContext("webgl2") || testCanvas.getContext("webgl");
-
-    if (!hasWebGL) {
-      return undefined;
-    }
-
-    let renderer;
-
-    try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    } catch {
-      return undefined;
-    }
-
-    renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.domElement.style.inset = "0";
-    renderer.domElement.style.position = "absolute";
-    mount.appendChild(renderer.domElement);
-
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const core = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(1.05, 1),
-      new THREE.MeshStandardMaterial({
-        color: 0xf075e4,
-        metalness: 0.35,
-        roughness: 0.36,
-        emissive: 0x3a1438,
-        emissiveIntensity: 0.65,
-      }),
-    );
-    group.add(core);
-
-    const ringMaterial = new THREE.MeshBasicMaterial({
-      color: 0x67f2d8,
-      transparent: true,
-      opacity: 0.46,
-      side: THREE.DoubleSide,
-    });
-
-    const rings = [
-      new THREE.Mesh(new THREE.TorusGeometry(1.45, 0.012, 12, 96), ringMaterial),
-      new THREE.Mesh(new THREE.TorusGeometry(1.74, 0.01, 12, 96), ringMaterial.clone()),
-    ];
-
-    rings[0].rotation.x = Math.PI / 2.6;
-    rings[1].rotation.y = Math.PI / 2.8;
-    rings[1].material.opacity = 0.3;
-    rings.forEach((ring) => group.add(ring));
-
-    scene.add(new THREE.AmbientLight(0xffffff, 1.1));
-    const keyLight = new THREE.PointLight(0xffffff, 2.4, 8);
-    keyLight.position.set(2.5, 2.8, 3.5);
-    scene.add(keyLight);
-
-    let frameId;
-
-    const resize = () => {
-      const size = Math.max(160, mount.clientWidth);
-      renderer.setSize(size, size, false);
-      camera.aspect = 1;
-      camera.updateProjectionMatrix();
-    };
-
-    const animate = () => {
-      group.rotation.y += 0.008;
-      core.rotation.x += 0.006;
-      rings[0].rotation.z += 0.01;
-      rings[1].rotation.x += 0.007;
-      renderer.render(scene, camera);
-      frameId = window.requestAnimationFrame(animate);
-    };
-
-    resize();
-    animate();
-    window.addEventListener("resize", resize);
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      window.cancelAnimationFrame(frameId);
-      renderer.dispose();
-      core.geometry.dispose();
-      core.material.dispose();
-      rings.forEach((ring) => {
-        ring.geometry.dispose();
-        ring.material.dispose();
-      });
-      mount.removeChild(renderer.domElement);
-    };
-  }, []);
-
+function ArrowLeftIcon({ className = "" }) {
   return (
-    <div className="relative h-40 w-40 overflow-hidden md:h-48 md:w-48">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-7 animate-spin rounded-full border border-[#67f2d8]/35 bg-[#f075e4]/12 shadow-[inset_0_0_30px_rgba(240,117,228,0.28),0_0_34px_rgba(103,242,216,0.14)] md:inset-8"
-        style={{
-          animationDuration: "8s",
-          transform: "rotateX(58deg) rotateY(28deg) rotateZ(12deg)",
-          transformStyle: "preserve-3d",
-        }}
-      >
-        <div className="absolute inset-2 rounded-full border border-[#f075e4]/45" />
-        <div className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#f075e4]/55 shadow-[0_0_24px_rgba(240,117,228,0.55)]" />
-        <div className="absolute left-1/2 top-1/2 h-[72%] w-[18%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#67f2d8]/30" />
-        <div className="absolute left-1/2 top-1/2 h-[18%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#67f2d8]/30" />
-      </div>
-      <div
-        ref={mountRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20 12H6m5-5-5 5 5 5"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
       />
+    </svg>
+  );
+}
+
+function CapabilityAmbient() {
+  return (
+    <div className="relative mx-auto flex h-full min-h-[13rem] w-full max-w-[19rem] items-center justify-center overflow-hidden rounded-[1.4rem]">
+      <div className="absolute left-[10%] top-[18%] h-28 w-28 rounded-full bg-[#67f2d8]/18 blur-3xl animate-[pulse_2.4s_ease-in-out_infinite]" />
+      <div className="absolute right-[10%] top-[22%] h-32 w-32 rounded-full bg-[#f075e4]/18 blur-3xl animate-[pulse_2.8s_ease-in-out_infinite]" />
+      <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/20 shadow-[0_0_32px_rgba(255,255,255,0.1)] animate-[spin_7s_linear_infinite]" />
+      <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#67f2d8]/65 shadow-[0_0_28px_rgba(103,242,216,0.38)] animate-[spin_5s_linear_infinite_reverse]" />
+      <div className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/95 shadow-[0_0_28px_rgba(255,255,255,0.45)] animate-[pulse_1.6s_ease-in-out_infinite]" />
+
+      <div className="absolute inset-x-[8%] top-1/2 h-[2px] -translate-y-1/2 bg-white/10" />
+      <div className="absolute inset-x-[8%] top-1/2 h-[4px] -translate-y-1/2 overflow-hidden">
+        <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-[#67f2d8] via-white to-[#f075e4] shadow-[0_0_22px_rgba(240,117,228,0.4)] animate-[spin_4.8s_linear_infinite]" />
+      </div>
+
+      <div className="absolute left-[14%] top-[34%] h-5 w-5 rounded-full bg-[#67f2d8] shadow-[0_0_20px_rgba(103,242,216,0.75)] animate-[floatPanelA_2.6s_ease-in-out_infinite]" />
+      <div className="absolute right-[16%] top-[38%] h-5 w-5 rounded-full bg-[#f075e4] shadow-[0_0_20px_rgba(240,117,228,0.72)] animate-[floatPanelC_2.3s_ease-in-out_infinite]" />
+      <div className="absolute left-[22%] bottom-[20%] h-14 w-14 rounded-[1rem] border-2 border-white/30 bg-white/8 shadow-[0_0_26px_rgba(255,255,255,0.16)] animate-[floatPanelB_2.9s_ease-in-out_infinite]" />
+      <div className="absolute right-[18%] bottom-[18%] h-16 w-16 rounded-[1.15rem] border-2 border-[#67f2d8]/40 bg-[#67f2d8]/12 shadow-[0_0_28px_rgba(103,242,216,0.24)] animate-[floatPanelA_2.4s_ease-in-out_infinite]" />
+      <div className="absolute left-1/2 top-[26%] h-3 w-3 -translate-x-1/2 rounded-full bg-white shadow-[0_0_16px_rgba(255,255,255,0.8)] animate-[pulse_1.4s_ease-in-out_infinite]" />
     </div>
   );
 }
@@ -180,12 +89,12 @@ export default function PerformanceCapabilitiesCarousel({ items = [] }) {
   return (
     <div className="mt-10 rounded-lg bg-[#101510] p-5 shadow-[0_18px_44px_rgba(0,0,0,0.18)] ring-1 ring-white/[0.06] md:p-6">
       <div className="grid gap-6 lg:grid-cols-[minmax(18rem,0.72fr)_minmax(0,1.28fr)] lg:items-stretch">
-        <div className="flex flex-col justify-between gap-8 rounded-md bg-white/[0.025] p-5 ring-1 ring-white/[0.05]">
+        <div className="flex min-h-[30rem] flex-col rounded-md bg-white/[0.025] p-5 ring-1 ring-white/[0.05]">
           <div>
             <div className="font-blender text-[0.66rem] uppercase tracking-[0.24em] text-[#f075e4]/82">
               Sidago Performance
             </div>
-            <h3 className="mt-4 max-w-[13ch] text-2xl leading-tight text-white md:text-[2rem]">
+            <h3 className="mt-4 max-w-[13ch] text-[1.75rem] leading-tight text-white sm:text-[1.9rem] md:text-[2rem]">
               {activeItem.title}
             </h3>
             <p className="mt-4 max-w-[28rem] text-sm leading-relaxed text-gray-off-white/64 md:text-base">
@@ -193,30 +102,34 @@ export default function PerformanceCapabilitiesCarousel({ items = [] }) {
             </p>
           </div>
 
-          <div className="flex items-end justify-between gap-4">
-            <CapabilityOrb />
+          <div className="flex flex-1 items-center justify-center py-4 sm:py-6">
+            <CapabilityAmbient />
+          </div>
 
-            <div className="min-w-[9rem]">
-              <div className="flex items-center justify-between gap-5">
-                <div className="text-sm tracking-[0.08em] text-gray-off-white/66">
-                  {String(activeIndex + 1).padStart(2, "0")} /{" "}
-                  {String(total).padStart(2, "0")}
-                </div>
+          <div className="mt-auto flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+            <div className="text-sm tracking-[0.08em] text-gray-off-white/66">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(total).padStart(2, "0")}
+            </div>
+
+            <div className="flex w-full flex-col justify-end sm:min-w-[11rem] sm:flex-1">
+              <div className="flex items-center justify-between gap-4">
+                <div />
 
                 <div className="flex gap-2">
                   <button
                     type="button"
                     aria-label="Previous capability"
                     onClick={prev}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-transparent text-white/78 transition hover:bg-white/[0.05]"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-white/78 transition hover:border-white/[0.16] hover:bg-white/[0.07]"
                   >
-                    <ArrowIcon className="h-4 w-4 rotate-180" />
+                    <ArrowLeftIcon className="h-4 w-4" />
                   </button>
                   <button
                     type="button"
                     aria-label="Next capability"
                     onClick={next}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f075e4] text-[#111511] transition hover:bg-[#f38ae9]"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-white/78 transition hover:border-white/[0.16] hover:bg-white/[0.07]"
                   >
                     <ArrowIcon className="h-4 w-4" />
                   </button>
