@@ -220,6 +220,240 @@ body {
   animation: sidago-status-pulse 1.6s ease-in-out infinite;
 }
 
+.research-page {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(60, 133, 221, 0.16), transparent 32rem),
+    radial-gradient(circle at 88% 12%, rgba(231, 81, 47, 0.11), transparent 30rem),
+    linear-gradient(180deg, #111512 0%, #07100c 45%, #101814 100%);
+}
+
+.research-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black 0%, black 46%, transparent 88%);
+}
+
+.research-hero {
+  background:
+    linear-gradient(135deg, rgba(17, 21, 18, 0.82), rgba(7, 16, 12, 0.96)),
+    radial-gradient(circle at 46% 0%, rgba(231, 81, 47, 0.11), transparent 42rem);
+}
+
+.research-grid {
+  opacity: 0.5;
+  background:
+    linear-gradient(rgba(60, 133, 221, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(231, 81, 47, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  animation: research-grid-drift 16s linear infinite;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+}
+
+.research-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.9;
+}
+
+.research-glow-a {
+  left: -12rem;
+  top: 10rem;
+  height: 24rem;
+  width: 24rem;
+  background: rgba(60, 133, 221, 0.18);
+}
+
+.research-glow-b {
+  right: -13rem;
+  top: 16rem;
+  height: 26rem;
+  width: 26rem;
+  background: rgba(231, 81, 47, 0.16);
+}
+
+.research-card,
+.research-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.026)),
+    rgba(10, 18, 14, 0.64);
+  box-shadow:
+    0 1.25rem 3.5rem rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(18px) saturate(1.2);
+}
+
+.research-card-hover {
+  transition:
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    transform 320ms ease,
+    filter 320ms ease;
+}
+
+.research-card-hover:hover {
+  border-color: rgba(231, 81, 47, 0.46);
+  filter: brightness(1.04);
+  box-shadow:
+    0 1.7rem 4.4rem rgba(0, 0, 0, 0.34),
+    0 0 2rem rgba(231, 81, 47, 0.14),
+    0 0 2.5rem rgba(60, 133, 221, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.research-button {
+  box-shadow:
+    0 0 1rem rgba(231, 81, 47, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.research-button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 1.25rem rgba(231, 81, 47, 0.28),
+    0 0 2rem rgba(60, 133, 221, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.research-float {
+  animation: research-float 4.8s ease-in-out infinite;
+}
+
+.research-pulse-dot,
+.research-map-node {
+  animation: research-pulse 1.6s ease-in-out infinite;
+}
+
+.research-marquee {
+  animation: research-marquee 28s linear infinite;
+}
+
+.research-marquee:hover {
+  animation-play-state: paused;
+}
+
+.research-cta {
+  border: 1px solid rgba(231, 81, 47, 0.25);
+  background:
+    radial-gradient(circle at 12% 16%, rgba(60, 133, 221, 0.17), transparent 24rem),
+    radial-gradient(circle at 88% 22%, rgba(231, 81, 47, 0.18), transparent 24rem),
+    linear-gradient(135deg, rgba(16, 24, 20, 0.94), rgba(7, 16, 12, 0.94));
+  box-shadow:
+    0 2rem 5rem rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.research-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.research-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: translateX(-100%);
+  animation: research-skeleton 1.45s ease-in-out infinite;
+}
+
+.research-particles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.research-particles span {
+  position: absolute;
+  height: 3px;
+  width: 3px;
+  border-radius: 9999px;
+  background: rgba(231, 81, 47, 0.62);
+  box-shadow:
+    0 0 0.7rem rgba(231, 81, 47, 0.5),
+    0 0 1rem rgba(60, 133, 221, 0.26);
+  animation: research-particle-drift 6s ease-in-out infinite;
+}
+
+.research-particles span:nth-child(1) { left: 7%; top: 12%; animation-delay: -0.4s; }
+.research-particles span:nth-child(2) { left: 15%; top: 38%; animation-delay: -1.7s; }
+.research-particles span:nth-child(3) { left: 24%; top: 70%; animation-delay: -3.2s; }
+.research-particles span:nth-child(4) { left: 36%; top: 18%; animation-delay: -2.1s; }
+.research-particles span:nth-child(5) { left: 48%; top: 44%; animation-delay: -4.4s; }
+.research-particles span:nth-child(6) { left: 58%; top: 22%; animation-delay: -0.9s; }
+.research-particles span:nth-child(7) { left: 69%; top: 64%; animation-delay: -2.8s; }
+.research-particles span:nth-child(8) { left: 81%; top: 16%; animation-delay: -3.8s; }
+.research-particles span:nth-child(9) { left: 91%; top: 48%; animation-delay: -1.2s; }
+.research-particles span:nth-child(10) { left: 12%; top: 84%; animation-delay: -4.8s; }
+.research-particles span:nth-child(11) { left: 42%; top: 82%; animation-delay: -1.5s; }
+.research-particles span:nth-child(12) { left: 66%; top: 8%; animation-delay: -2.3s; }
+.research-particles span:nth-child(13) { left: 76%; top: 86%; animation-delay: -3.6s; }
+.research-particles span:nth-child(14) { left: 94%; top: 28%; animation-delay: -5.5s; }
+
+@keyframes research-grid-drift {
+  to {
+    transform: translate3d(44px, 44px, 0);
+  }
+}
+
+@keyframes research-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.45rem);
+  }
+}
+
+@keyframes research-pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.24);
+  }
+}
+
+@keyframes research-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes research-skeleton {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes research-particle-drift {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translate3d(0, 0, 0) scale(0.8);
+  }
+  50% {
+    opacity: 0.82;
+    transform: translate3d(0.8rem, -1rem, 0) scale(1.25);
+  }
+}
+
 .sidago-orbit {
   animation: sidago-orbit-spin 5s linear infinite;
 }
@@ -685,7 +919,14 @@ body {
   .performance-tab-image,
   .performance-active-tab,
   .performance-tab-glow,
-  .performance-load-line {
+  .performance-load-line,
+  .research-grid,
+  .research-float,
+  .research-pulse-dot,
+  .research-map-node,
+  .research-marquee,
+  .research-skeleton::after,
+  .research-particles span {
     animation: none;
   }
 }
