@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { FiShield } from "react-icons/fi";
 
 const EventsDecoration = dynamic(() => import("../../../ui/EventDecoration"), {
   ssr: false,
@@ -12,11 +13,11 @@ const ArrowIcon = ({ size = "mobile" }) => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 40 40"
-    className={`ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] shrink-0 ${
+    className={`ml-[--arrow-offset] shrink-0 text-white/65 transition-all group-hover/interactive:text-white group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] ${
       size === "mobile" ? "lg:hidden" : "hidden lg:block"
     }`}
     style={{
-      "--arrow-offset": size === "mobile" ? "0.9rem" : "1.1rem",
+      "--arrow-offset": size === "mobile" ? "0.85rem" : "1rem",
       width: size === "mobile" ? "2.25rem" : "2.75rem",
     }}
   >
@@ -34,11 +35,11 @@ const NodeDecoration = () => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 200 200"
-    className="absolute origin-top-left text-green-500 opacity-40 w-[21.125rem] -right-[6.875rem] -top-[11.625rem] rotate-[27.31deg] pointer-events-none"
+    className="pointer-events-none absolute -right-[6rem] -top-[9rem] w-[19rem] origin-top-left rotate-[24deg] text-white/25 lg:-right-[5rem] lg:-top-[8rem] lg:w-[22rem]"
   >
-    <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="40" stroke="currentColor" strokeWidth="0.5" />
+    <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="0.55" />
+    <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.55" />
+    <circle cx="100" cy="100" r="40" stroke="currentColor" strokeWidth="0.55" />
     {Array.from({ length: 12 }).map((_, i) => {
       const angle = (i * Math.PI * 2) / 12;
       const cx = +(100 + 80 * Math.cos(angle)).toFixed(2);
@@ -49,9 +50,8 @@ const NodeDecoration = () => (
           key={i}
           cx={cx}
           cy={cy}
-          r="3"
-          fill="currentColor"
-          opacity="0.6"
+          r="2.5"
+          fill="rgb(34 197 94 / 0.65)"
         />
       );
     })}
@@ -63,7 +63,7 @@ const ResearchDecoration = () => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 40 41"
-    className="w-[4rem] lg:w-[5.25rem] text-green-800"
+    className="h-[3.5rem] w-[3.5rem] text-[#7dffc0] drop-shadow-[0_0_12px_rgba(102,255,168,0.35)] lg:h-[4.5rem] lg:w-[4.5rem]"
   >
     <path
       fill="currentColor"
@@ -85,7 +85,7 @@ const MarketDecoration = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 200 201"
     fill="none"
-    className="absolute origin-top-left text-orange-200 opacity-30 w-[30rem] -right-[10rem] -top-[15rem] pointer-events-none"
+    className="pointer-events-none absolute -right-[8rem] -top-[12rem] w-[26rem] origin-top-left text-white/22 lg:w-[28rem]"
     aria-hidden="true"
   >
     {[...Array(8)].map((_, i) => (
@@ -96,19 +96,19 @@ const MarketDecoration = () => (
           x2="100"
           y2="190"
           stroke="currentColor"
-          strokeWidth="0.5"
-          opacity="0.5"
+          strokeWidth="0.55"
+          opacity="0.85"
         />
       </g>
     ))}
-    <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.5" />
-    <circle cx="100" cy="100" r="30" stroke="currentColor" strokeWidth="0.5" />
+    <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="0.55" />
+    <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.55" />
+    <circle cx="100" cy="100" r="30" stroke="currentColor" strokeWidth="0.55" />
   </svg>
 );
 
 function resolveDecoration(type) {
-  if (type === "business-processes") {
+  if (type === "node" || type === "business-processes") {
     return <NodeDecoration />;
   }
 
@@ -131,30 +131,61 @@ function resolveTop(type) {
   return null;
 }
 
+const LEADING_ICON_MAP = {
+  shield: FiShield,
+};
+
+function LeadingIcon({ type }) {
+  if (!type) {
+    return null;
+  }
+  const Icon = LEADING_ICON_MAP[type];
+  if (!Icon) {
+    return null;
+  }
+
+  return (
+    <span
+      className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-white/85 ring-1 ring-inset ring-white/[0.08] backdrop-blur-[2px] lg:h-16 lg:w-16"
+      aria-hidden
+    >
+      <Icon className="h-7 w-7 lg:h-8 lg:w-8" strokeWidth={1.35} />
+    </span>
+  );
+}
+
 function Card({ card }) {
   return (
     <Link
       href={card.href}
       style={{ position: "relative" }}
-      className={`group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[18.75rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 ${card.colSpan}`}
+      className={`group/interactive pointer-events-auto min-h-[14.5rem] transition-[opacity,transform] duration-300 lg:min-h-[17.5rem] lg:group-hover/cards:[&:not(:hover)]:opacity-55 ${card.colSpan}`}
     >
       <span className="sr-only">{card.srLabel}</span>
 
       <div
-        className={`relative flex h-full flex-col justify-between overflow-hidden p-lg bevel ${card.bgClass} ${card.textClass}`}
+        className={`relative flex h-full min-h-[inherit] flex-col justify-between overflow-hidden p-6 bevel ring-1 ring-inset ring-white/[0.06] transition-[box-shadow,filter] duration-300 after:pointer-events-none after:absolute after:inset-0 after:bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_42%)] after:opacity-0 after:transition-opacity after:duration-300 group-hover/interactive:after:opacity-100 lg:p-8 ${card.bgClass} ${card.textClass} group-hover/interactive:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_24px_48px_rgba(0,0,0,0.45)]`}
       >
         {resolveDecoration(card.decorationType)}
-        <div>{resolveTop(card.topType)}</div>
+        <div className="relative z-[1] flex min-h-[4.25rem] shrink-0 items-start pt-1">
+          {resolveTop(card.topType) ?? (
+            <LeadingIcon type={card.leadingIcon} />
+          )}
+        </div>
 
-        <div className="z-10 flex items-end justify-between gap-md">
-          <div className="flex flex-col gap-md">
-            <div className="text-2xl">{card.title}</div>
+        <div className="relative z-10 mt-auto flex items-end justify-between gap-4">
+          <div className="flex min-w-0 flex-col gap-2">
+            <div className="text-[1.35rem] font-medium leading-[1.15] tracking-[-0.02em] text-white lg:text-[1.6rem] xl:text-[1.7rem]">
+              {card.title}
+            </div>
             {card.subtitle ? (
-              <div className="text-sm opacity-70">{card.subtitle}</div>
+              <div className="max-w-[22rem] text-sm leading-relaxed text-white/50 lg:text-[0.95rem]">
+                {card.subtitle}
+              </div>
             ) : null}
           </div>
 
-          <div className="shrink-0">
+          <div className="shrink-0 self-end pb-0.5">
             <ArrowIcon size="mobile" />
             <ArrowIcon size="desktop" />
           </div>
@@ -173,15 +204,14 @@ export default function CardsGrid({ items = [] }) {
   }
 
   return (
-    <>
-      <div className="h-lg bg-gray-defi-charcoal"></div>
-      <section className="bg-gray-defi-charcoal text-gray-off-white">
-        <div className="container py-block group/cards grid-rows-auto pointer-events-none relative flex grid-cols-12 flex-col gap-2xl lg:grid lg:gap-md">
+    <section className="bg-[#020403] text-white">
+      <div className="container py-12 md:py-20 lg:py-28">
+        <div className="group/cards pointer-events-none relative flex flex-col gap-3 lg:grid lg:grid-cols-12 lg:gap-px lg:bg-white/[0.07] lg:p-px">
           {cards.map((card) => (
             <Card key={card.cardId} card={card} />
           ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

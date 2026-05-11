@@ -2,8 +2,10 @@
 const nextConfig = {
   compress: true,
   poweredByHeader: false,
+  // `optimizePackageImports` for react-icons has been linked to Turbopack dev/HMR
+  // instability in some Next.js versions; re-enable when upgrading if dev is stable.
   experimental: {
-    optimizePackageImports: ["react-icons", "@heroicons/react"],
+    optimizePackageImports: ["@heroicons/react"],
   },
   images: {
     remotePatterns: [

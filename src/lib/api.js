@@ -164,6 +164,10 @@ function normalizeCardsGridItem(item, fallbackItem) {
     decorationType:
       item.decorationType || fallbackItem.decorationType || "none",
     topType: item.topType || fallbackItem.topType || "none",
+    leadingIcon:
+      item.leadingIcon != null && `${item.leadingIcon}`.trim() !== ""
+        ? `${item.leadingIcon}`.trim()
+        : fallbackItem.leadingIcon,
   };
 }
 
@@ -421,13 +425,15 @@ function normalizeHomepage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((cardItem, index) =>
-              normalizeCardsGridItem(
-                cardItem,
+            .map((cardItem, index) => {
+              const cardFallback =
+                defaultHomepage.cardsGrid.find(
+                  (row) => row.cardId === cardItem.cardId,
+                ) ||
                 defaultHomepage.cardsGrid[index] ||
-                  defaultHomepage.cardsGrid[0],
-              ),
-            )
+                defaultHomepage.cardsGrid[0];
+              return normalizeCardsGridItem(cardItem, cardFallback);
+            })
         : defaultHomepage.cardsGrid,
     cta:
       cta?.length > 0

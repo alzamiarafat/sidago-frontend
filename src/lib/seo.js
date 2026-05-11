@@ -161,6 +161,34 @@ export const routeMetadata = {
       "Sidago execution, strategic implementation, and decentralized finance support for innovation-focused organizations.",
     path: "/execution",
   }),
+  marketingGrowth: buildPageMetadata({
+    title: "Marketing Growth",
+    description:
+      "Sidago marketing growth: digital strategy, brand visibility, performance marketing, lead generation, conversion optimization, and data-driven insights for modern teams.",
+    path: "/marketing-growth",
+    keywords: [
+      "Sidago marketing",
+      "digital growth strategy",
+      "lead generation",
+      "conversion optimization",
+      "performance marketing",
+      "brand visibility",
+    ],
+  }),
+  supportCompliance: buildPageMetadata({
+    title: "Support & Compliance",
+    description:
+      "Sidago support and compliance: customer support, security and privacy, risk management, data protection, regulatory alignment, documentation, and enterprise-grade workflows.",
+    path: "/support-compliance",
+    keywords: [
+      "Sidago support",
+      "compliance services",
+      "data protection",
+      "risk management",
+      "security and privacy",
+      "regulatory guidelines",
+    ],
+  }),
 };
 
 function flattenServices() {

@@ -1,27 +1,28 @@
-// EventsDecoration.jsx
+// EventsDecoration.jsx — subtle grid motif (homepage cards)
 "use client";
+
 import { useMemo } from "react";
 
-export default function EventsDecoration() {
+export default function EventDecoration() {
   const dots = useMemo(
     () =>
-      Array.from({ length: 20 }).map(() => ({
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        scale: 0.5 + Math.random(),
+      Array.from({ length: 18 }).map(() => ({
+        left: `${8 + Math.random() * 84}%`,
+        top: `${8 + Math.random() * 84}%`,
+        scale: 0.65 + Math.random() * 0.65,
       })),
     [],
   );
 
   return (
     <div
-      className="absolute inset-0 pointer-events-none overflow-hidden"
+      className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
     >
       {dots.map((dot, i) => (
         <div
           key={i}
-          className="absolute w-1 h-1 rounded-full bg-pink-400 opacity-50"
+          className="absolute h-1 w-1 rounded-full bg-[#E7512F]/70 shadow-[0_0_6px_rgba(231,81,47,0.55)]"
           style={{
             left: dot.left,
             top: dot.top,
@@ -29,9 +30,8 @@ export default function EventsDecoration() {
           }}
         />
       ))}
-
-      <div className="absolute -right-8 -top-8 w-48 h-48 border border-pink-400/30 rounded-full" />
-      <div className="absolute -right-4 -top-4 w-32 h-32 border border-pink-400/20 rounded-full" />
+      <div className="absolute -right-10 -top-10 h-44 w-44 rounded-full border border-white/15" />
+      <div className="absolute -right-5 -top-5 h-28 w-28 rounded-full border border-white/12" />
     </div>
   );
 }
