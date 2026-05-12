@@ -1,6 +1,13 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Blender:wght@400;500;600;700&display=swap"); */
 @import "tailwindcss";
 
+/* v2 marketing UI: keep Saans as default body text (matches public/styles/style-v2.css) after Tailwind preflight */
+@layer base {
+  body.version-v2 {
+    font-family: saans, sans-serif;
+  }
+}
+
 /* @font-face {
   font-family: "Blender";
   src: url("/fonts/Blender-Regular.woff2") format("woff2");

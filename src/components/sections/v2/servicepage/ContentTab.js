@@ -309,37 +309,126 @@ function getServiceDetailContent(href = "") {
       eyebrow: "Administrative Support",
       title: "Copywriting",
       summary:
-        "Conversion-oriented copy for ads, landing pages, email, and sales collateral—written to clarify the offer, reduce friction, and support measurable marketing outcomes.",
+        "Effective copywriting promotes your business by presenting ideas in a clear, persuasive way that builds trust, supports action, and strengthens the return on your marketing effort.",
       paragraphs: [
-        "Copywriting is not about clever phrases for their own sake. It is about aligning message, audience, and action so readers understand what to do next and why it is worth doing now.",
-        "Sidago supports copywriting projects where the goal is to improve clarity, strengthen calls to action, and keep voice consistent across campaigns. We focus on practical drafts that can move quickly through review cycles and ship with confidence.",
+        "Copywriting is a tried-and-true method of promoting any type of business, since it presents an idea in a way that convinces buyers to purchase your product. It's an effective way to build trust among your customers, which could result in more sales. To put it simply, it is the art of making customers without interacting with them directly. Instead, it is a more passive way to promote your brand, and to add a certain comfort level with prospective buyers.",
       ],
-      closing: "GET IN TOUCH WITH US TODAY!",
-      closingHref: "/contact",
+      sections: [
+        {
+          title: "Types of Copywriting",
+          body: "You probably see this type of marketing strategy as you go through your daily life. When you flip on the radio, turn on the television, or even read the newspaper you have most likely run into some commercial or advertisement. These are some of the more traditional forms, but in today's digital age this type of marketing has crossed over into the web.\n\nHere are some of the more common ways this type of marketing strategy can be implemented:",
+          bullets: [
+            "Direct mail ads",
+            "Taglines",
+            "Jingles",
+            "Web content",
+            "Television and radio commercials",
+            "Press releases",
+            "Catalogs",
+            "Billboards",
+            "Brochures",
+            "Postcards",
+          ],
+        },
+        {
+          title: "How Copywriting Applies to Internet Marketing",
+          body: "The methodologies for writing web content differ from other forms of writing, because it uses a more direct and to-the-point approach. Not only does it have to present its message clearly, but it also has to be brief. Many companies use independent contractors to write these articles, and they often appear on blogs and other web pages in order to promote a certain product or service.\n\nThe use of search engine optimization (SEO) is a very important factor, as it helps companies to drive more organic traffic that is targeted toward a specific niche. Certain keywords are strategically placed in a way that it flows naturally with the article's writing style. They're often repeated a certain number of times to ensure the highest possible ranking on search engines, but the writer has to be careful not to stuff them into the article. This will only have a negative impact on what is trying to be accomplished.",
+        },
+        {
+          title: "Reasons to Choose Sidago",
+          body: "Sidago Integrated Solutions offers high-quality copywriting services that will help you to:",
+          bullets: [
+            "Present your corporate goals",
+            "Communicate your message to customers",
+            "Stand out against the competition",
+            "Build a stronger relationship with your clients",
+            "Improve the outcome of your marketing strategies",
+          ],
+        },
+      ],
+      closing:
+        "If you take the time and energy to build an effective campaign, you will get a better return on your investment. We understand the cost of doing business, so we want to make sure you get the best possible results. An effective marketing strategy will not only generate more revenue, but it will also enhance your professional growth. Our staff is here to help you find the best solution for your business. So, call us today to find out what we can do for you!",
     },
     "/services/creative-writing/": {
       eyebrow: "Administrative Support",
       title: "Creative Writing",
       summary:
-        "Long-form and narrative-driven writing for storytelling, brand voice, and editorial projects where depth, tone, and originality matter as much as structure.",
+        "Creative writing helps businesses communicate with originality, personality, and memorability across articles, blog posts, white papers, and other content where interesting text matters.",
       paragraphs: [
-        "Creative writing work often needs room for voice, pacing, and character—whether the output is thought leadership, scripted narrative, or brand-forward editorial content.",
-        "Our creative writing support is built for teams that want dependable drafting and revision help without losing the personality that makes the content feel human and memorable.",
+        "Creative writing, much like the board game Othello, takes a minute to learn, but a lifetime to master. The difference is this game could cost your company tens of thousands of dollars. The undisputed fact of the matter is content is king, and exceptional creative writing could be what differentiates your company from your competition, in the form of excellent and informative blog posts, articles, white papers, and even social media updates. Creative writing is mandatory anywhere where compelling and interesting text is influential.",
       ],
-      closing: "GET IN TOUCH WITH US TODAY!",
-      closingHref: "/contact",
+      sections: [
+        {
+          title: "The Importance Of Creative Writing",
+          body: "While it might seem that the realms of creative writing and business are mutually exclusive, with little overlap, this is not entirely true. And while more traditional business people might not see the benefits, great creative writing can help businesses:",
+          bullets: [
+            "Stand out from the competition by having great content and copy",
+            "Appear intelligent and eloquent to potential customers",
+            "Creates amazing, memorable correspondence",
+            "Increase the likelihood of content going viral, because it is interesting and useful to real people",
+            "Help your company think outside of the box, fostering unique and innovative solutions that no one else has",
+          ],
+        },
+      ],
+      closing:
+        "Creative writing forces you to use your imagination in a way that make you more aware of yourself and your surroundings. It encourages one to consider a story from various perspectives rather than being limited to a single point of view. Creative writing plays a vital role in literacy development. It is an awesome medium to help make tracks in an opposite direction from life and be in control of whatever you are making. By composing stories, places, and enterprises for your characters, you'll have the capacity to disappear from reality for some time.\n\nFor organizations, good creative writing skills enhance the business's image, increase confidence, boost productivity, and help in achieving goals and objectives on a daily basis.\n\nAfter all, with the internet, great creative writing and content makes the world go round, but a lot of people haven't realized it yet. This creates a unique opportunity to leap ahead of your competition in a way that is much more cost-effective than many comparatively-priced business solutions, while greatly improving your brand identity in the process.\n\nSidago creative writing services:\n\nAt Sidago Integrated Solution, we appreciate the fact that creative writing is more about personal traits and imagination. As our clients mostly demand it in the academic context, we have built a professional team of creative writers to serve and inspire you. To ensure your satisfaction, our authors:\n\n• Always provide 100% original work following your specific requirements\n• Work on a quick turnaround to meet all the deadlines\n• Are available for revisions if you are not satisfied with the work quality\n\nWhether you are a student or you are a professional writer, you can easily seek our creative writing services to manage your various assignments and projects. To make our services more feasible, we offer discounted rates on bulk projects.\n\nMoreover, you may also inquire your order's status to track the overall progress. Please feel free to contact our customer support for any further information and assistance.",
+      closingHref: undefined,
     },
     "/services/web-content-writing/": {
       eyebrow: "Administrative Support",
       title: "Web Content Writing",
       summary:
-        "Web-first content that reads well on-page, supports SEO intent, and stays organized for publishing workflows—from service pages to articles and resource libraries.",
+        "Web content writing helps businesses publish clear, useful, well-structured pages that support search visibility, improve conversion, and give visitors the information they need to act.",
       paragraphs: [
-        "Web content has to work twice: it should be easy to scan for busy readers, and it should be structured so teams can maintain it over time without breaking consistency.",
-        "Sidago helps with web content writing that balances readability, accurate messaging, and practical formatting so pages stay useful after launch—not only on day one.",
+        "The internet is becoming increasingly interwoven with daily life. That makes strong website content a practical business advantage, because people often discover, compare, and judge companies through what they read online.",
+        "When web content is clear, useful, and well organized, it helps visitors understand what a business offers and why it is worth their attention. When content is weak or neglected, that same website can become a missed opportunity.",
       ],
-      closing: "GET IN TOUCH WITH US TODAY!",
-      closingHref: "/contact",
+      sections: [
+        {
+          title: "",
+          body: "The internet is becoming increasingly interwoven with daily life, a fact that can be illustrated by considering the statistics below:",
+          bullets: [
+            "85% of consumers report that they use the internet to look up local businesses",
+            "88% of consumers say that they trust online reviewers opinions",
+            "50% of mobile device users are more likely to visit local businesses that advertise online via social media and other networks",
+          ],
+        },
+        {
+          title: "What Is Web Content?",
+          body: "Roughly speaking, web content refers to the information presented on a website in textual, aural or visual form. Websites that are stuffed with high-quality content are most likely to enjoy the advantages of high web crawler positions and great conversion rates.\n\nNavigating a decent site that contains a great deal of information in an unorganized manner can have a strong negative impact overall. Defining what makes quality web content is a tricky act. The introduction helps individuals figure out if they need to invest more energy perusing, listening or surveying the website.\n\nTo make web content impressive, authors need to deliver incredible information all the time. Having the right content in place is vital to expanding profitability.",
+        },
+        {
+          title: "Some Useful Web Content Statistics",
+          bullets: [
+            "70% of business to business marketers are creating more content of all kinds this year",
+            "What types of content are social media marketers using? 94% report using original written content; 73% are curating other people's content; and 60% report using original visual assets as well as original videos.",
+            "The most important content, according to online marketers, is original written content, according to 58% of online marketers asked. 19% said original visual assets were the most important, while 12% said original videos. 10% of marketers found content curation to be the most important, and only 2% of marketers claimed that original audio content was the most important.",
+          ],
+        },
+        {
+          title: "Why Effective Web Content Is Needed",
+          body: "Web content plays a vital role in providing information relevant to the website as:",
+          bullets: [
+            "Websites capture interest of users in seconds",
+            "Web content is the reason that individuals search and go to your Web pages",
+            "If your plans, architectures, and intuitiveness on your site don't give information required by individuals, they will clear out",
+            "Web content is a major success determining factor for an online business and any website in general",
+            "Concise, clear, engaging, compelling, reader-friendly, original, creative, and web-friendly pages are more useful and easy to read",
+          ],
+        },
+        {
+          title: "Reasons to Choose Sidago Web Content Writing Services",
+          body: "Sidago Web Content services will enable you to:",
+          bullets: [
+            "Produce information on website with qualitative and appealing factors, which will be convince-able to more search engines",
+            "Present web content aimed at educating, persuading, informing, entertaining, expanding visitors' horizons and changing perceptions",
+            "Achieve SEO optimization",
+            "Create and present information on websites by understanding targeted audience and industry",
+          ],
+        },
+      ],
+      closing:
+        "Our web content writers generate original information that is persuading and includes semantically related catchphrases. Please contact our content consultants and expert writers today for high-quality content writing.",
     },
     "/services/translation-services/": {
       eyebrow: "Administrative Support",
@@ -470,6 +559,944 @@ function getServiceDetailContent(href = "") {
       closing:
         "You can get assistance from our expertise for resolving data mining problems. You can also consider us for any outsourcing needs. For any further inquiries and assistance, please feel free to contact us today.",
       closingHref: "/contact",
+    },
+    "/services/advertising/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Advertising",
+      summary:
+        "Advertising support that helps businesses choose the right channels, shape stronger campaigns, and measure performance across both online and offline media.",
+      paragraphs: [
+        "In advertising, Sidago offers consultancy services and we also serve as a link between you and the different players you may want to engage. An advertising campaign has many different sides to it, depending on how much you want to exploit the various possible options that there are. The advertising methods we vouch for are agreed on by our advertising teams and your representatives so that we can come up with the actual marketing strategy and propose the best methods to achieve the results that you desire.",
+      ],
+      sections: [
+        {
+          title: "Here's a quick overview of what we have to offer in the realm of advertising.",
+          body: "",
+          bullets: [],
+        },
+        {
+          title: "Offline advertising",
+          body: "We are in a position to link you with offline advertising outlets. These are the conventional advertising methods such as television, radio, and print media. With our experience and relationships with these media outlets, you're sure to get the best rates for your adverts.",
+        },
+        {
+          title: "Online carriers",
+          body: "These are the carriers of advertisements who utilize the internet to disperse their content. The content could include audio, video, and written content. Animations and other graphics such as GIF images are included. We help you manage the way you interact with these carriers. They include websites, affiliate marketers, advertising companies such as Google Ads, and video channels such as YouTube.",
+        },
+        {
+          title: "Audio and video ads",
+          body: "We prepare the advertisements that you need to bring you the best results. Working with our team, we prepare captivating ads for your products. Our ads are creative and they capture the attention of your targeted market. We have a large network of media production companies who are always ready and willing to prepare these ads for our clients.",
+        },
+        {
+          title: "Graphic Design",
+          body: "If your advertisements includes graphic work, we're here to help you. Our media partners prepare the graphical work for you to your satisfaction. This may include caricatures, animations, drawings, or photographs.",
+        },
+        {
+          title: "Analytics",
+          body: "You don't want to run an advertising campaign blindly. To this end, we prepare analytical tools that help you monitor and evaluate the progress that your adverts are making. These tools and methods also enable you to assess the penetration of your advertisements and generate data that indicates how much effective your advertisements are. Our tools and methods run on both online and offline platforms. Therefore, they can be used to evaluate both online and offline advertising campaigns.",
+        },
+        {
+          title: "Report writing",
+          body: "We write reports for you so that you can easily track the progress you're making. These reports are based on the data generated by our monitoring and evaluation tools. The parameters taken into consideration include consumer feedback and any differences in the output of your company in form of sales.",
+        },
+      ],
+      closing: "Are you ready to kick start your ad campaign? Let us know!",
+    },
+    "/services/customer-acquisition-sales/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Customer Acquisition & Sales",
+      summary:
+        "Customer acquisition systems that help teams attract prospects, structure follow-up, convert leads, and improve sales visibility across the full funnel.",
+      paragraphs: [
+        "Customer acquisition is a whole set of methods and techniques to manage the prospective customers who may contact you or inquire about you. There are a variety of marketing techniques that are employed. Acquiring new customers can also be the needed step between effective advertising and good management of customer relationships. Good customer acquisition facilitates a good constant inflow of customers as long as the proper methods are utilized.",
+        "At Sidago, we will consult with your staff and see how you can effectively have good customer acquisition methods that are suited for your company. We carry out an analysis of your contact forms and advertising to determine the main channels through which your prospective customers can contact you. We then develop channels and protocols to be followed in turning these prospects into loyal customers for you.",
+        "We ensure that the adopted policies are suitable for your company and can be easily implemented in your unique business environment. Our team of business consultants will come up with several tools to be used in the various stages of customer acquisition. We will have your reception staff trained in handling new prospects that may come to your premises. We also generate many templates for the first response emails you may need to send out. Each of these templates is unique and suited for different types of customers.",
+        "We come up with a lineally progressive system of procedures to be followed. Your first response to the prospective customer will be to further their interest in you and have them wanting more. This is in effect the first sale of your company since the person is hooked, all that waits is for you to tactfully pull in the line.",
+        "Our methods ensure that your company will be proficient at advertising, handling the customer inquiries, responding to these inquiries, effectively capturing studies, and filtering them. After these inquiries are filtered and directed to the appropriate personnel in the company, the leads are graded and arranged in order of priority. This is an important step in the process since haphazard handling of leads could cost you good prospects and leave you with smaller unstable customers. Therefore, you have to prioritize rightly the leads to follow first and those to leave for later.",
+        "The other thing we train your staff to do in the process of acquiring new customers is distributing the lead and having someone assigned to follow the lead. The important sales call comes in at this stage and then the lead is nurtured with time and hopefully retained. Retention of leads is not a simple task and requires savvy staff to do it in the most effective manner possible.",
+        "You'll see the results of our services through your increased sales and through our analysis of promotion effectiveness that we do for you. We'll as well create processes and methods to track key acquisitions so that you can easily get an accurate picture of the way traffic flows to your business and the results that the traffic has.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/email-marketing/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Email Marketing Solution",
+      summary:
+        "Email marketing services that cover prospect outreach, data handling, campaign setup, automation, and reusable templates for ongoing customer communication.",
+      paragraphs: [
+        "In email marketing, there are many different activities involved. You need to have the email contacts of both current and prospective customers. Sidago offers you complete email marketing solutions for your business and helps you achieve your goals in opening up new markets. We offer a complete range of services that enables you to contact prospective clients and keep in touch with them as turn them into your customers.",
+      ],
+      sections: [
+        {
+          title: "Here's a quick look at the email marketing services that we offer right here at Sidago.",
+        },
+        {
+          title: "Contact Email Templates",
+          body: "We prepare templates and full emails for your use in making the initial contact with your prospective clients. Each of these emails is tailored to suit a specific set of people who are in your contacts lists. We do not just give email contacts, we try to find out as much as we can about the owners of the email addresses. This extra information allows us to be able to come up with targeted email responses.",
+        },
+        {
+          title: "Data Management",
+          body: "How easy is it to manage thousands of emails and the accompanying demographic information? At Sidago, we have programmers and software developers who have developed software that suits your needs. The software has immense capability and manages your data including sending automatic responses, updating demographics, and generating statistics about client interactions.\n\nThis is software that can easily be integrated into your own office software or company systems to make it easily accessible to your staff on one platform.\n\nAt Sidago, we also prepare methods for you to keep records of the clients you have sold to and what they bought amongst other additional information. This will help you easily determine customers who may be viable to buy other related products you may offer, know when to approach the client again, and help you in seeking feedback from the customers you've served.",
+        },
+        {
+          title: "Email Mining",
+          body: "Over the years of doing email marketing, we've compiled several databases packed with millions of active email addresses. When you work with Sidago, you have access to this and we refine the results down to only those who could produce you with the return on investment that you're seeking. We also implement email marketing campaigns for your current subscribers to keep them from turning into cold leads.",
+        },
+        {
+          title: "Full Campaign Setup/Management",
+          body: "We've helped many of our clients develop their email marketing campaigns from scratch and we can take this expertise to use it in developing one for your company as well. The power of email marketing is nothing but phenomenal and we'd love for you to taste the success that many of our other clients are currently experiencing.\n\nAs for management, we have monthly packages available that we'll customize specifically for your company. This way it can be a hands off branch of your company.",
+        },
+        {
+          title: "Response templates",
+          body: "We create templates that you will use in your responses to clients. Those who contact you, be whether it's for the first or second time, expect some sort of feedback from you. This is why we develop custom email response templates for your use. The templates are sent to each potential client after your staff evaluate the best template for a specific customer. Optionally, these templates can be sent automatically.\n\nContact one of our email marketing specialists today!",
+        },
+      ],
+      closing: "Contact one of our email marketing specialists today!",
+    },
+    "/services/lead-generation/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Lead Generation",
+      summary:
+        "Lead generation support that helps businesses attract qualified interest, build scalable processes, and improve conversion from prospect to sale.",
+      paragraphs: [
+        "Lead generation is the practice of arousing customer interest in the goods and services offered by your company. This is a process in marketing that may in some events fall under the category of advertising. At Sidago, we not only help you generate leads, but we will also help you convert those leads into sales.",
+        "With more than 10 countries of operation and serving hundreds of different companies (each with unique needs of their own) Sidago has developed methods to generate results for companies in a wide array of business environments. We have the capacity to carry out training and integrations as a lead generation partner with you.",
+        "We've developed proprietary tools and processes specifically for lead generation which helps us maintain the best lead generation services in the industry. We also help you monitor the progress (and return) of your customers as well as your employees. Our ultimate goal is to help remove the ceiling when it comes to boosting your capacity to operate and your return on investment.",
+        "Our lead generation team will train your staff on how to generate leads from conventional sources such as telephone calls, advertisements, search placements, review websites, and more. Sidago aims to continue to be your trusted partner during the process of setting up and implementing your lead generation processes and campaigns.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/market-research/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Market Research",
+      summary:
+        "Market research that helps companies understand customers, test assumptions, and shape decisions with structured survey, sampling, and analysis methods.",
+      paragraphs: [
+        "Progress is always determined and guided by market research. With good market research, you're able to formulate strategies that will guide your company forward. Other types of market research helps you develop company protocols and policies on the way you handle business within your company. It's important for a company to constantly engage in market research to find out the needs of their customers and how satisfied customers are with the currently offered goods/services.",
+        "The common survey and research methods that we employ include the use of questionnaires as survey tools in different types of research. These can be filled at designated points or in door to door style campaigns. Our team of researchers working with their assistants are able to determine the best approach for your survey. We also make good use of other research and data collection tools such as interviews, sampling, and testing. Our methods can be used in both random sampling and targeted sampling depending upon the section of the market that you are hoping to lure in with your products.",
+        "In the process of surveying and research, we also undertake case studies for your company and present our findings to you in an easy-to-understand manner. We find out the reasons behind the successes or failures of other companies and come up with ways to avoid failure coming your way while embracing the good practices that could lead you to success.",
+        "Technology has not been left out in our selection of survey and research tools. We employ different forms of very modern technology and software to capture data and demographics for your company. We are able to analyze market trends and keep track of the happenings and user responses from your customers. We know that you want to be always aware of the market response to your presence.",
+        "At Sidago Integrated Solutions, we have different methods through which we employ to carry out market research and conduct surveys for you. Our experience in the field has been gained over many years of work conducting surveys for various clients. Therefore, we have a wide array of tried and tested methods that have been approved as appropriate and workable, and which we can use to help fuel the success of your company.",
+      ],
+      closing: "Use our services today and you will not look back.",
+    },
+    "/services/negotiation-management/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Negotiation Management",
+      summary:
+        "Negotiation support for organizations that need experienced dealmakers, stronger preparation, and disciplined process management across complex business discussions.",
+      paragraphs: [
+        "Sidago Integrated Solutions has experts in business negotiations who are ready to employ their skills in negotiating the best deals for you. Our teams of negotiators are able to handle a wide range of negotiation factors including the assignment of functions and roles of each player, legal issues of a business deal, and the raising of capital as well as how profits and other benefits are to be shared.",
+        "Our negotiation experts work in well synchronized teams. They are highly qualified and have gained extensive experience in negotiating business deals over the years. We equip our negotiators with the unique skills and capability to negotiate on behalf of our clients by ensuring that they are well versed with the latest negotiation methods.",
+        "From years of experience gained in numerous negotiations done on behalf of our clients, we have learned that a good negotiation is based on having solid information. We take a lot of time and dedicate the best personnel and resources to digging up information about your own organization as well as that of the organizations we'll be negotiating with. This helps us to be able to negotiate from an informed point of view. This also allows us to avoid getting your company into agreements which could be hard for you to fulfill or working with organizations that may not deliver on their end of the bargain. We ensure that you work with reputable companies to build on your image and avoid disappointments that may lead to a tarnished corporate profile.",
+        "In the negotiation process, we are sure to get you good deals that are going to be beneficial to your organization. We employ both distributive and integrative negotiation forms with full use of various integrated tools in the setting of agenda, defining our positions and in getting final agreements. Our experts use positive negotiation methods and tactics that make all the parties comfortable with the reached deals and reach reasonable compromises.",
+        "We can engage in both good faith and bad faith negotiations on behalf of our clients. Bad faith negotiations are when you do not want to be seen as refusing to negotiate yet you are not prepared to reach any agreements. It would be bad for corporate image if such a negotiation was done by directly employed negotiators but when you hire us to do it for you, you're able to retain a good corporate image and buy time to sort out your matters without pressure.",
+      ],
+      closing: "Contact one of our negotiation specialists today!",
+    },
+    "/services/online-marketing-strategy/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Online Marketing Strategy",
+      summary:
+        "Online marketing strategy work that helps businesses plan, coordinate, and execute digital growth programs with more structure and commercial discipline.",
+      paragraphs: [
+        "Developing a strategy is the first step for anyone who's venturing into any project. The field of online marketing is no different from others when planning is considered. For your business to succeed in its online marketing campaigns, you will need a solid marketing strategy to guide you and help you evaluate the progress that you're making. Failure to plan is seen in management circles as a plan to fail, so you will need a strategy to show you the way.",
+        "At Sidago, we provide you with the planning and strategizing brainpower you need. A sound marketing strategy could mean the difference between the failure and the profitability of your company. This is even truer if your business is involved in online sales. We develop various online sales solutions and the marketing strategies to accompany them.",
+        "Our online marketing strategies are developed by our dedicated team of professionals in various aspects of online marketing to come up with strategies that suits your business. The team works in tandem with the management team of your company so that the proposed strategy is tailored to meet the unique requirements of your business and to ensure that it's feasible.",
+        "Our marketing experts will come up with a sound online marketing strategy that includes the activities that are expected to be carried out and how they will be carried out. We also explore various monitoring/evaluation methods and techniques so that we can recommend the best solution for your company.",
+        "Getting your staff to embrace the strategies and work within them becomes easy since the strategies are friendly to the implementers without requiring too much from them. In the event that you're not in a position to provide staff to implement the developed strategies, we're ready and willing to lend you with a helping hand. We have marketing management professionals who are always eager to implement the online marketing strategies of our clients and see them through to the end. All this is done by our company's staff to maintain efficiency in the execution of strategy tasks and ensure the effectiveness of our efforts.",
+        "You have no reason to go elsewhere to look for online marketing strategies. Sidago has it all taken care of. We'll embrace your company no matter the size or demand of capital resources and develop winning strategies that will put you at the forefront of your industry.",
+      ],
+      closing:
+        "Get in touch with one of our marketing experts today to schedule your consultation!",
+    },
+    "/services/public-relations/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Public Relations",
+      summary:
+        "Public relations support for reputation protection, media communication, social response management, and customer-facing training during sensitive situations.",
+      paragraphs: [
+        "The corporate image of your company requires careful handling and management. At Sidago, we offer you sound management solutions to keep your name untarnished. Investors and partners will be ready and willing to be associated with your good name in business deals. As such, anything that happens in your company needs to be closely guarded and only what you need to be released to the public should be known.",
+      ],
+      sections: [
+        {
+          title: "What do we have to offer you in our public relations packages?",
+        },
+        {
+          title: "Press Releases",
+          body: "We prepare press releases for our clients when there are press conferences to be held. Sidago has a press relations and media management team that researches situations and prepares appropriate press releases that keep your corporate image shining like a diamond. In the event that improper happenings take place and you have to salvage your image, we prepare damage-control press releases that will win you back the public favor.",
+        },
+        {
+          title: "Company Statements",
+          body: "The best way to keep ahead of your competitors when it comes to public image is to have frequent periodical company statements. These are in the form of written statements that are released to the public domain to keep the public updated on the happenings within your company.\n\nWhat this does is it creates an image of an open company with no secrets that the public loves. We prepare these statements and show the public the human side of your company for increased connection with your customers while transparently delivering the story of your company. It makes it possible to dissociate yourself from bad happenings and have apologies accepted quickly as well as easing the task of salvaging your image if something goes wrong.",
+        },
+        {
+          title: "Social Media Management",
+          body: "We train your staff on how to take care of your social media profiles and pages. The modern age has seen most seller-buyer interactions shift to the internet platforms. A company that is not present on the internet will lose a great chance to acquire new customers.\n\nThey could also end up with a bad reputation on social media since they could be overlooking critical input from the public. Our social media management team helps you deal with difficult customers who may spread misinformation on the internet and erode the good image of your company using professional methods.",
+        },
+        {
+          title: "Customer care personnel training",
+          body: "How well trained are your customer care personnel? We train your customer care personnel to help them keep their calm as they serve customers. Customer care is usually confronted by angry customers complaining, wanting their cash back or compensation while others are simply seeking information about your company. It's critical to your company's success that your staff doesn't transfer the frustrations to your customers while representing your brand.",
+        },
+      ],
+      closing: "Contact us today to discuss your PR needs!",
+    },
+    "/services/social-media-marketing/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Social Media Marketing",
+      summary:
+        "Social media marketing support that combines content planning, platform management, moderation, tooling, and campaign coordination across multiple networks.",
+      paragraphs: [
+        "At Sidago Integrated Solutions, we prepare strategies to use in your social media marketing campaigns and solutions for your overall social media marketing to propel you to greater efficiency, online visibility, and ultimately an enhanced level of profitability. We aim at integrating our proposed social media marketing methods with your overall marketing strategy to have them complement each other.",
+        "For your software needs, we have software developers who come up with creative and interactive plugins for your website and other online presence platforms. These increase the interactions with your clients since you can post information such as ads and communiques directly to your social media pages and profiles with ease. The efficiency and ease of caring out your social media marketing needs is what drives us to look for the best solutions for you.",
+        "When it comes to the management of your social media profiles and pages, we have personnel who can take care of the required posting of information and regulate the way the page is used. Commenters and their comments are monitored to ensure that no abusive, discriminatory, or inappropriate content is seen on your social media pages. This is important so that you have quality material that's truly functional for you. The aim is to make the market aware of your product and possibly direct them to where they can make a purchase.",
+        "We believe that social media marketing should be multi-platform and well coordinated to achieve the best results. We avail to you a team of managers to engage with your staff and train them on how to go about managing the various social media profiles and pages that you may have. We also avail analytical tools that can be used on your social media marketing campaign to assess how effective you are in penetrating the social media scene.",
+        "In content management, we prepare pre-arranged postings for your social media marketing campaign. These are posted in a steady flow of information and calls to action to get the social media abuzz with the news about your brand. Remember that consistency is crucial to a successful social media marketing campaign. In events where there was no pre-planned post but a situation occurs and a posting is appropriate, we are at hand to quickly prepare a statement or release that will be used. We plan ahead and at the same time are ready to tackle arising matters.",
+        "Sidago Integrated Solutions takes pride in being a complete solution to make the most out of the many social networks online today. We ensure consistent and sustainable campaigns that can be run over varying periods of time depending on the products being sold. We thus position ourselves to be the best partner for you, whether you're running a social media marketing campaign only or a hybrid integrated marketing strategy.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/telemarketing-telesales/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Telemarketing/ Telesales",
+      summary:
+        "Telemarketing and telesales support that helps businesses structure outreach, train staff, improve call handling, and build trust with prospects over time.",
+      paragraphs: [
+        "We offer telemarketing and telesales services here at Sidago Integrated Solutions. Telemarketing is also called telesales and it's simply a method of directly marketing your products to prospective customers with a telephone call. A recent development in telemarketing is the use of web chats and online conferencing. Face to face meetings can also be arranged during the phone call for your sales person to meet the prospective customer.",
+        "We'll help you set up a telemarketing center either on your business premises or you can utilize our call center that's already in place. There is also an upcoming trend where you can recruit freelance telemarketers for your company. We can get these freelancers to make the telephone calls on behalf of your company and sell your products. They can work from home or office premises. Our unique abilities to hire committed and hard working personnel for you ensures that you'll get the best staff and return on your investment.",
+        "We make sure that your telemarketing campaign is ran successfully to bring in the best results for your company by having methodologies that distance you from the political telemarketing perceptions and the fear of scams by customers. Telemarketing may lead customers to feel pressured and thus we have come up with methods to ensure full customer trust and confidence in your company.",
+        "Our protocols for your company involve determining the number of telephone calls to be made and how to handle prospective customers. We have come up with various models and techniques that can be adapted to suit your business venture. We'll also show your staff different strategies to determine your customers' needs, follow up with an offer, and make a sale. Getting prospective customers is a difficult task and as such, we train your staff on how to look for customers based on their purchase history and their previous requests for information among other tactics.",
+        "Sidago wants to see your company succeed. We have come up with methods for you to embrace technology in your telesales campaigns. We're also able to develop software for you to keep track of your various customers so that you can contact them in the future.",
+        "We additionally come up with voice recordings for automated calls if you wish to go that way. However, we advise our client companies to avoid automation when it comes to outbound calling since it leads to fears of being overcharged or conned, and also disconnects you from direct interaction with the customers which is something that's not beneficial to your company.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/branding/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Branding as an Important Part of Growing Your Business",
+      summary:
+        "Branding support that helps companies define identity, build credibility, and create stronger long-term customer recognition in competitive markets.",
+      paragraphs: [
+        "Successful branding will give your company an edge in today's fast-moving market. It will not only let people know what they can expect from you, but it will also set you apart from the competition. I think Steve Jobs put it best when he referred to creating raving fans of your product. Now, Apple is one of the most valuable companies on the stock market.",
+      ],
+      sections: [
+        {
+          title: "What goes into a good brand?",
+          body: "A solid brand can be a tremendous asset for any organization, and it plays a vital role in any marketing campaign. But what goes into a good brand?\n\nA good brand can move you strategically against the completion, and it takes a great deal of time and thought to develop. It should clearly explain what your company is about, and it needs to establish some sort of credibility with prospective buyers. Coca-Cola is a great example. There are other colas on the market that are much cheaper, but there's only one Coca-Cola, a name that people associate with great taste and quality.\n\nBut it's not just about creating a name. People need to feel connected to your company on a deep emotional level, and that will get them to continue buying their products. Make sure you understand what your customers want, and they will stay loyal.",
+        },
+        {
+          title: "How to create a good brand?",
+          body: "As I said before, branding is a strategic move, so it takes time to develop. How well your brand stands up against the competition will determine whether or not your customers will stick around.\n\nThe first thing you need to think about is your logo. Customers will associate this with your company, so it needs to be meticulously designed. Your logo is a visual representation of your company's message, and your slogan should clearly express what you want people to think of your business. What are the benefits of your product, and what should they associate your company with? Most importantly, your actions should be consistent with the message you want to convey.",
+        },
+        {
+          title: "The benefits of Sidago branding services.",
+          body: "Your brand is the wellspring of a guarantee to your company. That's why Sidago Integrated Solutions is a great resource. They provide quality branding services, and it strives to find the best solutions to its customers. We assemble and develop your brand in order to establish the culture and uniqueness of any organization. We focus on the specific demands of each client, and we take their objectives into careful consideration. So, every one of them can stand out against the competition.\n\nAfter all, a strong brand is an important part of any organization who wants to stand a chance in today's competitive market. Investing in the time and energy that it takes to build a successful brand is an essential part in establishing your reputation. With Sidago by your side, you can be the proverbial king of your own castle. So, contact us today to find out what we can do for you!",
+        },
+      ],
+    },
+    "/services/display-marketing/": {
+      eyebrow: "Advertising & Marketing",
+      title: "The Use of Display Marketing to Advertise your Business",
+      summary:
+        "Display marketing services that help businesses choose ad formats, target traffic, and improve campaign effectiveness across visual web placements.",
+      paragraphs: [
+        "Display marketing is the type of advertising you normally see on websites. These ads can come in a variety of formats, and they can be presented in a number of different ways. They're designed to drive traffic to a specific website, and they can be targeted towards a certain group of people. This can be a science in and of itself, but if it's done right display marketing can be a very effective advertising tool.",
+      ],
+      sections: [
+        {
+          title: "Types of Display Ads",
+          body: "As I said before, display ads can come in a variety of styles and formats, and the one you choose depends on what your target market is. Some ads can display some type of video advertisement or commercial, which has proven to be a very effective display marketing tool. Display ads can also incorporate rich media, such as flash, that can expand on a mouseover. They can also come in the form of overlays, which can be removed by clicking on a close button.",
+        },
+        {
+          title: "Display ads can also come in a variety of sizes, but there are some that are standard:",
+          bullets: [
+            "Banner ads (720 x 90)",
+            "Big box ads (300 x 250)",
+            "Skyscraper ads (160 x 600)",
+            "Square ads (250 x 250)",
+          ],
+        },
+        {
+          title: "Creating a Good Display Ad",
+          body: "In the midst of all the options you have at your disposal, it's no secret that finding the right display marketing campaign can seem like a daunting task. It's important to understand your market and what kind of people you're looking to attract. You want to make sure you're driving targeted traffic to your site in order to make your display ads more effective, and you want to use effective branding strategies to create customer loyalty. You can always drive sales by offering special discounts to people who are already in the funnel.\n\nMake sure you experiment with different types of ads to see which ones are the most effective, and you don't want to rely on just one type. You should use a variety of ads with different calls to action in order to drive a more diverse type of traffic within your target market, of course.\n\nAny display ad you create should have a clear and concise message, and it should be as short as possible. You want to have a good company headline, followed by an eye-catching image. Rich media and flash ads especially ones that incorporate videos have proven to be more effective than static image ads. So, you should bear that in mind. And you should diversify your marketing strategy instead of just using one type of advertising campaign. This could only help you to drive more sales.",
+        },
+        {
+          title: "Using Sidago for Display Marketing Services",
+          body: "When it comes to designing display ads, Sidago Integrated Solutions has everything your company needs. We have a complete and advanced commercial system, and we cater to our clients' objectives by offering the best solutions available. Anything from display advertising, social networking promotion, and web index showcasing will give your company a versatile advertising platform. We intend to keep your business image positive, and we will give you a prominent presence for potential customers.",
+        },
+      ],
+      closing:
+        "Feel free to contact us for any additional information on the types of services we provide.",
+    },
+    "/services/viral-marketing/": {
+      eyebrow: "Advertising & Marketing",
+      title: "Viral Marketing",
+      summary:
+        "Viral marketing support that helps brands design shareable campaigns, strengthen social reach, and turn customer attention into wider market visibility.",
+      paragraphs: [
+        "On the Internet, viral marketing is any promoting method that actuates web locales or clients to promote a message to different destinations or clients, making a conceivably exponential development in the message's visibility and impact.",
+        "One sample of fruitful viral promoting is Hotmail, an organization now claimed by Microsoft that advances its administration and its own particular promoters' messages in every client's email notes. Viral advertising portrays any technique that urges people to go on promoting a brand to others. This results in a positive introduction of your business to the potential clients. Like infections, such systems exploit fast augmentation to blast the message to millions.",
+        "Viral marketing is the objective of numerous organizations hoping to influence social networking space to advance their items. Characterized as bit of substance produced by a man or business that motivates customers to enthusiastically impart it to their extended social circle, viral marketing can help construct brand acknowledgment immediately yet is simpler said than done.",
+        "In today's interconnected world, word-of-mouth advertising is more important than ever before, and social media is one of the major ways this word is spread.",
+      ],
+      sections: [
+        {
+          title: "Some useful viral marketing and social media statistics include:",
+          bullets: [
+            "Millennials, the age demographic in their 20s and mid-30s, are twice as likely to seek advice or information from social media as Generation X and the Baby Boomers",
+            "68% of Google+ users are male, while Pinterest tends to favor women, who make up 80% of their users.",
+            "Social is important or somewhat important in marketing and branding, according to 80% of business leaders",
+            "The majority of American internet users, an amazing 72%, over the age of 18 are on at least one social network",
+            "Viral marketing can help or harm a company's reputation. Complaints that go unanswered on social media networks can becoming viral, damaging a company's brand. But it goes the other way as well, with 71% of consumers who receive a quick response on social media saying they would likely recommend that brand to their friends and family.",
+            "The majority of global business executives, 65%, say their organizations use social media tools to understand market shifts, while 45% use them to improve insight into operations and identify exceptional talent within their organization.",
+            "Over 700 YouTube videos are shared on Twitter every minute, with over 500 years worth of YouTube videos being watched by Facebook users every day.",
+            "LinkedIn is a highly useful social media network for advertisers, with 60% of LinkedIn users claiming to have clicked on an ad on the site. 43% of online marketers have obtained at least one new customer through LinkedIn.",
+          ],
+        },
+        {
+          title: "Viral marketing plays an important role in:",
+          bullets: [
+            "Increasing business reputation",
+            "Getting customers attention",
+            "Increasing brand awareness",
+            "Enhancing business effectiveness",
+            "Providing competitive edge in market",
+            "Achieving high social networking.",
+          ],
+        },
+        {
+          title: "Sidago Viral Marketing Services:",
+          bullets: [
+            "Our viral marketing administrations spread following of viral crusades, idea creation, and accommodation.",
+            "As a component of our services, we additionally help to execute extremely viable, exceedingly intelligent, viral marketing campaigns to catch the consideration of reach your intended audience.",
+            "Our viral marketing services are affordable and user friendly, and they will help you to establish business reputation quickly. Let the experts of Sidago Viral Marketing Services help you proficiently meet your viral advertising needs.",
+          ],
+        },
+      ],
+      closing:
+        "If you have any further questions in regards to viral marketing arrangements, please feel free to contact us today!",
+    },
+    "/services/3d-modelling/": {
+      eyebrow: "Design & Multimedia",
+      title: "3D Modelling",
+      summary:
+        "3D modelling support for media, product, industrial, and presentation use cases where realistic digital models improve planning, explanation, and visual impact.",
+      paragraphs: [
+        "3D modeling has seen an increased uptake over the years since its inception. This is a great use for technology that has seen usage in industries such as film, interior design, animations, gaming, and architecture. In the field of medicine, 3D models are used to represent anatomical features in an interactive way. If your business company has any needs that are met by utilization of 3D models, Sidago has the answer for you.",
+        "For the company in the media and event industry, we offer solutions tailored along your company requirements for stage and set design. For this, we have a wide range of modeling software that can be used to simulate mechanical operations. The mechanical parts are additionally modeled into accurate and realistic digital representations before their actual construction to observe their functionality. In industrial design, we model products before you present them to your clients.",
+        "Our 3D modeling team is staffed by well-trained personnel who have innovative and cost-efficient methods of developing your models in the highest quality possible within short periods of time. We also have 3D modeling capacity for simulation and rendering of images in 2D and 3D. We create our models both manually and automatically using approved techniques that we have tried, tested, and found to be the most effective.",
+        "The advantages that 3D modeling gives you over conventional 2D models is that you achieve greater flexibility with your models since you can change angles of view and animate images accompanied by faster rendering of the changes. You also have easy rendering and automatic calculation with photorealistic effects. This saves you from having to mentally visualize details or estimate results. For those who want realism and accuracy, 3D models are your answer. For the best of both 2D and 3D, we're able to combine 3D modeling and follow it up with 2D images rendered from the 3D model.",
+        "At Sidago, we present our models in the three major ways: polygonal modeling where we form a polygonal mesh by using different points in 3D space connected using line segments, curve modeling using curves defined by weighted control points, and the fairly new digital sculpting. We stay on top of any emergent developments and constantly explore ways to apply them in out solutions to your business needs.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/animation/": {
+      eyebrow: "Design & Multimedia",
+      title: "Animation",
+      summary:
+        "Animation services for advertising, promotional media, product storytelling, and multi-format visual campaigns across 2D and 3D outputs.",
+      paragraphs: [
+        "Different companies need animations for various uses. There are those that use them as an integral part of their products and/or services and then there are others who need animations for their advertisements or promotional videos. Whatever the intensity of your needs, Sidago has the ability to deliver the highest quality animations directly to you.",
+        "At Sidago, we use computer generated and computer assisted animation. We are able to come up with animations in different formats that are used within the industry today. Our team of dedicated animators is highly trained and experienced in animation production. They have made thousands of animations for our clients already.",
+        "For the less intensive consumers of animations, it's better to employ our expertise and create animations for them instead of setting up an animations department. Our animators at Sidago will ensure that you get high quality animations that will suit your business needs. We produce full animations, limited animations, rotoscopes, live-action animations, stop motion animations, and puppet animations. We use standard and advanced techniques to develop our animations so that each one of our clients have a high quality experience.",
+        "In recent years, we've increased our capacity at Sidago to create animations in 3D. This allows us to render images in 2D from our 3D animations so that you can use our animation characters across several platforms. An example is where we produce a video animation for you in 3D for your video advertising needs. If you go into still image advertising such as posters and banners, we can render the images of your video animation characters and use the images on your posters in 2D.",
+        "For whatever animation needs you have, Sidago Integrated Technologies has the solution for you. Feel free to contact us and we'll discuss your needs and come up with the most suitable solution for you and your company.",
+      ],
+    },
+    "/services/audio-production/": {
+      eyebrow: "Design & Multimedia",
+      title: "Audio Production",
+      summary:
+        "Audio production services for announcements, advertising, IVR and call systems, voiceovers, training, and company communication at scale.",
+      paragraphs: [
+        "Companies need audio tracks for their various needs within and outside the company premises. These different unique needs can all be attended to by Sidago Integrated Solutions. We have experience in producing audio accrued over many years and have developed innovative solutions to meet the requirements of our clients. In today's business environment, a single company that operates alone has little chances of success. This is why we're here as your staffing partner, as we know your success is our success.",
+        "We have audio production facilities that produce very high quality audio products for a wide array of needs. Companies use audio for different needs such as automated company messages, voiceovers in advertisement, accompaniment jingles, automated instructions, and status updates within the company premises.",
+        "For advertisement needs, Sidago Integrated Solutions has a talent pool of proficient producers who come up with voiceovers and jingles for your advertising needs. Our reach includes musicians and talented speakers who write and produce excellent audio tracks that carry your message with high clarity. We ensure that you're fully involved in the process of scripting and actual audio production of your audio tracks. With our experience and many years of operation, we offer low-cost solutions that retain the standards in quality of our audio products and meet your needs in a user-friendly way that helps you to remain competitive in your industry.",
+        "Companies with automated calls to customers or responses need audio for their calls. We produce audio tracks to be used in the various needs of the company, either in telephone calls or waiting audio messages in call center menus. Our audio voices avoid being robotic and have a human feel to them. We continuously strive to be the best solution for our clients and partner with them to come up with better standards and solutions that are scalable and help our clients improve their profitability by reducing employee overheads and enhance their operations.",
+        "Large companies with vast operation premises or production facilities use voice instructions via public address means to issue instructions to staff. There are others who use voice updates to inform workers in one section of the industrial complex of what is happening in other sections of the complex so that they get ready to carry out their duties. Whatever your needs are for audio products, Sidago is the partner of choice for high quality audio production.",
+      ],
+    },
+    "/services/design-multimedia/": {
+      eyebrow: "Design & Multimedia",
+      title: "Design & Multimedia",
+      summary:
+        "Design and multimedia support covering technical design, illustration, print, voice, presentations, and creative production work for modern businesses.",
+      paragraphs: [
+        "Sidago has the success of our client companies in mind. We continuously seek to provide our customers with solutions that enable them to remain profitable in the modern business environment that changes as every single day passes. For those seeking solutions in design and multimedia, we offer solutions that are affordable and easy to implement in your company.",
+        "We know that most of the design and multimedia needs of our clients are for advertising purposes, thus we've developed solutions and methods to keep information about our customers flowing. We embrace both technological and other manual conventional methods in our endeavors to provide the highest quality solutions for the needs of your company. We also come up with hybrid procedures that embrace both the norms and the new trends of the industry to keep you in line with the best practices of this modern day and age.",
+      ],
+      sections: [
+        {
+          title: "In our design and multimedia solutions, we offer you services such as:",
+        },
+        {
+          title: "Engineering/Technical Design Solutions",
+          body: "We have teams of professional designers who have experience in technical designing. These teams are able to come up with different solutions to solve your engineering problems. We are also well equipped to draw the designs of your engineering inventions and create models for easier understanding during presentations.",
+        },
+        {
+          title: "Illustration",
+          body: "In illustration, we have artists who will sit with you and fully understand your ideas and what you want. They will then come up with hand-drawn designs that are transferred to digital platforms for ease of use. These can then be used in animations or in caricatures for your advertising and marketing needs.",
+        },
+        {
+          title: "Print design",
+          body: "Print design encompasses many different features of media production. Sidago helps you with the required design and even printing that you may need. We connect you with other production companies in the printing industry who are able to produce your designs in hard copy with astounding clarity.",
+        },
+        {
+          title: "Voice talent",
+          body: "Our unique hiring techniques and the large talent pool we can tap into enables us to recruit very talented speakers for all of your voice needs. These could be voice overs for your media productions or instructional voices for customer care. We are also able to develop scripts for the speakers to use in the making of voice recordings.",
+        },
+        {
+          title: "Presentations",
+          body: "In presentations, Sidago Integrated Solutions helps you prepare for the presentation adequately. This includes developing the protocols in your company and ensuring that you adhere to the procedures set by other people you may be presenting to. We see to it that you and your staff are ready to do the required presentations in a confident manner and prepare scripts depicting different scenarios that may arise and how to respond to each.",
+        },
+      ],
+      closing:
+        "In addition to the above services we also provide 3D modeling, animations, audio production, graphic design, logo design and video production services from our expert teams of developers, graphic designers, animators and video editors.",
+      closingHref: "/contact",
+    },
+    "/services/engineering-technical-design/": {
+      eyebrow: "Design & Multimedia",
+      title: "Engineering/ Technical Design",
+      summary:
+        "Technical design support for engineering concepts, product illustrations, models, and iterative development work from idea through presentation.",
+      paragraphs: [
+        "Engineering companies and firms that are in the technical design industry often require illustrations of their innovations and how they work. Sidago has the unique capacity to serve their needs pertaining to the development of the models and diagrams they need. We come up with the required designs in the inception stages and work with you until your new innovation is complete and to your liking. With our design illustrations and models, you're able to evaluate the progress of your designs and see the progress that you're making.",
+        "In conception, we help you prepare the designs of the engineering and technical innovations that you come up with. We do this by taking our time to listen to your needs and analyze the suitability of your proposed idea to the problem you hope to solve. We then prepare detailed illustrations and models of what you plan to create. It is with such diagrams that have technical details that you're able to easily see the shortcomings of your innovation and solve them.",
+        "We also work in tandem with you as you develop the idea and create realistic models as you progress with the innovation. Our team of technical designers ensures that you have workable designs that are efficient in carrying out the tasks they are expected to undertake. We have frequent consultation sessions with you to keep the idea in line and see to it that you do not deviate from what you originally set out to do.",
+        "Sidago is prepared to go with you all the way in seeing your ideas as they take shape into a product that you can present to your customer.",
+      ],
+      closing: "Schedule your free initial consultation today!",
+    },
+    "/services/graphics-design/": {
+      eyebrow: "Design & Multimedia",
+      title: "Graphics Design",
+      summary:
+        "Graphic design services for campaigns, branding, print collateral, and visual identity work shaped around the changing needs of growing businesses.",
+      paragraphs: [
+        "Is your company graphic intensive? For most companies, being presented with the question of how graphic intensive they are results in an unsure answer. Most companies rely on high quality graphics and need frequent services of graphic designers. At Sidago, we have a complete range of graphic design solutions for your business. We understand that your company has different levels of graphics use in intensity, depending on the different periods and transitions you go through. During advertising and marketing campaigns, you will require more graphics work than any other time. Our graphic design solutions are developed with your company in mind and your goals are what guide us in coming up with the designs that are sure to help you achieve success.",
+        "Sidago has a team of very competent and professional graphic designers who are always at hand and willing to do everything they can to see that you have the most suitable graphic designs for your company. Our team has had years of experience and is well-versed with the current trends and preferences of various markets.",
+        "We're able to produce designs for advertising campaigns such as banners, leaflets, brochures, posters, and branding of promotional material such as t-shirts. We will additionally link you with our partner printers so that the solution we give you is a complete one. These partner printers and suppliers of Sidago are trusted companies who we have worked with us and our clients over a long period of time and are known for their delivery of high quality results.",
+        "In our uniquely developed business solutions, we cannot forget your need to brand yourself. Any company needs a unique identifying mark for their corporate use. This needs to be in the colors that are easily recognizable to their customers and the logos they use. We develop logos for our clients and help them decide the corporate colors that they'll use. We embrace the diversity and the challenge brought on by different companies seeking our services.",
+        "Every opportunity you give us to serve you at Sidago is looked into uniquely and handled in a highly efficient manner that goes beyond satisfying your needs. We want the best for you, and the success of your company is of paramount importance to us.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/illustration/": {
+      eyebrow: "Design & Multimedia",
+      title: "Illustration",
+      summary:
+        "Illustration support for advertising, technical communication, digital media, and product storytelling where custom visuals need to match exact business goals.",
+      paragraphs: [
+        "Different companies have varying illustration needs depending upon the industry that they serve and the specific use for illustrations that they require. In illustration, we have specialists who will sit with you and fully understand your ideas and what you want to achieve. They will then come up with hand-drawn designs that are transferred to digital platforms for ease of use.",
+        "Our illustrations have found use in various advertising and marketing campaigns of our clients over the past several years. These can be campaigns that utilize animations or caricatures for your advertising and marketing needs. The illustrations that we produce at Sidago are usable on various digital platforms to make your printing and animation tasks as easy to accomplish as possible.",
+        "Another area where we produce illustrations is in the drawing of technical details pertaining to your company product designs. There are products that may need to be marketed or presented to potential buyers along with their designs and manuals for use. Sidago has got you covered.",
+        "Our illustrational know-how and expertise can't work alone and it needs to be supported with proper understanding of your needs. You can be sure to be consulted in every step of the development process. This allows you to be informed of the progress and ensures that we come up with illustrations that are in line with your needs.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/logo-design/": {
+      eyebrow: "Design & Multimedia",
+      title: "Logo Design",
+      summary:
+        "Logo design services focused on recognizability, brand identity, practical usage across formats, and secure handling of company design assets.",
+      paragraphs: [
+        "Does your company have a logo? How easily identifiable is your logo? What colors have you used on your logo? These and many other parameters determine the suitability of your logo for your company. A logo is a unique identifying mark or symbol that can be associated with your company. A good logo is the first step towards successfully branding your company.",
+        "At Sidago, we ensure that you get the best out of your logo design(s). You will have a professional and highly qualified team of experts at your disposal who are known for designing logos for all sizes of companies, yes, even leading brands. There is something that many business companies are afraid of, the leaking of their trade secrets and other company related issues. At Sidago, discretion is our second virtue after quality and we assure you that your designs and logo samples are secure with us.",
+        "We develop unique logos for our customer companies and assist them in deciding the best placement of the logos on their products. These logos can be used in advertisements to brand products and sell the company's offerings to its target market. Your logo will be a simple mark that tells everyone that you are present when they see it. Our logos are presented to you in more than four different image formats for use on various technological platforms. We do not want to give you a product that will cause you headaches and have you looking for a re-design.",
+        "If you're considering having a visual advertising campaign or marketing your goods using visual aids that may require the use of video, Sidago has you covered. Our logo development team has experts in media production as well as animation. These experts can develop excellent and captivating animated videos of your logo being formed. The videos are in various formats for easy use by your other advertising/marketing partners as well as your own use.",
+        "In addition to developing your logo, we also offer repository services. In companies, misplacing the original designs of your logos is a very saddening event. We do not want you to have to copy your logo from somewhere if the soft copies are lost. We will keep the original soft copy of your logo for you in the event that you need it at a later date. Sidago is your preferred stop when you want your company logo developed. Your logo is your corporate marker and you need the best for such a task that is an important and integral of your company.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/presentations/": {
+      eyebrow: "Design & Multimedia",
+      title: "Presentations",
+      summary:
+        "Presentation support for internal and external meetings, rehearsals, slide preparation, and delivery readiness when communication needs to be precise.",
+      paragraphs: [
+        "Every company will be required at one time or another to hold a presentation. This could be to investors or an internal presentation within the company. You may also have an external partner come to present something such as a proposal or business plan to you. Sidago gives you business solutions that are suited for you, whether you're the host of a presentation or presenting to other people. We work with your staff and communications personnel to ensure that you're adequately prepared.",
+        "We help you in the preparations for hosting the presentation, setting up the equipment, and proofing the presentation in advance. This gives you a feel of how the presentation itself will be. You will also be sure that everything is set for the presentation day.",
+        "Our speech and presentation experts at Sidago take you and your staff through the rehearsals of the presentation. We go through a comprehensive checklist of what you need, from diagrams to illustrations and pointers. These rehearsals are important in identifying any items left out while avoiding rushing around as the presentation is taking place.",
+      ],
+      sections: [
+        {
+          title: "Preparation of slides and other material necessary for the presentation",
+          body: "We help you to prepare the required presentation slides and go through the motions required for a successful presentation. In such simulated presentations, we get to know the areas that will need illustrations, models, and diagrams. Our teams in other departments get into seeing that these aids to your presentation are prepared on time and available ready for the presentation day.",
+        },
+      ],
+      closing:
+        "Sidago is ready to help you prepare for all your presentations. Reach out to us today for your free consultation!",
+    },
+    "/services/print-design/": {
+      eyebrow: "Design & Multimedia",
+      title: "Print Design",
+      summary:
+        "Print design services that cover layout, production-ready preparation, proofreading, and coordination with trusted printers for final delivery.",
+      paragraphs: [
+        "Print design serves many areas of your company that needs printed material. Print design incorporates many areas and encompasses many different features of your company's media production requirements. Sidago will serve you with high quality services in the process of print design up to the actual printing itself.",
+        "We ensure that the material you want printed is developed in an appropriate manner and will serve your needs whether they're instructional, advertising, marketing, or training needs. There are materials for company use that may seem simple to make but are important to ensure the proper functioning of your company. These include customized booklets for use in record keeping, receipts, and communicational material such as memos.",
+        "We come up with templates that are based on the information that you want to communicate or the data you may want to capture with tools such as questionnaires and application forms. We then see that the material is properly designed before they're taken to printing, so that you get nothing but the best printed material. We also have proofreading and editing services so that your printed product does not fail in communicating your message.",
+        "To satisfy your printing needs, Sidago connects you with professional printers who have am immense amount of expertise and experience in printing. These are companies that have served Sidago as well as our customers for years. These printers give you quality and proper clarity in the printed material that your company demands.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/ui-design/": {
+      eyebrow: "Design & Multimedia",
+      title: "UI Design",
+      summary:
+        "User interface design for multi-device websites and digital products where usability, audience expectations, and structured interaction matter.",
+      paragraphs: [
+        "Website development, especially designing the UI, has become challenging with the increasing use of internet on various devices like laptops, smart phones, and tablets. This is because now the user interface needs to be designed in such a way that it is interactive and easy-to-navigate for users of all devices. Generally you can't expect a website designed for a standard desktop screen to appear well on a smaller smart phone screen.",
+        "Other than being compatible across multiple platforms, the UI must be relevant to the user's needs. Every website should target its expected visitors when designing an interface rather than going for a general one, and this is why our user interface design services are completely customized for each and every one of our clients.",
+        "At Sidago, we believe in taking an analytical approach towards designing a user interface. First, we conduct thorough research on what your targeted audience expects from you. This is an important step as the purpose of a user interface is to allow the easiest interaction possible between you and your customer/visitor. Once we've gathered the necessary information, we'll compile a plan of action and present it to you. After approval is given, we'll start making magic.",
+      ],
+      closing: "Are you ready to discuss your user interface design needs with us?",
+    },
+    "/services/video-production/": {
+      eyebrow: "Design & Multimedia",
+      title: "Video Production",
+      summary:
+        "Video production services for advertising, training, presentations, internal communication, and promotional content across digital and traditional channels.",
+      paragraphs: [
+        "For your video needs, Sidago has uniquely tailored solutions that satisfy your needs in a model that will lead to cost-savings and improved workflow efficiency. We foster ethical practices in our video production for our esteemed clients. We provide video production services for a range of different needs, so you can rest assured that there's not any job that we can't take on.",
+        "We have had several years of experience in video production for advertising, management, training, and promotional needs. We work with you every step of the way during the process of conception all the way developing/implementing the video content. The initial consultation that happens when you contact us helps us determine the type of video you may need and how it will be used. We follow this up with a general business review that enables us to evaluate the audience that you're targeting to ensure the video is presented in the most effective manner possible while fulfilling their needs.",
+        "The videos we produce at Sidago have multiple uses in the process of reducing employee overhead, managing savings, increasing your company's competitiveness, and in enhancing the quality of your operations. We produce training videos for your company that will lead to better employee specialization and capacity building so that your company as better staff who are able to carry out their different functions with greater efficiency and professionalism. When you want to retrain employees before reassigning them to other sections or departments of your company, you can use our video training material that is produced with a focus on better management of human resource.",
+        "Our advertising video productions and promotional videos are suitable for use on different platforms including mainstream media and on the internet. Diversification into the internet platform to carry advertisements in video has happened over the recent years and as such, we produce video that is suitable for both mainstream internet websites as well as social media. Your video requirements will be adequately addressed and solved for you by our professional team members within the video production department.",
+        "For project presentations and other management purposes, we produce videos that meet your needs in terms of passing information off to your audience. Important events in your company should not also go unrecorded and we provide video recording services for company trainings, parties, conferences, and other major events. We save your costs by having reasonably priced services and a wide network of professional partners who we can call on to assist us whenever they're needed.",
+        "Our video production solutions are scalable and measurable. We seek to produce solutions that help you improve your client base and propose action plans that are workable for your company. They're easy to implement and improve the overall efficiency and effectiveness of your company.",
+      ],
+      closing: "Schedule your free consultation today!",
+    },
+    "/services/voice-talent/": {
+      eyebrow: "Design & Multimedia",
+      title: "Voice Talent",
+      summary:
+        "Voice talent services for voiceovers, advertising, customer care, automated systems, training, and company communications with support for hiring and training.",
+      paragraphs: [
+        "Voice talent is a much sought-after resource by many companies. Sidago understands that you need the perfect voices to be the trademark that sells you to your customers in the market during your communications. Companies need voice talent for varying uses such as voiceovers for advertisements and marketing campaigns, automated customer care services, instructions in offices, and your company training material. We serve these and any other needs that you may have for voice talent in a solution-oriented process that's governed by the unique needs of your company.",
+      ],
+      sections: [
+        {
+          title: "Hiring Services",
+          body: "Our unique personnel hiring techniques and the large talent pool from our countries of operation ensures that we can tap into highly talented speakers for all of your company's voice talent needs. We develop scripts for use by the speakers in the making of your company voice recordings. Our voice talent services team at Sidago Integrated Solutions ensures that your voice needs are taken care of in the best manner possible.",
+        },
+        {
+          title: "Training Services",
+          body: "We have Voice Talent Trainers at Sidago who can be provided to you in various capacities to train your staff. The way your staff communicates with your customers is important to you and we provide the means of training your staff to communicate adequately with them in the most professional manner possible.\n\nThere are voice characteristics such as the tone and inflections in communication that convey unique messages and can attract customers to your products as they are being marketed by your staff. This requires that the salesperson use language and voice projection that is attractive and easily identifiable with. We offer both embedded personnel to train your staff and training sessions with professionals. You have a wide range of choices at Sidago to pick from when you are faced with voice talent needs and we ensure that you get the best.",
+        },
+      ],
+      closing:
+        "Are you ready to find out why we're the premier voice talent provider? GET IN TOUCH TODAY!",
+    },
+    "/services/web-design/": {
+      eyebrow: "Design & Multimedia",
+      title: "Web Design",
+      summary:
+        "Web design services for custom builds and redesigns that improve presentation, communicate the right message, and support stronger conversion outcomes.",
+      paragraphs: [
+        "In general, website design is the term used to refer to the interface and graphics displayed at the user-end. However, it's closely related to graphics designing, coding, and markup language, which are all used in the design process. Web design plays a vital role in presenting your business ideas the way that you intend to. It helps convey your actual message to your targeted audience in a way that not only attracts you huge traffic, but also increases conversion rates.",
+        "Even if your website isn't for business purposes, the design still matters in attracting visitors and getting high ranks within the SERPs. Examples of such non-business websites includes blogs and forums which are solely made for discussion and connectivity.",
+        "Web design is among the key services we provide. Whether you want a fully customized website meeting your organization's requirements, or you want to redesign your current website and make improvements, we can help you either way. Contact us today for your free web design consultation.",
+      ],
+    },
+    "/services/business-services/": {
+      eyebrow: "Business Services",
+      title: "Business Services",
+      summary:
+        "Business services support for companies that need practical operational systems, specialist execution, and adaptable service models across core business functions.",
+      paragraphs: [
+        "We realize that your company has different needs when it comes to professional business services. These could range from hiring to the general necessities needed for the operation of your company. The unique set up of any individual organization and the way each organization comes up with its own protocols within the workplace requires unique solutions, which we're more than capable of providing.",
+        "Sidago recognizes the nature of your company setup and works with you to come up with tools and procedures that allow you to deliver better services to your customers. Our methods of service delivery ensure that your products are of the highest quality. We also embrace technology and take it upon ourselves to see to it that you have the best technical platform integrated to enable your company to reap the benefits of staying modernized as times change.",
+        "Here are a few of our most popular business services. Remember, if you don't see what you need here, that doesn't mean we can't provide it. We have a large team that's situated globally which allows us to provide our clients with complete business solutions. Just reach out to us today to schedule your consultation and see how you can put the Sidago team to work for you.",
+      ],
+      sections: [
+        {
+          title: "Back Office Solutions",
+          body: "We have back office operations specialists who are at hand to advise/assist your back office operations and provide management tools to make everything in the back office seamless, yet efficient.",
+        },
+        {
+          title: "Business consulting",
+          body: "We provide full-service consultancy solutions for all types of businesses around the world. Our highly experienced business consultants have the knowledge and experience needed to enable priceless solutions to the demands of your company and its customers of course.",
+        },
+        {
+          title: "Legal",
+          body: "We have assistance available to help you with your legal issues. These could be matters relating to patents, copyrights, and intellectual property rights for your innovations. We also take care of your other day-to-day legal issues and offer legal advice to guide your interactions as well as business activities.",
+        },
+        {
+          title: "Payment Processing",
+          body: "We help you with a wide array payment processing methods which ensures timely delivery and prompt release of funds to your employees as well as your company when we're also handling payments from your clients/customers. This includes computerized payment processing programs that ensures accuracy in tracking the amounts. We also have solutions for day-to-day payments and petty cash management.",
+        },
+        {
+          title: "Project Management",
+          body: "We are there to help you with the management of your projects and see to it that the projects are successfully implemented. Your goals for the project become accomplish within your budget and by the time your deadline hits. We also ensure that the quality of the project is within the set standards, if not higher.",
+        },
+        {
+          title: "Recruiting",
+          body: "Sidago Integrated Solutions is a professional recruiter and seeks to get the best staff for your company. We work with your human resource personnel to ensure that the vision of your company is upheld at all times while being transferred to your customers through your employees. Say goodbye to hours of interview, training, and hiring when you allow Sidago to find the best employees for you.",
+        },
+        {
+          title: "Relationship Management",
+          body: "Our public and business relations department sees to it that your company is well presented to the public and helps you in acquiring new business partners. Whether you're combating negative SEO or just need constant social media monitoring, we assist in all aspects of online as well as offline relationship management.",
+        },
+        {
+          title: "Statistical Analysis",
+          body: "Sidago Integrated Solutions is able to assist you in performing statistical analysis for your company. You need to take surveys and analyze the operations of your business including costs and income. We help you make sense of collected data and generate reports that help you to easily understand the progress in your company.",
+        },
+      ],
+      closing:
+        "Are you ready to put Sidago to work for you? GET STARTED TODAY!",
+    },
+    "/services/accounting/": {
+      eyebrow: "Business Services",
+      title: "Accounting",
+      summary:
+        "Accounting services for companies that need dependable financial records, payroll support, statements, tax handling, and stronger office efficiency.",
+      paragraphs: [
+        "Are you starting a new business or is your existing business giving you headaches with bookkeeping? You need a way to keep your overheads low while ensuring that your company produces the needed output to continue expanding its operations. This is where Sidago can come in and help make it easier than it has ever been before!",
+      ],
+      sections: [
+        {
+          title: "We bring the experience to the table.",
+          body: "We are an established accounting firm with several years of experience, and you can hire us for a wide array of accounting services which includes, but is not limited to:",
+        },
+        {
+          title: "General Accounting",
+          body: "Your fiscal records have the information that you require to know the value and status of your business. We will make concise records that shows all of your earnings, assets, equity, and liabilities in every quarter of each financial year.",
+        },
+        {
+          title: "Payroll Processing",
+          body: "Payroll and its taxes will affect the net income of your company. We process the payrolls based on state laws and regulations to ensure that your company remains relevant by staying in compliance with the appropriate taxation authorities.",
+        },
+        {
+          title: "Preparation of Financial Statements",
+          body: "You have to know exactly what the numbers of your business activities means. We'll compile a robust statement to show you the progress of your work. These statements help you be as efficient as possible in this aspect of your business operations. We'll always ensure that we prepare the statements accurately and meet delivery deadlines.",
+        },
+        {
+          title: "Tax Returns",
+          body: "Whether your company is a sole proprietorship or a limited liability company, we'll help you will all the services that covers all aspects taxation. Filing tax returns is almost always a complicated procedure for business owners. We can relieve you from the burden and handle the procedure professionally while taking advantage of tax breaks where possible.",
+        },
+      ],
+      closing:
+        "Allow us to handle your accounting needs while improving your office performance and productivity. Our services will assist your business in reducing unnecessary expenses that may arise from mishaps in low quality accounting practices. We're proud to have an extensive tax record in dealing with some of the most complex accounting tasks, so whether you're just a startup or a large brand, Sidago has the resources and knowledge needed to help you get the most from the finance arm of your business. Contact us today!",
+    },
+    "/services/bookkeeping/": {
+      eyebrow: "Business Services",
+      title: "Bookkeeping",
+      summary:
+        "Bookkeeping services for business owners who need accurate financial records, clear reporting, and flexible support without adding office overhead.",
+      paragraphs: [
+        "We know your business is just as important as your family and this is why we want you to sit back and allow us to assist you with your bookkeeping allowing you to spend more of your time on what matters the most in your life, your family. We have experienced professionals who will inform you about the profit you make while keeping an accurate record of your money, the people you are indebted to as well as the amount of taxes that you're required to remit.",
+        "We'll ensure that your business accounting and financial transactions are updated and accurate. We know that your business requires timely reports in order to evaluate its performance and the rate of growth which is why we've dedicated an immense amount of time, resources, and money to provide our customers with an off-site back office solution.",
+      ],
+      sections: [
+        {
+          title: "What We Do",
+          body: "We'll help you process all of your transactions and compile a comprehensive financial report that's easy to understand and share with your team. A timely report is vital in determining the performance and status of your business. This also helps in proper management of the business because you'll be aware of the areas that need to be improved and those that are doing great as expected.\n\nFrom the experience we've gained over the years we understand that business owners require simplified but complete financial reports and that's exactly what we offer you. We do this while maintaining highly competitive pricing so that you don't have to spend an arm and a leg to give your business the attention that it deserves. Here's a sample of our accounting related services.",
+          bullets: [
+            "Accounting Software Integration",
+            "Bank/Credit Card Reconciliation",
+            "Employee Payroll",
+            "Inventory Control",
+            "Invoicing",
+            "Manual Bookkeeping",
+          ],
+        },
+        {
+          title: "Flexibility of Our Operations",
+          body: "Bookkeeping will at some point interrupt the operations of your business. We will therefore offer you flexibility in choosing when we can come and serve you. Why burden yourself with all your bookkeeping, office arrangements, and deadlines? Enjoy the peace of mind and focus on the important front office operations that steer your business while we deliver robust reports and a modernized back office solution.",
+        },
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/back-office-solutions/": {
+      eyebrow: "Business Services",
+      title: "Back Office Solutions",
+      summary:
+        "Back office solutions that streamline internal operations with better tools, faster execution, and structures tailored to how each organization actually works.",
+      paragraphs: [
+        "Our back office operations specialists are always at hand and ready to lend their services to your company as you seek to streamline operations. We provide your company with various management tools for your operations such as bookkeeping, administration, systems maintenance, settlements, and general accounting.",
+        "We have technical solutions to fulfill your back office needs. We ensure that in the modern business environment the activities that are needed to be done are done as fast as possible and with great accuracy. Sidago comes up with solutions that integrate easily with your existing system.",
+        "Sidago also recognizes that your business workplace is unique in its setting and in the way you go about your tasks. Therefore, we take the time to study your company operations and come up with unique solutions that fit into your company while reducing your overhead. We're also able to help you decide how to departmentalize and how many employees are truly necessary for each department.",
+        "The uniqueness of each institution requires unique solutions that are suitable and specifically modeled around the needs of the institution. We recognize this and we are constantly developing new solutions to ensure that our customers are only provided with the best.",
+      ],
+      closing:
+        "Get in touch with us today to discuss streamlining your back office operations.",
+    },
+    "/services/business-consulting/": {
+      eyebrow: "Business Services",
+      title: "Business Consulting",
+      summary:
+        "Business consulting services for companies that need operational advice, startup guidance, legal coordination, and practical recommendations for sustainable growth.",
+      paragraphs: [
+        "We provide consultancy services for all the types of businesses and company operations. There are various issues that you may require advice with. We partner with experienced companies and other professionals to provide you with sound legal advice and processes for operations that help your ventures to succeed.",
+        "Legal advice is one area where we provide a lot of assistance to our clients. We also connect you with other organizations with whom you can work to see the success of your business operations. These could be in the sourcing of raw materials and other supplies for your company or exploration of marketing channels. We have extensive experience in the start-up stage as well as general operation which enables us to provide you with the best business consulting services around.",
+        "The daily operations of your company may lead to losses that can be avoided. We listen to you, evaluate your business practices, and advise you on any changes that could be made to lower the company's overhead. Sidago Integrated Solutions also offers advice on what you need to do to setup your business, operate it successfully, and be in legal compliance. We also show you the channels that you could use to successfully advertise your products and services with ease and maximum saturation.",
+        "Our professional services have allowed us to be involved in many business deals as consultants and we've provided invaluable advice to different companies and businesses of all sizes. Our business consultancy teams have seen many of our clients' companies succeed. Sidago provides businesses with consultancy services that help them attain success.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/financial-services-planning/": {
+      eyebrow: "Business Services",
+      title: "Financial Services & Planning",
+      summary:
+        "Financial planning services for business owners and investors who need clearer goals, stronger monitoring, and practical recommendations over time.",
+      paragraphs: [
+        "Starting a business can appear to be easy when we have the money to invest, but it can be a difficult journey if one does not know how to manage the investment properly, yet efficiently. Initial planning can be simple but striking a good plan that will see the amount of the invested money spent in the right way will require professionalism.",
+      ],
+      sections: [
+        {
+          title: "Trust Our Team of professionals",
+          body: "We have a team of qualified and experienced financial planners who can help you deal with that challenge and emerge a successful investor. They will help you come up with clear goals and show you exactly how you can achieve them. When you need a clear roadmap, Sidago is here to provide you with exactly that.",
+        },
+        {
+          title: "We're here for the long haul!",
+          body: "Our services do not end at helping you set your goals. We'll be with you throughout the whole process to ensure that you stay on track in every aspect of the operation. We know sticking to the plans that you make can be challenging when you're left alone. Just relax and let us guide you along the way while assisting you in making changes to the areas that may be slowing you down.\n\nOur experts can assist you with:",
+          bullets: [
+            "Checking the status your income, current assets, expenses, and liabilities. If the records are balanced, then you're definitely on the track to success. However, if something isn't right then we'll help you fix it immediately.",
+            "We will prepare a clear report to help you easily understand the current status of your investment(s).",
+            "After our assessment, we'll provide recommendations of the things the can be done in a better way to help improve your overall performance.",
+            "We'll keep monitoring your progress as time goes by, and assist you in any changes needed due to a change in circumstances.",
+          ],
+        },
+      ],
+      closing:
+        "If you're ready to get your investments earning you an even higher return, contact one of our professional financial planners today. We can't wait to help you see that the grass is even more greener on the other side!",
+    },
+    "/services/legal-assistance/": {
+      eyebrow: "Business Services",
+      title: "Legal Assistance",
+      summary:
+        "Legal assistance for contracts, partnerships, compliance, and day-to-day business matters where companies need practical support and trusted guidance.",
+      paragraphs: [
+        "At Sidago Integrated Solutions, we have solutions to help you with any legal matters that may arise. All companies have legal issues to look into that could range from matters pertaining to patents, copyrights, and intellectual property rights for your innovations. We also take care of your other day-to-day legal issues and offer legal advice to guide your interactions and business activities.",
+        "A commonly assumed area that requires proper legal advice is in the drafting of partnership agreements when getting into ventures or projects with partner organizations. The projects could be short-term or long-term but they all need proper legal documentation if you are to realize the full benefits of partnering with other companies and businesses.",
+        "Here are the two main arms of Sidago's legal services.",
+      ],
+      sections: [
+        {
+          title: "Contracts",
+          bullets: [
+            "When entering into contracts, we ensure that you have the best legal advice available and are represented adequately in the process of coming up with the contract documents.",
+            "Partnerships can be tricky for companies to navigate. Sidago Integrated Solutions will advise you on how to get into a partnership and come up with the rules that will govern the partnership",
+            "We can also assist you in the process of securing your intellectual property rights.",
+          ],
+        },
+        {
+          title: "Law of the land",
+          bullets: [
+            "Compliance with the law of the land where your business is based is often a difficult maze. We provide legal experts from Sidago Integrated Solutions and help you connect with local and international legal professionals who ensure that your company is fully compliant.",
+            "Sidago Integrated Solutions also helps you with the legal issues that may come up when your company is sued and during drafting of user agreements for your products and services.",
+          ],
+        },
+      ],
+      closing:
+        "Sidago remains your preferred legal partner in providing legal compliance solutions.",
+      closingHref: "/contact",
+    },
+    "/services/recruiting/": {
+      eyebrow: "Business Services",
+      title: "Recruiting",
+      summary:
+        "Recruiting services for companies that need stronger shortlisting, structured interviews, and hiring support tailored to role requirements and culture fit.",
+      paragraphs: [
+        "Sidago has well-developed and highly advanced procedures for recruitment. We have a large talent pool to tap into since we operate in more than 10 countries and have recruited for hundreds of companies and businesses in a variety of industries. We have the expertise and the experience to ensure that we get nothing but best staff for your company. We also work with your human resource management team to ensure that the people we recruit for you are the most suitable for the needs of your company.",
+        "Our first step in the process of hiring for you is carrying out a comprehensive consultation with your HR department or managers overseeing this area. We also invite the heads of the departments where the new employees will be working to share their thoughts on the best candidate for the job. At Sidago, we believe that a proper understanding of the type of person being sought is vital to successful recruitment.",
+        "We ensure that the job openings in your company are advertised on the best job boards and via the most solid media outlets tailored to the audience that you seek to hire from. We then collect the job applications that you receive and do the necessary short-listing as dictated by the volumes of applications we receive. We ensure maximum penetration of information to prospective applicants so that we get a large pool of people to choose from.",
+        "After we have shortlisted, we then sit in a panel with your human resource managers and conduct interviews. We have professional panelists who have gained experience in seeking out the best employees for our client's companies. They're able to evaluate the personalities of the interviewees and determine if they're suitable for your company's work environment. We look for team players who exhibit leadership qualities for the continued success of your company.",
+        "Our process of hiring takes into consideration the interviewee's decisiveness and adaptability. We also carry out other recruitment tasks that happen after interviewing until the time the employee is formally employed by your company or as part of our team if that's the setup that our client desires. Each solution is customized for each specific company to ensure the best output possible.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/statistical-analysis/": {
+      eyebrow: "Business Services",
+      title: "Statistical Analysis",
+      summary:
+        "Statistical analysis services for surveys, operational data, profitability questions, and management reporting where better interpretation improves decisions.",
+      paragraphs: [
+        "Sidago Integrated Solutions has been involved in many types of statistical studies and analysis of data over our years of doing business. We've gained invaluable experience in doing statistical analysis of factors involved in production and business success. We have a team of expert analysts who have studied different methods of statistical analysis and who have participated in many analytical undertakings. Sidago ensures that our experts are kept abreast with the latest methods that are recommended for the investigative studies to be certain that your company gets the best by working with us.",
+        "Companies need to carry out surveys and collect different types of data. This could be related or unrelated data. We help you do the analysis that you need to determine of the profitability of your company. Sidago Integrated Solutions takes into consideration the need for surveys to be low-cost and to collect reliable data of the right volumes to be useful. Our team of analysts comes up with the best tool that will fit the survey to be carried out and determine the best sample size for the survey.",
+        "A good survey carried out scientifically by our team of analysts gives you comprehensive insights into the workings of your company and the viability of your procedures and business operations. We also generate reports using the collected data so that it's easier for you to understand the findings and have a firmer grip on the future of your company.",
+        "For all your company's statistical analysis needs, Sidago Integrated Solutions has the capacity to study the problem and come up with appropriate methods and solutions to carry out the required tasks to enable you have a better understanding of issues in your company and easily point to options that can be followed for better profitability.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/translation/": {
+      eyebrow: "Business Services",
+      title: "Translation",
+      summary:
+        "Translation services for multilingual operations, local market communication, international business material, and audio or video language adaptation.",
+      paragraphs: [
+        "Translation services are an integral need for companies that have their operations different regions. Not all places use the international languages and some companies that work with people living in remote places need to have their communications translated into local languages. Other companies need the material in one international language translated into another international language for example from English to French, or from German to Russian.",
+        "Sidago has the capacity to provide translation services for your company at the most affordable prices, while making it easier for HR management and increasing efficiency within your company. We empower you to communicate adequately with your clientele and partners so that you don't lose out on crucial business deals or sales. We have a selection of translation services for you to choose from. With operations in more than ten countries, we're perfectly placed as a premier provider of translation services.",
+        "Conventional translation services include translating written content, audio materials, and doing video translation. Video translation is where a video is recorded in one language and we have our translator pass the same message using the image track of your original video but the voice is in another language. Our translator will translate what the characters in the original video are saying. This retains the confidence of people who are watching the video since they see familiar faces, it is only the language spoken that varies.",
+        "Again, complete discretion is exercised at Sidago. The privacy of our clients is strictly respected at Sidago and you can safely trust us with your sensitive communication that needs translation. Sidago remains the preferred partner in providing translation services by many leading brands, and you can be sure to be attended to in a satisfying and solution-oriented manner.",
+      ],
+      closing: "GET IN TOUCH WITH US TODAY!",
+      closingHref: "/contact",
+    },
+    "/services/customer-service/": {
+      eyebrow: "Business Services",
+      title: "Customer Service",
+      summary:
+        "Customer service support focused on stronger rapport, better issue handling, and more consistent communication across channels and customer segments.",
+      paragraphs: [
+        "It's no secret that good customer service can go a long way in building your business. In fact, not only does it play a major role in its success, but it can also be considered the lifeblood of any organization. Providing quality customer care can build up your reputation, as it is an important factor in fulfilling your customers' needs. Simply put, a company won't be able to survive without enhancing this part of their business, because failing to do so could damage its reputation.",
+      ],
+      sections: [
+        {
+          title: "Rules of Good Customer Service",
+          body: "Building a strong reputation and gaining loyal customers should be the goal of any company no matter how big or how small. That's why it's important to treat them as if they really matter. Some have argued that many companies have fallen short in this regard, and that it is especially true with large corporations. As companies get larger, it's easy for someone to get lost in the endless sea of policies and procedures that can sometimes get in the way of fulfilling his or her needs. It can be easy to think that, because they have millions of customers worldwide, that losing one won't make a difference. But the truth is that failing to satisfy one customer can start a chain reaction that could eventually destroy your business. That's why it's important to treat every customer as if they really matter.\n\nUnderstanding and anticipating your customers' needs can go a long way in building your reputation. So, it's important to make sure you're giving them the right information, but everyone knows that mistakes will be made from time to time. Sometimes the wrong information will be given, or you might have a new employee who doesn't have the correct information. The important thing to do in this situation is to be apologetic, and go out of your way to rectify the situation. Customers will appreciate it, because a sincere apology can go a long way in making them feel important.",
+        },
+        {
+          title: "Why Choose Sidago Customer Service?",
+          body: "At Sidago Integrated Solutions, we understand that satisfying the needs of buyers is an essential part of creating a positive customer experience. Focusing on this part of your business will not only enhance your reputation, but it will also keep your customers loyal to you. This is, after all, the goal of any corporation, because without it they would be unable to survive in today's marketplace.\n\nWe can help you achieve these goals by:",
+          bullets: [
+            "Ensuring that your customers are satisfied with the services we provide, and that they will voluntarily promote your brand within their own social circle, family, friends, and other people they may know.",
+            "Making sure our representatives are always available to address your customers' concerns.",
+            "Making our services accessible, and offering an effective means of communication whether it's over the phone, by email, or over social media channels. And our bilingual staff will help to overcome any language or cultural barriers.",
+          ],
+        },
+      ],
+      closing: "Contact us today to find out what we can do for you!",
+    },
+    "/services/data-science-analysis/": {
+      eyebrow: "Business Services",
+      title: "Data Science And Analysis",
+      summary:
+        "Data science and analysis services for businesses that want clearer operational insight, faster decision support, and practical use of large information sets.",
+      paragraphs: [
+        "We are living in a golden age for marketing, with more and clearer insights into customer's behaviors and interests. In fact, handle your marketing right and people will even look forward to your advertising! But that requires know what they want, and how best to give it to them. Which requires knowing how to derive actionable insights from the endless string of numbers flowing out of countless devices. Even the most small-time marketer is expected to be a data analyst these days, which is part of what makes data science and analysis so in demand, currently.",
+        "Big Data has been a buzzword for some time, but despite that fact, not many know how to capitalize on its secrets. With Big Data, and the insights that can be derived from data science and analysis it becomes possible to make business decisions in real time which will put you three months ahead of the competition who are relying on quarterly reports.",
+        "Data scientists try to give operational insights into issues that are invisible to the layperson. A data analyst quantitatively depicts the primary elements of an accumulation of data.",
+      ],
+      sections: [
+        {
+          title: "Why Data Science & Analytics Are Needed",
+          body: "The proliferation in the amount and different types of data has created information sets that are not reasonable in size for administration to analyze themselves.\n\nTo deal with these new and conceivably significant information sets, new techniques for information science and new applications as prescient examination have been produced. Data is generally thought to be a driver of better choice making and enhanced productivity, and this observation has some evidence to back it up.\n\nData scientists and data analysts, connect with numerous parts of an organization from designing to business insight and item administrators. The roles of information researchers and information investigators are to a great extent unclear and differ by your own aptitude set and the organization's requirements.",
+        },
+        {
+          title: "Ten Practical Applications Of Data Science And Analysis For Business",
+          bullets: [
+            "Dialogue with consumers: Consumers today are difficult. They research endlessly, talk to their entire social network about their purchases, demand to be treated as unique while wanting to be sincerely thanked for buying your products.",
+            "Re-develop your products: Big Data can also help you understand how others perceive your products so that you can adapt them, or your marketing",
+            "Perform risk analysis:Big Data can help to provide analytics for prediction by analyzing newspaper reports and social media networks to keep you permanently up to speed on the latest developments in your industry.",
+            "Keeping your data safe",
+            "Create new revenue streams",
+            "Customize your website in real time",
+            "Reducing maintenance costs",
+            "Offering tailored healthcare",
+            "Offering enterprise-wide insights",
+            "Making our cities smarter",
+          ],
+        },
+        {
+          title: "Sidago Data Science & Analytics Services:",
+          body: "Sidago data scientists and data analysts have a strong background in software engineering, data visualization, insights, investigation, math and solid business sense. These qualifications are combined with the capacity to convey discoveries to both, business and IT pioneers, in a manner that can impact an association's approach to a business challenge.\n\nOur team can help you assemble data or supplement a major data analysis group to concentrate on the information you need.",
+        },
+      ],
+      closing:
+        "Please feel free to contact us for any further inquiries and assistance today!",
+    },
+    "/services/paralegal-services/": {
+      eyebrow: "Business Services",
+      title: "Paralegal Services",
+      summary:
+        "Paralegal services for research, document handling, case support, and administrative legal work that helps attorneys and firms operate more effectively.",
+      paragraphs: [
+        "Behind every great attorney is an extraordinary paralegal. It's not just a quaint adage. It's a truth.",
+        "Even the most humble law office is practically drowning in paperwork, e-mails that need to be returned, records that need to be updated and organized, and that's not even to mention keeping up with latest industry news and legal cases, that allows a great attorney to stay on top.",
+        "None of this would be possible without the help of a good paralegal.",
+      ],
+      sections: [
+        {
+          title: "What Is A Paralegal?",
+          body: "If you've not yet had the pleasure of working with a paralegal, they can represent considerable authority in specific sorts of law, for example, criminal, corporate, immigration and crew. Otherwise called lawful colleagues, paralegals' inclusion in cases relies upon their boss's watchfulness, but can work with a great deal of autonomy, at the same time.\n\nParalegals spend the majority of their time at work engaged in:",
+          bullets: [
+            "Case management: Coordinating every aspect of a case and making sure that appropriate steps are taken in a timely manner",
+            "Handling correspondence.",
+            "Putting deadlines on the calendar: Paralegals calculate deadlines for lawyers and file documents when necessary.",
+            "Automating systems and using computerized support to help prepare for legal defense.",
+            "Creating pleadings, writing out conduct discoveries and responses.",
+            "Contacting and conferencing with clients.",
+            "Analyzing and summarizing documents.",
+            "Fact checking.",
+            "Performing legal research.",
+            "Attending to office matters",
+          ],
+        },
+        {
+          title: "Some of paralegals' main duties include",
+          bullets: [
+            "Case planning, development, and management;",
+            "Legal research, fact gathering and information retrieval both via traditional systems such as libraries and computer-based research",
+            "Interview clients and maintain contact with them, under the attorney's supervision",
+            "Draft and analyze legal documents including pleadings, discovery requests and responses",
+            "Draft and sign legal correspondence that is informative in nature but that does not include legal opinion or advice",
+            "Prepare for and assist at trial",
+            "Represent clients before a state or federal administrative agency if permitted by law",
+            "Find and take deposition from witnesses",
+            "Paralegals also create summaries of documents and proceedings including the depositions, interrogations and testimony",
+            "Paralegals attend legal functions such as will executions, real estate closings, court or administrative hearings, depositions, as well as attending the trial with the attorney.",
+          ],
+        },
+        {
+          title: "Legal Research And Presentation",
+          body: "Assisting attorneys in trial preparation is the most vital role of a paralegal. A large part of this consists of conducting legal research and gathering pertinent information to the case. Often, paralegals also are involved in preparing presentations for the client.",
+        },
+        {
+          title: "Client Interviews",
+          body: "Lengthy elaborate cases can involve hundreds of hours of interviews. While a paralegal usually does not conduct the initial client interview, they are present while it's happening, meaning they are prepared to conduct follow-up interviews.",
+        },
+        {
+          title: "Drafting Legal Documents",
+          body: "Drafting legal documents is one of the most important and time consuming aspects of a paralegal's job. This can include drafting correspondence and pleadings, such as subpoenas, complaints, interrogations, deposition notices, pretrial orders, and legal briefs with various parties.",
+        },
+        {
+          title: "Sidago Paralegal Services:",
+          body: "Sidago Paralegal Team permits law offices and organizations to enhance profitability, expand assets, and control costs. We recruit the best full-time expert law staff, at the top of their field. We provide services of our paralegal experts to transform an extensive variety of authoritative reports and court frames. To learn more about our services, please feel free to contact us.",
+        },
+      ],
+    },
+    "/services/technical-writing/": {
+      eyebrow: "Business Services",
+      title: "Technical Writing",
+      summary:
+        "Technical writing services for companies that need clear documentation, client guides, online help, and process material explained with precision.",
+      paragraphs: [
+        "Technical writing refers to the unmistakable, brief, and unambiguous presentation and investigation of exploratory or designing results. The role of this specialized writer is to investigate and clarify in straightforward language the advanced concepts that are troublesome to conceive for a normal reader. This commonly means making client guides, online help, and direction manuals, other preparing materials and procedure documentation. Hiring an experienced and well qualified technical writer offers you the following advantages:",
+      ],
+      sections: [
+        {
+          title: "",
+          bullets: [
+            "Communicating information more clearly;",
+            "Concise, clear and complete documentation reduces cost;",
+            "Creating good manuals reduces support costs of the companies.",
+          ],
+        },
+        {
+          title: "Need of Technical Writing",
+          body: "Numerous items or administrations have mind boggling or specialized viewpoints that need to be imparted to the end client. Successfully convey these angles can be vital to the effective selection of the item or administration. It is the technical writer's obligation to impart these ideas to the end client. Some documentation is composed by the relevant field experts who made the item in the conviction that they comprehend the item best. This approach has a tendency to disregard the needs of the reader. The architects comprehend the working of an item, but they do not emphasize much on its application. Technical writer go about as client supporters and give a goal perspective. The significance of technical writer's work is not just found in the cash it serves to produce, but it is also found by the accommodation and wellbeing it makes for readers.",
+        },
+        {
+          title: "Sidago Technical Writing Services",
+          body: "Sidago technical writing administration group can make online help, establishment guides, fast begin guides, client documentation, and other specialized documents for your product organization. Your documentation will be created to impart viably to numerous groups of onlookers. Programming clients regularly go from tenderfoot to cutting edge so your technical writing must be composed to convey to an extensive variety of abilities and experience. By seeking our technical writing services, you can be sure that your customers are understanding your perspectives quite well.",
+        },
+      ],
+      closing:
+        "Please feel free to contact us for any further inquiries and assistance.",
     },
     "/services/software-developement/": {
       eyebrow: "Development & IT",
@@ -1969,23 +2996,35 @@ export default function ContentTab({
   ]);
 
   useEffect(() => {
-    if (type !== "service" || !slug) {
+    if (!groups?.length) {
+      setNestedServiceAccordionHref("");
       return;
     }
 
-    const path = `/services/${slug}/`;
+    if (type === "service" && slug) {
+      const path = `/services/${slug}/`;
 
-    for (const g of getServicesMenuGroups()) {
-      const parent = findNestedServiceParentHref(g.children, path);
+      for (const g of groups) {
+        const parent = findNestedServiceParentHref(g.children, path);
 
-      if (parent) {
-        setNestedServiceAccordionHref(parent);
-        return;
+        if (parent) {
+          setNestedServiceAccordionHref(parent);
+          return;
+        }
       }
     }
 
+    if (!expandedGroup) {
+      setNestedServiceAccordionHref("");
+      return;
+    }
+
+    // Do not auto-open the first nested row here: under Administrative Support the
+    // first item with sub-links is "What We Write", but the default tab should be
+    // the first list item (e.g. Administrative Services). Nested accordions open
+    // only when the URL slug matches a nested path (handled above).
     setNestedServiceAccordionHref("");
-  }, [type, slug]);
+  }, [type, slug, expandedGroup]);
 
   const activeEntry = useMemo(() => {
     if (groups?.length) {
@@ -2151,7 +3190,8 @@ export default function ContentTab({
                                 );
                                 if (!isChildActive) {
                                   setActiveHref(
-                                    isStrategyMenu && firstChildHref
+                                    (isStrategyMenu || isServiceMenu) &&
+                                      firstChildHref
                                       ? firstChildHref
                                       : menuGroup.href,
                                   );
@@ -2201,11 +3241,9 @@ export default function ContentTab({
                             ) : null}
                             <span
                               className={`relative z-10 pr-4 leading-[1.18] ${
-                                isIndustryMenu
+                                isPremiumNav
                                   ? "text-[0.96rem] md:text-[1rem]"
-                                  : isStrategyMenu
-                                    ? "text-lg md:text-[1.05rem]"
-                                    : "text-lg md:text-[1.05rem]"
+                                  : "text-lg md:text-[1.05rem]"
                               }`}
                             >
                               {menuGroup.title}
@@ -2316,7 +3354,7 @@ export default function ContentTab({
                                           />
                                           <motion.span
                                             className={`relative z-10 leading-[1.2] ${
-                                              isIndustryMenu
+                                              isPremiumNav
                                                 ? "text-[0.8rem] tracking-[0.08em]"
                                                 : "text-[0.82rem] uppercase tracking-[0.14em]"
                                             }`}
@@ -2387,7 +3425,7 @@ export default function ContentTab({
                                             ) : null}
                                             <span
                                               className={`relative z-10 leading-[1.2] ${
-                                                isIndustryMenu
+                                                isPremiumNav
                                                   ? "text-[0.8rem] tracking-[0.08em]"
                                                   : "text-[0.82rem] uppercase tracking-[0.14em]"
                                               }`}

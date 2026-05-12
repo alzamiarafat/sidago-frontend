@@ -3,6 +3,8 @@
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
+import AvailablePartner from "@/src/components/sections/v2/servicepage/AvailablePartner";
+
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import BuildingProduct from "@/src/components/sections/v2/strategypage/BuildingProduct";
@@ -10,9 +12,7 @@ import Investment from "@/src/components/sections/v2/strategypage/Investment";
 import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBenefit";
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
 import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
-import {
-  normalizeStrategyPath,
-} from "@/src/data/strategy-menu";
+import { normalizeStrategyPath } from "@/src/data/strategy-menu";
 import { usePathname } from "next/navigation";
 
 const stats = [
@@ -69,7 +69,8 @@ const titles = [
 export default function StrategyPageTemplate() {
   const pathname = usePathname();
   const currentPath = normalizeStrategyPath(pathname);
-  const currentSlug = currentPath.split("/").filter(Boolean).at(-1) ?? "capabilities";
+  const currentSlug =
+    currentPath.split("/").filter(Boolean).at(-1) ?? "capabilities";
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -98,7 +99,8 @@ export default function StrategyPageTemplate() {
           />
           {/* <Investment /> */}
           {/* <BuildingProduct /> */}
-          <WorkOverview />
+          {/* <WorkOverview /> */}
+          <AvailablePartner bgColor="bg-[#151916]" titleColor="text-white" />
           <CTASection />
           <Footer />
         </main>

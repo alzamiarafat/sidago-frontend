@@ -57,6 +57,11 @@ const CONTACT_TOPICS = [
   },
 ];
 
+function topicHref(topic) {
+  const q = new URLSearchParams({ topic: topic.label });
+  return `${topic.href}?${q.toString()}#contact-form`;
+}
+
 function ArrowIcon({ mobile = false }) {
   return (
     <svg
@@ -76,7 +81,7 @@ function ArrowIcon({ mobile = false }) {
         fillRule="evenodd"
         d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
         clipRule="evenodd"
-      ></path>
+      />
     </svg>
   );
 }
@@ -84,15 +89,15 @@ function ArrowIcon({ mobile = false }) {
 function ContactTopicCard({ topic }) {
   return (
     <a
-      href={topic.href}
-      className={`group/interactive pointer-events-auto h-[14.5rem] transition-all lg:h-[11.375rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 ${topic.spanClassName}`}
+      href={topicHref(topic)}
+      className={`group/interactive pointer-events-auto h-[14.5rem] transition-opacity lg:h-[11.375rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 ${topic.spanClassName}`}
       style={{ position: "relative" }}
     >
       <span className="sr-only">{topic.srLabel}</span>
       <div
         className={`relative flex h-full flex-col justify-between overflow-hidden p-lg bevel ${topic.cardClassName}`}
       >
-        <div></div>
+        <div />
         <div className="z-10 flex items-end justify-between gap-md">
           <div className="flex flex-col gap-md">
             <div className="text-xl">{topic.label}</div>
@@ -107,10 +112,14 @@ function ContactTopicCard({ topic }) {
 
 export default function ContactUs() {
   return (
-    <section className="bg-stone-800">
-      <div className="container flex flex-col gap-x-3xl gap-y-container py-block lg:flex-row">
+    <section
+      id="contact-topics"
+      className="bg-[linear-gradient(180deg,#1a211e_0%,#111715_100%)] py-block"
+      aria-labelledby="contact-topics-heading"
+    >
+      <div className="container flex flex-col gap-10 lg:flex-row lg:items-start">
         <div
-          className="core-column--stacked-on-mobile"
+          className="core-column--stacked-on-mobile lg:max-w-[min(100%,16rem)]"
           style={{ "--core-column-width": "15%" }}
         >
           <img
@@ -119,42 +128,44 @@ export default function ContactUs() {
             width="1152"
             height="1152"
             decoding="async"
-            data-nimg="1"
-            className="aspect-video object-cover bevel lg:h-full lg:aspect-auto"
-            style={{ color: "transparent" }}
+            className="aspect-video rounded-[1.5rem] object-cover shadow-[0_24px_64px_rgba(0,0,0,0.16)] ring-1 ring-white/[0.06] lg:h-full lg:aspect-auto"
             src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/26202946/Contact-graphic.svg"
           />
         </div>
 
         <div
-          className="core-column--stacked-on-mobile"
+          className="core-column--stacked-on-mobile min-w-0 flex-1"
           style={{ "--core-column-width": "85%" }}
         >
-          <div className="text-green-dark">
-            <p className="font-blender text-xl text-gray-off-white">
-              CONTACT US
+          <div className="max-w-[44rem]">
+            <p className="text-sm uppercase tracking-[0.2em] text-green-dark">
+              Contact us
             </p>
-          </div>
 
-          <div className="pt-lg pb-container">
-            <h2 className="text-3xl" id="get-in-touch-with-wintermute">
+            <h2
+              className="mt-2 text-3xl text-gray-off-white sm:text-4xl"
+              id="contact-topics-heading"
+            >
               Get in touch with Sidago
             </h2>
-          </div>
 
-          <div className="pb-xl text-green-dark">
-            <p className="font-blender text-gray-tradfi-frost">
-              WHAT TOPIC WOULD YOU LIKE TO CONTACT SIDAGO ABOUT?
+            <p className="mt-4 text-base leading-8 text-gray-off-white/75">
+              Choose a topic below to reach the right Sidago team quickly and
+              keep the enquiry aligned with your needs.
             </p>
+
+            <div className="pt-6 text-green-dark">
+              <p className="text-sm uppercase tracking-[0.18em] text-gray-tradfi-frost">
+              WHAT TOPIC WOULD YOU LIKE TO CONTACT SIDAGO ABOUT?
+              </p>
+            </div>
           </div>
 
-          <section className="bg-stone-800 text-gray-off-white">
-            <div className="group/cards pointer-events-none relative flex grid-cols-12 flex-col gap-2xl lg:grid lg:grid-rows-auto lg:gap-md">
-              {CONTACT_TOPICS.map((topic) => (
-                <ContactTopicCard key={topic.href} topic={topic} />
-              ))}
-            </div>
-          </section>
+          <div className="group/cards pointer-events-none relative mt-8 flex grid-cols-12 flex-col gap-5 text-gray-off-white lg:grid lg:grid-rows-auto lg:gap-4">
+            {CONTACT_TOPICS.map((topic) => (
+              <ContactTopicCard key={topic.label} topic={topic} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

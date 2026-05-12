@@ -109,6 +109,20 @@ function getVisibleTabs(items = []) {
   return items.filter((item) => !item.isMore);
 }
 
+function getDefaultNestedItem(item) {
+  if (!item) {
+    return null;
+  }
+
+  const visibleChildren = getVisibleTabs(item.children ?? []);
+
+  if (!visibleChildren.length) {
+    return item;
+  }
+
+  return getDefaultNestedItem(visibleChildren[0]) ?? visibleChildren[0];
+}
+
 export function getServicesMenuGroups() {
   return (
     mainMenu.find((item) => item.id === "services")?.megaColumns?.map(
@@ -131,7 +145,7 @@ function getIndustriesMenuGroups() {
 function findServiceLeafMatch(children, currentPath) {
   for (const child of children ?? []) {
     if (normalizePath(child.href) === currentPath) {
-      return child;
+      return getDefaultNestedItem(child) ?? child;
     }
 
     const nested = findServiceLeafMatch(child.children, currentPath);
