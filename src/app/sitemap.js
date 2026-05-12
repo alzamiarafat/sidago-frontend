@@ -3,13 +3,20 @@ import { getStrategySlugs } from "@/src/data/strategy-menu";
 import { SITE_URL } from "@/src/lib/seo";
 import { getIndustryMenuGroups } from "@/src/utils/navigationTabUtils";
 
+function flatServiceChildUrls(children = []) {
+  return (children ?? []).flatMap((child) => [
+    child.href,
+    ...flatServiceChildUrls(child.children),
+  ]);
+}
+
 function flatServiceUrls() {
   const servicesItem = mainMenu.find((item) => item.id === "services");
   const groups = servicesItem?.megaColumns ?? [];
 
   return groups.flatMap((group) => [
     group.href,
-    ...(group.children ?? []).map((child) => child.href),
+    ...flatServiceChildUrls(group.children),
   ]);
 }
 

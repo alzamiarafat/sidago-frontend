@@ -7,11 +7,13 @@ const industryMenuGroups = [
     title: "B2B / Commercial",
     href: getIndustryHref("b2b-commercial"),
     children: [
-      { title: "Commercial GTM", href: getIndustryHref("commercial-gtm") },
-      { title: "Sales Operations", href: getIndustryHref("sales-operations") },
       {
-        title: "Channel Partnerships",
-        href: getIndustryHref("channel-partnerships"),
+        title: "Law Firms",
+        href: getIndustryHref("law-firms"),
+      },
+      {
+        title: "Manufacturing Industrial Products",
+        href: getIndustryHref("manufacturing-industrial-products"),
       },
     ],
   },
@@ -21,12 +23,8 @@ const industryMenuGroups = [
     children: [
       { title: "Accounting Firms", href: getIndustryHref("accounting-firms") },
       {
-        title: "Financial Analytics",
-        href: getIndustryHref("financial-analytics"),
-      },
-      {
-        title: "Payments Modernization",
-        href: getIndustryHref("payments-modernization"),
+        title: "Banking",
+        href: getIndustryHref("banking"),
       },
     ],
   },
@@ -34,14 +32,22 @@ const industryMenuGroups = [
     title: "Technology",
     href: getIndustryHref("ad-networks"),
     children: [
-      { title: "Software Platforms", href: getIndustryHref("software-platforms") },
+      { title: "Ad Networks", href: getIndustryHref("ad-networks") },
+      {
+        title: "Affiliate Networks",
+        href: getIndustryHref("affiliate-networks"),
+      },
+      { title: "Affiliates", href: getIndustryHref("affiliates") },
     ],
   },
   {
     title: "Health Care",
     href: getIndustryHref("healthcare"),
     children: [
-      { title: "Healthcare Operations", href: getIndustryHref("healthcare") },
+      {
+        title: "Practices and Doctors",
+        href: getIndustryHref("practices-and-doctors"),
+      },
     ],
   },
   {
@@ -103,7 +109,7 @@ function getVisibleTabs(items = []) {
   return items.filter((item) => !item.isMore);
 }
 
-function getServicesMenuGroups() {
+export function getServicesMenuGroups() {
   return (
     mainMenu.find((item) => item.id === "services")?.megaColumns?.map(
       (column) => ({
@@ -122,6 +128,22 @@ function getIndustriesMenuGroups() {
   }));
 }
 
+function findServiceLeafMatch(children, currentPath) {
+  for (const child of children ?? []) {
+    if (normalizePath(child.href) === currentPath) {
+      return child;
+    }
+
+    const nested = findServiceLeafMatch(child.children, currentPath);
+
+    if (nested) {
+      return nested;
+    }
+  }
+
+  return null;
+}
+
 function getMenuContext(pathname, groups) {
   const currentPath = normalizePath(pathname);
 
@@ -134,14 +156,14 @@ function getMenuContext(pathname, groups) {
       };
     }
 
-    for (const child of group.children ?? []) {
-      if (normalizePath(child.href) === currentPath) {
-        return {
-          group,
-          currentItem: child,
-          tabs: getVisibleTabs(group.children ?? []),
-        };
-      }
+    const leaf = findServiceLeafMatch(group.children, currentPath);
+
+    if (leaf) {
+      return {
+        group,
+        currentItem: leaf,
+        tabs: getVisibleTabs(group.children ?? []),
+      };
     }
   }
 

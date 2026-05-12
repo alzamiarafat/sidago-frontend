@@ -513,101 +513,153 @@ export default function ProcessImprovementView() {
             <h2 className="mt-3 w-full text-3xl font-medium tracking-tight text-white sm:text-4xl">
               Before clarity · After orchestration
             </h2>
-            <p className="mt-4 w-full text-base leading-relaxed text-slate-400">
-              Drag the control to reveal how Sidago reframes the same operating reality—without erasing the humans in the loop.
+            <p className="mt-4 w-full text-base leading-relaxed text-slate-300">
+              Drag the bar to set how far along you are from fragmented ops
+              (left) toward orchestrated delivery (right). The readout below
+              updates with your position.
             </p>
           </header>
-          <div className="mt-12 overflow-hidden rounded-3xl bg-[#0c1010] p-6 shadow-[0_16px_48px_rgba(0,0,0,0.35)] sm:p-8">
-            <label htmlFor="compare-range" className="sr-only">
-              Compare before and after
-            </label>
-            <input
-              id="compare-range"
-              type="range"
-              min={0}
-              max={100}
-              value={compare}
-              onChange={(e) => setCompare(Number(e.target.value))}
-              className="mb-8 w-full accent-[#E7512F]"
-            />
-            <div className="grid gap-5 md:grid-cols-2 md:items-stretch md:gap-8">
+
+          <div className="mt-12 overflow-hidden rounded-3xl bg-[#0a0d0c] shadow-[0_20px_56px_rgba(0,0,0,0.45)]">
+            <div className="border-b border-white/[0.06] px-5 pb-5 pt-6 sm:px-8 sm:pb-6 sm:pt-8">
+              <label htmlFor="compare-range" className="sr-only">
+                Compare before and after along the spectrum
+              </label>
+              <div className="relative mx-auto max-w-2xl">
+                <div className="relative flex h-10 w-full items-center">
+                  <div
+                    className="pointer-events-none absolute inset-x-0 top-1/2 flex h-2 w-full -translate-y-1/2 overflow-hidden rounded-full shadow-inner"
+                    aria-hidden
+                  >
+                    <div
+                      className="bg-[#E7512F]"
+                      style={{ width: `${compare}%` }}
+                    />
+                    <div className="min-w-0 flex-1 bg-white/90" />
+                  </div>
+                  <div
+                    className="pointer-events-none absolute top-1/2 z-[1] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-[#E7512F] shadow-[0_2px_12px_rgba(231,81,47,0.55)]"
+                    style={{ left: `${compare}%` }}
+                    aria-hidden
+                  />
+                  <input
+                    id="compare-range"
+                    type="range"
+                    min={0}
+                    max={100}
+                    value={compare}
+                    onChange={(e) => setCompare(Number(e.target.value))}
+                    className="absolute inset-0 z-[2] m-0 h-full w-full cursor-pointer opacity-[0.04]"
+                  />
+                </div>
+                <p className="mt-4 text-center text-sm text-slate-400">
+                  <span className="font-mono tabular-nums text-white/80">
+                    {compare}%
+                  </span>
+                  {" · "}
+                  {compare < 34
+                    ? "Leaning before — tighten intake and narrative."
+                    : compare > 66
+                      ? "Leaning after — scale guardrails and staffing."
+                      : "Balanced — both sides matter equally."}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2">
               <div
-                className="flex min-h-0 flex-col rounded-2xl bg-[#151916] p-5 shadow-[0_10px_36px_rgba(0,0,0,0.35)] transition-opacity md:p-6"
-                style={{ opacity: 1 - compare / 130 }}
+                className="flex flex-col bg-[#161918] px-5 py-6 transition-[box-shadow] duration-300 sm:px-8 sm:py-8 md:min-h-[280px]"
+                style={{
+                  boxShadow:
+                    compare < 50
+                      ? `inset 0 0 0 1px rgba(231,81,47,${0.12 + (1 - compare / 50) * 0.2})`
+                      : "inset 0 0 0 1px rgba(255,255,255,0.04)",
+                }}
               >
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#E7512F]/90">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#E7512F]">
                   Before
                 </p>
-                <ul className="mt-5 flex flex-1 flex-col gap-3 text-sm leading-relaxed text-slate-400">
-                  <li className="grid grid-cols-[0.5rem_1.25rem_1fr] items-start gap-x-2.5">
-                    <span
-                      className="mt-[0.42em] h-2 w-2 shrink-0 rounded-sm bg-[#168b50]"
-                      aria-hidden
-                    />
-                    <span className="flex h-[1.125rem] shrink-0 items-center justify-center text-xs font-medium text-slate-500">
-                      −
+                <ul className="mt-6 flex flex-col gap-4 text-[0.9375rem] leading-relaxed text-slate-200">
+                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
+                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
+                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
+                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
                     </span>
-                    <span className="min-w-0">Fragmented status in chat threads</span>
+                    <span className="mt-1 w-4 shrink-0 text-center text-slate-500">—</span>
+                    <span className="min-w-0 text-slate-200/95">
+                      Fragmented status in chat threads
+                    </span>
                   </li>
-                  <li className="grid grid-cols-[0.5rem_1.25rem_1fr] items-start gap-x-2.5">
-                    <span
-                      className="mt-[0.42em] h-2 w-2 shrink-0 rounded-sm bg-[#168b50]"
-                      aria-hidden
-                    />
-                    <span className="flex h-[1.125rem] shrink-0 items-center justify-center text-xs font-medium text-slate-500">
-                      −
+                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
+                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
+                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
+                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
                     </span>
-                    <span className="min-w-0">Manual reconciliations every Friday</span>
+                    <span className="mt-1 w-4 shrink-0 text-center text-slate-500">—</span>
+                    <span className="min-w-0 text-slate-200/95">
+                      Manual reconciliations every Friday
+                    </span>
                   </li>
-                  <li className="grid grid-cols-[0.5rem_1.25rem_1fr] items-start gap-x-2.5">
-                    <span
-                      className="mt-[0.42em] h-2 w-2 shrink-0 rounded-sm bg-[#168b50]"
-                      aria-hidden
-                    />
-                    <span className="flex h-[1.125rem] shrink-0 items-center justify-center text-xs font-medium text-slate-500">
-                      −
+                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
+                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
+                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
+                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
                     </span>
-                    <span className="min-w-0">Heroics rewarded over repeatable playbooks</span>
+                    <span className="mt-1 w-4 shrink-0 text-center text-slate-500">—</span>
+                    <span className="min-w-0 text-slate-200/95">
+                      Heroics rewarded over repeatable playbooks
+                    </span>
                   </li>
                 </ul>
               </div>
               <div
-                className="flex min-h-0 flex-col rounded-2xl bg-[#168b50]/10 p-5 shadow-[0_10px_36px_rgba(0,0,0,0.28)] transition-opacity md:p-6"
-                style={{ opacity: compare / 100 }}
+                className="flex flex-col bg-[#0d1612] px-5 py-6 transition-[box-shadow] duration-300 sm:px-8 sm:py-8 md:min-h-[280px]"
+                style={{
+                  boxShadow:
+                    compare > 50
+                      ? `inset 0 0 0 1px rgba(74,222,128,${0.1 + (compare - 50) / 50 * 0.22})`
+                      : "inset 0 0 0 1px rgba(255,255,255,0.04)",
+                }}
               >
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#168b50]/95">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#4ade80]">
                   After
                 </p>
-                <ul className="mt-5 flex flex-1 flex-col gap-3 text-sm leading-relaxed text-slate-200">
-                  <li className="grid grid-cols-[0.5rem_1.25rem_1fr] items-start gap-x-2.5">
-                    <span
-                      className="mt-[0.42em] h-2 w-2 shrink-0 rounded-sm bg-[#168b50]"
-                      aria-hidden
-                    />
-                    <span className="flex h-[1.125rem] shrink-0 items-center justify-center">
-                      <FiCheck className="h-4 w-4 text-[#168b50]" aria-hidden />
+                <ul className="mt-6 flex flex-col gap-4 text-[0.9375rem] leading-relaxed text-slate-100">
+                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
+                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
+                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
+                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
                     </span>
-                    <span className="min-w-0">One orchestrated narrative with receipts</span>
+                    <span className="mt-0.5 flex w-5 shrink-0 justify-center">
+                      <FiCheck className="h-4 w-4 text-[#4ade80]" strokeWidth={2.5} aria-hidden />
+                    </span>
+                    <span className="min-w-0 text-slate-100">
+                      One orchestrated narrative with receipts
+                    </span>
                   </li>
-                  <li className="grid grid-cols-[0.5rem_1.25rem_1fr] items-start gap-x-2.5">
-                    <span
-                      className="mt-[0.42em] h-2 w-2 shrink-0 rounded-sm bg-[#168b50]"
-                      aria-hidden
-                    />
-                    <span className="flex h-[1.125rem] shrink-0 items-center justify-center">
-                      <FiCheck className="h-4 w-4 text-[#168b50]" aria-hidden />
+                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
+                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
+                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
+                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
                     </span>
-                    <span className="min-w-0">Automated guardrails with human checkpoints</span>
+                    <span className="mt-0.5 flex w-5 shrink-0 justify-center">
+                      <FiCheck className="h-4 w-4 text-[#4ade80]" strokeWidth={2.5} aria-hidden />
+                    </span>
+                    <span className="min-w-0 text-slate-100">
+                      Automated guardrails with human checkpoints
+                    </span>
                   </li>
-                  <li className="grid grid-cols-[0.5rem_1.25rem_1fr] items-start gap-x-2.5">
-                    <span
-                      className="mt-[0.42em] h-2 w-2 shrink-0 rounded-sm bg-[#168b50]"
-                      aria-hidden
-                    />
-                    <span className="flex h-[1.125rem] shrink-0 items-center justify-center">
-                      <FiCheck className="h-4 w-4 text-[#168b50]" aria-hidden />
+                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
+                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
+                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
+                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
                     </span>
-                    <span className="min-w-0">Forecast-aware staffing and backlog shaping</span>
+                    <span className="mt-0.5 flex w-5 shrink-0 justify-center">
+                      <FiCheck className="h-4 w-4 text-[#4ade80]" strokeWidth={2.5} aria-hidden />
+                    </span>
+                    <span className="min-w-0 text-slate-100">
+                      Forecast-aware staffing and backlog shaping
+                    </span>
                   </li>
                 </ul>
               </div>

@@ -88,6 +88,20 @@ export const mainMenu = [
           {
             label: "What We Write",
             href: "/services/what-we-write/",
+            children: [
+              {
+                label: "Copywriting",
+                href: "/services/copywriting/",
+              },
+              {
+                label: "Creative Writing",
+                href: "/services/creative-writing/",
+              },
+              {
+                label: "Web Content Writing",
+                href: "/services/web-content-writing/",
+              },
+            ],
           },
           {
             label: "Data Mining",

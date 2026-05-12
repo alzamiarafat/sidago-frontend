@@ -204,6 +204,17 @@ export const routeMetadata = {
   }),
 };
 
+function flattenServiceChildren(children = []) {
+  return (children ?? []).flatMap((child) => [
+    {
+      title: child.label ?? child.title,
+      href: child.href,
+      description: `Learn about ${child.label ?? child.title} services from Sidago.`,
+    },
+    ...flattenServiceChildren(child.children),
+  ]);
+}
+
 function flattenServices() {
   const servicesItem = mainMenu.find((item) => item.id === "services");
   const groups = servicesItem?.megaColumns ?? [];
@@ -214,11 +225,7 @@ function flattenServices() {
       href: group.href,
       description: `Explore ${group.label} services from Sidago.`,
     },
-    ...(group.children ?? []).map((child) => ({
-      title: child.label,
-      href: child.href,
-      description: `Learn about ${child.label} services from Sidago.`,
-    })),
+    ...flattenServiceChildren(group.children),
   ]);
 }
 
