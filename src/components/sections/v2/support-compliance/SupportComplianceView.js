@@ -15,7 +15,7 @@ import {
 } from "react-icons/fi";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
-import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
+import { DotMatrixText } from "@/src/components/sections/v2/common/DotMatrixText";
 import ComplianceLegalHub from "@/src/components/sections/v2/support-compliance/ComplianceLegalHub";
 import ComplianceStandardsFlipCard from "@/src/components/sections/v2/support-compliance/ComplianceStandardsFlipCard";
 import SupportBrutalistShowcase from "@/src/components/sections/v2/support-compliance/SupportBrutalistShowcase";
@@ -36,11 +36,13 @@ import {
   viewportOnce,
 } from "@/src/components/sections/v2/support-compliance/motion";
 
-const SC = {
-  deep: "bg-[#070B09]",
-  mid: "bg-[#1C211E]",
-  elevated: "bg-[#323935]",
-};
+/** Shared layout; each section sets its own `bg-[#…]` (brand band colors). */
+const SECTION =
+  "relative scroll-mt-24 overflow-hidden text-gray-off-white";
+const GLASS =
+  "rounded-3xl bg-white/[0.045] p-6 shadow-[0_28px_90px_rgba(0,0,0,0.52)] backdrop-blur-xl md:p-7";
+const GLASS_SOFT =
+  "rounded-3xl bg-white/[0.035] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.48)] backdrop-blur-xl md:p-7";
 
 const pillarIcons = [FiUsers, FiShield, FiLock, FiTarget];
 
@@ -68,9 +70,9 @@ function ComplianceSection() {
   return (
     <section
       id="compliance-standards"
-      className={`scroll-mt-24 ${SC.deep} px-4 text-gray-off-white sm:px-6 md:px-10`}
+      className={`${SECTION} bg-[#020403] px-4 sm:px-6 md:px-10`}
     >
-      <div className="container py-block">
+      <div className="container relative py-16 sm:py-20 md:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -88,7 +90,7 @@ function ComplianceSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid gap-5 overflow-visible md:grid-cols-3"
+          className="grid gap-6 overflow-visible md:grid-cols-3 md:gap-8"
         >
           {complianceCards.map((card, index) => (
             <motion.div key={card.title} variants={fadeUp} className="h-full">
@@ -105,9 +107,9 @@ function SecurityPrivacySection({ reduce }) {
   return (
     <section
       id="security-privacy"
-      className={`scroll-mt-24 ${SC.mid} px-4 text-gray-off-white sm:px-6 md:px-10`}
+      className={`${SECTION} bg-[#070b0a] px-4 sm:px-6 md:px-10`}
     >
-      <div className="container py-block">
+      <div className="container relative py-16 sm:py-20 md:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -126,13 +128,13 @@ function SecurityPrivacySection({ reduce }) {
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="space-y-4"
+            className="space-y-5"
           >
             {securityItems.map((item) => (
               <motion.article
                 key={item.title}
                 variants={fadeUp}
-                className={`rounded-3xl ${SC.elevated} p-6 shadow-[0_20px_60px_rgba(0,0,0,0.32)] md:p-7`}
+                className={GLASS_SOFT}
               >
                 <h3 className="text-lg text-white">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-gray-tradfi-silver">
@@ -146,7 +148,7 @@ function SecurityPrivacySection({ reduce }) {
             whileInView="visible"
             viewport={viewportOnce}
             variants={fadeUp}
-            className={`rounded-3xl ${SC.elevated} p-7 shadow-[0_20px_60px_rgba(0,0,0,0.32)] md:p-8`}
+            className={GLASS}
           >
             <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
               Risk management focus
@@ -167,12 +169,14 @@ function SecurityPrivacySection({ reduce }) {
 }
 
 function DataProtectionSection({ reduce }) {
+  const [active, setActive] = useState(-1);
+
   return (
     <section
       id="data-protection"
-      className={`scroll-mt-24 ${SC.deep} px-4 text-gray-off-white sm:px-6 md:px-10`}
+      className={`${SECTION} bg-[#151916] px-4 sm:px-6 md:px-10`}
     >
-      <div className="container py-block">
+      <div className="container relative py-16 sm:py-20 md:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -190,18 +194,29 @@ function DataProtectionSection({ reduce }) {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid gap-5 sm:grid-cols-3"
+          className="grid gap-6 sm:grid-cols-3 sm:gap-8"
         >
-          {metricStats.map((row) => (
+          {metricStats.map((row, index) => (
             <motion.div
               key={row.label}
               variants={fadeUp}
-              className={`rounded-3xl ${SC.elevated} p-7 text-center shadow-[0_24px_70px_rgba(0,0,0,0.4)] md:p-8`}
+              className={`${GLASS} px-6 py-8 text-center md:px-8 md:py-10`}
+              onMouseEnter={() => setActive(index)}
+              onMouseLeave={() => setActive(-1)}
             >
-              <div className="font-blender text-4xl text-white md:text-5xl lg:text-6xl">
-                <CountUpStat value={row.value} />
+              <div className="flex justify-center">
+                <DotMatrixText
+                  text={row.value}
+                  active={active === index}
+                  dotSize={2}
+                  dotSpacing={3}
+                  dotColor="#E9EEE9"
+                  activeDotColor="#E7512F"
+                  fontSizeMobile={44}
+                  fontSizeDesktop={64}
+                />
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-gray-tradfi-silver">
+              <p className="mt-4 text-sm leading-relaxed text-white/80">
                 {row.label}
               </p>
             </motion.div>
@@ -216,9 +231,9 @@ function RegulatorySection({ reduce }) {
   return (
     <section
       id="regulatory-guidelines"
-      className={`scroll-mt-24 ${SC.elevated} px-4 text-gray-off-white sm:px-6 md:px-10`}
+      className={`${SECTION} bg-[#323935] px-4 sm:px-6 md:px-10`}
     >
-      <div className="container py-block">
+      <div className="container relative py-16 sm:py-20 md:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -236,13 +251,13 @@ function RegulatorySection({ reduce }) {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid gap-5 md:grid-cols-3"
+          className="grid gap-6 md:grid-cols-3 md:gap-8"
         >
           {regulatoryTopics.map((topic) => (
             <motion.article
               key={topic.label}
               variants={fadeUp}
-              className={`rounded-3xl ${SC.mid} p-7 shadow-[0_20px_60px_rgba(0,0,0,0.35)]`}
+              className={GLASS_SOFT}
             >
               <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
                 {topic.label}
@@ -263,8 +278,10 @@ function FaqSection() {
   const reduce = useReducedMotion();
 
   return (
-    <section className={`scroll-mt-24 ${SC.elevated} px-4 text-gray-off-white sm:px-6 md:px-10`}>
-      <div className="container max-w-3xl py-block">
+    <section
+      className={`${SECTION} bg-[#020403] px-4 sm:px-6 md:px-10`}
+    >
+      <div className="container relative max-w-3xl py-16 sm:py-20 md:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -282,7 +299,7 @@ function FaqSection() {
           whileInView="visible"
           viewport={viewportOnce}
           variants={stagger}
-          className="mt-4 flex flex-col gap-2"
+          className="mt-8 flex flex-col gap-5"
         >
           {faqItems.map((item, index) => {
             const open = openIndex === index;
@@ -290,7 +307,7 @@ function FaqSection() {
               <motion.div
                 key={item.q}
                 variants={fadeUp}
-                className={`overflow-hidden rounded-2xl ${SC.mid} shadow-[0_16px_48px_rgba(0,0,0,0.35)]`}
+                className="overflow-hidden rounded-3xl bg-white/[0.04] shadow-[0_26px_80px_rgba(0,0,0,0.5)] backdrop-blur-xl"
               >
                 <button
                   type="button"

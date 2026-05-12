@@ -79,7 +79,7 @@ export default function HeroBannerSection({
               <span
                 key={index}
                 className={item.className}
-                style={{ color: item.color }}
+                style={item.color ? { color: item.color } : undefined}
               >
                 {" "}
                 {item.title}{" "}

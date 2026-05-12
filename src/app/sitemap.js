@@ -38,6 +38,7 @@ export default function sitemap() {
     "/strategy",
     "/compliance",
     "/execution",
+    "/process-improvement",
   ];
 
   const dynamicRoutes = [

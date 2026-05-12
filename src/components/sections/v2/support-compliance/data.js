@@ -34,6 +34,8 @@ export const legalTabs = [
     label: "Privacy",
     lastUpdated: "May 2026",
     pdfLabel: "Privacy summary (PDF)",
+    href: "/legal/privacy",
+    pdfHref: "/legal/privacy.pdf",
     sections: [
       {
         title: "What we collect",
@@ -54,6 +56,8 @@ export const legalTabs = [
     label: "Terms of service",
     lastUpdated: "May 2026",
     pdfLabel: "Terms summary (PDF)",
+    href: "/legal/terms",
+    pdfHref: "/legal/terms.pdf",
     sections: [
       {
         title: "Engagement scope",
@@ -74,6 +78,8 @@ export const legalTabs = [
     label: "Data & GDPR",
     lastUpdated: "May 2026",
     pdfLabel: "Data processing overview (PDF)",
+    href: "/legal/data-processing",
+    pdfHref: "/legal/data-processing.pdf",
     sections: [
       {
         title: "Roles",

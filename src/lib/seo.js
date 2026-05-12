@@ -189,6 +189,19 @@ export const routeMetadata = {
       "regulatory guidelines",
     ],
   }),
+  processImprovement: buildPageMetadata({
+    title: "Process Improvement",
+    description:
+      "Sidago process improvement: AI-informed workflow design, operational analytics, automation guardrails, and enterprise-grade transformation programs built for measurable outcomes.",
+    path: "/process-improvement",
+    keywords: [
+      "Sidago process improvement",
+      "workflow optimization",
+      "operational analytics",
+      "AI automation",
+      "enterprise transformation",
+    ],
+  }),
 };
 
 function flattenServices() {

@@ -1053,6 +1053,22 @@ body {
   }
 }
 
+/** Process improvement — trusted logos infinite marquee (two identical halves) */
+@keyframes pi-trusted-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.pi-trusted-marquee {
+  display: flex;
+  width: max-content;
+  animation: pi-trusted-marquee 36s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .execution-visual-glow,
   .execution-grid,
@@ -1083,6 +1099,10 @@ body {
   .research-marquee,
   .research-skeleton::after,
   .research-particles span {
+    animation: none;
+  }
+
+  .pi-trusted-marquee {
     animation: none;
   }
 }
