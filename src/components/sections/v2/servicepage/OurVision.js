@@ -7,33 +7,31 @@ const visionItems = [
     title: "Reliable uptime",
     description:
       "Build resilient systems with stable hosting, proactive monitoring, and rapid issue response to keep operations running without interruption.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 84 84"
-        className="h-[5.25rem] w-[5.25rem] text-orange-dark"
-      >
-        <path
-          fill="currentColor"
-          fillRule="evenodd"
-          d="m20.47 21.53.53-1.28h42v1.5H22.81l40.72 40.72-.53 1.28H21v-1.5h40.19z"
-          clipRule="evenodd"
-        />
-        <path
-          fill="currentColor"
-          fillRule="evenodd"
-          d="M42.75 10.5v63h-1.5v-63z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
+    iconType: "uptime",
   },
   {
     title: "Secure by design",
     description:
       "Protect business-critical systems through controlled access, hardened environments, backup discipline, and continuous risk awareness.",
-    icon: (
+    iconType: "security",
+  },
+  {
+    title: "Scalable architecture",
+    description:
+      "Design infrastructure that can grow with demand, support expansion, and adapt to new workflows without creating operational friction.",
+    iconType: "architecture",
+  },
+  {
+    title: "Operational visibility",
+    description:
+      "Give teams clear insight into system health, performance, and dependencies so decisions can be made faster and with confidence.",
+    iconType: "visibility",
+  },
+];
+
+function VisionIcon({ type }) {
+  if (type === "security") {
+    return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -47,13 +45,11 @@ const visionItems = [
           d="M5 35V5h30v30L10 10h20z"
         />
       </svg>
-    ),
-  },
-  {
-    title: "Scalable architecture",
-    description:
-      "Design infrastructure that can grow with demand, support expansion, and adapt to new workflows without creating operational friction.",
-    icon: (
+    );
+  }
+
+  if (type === "architecture") {
+    return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -67,13 +63,11 @@ const visionItems = [
           d="M13.571 16H5v8.571h8.571zM24.286 16h-8.572v8.571h8.572zM35 16h-8.571v8.571h8.57z"
         />
       </svg>
-    ),
-  },
-  {
-    title: "Operational visibility",
-    description:
-      "Give teams clear insight into system health, performance, and dependencies so decisions can be made faster and with confidence.",
-    icon: (
+    );
+  }
+
+  if (type === "visibility") {
+    return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -105,9 +99,31 @@ const visionItems = [
           d="M11.574 20.8v-7.201L18.149 8.8M5 8.8l6.573 4.799"
         />
       </svg>
-    ),
-  },
-];
+    );
+  }
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 84 84"
+      className="h-[5.25rem] w-[5.25rem] text-orange-dark"
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="m20.47 21.53.53-1.28h42v1.5H22.81l40.72 40.72-.53 1.28H21v-1.5h40.19z"
+        clipRule="evenodd"
+      />
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M42.75 10.5v63h-1.5v-63z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
 
 function ExpandIcon() {
   return (
@@ -167,7 +183,9 @@ function VisionCard({ item, isFlipped, onToggle, onEnter, onLeave }) {
     >
       <div className="front bevel bg-gray-defi-charcoal">
         <div className="relative flex h-full flex-col justify-between p-6">
-          <div>{item.icon}</div>
+          <div>
+            <VisionIcon type={item.iconType} />
+          </div>
           <div className="text-xl text-gray-off-white md:text-2xl">
             {item.title}
           </div>
@@ -192,8 +210,19 @@ function VisionCard({ item, isFlipped, onToggle, onEnter, onLeave }) {
   );
 }
 
-export default function OurVision() {
+export default function OurVision({
+  title = "Principles that guide our vision",
+  description =
+    "The infrastructure behind Sidago is designed for resilience, security, and the operational clarity teams need to scale with confidence.",
+  items = visionItems,
+}) {
   const [activeIndex, setActiveIndex] = useState(null);
+  const orderedItems =
+    items?.length > 0
+      ? items
+          .slice()
+          .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+      : visionItems;
 
   return (
     <section>
@@ -204,19 +233,17 @@ export default function OurVision() {
               id="principles-that-guide-our-vision"
               className="font-blender text-xl uppercase text-green-dark"
             >
-              Principles that guide our vision
+              {title}
             </h2>
             <p className="max-w-3xl text-base leading-relaxed text-[#A7ACA8] md:text-lg">
-              The infrastructure behind Sidago is designed for resilience,
-              security, and the operational clarity teams need to scale with
-              confidence.
+              {description}
             </p>
           </div>
           <hr className="!border-[#AB290E]" />
         </div>
         <section className="bg-gray-night-green text-gray-off-white">
           <div className="flex flex-col gap-6 gap-y-8 overflow-hidden md:grid md:grid-cols-2">
-            {visionItems.map((item, index) => (
+            {orderedItems.map((item, index) => (
               <VisionCard
                 key={item.title}
                 item={item}

@@ -6,8 +6,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { getServiceMenuContext } from "@/src/utils/serviceUtils";
 import {
   getIndustryMenuContext,
+  getIndustryMenuContextFromGroups,
   getIndustryMenuGroups,
+  getMenuContextFromGroups,
+  getServiceMenuContextFromGroups,
   getServicesMenuGroups,
+  normalizeMenuGroups,
 } from "@/src/utils/navigationTabUtils";
 import {
   getActiveStrategyItem,
@@ -2877,14 +2881,22 @@ function getStrategyMenuGroups() {
   }));
 }
 
-function resolveConfig(type, slug) {
+function resolveConfig(type, slug, serviceGroups, industryGroups, strategyGroups) {
   if (type === "strategy") {
     const pathname = `/strategy/${slug}`;
+    const groups = strategyGroups?.length
+      ? normalizeMenuGroups(strategyGroups)
+      : getStrategyMenuGroups();
+    const suppliedContext = strategyGroups?.length
+      ? getMenuContextFromGroups(pathname, groups)
+      : null;
     const activeStrategyItem =
-      getActiveStrategyItem(pathname) ?? strategyMenuItems[0];
+      suppliedContext?.group ??
+      getActiveStrategyItem(pathname) ??
+      strategyMenuItems[0];
 
     return {
-      menuContext: {
+      menuContext: suppliedContext || {
         group: {
           title: activeStrategyItem.title,
           href: activeStrategyItem.href,
@@ -2900,7 +2912,7 @@ function resolveConfig(type, slug) {
           activeStrategyItem,
         tabs: activeStrategyItem.children ?? [],
       },
-      groups: getStrategyMenuGroups(),
+      groups,
       introTitle: "Our Strategy",
       introDescription:
         "Empowering growth-focused teams with clear strategic direction, operational alignment, and dependable execution across every stage of business development.",
@@ -2911,9 +2923,14 @@ function resolveConfig(type, slug) {
   }
 
   if (type === "industry") {
+    const groups = industryGroups?.length
+      ? normalizeMenuGroups(industryGroups)
+      : getIndustryMenuGroups();
     return {
-      menuContext: getIndustryMenuContext(slug),
-      groups: getIndustryMenuGroups(),
+      menuContext: industryGroups?.length
+        ? getIndustryMenuContextFromGroups(slug, groups)
+        : getIndustryMenuContext(slug),
+      groups,
       introTitle: "Specialized solutions for modern industries",
       introDescription:
         "Empowering industry-focused teams with adaptable service models, strategic execution, and dependable delivery across every business function.",
@@ -2923,14 +2940,19 @@ function resolveConfig(type, slug) {
     };
   }
 
-  const menuContext = getServiceMenuContext(slug);
+  const groups = serviceGroups?.length
+    ? normalizeMenuGroups(serviceGroups)
+    : getServicesMenuGroups();
+  const menuContext = serviceGroups?.length
+    ? getServiceMenuContextFromGroups(slug, groups)
+    : getServiceMenuContext(slug);
   const { introTitle, introDescription } = getServiceIntroContent(
     menuContext?.group?.title,
   );
 
   return {
     menuContext,
-    groups: getServicesMenuGroups(),
+    groups,
     introTitle,
     introDescription,
     imageSrc:
@@ -2943,6 +2965,9 @@ function resolveConfig(type, slug) {
 export default function ContentTab({
   slug = "",
   type = "service",
+  serviceGroups = [],
+  industryGroups = [],
+  strategyGroups = [],
   hideMenuOnMobile = type === "service",
 }) {
   const {
@@ -2953,7 +2978,7 @@ export default function ContentTab({
     imageSrc,
     imageAltPrefix,
     panelClassName,
-  } = resolveConfig(type, slug);
+  } = resolveConfig(type, slug, serviceGroups, industryGroups, strategyGroups);
 
   const [expandedGroup, setExpandedGroup] = useState(
     menuContext?.group?.title ?? groups?.[0]?.title ?? "",
@@ -3071,16 +3096,28 @@ export default function ContentTab({
   const activeItem = activeEntry.item;
   const activeTitle = activeItem?.title || group?.title;
   const activeDescription =
-    type === "industry" &&
+    activeItem?.description ||
+    (type === "industry" &&
     (activeItem?.href === group?.href || !(group?.children ?? []).length)
       ? `${activeTitle} is one of the industries submenu items in the navbar.`
-      : `${activeTitle} is one of the child menu items under ${group?.title} in the navbar submenu.`;
-  const detailContent =
+      : `${activeTitle} is one of the child menu items under ${group?.title} in the navbar submenu.`);
+  const rawDetailContent =
     type === "industry"
       ? getIndustryDetailContent(activeItem?.href)
       : type === "strategy"
         ? getStrategyDetailContent(activeItem?.href)
       : getServiceDetailContent(activeItem?.href);
+  const detailContent =
+    activeItem?.paragraphs?.length > 0
+      ? {
+          ...(rawDetailContent || {
+            eyebrow: group?.title,
+            title: activeTitle,
+            summary: activeDescription,
+          }),
+          paragraphs: activeItem.paragraphs,
+        }
+      : rawDetailContent;
   const isStrategyDetailPanel = type === "strategy" && Boolean(detailContent);
   const isIndustryDetailPanel = type === "industry" && Boolean(detailContent);
   const isStrategyMenu = type === "strategy";

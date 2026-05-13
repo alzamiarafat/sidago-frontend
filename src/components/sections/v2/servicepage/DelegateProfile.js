@@ -164,7 +164,12 @@ function Button({ href, children, srText }) {
   );
 }
 
-export default function DelegateProfile({ profiles = fallbackProfiles }) {
+export default function DelegateProfile({
+  title = "Explore Sidago infrastructure",
+  description =
+    "See how Sidago turns operational infrastructure into clearer execution, stronger visibility, and more dependable business support.",
+  profiles = fallbackProfiles,
+}) {
   const orderedProfiles =
     profiles?.length > 0
       ? profiles
@@ -187,12 +192,10 @@ export default function DelegateProfile({ profiles = fallbackProfiles }) {
               id="stay-updated-on-sidago-infrastructure"
               className="font-blender text-xl uppercase text-green-dark"
             >
-              Explore Sidago infrastructure
+              {title}
             </h2>
             <p className="max-w-3xl text-base leading-relaxed text-[#A7ACA8] md:text-lg">
-              See how Sidago turns operational infrastructure into clearer
-              execution, stronger visibility, and more dependable business
-              support.
+              {description}
             </p>
           </div>
           <hr className="!border-[#AB290E]" />

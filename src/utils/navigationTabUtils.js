@@ -135,6 +135,14 @@ export function getServicesMenuGroups() {
   );
 }
 
+export function normalizeMenuGroups(groups = []) {
+  return groups.map((group) => ({
+    ...group,
+    title: group.title ?? group.label,
+    children: mapMenuChildren(group.children ?? []),
+  }));
+}
+
 function getIndustriesMenuGroups() {
   return industryMenuGroups.map((item) => ({
     ...item,
@@ -188,8 +196,20 @@ export function getServiceMenuContext(slug) {
   return getMenuContext(`/services/${slug}`, getServicesMenuGroups());
 }
 
+export function getServiceMenuContextFromGroups(slug, groups = []) {
+  return getMenuContext(`/services/${slug}`, normalizeMenuGroups(groups));
+}
+
+export function getMenuContextFromGroups(pathname, groups = []) {
+  return getMenuContext(pathname, normalizeMenuGroups(groups));
+}
+
 export function getIndustryMenuContext(slug) {
   return getMenuContext(`/industries/${slug}`, getIndustriesMenuGroups());
+}
+
+export function getIndustryMenuContextFromGroups(slug, groups = []) {
+  return getMenuContext(`/industries/${slug}`, normalizeMenuGroups(groups));
 }
 
 export function getIndustryMenuGroups() {

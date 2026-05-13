@@ -106,8 +106,21 @@ function SupportAccordionItem({
   );
 }
 
-export default function Support() {
+export default function Support({
+  title = "Supporting infrastructure",
+  highlight = " at every stage",
+  description =
+    "Sidago builds the operational infrastructure that helps businesses run with more control, consistency, and confidence as they grow.",
+  imageSrc = "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/18223135/Governance-Watermark2.svg",
+  items = supportItems,
+}) {
   const [desktopActiveIndex, setDesktopActiveIndex] = useState(null);
+  const orderedItems =
+    items?.length > 0
+      ? items
+          .slice()
+          .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+      : supportItems;
 
   return (
     <>
@@ -119,17 +132,15 @@ export default function Support() {
                 className="z-10 inline-block max-w-[60%] text-2xl lg:text-3xl"
                 id="supporting-<alt>at-every-stage</alt>"
               >
-                Supporting infrastructure
-                <span className="text-orange-dark"> at every stage</span>
+                {title}
+                <span className="text-orange-dark">{highlight}</span>
               </h2>
               <div className="z-10 max-w-[85%] md:max-w-[70%]">
-                Sidago builds the operational infrastructure that helps
-                businesses run with more control, consistency, and confidence
-                as they grow.
+                {description}
               </div>
             </div>
             <img
-              alt="Supporting <alt>at every stage</alt>"
+              alt={`${title}${highlight}`}
               loading="lazy"
               width="1152"
               height="1152"
@@ -137,14 +148,14 @@ export default function Support() {
               data-nimg="1"
               className="absolute -top-block right-0 w-[50%] md:w-[40%] lg:w-[28%]"
               style={{ color: "transparent" }}
-              src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/18223135/Governance-Watermark2.svg"
+              src={imageSrc}
             />
           </div>
         </div>
       </section>
 
       <section className="hidden bg-gray-night-green text-gray-off-white lg:flex lg:flex-col">
-        {supportItems.map((item, index) => (
+        {orderedItems.map((item, index) => (
           <SupportAccordionItem
             key={item.title}
             item={item}
@@ -157,7 +168,7 @@ export default function Support() {
       </section>
 
       <section className="flex flex-col bg-gray-night-green text-gray-off-white lg:hidden">
-        {supportItems.map((item, index) => (
+        {orderedItems.map((item, index) => (
           <SupportAccordionItem
             key={item.title}
             item={item}

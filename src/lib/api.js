@@ -4,8 +4,11 @@ import {
   defaultExecutionPage,
   defaultGlobalSettings,
   defaultHomepage,
+  defaultInfrastructurePage,
   defaultInsightsPage,
   defaultOperationsPage,
+  defaultPerformancePage,
+  defaultServicesPage,
 } from "@/src/data/cms/defaults";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
@@ -317,6 +320,37 @@ function normalizeInfrastructureProfileItem(item, fallbackItem) {
   };
 }
 
+function normalizeInfrastructureVisionItem(item, fallbackItem) {
+  if (!item?.title || !item?.description) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    title: item.title.trim(),
+    description: item.description.trim(),
+    iconType: item.iconType || fallbackItem.iconType || "uptime",
+  };
+}
+
+function normalizeInfrastructureSupportItem(item, fallbackItem) {
+  if (!item?.title || !item?.description) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    ...item,
+    title: item.title.trim(),
+    description: item.description.trim(),
+    expandedClassName:
+      item.expandedClassName?.trim() ||
+      fallbackItem.expandedClassName ||
+      "bg-green-light",
+  };
+}
+
 function normalizeHomepage(entry) {
   const item = unwrapEntity(entry);
   const hero = item?.hero;
@@ -453,6 +487,68 @@ function normalizeHomepage(entry) {
               ),
             )
         : defaultHomepage.cta,
+  };
+}
+
+function normalizeServiceGroupItem(item) {
+  if (!item?.title || !item?.href) {
+    return null;
+  }
+
+  const children = Array.isArray(item.children)
+    ? item.children
+        .slice()
+        .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+        .map(normalizeServiceGroupItem)
+        .filter(Boolean)
+    : [];
+  const paragraphs = Array.isArray(item.paragraphs)
+    ? item.paragraphs
+        .slice()
+        .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+        .map((paragraph) => paragraph?.text?.trim())
+        .filter(Boolean)
+    : [];
+
+  return {
+    ...item,
+    title: item.title.trim(),
+    label: item.label?.trim() || item.title.trim(),
+    href: item.href.trim(),
+    description: item.description?.trim() || "",
+    paragraphs,
+    children,
+  };
+}
+
+function normalizeServicesPage(entry) {
+  const item = unwrapEntity(entry);
+  const groups = Array.isArray(item?.serviceGroups)
+    ? item.serviceGroups
+        .slice()
+        .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+        .map(normalizeServiceGroupItem)
+        .filter(Boolean)
+    : [];
+
+  return {
+    serviceGroups:
+      groups.length > 0 ? groups : defaultServicesPage.serviceGroups,
+  };
+}
+
+function normalizeMenuGroupsPage(entry) {
+  const item = unwrapEntity(entry);
+  const groups = Array.isArray(item?.menuGroups)
+    ? item.menuGroups
+        .slice()
+        .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+        .map(normalizeServiceGroupItem)
+        .filter(Boolean)
+    : [];
+
+  return {
+    menuGroups: groups,
   };
 }
 
@@ -605,9 +701,76 @@ function normalizeOperationsPage(entry) {
               ),
             )
         : defaultOperationsPage.cta,
-    infrastructureProfiles:
-      item.infrastructureProfiles?.length > 0
-        ? item.infrastructureProfiles
+  };
+}
+
+function normalizeInfrastructurePage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultInfrastructurePage;
+  }
+
+  return {
+    hero: normalizeHero(item.hero, defaultInfrastructurePage.hero),
+    visionTitle:
+      item.visionTitle?.trim() || defaultInfrastructurePage.visionTitle,
+    visionDescription:
+      item.visionDescription?.trim() ||
+      defaultInfrastructurePage.visionDescription,
+    vision:
+      item.vision?.length > 0
+        ? item.vision
+            .filter((visionItem) => visionItem?.title && visionItem?.description)
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((visionItem, index) =>
+              normalizeInfrastructureVisionItem(
+                visionItem,
+                defaultInfrastructurePage.vision[index] ||
+                  defaultInfrastructurePage.vision[0],
+              ),
+            )
+        : defaultInfrastructurePage.vision,
+    supportTitle:
+      item.supportTitle?.trim() || defaultInfrastructurePage.supportTitle,
+    supportHighlight:
+      item.supportHighlight?.trim() ||
+      defaultInfrastructurePage.supportHighlight,
+    supportDescription:
+      item.supportDescription?.trim() ||
+      defaultInfrastructurePage.supportDescription,
+    supportImageSrc:
+      item.supportImageSrc?.trim() ||
+      defaultInfrastructurePage.supportImageSrc,
+    support:
+      item.support?.length > 0
+        ? item.support
+            .filter(
+              (supportItem) => supportItem?.title && supportItem?.description,
+            )
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((supportItem, index) =>
+              normalizeInfrastructureSupportItem(
+                supportItem,
+                defaultInfrastructurePage.support[index] ||
+                  defaultInfrastructurePage.support[0],
+              ),
+            )
+        : defaultInfrastructurePage.support,
+    profilesTitle:
+      item.profilesTitle?.trim() || defaultInfrastructurePage.profilesTitle,
+    profilesDescription:
+      item.profilesDescription?.trim() ||
+      defaultInfrastructurePage.profilesDescription,
+    profiles:
+      item.profiles?.length > 0
+        ? item.profiles
             .filter(
               (profileItem) =>
                 profileItem?.eyebrow &&
@@ -623,11 +786,66 @@ function normalizeOperationsPage(entry) {
             .map((profileItem, index) =>
               normalizeInfrastructureProfileItem(
                 profileItem,
-                defaultOperationsPage.infrastructureProfiles[index] ||
-                  defaultOperationsPage.infrastructureProfiles[0],
+                defaultInfrastructurePage.profiles[index] ||
+                  defaultInfrastructurePage.profiles[0],
               ),
             )
-        : defaultOperationsPage.infrastructureProfiles,
+        : defaultInfrastructurePage.profiles,
+  };
+}
+
+function normalizePerformancePage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultPerformancePage;
+  }
+
+  return {
+    hero: normalizeHero(item.hero, defaultPerformancePage.hero),
+    stats:
+      Array.isArray(item.stats) && item.stats.length > 0
+        ? item.stats
+        : defaultPerformancePage.stats,
+    dashboardSection: {
+      ...defaultPerformancePage.dashboardSection,
+      ...(item.dashboardSection || {}),
+    },
+    tabsSection: {
+      ...defaultPerformancePage.tabsSection,
+      ...(item.tabsSection || {}),
+    },
+    imageCarouselSection: {
+      ...defaultPerformancePage.imageCarouselSection,
+      ...(item.imageCarouselSection || {}),
+    },
+    capabilitiesSection: {
+      ...defaultPerformancePage.capabilitiesSection,
+      ...(item.capabilitiesSection || {}),
+    },
+    methodSection: {
+      ...defaultPerformancePage.methodSection,
+      ...(item.methodSection || {}),
+    },
+    cta:
+      item.cta?.length > 0
+        ? item.cta
+            .filter(
+              (ctaItem) =>
+                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+            )
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((ctaItem, index) =>
+              normalizeCtaItem(
+                ctaItem,
+                defaultPerformancePage.cta[index] ||
+                  defaultPerformancePage.cta[0],
+              ),
+            )
+        : defaultPerformancePage.cta,
   };
 }
 
@@ -818,6 +1036,27 @@ export const getHomepage = cache(async () => {
   return normalizeHomepage(data?.data);
 });
 
+export const getServicesPage = cache(async () => {
+  const data = await fetchAPI(
+    "services-page?populate[serviceGroups][populate][children][populate][paragraphs]=*&populate[serviceGroups][populate][children][populate][children][populate]=*",
+  );
+  return normalizeServicesPage(data?.data);
+});
+
+export const getIndustriesPage = cache(async () => {
+  const data = await fetchAPI(
+    "industries-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
+  );
+  return normalizeMenuGroupsPage(data?.data);
+});
+
+export const getStrategyPage = cache(async () => {
+  const data = await fetchAPI(
+    "strategy-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
+  );
+  return normalizeMenuGroupsPage(data?.data);
+});
+
 export const getBusinessProcessesPage = cache(async () => {
   const data = await fetchAPI(
     "business-process?populate[hero][populate][titles]=*&populate[statistics]=*",
@@ -827,7 +1066,7 @@ export const getBusinessProcessesPage = cache(async () => {
 
 export const getOperationsPage = cache(async () => {
   const dataWithInfrastructure = await fetchAPI(
-    "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[infrastructureProfiles]=*&populate[cta]=*",
+    "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
     { logErrors: false },
   );
   const data =
@@ -836,6 +1075,13 @@ export const getOperationsPage = cache(async () => {
       "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
     ));
   return normalizeOperationsPage(data?.data);
+});
+
+export const getInfrastructurePage = cache(async () => {
+  const data = await fetchAPI(
+    "infrastructure?populate[hero][populate][titles]=*&populate[vision]=*&populate[support]=*&populate[profiles]=*",
+  );
+  return normalizeInfrastructurePage(data?.data);
 });
 
 export const getInsightsPage = cache(async () => {
@@ -850,4 +1096,11 @@ export const getExecutionPage = cache(async () => {
     "execution?populate[hero][populate][titles]=*&populate[cta]=*",
   );
   return normalizeExecutionPage(data?.data);
+});
+
+export const getPerformancePage = cache(async () => {
+  const data = await fetchAPI(
+    "performance?populate[hero][populate][titles]=*&populate[cta]=*",
+  );
+  return normalizePerformancePage(data?.data);
 });

@@ -27,7 +27,12 @@ module.exports = {
       !payload?.insight ||
       !payload?.businessProcess ||
       !payload?.operation ||
-      !payload?.execution
+      !payload?.infrastructure ||
+      !payload?.performance ||
+      !payload?.execution ||
+      !payload?.servicesPage ||
+      !payload?.industriesPage ||
+      !payload?.strategyPage
     ) {
       ctx.throw(400, "Missing required seed payload.");
     }
@@ -40,7 +45,24 @@ module.exports = {
       payload.businessProcess,
     );
     await upsertSingleType("api::operation.operation", payload.operation);
+    await upsertSingleType(
+      "api::infrastructure.infrastructure",
+      payload.infrastructure,
+    );
+    await upsertSingleType("api::performance.performance", payload.performance);
     await upsertSingleType("api::execution.execution", payload.execution);
+    await upsertSingleType(
+      "api::services-page.services-page",
+      payload.servicesPage,
+    );
+    await upsertSingleType(
+      "api::industries-page.industries-page",
+      payload.industriesPage,
+    );
+    await upsertSingleType(
+      "api::strategy-page.strategy-page",
+      payload.strategyPage,
+    );
 
     ctx.body = {
       data: {
@@ -50,7 +72,12 @@ module.exports = {
           "insight",
           "businessProcess",
           "operation",
+          "infrastructure",
+          "performance",
           "execution",
+          "servicesPage",
+          "industriesPage",
+          "strategyPage",
         ],
       },
     };

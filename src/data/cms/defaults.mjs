@@ -101,6 +101,181 @@ export const defaultGlobalSettings = {
   },
 };
 
+export const defaultServicesPage = {
+  serviceGroups: [
+    {
+      groupId: "dev-it",
+      title: "Development & IT",
+      href: "/services/e-commerce/",
+      children: [
+        {
+          title: "System Administration",
+          href: "/services/server-administration/",
+        },
+        {
+          title: "Application Interface Design",
+          href: "/services/application-interface-design/",
+        },
+        {
+          title: "Desktop Applications",
+          href: "/services/desktop-applications/",
+        },
+        { title: "E-Commerce", href: "/services/e-commerce/" },
+        { title: "Game Development", href: "/services/game-development/" },
+        { title: "Mobile Apps", href: "/services/mobile-apps/" },
+        { title: "Plugin Development", href: "/services/plugin-development/" },
+        {
+          title: "Scripts and Utilities",
+          href: "/services/scripts-and-utilities/",
+        },
+        {
+          title: "Software Development",
+          href: "/services/software-developement/",
+        },
+        {
+          title: "Software Project Management",
+          href: "/services/project-management/",
+        },
+        { title: "Software QA", href: "/services/software-qa/" },
+      ],
+    },
+    {
+      groupId: "admin-support",
+      title: "Administrative Support",
+      href: "/services/administrative-service/",
+      children: [
+        {
+          title: "Administrative Services",
+          href: "/services/administrative-services/",
+        },
+        { title: "Data Entry", href: "/services/data-entry/" },
+        {
+          title: "Email Response Handling",
+          href: "/services/email-response-handling/",
+        },
+        { title: "Personal Assistant", href: "/services/personal-assistant/" },
+        { title: "Transcription", href: "/services/transcription/" },
+        { title: "Web Research", href: "/services/web-research/" },
+        {
+          title: "What We Write",
+          href: "/services/what-we-write/",
+          children: [
+            { title: "Copywriting", href: "/services/copywriting/" },
+            { title: "Creative Writing", href: "/services/creative-writing/" },
+            {
+              title: "Web Content Writing",
+              href: "/services/web-content-writing/",
+            },
+          ],
+        },
+        { title: "Data Mining", href: "/services/data-mining/" },
+        {
+          title: "Translation Services",
+          href: "/services/translation-services/",
+        },
+      ],
+    },
+    {
+      groupId: "ad-marketing",
+      title: "Advertising & Marketing",
+      href: "/services/advertising/",
+      children: [
+        { title: "Advertising", href: "/services/advertising/" },
+        {
+          title: "Customer Acquisition & Sales",
+          href: "/services/customer-acquisition-sales/",
+        },
+        { title: "Email Marketing", href: "/services/email-marketing/" },
+        { title: "Lead Generation", href: "/services/lead-generation/" },
+        { title: "Market Research", href: "/services/market-research/" },
+        {
+          title: "Negotiation Management",
+          href: "/services/negotiation-management/",
+        },
+        {
+          title: "Online Marketing Strategy",
+          href: "/services/online-marketing-strategy/",
+        },
+        { title: "Public Relations", href: "/services/public-relations/" },
+        {
+          title: "Social Media Marketing",
+          href: "/services/social-media-marketing/",
+        },
+        {
+          title: "Telemarketing & Telesales",
+          href: "/services/telemarketing-telesales/",
+        },
+        { title: "Branding", href: "/services/branding/" },
+        { title: "Display Marketing", href: "/services/display-marketing/" },
+        { title: "Viral Marketing", href: "/services/viral-marketing/" },
+      ],
+    },
+    {
+      groupId: "design-multimedia",
+      title: "Design & Multimedia",
+      href: "/services/design-multimedia",
+      children: [
+        { title: "3D Modelling", href: "/services/3d-modelling/" },
+        { title: "Animation", href: "/services/animation/" },
+        { title: "Audio Production", href: "/services/audio-production/" },
+        {
+          title: "Design & Multimedia",
+          href: "/services/design-multimedia/",
+        },
+        {
+          title: "Engineering & Technical Design",
+          href: "/services/engineering-technical-design/",
+        },
+        { title: "Graphics Design", href: "/services/graphics-design/" },
+        { title: "Illustration", href: "/services/illustration/" },
+        { title: "Logo Design", href: "/services/logo-design/" },
+        { title: "Presentations", href: "/services/presentations/" },
+        { title: "Print Design", href: "/services/print-design/" },
+        { title: "UI Design", href: "/services/ui-design/" },
+        { title: "Video Production", href: "/services/video-production/" },
+        { title: "Voice Talent", href: "/services/voice-talent/" },
+        { title: "Web Design", href: "/services/web-design/" },
+      ],
+    },
+    {
+      groupId: "business-services",
+      title: "Business Services",
+      href: "/services/business-services/",
+      children: [
+        { title: "Business Services", href: "/services/business-services/" },
+        { title: "Accounting", href: "/services/accounting/" },
+        { title: "Bookkeeping", href: "/services/bookkeeping/" },
+        {
+          title: "Back Office Solutions",
+          href: "/services/back-office-solutions/",
+        },
+        { title: "Business Consulting", href: "/services/business-consulting/" },
+        {
+          title: "Financial Services & Planning",
+          href: "/services/financial-services-planning/",
+        },
+        { title: "Legal Assistance", href: "/services/legal-assistance/" },
+        { title: "Recruiting", href: "/services/recruiting/" },
+        {
+          title: "Statistical Analysis",
+          href: "/services/statistical-analysis/",
+        },
+        { title: "Translation", href: "/services/translation/" },
+        { title: "Customer Service", href: "/services/customer-service/" },
+        {
+          title: "Data Science And Analysis",
+          href: "/services/data-science-analysis/",
+        },
+        {
+          title: "Paralegal Services",
+          href: "/services/paralegal-services/",
+        },
+        { title: "Technical Writing", href: "/services/technical-writing/" },
+      ],
+    },
+  ],
+};
+
 export const defaultHomepage = {
   hero: {
     useVideo: true,
@@ -739,7 +914,133 @@ export const defaultOperationsPage = {
       sortOrder: 5,
     },
   ],
-  infrastructureProfiles: [
+  cta: [
+    {
+      title: "Build your operations team",
+      description: "Talk to Sidago about workflow coverage and delivery needs",
+      href: "/contact",
+      srLabel: "Contact Sidago about operations support",
+      backgroundColor: "#FF5D3C",
+      sortOrder: 1,
+    },
+    {
+      title: "Explore business processes",
+      description: "See the services Sidago can manage for your business",
+      href: "/business-processes",
+      srLabel: "Explore Sidago business process services",
+      backgroundColor: "#FF8C69",
+      sortOrder: 2,
+    },
+  ],
+};
+
+export const defaultInfrastructurePage = {
+  hero: {
+    useVideo: true,
+    lighterTheme: false,
+    videoSrc: "https://www.wintermute.com/videos/heroes/governance.mp4",
+    imageSrc: "",
+    titles: [
+      {
+        title: "Infrastructure for a truly",
+        color: "",
+        className: "text-white",
+        sortOrder: 1,
+      },
+      {
+        title: "scalable",
+        color: "#EC5B5B",
+        className: "",
+        sortOrder: 2,
+      },
+      {
+        title: "business-driven world",
+        color: "",
+        className: "text-white",
+        sortOrder: 3,
+      },
+    ],
+    subtitle:
+      "Sidago delivers reliable systems and global support to ensure performance, security, and continuous growth",
+    videoClass: "left-[500px] !w-3/4",
+    videoSectionClass: "",
+    fontWeight: 400,
+    loop: true,
+    lighterBgColor: "bg-[#f0f1f1]",
+  },
+  visionTitle: "Principles that guide our vision",
+  visionDescription:
+    "The infrastructure behind Sidago is designed for resilience, security, and the operational clarity teams need to scale with confidence.",
+  vision: [
+    {
+      title: "Reliable uptime",
+      description:
+        "Build resilient systems with stable hosting, proactive monitoring, and rapid issue response to keep operations running without interruption.",
+      iconType: "uptime",
+      sortOrder: 1,
+    },
+    {
+      title: "Secure by design",
+      description:
+        "Protect business-critical systems through controlled access, hardened environments, backup discipline, and continuous risk awareness.",
+      iconType: "security",
+      sortOrder: 2,
+    },
+    {
+      title: "Scalable architecture",
+      description:
+        "Design infrastructure that can grow with demand, support expansion, and adapt to new workflows without creating operational friction.",
+      iconType: "architecture",
+      sortOrder: 3,
+    },
+    {
+      title: "Operational visibility",
+      description:
+        "Give teams clear insight into system health, performance, and dependencies so decisions can be made faster and with confidence.",
+      iconType: "visibility",
+      sortOrder: 4,
+    },
+  ],
+  supportTitle: "Supporting infrastructure",
+  supportHighlight: " at every stage",
+  supportDescription:
+    "Sidago builds the operational infrastructure that helps businesses run with more control, consistency, and confidence as they grow.",
+  supportImageSrc:
+    "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/18223135/Governance-Watermark2.svg",
+  support: [
+    {
+      title: "Business infrastructure setup",
+      expandedClassName: "bg-green-light",
+      description:
+        "Sidago helps businesses set up the operational infrastructure behind daily execution, from core systems and workflow design to the stable foundations teams need to work efficiently at scale.",
+      sortOrder: 1,
+    },
+    {
+      title: "Process continuity",
+      expandedClassName: "bg-orange-light",
+      description:
+        "We build dependable operating rhythms, fallback processes, and support structures that reduce disruption and keep business-critical work moving even as demand changes.",
+      sortOrder: 2,
+    },
+    {
+      title: "Visibility and support",
+      expandedClassName: "bg-purple-light",
+      description:
+        "Sidago gives clients clearer visibility into performance, bottlenecks, and operational risk through structured oversight, responsive support, and consistent day-to-day management.",
+      sortOrder: 3,
+    },
+    {
+      title: "Control and reliability",
+      expandedClassName: "bg-blue-light",
+      description:
+        "Our infrastructure approach focuses on control, consistency, and reliability so businesses can scale service delivery, protect essential workflows, and maintain confidence in execution.",
+      sortOrder: 4,
+    },
+  ],
+  profilesTitle: "Explore Sidago infrastructure",
+  profilesDescription:
+    "See how Sidago turns operational infrastructure into clearer execution, stronger visibility, and more dependable business support.",
+  profiles: [
     {
       eyebrow: "Infrastructure Visibility",
       title: "Operations Control Dashboard",
@@ -774,21 +1075,257 @@ export const defaultOperationsPage = {
       sortOrder: 3,
     },
   ],
+};
+
+export const defaultPerformancePage = {
+  hero: {
+    useVideo: true,
+    lighterTheme: false,
+    videoSrc:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212516/Accordion-Prop-trading.mp4#t=4.14",
+    imageSrc: "",
+    subtitle:
+      "Sidago Performance helps teams improve speed, quality, capacity, and reporting visibility through measurable operating systems",
+    videoClass: "left-[500px] !w-3/4",
+    videoSectionClass: "",
+    fontWeight: 400,
+    loop: true,
+    lighterBgColor: "bg-[#f0f1f1]",
+    titles: [
+      { title: "Sidago Performance", color: "", className: "", sortOrder: 1 },
+      {
+        title: "turns operational signals",
+        color: "#f075e4",
+        className: "",
+        sortOrder: 2,
+      },
+      {
+        title: "into measurable progress",
+        color: "",
+        className: "",
+        sortOrder: 3,
+      },
+    ],
+  },
+  stats: [
+    {
+      value: "42%",
+      label: "Faster turnaround",
+      detail:
+        "Sidago Performance shortens delivery cycles through cleaner ownership and fewer stalled handoffs.",
+    },
+    {
+      value: "91%",
+      label: "SLA visibility",
+      detail:
+        "Sidago Performance tracks core service commitments through practical operating dashboards.",
+    },
+    {
+      value: "3.4x",
+      label: "Review cadence",
+      detail:
+        "Sidago Performance increases review rhythm without adding reporting overhead.",
+    },
+    {
+      value: "28%",
+      label: "Less rework",
+      detail:
+        "Sidago Performance reduces repeat work by aligning intake, standards, and escalation paths.",
+    },
+  ],
+  dashboardSection: {
+    eyebrow: "Performance System",
+    title:
+      "Sidago Performance creates a clearer operating view for faster decisions.",
+    description:
+      "Sidago Performance connects measurement, workflow discipline, and leadership reporting so teams can see what is healthy, what is blocked, and where improvement will matter most.",
+    panelEyebrow: "Live performance view",
+    panelTitle: "Operational health",
+    status: "Active",
+    signals: [
+      "Cycle time",
+      "Backlog health",
+      "Service quality",
+      "Owner coverage",
+      "Escalation load",
+      "Decision velocity",
+    ],
+    bars: [52, 68, 61, 74, 88, 79, 94],
+    metrics: [
+      { value: "96%", label: "Coverage" },
+      { value: "18h", label: "Avg cycle" },
+      { value: "12", label: "Risks" },
+    ],
+  },
+  tabsSection: {
+    eyebrow: "Sidago Performance Lens",
+    title: "Choose the Sidago Performance lens your team needs.",
+    description:
+      "Sidago Performance can focus on speed, quality, or capacity while keeping each view tied to the same operating rhythm.",
+    tabs: [
+      {
+        label: "Speed",
+        title:
+          "Sidago Performance shortens delivery loops without losing control.",
+        description:
+          "Sidago Performance tracks cycle time, blocker age, handoff delay, and decision queues so teams know where speed is being lost.",
+        image: "/images/sidago-performance-dashboard.png",
+        stats: [
+          ["32%", "less idle time"],
+          ["18h", "average cycle"],
+          ["7", "active blockers"],
+        ],
+      },
+      {
+        label: "Quality",
+        title: "Sidago Performance keeps standards cleaner across repeated work.",
+        description:
+          "Sidago Performance connects checklists, review points, escalation rules, and exception trends to reduce avoidable rework.",
+        image: "/images/sidago-performance-dashboard.png",
+        stats: [
+          ["28%", "less rework"],
+          ["94%", "standard coverage"],
+          ["11", "quality checks"],
+        ],
+      },
+      {
+        label: "Capacity",
+        title: "Sidago Performance gives teams a practical view of workload.",
+        description:
+          "Sidago Performance uses capacity signals to balance teams, plan support coverage, and prevent silent overload before it slows delivery.",
+        image: "/images/sidago-performance-dashboard.png",
+        stats: [
+          ["86%", "owner coverage"],
+          ["4.2x", "review cadence"],
+          ["15", "open queues"],
+        ],
+      },
+    ],
+  },
+  capabilitiesSection: {
+    eyebrow: "Sidago Performance Capabilities",
+    title:
+      "Performance support built around the way Sidago helps teams deliver.",
+    description:
+      "Sidago Performance is not more reporting. It is a sharper system for seeing progress, protecting quality, and making work easier to manage at scale.",
+    items: [
+      {
+        title: "Performance Measurement",
+        description:
+          "Sidago Performance defines the KPIs, service levels, and quality signals that show how work is actually moving.",
+        image: "/images/performance-measurement-capabilities.png",
+      },
+      {
+        title: "Workflow Diagnostics",
+        description:
+          "Sidago Performance finds the friction points behind missed deadlines, unclear ownership, duplicate effort, and slow approvals.",
+        image: "/images/workflow-diagnostics-capabilities.png",
+      },
+      {
+        title: "Sidago Performance rhythm",
+        description:
+          "Sidago Performance connects reviews, risks, actions, and measurable service movement.",
+        image: "/images/performance-rhythm-slide-v2.png",
+      },
+      {
+        title: "Reporting Systems",
+        description:
+          "Sidago Performance turns fragmented updates into concise dashboards that leaders and delivery teams can use every week.",
+        image: "/images/performance-capabilities-illustration.png",
+      },
+    ],
+  },
+  imageCarouselSection: {
+    eyebrow: "Sidago Performance Views",
+    title: "A visual layer for Sidago Performance work.",
+    description:
+      "Simple image-backed views for visibility, quality, review rhythm, and capacity conversations.",
+    fallbackImages: [
+      "/images/sidago-performance-view.png",
+      "/images/sidago-performance-capacity.png",
+    ],
+    items: [
+      {
+        title: "Sidago Performance visibility",
+        description:
+          "Sidago Performance turns workflow activity into clearer delivery visibility and review context.",
+        metric: "96%",
+        label: "Coverage",
+        imageFit: "contain",
+        imageBackground: "#eef4fb",
+      },
+      {
+        title: "Sidago Performance quality",
+        description:
+          "Sidago Performance helps teams protect standards, reduce rework, and keep operations measurable.",
+        metric: "28%",
+        label: "Less rework",
+        image: "/images/performance-quality-slide.png",
+        imageFit: "contain",
+        imageBackground: "#eef4fb",
+      },
+      {
+        title: "Sidago Performance rhythm",
+        description:
+          "Sidago Performance connects reviews, risks, actions, and measurable service movement.",
+        metric: "3.4x",
+        label: "Review pace",
+        image: "/images/performance-rhythm-slide-v2.png",
+        imageFit: "contain",
+        imageBackground: "#edf3ff",
+      },
+      {
+        title: "Sidago Performance capacity",
+        description:
+          "Sidago Performance gives teams a practical capacity view before workload issues slow delivery.",
+        metric: "86%",
+        label: "Owner coverage",
+        imageFit: "contain",
+        imageBackground: "#f2efe8",
+      },
+    ],
+  },
+  methodSection: {
+    eyebrow: "Sidago Performance Method",
+    title: "From unclear performance to managed improvement.",
+    description:
+      "Sidago Performance helps teams turn scattered updates into clear priorities, visible blockers, and steady action.",
+    steps: [
+      {
+        icon: "flow",
+        title: "Map the work clearly",
+        description:
+          "Understand how work moves, who owns each step, and where progress starts to slow down.",
+      },
+      {
+        icon: "scorecard",
+        title: "Measure what matters",
+        description:
+          "Create simple metrics for speed, quality, capacity, risk, and customer-facing outcomes.",
+      },
+      {
+        icon: "rhythm",
+        title: "Improve every cycle",
+        description:
+          "Use review routines, escalation paths, and reporting loops to make improvement repeatable.",
+      },
+    ],
+  },
   cta: [
     {
-      title: "Build your operations team",
-      description: "Talk to Sidago about workflow coverage and delivery needs",
+      title: "Improve operating performance",
+      description: "Talk to Sidago about performance visibility",
       href: "/contact",
-      srLabel: "Contact Sidago about operations support",
-      backgroundColor: "#FF5D3C",
+      srLabel: "Contact Sidago about performance support",
+      backgroundColor: "#f075e4",
       sortOrder: 1,
     },
     {
-      title: "Explore business processes",
-      description: "See the services Sidago can manage for your business",
-      href: "/business-processes",
-      srLabel: "Explore Sidago business process services",
-      backgroundColor: "#FF8C69",
+      title: "Explore execution",
+      description: "See how Sidago keeps delivery moving",
+      href: "/execution",
+      srLabel: "Explore Sidago execution",
+      backgroundColor: "#eef0ee",
       sortOrder: 2,
     },
   ],

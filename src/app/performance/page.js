@@ -6,6 +6,7 @@ import Navigation from "@/src/components/sections/v2/common/Navbar";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import PerformanceCapabilitiesCarousel from "@/src/components/sections/v2/performancepage/PerformanceCapabilitiesCarousel";
 import PerformanceTabsSlider from "@/src/components/sections/v2/performancepage/PerformanceTabsSlider";
+import { getGlobalSettings, getPerformancePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
 export const metadata = buildPageMetadata({
@@ -236,12 +237,12 @@ function SectionHeader({ eyebrow, title, description, className = "" }) {
   );
 }
 
-function PerformanceStats() {
+function PerformanceStats({ items }) {
   return (
     <section className="bg-[#101410] text-gray-off-white">
       <div className="container py-14 md:py-18">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {performanceStats.map((item) => (
+          {items.map((item) => (
             <article
               key={item.label}
               className="performance-rise-card relative overflow-hidden rounded-lg bg-[#171d18] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
@@ -262,14 +263,14 @@ function PerformanceStats() {
   );
 }
 
-function PerformanceDashboard() {
+function PerformanceDashboard({ section }) {
   return (
     <section className="bg-[#e9ece9] text-[#111511]">
       <div className="container grid gap-10 py-16 md:py-20 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center">
         <SectionHeader
-          eyebrow="Performance System"
-          title="Sidago Performance creates a clearer operating view for faster decisions."
-          description="Sidago Performance connects measurement, workflow discipline, and leadership reporting so teams can see what is healthy, what is blocked, and where improvement will matter most."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
           className="[&>div]:!text-[#111511] [&>h2]:!text-[#111511] [&>p]:!text-[#3d463f]"
         />
 
@@ -277,18 +278,18 @@ function PerformanceDashboard() {
           <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
             <div>
               <div className="font-blender text-xs uppercase tracking-[0.22em] text-[#f075e4]">
-                Live performance view
+                {section.panelEyebrow}
               </div>
-              <div className="mt-2 text-2xl text-white">Operational health</div>
+              <div className="mt-2 text-2xl text-white">{section.panelTitle}</div>
             </div>
             <div className="rounded-full bg-[#f075e4]/14 px-4 py-2 text-sm text-[#f075e4]">
-              Active
+              {section.status}
             </div>
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-[0.85fr_1.15fr]">
             <div className="space-y-3">
-              {performanceSignals.map((signal, index) => (
+              {section.signals.map((signal, index) => (
                 <div
                   key={signal}
                   className="flex items-center justify-between rounded-md bg-white/[0.055] px-4 py-3"
@@ -301,7 +302,7 @@ function PerformanceDashboard() {
 
             <div className="rounded-md bg-[#0b0f0c] p-5">
               <div className="flex h-48 items-end gap-3">
-                {[52, 68, 61, 74, 88, 79, 94].map((height, index) => (
+                {section.bars.map((height, index) => (
                   <div
                     key={`${height}-${index}`}
                     className="flex flex-1 items-end rounded-t-sm bg-white/5"
@@ -318,24 +319,14 @@ function PerformanceDashboard() {
                 ))}
               </div>
               <div className="mt-5 grid grid-cols-3 gap-3 text-center">
-                <div className="rounded-md bg-white/[0.055] p-3">
-                  <div className="font-blender text-2xl text-white">96%</div>
-                  <div className="mt-1 text-xs uppercase tracking-[0.18em] text-gray-off-white/42">
-                    Coverage
+                {section.metrics.map((metric) => (
+                  <div key={metric.label} className="rounded-md bg-white/[0.055] p-3">
+                    <div className="font-blender text-2xl text-white">{metric.value}</div>
+                    <div className="mt-1 text-xs uppercase tracking-[0.18em] text-gray-off-white/42">
+                      {metric.label}
+                    </div>
                   </div>
-                </div>
-                <div className="rounded-md bg-white/[0.055] p-3">
-                  <div className="font-blender text-2xl text-white">18h</div>
-                  <div className="mt-1 text-xs uppercase tracking-[0.18em] text-gray-off-white/42">
-                    Avg cycle
-                  </div>
-                </div>
-                <div className="rounded-md bg-white/[0.055] p-3">
-                  <div className="font-blender text-2xl text-white">12</div>
-                  <div className="mt-1 text-xs uppercase tracking-[0.18em] text-gray-off-white/42">
-                    Risks
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -345,28 +336,25 @@ function PerformanceDashboard() {
   );
 }
 
-function PerformanceCapabilities() {
+function PerformanceCapabilities({ section }) {
   return (
     <section id="performance-capabilities" className="bg-[#141914] text-gray-off-white">
       <div className="container py-16 md:py-20">
         <SectionHeader
-          eyebrow="Sidago Performance Capabilities"
-          title="Performance support built around the way Sidago helps teams deliver."
-          description="Sidago Performance is not more reporting. It is a sharper system for seeing progress, protecting quality, and making work easier to manage at scale."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
         />
 
-        <PerformanceCapabilitiesCarousel items={performanceCapabilities} />
+        <PerformanceCapabilitiesCarousel items={section.items} />
       </div>
     </section>
   );
 }
 
-function PerformanceImageCarousel() {
-  const carouselImages = [
-    "/images/sidago-performance-view.png",
-    "/images/sidago-performance-capacity.png",
-  ];
-  const carouselItems = performanceCarouselItems.slice(0, 4).map((item, index) => ({
+function PerformanceImageCarousel({ section }) {
+  const carouselImages = section.fallbackImages || [];
+  const carouselItems = section.items.map((item, index) => ({
     ...item,
     image: item.image || carouselImages[index % carouselImages.length],
   }));
@@ -376,9 +364,9 @@ function PerformanceImageCarousel() {
     <section className="overflow-hidden bg-[#0f140f] text-gray-off-white">
       <div className="container py-16 md:py-20">
         <SectionHeader
-          eyebrow="Sidago Performance Views"
-          title="A visual layer for Sidago Performance work."
-          description="Simple image-backed views for visibility, quality, review rhythm, and capacity conversations."
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
         />
 
         <div className="mt-10 overflow-hidden">
@@ -442,7 +430,7 @@ function PerformanceImageCarousel() {
   );
 }
 
-function PerformanceMethod() {
+function PerformanceMethod({ section }) {
   const renderMethodIcon = (icon) => {
     if (icon === "scorecard") {
       return (
@@ -482,14 +470,14 @@ function PerformanceMethod() {
       <div className="container py-16 md:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <SectionHeader
-            eyebrow="Sidago Performance Method"
-            title="From unclear performance to managed improvement."
-            description="Sidago Performance helps teams turn scattered updates into clear priorities, visible blockers, and steady action."
+            eyebrow={section.eyebrow}
+            title={section.title}
+            description={section.description}
             className="[&>div]:!text-xs [&>div]:md:!text-sm [&>h2]:!text-2xl [&>h2]:md:!text-[2.65rem] [&>p]:!text-sm [&>p]:md:!text-base"
           />
 
           <div className="space-y-4">
-            {performanceSteps.map((item) => (
+            {section.steps.map((item) => (
               <article
                 key={item.title}
                 className="grid gap-5 rounded-lg bg-[#111711] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] transition duration-300 hover:bg-[#131a13] md:grid-cols-[5rem_1fr]"
@@ -514,8 +502,11 @@ function PerformanceMethod() {
   );
 }
 
-export default function PerformancePage({ variant = "default", slug = "" }) {
-  const isB2B = true;
+export default async function PerformancePage() {
+  const [settings, performancePage] = await Promise.all([
+    getGlobalSettings(),
+    getPerformancePage(),
+  ]);
 
   return (
     <div className="flex h-svh flex-col text-base">
@@ -526,28 +517,15 @@ export default function PerformancePage({ variant = "default", slug = "" }) {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection
-            useVideo={true}
-            lighterTheme={false}
-            videoSrc={
-              "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212516/Accordion-Prop-trading.mp4#t=4.14"
-            }
-            titles={defaultTitles}
-            subtitle="Sidago Performance helps teams improve speed, quality, capacity, and reporting visibility through measurable operating systems"
-            videoClass={
-              isB2B
-                ? "left-[500px] !w-3/4"
-                : "left-[500px] top-[70px] !w-3/4 !h-3/4"
-            }
-          />
-          <PerformanceStats />
-          <PerformanceDashboard />
-          <PerformanceTabsSlider />
-          <PerformanceImageCarousel />
-          <PerformanceCapabilities />
-          <PerformanceMethod />
-          <CTASection />
-          <Footer />
+          <HeroBannerSection {...performancePage.hero} />
+          <PerformanceStats items={performancePage.stats} />
+          <PerformanceDashboard section={performancePage.dashboardSection} />
+          <PerformanceTabsSlider section={performancePage.tabsSection} />
+          <PerformanceImageCarousel section={performancePage.imageCarouselSection} />
+          <PerformanceCapabilities section={performancePage.capabilitiesSection} />
+          <PerformanceMethod section={performancePage.methodSection} />
+          <CTASection items={performancePage.cta} />
+          <Footer footer={settings?.footer} />
         </main>
       </div>
     </div>

@@ -66,7 +66,7 @@ const titles = [
   },
 ];
 
-export default function StrategyPageTemplate() {
+export default function StrategyPageTemplate({ strategyGroups = [] }) {
   const pathname = usePathname();
   const currentPath = normalizeStrategyPath(pathname);
   const currentSlug =
@@ -95,6 +95,7 @@ export default function StrategyPageTemplate() {
             key={currentPath}
             slug={currentSlug}
             type="strategy"
+            strategyGroups={strategyGroups}
             hideMenuOnMobile={true}
           />
           {/* <Investment /> */}

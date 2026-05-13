@@ -43,7 +43,8 @@ const tabs = [
   },
 ];
 
-export default function PerformanceTabsSlider() {
+export default function PerformanceTabsSlider({ section }) {
+  const tabs = section?.tabs || [];
   const [activeIndex, setActiveIndex] = useState(0);
   const activeTab = tabs[activeIndex];
   const progressWidth = useMemo(
@@ -51,20 +52,23 @@ export default function PerformanceTabsSlider() {
     [activeIndex],
   );
 
+  if (!activeTab) {
+    return null;
+  }
+
   return (
     <section className="bg-[#e9ece9] text-[#111511]">
       <div className="container py-16 md:py-20">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <div className="font-blender text-sm uppercase tracking-[0.24em] text-[#E7512F] md:text-base">
-              Sidago Performance Lens
+              {section.eyebrow}
             </div>
             <h2 className="mt-5 text-3xl font-normal leading-[1.06] text-[#111511] md:text-5xl">
-              Choose the Sidago Performance lens your team needs.
+              {section.title}
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#3d463f] md:text-lg">
-              Sidago Performance can focus on speed, quality, or capacity while
-              keeping each view tied to the same operating rhythm.
+              {section.description}
             </p>
           </div>
 

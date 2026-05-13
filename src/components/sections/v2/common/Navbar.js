@@ -2381,12 +2381,12 @@ export default function Navigation() {
                 src="/images/favicon-1.ico"
               />
               <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
-                <span
+                {/* <span
                   className="text-2xl tracking-wide font-normal"
                   style={{ letterSpacing: "5px" }}
                 >
                   SIDAGO
-                </span>
+                </span> */}
               </div>
             </div>
           </a>

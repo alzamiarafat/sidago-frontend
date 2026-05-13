@@ -242,6 +242,7 @@ const benefits = [
 export default function IndustryPageTemplate({
   variant = "default",
   slug = "",
+  industryGroups = [],
 }) {
   const isB2B = variant === "b2b";
 
@@ -276,6 +277,7 @@ export default function IndustryPageTemplate({
               <ContentTab
                 slug={slug}
                 type="industry"
+                industryGroups={industryGroups}
                 hideMenuOnMobile={true}
               />
               {/* <CarouselOverview
@@ -293,6 +295,7 @@ export default function IndustryPageTemplate({
               <ContentTab
                 slug={slug}
                 type="industry"
+                industryGroups={industryGroups}
                 hideMenuOnMobile={true}
               />
               <AvailablePartner
