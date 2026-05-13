@@ -1,36 +1,37 @@
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import "../../app/globals.css";
+
+import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
-import FilterBy from "@/src/components/sections/v2/salespage/FilterBy";
-import RecommendedInsight from "@/src/components/sections/v2/salespage/RecommendedInsight";
-import Series from "@/src/components/sections/v2/salespage/Series";
-import Subscribe from "@/src/components/sections/v2/salespage/Subscribe";
+import SalesLandingView from "@/src/components/sections/v2/salespage/SalesLandingView";
+import { getGlobalSettings } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.sales;
-
 const titles = [
   {
-    title: "Digital asset",
+    title: "Helping companies build",
     color: "",
     className: "text-black",
   },
   {
-    title: "OTC market 2025",
-    color: "#00d64a",
+    title: "stronger sales relationships",
+    color: "#4f8b66",
     className: "block mt-1",
   },
 ];
-export default function SalesPage() {
+
+export default async function SalesPage() {
+  const settings = await getGlobalSettings();
+
   return (
-    <div className="flex h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex min-h-svh flex-col text-base">
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
         <Navigation />
 
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] flex-1 bg-[#07110d] text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection
@@ -38,15 +39,13 @@ export default function SalesPage() {
             lighterTheme={true}
             videoSrc="https://www.wintermute.com/videos/heroes/cfds.mp4"
             titles={titles}
-            subtitle="Partner with the leading early-stage investor in the DeFi ecosystem to fuel your long-term growth"
+            subtitle="Strengthen employee teamwork, customer service, and external business relationships with SIDAGO to create more reliable sales growth and stronger long-term business value."
             videoClass={"left-[500px] !w-3/4"}
             lighterBgColor="bg-[#f8f8f8]"
           />
-          <RecommendedInsight />
-          <FilterBy />
-          <Series />
+          <SalesLandingView />
           <CTASection />
-          <Footer />
+          <Footer footer={settings?.footer} />
         </main>
       </div>
     </div>
