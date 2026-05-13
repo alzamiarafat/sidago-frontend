@@ -24,7 +24,7 @@ export default function ComplianceStandardsFlipCard({ card, index }) {
           <FiPlus className="h-5 w-5 text-emerald-300/80" aria-hidden />
         </div>
         <div>
-          <h3 className="font-blender text-xl leading-snug tracking-tight text-white md:text-2xl">
+          <h3 className="font-saans text-xl leading-snug tracking-tight text-white md:text-2xl">
             {card.title}
           </h3>
           <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">
@@ -56,7 +56,7 @@ export default function ComplianceStandardsFlipCard({ card, index }) {
                 <FiPlus className="h-5 w-5" strokeWidth={2} aria-hidden />
               </span>
             </div>
-            <h3 className="pr-4 font-blender text-xl leading-snug tracking-tight text-white md:text-2xl">
+            <h3 className="pr-4 font-saans text-xl leading-snug tracking-tight text-white md:text-2xl">
               {card.title}
             </h3>
           </div>
@@ -71,7 +71,7 @@ export default function ComplianceStandardsFlipCard({ card, index }) {
               </span>
             </div>
             <div className="flex min-h-0 flex-1 flex-col justify-center">
-              <h3 className="font-blender text-xl leading-snug tracking-tight text-white md:text-2xl">
+              <h3 className="font-saans text-xl leading-snug tracking-tight text-white md:text-2xl">
                 {card.title}
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-white/75 md:text-base">

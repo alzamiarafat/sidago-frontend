@@ -50,7 +50,7 @@ function SectionHeader({ eyebrow, title, description, className = "" }) {
   return (
     <div className={`mb-10 max-w-3xl md:mb-14 ${className}`}>
       {eyebrow ? (
-        <p className="font-blender text-sm uppercase tracking-[0.22em] text-green-dark">
+        <p className="font-saans text-sm uppercase tracking-[0.22em] text-green-dark">
           {eyebrow}
         </p>
       ) : null}
@@ -150,7 +150,7 @@ function SecurityPrivacySection({ reduce }) {
             variants={fadeUp}
             className={GLASS}
           >
-            <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
+            <p className="font-saans text-xs uppercase tracking-[0.2em] text-green-dark">
               Risk management focus
             </p>
             <ul className="mt-6 space-y-4">
@@ -259,7 +259,7 @@ function RegulatorySection({ reduce }) {
               variants={fadeUp}
               className={GLASS_SOFT}
             >
-              <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
+              <p className="font-saans text-xs uppercase tracking-[0.2em] text-green-dark">
                 {topic.label}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-gray-tradfi-silver">
@@ -350,7 +350,7 @@ export default function SupportComplianceView({ footer }) {
   const reduce = useReducedMotion();
 
   return (
-    <>
+    <div className="font-saans">
       <SupportHelpHub />
       <SupportBrutalistShowcase />
       <ComplianceSection />
@@ -361,6 +361,6 @@ export default function SupportComplianceView({ footer }) {
       <FaqSection />
       <CTASection />
       <Footer footer={footer} />
-    </>
+    </div>
   );
 }

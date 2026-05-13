@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FiCpu, FiCreditCard, FiLayers, FiSearch, FiUser } from "react-icons/fi";
 import SupportHubTopicGrid from "@/src/components/sections/v2/support-compliance/SupportHubTopicGrid";
@@ -16,6 +16,7 @@ const categoryIcons = {
 
 export default function SupportHelpHub() {
   const [query, setQuery] = useState("");
+  const searchInputRef = useRef(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -45,7 +46,7 @@ export default function SupportHelpHub() {
               Support
             </p>
             <h2
-              className="mt-2.5 max-w-full font-blender font-semibold text-white normal-case break-normal text-[2rem] leading-[1.12] tracking-[-0.02em] sm:text-[2.5rem] sm:leading-[1.1] lg:text-[3rem] lg:leading-[1.08] xl:text-[3.5rem] xl:leading-[1.05]"
+              className="mt-2.5 max-w-full font-saans font-semibold text-white normal-case break-normal text-[2rem] leading-[1.12] tracking-[-0.02em] sm:text-[2.5rem] sm:leading-[1.1] lg:text-[3rem] lg:leading-[1.08] xl:text-[3.5rem] xl:leading-[1.05]"
               style={{ wordBreak: "normal", overflowWrap: "normal" }}
             >
               How can we help?
@@ -62,21 +63,34 @@ export default function SupportHelpHub() {
             >
               Filter topics
             </label>
-            <div className="group/search relative w-full">
-              <div className="relative flex min-h-[3.25rem] w-full items-stretch overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.055] shadow-[0_16px_48px_rgba(0,0,0,0.35)] transition-[box-shadow,background-color,border-color] duration-300 group-focus-within/search:border-white/[0.12] group-focus-within/search:bg-white/[0.08] md:min-h-14">
-                <div className="flex shrink-0 items-center pl-4 md:pl-5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-white/45 transition-colors group-focus-within/search:bg-[#E7512F]/12 group-focus-within/search:text-[#E7512F]/90">
-                    <FiSearch className="h-[1.125rem] w-[1.125rem]" aria-hidden />
-                  </span>
+            <div className="group/search relative w-full px-0.5 pt-0.5">
+              <div className="relative flex w-full min-h-[3.25rem] items-stretch overflow-hidden rounded-3xl bg-white/[0.06] shadow-[0_16px_48px_rgba(0,0,0,0.38)] md:min-h-[3.5rem]">
+                <div className="flex shrink-0 items-center justify-center self-stretch pl-3.5 md:pl-4">
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    className="flex h-9 w-9 shrink-0 cursor-text items-center justify-center rounded-xl border-0 bg-[#E7512F]/10 p-0 text-[#E7512F] transition-colors duration-300 group-focus-within/search:bg-[#E7512F]/14"
+                    aria-label="Focus search"
+                    onMouseUp={() => {
+                      searchInputRef.current?.focus();
+                    }}
+                  >
+                    <FiSearch
+                      className="block h-[0.9375rem] w-[0.9375rem] shrink-0"
+                      strokeWidth={1}
+                      aria-hidden
+                    />
+                  </button>
                 </div>
                 <input
+                  ref={searchInputRef}
                   id="support-search"
                   type="search"
                   name="support-topic-query"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search by topic, e.g. billing, API, access…"
-                  className="min-w-0 flex-1 border-0 bg-transparent py-3 pr-4 pl-3 text-[0.9375rem] leading-snug text-white caret-[#E7512F] placeholder:text-white/30 outline-none md:py-3.5 md:pr-5 md:pl-3.5 md:text-base"
+                  className="min-w-0 flex-1 self-center border-0 bg-transparent py-3 pr-4 pl-2 text-[0.9375rem] leading-normal text-white caret-[#E7512F] placeholder:text-white/30 outline-none md:py-3.5 md:pr-5 md:pl-2.5 md:text-base"
                   autoComplete="off"
                   spellCheck="false"
                 />

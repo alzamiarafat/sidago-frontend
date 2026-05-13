@@ -23,7 +23,7 @@ export default function ComplianceLegalHub() {
           <p className="font-mono text-[0.6rem] uppercase tracking-[0.32em] text-white/38">
             Legal & compliance
           </p>
-          <h2 className="mt-4 font-blender text-[clamp(1.75rem,4vw,2.75rem)] font-normal leading-tight tracking-tight text-white">
+          <h2 className="mt-4 font-saans text-[clamp(1.75rem,4vw,2.75rem)] font-normal leading-tight tracking-tight text-white">
             Trust center documents
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-white/50 md:text-base">
@@ -53,7 +53,7 @@ export default function ComplianceLegalHub() {
                 </span>
               </div>
               <div className="mt-4 space-y-1">
-                <h3 className="font-blender text-lg leading-snug text-white md:text-xl">
+                <h3 className="font-saans text-lg leading-snug text-white md:text-xl">
                   {tab.label}
                 </h3>
                 <p className="text-[0.78rem] text-white/45">

@@ -74,7 +74,7 @@ export default function ComplianceClauseSlider({ sections, tabId }) {
             exit={{ opacity: 0, x: reduce ? 0 : -22 }}
             transition={reduce ? { duration: 0 } : transitionQuick}
           >
-            <h4 className="font-blender text-xl tracking-tight text-white md:text-2xl">
+            <h4 className="font-saans text-xl tracking-tight text-white md:text-2xl">
               {sec.title}
             </h4>
             <p className="mt-5 text-sm leading-relaxed text-white/55 md:text-base">

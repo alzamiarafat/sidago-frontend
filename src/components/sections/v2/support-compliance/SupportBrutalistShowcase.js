@@ -78,7 +78,7 @@ export default function SupportBrutalistShowcase() {
           <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.26em] text-[#E7512F]/90">
             Operating clarity
           </p>
-          <h2 className="mt-4 font-blender text-2xl font-normal leading-tight tracking-tight text-white md:text-4xl">
+          <h2 className="mt-4 font-saans text-2xl font-normal leading-tight tracking-tight text-white md:text-4xl">
             High-signal surfaces your teams can run in production
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-white/65 md:text-base">
@@ -109,7 +109,7 @@ export default function SupportBrutalistShowcase() {
                     aria-selected={selected}
                     id={`desk-tab-${t.id}`}
                     onClick={() => setDeskIx(i)}
-                    className={`relative inline-flex min-w-[4.25rem] flex-col items-center justify-center rounded-full px-3 pb-2 pt-1.5 text-center font-blender text-[0.88rem] font-semibold tracking-tight transition-colors sm:min-w-[5rem] sm:px-4 sm:text-[0.92rem] ${
+                    className={`relative inline-flex min-w-[4.25rem] flex-col items-center justify-center rounded-full px-3 pb-2 pt-1.5 text-center font-saans text-[0.88rem] font-semibold tracking-tight transition-colors sm:min-w-[5rem] sm:px-4 sm:text-[0.92rem] ${
                       selected ? "text-white" : "text-white/55 hover:text-white/85"
                     }`}
                   >
@@ -150,7 +150,7 @@ export default function SupportBrutalistShowcase() {
                     transition={reduce ? { duration: 0 } : transitionQuick}
                     className="relative"
                   >
-                    <p className="font-blender text-xl leading-snug text-white md:text-2xl">
+                    <p className="font-saans text-xl leading-snug text-white md:text-2xl">
                       {active.lead}
                     </p>
                     <p className="mt-5 text-sm leading-relaxed text-white/65 md:text-base">
@@ -206,7 +206,7 @@ export default function SupportBrutalistShowcase() {
                 className="absolute inset-x-0 top-0 h-1 bg-[#E7512F]"
                 aria-hidden
               />
-              <h3 className="mt-2 font-blender text-2xl leading-tight tracking-tight text-white md:text-3xl">
+              <h3 className="mt-2 font-saans text-2xl leading-tight tracking-tight text-white md:text-3xl">
                 {card.title}
               </h3>
               <p className="mt-5 text-sm leading-relaxed text-white/70 md:text-base">

@@ -49,7 +49,7 @@ export default function SupportHubTopicGrid({ items, resolveIcon }) {
               className="group/card relative block h-full rounded-3xl focus:outline-none focus-visible:ring-0"
             >
               <motion.div
-                className="relative flex h-full min-h-[200px] flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.045] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition-[background-color,box-shadow,transform,border-color] duration-300 group-hover/card:border-white/[0.1] group-hover/card:bg-white/[0.07] group-hover/card:shadow-[0_24px_72px_rgba(0,0,0,0.48)] group-focus-visible/card:ring-2 group-focus-visible/card:ring-[#E7512F]/35 md:min-h-[210px] md:p-6"
+                className="relative flex h-full min-h-[200px] flex-col overflow-hidden rounded-3xl bg-white/[0.055] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.42)] transition-[background-color,box-shadow,transform] duration-300 group-hover/card:bg-white/[0.08] group-hover/card:shadow-[0_28px_80px_rgba(0,0,0,0.5)] group-focus-visible/card:ring-2 group-focus-visible/card:ring-[#E7512F]/35 md:min-h-[210px] md:p-6"
                 whileHover={
                   reduce
                     ? undefined
@@ -64,7 +64,7 @@ export default function SupportHubTopicGrid({ items, resolveIcon }) {
                   <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#E7512F]/10 text-[#E7512F] transition-all duration-300 group-hover/card:bg-[#E7512F]/16 group-hover/card:shadow-[0_0_28px_rgba(231,81,47,0.15)]">
                     <Icon className="h-[1.125rem] w-[1.125rem]" aria-hidden />
                   </span>
-                  <h3 className="mt-3.5 max-w-full break-normal font-blender text-base font-medium tracking-tight text-white md:text-lg">
+                  <h3 className="mt-3.5 max-w-full break-normal font-saans text-base font-medium tracking-tight text-white md:text-lg">
                     {cat.title}
                   </h3>
                   <p className="mt-2 flex-1 text-[0.8125rem] leading-relaxed text-white/54 line-clamp-4 md:text-sm md:leading-snug">
