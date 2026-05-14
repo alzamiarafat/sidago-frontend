@@ -81,19 +81,19 @@ export const defaultGlobalSettings = {
     policyLinks: [
       {
         label: "Privacy Policy",
-        href: "#",
+        href: "/privacy",
         srLabel: "Privacy Policy",
         sortOrder: 1,
       },
       {
         label: "Cookies Policy",
-        href: "#",
+        href: "/cookies",
         srLabel: "Cookies Policy",
         sortOrder: 2,
       },
       {
         label: "Modern Slavery Statement",
-        href: "#",
+        href: "/modern-slavery",
         srLabel: "Modern Slavery Statement",
         sortOrder: 3,
       },

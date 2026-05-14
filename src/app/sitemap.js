@@ -45,6 +45,10 @@ export default function sitemap() {
     "/strategy",
     "/compliance",
     "/execution",
+    "/legal",
+    "/privacy",
+    "/cookies",
+    "/modern-slavery",
     "/process-improvement",
   ];
 

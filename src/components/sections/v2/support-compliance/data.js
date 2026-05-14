@@ -27,71 +27,68 @@ export const helpCategories = [
   },
 ];
 
-/** Legal hub: tabbed sections with accordion-friendly clauses (summary copy — not legal advice). */
+/** Legal hub: trust center cards (links to /privacy, /cookies, /modern-slavery — PDF optional). */
 export const legalTabs = [
   {
     id: "privacy",
-    label: "Privacy",
-    lastUpdated: "May 2026",
-    pdfLabel: "Privacy summary (PDF)",
-    href: "/legal/privacy",
-    pdfHref: "/legal/privacy.pdf",
+    label: "Privacy Policy",
+    lastUpdated: "14 May 2026",
+    href: "/privacy",
+    pdfHref: null,
     sections: [
       {
-        title: "What we collect",
-        body: "Identifiers, contact details, and operational metadata needed to deliver services, evidence work, and meet contractual and regulatory duties.",
+        title: "Scope & collection",
+        body: "How SIDAGO collects personal information across sidago.com and related services—including what you provide, what is collected automatically, and limited third-party sources.",
       },
       {
-        title: "How we use data",
-        body: "Processing is limited to stated purposes, with retention aligned to obligations, dispute windows, and your instructions where you act as controller.",
+        title: "Use, sharing & transfers",
+        body: "How we use data, when we share with vendors, international processing safeguards, retention, and security practices.",
       },
       {
         title: "Your choices",
-        body: "Subject requests are triaged with identity checks; responses follow documented timelines and escalation paths for complex matters.",
+        body: "Rights and controls where applicable, cookie preferences, and how to contact support@sidago.com.",
       },
     ],
   },
   {
-    id: "terms",
-    label: "Terms of service",
-    lastUpdated: "May 2026",
-    pdfLabel: "Terms summary (PDF)",
-    href: "/legal/terms",
-    pdfHref: "/legal/terms.pdf",
+    id: "cookies",
+    label: "Cookies Policy",
+    lastUpdated: "14 May 2026",
+    href: "/cookies",
+    pdfHref: null,
     sections: [
       {
-        title: "Engagement scope",
-        body: "Deliverables, assumptions, and change control are defined per statement of work; out-of-scope work requires written approval.",
+        title: "Cookie categories",
+        body: "Strictly necessary, functional, analytics, and advertising technologies—with practical examples of what each supports.",
       },
       {
-        title: "Acceptable use",
-        body: "Services may not be used to violate law, compromise security, or circumvent compliance controls agreed in writing.",
+        title: "Third parties & duration",
+        body: "Partner technologies, session vs persistent storage, and how vendors fit into the Sites.",
       },
       {
-        title: "Limitations",
-        body: "Liability caps and carve-outs follow the executed agreement; summaries here do not replace signed contract text.",
+        title: "Manage preferences",
+        body: "Browser controls, optional preference centers, and what may break if cookies are disabled.",
       },
     ],
   },
   {
-    id: "gdpr",
-    label: "Data & GDPR",
-    lastUpdated: "May 2026",
-    pdfLabel: "Data processing overview (PDF)",
-    href: "/legal/data-processing",
-    pdfHref: "/legal/data-processing.pdf",
+    id: "modern-slavery",
+    label: "Modern Slavery Statement",
+    lastUpdated: "14 May 2026",
+    href: "/modern-slavery",
+    pdfHref: null,
     sections: [
       {
-        title: "Roles",
-        body: "Controller/processor responsibilities are assigned per engagement; records of processing reflect reality on the ground.",
+        title: "Commitment & human rights",
+        body: "SIDAGO’s stance on forced labor, trafficking, and exploitative practices across operations and supply chains.",
       },
       {
-        title: "Transfers",
-        body: "Cross-border mechanisms are selected based on risk, geography, and supervisory expectations—not generic boilerplate alone.",
+        title: "Suppliers & diligence",
+        body: "Expectations for partners, risk-based assessments, contractual standards, and remediation approaches.",
       },
       {
-        title: "Breach readiness",
-        body: "Playbooks define assessment steps, notification templates, and evidence preservation aligned to your jurisdiction.",
+        title: "Speak up & contact",
+        body: "Reporting concerns in good faith and where to direct questions about this Statement.",
       },
     ],
   },

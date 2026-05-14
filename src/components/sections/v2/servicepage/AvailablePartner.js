@@ -9,9 +9,6 @@ export default function AvailablePartner({
   const trackRef = useRef(null);
   const speedRef = useRef(0.5);
 
-  const fadeMask =
-    "linear-gradient(to right, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,1) 10%, hsla(0,0%,100%,1) 90%, hsla(0,0%,100%,0) 100%)";
-
   const isDarkSurface =
     typeof titleColor === "string" &&
     (titleColor.includes("text-white") || titleColor.includes("white"));
@@ -141,38 +138,24 @@ export default function AvailablePartner({
             }}
           >
             <div
-              className="relative flex overflow-hidden"
-              style={{
-                WebkitMaskImage: fadeMask,
-                WebkitMaskSize: "100% 100%",
-                WebkitMaskRepeat: "no-repeat",
-                WebkitMaskMode: "alpha",
-                maskImage: fadeMask,
-                maskSize: "100% 100%",
-                maskRepeat: "no-repeat",
-                maskMode: "alpha",
-              }}
+              ref={trackRef}
+              className="flex w-max items-stretch gap-x-4 gap-y-3 pl-1 will-change-transform sm:gap-x-5 md:gap-x-5 md:pl-2 lg:gap-x-6"
             >
-              <div
-                ref={trackRef}
-                className="flex w-max items-stretch gap-x-4 gap-y-3 pl-1 will-change-transform sm:gap-x-5 md:gap-x-5 md:pl-2 lg:gap-x-6"
-              >
-                {duplicatedLogos.map((item, i) => (
-                  <span key={`${item.src}-${i}`} className={cardClass}>
-                    <img
-                      src={item.src}
-                      alt={i < logos.length ? item.alt : ""}
-                      aria-hidden={i >= logos.length}
-                      loading="eager"
-                      width={400}
-                      height={240}
-                      decoding="async"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className={logoClass}
-                    />
-                  </span>
-                ))}
-              </div>
+              {duplicatedLogos.map((item, i) => (
+                <span key={`${item.src}-${i}`} className={cardClass}>
+                  <img
+                    src={item.src}
+                    alt={i < logos.length ? item.alt : ""}
+                    aria-hidden={i >= logos.length}
+                    loading="eager"
+                    width={400}
+                    height={240}
+                    decoding="async"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className={logoClass}
+                  />
+                </span>
+              ))}
             </div>
           </div>
         </div>

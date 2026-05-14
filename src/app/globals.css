@@ -1149,3 +1149,37 @@ body {
     animation: none;
   }
 }
+
+/* Legal policy pages: brand accent bullets (override style-v2 green SVG markers) */
+.legal-policy-document ul li::before,
+.legal-policy-document ul li:before {
+  content: "" !important;
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: #d34c2d;
+  border-radius: 9999px;
+  position: absolute;
+  left: 0.5rem;
+  top: 0.55em;
+}
+
+.legal-policy-document ul ul li::before,
+.legal-policy-document ul ul li:before {
+  content: "" !important;
+  width: 0.35rem;
+  height: 0.35rem;
+  background-color: #d34c2d;
+  border-radius: 9999px;
+  opacity: 0.92;
+}
+
+.legal-policy-document ul.legal-policy-meta-list li::before,
+.legal-policy-document ul.legal-policy-meta-list li:before {
+  content: none !important;
+  display: none !important;
+}
+
+.legal-policy-document ul.legal-policy-meta-list li {
+  padding-left: 0;
+}

@@ -174,17 +174,35 @@ function normalizeCardsGridItem(item, fallbackItem) {
   };
 }
 
+const FOOTER_POLICY_HREF_BY_LABEL = {
+  "Privacy Policy": "/privacy",
+  "Cookies Policy": "/cookies",
+  "Modern Slavery Statement": "/modern-slavery",
+};
+
 function normalizeFooterLink(item, fallbackItem) {
-  if (!item?.label || !item?.href) {
+  if (!item?.label) {
     return fallbackItem;
+  }
+
+  const label = item.label.trim();
+  let href = (item.href ?? "").trim();
+  if (!href || href === "#") {
+    const mapped = FOOTER_POLICY_HREF_BY_LABEL[label];
+    if (mapped) {
+      href = mapped;
+    }
+  }
+  if (!href) {
+    href = fallbackItem.href;
   }
 
   return {
     ...fallbackItem,
     ...item,
-    label: item.label.trim(),
-    href: item.href.trim(),
-    srLabel: item.srLabel?.trim() || item.label,
+    label,
+    href,
+    srLabel: item.srLabel?.trim() || label,
   };
 }
 

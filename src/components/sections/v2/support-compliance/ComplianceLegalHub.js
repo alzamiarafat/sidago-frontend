@@ -86,13 +86,15 @@ export default function ComplianceLegalHub() {
                 >
                   View full document
                 </Link>
-                <Link
-                  href={tab.pdfHref}
-                  className="inline-flex flex-1 min-w-[8.5rem] items-center justify-center gap-2 rounded-full bg-white/[0.1] px-4 py-2.5 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/90 shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition hover:bg-white/[0.16] hover:text-white hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)]"
-                >
-                  <FiDownload className="h-3.5 w-3.5" aria-hidden />
-                  PDF
-                </Link>
+                {tab.pdfHref ? (
+                  <Link
+                    href={tab.pdfHref}
+                    className="inline-flex flex-1 min-w-[8.5rem] items-center justify-center gap-2 rounded-full bg-white/[0.1] px-4 py-2.5 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/90 shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition hover:bg-white/[0.16] hover:text-white hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)]"
+                  >
+                    <FiDownload className="h-3.5 w-3.5" aria-hidden />
+                    PDF
+                  </Link>
+                ) : null}
               </div>
             </motion.article>
           ))}

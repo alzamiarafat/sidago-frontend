@@ -189,6 +189,36 @@ export const routeMetadata = {
       "regulatory guidelines",
     ],
   }),
+  legalPolicies: buildPageMetadata({
+    title: "Legal & Compliance Policies",
+    description:
+      "Sidago legal hub: privacy policy, cookies policy, and modern slavery statement for sidago.com.",
+    path: "/legal",
+    keywords: [
+      "Sidago privacy",
+      "cookies policy",
+      "modern slavery statement",
+      "legal policies",
+    ],
+  }),
+  legalPrivacy: buildPageMetadata({
+    title: "Privacy Policy",
+    description:
+      "Sidago privacy policy: how we collect, use, disclose, and safeguard personal information on sidago.com.",
+    path: "/privacy",
+  }),
+  legalCookies: buildPageMetadata({
+    title: "Cookies Policy",
+    description:
+      "Sidago cookies policy: how we use cookies and similar technologies on sidago.com.",
+    path: "/cookies",
+  }),
+  legalModernSlavery: buildPageMetadata({
+    title: "Modern Slavery Statement",
+    description:
+      "Sidago modern slavery statement: ethical standards, supply chain expectations, and due diligence.",
+    path: "/modern-slavery",
+  }),
   processImprovement: buildPageMetadata({
     title: "Process Improvement",
     description:
