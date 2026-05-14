@@ -1,6 +1,6 @@
 import "../../app/globals.css";
 
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import ProcessImprovementView from "@/src/components/process-improvement/ProcessImprovementView";

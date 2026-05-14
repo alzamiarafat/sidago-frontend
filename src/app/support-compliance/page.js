@@ -1,6 +1,6 @@
 import "../../app/globals.css";
 
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import SupportComplianceView from "@/src/components/sections/v2/support-compliance/SupportComplianceView";
 import { getGlobalSettings } from "@/src/lib/api";

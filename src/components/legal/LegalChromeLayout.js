@@ -1,7 +1,7 @@
 import "../../app/globals.css";
 
 import Footer from "@/src/components/sections/v2/common/Footer";
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import { getGlobalSettings } from "@/src/lib/api";
 
 export default async function LegalChromeLayout({ children }) {

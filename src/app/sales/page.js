@@ -2,7 +2,7 @@ import "../../app/globals.css";
 
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import SalesLandingView from "@/src/components/sections/v2/salespage/SalesLandingView";
 import { getGlobalSettings } from "@/src/lib/api";

@@ -19,7 +19,7 @@ import {
 } from "react-icons/fi";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
 import {
   campaignBars,

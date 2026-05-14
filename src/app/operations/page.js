@@ -1,7 +1,7 @@
 import "../../app/globals.css";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import OperationsPageContent from "@/src/components/sections/v2/operationspage/OperationsPageContent";
 import { getGlobalSettings, getOperationsPage } from "@/src/lib/api";

@@ -2,7 +2,7 @@ import "../../app/globals.css";
 import Image from "next/image";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import PerformanceCapabilitiesCarousel from "@/src/components/sections/v2/performancepage/PerformanceCapabilitiesCarousel";
 import PerformanceTabsSlider from "@/src/components/sections/v2/performancepage/PerformanceTabsSlider";

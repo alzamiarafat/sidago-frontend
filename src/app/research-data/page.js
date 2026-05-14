@@ -13,7 +13,7 @@ import {
 } from "react-icons/fi";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },

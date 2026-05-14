@@ -1,7 +1,7 @@
 import "../../app/globals.css";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
-import Navigation from "@/src/components/sections/v2/common/Navbar";
+import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import ContactUs from "@/src/components/sections/v2/contactpage/ContactUs";
 import ContactPremiumHero from "@/src/components/sections/v2/contactpage/ContactPremiumHero";
 import ContactLeadForm from "@/src/components/sections/v2/contactpage/ContactLeadForm";
