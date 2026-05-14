@@ -1,4 +1,3 @@
-import "../app/globals.css";
 import VersionTwoLayout from "../components/layouts/VersionTwo";
 import VersionOneLayout from "../components/layouts/VersionOne";
 import { getGlobalSettings, getHomepage } from "../lib/api";

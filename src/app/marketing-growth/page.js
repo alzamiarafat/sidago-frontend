@@ -1,4 +1,3 @@
-import "../../app/globals.css";
 
 import MarketingGrowthView from "@/src/components/sections/v2/marketing-growth/MarketingGrowthView";
 import { getGlobalSettings } from "@/src/lib/api";

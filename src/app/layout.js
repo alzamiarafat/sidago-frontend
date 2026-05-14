@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
+import "./globals.css";
 // import "../styles/default.css";
 // import "../styles/light.css";
 // import "../styles/responsive.css";
@@ -30,6 +30,21 @@ function StrapiConnectionHints() {
     <>
       <link rel="dns-prefetch" href={origin} />
       <link rel="preconnect" href={origin} crossOrigin="anonymous" />
+    </>
+  );
+}
+
+function V2FirstPaintHints() {
+  return (
+    <>
+      <link rel="preload" href="/images/banner.png" as="image" fetchPriority="high" />
+      <link
+        rel="preload"
+        href="/fonts/saans_regular-s.p.2a9a6658.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
     </>
   );
 }
@@ -109,7 +124,6 @@ export default async function RootLayout({ children }) {
   const versionCSS =
     version === "v1"
       ? [
-          "./globals.css",
           "/styles/default.css",
           "/styles/light.css",
           "/styles/responsive.css",
@@ -126,13 +140,20 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <head>
         <StrapiConnectionHints />
+        {version !== "v1" ? <V2FirstPaintHints /> : null}
         {/* Dynamic CSS based on version */}
         {versionCSS.map((href) => (
           <link key={href} rel="stylesheet" href={href} />
         ))}
       </head>
       <body
-        className={`version-${version} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={[
+          `version-${version}`,
+          version === "v1" ? `${geistSans.variable} ${geistMono.variable}` : "",
+          "antialiased",
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         <GlobalProvider settings={settings}>{children}</GlobalProvider>
       </body>

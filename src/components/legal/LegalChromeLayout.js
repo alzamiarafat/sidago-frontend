@@ -1,4 +1,3 @@
-import "../../app/globals.css";
 
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";

@@ -1,4 +1,3 @@
-import "../../app/globals.css";
 import Image from "next/image";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";

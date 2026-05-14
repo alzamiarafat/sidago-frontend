@@ -1,4 +1,3 @@
-import "../../globals.css";
 import IndustryPageTemplate from "@/src/components/sections/v2/industriespage/IndustryPageTemplate";
 import { getIndustriesPage } from "@/src/lib/api";
 import { collectSlugsFromMenuGroups } from "@/src/lib/menu-static-slugs";

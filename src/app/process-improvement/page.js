@@ -1,4 +1,3 @@
-import "../../app/globals.css";
 
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CTASection from "@/src/components/sections/v2/common/CTA";

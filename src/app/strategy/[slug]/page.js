@@ -1,4 +1,3 @@
-import "../../globals.css";
 import StrategyPageTemplate from "@/src/components/sections/v2/strategypage/StrategyPageTemplate";
 import { getStrategySlugs } from "@/src/data/strategy-menu";
 import { getStrategyPage } from "@/src/lib/api";

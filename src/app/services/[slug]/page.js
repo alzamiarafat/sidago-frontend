@@ -1,4 +1,3 @@
-import "../../globals.css";
 import ServicePageTemplate from "@/src/components/sections/v2/servicepage/ServicePageTemplate";
 import { defaultServicesPage } from "@/src/data/cms/defaults";
 import { getServicesPage } from "@/src/lib/api";
