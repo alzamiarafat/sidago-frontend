@@ -278,9 +278,9 @@ export const defaultServicesPage = {
 
 export const defaultHomepage = {
   hero: {
-    useVideo: false,
+    useVideo: true,
     videoSrc: "/videos/home2.mp4",
-    videoPoster: "/images/banner.png",
+  videoPoster: "",
     imageSrc: "",
     subtitle:
       "Sidago helps companies streamline operations, reduce costs, and scale efficiently through reliable outsourcing and digital solutions.",

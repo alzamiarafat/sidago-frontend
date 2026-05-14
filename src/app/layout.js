@@ -36,16 +36,13 @@ function StrapiConnectionHints() {
 
 function V2FirstPaintHints() {
   return (
-    <>
-      <link rel="preload" href="/images/banner.png" as="image" fetchPriority="high" />
-      <link
-        rel="preload"
-        href="/fonts/saans_regular-s.p.2a9a6658.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
-    </>
+    <link
+      rel="preload"
+      href="/fonts/saans_regular-s.p.2a9a6658.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+    />
   );
 }
 

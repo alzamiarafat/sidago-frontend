@@ -39,11 +39,7 @@ export default function Home({ homepage = defaultHomepage, settings }) {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection
-            {...hero}
-            useVideo={false}
-            imageSrc={typeof hero?.imageSrc === "string" ? hero.imageSrc.trim() : ""}
-          />
+          <HeroBannerSection {...hero} imageSrc="" />
           <InsightNews items={insightNews} />
           <Statistics stats={statistics} />
           <MarketTicker items={marketTicker} />

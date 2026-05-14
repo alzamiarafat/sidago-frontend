@@ -6,7 +6,7 @@ export default function HeroBannerSection({
   titles,
   subtitle,
   useVideo = false,
-  videoPoster = "/images/banner.png",
+  videoPoster = "",
   videoSectionClass,
   videoClass,
   fontWeight,
@@ -47,8 +47,10 @@ export default function HeroBannerSection({
               muted
               loop={loop}
               playsInline
-              preload="metadata"
-              poster={videoPoster?.trim() || "/images/banner.png"}
+              preload="auto"
+              {...(videoPoster?.trim()
+                ? { poster: videoPoster.trim() }
+                : {})}
               src={videoSrc}
             />
           </div>
