@@ -12,14 +12,40 @@ import { getGlobalSettings } from "../lib/api";
 import { GlobalProvider } from "../hooks/useGlobal";
 import { SITE_NAME, SITE_URL, routeMetadata } from "../lib/seo";
 
+/** Prefer static HTML + ISR; Strapi uses Data Cache via fetch `next` in fetchAPI. */
+export const dynamic = "force-static";
+export const fetchCache = "force-cache";
+export const revalidate = 180;
+
+function StrapiConnectionHints() {
+  const raw = process.env.NEXT_PUBLIC_STRAPI_URL?.trim();
+  if (!raw) return null;
+  let origin;
+  try {
+    origin = new URL(raw).origin;
+  } catch {
+    return null;
+  }
+  return (
+    <>
+      <link rel="dns-prefetch" href={origin} />
+      <link rel="preconnect" href={origin} crossOrigin="anonymous" />
+    </>
+  );
+}
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: true,
 });
 
 export const metadata = {
@@ -99,6 +125,7 @@ export default async function RootLayout({ children }) {
     // <html lang="en" className={blender.className}>
     <html lang="en">
       <head>
+        <StrapiConnectionHints />
         {/* Dynamic CSS based on version */}
         {versionCSS.map((href) => (
           <link key={href} rel="stylesheet" href={href} />

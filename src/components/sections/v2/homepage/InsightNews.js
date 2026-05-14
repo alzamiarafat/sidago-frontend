@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import { Fragment } from "react";
 
 export default function InsightNews({
   items,
@@ -21,7 +19,7 @@ export default function InsightNews({
       <div className="container relative z-10 flex flex-col lg:flex-row">
         {newsItems.map((item, index) => {
           return (
-            <React.Fragment key={`${item.title}-${index}`}>
+            <Fragment key={`${item.title}-${index}`}>
               {index === 0 ? (
                 <div
                   className="-mx-[0.0625rem] hidden w-[0.125rem] shrink-0 self-stretch bg-gray-defi-slate lg:my-xl lg:block"
@@ -46,7 +44,7 @@ export default function InsightNews({
               {index !== newsItems.length - 1 && (
                 <div className="-mx-[0.0625rem] w-[0.125rem] shrink-0 self-stretch bg-gray-defi-slate lg:my-xl"></div>
               )}
-            </React.Fragment>
+            </Fragment>
           );
         })}
       </div>

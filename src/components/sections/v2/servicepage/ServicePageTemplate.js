@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -8,13 +9,15 @@ import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import AccessWay from "@/src/components/sections/v2/servicepage/AccessWay";
 import AvailablePartner from "@/src/components/sections/v2/servicepage/AvailablePartner";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
-import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
 import DelegateProfile from "@/src/components/sections/v2/servicepage/DelegateProfile";
 import OurVision from "@/src/components/sections/v2/servicepage/OurVision";
-import ServiceLatestInsight from "@/src/components/sections/v2/servicepage/ServiceLatestInsight";
 import Support from "@/src/components/sections/v2/servicepage/Support";
 import TradeOption from "@/src/components/sections/v2/servicepage/TradeOption";
 import VideoOverview from "@/src/components/sections/v2/servicepage/VideoOverview";
+
+const ContentTab = dynamic(() =>
+  import("@/src/components/sections/v2/servicepage/ContentTab"),
+);
 
 const insightItems = [
   {
@@ -224,7 +227,6 @@ export default function ServicePageTemplate({
                 bgColor="bg-[#151916]"
                 titleColor="text-white"
               />
-              {/* <ServiceLatestInsight /> */}
             </>
           )}
 

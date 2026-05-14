@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -11,9 +12,12 @@ import BuildingProduct from "@/src/components/sections/v2/strategypage/BuildingP
 import Investment from "@/src/components/sections/v2/strategypage/Investment";
 import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBenefit";
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
-import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
 import { normalizeStrategyPath } from "@/src/data/strategy-menu";
 import { usePathname } from "next/navigation";
+
+const ContentTab = dynamic(() =>
+  import("@/src/components/sections/v2/servicepage/ContentTab"),
+);
 
 const stats = [
   {

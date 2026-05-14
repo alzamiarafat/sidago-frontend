@@ -538,7 +538,7 @@ export default function OperationsPageContent() {
           <div className="bevel overflow-hidden bg-gray-tradfi-horizon">
             <video
               playsInline
-              preload="metadata"
+              preload="none"
               className="aspect-video w-full object-cover"
               controls
             >

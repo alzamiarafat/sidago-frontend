@@ -1011,9 +1011,16 @@ export async function fetchAPI(path, options = {}) {
   const {
     headers = {},
     logErrors = true,
-    revalidate = 60,
+    revalidate = 120,
+    next: nextFromUser,
     ...fetchOptions
   } = options;
+
+  const nextConfig = {
+    tags: ["strapi"],
+    revalidate,
+    ...(nextFromUser && typeof nextFromUser === "object" ? nextFromUser : {}),
+  };
 
   try {
     const res = await fetch(`${STRAPI_URL}/api/${path}`, {
@@ -1022,7 +1029,7 @@ export async function fetchAPI(path, options = {}) {
         ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
         ...headers,
       },
-      next: { revalidate },
+      next: nextConfig,
       ...fetchOptions,
     });
 
@@ -1043,6 +1050,7 @@ export async function fetchAPI(path, options = {}) {
 export const getGlobalSettings = cache(async () => {
   const data = await fetchAPI(
     "global?populate[siteLogo][fields][0]=url&populate[siteLogo][fields][1]=alternativeText&populate[socialLinks]=*&populate[version]=*&populate[footer][populate][navLinks]=*&populate[footer][populate][socialLinks]=*&populate[footer][populate][legalBlocks]=*&populate[footer][populate][policyLinks]=*",
+    { revalidate: 900 },
   );
   return normalizeGlobalSettings(data?.data);
 });
@@ -1050,6 +1058,7 @@ export const getGlobalSettings = cache(async () => {
 export const getHomepage = cache(async () => {
   const data = await fetchAPI(
     "homepage?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[marketTicker]=*&populate[capabilities]=*&populate[cardsGrid]=*&populate[cta]=*",
+    { revalidate: 180 },
   );
   return normalizeHomepage(data?.data);
 });
@@ -1057,6 +1066,7 @@ export const getHomepage = cache(async () => {
 export const getServicesPage = cache(async () => {
   const data = await fetchAPI(
     "services-page?populate[serviceGroups][populate][children][populate][paragraphs]=*&populate[serviceGroups][populate][children][populate][children][populate]=*",
+    { revalidate: 180 },
   );
   return normalizeServicesPage(data?.data);
 });
@@ -1064,6 +1074,7 @@ export const getServicesPage = cache(async () => {
 export const getIndustriesPage = cache(async () => {
   const data = await fetchAPI(
     "industries-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
+    { revalidate: 180 },
   );
   return normalizeMenuGroupsPage(data?.data);
 });
@@ -1071,6 +1082,7 @@ export const getIndustriesPage = cache(async () => {
 export const getStrategyPage = cache(async () => {
   const data = await fetchAPI(
     "strategy-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
+    { revalidate: 180 },
   );
   return normalizeMenuGroupsPage(data?.data);
 });
@@ -1078,6 +1090,7 @@ export const getStrategyPage = cache(async () => {
 export const getBusinessProcessesPage = cache(async () => {
   const data = await fetchAPI(
     "business-process?populate[hero][populate][titles]=*&populate[statistics]=*",
+    { revalidate: 180 },
   );
   return normalizeBusinessProcessesPage(data?.data);
 });
@@ -1085,12 +1098,13 @@ export const getBusinessProcessesPage = cache(async () => {
 export const getOperationsPage = cache(async () => {
   const dataWithInfrastructure = await fetchAPI(
     "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
-    { logErrors: false },
+    { logErrors: false, revalidate: 180 },
   );
   const data =
     dataWithInfrastructure ||
     (await fetchAPI(
       "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
+      { revalidate: 180 },
     ));
   return normalizeOperationsPage(data?.data);
 });
@@ -1098,6 +1112,7 @@ export const getOperationsPage = cache(async () => {
 export const getInfrastructurePage = cache(async () => {
   const data = await fetchAPI(
     "infrastructure?populate[hero][populate][titles]=*&populate[vision]=*&populate[support]=*&populate[profiles]=*",
+    { revalidate: 180 },
   );
   return normalizeInfrastructurePage(data?.data);
 });
@@ -1105,6 +1120,7 @@ export const getInfrastructurePage = cache(async () => {
 export const getInsightsPage = cache(async () => {
   const data = await fetchAPI(
     "insight?populate[hero][populate][titles]=*&populate[statistics]=*",
+    { revalidate: 180 },
   );
   return normalizeInsightsPage(data?.data);
 });
@@ -1112,6 +1128,7 @@ export const getInsightsPage = cache(async () => {
 export const getExecutionPage = cache(async () => {
   const data = await fetchAPI(
     "execution?populate[hero][populate][titles]=*&populate[cta]=*",
+    { revalidate: 180 },
   );
   return normalizeExecutionPage(data?.data);
 });
@@ -1119,6 +1136,7 @@ export const getExecutionPage = cache(async () => {
 export const getPerformancePage = cache(async () => {
   const data = await fetchAPI(
     "performance?populate[hero][populate][titles]=*&populate[cta]=*",
+    { revalidate: 180 },
   );
   return normalizePerformancePage(data?.data);
 });

@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/Navbar";
@@ -10,9 +11,12 @@ import PartnerBenefit from "@/src/components/sections/v2/industriespage/PartnerB
 import PartnerTrading from "@/src/components/sections/v2/industriespage/PartnerTrading";
 import TrackPerformance from "@/src/components/sections/v2/industriespage/TrackPerformance";
 import Trading from "@/src/components/sections/v2/industriespage/Trading";
-import ContentTab from "@/src/components/sections/v2/servicepage/ContentTab";
 import CarouselOverview from "@/src/components/sections/v2/servicepage/CarouselOverview";
 import AvailablePartner from "../servicepage/AvailablePartner";
+
+const ContentTab = dynamic(() =>
+  import("@/src/components/sections/v2/servicepage/ContentTab"),
+);
 
 const defaultStats = [
   {

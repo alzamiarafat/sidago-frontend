@@ -1,19 +1,12 @@
-// EventsDecoration.jsx — subtle grid motif (homepage cards)
-"use client";
+// EventsDecoration — subtle grid motif (homepage cards). Deterministic layout for SSR.
 
-import { useMemo } from "react";
+const dots = Array.from({ length: 18 }, (_, i) => ({
+  left: `${8 + ((i * 23) % 84)}%`,
+  top: `${8 + ((i * 41) % 84)}%`,
+  scale: 0.65 + ((i * 7) % 10) * 0.065,
+}));
 
 export default function EventDecoration() {
-  const dots = useMemo(
-    () =>
-      Array.from({ length: 18 }).map(() => ({
-        left: `${8 + Math.random() * 84}%`,
-        top: `${8 + Math.random() * 84}%`,
-        scale: 0.65 + Math.random() * 0.65,
-      })),
-    [],
-  );
-
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"

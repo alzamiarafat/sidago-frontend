@@ -26,7 +26,6 @@ const sections = [
   { id: "statistics", bg: "bg-stone-800", components: [Statistics] },
   { id: "ticker", bg: "bg-stone-200", components: [MarketTicker] },
   { id: "capabilities", bg: "bg-stone-700", components: [Capabilities] },
-  // { id: "latest-insight", bg: "", components: [LatestInsight] },
   { id: "cards", bg: "", components: [CardsGrid] },
   { id: "cta", bg: "", components: [CTASection] },
 ];
@@ -93,6 +92,8 @@ function Section({ id, bg, wrapper, components }) {
             muted
             loop
             playsInline
+            preload="auto"
+            fetchPriority="high"
             src="/videos/home2.mp4"
           />
 
@@ -148,7 +149,6 @@ export default function Home({ homepage = defaultHomepage, settings }) {
             hoverColor="bg-gray-defi-shadow"
             borderColor="bg-gray-defi-shadow"
           />
-          {/* <LatestInsight /> */}
           <CardsGrid items={cardsGrid} />
           <AvailablePartner bgColor="bg-[#151916]" titleColor="text-white" />
           {/* <PartnerTrading titleColor="text-[#e7512f]" /> */}

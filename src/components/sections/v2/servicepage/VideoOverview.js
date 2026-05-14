@@ -31,7 +31,7 @@ export default function VideoOverview() {
           <video
             playsInline
             autoPlay={false}
-            preload="metadata"
+            preload="none"
             className="bevel w-full"
             controls
           >

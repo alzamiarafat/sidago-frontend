@@ -1,12 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { FiShield } from "react-icons/fi";
-
-const EventsDecoration = dynamic(() => import("../../../ui/EventDecoration"), {
-  ssr: false,
-});
+import EventDecoration from "@/src/components/ui/EventDecoration";
 
 const ArrowIcon = ({ size = "mobile" }) => (
   <svg
@@ -113,7 +107,7 @@ function resolveDecoration(type) {
   }
 
   if (type === "events") {
-    return <EventsDecoration />;
+    return <EventDecoration />;
   }
 
   if (type === "market") {

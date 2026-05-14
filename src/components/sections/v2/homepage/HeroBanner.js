@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function HeroBannerSection({
   videoSrc,
   imageSrc,
@@ -44,6 +46,8 @@ export default function HeroBannerSection({
               muted
               loop={loop}
               playsInline
+              preload="auto"
+              fetchPriority="high"
               src={videoSrc}
             />
           </div>
@@ -51,10 +55,13 @@ export default function HeroBannerSection({
 
         {!useVideo && imageSrc && (
           <div className="absolute top-0 right-0 w-3/4 h-full overflow-hidden">
-            <img
+            <Image
               src={imageSrc}
               alt="Report Focus"
-              className="h-full w-full object-scale-down object-right opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+              fill
+              sizes="75vw"
+              priority
+              className="object-scale-down object-right opacity-60 grayscale transition-all duration-700 hover:grayscale-0"
             />
           </div>
         )}

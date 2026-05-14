@@ -1,8 +1,37 @@
 import "../../globals.css";
 import ServicePageTemplate from "@/src/components/sections/v2/servicepage/ServicePageTemplate";
+import { defaultServicesPage } from "@/src/data/cms/defaults";
 import { getServicesPage } from "@/src/lib/api";
-import { getServiceTemplateVariant } from "@/src/utils/serviceUtils";
+import { collectSlugsFromMenuGroups } from "@/src/lib/menu-static-slugs";
 import { getServiceMetadata } from "@/src/lib/seo";
+import { getServicesMenuGroups } from "@/src/utils/navigationTabUtils";
+import { getServiceTemplateVariant } from "@/src/utils/serviceUtils";
+
+export async function generateStaticParams() {
+  const slugs = new Set([
+    ...collectSlugsFromMenuGroups(getServicesMenuGroups(), "services"),
+  ]);
+
+  const page = await getServicesPage();
+
+  for (const slug of collectSlugsFromMenuGroups(
+    page.serviceGroups ?? [],
+    "services",
+  )) {
+    slugs.add(slug);
+  }
+
+  if (slugs.size === 0) {
+    for (const slug of collectSlugsFromMenuGroups(
+      defaultServicesPage.serviceGroups ?? [],
+      "services",
+    )) {
+      slugs.add(slug);
+    }
+  }
+
+  return [...slugs].map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
