@@ -124,7 +124,6 @@ export function DotMatrixText({
         ctx.font = font;
         setCanvasW(Math.ceil(ctx.measureText(text).width));
         setFontPx(fontSize);
-        lastProgRef.current = -1;
       };
 
       if (document.fonts && document.fonts.load)

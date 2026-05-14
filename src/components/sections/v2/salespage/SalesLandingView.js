@@ -15,7 +15,7 @@ import {
   FiUsers,
   FiZap,
 } from "react-icons/fi";
-import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
+import SalesHeroSpotlightStatCard from "@/src/components/sections/v2/salespage/SalesHeroSpotlightStatCard";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -53,9 +53,24 @@ const trustChips = [
 ];
 
 const heroStats = [
-  { value: "24", suffix: "hrs", label: "target response window for sales follow-up" },
-  { value: "8", suffix: " hubs", label: "listed SIDAGO office locations supporting delivery" },
-  { value: "6", suffix: "+", label: "core commercial support areas across sales and service" },
+  {
+    value: "24",
+    suffix: "hrs",
+    label: "target response window for sales follow-up",
+    activeDotColor: "#5cf0a5",
+  },
+  {
+    value: "8",
+    suffix: " hubs",
+    label: "listed SIDAGO office locations supporting delivery",
+    activeDotColor: "#ff8c6a",
+  },
+  {
+    value: "6",
+    suffix: "+",
+    label: "core commercial support areas across sales and service",
+    activeDotColor: "#7aa8ff",
+  },
 ];
 
 const serviceCards = [
@@ -331,18 +346,7 @@ function HeroSection({ reduce }) {
             className="mt-12 grid gap-4 sm:grid-cols-3 lg:mt-8"
           >
             {heroStats.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-[1.75rem] bg-white/[0.05] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl"
-              >
-                <div className="text-3xl font-medium tracking-[-0.04em] text-[#fff8f0]">
-                  <CountUpStat value={item.value} />
-                  {item.suffix}
-                </div>
-                <p className="mt-2 text-sm leading-6 text-[#bad0c4]">
-                  {item.label}
-                </p>
-              </div>
+              <SalesHeroSpotlightStatCard key={item.label} item={item} reduce={reduce} />
             ))}
           </motion.div>
         </motion.div>

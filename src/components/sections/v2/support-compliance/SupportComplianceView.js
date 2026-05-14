@@ -168,7 +168,7 @@ function SecurityPrivacySection({ reduce }) {
   );
 }
 
-function DataProtectionSection({ reduce }) {
+function DataProtectionSection() {
   const [active, setActive] = useState(-1);
 
   return (
@@ -356,7 +356,7 @@ export default function SupportComplianceView({ footer }) {
       <ComplianceSection />
       <ComplianceLegalHub />
       <SecurityPrivacySection reduce={reduce} />
-      <DataProtectionSection reduce={reduce} />
+      <DataProtectionSection />
       <RegulatorySection reduce={reduce} />
       <FaqSection />
       <CTASection />
