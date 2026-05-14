@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function TrackPerformance() {
   return (
     <section class="bg-gray-defi-charcoal text-gray-off-white">
@@ -6,16 +8,15 @@ export default function TrackPerformance() {
           Track your liquidity <br></br> across
           <span class="text-green-dark"> all pairs and venues</span>
         </div>
-        <img
+        <Image
           alt=""
           loading="lazy"
-          width="1152"
-          height="1152"
-          decoding="async"
-          data-nimg="1"
-          class="w-full object-cover bevel bevel-[0.25rem]"
+          width={1152}
+          height={1152}
+          className="w-full object-cover bevel bevel-[0.25rem]"
           style={{ color: "transparent" }}
-          src="images/report.png"
+          src="/images/report.png"
+          sizes="100vw"
         />
       </div>
     </section>

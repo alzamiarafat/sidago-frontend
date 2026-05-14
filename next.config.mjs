@@ -46,6 +46,7 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 7,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
+      { protocol: "https", hostname: "tailwindcss.com", pathname: "/**" },
       { protocol: "https", hostname: "sidago.com", pathname: "/**" },
       { protocol: "https", hostname: "www.sidago.com", pathname: "/**" },
       {

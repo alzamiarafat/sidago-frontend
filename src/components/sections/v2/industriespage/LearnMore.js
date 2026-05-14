@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function LearnMore() {
   return (
     <section>
@@ -27,16 +29,15 @@ export default function LearnMore() {
                     class="flex flex-col bevel group/interactive relative min-h-[18.75rem] justify-end lg:min-h-[23.25rem] xl:min-h-[28.125rem] bg-purple-dark text-gray-night-green h-full transition-all lg:group-hover/cards:[&:not(:hover)]:opacity-70"
                   >
                     <span class="sr-only">Watch</span>
-                    <img
+                    <Image
                       alt="Token2049: How to navigate crypto capital markets"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      unoptimized
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      src="images/Token2049-1.svg"
+                      src="/images/Token2049-1.svg"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -82,16 +83,15 @@ export default function LearnMore() {
                     class="flex flex-col bevel group/interactive relative min-h-[18.75rem] justify-end lg:min-h-[23.25rem] xl:min-h-[28.125rem] bg-purple-light text-gray-night-green h-full transition-all lg:group-hover/cards:[&:not(:hover)]:opacity-70"
                   >
                     <span class="sr-only">Watch</span>
-                    <img
+                    <Image
                       alt="ETH Denver: Importance of liquidity for projects"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      unoptimized
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      src="images/Ethdenver.svg"
+                      src="/images/Ethdenver.svg"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -139,16 +139,15 @@ export default function LearnMore() {
                     <span class="sr-only">
                       Event › Digital asset summit 2024 london › Recordings
                     </span>
-                    <img
+                    <Image
                       alt="DAS 2024: Institutional grade DeFi infrastructure"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      unoptimized
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      src="images/Blockworks.svg"
+                      src="/images/Blockworks.svg"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -196,17 +195,15 @@ export default function LearnMore() {
                     <span class="sr-only">
                       Theempirepod › Status › 1797982127306211722
                     </span>
-                    <img
+                    <Image
                       alt="Empire: Inside Crypto's Liquidity Chess Game"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      srcset="images/image_3.png 1x, images/image.png 2x"
-                      src="images/image.png"
+                      src="/images/image.png"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -252,17 +249,15 @@ export default function LearnMore() {
                       Insights › Views › Opinions › The good the bad and the
                       ugly of crypto market making hacker noon
                     </span>
-                    <img
+                    <Image
                       alt="The Good, the Bad and the Ugly of crypto market making | Hacker Noon"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      srcset="images/image_2.png 1x, images/image_1.png 2x"
-                      src="images/image_1.png"
+                      src="/images/image_1.png"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -478,16 +473,15 @@ export default function LearnMore() {
                     class="flex flex-col bevel group/interactive relative min-h-[18.75rem] justify-end lg:min-h-[23.25rem] xl:min-h-[28.125rem] bg-purple-dark text-gray-night-green h-full transition-all lg:group-hover/cards:[&:not(:hover)]:opacity-70"
                   >
                     <span class="sr-only">Watch</span>
-                    <img
+                    <Image
                       alt="Token2049: How to navigate crypto capital markets"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      unoptimized
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      src="images/Token2049-1.svg"
+                      src="/images/Token2049-1.svg"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -538,16 +532,15 @@ export default function LearnMore() {
                     class="flex flex-col bevel group/interactive relative min-h-[18.75rem] justify-end lg:min-h-[23.25rem] xl:min-h-[28.125rem] bg-purple-light text-gray-night-green h-full transition-all lg:group-hover/cards:[&:not(:hover)]:opacity-70"
                   >
                     <span class="sr-only">Watch</span>
-                    <img
+                    <Image
                       alt="ETH Denver: Importance of liquidity for projects"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      unoptimized
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      src="images/Ethdenver.svg"
+                      src="/images/Ethdenver.svg"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -600,16 +593,15 @@ export default function LearnMore() {
                     <span class="sr-only">
                       Event › Digital asset summit 2024 london › Recordings
                     </span>
-                    <img
+                    <Image
                       alt="DAS 2024: Institutional grade DeFi infrastructure"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      unoptimized
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      src="images/Blockworks.svg"
+                      src="/images/Blockworks.svg"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -662,17 +654,15 @@ export default function LearnMore() {
                     <span class="sr-only">
                       Theempirepod › Status › 1797982127306211722
                     </span>
-                    <img
+                    <Image
                       alt="Empire: Inside Crypto's Liquidity Chess Game"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      srcset="images/yield_png.webp 1x, images/yield_png.webp 2x"
                       src="/images/yield_png.webp"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">
@@ -723,17 +713,15 @@ export default function LearnMore() {
                       Insights › Views › Opinions › The good the bad and the
                       ugly of crypto market making hacker noon
                     </span>
-                    <img
+                    <Image
                       alt="The Good, the Bad and the Ugly of crypto market making | Hacker Noon"
                       loading="lazy"
-                      width="800"
-                      height="600"
-                      decoding="async"
-                      data-nimg="1"
-                      class="absolute w-full top-0 h-[60%] object-cover"
+                      width={800}
+                      height={600}
+                      className="absolute w-full top-0 h-[60%] object-cover"
                       style={{ color: "transparent" }}
-                      srcset="images/image_2.png 1x, images/image_1.png 2x"
-                      src="images/image_1.png"
+                      src="/images/image_1.png"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                     <div class="z-10 flex justify-between p-xl items-end">
                       <div class="flex flex-col justify-between gap-xs">

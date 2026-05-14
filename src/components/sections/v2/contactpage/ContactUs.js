@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const CONTACT_TOPICS = [
   {
     label: "OTC trading",
@@ -122,12 +124,12 @@ export default function ContactUs() {
           className="core-column--stacked-on-mobile lg:max-w-[min(100%,16rem)]"
           style={{ "--core-column-width": "15%" }}
         >
-          <img
+          <Image
             alt=""
             loading="lazy"
-            width="1152"
-            height="1152"
-            decoding="async"
+            width={1152}
+            height={1152}
+            unoptimized
             className="aspect-video rounded-[1.5rem] object-cover shadow-[0_24px_64px_rgba(0,0,0,0.16)] ring-1 ring-white/[0.06] lg:h-full lg:aspect-auto"
             src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/26202946/Contact-graphic.svg"
           />

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const discoverItems = [
   {
     title: "Research & Data Insights",
@@ -134,11 +136,13 @@ export function Discover({ section }) {
             >
               {variant === "image" ? (
                 <>
-                  <img
+                  <Image
                     src={item.image || "/images/Market-Research2.jpg"}
                     alt=""
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     loading="lazy"
-                    className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45 grayscale transition-all duration-500 group-hover/interactive:scale-[1.04] group-hover/interactive:opacity-65 group-hover/interactive:grayscale-0"
+                    className="pointer-events-none object-cover opacity-45 grayscale transition-all duration-500 group-hover/interactive:scale-[1.04] group-hover/interactive:opacity-65 group-hover/interactive:grayscale-0"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-gray-defi-charcoal via-gray-defi-charcoal/90 to-[#958dec]/20" />
                   <div className="pointer-events-none absolute inset-0 bg-gray-night-green/25" />

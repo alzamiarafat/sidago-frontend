@@ -278,7 +278,7 @@ export const defaultServicesPage = {
 
 export const defaultHomepage = {
   hero: {
-    useVideo: true,
+    useVideo: false,
     videoSrc: "/videos/home2.mp4",
     videoPoster: "/images/banner.png",
     imageSrc: "",

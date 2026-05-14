@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function AboutSection() {
   return (
     <div
@@ -14,10 +16,9 @@ export default function AboutSection() {
             >
               <div className="wpb_wrapper">
                 <div className="vc_single_image-wrapper">
-                  <img
-                    decoding="async"
-                    width="94"
-                    height="94"
+                  <Image
+                    width={94}
+                    height={94}
                     src="/images/button.png"
                     className="vc_single_image-img attachment-full"
                     alt="Click"

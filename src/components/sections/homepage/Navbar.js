@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
@@ -46,9 +47,11 @@ export default function Navbar() {
         <div className="flex w-full px-20 items-center justify-between">
           <div className="flex-shrink-0">
             <Link href="/">
-              <img
+              <Image
                 src={settings.siteLogo?.url || "/images/logo1.png"}
                 alt={settings.siteLogo?.alternativeText || "Sidago logo"}
+                width={160}
+                height={40}
                 className="h-10 w-auto"
               />
             </Link>

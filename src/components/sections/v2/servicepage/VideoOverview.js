@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function VideoOverview() {
   return (
     <section className="bg-gray-tradfi-horizon">
@@ -15,16 +17,15 @@ export default function VideoOverview() {
               condition.
             </div>
           </div>
-          <img
+          <Image
             alt="Trade OTC"
             loading="lazy"
-            width="1152"
-            height="1152"
-            decoding="async"
-            data-nimg="1"
+            width={1152}
+            height={1152}
+            unoptimized
             className="absolute -top-block right-0 w-[50%] md:w-[40%] lg:w-[28%]"
             style={{ color: "transparent" }}
-            src="images/WatermarkTailoredProd.svg"
+            src="/images/WatermarkTailoredProd.svg"
           />
         </div>
         <div className="pt-container">

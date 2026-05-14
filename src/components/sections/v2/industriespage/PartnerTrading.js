@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
@@ -104,13 +105,16 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
           >
             <div ref={rowOneRef} className="flex w-max items-center gap-10 md:gap-16">
               {duplicatedRowOne.map((logo, index) => (
-                <img
+                <Image
                   key={`row1-${index}`}
                   alt="Partner trading venue logo"
                   aria-hidden={index >= rowOne.length}
+                  width={200}
+                  height={64}
+                  unoptimized
                   className="h-10 w-auto shrink-0 md:h-14 lg:h-16"
                   style={{ color: "transparent" }}
-                  src={`images/partner-trading/Liquidity-–-${logo}.svg`}
+                  src={`/images/partner-trading/Liquidity-–-${logo}.svg`}
                 />
               ))}
             </div>
@@ -120,13 +124,16 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
               className="mt-0.5 flex w-max items-center gap-10 md:mt-1 md:gap-16"
             >
               {duplicatedRowTwo.map((logo, index) => (
-                <img
+                <Image
                   key={`row2-${index}`}
                   alt="Partner trading venue logo"
                   aria-hidden={index >= rowTwo.length}
+                  width={200}
+                  height={64}
+                  unoptimized
                   className="h-10 w-auto shrink-0 md:h-14 lg:h-16"
                   style={{ color: "transparent" }}
-                  src={`images/partner-trading/Liquidity-–-${logo}.svg`}
+                  src={`/images/partner-trading/Liquidity-–-${logo}.svg`}
                 />
               ))}
             </div>

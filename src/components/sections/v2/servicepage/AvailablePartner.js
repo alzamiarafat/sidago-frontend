@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function AvailablePartner({
@@ -143,17 +144,16 @@ export default function AvailablePartner({
             >
               {duplicatedLogos.map((item, i) => (
                 <span key={`${item.src}-${i}`} className={cardClass}>
-                  <img
-                    src={item.src}
-                    alt={i < logos.length ? item.alt : ""}
-                    aria-hidden={i >= logos.length}
-                    loading="eager"
-                    width={400}
-                    height={240}
-                    decoding="async"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className={logoClass}
-                  />
+                <Image
+                  src={item.src}
+                  alt={i < logos.length ? item.alt : ""}
+                  aria-hidden={i >= logos.length}
+                  priority={i < logos.length}
+                  width={400}
+                  height={240}
+                  className={logoClass}
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
                 </span>
               ))}
             </div>

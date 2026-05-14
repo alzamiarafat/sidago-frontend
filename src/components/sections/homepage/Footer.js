@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa";
 import { FaEnvelope } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
@@ -153,7 +154,12 @@ export default function Footer() {
               </div>
               <div className="footer_logo col-xs-12 pr-2">
                 <a href="#">
-                  <img src="images/footer_logo1.png" alt="logo" />
+                  <Image
+                    src="/images/footer_logo1.png"
+                    alt="logo"
+                    width={180}
+                    height={48}
+                  />
                 </a>
               </div>
             </div>

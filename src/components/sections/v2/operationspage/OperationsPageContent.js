@@ -1,3 +1,4 @@
+import Image from "next/image";
 import OperationsMetrics from "./OperationsMetrics";
 
 function SectionHeading({ eyebrow, title, description, light = false }) {
@@ -522,16 +523,15 @@ export default function OperationsPageContent() {
               description="From workflow coordination to execution visibility, Sidago builds operations that stay reliable, measurable, and easier to scale."
             />
 
-            <img
+            <Image
               alt="Operations watermark"
               loading="lazy"
-              width="1152"
-              height="1152"
-              decoding="async"
-              data-nimg="1"
+              width={1152}
+              height={1152}
+              unoptimized
               className="pointer-events-none absolute right-0 top-0 hidden w-[24%] opacity-60 lg:block"
               style={{ color: "transparent" }}
-              src="images/WatermarkTailoredProd.svg"
+              src="/images/WatermarkTailoredProd.svg"
             />
           </div>
 

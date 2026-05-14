@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, startTransition } from "react";
 import { useGlobal } from "@/src/hooks/useGlobal";
 import { motion, AnimatePresence } from "framer-motion";
@@ -621,14 +622,13 @@ export default function Navigation() {
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center gap-md">
-              <img
+              <Image
                 alt="SIDAGO"
                 loading="lazy"
-                width="33"
-                height="24"
-                decoding="async"
-                data-nimg="1"
-                style={{ color: "transparent" }}
+                width={33}
+                height={24}
+                unoptimized
+                className="[color:transparent]"
                 src="/images/favicon-1.ico"
               />
               <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
@@ -644,13 +644,11 @@ export default function Navigation() {
           {/* <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center gap-md">
               <div className="flex items-center gap-xs bg-white p-3">
-                <img
+                <Image
                   alt="Sidago"
-                  width="170"
-                  height="16"
-                  decoding="async"
-                  data-nimg="1"
-                  style={{ color: "transparent" }}
+                  width={170}
+                  height={16}
+                  className="[color:transparent]"
                   src={`/images/${settings.siteLogo.name}`}
                 />
               </div>
@@ -704,14 +702,13 @@ export default function Navigation() {
               <div className="border-b border-white/10 px-5 py-5">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       alt="SIDAGO"
                       loading="lazy"
-                      width="33"
-                      height="24"
-                      decoding="async"
-                      data-nimg="1"
-                      style={{ color: "transparent" }}
+                      width={33}
+                      height={24}
+                      unoptimized
+                      className="[color:transparent]"
                       src="/images/favicon-1.ico"
                     />
                     <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
@@ -1205,9 +1202,12 @@ export default function Navigation() {
             <div className="flex lg:flex-1">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <img
+                <Image
                   src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                   alt=""
+                  width={36}
+                  height={32}
+                  unoptimized
                   className="h-8 w-auto"
                 />
               </a>
@@ -1496,9 +1496,12 @@ export default function Navigation() {
                   <div className="flex items-center justify-between">
                     <a href="#" className="-m-1.5 p-1.5">
                       <span className="sr-only">Your Company</span>
-                      <img
+                      <Image
                         src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                         alt=""
+                        width={36}
+                        height={32}
+                        unoptimized
                         className="h-8 w-auto"
                       />
                     </a>
@@ -2370,14 +2373,13 @@ export default function Navigation() {
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="/">
             <div className="flex items-center">
-              <img
+              <Image
                 alt="SIDAGO"
                 loading="lazy"
-                width="33"
-                height="24"
-                decoding="async"
-                data-nimg="1"
-                style={{ color: "transparent" }}
+                width={33}
+                height={24}
+                unoptimized
+                className="[color:transparent]"
                 src="/images/favicon-1.ico"
               />
               <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
@@ -2393,13 +2395,11 @@ export default function Navigation() {
           {/* <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">
             <div className="flex items-center gap-md">
               <div className="flex items-center gap-xs bg-white bg-opacity-10 px-3 py-2">
-                <img
+                <Image
                   alt="Sidago"
-                  width="160"
-                  height="14"
-                  decoding="async"
-                  data-nimg="1"
-                  style={{ color: "transparent" }}
+                  width={160}
+                  height={14}
+                  className="[color:transparent]"
                   src={`/images/${settings.siteLogo.name}`}
                 />
               </div>

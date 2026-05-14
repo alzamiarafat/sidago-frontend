@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function LogoBanner() {
   return (
     <div
@@ -28,11 +30,10 @@ export default function LogoBanner() {
                       <div className="wpb_single_image wpb_content_element vc_custom_1452862065348 w-[360] bg-white py-[57] pr-[10] vc_align_center flex items-center justify-center">
                         <div className="wpb_wrapper">
                           <div className="vc_single_image-wrapper">
-                            <img
-                              decoding="async"
-                              width="184"
-                              height="59"
-                              src="images/logo1.png"
+                            <Image
+                              width={184}
+                              height={59}
+                              src="/images/logo1.png"
                               className="vc_single_image-img attachment-full"
                               alt="logo1"
                             />

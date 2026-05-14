@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const quotes = [
@@ -117,9 +118,12 @@ export default function CarouselOverview({
             <div className="font-blender text-sm uppercase lg:text-xl">
               {q.author}
               <div className="mt-4 h-[1.875rem] lg:mt-6">
-                <img
+                <Image
                   alt={q.alt}
                   loading="lazy"
+                  width={320}
+                  height={48}
+                  unoptimized
                   className="h-full w-max"
                   src={q.logo}
                 />

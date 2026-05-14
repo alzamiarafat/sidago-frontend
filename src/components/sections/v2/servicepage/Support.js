@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const supportItems = [
@@ -139,13 +140,12 @@ export default function Support({
                 {description}
               </div>
             </div>
-            <img
+            <Image
               alt={`${title}${highlight}`}
               loading="lazy"
-              width="1152"
-              height="1152"
-              decoding="async"
-              data-nimg="1"
+              width={1152}
+              height={1152}
+              unoptimized
               className="absolute -top-block right-0 w-[50%] md:w-[40%] lg:w-[28%]"
               style={{ color: "transparent" }}
               src={imageSrc}

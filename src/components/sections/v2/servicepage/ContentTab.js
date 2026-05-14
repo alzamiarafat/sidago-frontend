@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -3592,14 +3593,12 @@ export default function ContentTab({
               } ${panelClassName} shadow-[0_28px_64px_-10px_rgba(0,0,0,0.28)]`}
             >
               {!detailContent ? (
-                <div className="h-[16rem] bevel sm:h-[18rem] lg:h-full lg:flex-1">
-                  <img
+                <div className="h-[16rem] bevel sm:h-[18rem] lg:h-full lg:flex-1 relative">
+                  <Image
                     alt={activeDescription}
-                    width="1152"
-                    height="1152"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
                     style={{ color: "transparent" }}
                     src={imageSrc}
                   />
