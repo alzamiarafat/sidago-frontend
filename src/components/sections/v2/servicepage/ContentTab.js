@@ -3119,8 +3119,10 @@ export default function ContentTab({
           paragraphs: activeItem.paragraphs,
         }
       : rawDetailContent;
-  const isStrategyDetailPanel = type === "strategy" && Boolean(detailContent);
-  const isIndustryDetailPanel = type === "industry" && Boolean(detailContent);
+  /** Strategy-style description surface for Strategy, Services, and Industries */
+  const isLightDetailPanel =
+    Boolean(detailContent) &&
+    (type === "strategy" || type === "industry" || type === "service");
   const isStrategyMenu = type === "strategy";
   const isIndustryMenu = type === "industry";
   const isServiceMenu = type === "service";
@@ -3128,6 +3130,53 @@ export default function ContentTab({
   const isPremiumNav = isIndustryMenu || isStrategyMenu || isServiceMenu;
   /** Wider sticky rail + industry scrollbar (service matches Industries) */
   const isWideStickyNav = isIndustryMenu || isServiceMenu;
+  const navGroupShellClass = isIndustryMenu
+    ? "shrink-0 rounded-[1rem] bg-white/[0.02]"
+    : isStrategyMenu
+      ? "shrink-0 rounded-[1rem] bg-white/[0.04]"
+      : isServiceMenu
+        ? "shrink-0 rounded-[1rem] bg-white/[0.02]"
+        : "shrink-0 rounded-lg bg-white/5 ring-1 ring-white/[0.04]";
+  const navGroupButtonClass = (isGroupHighlighted) => {
+    if (isIndustryMenu || isStrategyMenu || isServiceMenu) {
+      return isGroupHighlighted
+        ? "text-white"
+        : "text-gray-off-white/88 hover:bg-white/[0.05] hover:text-white";
+    }
+
+    return isGroupHighlighted
+      ? "bg-[#e7512f] text-gray-off-white"
+      : "text-gray-off-white/88 hover:bg-white/5 hover:text-gray-off-white";
+  };
+  const navChildButtonClass = (isActive) => {
+    if (isIndustryMenu || isStrategyMenu || isServiceMenu) {
+      return isActive
+        ? "text-white"
+        : "text-gray-off-white/76 hover:bg-white/[0.06] hover:text-white";
+    }
+
+    return isActive
+      ? "bg-[#e7512f] text-gray-off-white"
+      : "text-gray-off-white/78 hover:bg-white/5 hover:text-gray-off-white";
+  };
+  const navChevronClass = (isHighlighted) =>
+    isPremiumNav
+      ? isHighlighted
+        ? "text-white"
+        : "text-gray-off-white/70"
+      : isHighlighted
+        ? "text-gray-off-white"
+        : "text-gray-off-white/70";
+  const navDotClass = (isActive) =>
+    isPremiumNav
+      ? isActive
+        ? "h-2 w-2 rounded-full bg-white"
+        : "h-[1px] w-3 bg-white/35"
+      : isActive
+        ? "h-[1px] w-3 bg-white/90"
+        : "h-[1px] w-3 bg-white/35";
+  const navNestedShellClass =
+    "overflow-hidden rounded-[0.8rem] bg-white/[0.03]";
   const sidebarViewportStyle = {
     maxHeight: "calc(100vh - 17rem)",
   };
@@ -3151,8 +3200,9 @@ export default function ContentTab({
   return (
     <section className="isolate bg-[#1C211E] antialiased">
       <div className="container pb-block pt-24 sm:pt-28 md:pt-12 lg:pt-14">
+        <div className="flex flex-col gap-6 lg:min-h-[33rem] xl:min-h-[37rem]">
         {introTitle ? (
-          <div className="mb-3xl flex flex-col gap-xl">
+          <div className="flex flex-col gap-xl">
             <div className="flex max-w-4xl flex-col gap-sm md:gap-md">
               <h2
                 id="a-decentralized-world-needs-strong-governance"
@@ -3168,7 +3218,7 @@ export default function ContentTab({
           </div>
         ) : null}
 
-        <section className="flex flex-col gap-6 lg:min-h-[33rem] lg:flex-row lg:items-stretch lg:gap-8 xl:min-h-[37rem] xl:gap-10">
+        <div className="flex flex-1 flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-8 xl:gap-10">
           <div
             className={`${hideMenuOnMobile ? "hidden lg:block" : ""} ${isIndustryMenu ? "lg:w-[21rem] xl:w-[22rem]" : isWideStickyNav ? "lg:w-[21rem] xl:w-[22rem]" : "lg:w-[18rem]"} lg:shrink-0`}
           >
@@ -3207,15 +3257,7 @@ export default function ContentTab({
                       return (
                         <div
                           key={menuGroup.title}
-                          className={`overflow-hidden ${
-                            isIndustryMenu
-                              ? "shrink-0 rounded-[1rem] bg-white/[0.02]"
-                              : isStrategyMenu
-                                ? "shrink-0 rounded-[1rem] bg-white/[0.04]"
-                                : isServiceMenu
-                                  ? "shrink-0 rounded-[1rem] bg-white/[0.02]"
-                                  : "shrink-0 rounded-lg bg-white/5 ring-1 ring-white/[0.04]"
-                          }`}
+                          className={`overflow-hidden ${navGroupShellClass}`}
                         >
                           <button
                             type="button"
@@ -3240,23 +3282,7 @@ export default function ContentTab({
                               setExpandedGroup(menuGroup.title);
                               setActiveHref(menuGroup.href);
                             }}
-                            className={`relative flex min-h-[3.55rem] w-full shrink-0 items-center justify-between overflow-hidden rounded-[0.95rem] px-4 py-3 text-left transition-colors duration-200 ${
-                              isIndustryMenu
-                                ? isGroupHighlighted
-                                  ? "text-white"
-                                  : "text-gray-off-white/88 hover:bg-white/[0.05] hover:text-white"
-                                : isStrategyMenu
-                                  ? isGroupHighlighted
-                                    ? "text-white"
-                                    : "text-gray-off-white/88 hover:bg-white/[0.06] hover:text-white"
-                                  : isServiceMenu
-                                    ? isGroupHighlighted
-                                      ? "text-white"
-                                      : "text-gray-off-white/88 hover:bg-white/[0.05] hover:text-white"
-                                    : isGroupHighlighted
-                                      ? "bg-[#e7512f] text-gray-off-white"
-                                      : "text-gray-off-white/88 hover:bg-white/5 hover:text-gray-off-white"
-                            }`}
+                            className={`relative flex min-h-[3.55rem] w-full shrink-0 items-center justify-between overflow-hidden rounded-[0.95rem] px-4 py-3 text-left transition-colors duration-200 ${navGroupButtonClass(isGroupHighlighted)}`}
                           >
                             {(isIndustryMenu || isStrategyMenu || isServiceMenu) &&
                             isGroupHighlighted ? (
@@ -3290,15 +3316,7 @@ export default function ContentTab({
                               <motion.span
                                 animate={{ rotate: isExpanded ? 180 : 0 }}
                                 transition={{ duration: 0.24, ease: "easeOut" }}
-                                className={`shrink-0 text-[0.82rem] ${
-                                  isPremiumNav
-                                    ? isGroupHighlighted
-                                      ? "text-white"
-                                      : "text-gray-off-white/70"
-                                    : isGroupHighlighted
-                                      ? "text-gray-off-white"
-                                      : "text-gray-off-white/70"
-                                }`}
+                                className={`shrink-0 text-[0.82rem] ${navChevronClass(isGroupHighlighted)}`}
                               >
                                 ▼
                               </motion.span>
@@ -3342,19 +3360,7 @@ export default function ContentTab({
                                           }
                                           className={`relative flex min-h-[2.8rem] w-full shrink-0 items-center gap-3 overflow-hidden rounded-[0.8rem] py-2 text-left transition ${
                                             nested ? "pl-5 pr-3" : "px-3"
-                                          } ${
-                                            isIndustryMenu
-                                              ? isActive
-                                                ? "text-white"
-                                                : "text-gray-off-white/76 hover:bg-white/[0.06] hover:text-white"
-                                              : isStrategyMenu || isServiceMenu
-                                                ? isActive
-                                                  ? "text-white"
-                                                  : "text-gray-off-white/76 hover:bg-white/[0.06] hover:text-white"
-                                                : isActive
-                                                  ? "bg-[#e7512f] text-gray-off-white"
-                                                  : "text-gray-off-white/78 hover:bg-white/5 hover:text-gray-off-white"
-                                          }`}
+                                          } ${navChildButtonClass(isActive)}`}
                                         >
                                           {(isIndustryMenu ||
                                             isStrategyMenu ||
@@ -3378,17 +3384,7 @@ export default function ContentTab({
                                             />
                                           ) : null}
                                           <span
-                                            className={`relative z-10 shrink-0 transition ${
-                                              isIndustryMenu ||
-                                              isStrategyMenu ||
-                                              isServiceMenu
-                                                ? isActive
-                                                  ? "h-2 w-2 rounded-full bg-white"
-                                                  : "h-[1px] w-3 bg-white/35 group-hover:bg-white/55"
-                                                : isActive
-                                                  ? "h-[1px] w-3 bg-white/90"
-                                                  : "h-[1px] w-3 bg-white/35 group-hover:bg-white/55"
-                                            }`}
+                                            className={`relative z-10 shrink-0 transition ${navDotClass(isActive)}`}
                                           />
                                           <motion.span
                                             className={`relative z-10 leading-[1.2] ${
@@ -3428,7 +3424,7 @@ export default function ContentTab({
                                       return (
                                         <div
                                           key={item.href}
-                                          className="overflow-hidden rounded-[0.8rem] bg-white/[0.03]"
+                                          className={navNestedShellClass}
                                         >
                                           <button
                                             type="button"
@@ -3441,19 +3437,7 @@ export default function ContentTab({
                                                     : item.href,
                                               )
                                             }
-                                            className={`relative flex min-h-[2.8rem] w-full shrink-0 items-center justify-between gap-2 overflow-hidden rounded-[0.8rem] px-3 py-2 text-left transition ${
-                                              isIndustryMenu
-                                                ? parentHighlighted
-                                                  ? "text-white"
-                                                  : "text-gray-off-white/76 hover:bg-white/[0.06] hover:text-white"
-                                                : isStrategyMenu || isServiceMenu
-                                                  ? parentHighlighted
-                                                    ? "text-white"
-                                                    : "text-gray-off-white/76 hover:bg-white/[0.06] hover:text-white"
-                                                  : parentHighlighted
-                                                    ? "bg-[#e7512f] text-gray-off-white"
-                                                    : "text-gray-off-white/78 hover:bg-white/5 hover:text-gray-off-white"
-                                            }`}
+                                            className={`relative flex min-h-[2.8rem] w-full shrink-0 items-center justify-between gap-2 overflow-hidden rounded-[0.8rem] px-3 py-2 text-left transition ${navChildButtonClass(parentHighlighted)}`}
                                           >
                                             {(isIndustryMenu ||
                                               isStrategyMenu ||
@@ -3478,15 +3462,7 @@ export default function ContentTab({
                                                 duration: 0.22,
                                                 ease: "easeOut",
                                               }}
-                                              className={`relative z-10 shrink-0 text-[0.72rem] ${
-                                                isPremiumNav
-                                                  ? parentHighlighted
-                                                    ? "text-white"
-                                                    : "text-gray-off-white/70"
-                                                  : parentHighlighted
-                                                    ? "text-gray-off-white"
-                                                    : "text-gray-off-white/70"
-                                              }`}
+                                              className={`relative z-10 shrink-0 text-[0.72rem] ${navChevronClass(parentHighlighted)}`}
                                               aria-hidden
                                             >
                                               ▼
@@ -3581,16 +3557,20 @@ export default function ContentTab({
             </div>
           </div>
 
-          <div className="relative min-w-0 flex-1">
+          <div className="relative flex min-w-0 flex-1 lg:min-h-[33rem]">
             <motion.div
               id={getPanelId(activeItem)}
               role="tabpanel"
               aria-labelledby={getTabId(activeItem)}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
-              className={`flex flex-col overflow-hidden transition-shadow duration-300 bevel md:h-full ${
-                detailContent ? "" : "md:flex-row-reverse"
-              } ${panelClassName} shadow-[0_28px_64px_-10px_rgba(0,0,0,0.28)]`}
+              className={`flex min-h-0 flex-1 flex-col overflow-hidden md:h-full ${
+                detailContent
+                  ? isLightDetailPanel
+                    ? "bevel"
+                    : "bevel shadow-[0_28px_64px_-10px_rgba(0,0,0,0.28)]"
+                  : `bevel md:flex-row-reverse ${panelClassName} shadow-[0_28px_64px_-10px_rgba(0,0,0,0.28)]`
+              }`}
             >
               {!detailContent ? (
                 <div className="h-[16rem] bevel sm:h-[18rem] lg:h-full lg:flex-1 relative">
@@ -3621,12 +3601,12 @@ export default function ContentTab({
               >
                 {detailContent ? (
                   <motion.div
-                    className={`flex h-full min-h-0 flex-col overflow-y-auto lg:max-h-[38rem] ${
-                      isStrategyDetailPanel
+                    className={`flex h-full min-h-0 flex-col overflow-y-auto ${
+                      isLightDetailPanel ? "" : "lg:max-h-[38rem]"
+                    } ${
+                      isLightDetailPanel
                         ? "bg-[#E7ECE3]"
-                        : isIndustryDetailPanel
-                          ? "bg-[#EC9B9B]"
-                          : "bg-gray-defi-charcoal/95"
+                        : "bg-gray-defi-charcoal/95"
                     } [scrollbar-color:#e7512f_rgba(255,255,255,0.06)] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-white/[0.05] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[linear-gradient(180deg,#ff7f5f_0%,#e7512f_100%)] [&::-webkit-scrollbar-thumb]:shadow-[0_0_0_1px_rgba(255,255,255,0.06)] [&::-webkit-scrollbar-thumb:hover]:bg-[linear-gradient(180deg,#ff9477_0%,#f16441_100%)]`}
                     variants={{
                       hidden: { opacity: 0, y: 8 },
@@ -3636,7 +3616,7 @@ export default function ContentTab({
                   >
                     <div
                       className={`px-5 py-6 md:px-7 md:py-7 ${
-                        isStrategyDetailPanel
+                        isLightDetailPanel
                           ? "border-b border-black/10 bg-gradient-to-r from-black/[0.03] to-transparent"
                           : "border-b border-white/10 bg-gradient-to-r from-white/[0.07] to-transparent"
                       }`}
@@ -3651,7 +3631,7 @@ export default function ContentTab({
                       <div className="mt-5 flex flex-col gap-4 md:mt-6">
                         <h3
                           className={`max-w-3xl text-balance font-blender text-[1.25rem] uppercase leading-[1.08] tracking-[0.01em] md:text-[2.05rem] ${
-                            isStrategyDetailPanel
+                            isLightDetailPanel
                               ? "text-gray-night-green"
                               : "text-gray-off-white"
                           }`}
@@ -3663,7 +3643,7 @@ export default function ContentTab({
                         </div>
                         <p
                           className={`max-w-[44rem] text-pretty text-[0.98rem] leading-[1.7] md:text-[1.04rem] md:leading-[1.72] ${
-                            isStrategyDetailPanel
+                            isLightDetailPanel
                               ? "text-gray-night-green/88"
                               : "text-gray-off-white/88"
                           }`}
@@ -3677,7 +3657,7 @@ export default function ContentTab({
                       <div className="min-h-0 flex-1 pr-1 md:pr-2">
                         <div
                           className={`space-y-6 text-[0.98rem] leading-[1.7] tracking-[0.01em] md:text-[1.02rem] md:leading-[1.72] ${
-                            isStrategyDetailPanel
+                            isLightDetailPanel
                               ? "text-gray-night-green/85"
                               : "text-gray-off-white/85"
                           }`}
@@ -3694,7 +3674,7 @@ export default function ContentTab({
                                 <div
                                   key={section.title}
                                   className={`rounded-[0.95rem] px-4 py-4 transition-shadow duration-200 hover:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.35)] md:px-5 md:py-5 ${
-                                    isStrategyDetailPanel
+                                    isLightDetailPanel
                                       ? "border border-black/10 bg-black/[0.02] hover:border-black/15"
                                       : "border border-white/10 bg-white/[0.04] hover:border-white/15"
                                   }`}
@@ -3705,7 +3685,7 @@ export default function ContentTab({
                                       {section.title ? (
                                         <h4
                                           className={`text-[1rem] font-medium leading-7 tracking-[0.01em] md:text-[1.12rem] ${
-                                            isStrategyDetailPanel
+                                            isLightDetailPanel
                                               ? "text-gray-night-green"
                                               : "text-gray-off-white"
                                           }`}
@@ -3716,7 +3696,7 @@ export default function ContentTab({
                                       {section.body ? (
                                         <p
                                           className={`mt-2 max-w-[42rem] text-[0.95rem] leading-8 md:text-[1rem] ${
-                                            isStrategyDetailPanel
+                                            isLightDetailPanel
                                               ? "text-gray-night-green/78"
                                               : "text-gray-off-white/78"
                                           }`}
@@ -3727,7 +3707,7 @@ export default function ContentTab({
                                       {section.bullets?.length ? (
                                         <div
                                           className={`mt-3 space-y-3.5 text-[0.95rem] leading-8 md:text-[1rem] ${
-                                            isStrategyDetailPanel
+                                            isLightDetailPanel
                                               ? "text-gray-night-green/78"
                                               : "text-gray-off-white/78"
                                           }`}
@@ -3755,7 +3735,7 @@ export default function ContentTab({
                           {detailContent.closing ? (
                             <div
                               className={`max-w-[46rem] pt-6 ${
-                                isStrategyDetailPanel
+                                isLightDetailPanel
                                   ? "border-t border-black/10"
                                   : "border-t border-white/10"
                               } ${detailContent.closingHref ? "flex justify-center" : ""}`}
@@ -3776,7 +3756,7 @@ export default function ContentTab({
                               ) : (
                                 <div
                                   className={`whitespace-pre-line text-[0.96rem] leading-[1.7] md:text-[1rem] md:leading-relaxed ${
-                                    isStrategyDetailPanel
+                                    isLightDetailPanel
                                       ? "text-gray-night-green/78"
                                       : "text-gray-off-white/78"
                                   }`}
@@ -3817,7 +3797,8 @@ export default function ContentTab({
               </motion.div>
             </motion.div>
           </div>
-        </section>
+        </div>
+        </div>
       </div>
     </section>
   );
