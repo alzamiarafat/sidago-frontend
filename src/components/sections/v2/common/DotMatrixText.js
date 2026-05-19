@@ -97,6 +97,8 @@ export function DotMatrixText({
   active,
   activeDotColor,
   fontFamily = "saans, sans-serif",
+  displayWidth,
+  displayHeight,
 }) {
   const measureCanvasRef = useRef(null);
   const drawCanvasRef = useRef(null);
@@ -112,7 +114,7 @@ export function DotMatrixText({
 
   useEffect(() => {
     const remeasure = () => {
-      const fontSize = matchesScreen("xl") ? fontSizeDesktop : fontSizeMobile;
+      const fontSize = matchesScreen("lg") ? fontSizeDesktop : fontSizeMobile;
       const font = `900 ${fontSize}px/1 ${fontFamily}`;
 
       const done = () => {
@@ -286,15 +288,37 @@ export function DotMatrixText({
     [canvasW],
   );
 
+  const useFixedBox =
+    displayWidth &&
+    displayHeight &&
+    canvasW > 0 &&
+    fontPx > 0 &&
+    matchesScreen("lg");
+
+  const scaleStyle = useFixedBox
+    ? {
+        transform: `scale(${displayWidth / canvasW}, ${displayHeight / fontPx})`,
+        transformOrigin: "left top",
+        width: canvasW,
+        height: fontPx,
+      }
+    : undefined;
+
+  const outerStyle = useFixedBox
+    ? { width: displayWidth, height: displayHeight }
+    : widthStyle;
+
   return (
-    <div style={widthStyle}>
-      <canvas
-        ref={measureCanvasRef}
-        className="hidden"
-        height={fontPx || 0}
-        width={canvasW || 0}
-      />
-      <canvas ref={drawCanvasRef} height={fontPx || 0} width={canvasW || 0} />
+    <div style={outerStyle}>
+      <div style={scaleStyle}>
+        <canvas
+          ref={measureCanvasRef}
+          className="hidden"
+          height={fontPx || 0}
+          width={canvasW || 0}
+        />
+        <canvas ref={drawCanvasRef} height={fontPx || 0} width={canvasW || 0} />
+      </div>
     </div>
   );
 }

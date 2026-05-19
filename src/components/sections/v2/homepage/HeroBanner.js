@@ -5,14 +5,16 @@ function HeroCtaButton({ label, href }) {
   return (
     <Link
       href={href}
-      className="group mt-6 inline-flex items-center gap-2 rounded-md bg-green-dark px-5 py-2.5 text-sm font-medium text-gray-night-green transition duration-300 hover:-translate-y-0.5 hover:bg-[#ff6b47] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-dark"
+      style={{ position: "relative" }}
+      className="group/interactive mt-6 inline-flex items-center justify-between gap-md bevel bevel-[0.25rem] bg-[#E3502E] px-md py-sm text-sm font-medium text-gray-night-green transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E3502E]"
     >
       {label}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 40 40"
-        className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
+        className="ml-[--arrow-offset] h-4 w-4 shrink-0 transition-all group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset]"
+        style={{ "--arrow-offset": "0.4rem" }}
         aria-hidden="true"
       >
         <path
