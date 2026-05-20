@@ -14,7 +14,7 @@ export default function AvailablePartner({
     typeof titleColor === "string" &&
     (titleColor.includes("text-white") || titleColor.includes("white"));
 
-  const sectionBg = isDarkSurface ? "bg-transparent" : bgColor;
+  const sectionBg = bgColor;
 
   /** Legacy WordPress / site client marks (raster, typically on white) */
   const logos = [

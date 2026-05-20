@@ -148,19 +148,44 @@ function normalizeCapabilityItem(item, fallbackItem) {
   };
 }
 
+const CARDS_GRID_THEME_BY_ID = {
+  "research-data": {
+    bgClass: "bg-[#EC9B9B]",
+    textClass: "text-black",
+  },
+  "marketing-growth": {
+    bgClass: "bg-[#AEA9EA]",
+    textClass: "text-black",
+  },
+  "support-compliance": {
+    bgClass: "bg-[#7FB2F1]",
+    textClass: "text-black",
+  },
+  "process-improvement": {
+    bgClass: "bg-[#333935]",
+  },
+};
+
 function normalizeCardsGridItem(item, fallbackItem) {
   if (!item?.cardId || !item?.href || !item?.title) {
     return fallbackItem;
   }
 
+  const cardId = item.cardId.trim();
+  const theme = CARDS_GRID_THEME_BY_ID[cardId];
+  const bgClass =
+    theme?.bgClass || item.bgClass?.trim() || fallbackItem.bgClass;
+  const textClass =
+    theme?.textClass || item.textClass?.trim() || fallbackItem.textClass;
+
   return {
     ...fallbackItem,
     ...item,
-    cardId: item.cardId.trim(),
+    cardId,
     href: item.href.trim(),
     srLabel: item.srLabel?.trim() || fallbackItem.srLabel || item.title,
-    bgClass: item.bgClass?.trim() || fallbackItem.bgClass,
-    textClass: item.textClass?.trim() || fallbackItem.textClass,
+    bgClass,
+    textClass,
     colSpan: item.colSpan?.trim() || fallbackItem.colSpan,
     title: item.title.trim(),
     subtitle: item.subtitle?.trim() || "",
@@ -232,22 +257,38 @@ function normalizeFooterLegalBlock(item, fallbackItem) {
   };
 }
 
+function normalizeFooterNavLinks(navLinks) {
+  const brandFallback = defaultGlobalSettings.footer.navLinks.find(
+    (link) => link.label === "Brand",
+  );
+
+  const mapped = navLinks
+    .slice()
+    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+    .map((link, index) =>
+      normalizeFooterLink(
+        link,
+        defaultGlobalSettings.footer.navLinks[index] ||
+          defaultGlobalSettings.footer.navLinks[0],
+      ),
+    );
+
+  const hasBrand = mapped.some(
+    (link) => link.label?.trim().toLowerCase() === "brand",
+  );
+
+  if (!hasBrand && brandFallback) {
+    return [...mapped, brandFallback];
+  }
+
+  return mapped;
+}
+
 function normalizeFooter(footer) {
   return {
     navLinks:
       footer.navLinks?.length > 0
-        ? footer.navLinks
-            .slice()
-            .sort(
-              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
-            )
-            .map((link, index) =>
-              normalizeFooterLink(
-                link,
-                defaultGlobalSettings.footer.navLinks[index] ||
-                  defaultGlobalSettings.footer.navLinks[0],
-              ),
-            )
+        ? normalizeFooterNavLinks(footer.navLinks)
         : defaultGlobalSettings.footer.navLinks,
     socialLinks:
       footer.socialLinks?.length > 0

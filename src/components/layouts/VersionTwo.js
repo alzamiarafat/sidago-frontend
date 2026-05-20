@@ -54,7 +54,7 @@ export default function Home({ homepage = defaultHomepage, settings }) {
           />
           <Feed />
           <CardsGrid items={cardsGrid} />
-          <AvailablePartner bgColor="bg-[#151916]" titleColor="text-white" />
+          <AvailablePartner bgColor="bg-[#1c2420]" titleColor="text-white" />
           <CTASection items={cta} />
           <Footer footer={footer} />
         </main>

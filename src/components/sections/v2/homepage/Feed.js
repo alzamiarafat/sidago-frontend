@@ -1,3 +1,5 @@
+import FeedPostCarousel from "./FeedPostCarousel";
+
 export default function Feed() {
   return (
     <section className="bg-gray-defi-graphite bevel -my-lg">
@@ -94,15 +96,7 @@ export default function Feed() {
                     ></path>
                   </svg>
                 </div>
-                <div className="relative h-[20rem] lg:h-[21.25rem]">
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 1,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
+                <FeedPostCarousel intervalMs={5000}>
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -138,15 +132,6 @@ export default function Feed() {
                           src="images/image.png"
                         /></a>
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -171,15 +156,6 @@ export default function Feed() {
                         ></a
                       >
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -202,15 +178,6 @@ export default function Feed() {
                         ></a
                       >
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -244,15 +211,6 @@ export default function Feed() {
                           src="images/image_2.png"
                         /></a>
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -286,16 +244,6 @@ export default function Feed() {
                         <span>Read article here</span></a
                       >
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -420,15 +368,6 @@ export default function Feed() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -467,15 +406,6 @@ export default function Feed() {
                           src="images/image_2.jpg"
                         /></a>
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -512,15 +442,6 @@ export default function Feed() {
                           src="images/image_3.png"
                         /></a>
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -560,15 +481,6 @@ export default function Feed() {
                           src="images/image_3.jpg"
                         /></a>
                     </div>
-                  </div>
-                  <div
-                    className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style={{
-                      opacity: 0,
-                      mask: "linear-gradient(to top, transparent, white 4rem)",
-                      pointerEvents: "none",
-                    }}
-                  >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
@@ -615,8 +527,7 @@ export default function Feed() {
                           src="images/image_4.jpg"
                         /></a>
                     </div>
-                  </div>
-                </div>
+                </FeedPostCarousel>
                 <div
                   className="flex flex-row items-center gap-xs text-sm text-gray-defi-ash"
                 >

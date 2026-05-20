@@ -105,7 +105,7 @@ export default function StrategyPageTemplate({ strategyGroups = [] }) {
           {/* <Investment /> */}
           {/* <BuildingProduct /> */}
           {/* <WorkOverview /> */}
-          <AvailablePartner bgColor="bg-[#151916]" titleColor="text-white" />
+          <AvailablePartner bgColor="bg-[#1c2420]" titleColor="text-white" />
           <CTASection />
           <Footer />
         </main>

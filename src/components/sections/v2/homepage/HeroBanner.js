@@ -41,7 +41,7 @@ export default function HeroBannerSection({
   videoClass,
   fontWeight,
   lighterTheme = false,
-  loop = true,
+  loop = false,
   lighterBgColor = "bg-[#f0f1f1]",
 }) {
   return (
@@ -75,12 +75,10 @@ export default function HeroBannerSection({
               className="h-full w-full lg:object-cover object-cover text-green-dark"
               autoPlay
               muted
-              loop={loop}
+              loop={false}
               playsInline
               preload="auto"
-              {...(videoPoster?.trim()
-                ? { poster: videoPoster.trim() }
-                : {})}
+              {...(videoPoster?.trim() ? { poster: videoPoster.trim() } : {})}
               src={videoSrc}
             />
           </div>
@@ -104,11 +102,10 @@ export default function HeroBannerSection({
         )}
 
         <div
-          className={`absolute inset-0 ${
-            lighterTheme
+          className={`absolute inset-0 ${lighterTheme
               ? "bg-gradient-to-r from-white/0 to-white/0 opacity-0"
               : "bg-gradient-to-r from-black to-transparent opacity-10"
-          }`}
+            }`}
         ></div>
 
         {/* <div className="absolute inset-0 bg-gradient-to-t from-gray-night-green to-transparent opacity-30 lg:bg-gradient-to-r lg:from-gray-night-green lg:to-transparent"></div> */}

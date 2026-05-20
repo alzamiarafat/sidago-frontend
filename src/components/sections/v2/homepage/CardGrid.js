@@ -2,14 +2,16 @@ import Link from "next/link";
 import { FiShield } from "react-icons/fi";
 import EventDecoration from "@/src/components/ui/EventDecoration";
 
-const ArrowIcon = ({ size = "mobile" }) => (
+const ArrowIcon = ({ size = "mobile", tone = "light" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 40 40"
-    className={`ml-[--arrow-offset] shrink-0 text-white/65 transition-all group-hover/interactive:text-white group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] ${
-      size === "mobile" ? "lg:hidden" : "hidden lg:block"
-    }`}
+    className={`ml-[--arrow-offset] shrink-0 transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] ${
+      tone === "dark"
+        ? "text-black/65 group-hover/interactive:text-black"
+        : "text-white/65 group-hover/interactive:text-white"
+    } ${size === "mobile" ? "lg:hidden" : "hidden lg:block"}`}
     style={{
       "--arrow-offset": size === "mobile" ? "0.85rem" : "1rem",
       width: size === "mobile" ? "2.25rem" : "2.75rem",
@@ -129,7 +131,7 @@ const LEADING_ICON_MAP = {
   shield: FiShield,
 };
 
-function LeadingIcon({ type }) {
+function LeadingIcon({ type, tone = "light" }) {
   if (!type) {
     return null;
   }
@@ -140,7 +142,11 @@ function LeadingIcon({ type }) {
 
   return (
     <span
-      className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-white/85 ring-1 ring-inset ring-white/[0.08] backdrop-blur-[2px] lg:h-16 lg:w-16"
+      className={`inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset backdrop-blur-[2px] lg:h-16 lg:w-16 ${
+        tone === "dark"
+          ? "bg-black/[0.06] text-black/85 ring-black/[0.08]"
+          : "bg-white/[0.06] text-white/85 ring-white/[0.08]"
+      }`}
       aria-hidden
     >
       <Icon className="h-7 w-7 lg:h-8 lg:w-8" strokeWidth={1.35} />
@@ -148,7 +154,55 @@ function LeadingIcon({ type }) {
   );
 }
 
+const LIGHT_CARD_THEME = {
+  textClass: "text-black",
+  titleClass: "text-black",
+  subtitleClass: "text-black/60",
+  arrowTone: "dark",
+  ringClass: "ring-black/[0.08]",
+};
+
+const CARD_THEMES = {
+  "research-data": {
+    ...LIGHT_CARD_THEME,
+    bgClass: "bg-[#EC9B9B]",
+  },
+  "marketing-growth": {
+    ...LIGHT_CARD_THEME,
+    bgClass: "bg-[#AEA9EA]",
+  },
+  "support-compliance": {
+    ...LIGHT_CARD_THEME,
+    bgClass: "bg-[#7FB2F1]",
+  },
+  "process-improvement": {
+    bgClass: "bg-[#333935]",
+    textClass: "text-white",
+    titleClass: "text-white",
+    subtitleClass: "text-white/50",
+    arrowTone: "light",
+    ringClass: "ring-white/[0.06]",
+  },
+};
+
+function resolveCardTheme(card) {
+  const themed = CARD_THEMES[card.cardId];
+  if (themed) {
+    return themed;
+  }
+
+  return {
+    bgClass: card.bgClass,
+    textClass: card.textClass,
+    titleClass: "text-white",
+    subtitleClass: "text-white/50",
+    arrowTone: "light",
+    ringClass: "ring-white/[0.06]",
+  };
+}
+
 function Card({ card }) {
+  const theme = resolveCardTheme(card);
   return (
     <Link
       href={card.href}
@@ -158,30 +212,34 @@ function Card({ card }) {
       <span className="sr-only">{card.srLabel}</span>
 
       <div
-        className={`relative flex h-full min-h-[inherit] flex-col justify-between overflow-hidden p-6 bevel ring-1 ring-inset ring-white/[0.06] transition-[box-shadow,filter] duration-300 after:pointer-events-none after:absolute after:inset-0 after:bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_42%)] after:opacity-0 after:transition-opacity after:duration-300 group-hover/interactive:after:opacity-100 lg:p-8 ${card.bgClass} ${card.textClass} group-hover/interactive:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_24px_48px_rgba(0,0,0,0.45)]`}
+        className={`relative flex h-full min-h-[inherit] flex-col justify-between overflow-hidden p-6 bevel ring-1 ring-inset transition-[box-shadow,filter] duration-300 after:pointer-events-none after:absolute after:inset-0 after:bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_42%)] after:opacity-0 after:transition-opacity after:duration-300 group-hover/interactive:after:opacity-100 lg:p-8 ${theme.bgClass} ${theme.textClass} ${theme.ringClass} group-hover/interactive:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_24px_48px_rgba(0,0,0,0.45)]`}
       >
         {resolveDecoration(card.decorationType)}
         <div className="relative z-[1] flex min-h-[4.25rem] shrink-0 items-start pt-1">
           {resolveTop(card.topType) ?? (
-            <LeadingIcon type={card.leadingIcon} />
+            <LeadingIcon type={card.leadingIcon} tone={theme.arrowTone} />
           )}
         </div>
 
         <div className="relative z-10 mt-auto flex items-end justify-between gap-4">
           <div className="flex min-w-0 flex-col gap-2">
-            <div className="text-[1.35rem] font-medium leading-[1.15] tracking-[-0.02em] text-white lg:text-[1.6rem] xl:text-[1.7rem]">
+            <div
+              className={`text-[1.35rem] font-medium leading-[1.15] tracking-[-0.02em] lg:text-[1.6rem] xl:text-[1.7rem] ${theme.titleClass}`}
+            >
               {card.title}
             </div>
             {card.subtitle ? (
-              <div className="max-w-[22rem] text-sm leading-relaxed text-white/50 lg:text-[0.95rem]">
+              <div
+                className={`max-w-[22rem] text-sm leading-relaxed lg:text-[0.95rem] ${theme.subtitleClass}`}
+              >
                 {card.subtitle}
               </div>
             ) : null}
           </div>
 
           <div className="shrink-0 self-end pb-0.5">
-            <ArrowIcon size="mobile" />
-            <ArrowIcon size="desktop" />
+            <ArrowIcon size="mobile" tone={theme.arrowTone} />
+            <ArrowIcon size="desktop" tone={theme.arrowTone} />
           </div>
         </div>
       </div>
@@ -198,9 +256,9 @@ export default function CardsGrid({ items = [] }) {
   }
 
   return (
-    <section className="bg-[#020403] text-white">
+    <section className="bg-transparent text-white">
       <div className="container py-12 md:py-20 lg:py-28">
-        <div className="group/cards pointer-events-none relative flex flex-col gap-3 lg:grid lg:grid-cols-12 lg:gap-px lg:bg-white/[0.07] lg:p-px">
+        <div className="group/cards pointer-events-none relative flex flex-col gap-3 bg-transparent lg:grid lg:grid-cols-12 lg:gap-px lg:p-px">
           {cards.map((card) => (
             <Card key={card.cardId} card={card} />
           ))}
