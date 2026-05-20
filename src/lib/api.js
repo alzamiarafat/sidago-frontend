@@ -114,8 +114,6 @@ function normalizeStatisticItem(item, fallbackItem) {
     stat: `${item.stat}`.trim() || fallbackItem.stat,
     label: item.label.trim(),
     activeDotColor: item.activeDotColor || fallbackItem.activeDotColor,
-    matrixDotColor: item.matrixDotColor || fallbackItem.matrixDotColor,
-    labelColor: item.labelColor || fallbackItem.labelColor,
   };
 }
 

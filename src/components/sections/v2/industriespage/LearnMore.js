@@ -21,7 +21,7 @@ export default function LearnMore() {
               <div class="group/cards grid grid-cols-1 gap-xl lg:grid-cols-4">
                 <div>
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"
@@ -75,7 +75,7 @@ export default function LearnMore() {
                 </div>
                 <div>
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"
@@ -129,7 +129,7 @@ export default function LearnMore() {
                 </div>
                 <div>
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"
@@ -185,7 +185,7 @@ export default function LearnMore() {
                 </div>
                 <div class="hidden lg:block">
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"
@@ -465,7 +465,7 @@ export default function LearnMore() {
                   }}
                 >
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"
@@ -524,7 +524,7 @@ export default function LearnMore() {
                   }}
                 >
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"
@@ -583,7 +583,7 @@ export default function LearnMore() {
                   }}
                 >
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"
@@ -644,7 +644,7 @@ export default function LearnMore() {
                   }}
                 >
                   <a
-                    referrerpolicy="no-referrer"
+                    referrerPolicy="no-referrer"
                     rel="nofollow"
                     style={{ position: "relative" }}
                     target="_blank"

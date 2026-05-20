@@ -17,16 +17,16 @@ function TrackerRow({ coin, dimmed = false }) {
       </div>
 
       <div className="flex items-center justify-center">
-        <span className="font-blender text-xl uppercase tracking-[0.18em] text-gray-tradfi-silver sm:text-2xl md:text-[2rem] lg:text-[2.25rem]">
+        <span className="font-blender text-2xl uppercase tracking-[0.18em] text-gray-tradfi-silver sm:text-3xl md:text-[2.75rem] lg:text-[3.5rem]">
           {coin.price}
         </span>
       </div>
 
       <div className="flex items-center justify-end gap-1 sm:gap-2">
-        <span className="font-blender text-xl uppercase tracking-[0.14em] text-[#ec5b5b] sm:text-2xl md:text-[2rem] lg:text-[2.25rem]">
+        <span className="font-blender text-2xl uppercase tracking-[0.14em] text-[#ec5b5b] sm:text-3xl md:text-[2.65rem] lg:text-[3.35rem]">
           {coin.avg}
         </span>
-        <TiArrowSortedDown className="text-2xl text-[#ec5b5b] sm:text-[1.9rem] lg:text-[2.4rem]" />
+        <TiArrowSortedDown className="text-3xl text-[#ec5b5b] sm:text-[2.75rem] lg:text-[3.5rem]" />
       </div>
     </div>
   );

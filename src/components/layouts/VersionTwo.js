@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import HeroBannerSection from "../sections/v2/homepage/HeroBanner";
 import LazyNavigation from "../sections/v2/common/LazyNavigation";
 import { defaultHomepage } from "@/src/data/cms/defaults";
+import Feed from "../sections/v2/homepage/Feed";
 
 const InsightNews = dynamic(() =>
   import("../sections/v2/homepage/InsightNews"),
@@ -26,6 +27,7 @@ export default function Home({ homepage = defaultHomepage, settings }) {
   const statistics = homepage?.statistics || defaultHomepage.statistics;
   const marketTicker = homepage?.marketTicker || defaultHomepage.marketTicker;
   const capabilities = homepage?.capabilities || defaultHomepage.capabilities;
+  const whoWeServe = homepage?.whoWeServe || defaultHomepage.whoWeServe;
   const cardsGrid = homepage?.cardsGrid || defaultHomepage.cardsGrid;
   const cta = homepage?.cta || defaultHomepage.cta;
   const footer = settings?.footer;
@@ -45,11 +47,12 @@ export default function Home({ homepage = defaultHomepage, settings }) {
           <MarketTicker items={marketTicker} />
           <Capabilities
             items={capabilities}
+            whoWeServe={whoWeServe}
             bgColor="bg-black"
             textColor="text-white"
-            hoverColor="bg-gray-defi-shadow"
             borderColor="bg-gray-defi-shadow"
           />
+          <Feed />
           <CardsGrid items={cardsGrid} />
           <AvailablePartner bgColor="bg-[#151916]" titleColor="text-white" />
           <CTASection items={cta} />

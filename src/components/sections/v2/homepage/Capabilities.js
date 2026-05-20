@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useRef } from "react";
+import WhoWeServe from "@/src/components/sections/v2/homepage/WhoWeServe";
+
+const CAPABILITY_HOVER_BG = "#141816";
 
 function getDividerClass(borderColor) {
   if (borderColor === "bg-gray-defi-shadow") {
@@ -16,9 +19,9 @@ function getDividerClass(borderColor) {
 
 export default function Capabilities({
   items,
+  whoWeServe,
   bgColor = "bg-gray-night-green",
   textColor = "text-gray-off-white",
-  hoverColor = "bg-gray-defi-shadow",
   borderColor = "border-gray-defi-shadow",
 }) {
   const videoRefs = useRef([]);
@@ -31,12 +34,16 @@ export default function Capabilities({
           <a
             key={index}
             href={item.href}
-            style={{ position: "relative" }}
-            className="group/interactive relative flex min-h-[352px] flex-col justify-end overflow-hidden bevel bg-[#1e2423] p-lg"
+            className="group/interactive relative flex min-h-[352px] w-full flex-col justify-end overflow-hidden bevel bg-[#1e2423] p-lg transition-colors duration-500"
           >
             <span className="sr-only">{item.sr}</span>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/interactive:opacity-100"
+              style={{ backgroundColor: CAPABILITY_HOVER_BG }}
+            />
 
-            <div className="pointer-events-none absolute right-[-1.5rem] top-[-0.75rem] h-[58%] w-[76%] overflow-hidden">
+            <div className="pointer-events-none absolute right-[-1.5rem] top-[-0.75rem] z-10 h-[58%] w-[76%] overflow-hidden">
               <div className="absolute inset-0 bg-[#1e2423]" />
               <video
                 playsInline
@@ -50,7 +57,7 @@ export default function Capabilities({
               </video>
             </div>
 
-            <div className="relative z-10 pr-2xl">
+            <div className="relative z-20 pr-2xl">
               <h3 className="text-[50px] leading-none text-gray-off-white">
                 {item.title}
               </h3>
@@ -59,7 +66,7 @@ export default function Capabilities({
               </p>
             </div>
 
-            <div className="relative z-10 mt-xl flex justify-end">
+            <div className="relative z-20 mt-xl flex justify-end">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -99,14 +106,18 @@ export default function Capabilities({
           <React.Fragment key={index}>
             <a
               href={item.href}
-              style={{ position: "relative" }}
-              className={`group/motion-accordion transition-all duration-500 hover:${hoverColor}`}
+              className="group/motion-accordion relative block w-full overflow-hidden transition-colors duration-500"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <span className="sr-only">{item.sr}</span>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover/motion-accordion:opacity-100"
+                style={{ backgroundColor: CAPABILITY_HOVER_BG }}
+              />
 
-              <div className="relative my-xl flex gap-2xl overflow-hidden transition-all duration-500 group-hover/motion-accordion:my-4xl container">
+              <div className="container relative z-10 my-xl flex gap-2xl overflow-hidden transition-all duration-500 group-hover/motion-accordion:my-4xl">
                 {/* TEXT */}
                 <div className="relative top-[3.3rem] flex flex-1 flex-col justify-between transition-all delay-500 group-hover/motion-accordion:top-0">
                   <div className="text-3xl transition-all delay-500 group-hover/motion-accordion:text-green-dark">
@@ -142,7 +153,7 @@ export default function Capabilities({
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 40 40"
-                  className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] duration-500"
+                  className="ml-[--arrow-offset] shrink-0 transition-all duration-500 group-hover/motion-accordion:ml-0 group-hover/motion-accordion:mr-[--arrow-offset]"
                   style={{
                     "--arrow-offset": "1rem",
                     width: "2.5rem",
@@ -166,6 +177,8 @@ export default function Capabilities({
         );
       })}
       </div>
+
+      <WhoWeServe {...whoWeServe} />
     </section>
   );
 }
