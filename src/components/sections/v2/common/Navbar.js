@@ -552,9 +552,9 @@ export default function Navigation() {
         href: item.href,
         items: item.children?.length
           ? item.children.map((child) => ({
-              title: child.title,
-              href: child.href,
-            }))
+            title: child.title,
+            href: child.href,
+          }))
           : [{ title: item.title, href: item.href }],
       })),
     },
@@ -779,11 +779,10 @@ export default function Navigation() {
                               return nextSection;
                             });
                           }}
-                          className={`flex w-full items-center gap-4 px-4 py-3 text-left ${
-                            isGroupedSection
+                          className={`flex w-full items-center gap-4 px-4 py-3 text-left ${isGroupedSection
                               ? "min-h-[3.3rem] rounded-[1.15rem] bg-transparent"
                               : "min-h-[3.3rem] rounded-[1.15rem]"
-                          }`}
+                            }`}
                         >
                           <span className="block flex-1 leading-none text-sm uppercase tracking-[0.18em] text-gray-off-white/92">
                             {section.title}
@@ -810,371 +809,356 @@ export default function Navigation() {
                               className="overflow-hidden"
                             >
                               <div
-                                className={`flex flex-col gap-2 px-2 py-2 ${
-                                  isGroupedSection ? "px-3 pb-3 pt-2" : ""
-                                }`}
+                                className={`flex flex-col gap-2 px-2 py-2 ${isGroupedSection ? "px-3 pb-3 pt-2" : ""
+                                  }`}
                               >
                                 {section.groups
                                   ? section.groups.map((group) => {
-                                      const groupKey = `${section.key}:${group.title}`;
-                                      const hasNestedItems = group.items.some(
-                                        (item) =>
-                                          item.href !== group.href ||
-                                          item.title !== group.title,
+                                    const groupKey = `${section.key}:${group.title}`;
+                                    const hasNestedItems = group.items.some(
+                                      (item) =>
+                                        item.href !== group.href ||
+                                        item.title !== group.title,
+                                    );
+                                    const isGroupActive =
+                                      mobileOpenServiceGroup === groupKey ||
+                                      pathname?.startsWith(group.href) ||
+                                      group.items.some((item) =>
+                                        pathMatchesServiceItem(
+                                          item,
+                                          pathname,
+                                        ),
                                       );
-                                      const isGroupActive =
-                                        mobileOpenServiceGroup === groupKey ||
-                                        pathname?.startsWith(group.href) ||
-                                        group.items.some((item) =>
-                                          pathMatchesServiceItem(
-                                            item,
-                                            pathname,
-                                          ),
-                                        );
 
-                                      return (
-                                        <div
-                                          key={`${section.key}-${group.title}`}
-                                          className="overflow-hidden rounded-[1.7rem] bg-[#121614] p-3"
-                                        >
-                                          {hasNestedItems ? (
-                                            <>
-                                              <button
-                                                type="button"
-                                                onClick={() =>
-                                                  setMobileOpenServiceGroup(
-                                                    (current) =>
-                                                      current === groupKey
-                                                        ? null
-                                                        : groupKey,
-                                                  )
-                                                }
-                                                className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${
-                                                  isGroupActive
-                                                    ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
-                                                    : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
-                                                }`}
-                                              >
-                                                <span className="flex min-w-0 flex-1 items-center gap-3">
-                                                  <span
-                                                    className={`h-2 w-2 shrink-0 rounded-full transition ${
-                                                      isGroupActive
-                                                        ? "bg-[#ff8a67]"
-                                                        : "bg-white/20"
-                                                    }`}
-                                                  />
-                                                  <span className="block leading-none">
-                                                    {group.title}
-                                                  </span>
-                                                </span>
-                                                <motion.span
-                                                  animate={{
-                                                    rotate:
-                                                      mobileOpenServiceGroup ===
-                                                      groupKey
-                                                        ? 180
-                                                        : 0,
-                                                  }}
-                                                  transition={{
-                                                    duration: 0.2,
-                                                    ease: "easeOut",
-                                                  }}
-                                                  className="flex h-5 w-5 shrink-0 items-center justify-center text-[0.95rem] leading-none text-[#ff8a67]"
-                                                >
-                                                  ▲
-                                                </motion.span>
-                                              </button>
-                                              <AnimatePresence initial={false}>
-                                                {mobileOpenServiceGroup ===
-                                                groupKey ? (
-                                                  <motion.div
-                                                    initial={{
-                                                      height: 0,
-                                                      opacity: 0,
-                                                    }}
-                                                    animate={{
-                                                      height: "auto",
-                                                      opacity: 1,
-                                                    }}
-                                                    exit={{
-                                                      height: 0,
-                                                      opacity: 0,
-                                                    }}
-                                                    transition={{
-                                                      duration: 0.22,
-                                                      ease: [0.22, 1, 0.36, 1],
-                                                    }}
-                                                    className="overflow-hidden"
-                                                  >
-                                                    <div className="flex flex-col gap-1.5 px-3 pb-1 pt-4">
-                                                      {group.items.map(
-                                                        (item) => {
-                                                          const nested =
-                                                            item.children ?? [];
-
-                                                          if (nested.length) {
-                                                            const nestKey = `${groupKey}::${item.href}`;
-                                                            const nestedOpen =
-                                                              mobileNestedServiceKey ===
-                                                              nestKey;
-                                                            const parentActive =
-                                                              pathMatchesServiceItem(
-                                                                item,
-                                                                pathname,
-                                                              );
-
-                                                            return (
-                                                              <div
-                                                                key={`${section.key}-${item.href}-nested`}
-                                                                className="overflow-hidden rounded-[0.95rem] bg-black/20"
-                                                              >
-                                                                <div
-                                                                  className={`flex items-stretch gap-1 px-2 py-2 ${
-                                                                    parentActive
-                                                                      ? "bg-[#202523]/80"
-                                                                      : ""
-                                                                  }`}
-                                                                >
-                                                                  <Link
-                                                                    href={
-                                                                      item.href
-                                                                    }
-                                                                    onClick={() =>
-                                                                      setMobileNavOpen(
-                                                                        false,
-                                                                      )
-                                                                    }
-                                                                    className={`flex min-w-0 flex-1 items-center gap-3 rounded-[0.85rem] px-3 py-2.5 text-left text-[0.78rem] uppercase tracking-[0.14em] leading-[1.35] transition ${
-                                                                      pathname?.startsWith(
-                                                                        item.href,
-                                                                      )
-                                                                        ? "text-gray-off-white"
-                                                                        : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
-                                                                    }`}
-                                                                  >
-                                                                    <span
-                                                                      className={`shrink-0 ${
-                                                                        pathname?.startsWith(
-                                                                          item.href,
-                                                                        )
-                                                                          ? "h-2 w-2 rounded-full bg-[#ff8a67]"
-                                                                          : "h-[1px] w-3 bg-white/30"
-                                                                      }`}
-                                                                    />
-                                                                    <span className="block min-w-0 flex-1 truncate leading-[1.35]">
-                                                                      {
-                                                                        item.title
-                                                                      }
-                                                                    </span>
-                                                                  </Link>
-                                                                  <button
-                                                                    type="button"
-                                                                    aria-expanded={
-                                                                      nestedOpen
-                                                                    }
-                                                                    aria-label={`Toggle ${item.title} submenu`}
-                                                                    onClick={() =>
-                                                                      setMobileNestedServiceKey(
-                                                                        (
-                                                                          prev,
-                                                                        ) =>
-                                                                          prev ===
-                                                                          nestKey
-                                                                            ? ""
-                                                                            : nestKey,
-                                                                      )
-                                                                    }
-                                                                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.85rem] text-[0.72rem] text-[#ff8a67] transition ${
-                                                                      nestedOpen
-                                                                        ? "bg-white/[0.08]"
-                                                                        : "bg-white/[0.04] hover:bg-white/[0.07]"
-                                                                    }`}
-                                                                  >
-                                                                    <motion.span
-                                                                      animate={{
-                                                                        rotate:
-                                                                          nestedOpen
-                                                                            ? 180
-                                                                            : 0,
-                                                                      }}
-                                                                      transition={{
-                                                                        duration: 0.2,
-                                                                        ease: "easeOut",
-                                                                      }}
-                                                                    >
-                                                                      ▼
-                                                                    </motion.span>
-                                                                  </button>
-                                                                </div>
-                                                                <AnimatePresence
-                                                                  initial={
-                                                                    false
-                                                                  }
-                                                                >
-                                                                  {nestedOpen ? (
-                                                                    <motion.div
-                                                                      initial={{
-                                                                        height: 0,
-                                                                        opacity: 0,
-                                                                      }}
-                                                                      animate={{
-                                                                        height:
-                                                                          "auto",
-                                                                        opacity: 1,
-                                                                      }}
-                                                                      exit={{
-                                                                        height: 0,
-                                                                        opacity: 0,
-                                                                      }}
-                                                                      transition={{
-                                                                        duration: 0.22,
-                                                                        ease: [
-                                                                          0.22,
-                                                                          1,
-                                                                          0.36,
-                                                                          1,
-                                                                        ],
-                                                                      }}
-                                                                      className="overflow-hidden"
-                                                                    >
-                                                                      <div className="flex flex-col gap-1 px-2 pb-2 pt-0.5">
-                                                                        {nested.map(
-                                                                          (
-                                                                            sub,
-                                                                          ) => (
-                                                                            <Link
-                                                                              key={`${section.key}-${sub.href}`}
-                                                                              href={
-                                                                                sub.href
-                                                                              }
-                                                                              onClick={() =>
-                                                                                setMobileNavOpen(
-                                                                                  false,
-                                                                                )
-                                                                              }
-                                                                              className={`flex items-center gap-3 rounded-[0.85rem] px-3 py-2.5 text-[0.78rem] uppercase tracking-[0.14em] leading-[1.35] transition ${
-                                                                                pathname?.startsWith(
-                                                                                  sub.href,
-                                                                                )
-                                                                                  ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
-                                                                                  : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
-                                                                              }`}
-                                                                            >
-                                                                              <span
-                                                                                className={`shrink-0 ${
-                                                                                  pathname?.startsWith(
-                                                                                    sub.href,
-                                                                                  )
-                                                                                    ? "h-2 w-2 rounded-full bg-[#ff8a67]"
-                                                                                    : "h-[1px] w-3 bg-white/30"
-                                                                                }`}
-                                                                              />
-                                                                              <span className="block flex-1 pl-1 leading-[1.35]">
-                                                                                {
-                                                                                  sub.title
-                                                                                }
-                                                                              </span>
-                                                                            </Link>
-                                                                          ),
-                                                                        )}
-                                                                      </div>
-                                                                    </motion.div>
-                                                                  ) : null}
-                                                                </AnimatePresence>
-                                                              </div>
-                                                            );
-                                                          }
-
-                                                          return (
-                                                            <Link
-                                                              key={`${section.key}-${item.href}-${item.title}`}
-                                                              href={item.href}
-                                                              onClick={() =>
-                                                                setMobileNavOpen(
-                                                                  false,
-                                                                )
-                                                              }
-                                                              className={`flex items-center gap-3 rounded-[0.95rem] px-4 py-3 text-[0.82rem] uppercase tracking-[0.16em] leading-[1.35] transition ${
-                                                                pathname?.startsWith(
-                                                                  item.href,
-                                                                )
-                                                                  ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
-                                                                  : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
-                                                              }`}
-                                                            >
-                                                              <span
-                                                                className={`shrink-0 ${
-                                                                  pathname?.startsWith(
-                                                                    item.href,
-                                                                  )
-                                                                    ? "h-2 w-2 rounded-full bg-[#ff8a67]"
-                                                                    : "h-[1px] w-3 bg-white/30"
-                                                                }`}
-                                                              />
-                                                              <span className="block flex-1 leading-[1.35]">
-                                                                {item.title}
-                                                              </span>
-                                                            </Link>
-                                                          );
-                                                        },
-                                                      )}
-                                                    </div>
-                                                  </motion.div>
-                                                ) : null}
-                                              </AnimatePresence>
-                                            </>
-                                          ) : (
-                                            <Link
-                                              href={group.href}
+                                    return (
+                                      <div
+                                        key={`${section.key}-${group.title}`}
+                                        className="overflow-hidden rounded-[1.7rem] bg-[#121614] p-3"
+                                      >
+                                        {hasNestedItems ? (
+                                          <>
+                                            <button
+                                              type="button"
                                               onClick={() =>
-                                                setMobileNavOpen(false)
+                                                setMobileOpenServiceGroup(
+                                                  (current) =>
+                                                    current === groupKey
+                                                      ? null
+                                                      : groupKey,
+                                                )
                                               }
-                                              className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${
-                                                pathname?.startsWith(group.href)
+                                              className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${isGroupActive
                                                   ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
                                                   : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
-                                              }`}
-                                            >
-                                              <span
-                                                className={`h-2 w-2 shrink-0 rounded-full transition ${
-                                                  pathname?.startsWith(
-                                                    group.href,
-                                                  )
-                                                    ? "bg-[#ff8a67]"
-                                                    : "bg-white/20"
                                                 }`}
-                                              />
-                                              <span className="block flex-1 leading-none">
-                                                {group.title}
+                                            >
+                                              <span className="flex min-w-0 flex-1 items-center gap-3">
+                                                <span
+                                                  className={`h-2 w-2 shrink-0 rounded-full transition ${isGroupActive
+                                                      ? "bg-[#ff8a67]"
+                                                      : "bg-white/20"
+                                                    }`}
+                                                />
+                                                <span className="block leading-none">
+                                                  {group.title}
+                                                </span>
                                               </span>
-                                            </Link>
-                                          )}
-                                        </div>
-                                      );
-                                    })
+                                              <motion.span
+                                                animate={{
+                                                  rotate:
+                                                    mobileOpenServiceGroup ===
+                                                      groupKey
+                                                      ? 180
+                                                      : 0,
+                                                }}
+                                                transition={{
+                                                  duration: 0.2,
+                                                  ease: "easeOut",
+                                                }}
+                                                className="flex h-5 w-5 shrink-0 items-center justify-center text-[0.95rem] leading-none text-[#ff8a67]"
+                                              >
+                                                ▲
+                                              </motion.span>
+                                            </button>
+                                            <AnimatePresence initial={false}>
+                                              {mobileOpenServiceGroup ===
+                                                groupKey ? (
+                                                <motion.div
+                                                  initial={{
+                                                    height: 0,
+                                                    opacity: 0,
+                                                  }}
+                                                  animate={{
+                                                    height: "auto",
+                                                    opacity: 1,
+                                                  }}
+                                                  exit={{
+                                                    height: 0,
+                                                    opacity: 0,
+                                                  }}
+                                                  transition={{
+                                                    duration: 0.22,
+                                                    ease: [0.22, 1, 0.36, 1],
+                                                  }}
+                                                  className="overflow-hidden"
+                                                >
+                                                  <div className="flex flex-col gap-1.5 px-3 pb-1 pt-4">
+                                                    {group.items.map(
+                                                      (item) => {
+                                                        const nested =
+                                                          item.children ?? [];
+
+                                                        if (nested.length) {
+                                                          const nestKey = `${groupKey}::${item.href}`;
+                                                          const nestedOpen =
+                                                            mobileNestedServiceKey ===
+                                                            nestKey;
+                                                          const parentActive =
+                                                            pathMatchesServiceItem(
+                                                              item,
+                                                              pathname,
+                                                            );
+
+                                                          return (
+                                                            <div
+                                                              key={`${section.key}-${item.href}-nested`}
+                                                              className="overflow-hidden rounded-[0.95rem] bg-black/20"
+                                                            >
+                                                              <div
+                                                                className={`flex items-stretch gap-1 px-2 py-2 ${parentActive
+                                                                    ? "bg-[#202523]/80"
+                                                                    : ""
+                                                                  }`}
+                                                              >
+                                                                <Link
+                                                                  href={
+                                                                    item.href
+                                                                  }
+                                                                  onClick={() =>
+                                                                    setMobileNavOpen(
+                                                                      false,
+                                                                    )
+                                                                  }
+                                                                  className={`flex min-w-0 flex-1 items-center gap-3 rounded-[0.85rem] px-3 py-2.5 text-left text-[0.78rem] uppercase tracking-[0.14em] leading-[1.35] transition ${pathname?.startsWith(
+                                                                    item.href,
+                                                                  )
+                                                                      ? "text-gray-off-white"
+                                                                      : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
+                                                                    }`}
+                                                                >
+                                                                  <span
+                                                                    className={`shrink-0 ${pathname?.startsWith(
+                                                                      item.href,
+                                                                    )
+                                                                        ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                        : "h-[1px] w-3 bg-white/30"
+                                                                      }`}
+                                                                  />
+                                                                  <span className="block min-w-0 flex-1 truncate leading-[1.35]">
+                                                                    {
+                                                                      item.title
+                                                                    }
+                                                                  </span>
+                                                                </Link>
+                                                                <button
+                                                                  type="button"
+                                                                  aria-expanded={
+                                                                    nestedOpen
+                                                                  }
+                                                                  aria-label={`Toggle ${item.title} submenu`}
+                                                                  onClick={() =>
+                                                                    setMobileNestedServiceKey(
+                                                                      (
+                                                                        prev,
+                                                                      ) =>
+                                                                        prev ===
+                                                                          nestKey
+                                                                          ? ""
+                                                                          : nestKey,
+                                                                    )
+                                                                  }
+                                                                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.85rem] text-[0.72rem] text-[#ff8a67] transition ${nestedOpen
+                                                                      ? "bg-white/[0.08]"
+                                                                      : "bg-white/[0.04] hover:bg-white/[0.07]"
+                                                                    }`}
+                                                                >
+                                                                  <motion.span
+                                                                    animate={{
+                                                                      rotate:
+                                                                        nestedOpen
+                                                                          ? 180
+                                                                          : 0,
+                                                                    }}
+                                                                    transition={{
+                                                                      duration: 0.2,
+                                                                      ease: "easeOut",
+                                                                    }}
+                                                                  >
+                                                                    ▼
+                                                                  </motion.span>
+                                                                </button>
+                                                              </div>
+                                                              <AnimatePresence
+                                                                initial={
+                                                                  false
+                                                                }
+                                                              >
+                                                                {nestedOpen ? (
+                                                                  <motion.div
+                                                                    initial={{
+                                                                      height: 0,
+                                                                      opacity: 0,
+                                                                    }}
+                                                                    animate={{
+                                                                      height:
+                                                                        "auto",
+                                                                      opacity: 1,
+                                                                    }}
+                                                                    exit={{
+                                                                      height: 0,
+                                                                      opacity: 0,
+                                                                    }}
+                                                                    transition={{
+                                                                      duration: 0.22,
+                                                                      ease: [
+                                                                        0.22,
+                                                                        1,
+                                                                        0.36,
+                                                                        1,
+                                                                      ],
+                                                                    }}
+                                                                    className="overflow-hidden"
+                                                                  >
+                                                                    <div className="flex flex-col gap-1 px-2 pb-2 pt-0.5">
+                                                                      {nested.map(
+                                                                        (
+                                                                          sub,
+                                                                        ) => (
+                                                                          <Link
+                                                                            key={`${section.key}-${sub.href}`}
+                                                                            href={
+                                                                              sub.href
+                                                                            }
+                                                                            onClick={() =>
+                                                                              setMobileNavOpen(
+                                                                                false,
+                                                                              )
+                                                                            }
+                                                                            className={`flex items-center gap-3 rounded-[0.85rem] px-3 py-2.5 text-[0.78rem] uppercase tracking-[0.14em] leading-[1.35] transition ${pathname?.startsWith(
+                                                                              sub.href,
+                                                                            )
+                                                                                ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
+                                                                                : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
+                                                                              }`}
+                                                                          >
+                                                                            <span
+                                                                              className={`shrink-0 ${pathname?.startsWith(
+                                                                                sub.href,
+                                                                              )
+                                                                                  ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                                  : "h-[1px] w-3 bg-white/30"
+                                                                                }`}
+                                                                            />
+                                                                            <span className="block flex-1 pl-1 leading-[1.35]">
+                                                                              {
+                                                                                sub.title
+                                                                              }
+                                                                            </span>
+                                                                          </Link>
+                                                                        ),
+                                                                      )}
+                                                                    </div>
+                                                                  </motion.div>
+                                                                ) : null}
+                                                              </AnimatePresence>
+                                                            </div>
+                                                          );
+                                                        }
+
+                                                        return (
+                                                          <Link
+                                                            key={`${section.key}-${item.href}-${item.title}`}
+                                                            href={item.href}
+                                                            onClick={() =>
+                                                              setMobileNavOpen(
+                                                                false,
+                                                              )
+                                                            }
+                                                            className={`flex items-center gap-3 rounded-[0.95rem] px-4 py-3 text-[0.82rem] uppercase tracking-[0.16em] leading-[1.35] transition ${pathname?.startsWith(
+                                                              item.href,
+                                                            )
+                                                                ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
+                                                                : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
+                                                              }`}
+                                                          >
+                                                            <span
+                                                              className={`shrink-0 ${pathname?.startsWith(
+                                                                item.href,
+                                                              )
+                                                                  ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                  : "h-[1px] w-3 bg-white/30"
+                                                                }`}
+                                                            />
+                                                            <span className="block flex-1 leading-[1.35]">
+                                                              {item.title}
+                                                            </span>
+                                                          </Link>
+                                                        );
+                                                      },
+                                                    )}
+                                                  </div>
+                                                </motion.div>
+                                              ) : null}
+                                            </AnimatePresence>
+                                          </>
+                                        ) : (
+                                          <Link
+                                            href={group.href}
+                                            onClick={() =>
+                                              setMobileNavOpen(false)
+                                            }
+                                            className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${pathname?.startsWith(group.href)
+                                                ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                                : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                              }`}
+                                          >
+                                            <span
+                                              className={`h-2 w-2 shrink-0 rounded-full transition ${pathname?.startsWith(
+                                                group.href,
+                                              )
+                                                  ? "bg-[#ff8a67]"
+                                                  : "bg-white/20"
+                                                }`}
+                                            />
+                                            <span className="block flex-1 leading-none">
+                                              {group.title}
+                                            </span>
+                                          </Link>
+                                        )}
+                                      </div>
+                                    );
+                                  })
                                   : section.items.map((item) => (
-                                      <Link
-                                        key={`${section.key}-${item.href}-${item.title}`}
-                                        href={item.href}
-                                        onClick={() => setMobileNavOpen(false)}
-                                        className={`flex min-h-[3.3rem] items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${
-                                          pathname?.startsWith(item.href)
-                                            ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
-                                            : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                    <Link
+                                      key={`${section.key}-${item.href}-${item.title}`}
+                                      href={item.href}
+                                      onClick={() => setMobileNavOpen(false)}
+                                      className={`flex min-h-[3.3rem] items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${pathname?.startsWith(item.href)
+                                          ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                          : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
                                         }`}
-                                      >
-                                        <span
-                                          className={`h-2 w-2 shrink-0 rounded-full transition ${
-                                            pathname?.startsWith(item.href)
-                                              ? "bg-[#ff8a67]"
-                                              : "bg-white/20"
+                                    >
+                                      <span
+                                        className={`h-2 w-2 shrink-0 rounded-full transition ${pathname?.startsWith(item.href)
+                                            ? "bg-[#ff8a67]"
+                                            : "bg-white/20"
                                           }`}
-                                        />
-                                        <span className="block flex-1 leading-none">
-                                          {item.title}
-                                        </span>
-                                      </Link>
-                                    ))}
+                                      />
+                                      <span className="block flex-1 leading-none">
+                                        {item.title}
+                                      </span>
+                                    </Link>
+                                  ))}
                               </div>
                             </motion.div>
                           ) : null}
@@ -2383,12 +2367,12 @@ export default function Navigation() {
                 src="/images/favicon-1.ico"
               />
               <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
-                {/* <span
+                <span
                   className="text-2xl tracking-wide font-normal"
                   style={{ letterSpacing: "5px" }}
                 >
                   SIDAGO
-                </span> */}
+                </span>
               </div>
             </div>
           </a>
@@ -2425,11 +2409,10 @@ export default function Navigation() {
 
             <div className="group/menu-item">
               <Link
-                className={`relative font-blender text-sm uppercase transition-all hover:opacity-80  ${
-                  pathname === "/services" || pathname.startsWith("/services/")
+                className={`relative font-blender text-sm uppercase transition-all hover:opacity-80  ${pathname === "/services" || pathname.startsWith("/services/")
                     ? "text-green-dark"
                     : ""
-                }`}
+                  }`}
                 itemProp="url"
                 target=""
                 href="#"
@@ -2583,12 +2566,11 @@ export default function Navigation() {
             </div>
             <div className="group/menu-item relative">
               <Link
-                className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${
-                  pathname === "/industries" ||
-                  pathname.startsWith("/industries/")
+                className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${pathname === "/industries" ||
+                    pathname.startsWith("/industries/")
                     ? "text-green-dark"
                     : ""
-                }`}
+                  }`}
                 itemProp="url"
                 target=""
                 href="#"
@@ -2615,11 +2597,10 @@ export default function Navigation() {
                             return (
                               <a
                                 key={index}
-                                className={`group/interactive relative flex items-center gap-md text-sm ${
-                                  isActive
+                                className={`group/interactive relative flex items-center gap-md text-sm ${isActive
                                     ? "opacity-100"
                                     : "group-hover/sub-menu:[&:not(:hover)]:opacity-70"
-                                }`}
+                                  }`}
                                 href={item.href}
                                 onMouseEnter={(e) => {
                                   setActiveIndustryTitle(item.title);
@@ -2637,11 +2618,10 @@ export default function Navigation() {
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 200 200"
-                                    className={`absolute origin-top-left transition-all w-[5.625rem] ${item.svgClass} -scale-x-100 ${
-                                      isActive
+                                    className={`absolute origin-top-left transition-all w-[5.625rem] ${item.svgClass} -scale-x-100 ${isActive
                                         ? "text-green-tradfi"
                                         : "text-gray-defi-ash group-hover/interactive:text-green-tradfi"
-                                    }`}
+                                      }`}
                                   >
                                     <path
                                       fill="currentColor"
@@ -2666,11 +2646,10 @@ export default function Navigation() {
                                       xmlns="http://www.w3.org/2000/svg"
                                       fill="none"
                                       viewBox="0 0 20 20"
-                                      className={`w-4 shrink-0 transition ${
-                                        isActive
+                                      className={`w-4 shrink-0 transition ${isActive
                                           ? "text-green-tradfi"
                                           : "text-gray-defi-ash group-hover/interactive:text-green-tradfi"
-                                      }`}
+                                        }`}
                                     >
                                       <path
                                         d="M7 4l6 6-6 6"
@@ -2723,11 +2702,10 @@ export default function Navigation() {
             </div>
             <div className="group/menu-item">
               <Link
-                className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${
-                  pathname === "/strategy" || pathname.startsWith("/strategy/")
+                className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${pathname === "/strategy" || pathname.startsWith("/strategy/")
                     ? "text-green-dark"
                     : ""
-                }`}
+                  }`}
                 itemProp="url"
                 target=""
                 href="#"

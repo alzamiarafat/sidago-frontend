@@ -11,13 +11,13 @@ export default function Feed() {
           <div className="mb-3xl flex flex-col gap-xl font-blender text-xl">
             <div className="flex flex-col gap-xs">
               <h2
-                id="@wintermute-feed"
+                id="@Sidago-feed"
                 className="font-blender text-xl uppercase text-green-dark"
               >
-                @wintermute feed
+                @Sidago feed
               </h2>
             </div>
-            <hr className="border-[#006623]" />
+            <hr className="!border-[#AB290D]" />
           </div>
           <section className="bg-gray-defi-graphite text-gray-off-white">
             <div>
@@ -27,20 +27,20 @@ export default function Feed() {
                     <a
                       referrerPolicy="no-referrer"
                       rel="nofollow"
-                      style="position: relative"
+                      style={{ position: "relative" }}
                       target="_blank"
                       className="shrink-0 hover:brightness-75"
                       href="https://x.com/wintermute_t"
-                    ><span className="sr-only">Wintermute t</span
+                    ><span className="sr-only">Sidago t</span
                     ><img
-                        alt="Wintermute"
+                        alt="Sidago"
                         loading="lazy"
                         width="40"
                         height="40"
                         decoding="async"
                         data-nimg="1"
                         className="rounded-full border border-solid border-gray-defi-charcoal w-3xl"
-                        style="color: transparent"
+                        style={{ color: "transparent" }}
                         srcSet="images/image_5.jpg 1x, images/image.jpg 2x"
                         src="images/image.jpg"
                       /></a>
@@ -48,23 +48,23 @@ export default function Feed() {
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         className="hover:text-gray-tradfi-silver text-xl"
                         href="https://x.com/wintermute_t"
-                      ><span className="sr-only">Wintermute t</span
-                      >Wintermute</a
+                      ><span className="sr-only">Sidago t</span
+                      >Sidago</a
                       >
                       <div className="flex items-center gap-xs text-sm">
                         <a
                           referrerPolicy="no-referrer"
                           rel="nofollow"
-                          style="position: relative"
+                          style={{ position: "relative" }}
                           target="_blank"
                           className="text-green-dark hover:brightness-75"
                           href="https://x.com/wintermute_t"
-                        ><span className="sr-only">Wintermute t</span
-                        >@wintermute_t</a
+                        ><span className="sr-only">Sidago t</span
+                        >@sidago_t</a
                         >
                         <div
                           className="h-[0.125rem] w-[0.125rem] rounded-full bg-green-dark"
@@ -72,7 +72,7 @@ export default function Feed() {
                         <a
                           referrerPolicy="no-referrer"
                           rel="nofollow"
-                          style="position: relative"
+                          style={{ position: "relative" }}
                           target="_blank"
                           className="text-green-dark hover:brightness-75"
                           href="https://x.com/intent/user?screen_name=wintermute_t"
@@ -97,24 +97,21 @@ export default function Feed() {
                 <div className="relative h-[20rem] lg:h-[21.25rem]">
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 1;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                        "
+                    style={{
+                      opacity: 1,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2037492198824878554"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2037492198824878554</span
+                      >Sidago t › Status › 2037492198824878554</span
                         ><span
                         >DAS NYC may be wrapping up, but our New York
                           hiring is just getting started 🇺🇸<br /><br />Come
@@ -123,7 +120,7 @@ export default function Feed() {
                           trading operations to DeFi<br /><br />→ Apply now: </span
                         ><span
                           className="text-green-dark duration-500 group-hover/postBody:brightness-75"
-                        >wintermute.com/company/opport…</span
+                        >Sidago.com/company/opport…</span
                         ><span> </span
                         ><img
                           alt=""
@@ -133,7 +130,7 @@ export default function Feed() {
                           decoding="async"
                           data-nimg="1"
                           className="[&:not(:first-child)]:mt-sm [&:not(:last-child)]:mb-sm"
-                          style="color: transparent"
+                          style={{ color: "transparent" }}
                           srcSet="
                                 images/image_6.png 1x,
                                 images/image.png   2x
@@ -144,27 +141,23 @@ export default function Feed() {
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2036758269751132245"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2036758269751132245</span
+                      >Sidago t › Status › 2036758269751132245</span
                         ><span
-                        >ICYMI: Wintermute Asia launched crude oil CFDs
+                        >ICYMI: Sidago Asia launched crude oil CFDs
                           through its OTC desk<br /><br />More in </span
                         ><span
                           className="text-green-dark duration-500 group-hover/postBody:brightness-75"
@@ -181,64 +174,56 @@ export default function Feed() {
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2036451957611577739"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2036451957611577739</span
+                      >Sidago t › Status › 2036451957611577739</span
                         ><span
                         >While traditional markets were closed, oil prices
                           kept moving over the weekend<br /><br />By
                           Monday’s reopen, WTI had already moved 13.5%,
                           before many market participants had a chance to
-                          respond<br /><br />With Wintermute, you can now
+                          respond<br /><br />With Sidago, you can now
                           manage oil exposure 24/7! 🔗 Read more: </span
                         ><span
                           className="text-green-dark duration-500 group-hover/postBody:brightness-75"
-                        >wintermute.com/insights/news/…</span
+                        >Sidago.com/insights/news/…</span
                         ></a
                       >
                     </div>
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2036451953769636150"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2036451953769636150</span
+                      >Sidago t › Status › 2036451953769636150</span
                         ><span
                         >24/7 access to the world's most liquid energy
                           benchmark<br /><br />Crude oil CFDs are now live
-                          via Wintermute Asia’s OTC desk, with:<br /><br />‣
+                          via Sidago Asia’s OTC desk, with:<br /><br />‣
                           Leveraged WTI exposure<br />‣ Weekend and holiday
                           trading<br />‣ Zero-fee execution<br />‣ Fiat and
                           crypto collateral<br />‣ Chat, NODE, and API
@@ -251,7 +236,7 @@ export default function Feed() {
                           decoding="async"
                           data-nimg="1"
                           className="[&:not(:first-child)]:mt-sm [&:not(:last-child)]:mb-sm"
-                          style="color: transparent"
+                          style={{ color: "transparent" }}
                           srcSet="
                                 images/image_4.png 1x,
                                 images/image_2.png 2x
@@ -262,25 +247,21 @@ export default function Feed() {
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2036377859766530191"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2036377859766530191</span
+                      >Sidago t › Status › 2036377859766530191</span
                         ><img
                           alt=""
                           loading="lazy"
@@ -289,7 +270,7 @@ export default function Feed() {
                           decoding="async"
                           data-nimg="1"
                           className="[&:not(:first-child)]:mt-sm [&:not(:last-child)]:mb-sm"
-                          style="color: transparent"
+                          style={{ color: "transparent" }}
                           srcSet="
                                 images/image_5.png 1x,
                                 images/image_1.png 2x
@@ -319,11 +300,11 @@ export default function Feed() {
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2036094175200878597"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2036094175200878597</span
+                      >Sidago t › Status › 2036094175200878597</span
                         ><span>Proud of our Head of Research </span
                         ><span
                           className="text-green-dark duration-500 group-hover/postBody:brightness-75"
@@ -355,7 +336,7 @@ export default function Feed() {
                               <a
                                 referrerPolicy="no-referrer"
                                 rel="nofollow"
-                                style="position: relative"
+                                style={{ position: "relative" }}
                                 target="_blank"
                                 className="shrink-0 hover:brightness-75"
                                 href="https://x.com/thedaofund"
@@ -368,11 +349,11 @@ export default function Feed() {
                                   decoding="async"
                                   data-nimg="1"
                                   className="rounded-full border border-solid border-gray-defi-charcoal w-2xl"
-                                  style="color: transparent"
-                                  srcSet="
-                                        images/image_6.jpg 1x,
-                                        images/image_1.jpg 2x
-                                      "
+                                  style={{ color: "transparent" }}
+                                  srcSet={
+                                    ["images/image_6.jpg 1x",
+                                      "images/image_1.jpg 2x"]
+                                  }
                                   src="images/image_1.jpg"
                                 /></a>
                               <div
@@ -381,7 +362,7 @@ export default function Feed() {
                                 <a
                                   referrerPolicy="no-referrer"
                                   rel="nofollow"
-                                  style="position: relative"
+                                  style={{ position: "relative" }}
                                   target="_blank"
                                   className="hover:text-gray-tradfi-silver"
                                   href="https://x.com/thedaofund"
@@ -394,7 +375,7 @@ export default function Feed() {
                                   <a
                                     referrerPolicy="no-referrer"
                                     rel="nofollow"
-                                    style="position: relative"
+                                    style={{ position: "relative" }}
                                     target="_blank"
                                     className="text-green-dark hover:brightness-75"
                                     href="https://x.com/thedaofund"
@@ -417,7 +398,7 @@ export default function Feed() {
                             <a
                               referrerPolicy="no-referrer"
                               rel="nofollow"
-                              style="position: relative"
+                              style={{ position: "relative" }}
                               target="_blank"
                               href="https://x.com/thedaofund/status/2034710909096960289"
                             ><span className="sr-only"
@@ -442,25 +423,21 @@ export default function Feed() {
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2036049620544159933"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2036049620544159933</span
+                      >Sidago t › Status › 2036049620544159933</span
                         ><span
                         >Is crypto's best chapter still ahead?<br /><br />Our
                           CEO </span
@@ -482,7 +459,7 @@ export default function Feed() {
                           decoding="async"
                           data-nimg="1"
                           className="[&:not(:first-child)]:mt-sm [&:not(:last-child)]:mb-sm"
-                          style="color: transparent"
+                          style={{ color: "transparent" }}
                           srcSet="
                                 images/image_7.jpg 1x,
                                 images/image_2.jpg 2x
@@ -493,25 +470,21 @@ export default function Feed() {
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2034948736045260935"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2034948736045260935</span
+                      >Sidago t › Status › 2034948736045260935</span
                         ><span
                         >New openings across our Operations and Trading
                           Operations teams!<br /><br />From risk and trade
@@ -521,7 +494,7 @@ export default function Feed() {
                           Operations Associate<br /><br />→ Apply now: </span
                         ><span
                           className="text-green-dark duration-500 group-hover/postBody:brightness-75"
-                        >wintermute.com/company/opport…</span
+                        >Sidago.com/company/opport…</span
                         ><span> </span
                         ><img
                           alt=""
@@ -531,7 +504,7 @@ export default function Feed() {
                           decoding="async"
                           data-nimg="1"
                           className="[&:not(:first-child)]:mt-sm [&:not(:last-child)]:mb-sm"
-                          style="color: transparent"
+                          style={{ color: "transparent" }}
                           srcSet="
                                 images/image_7.png 1x,
                                 images/image_3.png 2x
@@ -542,25 +515,21 @@ export default function Feed() {
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2034895652875116568"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2034895652875116568</span
+                      >Sidago t › Status › 2034895652875116568</span
                         ><span
                         >No blockchain has won yet<br /><br />Despite the
                           narratives around Ethereum and Solana, our CEO </span
@@ -583,7 +552,7 @@ export default function Feed() {
                           decoding="async"
                           data-nimg="1"
                           className="[&:not(:first-child)]:mt-sm [&:not(:last-child)]:mb-sm"
-                          style="color: transparent"
+                          style={{ color: "transparent" }}
                           srcSet="
                                 images/image_9.jpg 1x,
                                 images/image_3.jpg 2x
@@ -594,25 +563,21 @@ export default function Feed() {
                   </div>
                   <div
                     className="group/postBody scrollbar-minimal absolute h-[20rem] w-full overflow-hidden transition-all duration-500 hover:text-gray-tradfi-silver lg:h-[21.25rem]"
-                    style="
-                          opacity: 0;
-                          mask: linear-gradient(
-                            to top,
-                            transparent,
-                            white 4rem
-                          );
-                          pointer-events: none;
-                        "
+                    style={{
+                      opacity: 0,
+                      mask: "linear-gradient(to top, transparent, white 4rem)",
+                      pointerEvents: "none",
+                    }}
                   >
                     <div className="flex flex-col gap-sm">
                       <a
                         referrerPolicy="no-referrer"
                         rel="nofollow"
-                        style="position: relative"
+                        style={{ position: "relative" }}
                         target="_blank"
                         href="https://x.com/wintermute_t/status/2034621723870720115"
                       ><span className="sr-only"
-                      >Wintermute t › Status › 2034621723870720115</span
+                      >Sidago t › Status › 2034621723870720115</span
                         ><span>Meet us at </span
                         ><span
                           className="text-green-dark duration-500 group-hover/postBody:brightness-75"
@@ -642,7 +607,7 @@ export default function Feed() {
                           decoding="async"
                           data-nimg="1"
                           className="[&:not(:first-child)]:mt-sm [&:not(:last-child)]:mb-sm"
-                          style="color: transparent"
+                          style={{ color: "transparent" }}
                           srcSet="
                                 images/image_8.jpg 1x,
                                 images/image_4.jpg 2x
@@ -667,7 +632,7 @@ export default function Feed() {
         </div >
         <div
           className="core-column--stacked-on-mobile"
-          style="--core-column-width: 50%"
+          style={{ "--core-column-width": "50%" }}
         >
           <div className="mb-3xl flex flex-col gap-xl font-blender text-xl">
             <div className="flex flex-col gap-xs">
@@ -678,7 +643,7 @@ export default function Feed() {
                 What's happening
               </h2>
             </div>
-            <hr className="border-[#006623]" />
+            <hr className="!border-[#AB290D]" />
           </div>
           <div className="pt-2xl">
             <div className="text-2xl">Nothing here now, check back later!</div>
