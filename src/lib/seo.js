@@ -189,6 +189,19 @@ export const routeMetadata = {
       "regulatory guidelines",
     ],
   }),
+  digitalSupportServices: buildPageMetadata({
+    title: "Digital Support Services",
+    description:
+      "Sidago digital support services: help desk, technical assistance, customer success operations, knowledge management, and scalable coverage for modern teams.",
+    path: "/services/digital-support",
+    keywords: [
+      "Sidago digital support",
+      "help desk outsourcing",
+      "technical support services",
+      "customer success operations",
+      "24/7 support coverage",
+    ],
+  }),
   legalPolicies: buildPageMetadata({
     title: "Legal & Compliance Policies",
     description:
