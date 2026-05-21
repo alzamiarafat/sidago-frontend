@@ -1,6 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
+
+function isInternalHref(href) {
+  return href?.startsWith("/") && !href.startsWith("//");
+}
 
 export default function InsightNews({
   items,
@@ -17,16 +22,25 @@ export default function InsightNews({
 
       {/* Content */}
       <div className="relative z-10 flex flex-col lg:flex-row lg:container">
-        {items?.map((item, index) => (
+        {items?.map((item, index) => {
+          const internal = isInternalHref(item.href);
+          const LinkTag = internal ? Link : "a";
+          const linkProps = internal
+            ? { href: item.href }
+            : {
+                href: item.href,
+                referrerPolicy: "no-referrer",
+                rel: "nofollow",
+                target: "_blank",
+              };
+
+          return (
           <React.Fragment key={index}>
             {/* Card */}
-            <a
-              referrerPolicy="no-referrer"
-              rel="nofollow"
+            <LinkTag
+              {...linkProps}
               style={{ position: "relative" }}
-              target="_blank"
               className="group/interactive flex-1"
-              href={item.href}
             >
               <span className="sr-only">{item.srText}</span>
 
@@ -76,14 +90,15 @@ export default function InsightNews({
                   </svg>
                 </div>
               </div>
-            </a>
+            </LinkTag>
 
             {/* Divider */}
             {index !== items.length - 1 && (
               <div className="-mx-[0.0625rem] w-[0.125rem] lg:my-xl bg-gray-defi-slate"></div>
             )}
           </React.Fragment>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
