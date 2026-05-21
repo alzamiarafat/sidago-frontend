@@ -119,54 +119,59 @@ export default function ContactUs() {
       className="bg-[linear-gradient(180deg,#1a211e_0%,#111715_100%)] py-block"
       aria-labelledby="contact-topics-heading"
     >
-      <div className="container flex flex-col gap-10 lg:flex-row lg:items-start">
-        <div
-          className="core-column--stacked-on-mobile lg:max-w-[min(100%,16rem)]"
-          style={{ "--core-column-width": "15%" }}
-        >
-          <Image
-            alt=""
-            loading="lazy"
-            width={1152}
-            height={1152}
-            unoptimized
-            className="aspect-video rounded-[1.5rem] object-cover shadow-[0_24px_64px_rgba(0,0,0,0.16)] ring-1 ring-white/[0.06] lg:h-full lg:aspect-auto"
-            src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/26202946/Contact-graphic.svg"
-          />
-        </div>
-
-        <div
-          className="core-column--stacked-on-mobile min-w-0 flex-1"
-          style={{ "--core-column-width": "85%" }}
-        >
-          <div className="max-w-[44rem]">
-            <p className="text-sm uppercase tracking-[0.2em] text-green-dark">
-              Contact us
-            </p>
-
-            <h2
-              className="mt-2 text-3xl text-gray-off-white sm:text-4xl"
-              id="contact-topics-heading"
-            >
-              Get in touch with Sidago
-            </h2>
-
-            <p className="mt-4 text-base leading-8 text-gray-off-white/75">
-              Choose a topic below to reach the right Sidago team quickly and
-              keep the enquiry aligned with your needs.
-            </p>
-
-            <div className="pt-6 text-green-dark">
-              <p className="text-sm uppercase tracking-[0.18em] text-gray-tradfi-frost">
-              WHAT TOPIC WOULD YOU LIKE TO CONTACT SIDAGO ABOUT?
-              </p>
+      <div className="container">
+        <div className="flex items-stretch gap-4 sm:gap-6 lg:gap-8">
+          <div
+            className="core-column--stacked-on-mobile relative w-11 shrink-0 sm:w-12 lg:w-[9.5rem] lg:max-w-[min(100%,16rem)]"
+            style={{ "--core-column-width": "9.5rem" }}
+            aria-hidden
+          >
+            <div className="bevel bevel-[0.25rem] absolute inset-0 overflow-hidden">
+              <Image
+                alt=""
+                loading="lazy"
+                fill
+                unoptimized
+                sizes="(max-width: 1024px) 3rem, 9.5rem"
+                className="object-cover object-center"
+                src="/images/contact-graphic.svg"
+              />
             </div>
           </div>
 
-          <div className="group/cards pointer-events-none relative mt-8 flex grid-cols-12 flex-col gap-5 text-gray-off-white lg:grid lg:grid-rows-auto lg:gap-4">
-            {CONTACT_TOPICS.map((topic) => (
-              <ContactTopicCard key={topic.label} topic={topic} />
-            ))}
+          <div
+            className="core-column--stacked-on-mobile flex min-w-0 flex-1 flex-col"
+            style={{ "--core-column-width": "85%" }}
+          >
+            <div className="max-w-[44rem]">
+              <p className="text-sm uppercase tracking-[0.2em] text-green-dark">
+                Contact us
+              </p>
+
+              <h2
+                className="mt-2 text-3xl text-gray-off-white sm:text-4xl"
+                id="contact-topics-heading"
+              >
+                Get in touch with Sidago
+              </h2>
+
+              <p className="mt-4 text-base leading-8 text-gray-off-white/75">
+                Choose a topic below to reach the right Sidago team quickly and
+                keep the enquiry aligned with your needs.
+              </p>
+
+              <div className="pt-6 text-green-dark">
+                <p className="text-sm uppercase tracking-[0.18em] text-gray-tradfi-frost">
+                  WHAT TOPIC WOULD YOU LIKE TO CONTACT SIDAGO ABOUT?
+                </p>
+              </div>
+            </div>
+
+            <div className="group/cards pointer-events-none relative mt-8 flex grid-cols-12 flex-col gap-5 text-gray-off-white lg:grid lg:grid-rows-auto lg:gap-4">
+              {CONTACT_TOPICS.map((topic) => (
+                <ContactTopicCard key={topic.label} topic={topic} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

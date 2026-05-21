@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HeroVideoBackground from "./HeroVideoBackground";
 
 function HeroCtaButton({ label, href }) {
   return (
@@ -43,6 +44,7 @@ export default function HeroBannerSection({
   lighterTheme = false,
   loop = false,
   lighterBgColor = "bg-[#f0f1f1]",
+  videoEndBackgroundSrc,
 }) {
   return (
     // <section className="relative flex flex-col justify-center items-center min-h-[70svh] lg:flex-row lg:items-center lg:justify-center text-gray-off-white lg:min-h-[calc(100svh - var(--header-height) - 6.125rem)]">
@@ -68,20 +70,14 @@ export default function HeroBannerSection({
       >
         {/* Keep your exact structure */}
         {useVideo && (
-          <div
-            className={`video-wrapper ${videoClass} ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
-          >
-            <video
-              className="h-full w-full lg:object-cover object-cover text-green-dark"
-              autoPlay
-              muted
-              loop={false}
-              playsInline
-              preload="auto"
-              {...(videoPoster?.trim() ? { poster: videoPoster.trim() } : {})}
-              src={videoSrc}
-            />
-          </div>
+          <HeroVideoBackground
+            videoSrc={videoSrc}
+            videoPoster={videoPoster}
+            videoClass={videoClass}
+            lighterTheme={lighterTheme}
+            loop={loop}
+            endBackgroundSrc={videoEndBackgroundSrc}
+          />
         )}
 
         {!useVideo && imageSrc && (
