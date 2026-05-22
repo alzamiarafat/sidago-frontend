@@ -327,7 +327,7 @@ export const defaultHomepage = {
     },
     {
       title: "Global Workforce Solutions",
-      href: "#",
+      href: "/global-workforce-solutions",
       srText: "Global Workforce Solutions",
       sortOrder: 2,
     },

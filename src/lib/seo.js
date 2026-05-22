@@ -202,6 +202,19 @@ export const routeMetadata = {
       "24/7 support coverage",
     ],
   }),
+  globalWorkforceSolutions: buildPageMetadata({
+    title: "Global Workforce Solutions",
+    description:
+      "Sidago global workforce solutions: remote hiring, team management, scalable operations, benefit efficiency, and structured supervision for distributed teams.",
+    path: "/global-workforce-solutions",
+    keywords: [
+      "Sidago workforce",
+      "remote team management",
+      "global staffing support",
+      "outsourced operations",
+      "distributed workforce",
+    ],
+  }),
   legalPolicies: buildPageMetadata({
     title: "Legal & Compliance Policies",
     description:

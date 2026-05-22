@@ -7,8 +7,8 @@ export default async function LegalChromeLayout({ children }) {
   const settings = await getGlobalSettings();
 
   return (
-    <div className="flex h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex min-h-svh flex-col text-base">
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <Navigation />
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative isolate flex-1 bg-[#1C211E] text-gray-off-white dark"

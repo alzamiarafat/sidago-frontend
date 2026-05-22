@@ -182,7 +182,7 @@ export default function ServicePageTemplate({
 
   return (
     <div className="flex min-h-svh flex-col text-base">
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <Navigation />
 
         <main

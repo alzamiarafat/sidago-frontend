@@ -621,7 +621,7 @@ export default function MarketingGrowthView({ footer }) {
 
   return (
     <div className="flex min-h-svh flex-col text-base">
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <Navigation />
         <main
           className={`[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1 ${MG.deep} text-gray-off-white dark`}

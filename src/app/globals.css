@@ -3,9 +3,187 @@
 
 /* v2 marketing UI: keep Saans as default body text (matches public/styles/style-v2.css) after Tailwind preflight */
 @layer base {
+  html.version-v2 {
+    scroll-behavior: smooth;
+  }
+
   body.version-v2 {
     font-family: saans, sans-serif;
+    overflow-x: hidden;
   }
+}
+
+/* V2 Subscribe — market update / insights newsletter block */
+.v2-subscribe {
+  --v2-subscribe-brand: #e7512f;
+  background-color: #eff0f0;
+  color: #070b09;
+}
+
+.v2-subscribe__inner {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .v2-subscribe__inner {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.v2-subscribe__title {
+  margin: 0 0 2.5rem;
+  font-size: 2rem;
+  line-height: 1.12;
+  font-weight: 400;
+  color: #070b09;
+}
+
+@media (min-width: 1024px) {
+  .v2-subscribe__title {
+    margin-bottom: 4rem;
+    font-size: 3rem;
+  }
+}
+
+.v2-subscribe__form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .v2-subscribe__form {
+    gap: 4rem;
+  }
+}
+
+.v2-subscribe__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.v2-subscribe__email-label {
+  font-family: blender, saans, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--v2-subscribe-brand);
+}
+
+.v2-subscribe__input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #9ea4a0;
+  background: transparent;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #070b09;
+  outline: none;
+  box-shadow: none;
+}
+
+.v2-subscribe__input:focus {
+  border-bottom-color: var(--v2-subscribe-brand);
+  outline: none;
+  box-shadow: none;
+}
+
+.v2-subscribe__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.v2-subscribe__legend {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0;
+  font-family: blender, saans, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ea4a0;
+}
+
+.v2-subscribe__options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.v2-subscribe__option {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #070b09;
+}
+
+.v2-subscribe__checkbox {
+  height: 0.875rem;
+  width: 0.875rem;
+  flex-shrink: 0;
+  appearance: none;
+  border-radius: 0;
+  border: 1px solid #9ea4a0;
+  background: transparent;
+}
+
+.v2-subscribe__checkbox:checked {
+  border-color: var(--v2-subscribe-brand);
+  background-color: var(--v2-subscribe-brand);
+}
+
+.v2-subscribe__disclaimer {
+  max-width: 48rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #9ea4a0;
+}
+
+.v2-subscribe__disclaimer a {
+  color: #9ea4a0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.v2-subscribe__disclaimer a:hover {
+  opacity: 0.8;
+}
+
+.v2-subscribe__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: none;
+  background-color: var(--v2-subscribe-brand);
+  color: #f5f4ef;
+  padding: 0.625rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.v2-subscribe__submit:hover {
+  opacity: 0.92;
+  background-color: #cf4526;
+}
+
+.v2-subscribe__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* @font-face {

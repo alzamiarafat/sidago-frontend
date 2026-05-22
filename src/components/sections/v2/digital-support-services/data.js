@@ -205,6 +205,7 @@ export const subscribeContent = {
     "Sidago and its affiliates need the contact information you provide to us to contact you about our products and services. You may unsubscribe from these communications at anytime. For information on how to unsubscribe, as well as our privacy practices and commitment to protecting your privacy, check out our ",
   privacyPolicyHref: "/privacy",
   privacyPolicyLabel: "Privacy Policy",
+  disclaimerSuffix: ".",
   submitLabel: "Submit",
   submitSrText: "Submit subscription",
 };
@@ -212,6 +213,7 @@ export const subscribeContent = {
 export const similarInsightsContent = {
   heading: "Explore similar Insights",
   headingId: "explore-similar-insights",
+  desktopColumns: 4,
   cards: [
     {
       href: "/insights/market-color/market-update/market-update-18-may-2026",

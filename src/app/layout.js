@@ -134,7 +134,7 @@ export default async function RootLayout({ children }) {
 
   return (
     // <html lang="en" className={blender.className}>
-    <html lang="en">
+    <html lang="en" className={version !== "v1" ? `version-${version}` : undefined}>
       <head>
         <StrapiConnectionHints />
         {version !== "v1" ? <V2FirstPaintHints /> : null}

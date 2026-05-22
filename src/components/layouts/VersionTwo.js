@@ -33,9 +33,9 @@ export default function Home({ homepage = defaultHomepage, settings }) {
   const footer = settings?.footer;
 
   return (
-    <div className="flex h-svh flex-col text-base">
+    <div className="flex min-h-svh flex-col text-base">
       <div hidden=""></div>
-      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <LazyNavigation />
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"

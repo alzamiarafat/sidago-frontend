@@ -79,6 +79,30 @@ function ArrowIcon() {
 }
 
 function ArticleParagraph({ paragraph }) {
+  if (paragraph.variant === "quote") {
+    return (
+      <p className="my-xl text-center text-black [&_a]:text-green-tradfi">
+        <em>
+          <strong>&ldquo;{paragraph.text}&rdquo;</strong>
+        </em>
+      </p>
+    );
+  }
+
+  if (paragraph.parts?.length) {
+    return (
+      <p className="my-xl text-black [&_a]:text-green-tradfi">
+        {paragraph.parts.map((part, index) =>
+          part.type === "strong" ? (
+            <strong key={index}>{part.value}</strong>
+          ) : (
+            <span key={index}>{part.value}</span>
+          ),
+        )}
+      </p>
+    );
+  }
+
   return (
     <p className="my-xl text-black [&_a]:text-green-tradfi">
       {paragraph.strong ? <strong>{paragraph.strong}</strong> : null}
@@ -186,6 +210,7 @@ export default function ReportContentsSection({
   ];
 
   const { tableOfContents, mainSection, ctaSection, disclaimers } = content;
+  const blocks = mainSection.blocks;
 
   return (
     <section className="bg-[#FAFAFA] text-black">
@@ -255,29 +280,48 @@ export default function ReportContentsSection({
               {mainSection.title}
             </h2>
 
-            {mainSection.paragraphs?.map((paragraph, index) => (
-              <ArticleParagraph key={index} paragraph={paragraph} />
-            ))}
+            {blocks?.length
+              ? blocks.map((block, index) => {
+                  if (block.type === "image") {
+                    return <ArticleImage key={index} image={block} />;
+                  }
+                  if (block.type === "paragraph") {
+                    return (
+                      <ArticleParagraph key={index} paragraph={block} />
+                    );
+                  }
+                  return null;
+                })
+              : null}
 
-            <ArticleImage image={mainSection.image} />
+            {!blocks?.length &&
+              mainSection.paragraphs?.map((paragraph, index) => (
+                <ArticleParagraph key={index} paragraph={paragraph} />
+              ))}
 
-            <h2
-              id={ctaSection.id}
-              className="mb-xl text-3xl text-black [&:not(:first-child)]:mt-4xl"
-            >
-              {ctaSection.title}
-            </h2>
+            {!blocks?.length ? <ArticleImage image={mainSection.image} /> : null}
 
-            <div className="flex">
-              <Link
-                href={ctaSection.href}
-                className="group/interactive inline-flex items-center justify-between gap-md bg-green-tradfi px-sm py-xs font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
-              >
-                <span className="sr-only">{ctaSection.srText}</span>
-                {ctaSection.label}
-                <ArrowIcon />
-              </Link>
-            </div>
+            {ctaSection ? (
+              <>
+                <h2
+                  id={ctaSection.id}
+                  className="mb-xl text-3xl text-black [&:not(:first-child)]:mt-4xl"
+                >
+                  {ctaSection.title}
+                </h2>
+
+                <div className="flex">
+                  <Link
+                    href={ctaSection.href}
+                    className="group/interactive inline-flex items-center justify-between gap-md bg-green-tradfi px-sm py-xs font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
+                  >
+                    <span className="sr-only">{ctaSection.srText}</span>
+                    {ctaSection.label}
+                    <ArrowIcon />
+                  </Link>
+                </div>
+              </>
+            ) : null}
 
             <div className="pt-block">
               {disclaimers?.map((item, index) => (

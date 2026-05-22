@@ -16,7 +16,7 @@ export default async function InfrastructurePage() {
 
   return (
     <div className="flex min-h-svh flex-col bg-gray-night-green text-base">
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <Navigation />
 
         <main

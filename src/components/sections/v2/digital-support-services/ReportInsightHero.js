@@ -32,10 +32,22 @@ export default function ReportInsightHero({
   date,
   category,
   className = "",
+  /** "green" (default) or "off-white" for market-update style meta row */
+  metaTone = "green",
 }) {
+  const metaRowClass =
+    metaTone === "off-white" ? "text-gray-off-white" : "text-green-tradfi";
+  const metaDividerClass =
+    metaTone === "off-white" ? "bg-gray-off-white" : "bg-green-tradfi";
+
   return (
     <section
-      className={`relative bg-gray-tradfi-horizon text-gray-night-green ${className}`}
+      className={[
+        "relative text-gray-night-green",
+        className || "bg-gray-tradfi-horizon",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <Image
         alt={imageAlt || title}
@@ -72,10 +84,14 @@ export default function ReportInsightHero({
           {description ? <p className="text-lg">{description}</p> : null}
 
           {date || category ? (
-            <div className="flex font-blender text-sm uppercase text-green-tradfi">
+            <div
+              className={`flex font-blender text-sm uppercase ${metaRowClass}`}
+            >
               {date ? <p>{date}</p> : null}
               {date && category ? (
-                <div className="mx-2.5 mt-[0.1875rem] h-[0.75rem] w-[0.0625rem] bg-green-tradfi" />
+                <div
+                  className={`mx-2.5 mt-[0.1875rem] h-[0.75rem] w-[0.0625rem] ${metaDividerClass}`}
+                />
               ) : null}
               {category ? <p>{category}</p> : null}
             </div>

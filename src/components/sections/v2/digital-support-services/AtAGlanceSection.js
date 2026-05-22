@@ -2,6 +2,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { atAGlanceContent } from "@/src/components/sections/v2/digital-support-services/data";
 
+function AtAGlanceBullets({ bullets }) {
+  if (!bullets?.length) {
+    return null;
+  }
+
+  return (
+    <div className="pb-2xl">
+      <ul>
+        {bullets.map((item, index) => {
+          if (typeof item === "string") {
+            return (
+              <li key={index} className="[&_a]:text-green-tradfi">
+                {item}
+              </li>
+            );
+          }
+
+          return (
+            <li key={index} className="[&_a]:text-green-tradfi">
+              {item.before}
+              {item.emphasis ? <strong>{item.emphasis}</strong> : null}
+              {item.after}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
 export default function AtAGlanceSection({
   authorName = atAGlanceContent.authorName,
   authorImageSrc = atAGlanceContent.authorImageSrc,
@@ -9,9 +39,11 @@ export default function AtAGlanceSection({
   heading = atAGlanceContent.heading,
   headingId = atAGlanceContent.headingId,
   body = atAGlanceContent.body,
+  bullets,
+  className = "",
 }) {
   return (
-    <section className="bg-[#D8DAD8] text-black">
+    <section className={`bg-[#D8DAD8] text-black ${className}`.trim()}>
       <div className="container flex flex-col gap-x-container gap-y-4xl py-block pb-container pt-container lg:flex-row">
         <div
           className="core-column--stacked-on-mobile flex flex-col gap-2xl"
@@ -65,7 +97,11 @@ export default function AtAGlanceSection({
               </div>
               <hr className="border-gray-tradfi-steel" />
             </div>
-            <p className="my-xl text-black [&_a]:text-green-tradfi">{body}</p>
+            {bullets?.length > 0 ? (
+              <AtAGlanceBullets bullets={bullets} />
+            ) : body ? (
+              <p className="my-xl text-black [&_a]:text-green-tradfi">{body}</p>
+            ) : null}
           </div>
         </article>
       </div>

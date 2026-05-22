@@ -2,12 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { similarInsightsContent } from "@/src/components/sections/v2/digital-support-services/data";
-
-const CARD_WIDTH_STYLE = {
-  "--link-card-desktop-width": "calc(100% / 3 + 1rem)",
-};
 
 function NavArrow({ className = "" }) {
   return (
@@ -28,11 +24,52 @@ function NavArrow({ className = "" }) {
   );
 }
 
-function InsightCard({ card }) {
+function LoadMoreIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 40 40"
+      className="h-6 w-6"
+      aria-hidden
+    >
+      <path
+        stroke="currentColor"
+        strokeMiterlimit="10"
+        strokeWidth="0.7"
+        d="M26.07 17.512h8.92l-4.46 4.503z"
+      />
+      <path
+        stroke="currentColor"
+        strokeMiterlimit="10"
+        strokeWidth="0.7"
+        d="M30.53 22.016V9.147 20.496 4 10.46 9.147v2.574M14.92 22.016H6l4.46-4.504z"
+      />
+      <path
+        stroke="currentColor"
+        strokeMiterlimit="10"
+        strokeWidth="0.7"
+        d="M10.46 17.512V30.38l10.035 5.147 10.036-5.147v-2.573M26.07 17.512h8.92l-4.46 4.503z"
+      />
+      <path
+        stroke="currentColor"
+        strokeMiterlimit="10"
+        strokeWidth="0.7"
+        d="M30.53 22.016V9.147 20.496 4 10.46 9.147v2.574"
+      />
+    </svg>
+  );
+}
+
+function InsightCard({ card, desktopColumns = 4 }) {
+  const cardWidthStyle = {
+    "--link-card-desktop-width": `calc(100% / ${desktopColumns} + 1rem)`,
+  };
+
   return (
     <div
       className="w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem]"
-      style={CARD_WIDTH_STYLE}
+      style={cardWidthStyle}
     >
       <Link
         href={card.href}
@@ -75,7 +112,19 @@ export default function SimilarInsightsSection({
 }) {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const total = content.cards.length;
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+
+  const desktopColumns = content.desktopColumns ?? 4;
+  const cards = content.cards ?? [];
+  const total = cards.length;
+  const mobileVisibleCards = mobileExpanded ? cards : cards.slice(0, 3);
+
+  const cardWidthStyle = useMemo(
+    () => ({
+      "--link-card-desktop-width": `calc(100% / ${desktopColumns} + 1rem)`,
+    }),
+    [desktopColumns],
+  );
 
   const scrollToIndex = useCallback(
     (index) => {
@@ -100,8 +149,11 @@ export default function SimilarInsightsSection({
   const handlePrev = () => scrollToIndex(activeIndex - 1);
   const handleNext = () => scrollToIndex(activeIndex + 1);
 
+  const navButtonClass =
+    "group/interactive inline-flex items-center justify-between gap-md bg-green-dark p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50";
+
   return (
-    <section className="bg-[#FAFAFA] text-gray-night-green">
+    <section>
       <div className="container py-block">
         <div className="mb-3xl flex flex-col gap-xl">
           <div className="flex flex-col gap-xs">
@@ -115,59 +167,92 @@ export default function SimilarInsightsSection({
           <hr className="border-gray-tradfi-steel" />
         </div>
 
-        <div
-          className="flex flex-col gap-2xl lg:flex-col-reverse lg:gap-4xl"
-          style={{ clipPath: "inset(-100rem -100rem -100rem -100rem)" }}
-        >
-          <div className="flex justify-between gap-3xl lg:items-center">
-            <div className="relative flex flex-1 gap-md lg:hidden">
-              <div className="flex w-full items-center justify-between text-lg">
-                <div className="flex font-blender text-xl font-medium uppercase text-gray-defi-ash">
-                  <span className="min-w-md">{activeIndex + 1}</span>
-                  <span className="min-w-sm">/</span>
-                  <span className="min-w-md">{total}</span>
+        <section className="text-gray-night-green">
+          <div
+            className="flex flex-col gap-2xl lg:flex-col-reverse lg:gap-4xl"
+            style={{ clipPath: "inset(-100rem -100rem -100rem -100rem)" }}
+          >
+            {/* Mobile: stacked grid + load more */}
+            <div className="flex flex-col gap-2xl lg:hidden">
+              <div className="group/cards grid grid-cols-1 gap-xl">
+                {mobileVisibleCards.map((card) => (
+                  <InsightCard
+                    key={card.href}
+                    card={card}
+                    desktopColumns={desktopColumns}
+                  />
+                ))}
+              </div>
+              {!mobileExpanded && cards.length > 3 ? (
+                <button
+                  type="button"
+                  onClick={() => setMobileExpanded(true)}
+                  className="flex w-full justify-between bg-green-dark p-md font-medium text-gray-night-green bevel bevel-[0.25rem]"
+                >
+                  Load more
+                  <LoadMoreIcon />
+                </button>
+              ) : null}
+            </div>
+
+            {/* Desktop / tablet: carousel controls */}
+            <div className="hidden flex-col gap-2xl lg:flex lg:flex-col-reverse lg:gap-4xl">
+              <div className="flex justify-between gap-3xl lg:items-center">
+                <div className="relative flex flex-1 gap-md lg:hidden">
+                  <div className="flex w-full items-center justify-between text-lg">
+                    <div className="flex font-blender text-xl font-medium uppercase text-gray-defi-ash">
+                      <span className="min-w-md">{activeIndex + 1}</span>
+                      <span className="min-w-sm">/</span>
+                      <span className="min-w-md">{total}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex gap-md">
+                  <button
+                    type="button"
+                    aria-label="Previous"
+                    onClick={handlePrev}
+                    className={navButtonClass}
+                  >
+                    <NavArrow className="rotate-180" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Next"
+                    onClick={handleNext}
+                    className={navButtonClass}
+                  >
+                    <NavArrow />
+                  </button>
+                </div>
+                <div className="hidden lg:flex">
+                  {cards.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`ml-[0.125rem] h-[0.25rem] w-sm transition-all bg-green-dark first:ml-0 ${
+                        index === activeIndex ? "" : "opacity-30"
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="flex gap-md">
-              <button
-                type="button"
-                aria-label="Previous"
-                onClick={handlePrev}
-                className="group/interactive inline-flex items-center justify-between gap-md bg-green-tradfi p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
-              >
-                <NavArrow className="rotate-180" />
-              </button>
-              <button
-                type="button"
-                aria-label="Next"
-                onClick={handleNext}
-                className="group/interactive inline-flex items-center justify-between gap-md bg-green-tradfi p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
-              >
-                <NavArrow />
-              </button>
-            </div>
-            <div className="hidden lg:flex">
-              {content.cards.map((_, index) => (
-                <div
-                  key={index}
-                  className={`ml-[0.125rem] h-[0.25rem] w-sm transition-all bg-green-tradfi first:ml-0 ${
-                    index === activeIndex ? "" : "opacity-30"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
 
-          <div
-            ref={scrollRef}
-            className="group/cards relative -mx-[100rem] flex overflow-x-auto px-[100rem] scrollbar-none"
-          >
-            {content.cards.map((card) => (
-              <InsightCard key={card.href} card={card} />
-            ))}
+              <div
+                ref={scrollRef}
+                className="group/cards relative -mx-[100rem] flex overflow-x-auto px-[100rem] scrollbar-none"
+                style={cardWidthStyle}
+              >
+                {cards.map((card) => (
+                  <InsightCard
+                    key={card.href}
+                    card={card}
+                    desktopColumns={desktopColumns}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </section>
   );

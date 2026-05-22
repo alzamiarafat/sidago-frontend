@@ -413,8 +413,8 @@ export default async function ExecutionPage() {
   ]);
 
   return (
-    <div className="flex h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex min-h-svh flex-col text-base">
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <Navigation />
 
         <main

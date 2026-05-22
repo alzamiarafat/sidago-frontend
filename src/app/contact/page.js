@@ -11,8 +11,8 @@ export const metadata = routeMetadata.contact;
 
 export default function ContactPage() {
   return (
-    <div className="flex h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden scroll-smooth">
+    <div className="flex min-h-svh flex-col text-base">
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <Navigation />
 
         <main
@@ -24,9 +24,9 @@ export default function ContactPage() {
             aria-hidden
           />
           <div className="relative z-[1]">
-            <ContactPremiumHero />
-            <ContactLeadForm />
-            <ContactOfficesMap />
+            {/* <ContactPremiumHero /> */}
+            {/* <ContactLeadForm /> */}
+            {/* <ContactOfficesMap /> */}
             <ContactUs />
             <CTASection />
             <Footer />
