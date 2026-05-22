@@ -2,11 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   FiArrowRight,
   FiChevronDown,
@@ -19,6 +15,10 @@ import {
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
+import AtAGlanceSection from "@/src/components/sections/v2/digital-support-services/AtAGlanceSection";
+import ReportContentsSection from "@/src/components/sections/v2/digital-support-services/ReportContentsSection";
+import SubscribeSection from "@/src/components/sections/v2/digital-support-services/SubscribeSection";
+import SimilarInsightsSection from "@/src/components/sections/v2/digital-support-services/SimilarInsightsSection";
 import {
   coreServices,
   coverageHighlights,
@@ -142,7 +142,9 @@ function HeroSection({ reduce }) {
 
 function PillarsSection({ reduce }) {
   return (
-    <section className={`scroll-mt-24 ${DSS.mid} px-5 text-gray-off-white md:px-10`}>
+    <section
+      className={`scroll-mt-24 ${DSS.mid} px-5 text-gray-off-white md:px-10`}
+    >
       <div className="container py-block">
         <motion.div
           initial="hidden"
@@ -236,7 +238,9 @@ function ServicesSection({ reduce }) {
 
 function DeliverySection({ reduce }) {
   return (
-    <section className={`scroll-mt-24 ${DSS.mid} px-5 text-gray-off-white md:px-10`}>
+    <section
+      className={`scroll-mt-24 ${DSS.mid} px-5 text-gray-off-white md:px-10`}
+    >
       <div className="container py-block">
         <motion.div
           initial="hidden"
@@ -281,7 +285,9 @@ function DeliverySection({ reduce }) {
 
 function CoverageSection() {
   return (
-    <section className={`scroll-mt-24 ${DSS.deep} px-5 text-gray-off-white md:px-10`}>
+    <section
+      className={`scroll-mt-24 ${DSS.deep} px-5 text-gray-off-white md:px-10`}
+    >
       <div className="container py-block">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
           <SectionHeader
@@ -388,7 +394,53 @@ function FaqSection({ reduce }) {
   );
 }
 
-export default function DigitalSupportServicesView({ footer }) {
+function PageBody({ reduce, hero }) {
+  const lightSections = (
+    <>
+      <AtAGlanceSection />
+      <ReportContentsSection />
+      <SubscribeSection />
+      <SimilarInsightsSection />
+    </>
+  );
+
+  const darkSections = (
+    <>
+      {/* <PillarsSection reduce={reduce} />
+      <ServicesSection reduce={reduce} />
+      <DeliverySection reduce={reduce} />
+      <CoverageSection />
+      <StatsSection />
+      <FaqSection reduce={reduce} />
+      <CTASection /> */}
+    </>
+  );
+
+  if (hero) {
+    return (
+      <>
+        {hero}
+        {lightSections}
+        <div
+          className="bg-black text-gray-off-white"
+          style={{ colorScheme: "dark" }}
+        >
+          {darkSections}
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <HeroSection reduce={reduce} />
+      {lightSections}
+      {darkSections}
+    </>
+  );
+}
+
+export default function DigitalSupportServicesView({ footer, hero }) {
   const reduce = useReducedMotion();
 
   return (
@@ -397,17 +449,13 @@ export default function DigitalSupportServicesView({ footer }) {
         <Navigation />
 
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] flex-1 bg-black text-gray-off-white"
-          style={{ colorScheme: "dark" }}
+          className={`[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] flex-1 ${
+            hero ? "" : "bg-black text-gray-off-white"
+          }`}
+          style={hero ? undefined : { colorScheme: "dark" }}
         >
-          <HeroSection reduce={reduce} />
-          <PillarsSection reduce={reduce} />
-          <ServicesSection reduce={reduce} />
-          <DeliverySection reduce={reduce} />
-          <CoverageSection />
-          <StatsSection />
-          <FaqSection reduce={reduce} />
-          <CTASection />
+          <PageBody reduce={reduce} hero={hero} />
+
           <Footer footer={footer} />
         </main>
       </div>

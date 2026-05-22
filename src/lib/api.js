@@ -112,6 +112,15 @@ function mergeHomepageHeroTitles(titles, canonicalTitles) {
   return pieces;
 }
 
+function resolveInsightNewsHref(itemHref, fallbackHref) {
+  const trimmed = itemHref?.trim();
+  if (!trimmed || trimmed === "#") {
+    const fallback = fallbackHref?.trim();
+    return fallback && fallback !== "#" ? fallback : "#";
+  }
+  return trimmed;
+}
+
 function normalizeInsightNewsItem(item, fallbackItem) {
   if (!item?.title) {
     return fallbackItem;
@@ -120,7 +129,7 @@ function normalizeInsightNewsItem(item, fallbackItem) {
   return {
     ...fallbackItem,
     ...item,
-    href: item.href?.trim() || fallbackItem.href || "#",
+    href: resolveInsightNewsHref(item.href, fallbackItem.href),
     srText: item.srText?.trim() || item.title,
   };
 }

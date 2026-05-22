@@ -97,6 +97,175 @@ export const performanceStats = [
   { stat: "40+", label: "Tools & platforms supported" },
 ];
 
+export const atAGlanceContent = {
+  authorName: "Sidago",
+  authorImageSrc: "/images/image.png",
+  tags: [
+    {
+      label: "Digital support",
+      href: "/services/digital-support",
+      srText: "Services › Digital support",
+    },
+    {
+      label: "Help desk",
+      href: "/contact",
+      srText: "Contact Sidago",
+    },
+  ],
+  heading: "At a glance",
+  headingId: "at-a-glance",
+  body:
+    "Sidago digital support teams cover help desk, technical assistance, and customer operations with documented SLAs, security-aware workflows, and reporting leadership can trust. Engagements start with a focused queue, then scale across channels and time zones without losing tone, quality, or escalation discipline.",
+};
+
+export const reportContentsContent = {
+  tableOfContents: [
+    {
+      id: "digital-support-coverage-model",
+      label: "How Sidago structures digital support coverage",
+      srText: "Digital support coverage model",
+    },
+    {
+      id: "get-started",
+      label: "Get started",
+      srText: "Get started with Sidago digital support",
+    },
+  ],
+  mainSection: {
+    id: "digital-support-coverage-model",
+    title: "How Sidago structures digital support coverage",
+    paragraphs: [
+      {
+        text: "Sidago’s digital support overview outlines how teams scale help desk, technical assistance, and customer operations without overloading in-house staff. Below are the core ideas behind our delivery model.",
+      },
+      {
+        strong: "Tiered response instead of one-size-fits-all: ",
+        text: "Intake, triage, and resolution paths are defined by severity and channel so urgent issues reach the right specialists quickly while routine requests stay efficient.",
+      },
+      {
+        strong: "Tooling aligned to your stack: ",
+        text: "We work inside your ticketing, chat, CRM, and internal ops tools with documented escalation rules—reducing context switching for your teams and customers.",
+      },
+      {
+        strong: "Quality measured, not assumed: ",
+        text: "SLAs, QA sampling, and weekly reporting give leadership visibility into backlog, handle time, and repeat contacts without ad-hoc status chasing.",
+      },
+      {
+        strong: "Scale with guardrails: ",
+        text: "Dedicated pods can ramp for launches, seasonal peaks, or new product lines while macros, tone guidelines, and training keep the experience consistent.",
+      },
+      {
+        text: "Together, these practices help organizations treat support as an extension of operations—not a reactive cost center.",
+      },
+      {
+        text: "The sections below summarize how to engage Sidago and what to expect in a typical rollout.",
+      },
+    ],
+    image: {
+      src: "/images/image_4.png",
+      alt: "Digital support operations overview",
+    },
+  },
+  ctaSection: {
+    id: "get-started",
+    title: "Get started",
+    label: "Contact us",
+    href: "/contact",
+    srText: "Contact Sidago about digital support",
+  },
+  disclaimers: [
+    {
+      text: "Sidago provides business process, digital support, and operational services. Scope, SLAs, and tooling access are defined in each engagement statement of work.",
+    },
+    {
+      text: "Information on this page is for general guidance. It does not constitute legal, investment, or regulatory advice. Confirm requirements with your internal counsel and compliance teams where applicable.",
+    },
+    {
+      text: "Service availability, channels, and coverage hours depend on the agreed operating model and may vary by region or client environment.",
+    },
+    {
+      href: "/legal",
+      linkLabel: "legal policies",
+      text: "Please refer to our ",
+      textAfter: " for additional terms and disclaimers.",
+    },
+  ],
+};
+
+export const subscribeContent = {
+  heading: "Subscribe",
+  headingId: "subscribe",
+  emailLabel: "Email",
+  newslettersLabel: "Newsletters to subscribe to",
+  newsletterOptions: [
+    { id: "market-updates", label: "Market Updates" },
+    { id: "research-insights", label: "Research Insights" },
+  ],
+  disclaimer:
+    "Sidago and its affiliates need the contact information you provide to us to contact you about our products and services. You may unsubscribe from these communications at anytime. For information on how to unsubscribe, as well as our privacy practices and commitment to protecting your privacy, check out our ",
+  privacyPolicyHref: "/privacy",
+  privacyPolicyLabel: "Privacy Policy",
+  submitLabel: "Submit",
+  submitSrText: "Submit subscription",
+};
+
+export const similarInsightsContent = {
+  heading: "Explore similar Insights",
+  headingId: "explore-similar-insights",
+  cards: [
+    {
+      href: "/insights/market-color/market-update/market-update-18-may-2026",
+      srText:
+        "Insights › Market color › Market update › Market update 18 may 2026",
+      imageSrc: "/images/image_1.png",
+      imageAlt: "Market Update: 18 May 2026",
+      category: "Market Update",
+      title: "Market Update: 18 May 2026",
+      description:
+        "Analysis of recent crypto market developments from Sidago operations desk",
+      date: "18 May 2026",
+    },
+    {
+      href: "/insights/market-color/market-update/market-update-11-may-2026",
+      srText:
+        "Insights › Market color › Market update › Market update 11 may 2026",
+      imageSrc: "/images/image_1.png",
+      imageAlt: "Market Update: 11 May 2026",
+      category: "Market Update",
+      title: "Market Update: 11 May 2026",
+      description:
+        "Analysis of recent crypto market developments from Sidago operations desk",
+      date: "11 May 2026",
+    },
+    {
+      href: "/insights/views/opinions/digital-assets-in-2026-the-clearing-layer-for-the-internet-economy",
+      srText:
+        "Insights › Views › Opinions › Digital assets in 2026 the clearing layer for the internet economy",
+      imageSrc: "/images/image_3.png",
+      imageAlt:
+        "Digital assets in 2026: The clearing layer for the internet economy",
+      category: "Opinions",
+      title:
+        "Digital assets in 2026: The clearing layer for the internet economy",
+      description:
+        "Sidago explores where digital operations and support models are heading in 2026, and how teams can scale delivery with confidence.",
+      date: "28 Jan 2026",
+    },
+    {
+      href: "/insights/market-color/reports/digital-asset-otc-markets-2025",
+      srText:
+        "Insights › Market color › Reports › Digital asset otc markets 2025",
+      imageSrc: "/images/image_2.png",
+      imageAlt: "Digital asset OTC market 2025",
+      category: "Reports",
+      title: "Digital asset OTC market 2025",
+      description:
+        "Sidago’s 2025 digital asset market review analyzes liquidity flows, institutional behavior and derivatives growth across evolving cycle dynamics.",
+      date: "13 Jan 2026",
+    },
+  ],
+};
+
 export const faqItems = [
   {
     question: "What does Digital Support Services include?",
