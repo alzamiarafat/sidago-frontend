@@ -44,7 +44,7 @@ export default async function OperationsPage() {
           style={{ colorScheme: "light" }}
         >
           <HeroBannerSection {...hero} />
-          <OperationsPageContent />
+          <OperationsPageContent videoInMotion={operationsPage.videoInMotion} />
           <CTASection />
           <Footer footer={settings?.footer} />
         </main>

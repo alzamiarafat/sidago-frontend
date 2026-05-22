@@ -726,6 +726,17 @@ function normalizeOperationsPage(entry) {
 
   return {
     hero: normalizeHero(item.hero, defaultOperationsPage.hero),
+    videoInMotion: {
+      videoSrc:
+        item.videoInMotion?.videoSrc?.trim() ||
+        defaultOperationsPage.videoInMotion.videoSrc,
+      posterSrc:
+        item.videoInMotion?.posterSrc?.trim() ||
+        defaultOperationsPage.videoInMotion.posterSrc,
+      posterAlt:
+        item.videoInMotion?.posterAlt?.trim() ||
+        defaultOperationsPage.videoInMotion.posterAlt,
+    },
     insightNews:
       item.insightNews?.length > 0
         ? item.insightNews

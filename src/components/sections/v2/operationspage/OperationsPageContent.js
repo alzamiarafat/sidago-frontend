@@ -1,5 +1,8 @@
 import Image from "next/image";
+import { defaultOperationsPage } from "@/src/data/cms/defaults.mjs";
 import OperationsMetrics from "./OperationsMetrics";
+
+const DEFAULT_VIDEO_IN_MOTION = defaultOperationsPage.videoInMotion;
 
 function SectionHeading({ eyebrow, title, description, light = false }) {
   return (
@@ -415,7 +418,10 @@ const caseStudies = [
   },
 ];
 
-export default function OperationsPageContent() {
+export default function OperationsPageContent({
+  videoInMotion = DEFAULT_VIDEO_IN_MOTION,
+}) {
+  const { videoSrc, posterSrc, posterAlt } = videoInMotion ?? DEFAULT_VIDEO_IN_MOTION;
   return (
     <>
       <section className="bg-white text-black">
@@ -538,11 +544,13 @@ export default function OperationsPageContent() {
           <div className="bevel overflow-hidden bg-gray-tradfi-horizon">
             <video
               playsInline
-              preload="none"
+              preload="metadata"
+              poster={posterSrc}
+              aria-label={posterAlt}
               className="aspect-video w-full object-cover"
               controls
             >
-              <source src="videos/overview.mp4" />
+              <source src={videoSrc} type="video/mp4" />
             </video>
           </div>
 

@@ -821,6 +821,12 @@ export const defaultOperationsPage = {
     loop: true,
     lighterBgColor: "bg-[#f0f1f1]",
   },
+  videoInMotion: {
+    videoSrc: "/videos/overview.mp4",
+    posterSrc: "/images/operations-video-poster.png",
+    posterAlt:
+      "Smart home and connected operations dashboard on a tablet in a modern living room",
+  },
   insightNews: [
     {
       title: "Operational playbooks for scalable teams",
