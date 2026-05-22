@@ -403,6 +403,12 @@ export default async function InsightPage() {
         >
           <HeroBannerSection
             {...insightsPage.hero}
+            ctaLabel={insightsPage.hero.ctaLabel || "Get in touch"}
+            ctaHref={insightsPage.hero.ctaHref || "/contact"}
+            ctaButtonClass={
+              insightsPage.hero.ctaButtonClass ||
+              "group/interactive mt-6 inline-flex items-center justify-between gap-md bevel bevel-[0.25rem] bg-[#958dec] px-md py-sm text-sm font-medium !text-black transition-opacity hover:!text-black hover:opacity-90"
+            }
           />
 
           <Statistics stats={insightsPage.statistics} compact />

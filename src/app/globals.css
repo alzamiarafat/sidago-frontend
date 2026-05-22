@@ -60,26 +60,26 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(238, 240, 238, 0.08) 0%,
-    rgba(238, 240, 238, 0.02) 100%
+    rgba(238, 240, 238, 0.04) 0%,
+    rgba(238, 240, 238, 0) 100%
   );
   pointer-events: none;
   z-index: 1;
 }
 
 .operations-hero-video video {
-  filter: saturate(0.96) brightness(1) contrast(1.04);
+  filter: saturate(1.08) brightness(1.06) contrast(1.08);
   mix-blend-mode: normal;
-  opacity: 0.56;
+  opacity: 0.92;
 }
 
-.operations-hero-video::after {
+.operations-hero-video.video-light-overlay::after {
   background: linear-gradient(
     to right,
-    #eef0ee 0%,
-    rgba(238, 240, 238, 0.92) 22%,
-    rgba(238, 240, 238, 0.5) 46%,
-    rgba(238, 240, 238, 0.16) 72%,
+    rgba(238, 240, 238, 0.94) 0%,
+    rgba(238, 240, 238, 0.62) 18%,
+    rgba(238, 240, 238, 0.28) 40%,
+    rgba(238, 240, 238, 0.08) 62%,
     rgba(238, 240, 238, 0) 100%
   ) !important;
   z-index: 2;

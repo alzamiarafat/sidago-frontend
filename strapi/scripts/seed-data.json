@@ -131,13 +131,22 @@
           "title": "We understand",
           "color": "",
           "className": "text-[#E7512F]",
+          "line": 1,
           "sortOrder": 1
         },
         {
-          "title": "the modern business landscape",
+          "title": "the",
           "color": "",
           "className": "",
+          "line": 1,
           "sortOrder": 2
+        },
+        {
+          "title": "modern business landscape",
+          "color": "",
+          "className": "",
+          "line": 2,
+          "sortOrder": 3
         }
       ]
     },
@@ -411,15 +420,28 @@
           "title": "Turning data into",
           "color": "",
           "className": "",
+          "line": 1,
           "sortOrder": 1
         },
         {
-          "title": "actionable business insights",
+          "title": "actionable",
           "color": "#958dec",
           "className": "",
+          "line": 1,
           "sortOrder": 2
+        },
+        {
+          "title": "business insights",
+          "color": "#958dec",
+          "className": "",
+          "line": 2,
+          "sortOrder": 3
         }
-      ]
+      ],
+      "ctaLabel": "Get in touch",
+      "ctaHref": "/contact",
+      "ctaButtonClass": "group/interactive mt-6 inline-flex items-center justify-between gap-md bevel bevel-[0.25rem] bg-[#958dec] px-md py-sm text-sm font-medium !text-black transition-opacity hover:!text-black hover:opacity-90",
+      "ctaFocusClassName": "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#958dec]"
     },
     "statistics": [
       {

@@ -90,6 +90,28 @@ function normalizeHero(hero, fallbackHero = defaultHomepage.hero) {
   };
 }
 
+function mergeHomepageHeroTitles(titles, canonicalTitles) {
+  const pieces = (titles ?? [])
+    .filter((item) => item?.title)
+    .slice()
+    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0));
+
+  if (!pieces.length) {
+    return canonicalTitles;
+  }
+
+  const combined = pieces.map((item) => item.title).join(" ").toLowerCase();
+
+  if (
+    combined.includes("we understand") &&
+    combined.includes("modern business landscape")
+  ) {
+    return canonicalTitles;
+  }
+
+  return pieces;
+}
+
 function normalizeInsightNewsItem(item, fallbackItem) {
   if (!item?.title) {
     return fallbackItem;
@@ -432,8 +454,16 @@ function normalizeHomepage(entry) {
     return defaultHomepage;
   }
 
+  const normalizedHero = normalizeHero(hero, defaultHomepage.hero);
+
   return {
-    hero: normalizeHero(hero),
+    hero: {
+      ...normalizedHero,
+      titles: mergeHomepageHeroTitles(
+        normalizedHero.titles,
+        defaultHomepage.hero.titles,
+      ),
+    },
     insightNews:
       insightNews?.length > 0
         ? insightNews
@@ -996,6 +1026,55 @@ function normalizeExecutionPage(entry) {
   };
 }
 
+function mergeInsightsHeroTitles(titles, canonicalTitles) {
+  const pieces = (titles ?? [])
+    .filter((item) => item?.title)
+    .slice()
+    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0));
+
+  if (!pieces.length) {
+    return canonicalTitles;
+  }
+
+  const findPiece = (pattern) =>
+    pieces.find((item) => pattern.test(`${item.title}`.trim()));
+
+  const lineOne = findPiece(/^turning data into$/i) || pieces[0];
+  const actionable =
+    findPiece(/^actionable$/i) || findPiece(/actionable/i) || canonicalTitles[1];
+  const business =
+    findPiece(/business insights/i) ||
+    pieces[pieces.length - 1] ||
+    canonicalTitles[2];
+
+  return [
+    {
+      ...canonicalTitles[0],
+      ...lineOne,
+      title: "Turning data into",
+      color: lineOne.color || "",
+      line: 1,
+      sortOrder: 1,
+    },
+    {
+      ...canonicalTitles[1],
+      ...actionable,
+      title: "actionable",
+      color: actionable.color || "#958dec",
+      line: 1,
+      sortOrder: 2,
+    },
+    {
+      ...canonicalTitles[2],
+      ...business,
+      title: "business insights",
+      color: business.color || "#958dec",
+      line: 2,
+      sortOrder: 3,
+    },
+  ];
+}
+
 function normalizeInsightsPage(entry) {
   const item = unwrapEntity(entry);
 
@@ -1003,8 +1082,13 @@ function normalizeInsightsPage(entry) {
     return defaultInsightsPage;
   }
 
+  const hero = normalizeHero(item.hero, defaultInsightsPage.hero);
+
   return {
-    hero: normalizeHero(item.hero, defaultInsightsPage.hero),
+    hero: {
+      ...hero,
+      titles: mergeInsightsHeroTitles(hero.titles, defaultInsightsPage.hero.titles),
+    },
     statistics:
       item.statistics?.length > 0
         ? item.statistics

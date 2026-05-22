@@ -2,19 +2,57 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroVideoBackground from "./HeroVideoBackground";
 
-function HeroCtaButton({ label, href }) {
+function groupHeroTitleLines(titles = []) {
+  const sorted = [...titles].sort(
+    (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+  );
+
+  if (!sorted.length) {
+    return [];
+  }
+
+  if (sorted.length === 1) {
+    return [[sorted[0]]];
+  }
+
+  const hasExplicitLine = sorted.some(
+    (item) => item?.line != null && `${item.line}`.trim() !== "",
+  );
+
+  if (hasExplicitLine) {
+    const line1 = sorted.filter((item) => Number(item.line) === 1);
+    const line2 = sorted.filter((item) => Number(item.line) !== 1);
+
+    return [line1, line2].filter((line) => line.length > 0);
+  }
+
+  // Always two lines: first phrase on line 1, everything else on line 2.
+  return [[sorted[0]], sorted.slice(1)];
+}
+
+const DEFAULT_CTA_BUTTON_CLASS =
+  "group/interactive mt-6 inline-flex items-center justify-between gap-md bevel bevel-[0.25rem] bg-[#E3502E] px-md py-sm text-sm font-medium text-gray-night-green transition-opacity hover:opacity-90";
+const DEFAULT_CTA_FOCUS_CLASS =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E3502E]";
+
+function HeroCtaButton({ label, href, buttonClassName, focusClassName }) {
+  const isAccentCta = buttonClassName?.includes("bg-[#958dec]");
+  const textToneClass = isAccentCta
+    ? "!text-black hover:!text-black"
+    : "";
+
   return (
     <Link
       href={href}
-      style={{ position: "relative" }}
-      className="group/interactive mt-6 inline-flex items-center justify-between gap-md bevel bevel-[0.25rem] bg-[#E3502E] px-md py-sm text-sm font-medium text-gray-night-green transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E3502E]"
+      style={{ position: "relative", color: isAccentCta ? "#000" : undefined }}
+      className={`${buttonClassName || DEFAULT_CTA_BUTTON_CLASS} ${focusClassName || DEFAULT_CTA_FOCUS_CLASS} ${textToneClass}`}
     >
-      {label}
+      <span className={isAccentCta ? "text-black" : undefined}>{label}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 40 40"
-        className="ml-[--arrow-offset] h-4 w-4 shrink-0 transition-all group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset]"
+        className={`ml-[--arrow-offset] h-4 w-4 shrink-0 text-current transition-all group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] ${isAccentCta ? "!text-black" : ""}`}
         style={{ "--arrow-offset": "0.4rem" }}
         aria-hidden="true"
       >
@@ -36,6 +74,8 @@ export default function HeroBannerSection({
   subtitle,
   ctaLabel,
   ctaHref,
+  ctaButtonClass,
+  ctaFocusClassName,
   useVideo = false,
   videoPoster = "",
   videoSectionClass,
@@ -113,15 +153,25 @@ export default function HeroBannerSection({
 
       <div className="z-10 grid-cols-4 items-center lg:grid container py-block">
         <div className="col-span-2 flex flex-col items-start gap-2xl lg:pr-2xl">
-          <h1 className="text-2xl lg:text-3xl" style={{ fontWeight }}>
-            {titles.map((item, index) => (
+          <h1
+            className="max-w-2xl text-2xl leading-[1.15] tracking-[-0.02em] lg:text-3xl"
+            style={{ fontWeight }}
+          >
+            {groupHeroTitleLines(titles).map((lineItems, lineIndex) => (
               <span
-                key={index}
-                className={item.className}
-                style={item.color ? { color: item.color } : undefined}
+                key={lineIndex}
+                className="block lg:whitespace-nowrap"
               >
-                {" "}
-                {item.title}{" "}
+                {lineItems.map((item, index) => (
+                  <span
+                    key={`${lineIndex}-${index}`}
+                    className={item.className}
+                    style={item.color ? { color: item.color } : undefined}
+                  >
+                    {index > 0 ? " " : null}
+                    {item.title}
+                  </span>
+                ))}
               </span>
             ))}
           </h1>
@@ -133,7 +183,12 @@ export default function HeroBannerSection({
           </div>
 
           {ctaLabel && ctaHref ? (
-            <HeroCtaButton label={ctaLabel} href={ctaHref} />
+            <HeroCtaButton
+              label={ctaLabel}
+              href={ctaHref}
+              buttonClassName={ctaButtonClass}
+              focusClassName={ctaFocusClassName}
+            />
           ) : null}
         </div>
       </div>
