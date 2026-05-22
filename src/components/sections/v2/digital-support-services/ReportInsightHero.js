@@ -32,13 +32,18 @@ export default function ReportInsightHero({
   date,
   category,
   className = "",
-  /** "green" (default) or "off-white" for market-update style meta row */
+  /** Meta row: green | off-white | mid | brand */
   metaTone = "green",
 }) {
-  const metaRowClass =
-    metaTone === "off-white" ? "text-gray-off-white" : "text-green-tradfi";
-  const metaDividerClass =
-    metaTone === "off-white" ? "bg-gray-off-white" : "bg-green-tradfi";
+  const metaStyles = {
+    "off-white": { text: "text-gray-off-white", divider: "bg-gray-off-white" },
+    mid: { text: "text-green-mid", divider: "bg-green-mid" },
+    brand: { text: "text-green-dark", divider: "bg-green-dark" },
+    green: { text: "text-green-tradfi", divider: "bg-green-tradfi" },
+  };
+  const meta = metaStyles[metaTone] ?? metaStyles.green;
+  const metaRowClass = meta.text;
+  const metaDividerClass = meta.divider;
 
   return (
     <section

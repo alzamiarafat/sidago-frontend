@@ -1,0 +1,55 @@
+/** Static copy for Scalable Operations Management */
+
+export { pressReleaseContent } from "@/src/components/sections/v2/scalable-operations/pressReleaseContent";
+export { reportContentsContent } from "@/src/components/sections/v2/scalable-operations/reportContentsContent";
+export {
+  subscribeContent,
+  similarInsightsContent,
+} from "@/src/components/sections/v2/scalable-operations/pageCopy";
+
+export const reportInsightHero = {
+  imageSrc: "/images/Armitage.svg",
+  imageAlt:
+    "Sidago launches Armitage, bringing its DeFi and trading expertise to vault curation",
+  breadcrumbs: [
+    {
+      label: "Insights",
+      href: "/insights/discover",
+      srText: "Insights › Discover",
+    },
+    {
+      label: "News",
+      href: "/insights/discover",
+      srText: "Insights › News",
+    },
+  ],
+  title:
+    "Sidago launches Armitage, bringing its DeFi and trading expertise to vault curation",
+  description:
+    "Sidago today announced Armitage, a new DeFi vault curation business. The first two Armitage vaults will be deployed on Morpho in May, both denominated in USDC.",
+  date: "19 May 2026",
+  category: "News",
+  className: "bg-[#151916] text-gray-off-white",
+  metaTone: "brand",
+};
+
+export const atAGlanceContent = {
+  authorName: "Sidago Operations",
+  authorImageSrc: "/images/image_1.jpg",
+  tags: [
+    {
+      label: "Operations",
+      href: "/operations",
+      srText: "Our Operations",
+    },
+    {
+      label: "Processes",
+      href: "/business-processes",
+      srText: "Business Processes",
+    },
+  ],
+  heading: "At a glance",
+  headingId: "operations-at-a-glance",
+  body:
+    "Sidago scales operational capacity through workflow design, back-office delivery, customer operations, and flexible team scaling. Engagements start with a focused scope, clear SLAs, and reporting cadences—then expand across functions and time zones without losing quality or accountability.",
+};

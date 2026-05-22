@@ -215,6 +215,19 @@ export const routeMetadata = {
       "distributed workforce",
     ],
   }),
+  scalableOperationsManagement: buildPageMetadata({
+    title: "Scalable Operations Management",
+    description:
+      "Sidago scalable operations management: workflow design, back-office delivery, flexible team scaling, and reporting for growing businesses.",
+    path: "/scalable-operations-management",
+    keywords: [
+      "Sidago operations",
+      "scalable operations",
+      "operations management",
+      "back-office support",
+      "workflow scaling",
+    ],
+  }),
   legalPolicies: buildPageMetadata({
     title: "Legal & Compliance Policies",
     description:

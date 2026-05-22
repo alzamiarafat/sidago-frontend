@@ -24,58 +24,43 @@ function NavArrow({ className = "" }) {
   );
 }
 
-function LoadMoreIcon() {
+function InsightCardLink({ card, className, children }) {
+  if (card.external) {
+    return (
+      <a
+        href={card.href}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        referrerPolicy="no-referrer"
+        style={{ position: "relative" }}
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 40 40"
-      className="h-6 w-6"
-      aria-hidden
-    >
-      <path
-        stroke="currentColor"
-        strokeMiterlimit="10"
-        strokeWidth="0.7"
-        d="M26.07 17.512h8.92l-4.46 4.503z"
-      />
-      <path
-        stroke="currentColor"
-        strokeMiterlimit="10"
-        strokeWidth="0.7"
-        d="M30.53 22.016V9.147 20.496 4 10.46 9.147v2.574M14.92 22.016H6l4.46-4.504z"
-      />
-      <path
-        stroke="currentColor"
-        strokeMiterlimit="10"
-        strokeWidth="0.7"
-        d="M10.46 17.512V30.38l10.035 5.147 10.036-5.147v-2.573M26.07 17.512h8.92l-4.46 4.503z"
-      />
-      <path
-        stroke="currentColor"
-        strokeMiterlimit="10"
-        strokeWidth="0.7"
-        d="M30.53 22.016V9.147 20.496 4 10.46 9.147v2.574"
-      />
-    </svg>
+    <Link href={card.href} style={{ position: "relative" }} className={className}>
+      {children}
+    </Link>
   );
 }
 
-function InsightCard({ card, desktopColumns = 4 }) {
+function InsightCard({ card, desktopColumns = 4, wrapperClassName = "" }) {
   const cardWidthStyle = {
     "--link-card-desktop-width": `calc(100% / ${desktopColumns} + 1rem)`,
   };
 
+  const linkClassName =
+    "flex h-full flex-col bg-gray-defi-charcoal transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70";
+
   return (
     <div
-      className="w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem]"
+      className={`w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem] ${wrapperClassName}`.trim()}
       style={cardWidthStyle}
     >
-      <Link
-        href={card.href}
-        style={{ position: "relative" }}
-        className="group/interactive flex h-full flex-col bg-gray-tradfi-dust transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-      >
+      <InsightCardLink card={card} className={linkClassName}>
         <span className="sr-only">{card.srText}</span>
         <Image
           alt={card.imageAlt}
@@ -87,37 +72,46 @@ function InsightCard({ card, desktopColumns = 4 }) {
         <div className="z-10 flex flex-1 justify-between p-xl">
           <div className="flex flex-col justify-between gap-xs">
             <div className="flex flex-col gap-xs">
-              <div className="font-blender text-xs uppercase text-gray-night-green">
-                {card.category}
-              </div>
-              <div className="ellipsis-3 max-h-[3lh] text-lg text-gray-night-green">
-                {card.title}
-              </div>
-              <div className="ellipsis-4 max-h-[4lh] text-sm text-gray-defi-ash">
+              <div className="font-blender text-xs uppercase">{card.category}</div>
+              <div className="ellipsis-3 max-h-[3lh] text-lg">{card.title}</div>
+              <div className="ellipsis-4 max-h-[4lh] text-sm text-gray-tradfi-silver">
                 {card.description}
               </div>
             </div>
-            <div className="font-blender text-xs uppercase text-gray-night-green">
+            <div className="font-blender text-xs uppercase">
               <span>{card.date}</span>
             </div>
           </div>
         </div>
-      </Link>
+      </InsightCardLink>
     </div>
+  );
+}
+
+function isLightSectionBg(color) {
+  const normalized = (color || "").toLowerCase().replace(/\s/g, "");
+  return (
+    normalized === "#ffffff" ||
+    normalized === "#fff" ||
+    normalized === "white" ||
+    normalized === ""
   );
 }
 
 export default function SimilarInsightsSection({
   content = similarInsightsContent,
+  /** Passed from parent page — e.g. #070B09 (dark) or #FFFFFF (light). */
+  sectionBgColor = "#FFFFFF",
 }) {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [mobileExpanded, setMobileExpanded] = useState(false);
 
   const desktopColumns = content.desktopColumns ?? 4;
   const cards = content.cards ?? [];
   const total = cards.length;
-  const mobileVisibleCards = mobileExpanded ? cards : cards.slice(0, 3);
+  const headingClassName =
+    content.headingClassName ?? "font-blender text-xl uppercase text-green-dark";
+  const dividerClassName = content.dividerClassName ?? "border-[#AB290D]";
 
   const cardWidthStyle = useMemo(
     () => ({
@@ -152,60 +146,53 @@ export default function SimilarInsightsSection({
   const navButtonClass =
     "group/interactive inline-flex items-center justify-between gap-md bg-green-dark p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50";
 
+  const isLightBg = isLightSectionBg(sectionBgColor);
+  const carouselTextClass = isLightBg
+    ? "text-gray-night-green"
+    : "text-gray-off-white";
+  const mobileCounterClass = isLightBg
+    ? "text-gray-defi-ash"
+    : "text-gray-defi-ash";
+
   return (
-    <section>
+    <section style={{ backgroundColor: sectionBgColor }}>
       <div className="container py-block">
         <div className="mb-3xl flex flex-col gap-xl">
           <div className="flex flex-col gap-xs">
-            <h2
-              id={content.headingId}
-              className="font-blender text-xl uppercase text-gray-night-green"
-            >
+            <h2 id={content.headingId} className={headingClassName}>
               {content.heading}
             </h2>
           </div>
-          <hr className="border-gray-tradfi-steel" />
+          <hr className={dividerClassName} />
         </div>
 
-        <section className="text-gray-night-green">
-          <div
-            className="flex flex-col gap-2xl lg:flex-col-reverse lg:gap-4xl"
-            style={{ clipPath: "inset(-100rem -100rem -100rem -100rem)" }}
-          >
-            {/* Mobile: stacked grid + load more */}
-            <div className="flex flex-col gap-2xl lg:hidden">
-              <div className="group/cards grid grid-cols-1 gap-xl">
-                {mobileVisibleCards.map((card) => (
-                  <InsightCard
-                    key={card.href}
-                    card={card}
-                    desktopColumns={desktopColumns}
-                  />
-                ))}
-              </div>
-              {!mobileExpanded && cards.length > 3 ? (
-                <button
-                  type="button"
-                  onClick={() => setMobileExpanded(true)}
-                  className="flex w-full justify-between bg-green-dark p-md font-medium text-gray-night-green bevel bevel-[0.25rem]"
-                >
-                  Load more
-                  <LoadMoreIcon />
-                </button>
-              ) : null}
-            </div>
-
-            {/* Desktop / tablet: carousel controls */}
-            <div className="hidden flex-col gap-2xl lg:flex lg:flex-col-reverse lg:gap-4xl">
+        <section className={carouselTextClass}>
+          <div>
+            <div
+              className="flex flex-col gap-2xl lg:flex-col-reverse lg:gap-4xl"
+              style={{ clipPath: "inset(-100rem -100rem -100rem -100rem)" }}
+            >
               <div className="flex justify-between gap-3xl lg:items-center">
                 <div className="relative flex flex-1 gap-md lg:hidden">
-                  <div className="flex w-full items-center justify-between text-lg">
-                    <div className="flex font-blender text-xl font-medium uppercase text-gray-defi-ash">
-                      <span className="min-w-md">{activeIndex + 1}</span>
-                      <span className="min-w-sm">/</span>
-                      <span className="min-w-md">{total}</span>
-                    </div>
-                  </div>
+                  {cards.map((card, index) => (
+                    <button
+                      key={card.href}
+                      type="button"
+                      onClick={() => scrollToIndex(index)}
+                      className={`absolute inset-0 flex flex-col justify-center gap-sm text-left transition-all hover:text-gray-defi-ash ${index === activeIndex ? "" : "opacity-0"
+                        }`}
+                    >
+                      <div className="flex w-full items-center justify-between text-lg">
+                        <div
+                          className={`flex font-blender text-xl font-medium uppercase ${mobileCounterClass}`}
+                        >
+                          <span className="min-w-md">{index + 1}</span>
+                          <span className="min-w-sm">/</span>
+                          <span className="min-w-md">{total}</span>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
                 </div>
                 <div className="flex gap-md">
                   <button
@@ -229,9 +216,10 @@ export default function SimilarInsightsSection({
                   {cards.map((_, index) => (
                     <div
                       key={index}
-                      className={`ml-[0.125rem] h-[0.25rem] w-sm transition-all bg-green-dark first:ml-0 ${
-                        index === activeIndex ? "" : "opacity-30"
-                      }`}
+                      className={`h-[0.25rem] transition-all bg-green-dark first:ml-0 ${index === activeIndex
+                          ? "ml-[0.125rem] w-sm"
+                          : "ml-[0.125rem] w-sm opacity-30"
+                        }`}
                     />
                   ))}
                 </div>

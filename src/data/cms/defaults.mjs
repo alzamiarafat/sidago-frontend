@@ -333,7 +333,7 @@ export const defaultHomepage = {
     },
     {
       title: "Scalable Operations Management",
-      href: "#",
+      href: "/scalable-operations-management",
       srText: "Scalable Operations Management",
       sortOrder: 3,
     },
