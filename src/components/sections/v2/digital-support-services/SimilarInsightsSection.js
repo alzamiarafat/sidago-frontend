@@ -24,7 +24,9 @@ function NavArrow({ className = "" }) {
   );
 }
 
-function InsightCardLink({ card, className, children }) {
+function InsightCardLink({ card, className, style, children }) {
+  const linkStyle = { position: "relative", ...style };
+
   if (card.external) {
     return (
       <a
@@ -32,7 +34,7 @@ function InsightCardLink({ card, className, children }) {
         target="_blank"
         rel="nofollow noopener noreferrer"
         referrerPolicy="no-referrer"
-        style={{ position: "relative" }}
+        style={linkStyle}
         className={className}
       >
         {children}
@@ -41,26 +43,42 @@ function InsightCardLink({ card, className, children }) {
   }
 
   return (
-    <Link href={card.href} style={{ position: "relative" }} className={className}>
+    <Link href={card.href} style={linkStyle} className={className}>
       {children}
     </Link>
   );
 }
 
-function InsightCard({ card, desktopColumns = 4, wrapperClassName = "" }) {
+function InsightCard({
+  card,
+  desktopColumns = 4,
+  wrapperClassName = "",
+  cardBgColor = "#FFFFFF",
+  isLightCard = true,
+}) {
   const cardWidthStyle = {
     "--link-card-desktop-width": `calc(100% / ${desktopColumns} + 1rem)`,
   };
 
   const linkClassName =
-    "flex h-full flex-col bg-gray-defi-charcoal transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70";
+    "flex h-full flex-col transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70";
+  const textPrimaryClass = isLightCard
+    ? "text-gray-night-green"
+    : "text-gray-off-white";
+  const textMutedClass = isLightCard
+    ? "text-gray-defi-ash"
+    : "text-gray-tradfi-silver";
 
   return (
     <div
       className={`w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem] ${wrapperClassName}`.trim()}
       style={cardWidthStyle}
     >
-      <InsightCardLink card={card} className={linkClassName}>
+      <InsightCardLink
+        card={card}
+        className={linkClassName}
+        style={{ backgroundColor: cardBgColor }}
+      >
         <span className="sr-only">{card.srText}</span>
         <Image
           alt={card.imageAlt}
@@ -72,13 +90,23 @@ function InsightCard({ card, desktopColumns = 4, wrapperClassName = "" }) {
         <div className="z-10 flex flex-1 justify-between p-xl">
           <div className="flex flex-col justify-between gap-xs">
             <div className="flex flex-col gap-xs">
-              <div className="font-blender text-xs uppercase">{card.category}</div>
-              <div className="ellipsis-3 max-h-[3lh] text-lg">{card.title}</div>
-              <div className="ellipsis-4 max-h-[4lh] text-sm text-gray-tradfi-silver">
+              <div
+                className={`font-blender text-xs uppercase ${textPrimaryClass}`}
+              >
+                {card.category}
+              </div>
+              <div
+                className={`ellipsis-3 max-h-[3lh] text-lg ${textPrimaryClass}`}
+              >
+                {card.title}
+              </div>
+              <div
+                className={`ellipsis-4 max-h-[4lh] text-sm ${textMutedClass}`}
+              >
                 {card.description}
               </div>
             </div>
-            <div className="font-blender text-xs uppercase">
+            <div className={`font-blender text-xs uppercase ${textPrimaryClass}`}>
               <span>{card.date}</span>
             </div>
           </div>
@@ -87,6 +115,11 @@ function InsightCard({ card, desktopColumns = 4, wrapperClassName = "" }) {
     </div>
   );
 }
+
+const INSIGHT_CARD_BG = {
+  light: "#E5E6E5",
+  dark: "#1C211E",
+};
 
 function isLightSectionBg(color) {
   const normalized = (color || "").toLowerCase().replace(/\s/g, "");
@@ -98,11 +131,22 @@ function isLightSectionBg(color) {
   );
 }
 
+function isLightCardBg(color) {
+  const normalized = (color || "").toLowerCase().replace(/\s/g, "");
+  return isLightSectionBg(color) || normalized === INSIGHT_CARD_BG.light.toLowerCase();
+}
+
 export default function SimilarInsightsSection({
   content = similarInsightsContent,
   /** Passed from parent page — e.g. #070B09 (dark) or #FFFFFF (light). */
   sectionBgColor = "#FFFFFF",
+  /** Override card background; defaults to #E5E6E5 (light) or #1C211E (dark). */
+  cardBgColor,
 }) {
+  const isLightSection = isLightSectionBg(sectionBgColor);
+  const resolvedCardBgColor =
+    cardBgColor ??
+    (isLightSection ? INSIGHT_CARD_BG.light : INSIGHT_CARD_BG.dark);
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -111,7 +155,7 @@ export default function SimilarInsightsSection({
   const total = cards.length;
   const headingClassName =
     content.headingClassName ?? "font-blender text-xl uppercase text-green-dark";
-  const dividerClassName = content.dividerClassName ?? "border-[#AB290D]";
+  const dividerClassName = content.dividerClassName ?? "!border-[#AB290D]";
 
   const cardWidthStyle = useMemo(
     () => ({
@@ -146,7 +190,8 @@ export default function SimilarInsightsSection({
   const navButtonClass =
     "group/interactive inline-flex items-center justify-between gap-md bg-green-dark p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50";
 
-  const isLightBg = isLightSectionBg(sectionBgColor);
+  const isLightBg = isLightSection;
+  const isLightCard = isLightCardBg(resolvedCardBgColor);
   const carouselTextClass = isLightBg
     ? "text-gray-night-green"
     : "text-gray-off-white";
@@ -217,8 +262,8 @@ export default function SimilarInsightsSection({
                     <div
                       key={index}
                       className={`h-[0.25rem] transition-all bg-green-dark first:ml-0 ${index === activeIndex
-                          ? "ml-[0.125rem] w-sm"
-                          : "ml-[0.125rem] w-sm opacity-30"
+                        ? "ml-[0.125rem] w-sm"
+                        : "ml-[0.125rem] w-sm opacity-30"
                         }`}
                     />
                   ))}
@@ -235,6 +280,8 @@ export default function SimilarInsightsSection({
                     key={card.href}
                     card={card}
                     desktopColumns={desktopColumns}
+                    cardBgColor={resolvedCardBgColor}
+                    isLightCard={isLightCard}
                   />
                 ))}
               </div>
