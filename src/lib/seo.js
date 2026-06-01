@@ -81,7 +81,7 @@ export const routeMetadata = {
     title: "Sidago Events",
     description:
       "Explore Sidago events, meetups, speakers, and industry conversations shaping business strategy and digital transformation.",
-    path: "/marketing-growth",
+    path: "/events",
   }),
   support: buildPageMetadata({
     title: "Support",

@@ -237,6 +237,13 @@ const FOOTER_POLICY_HREF_BY_LABEL = {
   "Modern Slavery Statement": "/modern-slavery",
 };
 
+const FOOTER_NAV_HREF_BY_LABEL = {
+  Contact: "/contact",
+  Careers: "/company/careers",
+  Events: "/events",
+  Brand: "/brand",
+};
+
 function normalizeFooterLink(item, fallbackItem) {
   if (!item?.label) {
     return fallbackItem;
@@ -244,10 +251,14 @@ function normalizeFooterLink(item, fallbackItem) {
 
   const label = item.label.trim();
   let href = (item.href ?? "").trim();
-  if (!href || href === "#") {
-    const mapped = FOOTER_POLICY_HREF_BY_LABEL[label];
-    if (mapped) {
-      href = mapped;
+  const navHref = FOOTER_NAV_HREF_BY_LABEL[label];
+  const policyHref = FOOTER_POLICY_HREF_BY_LABEL[label];
+
+  if (navHref) {
+    href = navHref;
+  } else if (!href || href === "#") {
+    if (policyHref) {
+      href = policyHref;
     }
   }
   if (!href) {

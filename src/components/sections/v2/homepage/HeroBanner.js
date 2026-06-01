@@ -20,10 +20,19 @@ function groupHeroTitleLines(titles = []) {
   );
 
   if (hasExplicitLine) {
-    const line1 = sorted.filter((item) => Number(item.line) === 1);
-    const line2 = sorted.filter((item) => Number(item.line) !== 1);
+    const lineNumbers = [
+      ...new Set(
+        sorted
+          .map((item) => Number(item.line))
+          .filter((line) => !Number.isNaN(line)),
+      ),
+    ].sort((left, right) => left - right);
 
-    return [line1, line2].filter((line) => line.length > 0);
+    return lineNumbers
+      .map((lineNumber) =>
+        sorted.filter((item) => Number(item.line) === lineNumber),
+      )
+      .filter((line) => line.length > 0);
   }
 
   // Always two lines: first phrase on line 1, everything else on line 2.
@@ -86,8 +95,14 @@ export default function HeroBannerSection({
   lighterTheme = false,
   loop = false,
   lighterBgColor = "bg-[#f0f1f1]",
+  backgroundClassName,
+  videoOverlay,
   videoEndBackgroundSrc,
 }) {
+  const backgroundClass =
+    backgroundClassName ??
+    (lighterTheme ? lighterBgColor : "bg-[#020405]");
+
   return (
     // <section className="relative flex flex-col justify-center items-center min-h-[70svh] lg:flex-row lg:items-center lg:justify-center text-gray-off-white lg:min-h-[calc(100svh - var(--header-height) - 6.125rem)]">
     //   {/* Content */}
@@ -107,9 +122,7 @@ export default function HeroBannerSection({
     <section
       className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
     >
-      <div
-        className={`absolute inset-0 ${lighterTheme ? lighterBgColor : "bg-[#020405]"}`}
-      >
+      <div className={`absolute inset-0 ${backgroundClass}`}>
         {/* Keep your exact structure */}
         {useVideo && (
           <HeroVideoBackground
@@ -118,6 +131,7 @@ export default function HeroBannerSection({
             videoClass={videoClass}
             lighterTheme={lighterTheme}
             loop={loop}
+            showOverlay={videoOverlay}
             endBackgroundSrc={videoEndBackgroundSrc}
           />
         )}

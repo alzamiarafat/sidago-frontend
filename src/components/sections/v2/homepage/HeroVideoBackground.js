@@ -11,15 +11,17 @@ export default function HeroVideoBackground({
   videoClass = "",
   lighterTheme = false,
   loop = false,
+  showOverlay,
   endBackgroundSrc = DEFAULT_END_BACKGROUND,
 }) {
+  const overlayEnabled = showOverlay ?? true;
   const [videoEnded, setVideoEnded] = useState(false);
 
   const showEndBackground = videoEnded && Boolean(endBackgroundSrc?.trim());
 
   return (
     <div
-      className={`video-wrapper ${videoClass} ${lighterTheme ? "video-light-overlay" : "video-dark-overlay"}`}
+      className={`video-wrapper ${videoClass} ${overlayEnabled ? (lighterTheme ? "video-light-overlay" : "video-dark-overlay") : ""}`}
     >
       {showEndBackground ? (
         <Image

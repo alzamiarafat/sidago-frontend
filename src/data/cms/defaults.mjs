@@ -38,7 +38,7 @@ export const defaultGlobalSettings = {
       },
       {
         label: "Events",
-        href: "/marketing-growth",
+        href: "/events",
         srLabel: "Events",
         sortOrder: 3,
       },
