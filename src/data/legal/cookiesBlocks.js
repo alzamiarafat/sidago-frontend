@@ -1,4 +1,4 @@
-/** SIDAGO — Cookies Policy (website-ready). Last updated: 14 May 2026 */
+/** Sidago — Cookies Policy (website-ready). Last updated: 14 May 2026 */
 
 export const cookiesBlocks = [
   {
@@ -8,7 +8,7 @@ export const cookiesBlocks = [
   },
   {
     type: "p",
-    text: "This Cookies Policy explains how SIDAGO (“SIDAGO”, “we”, “us”, or “our”) uses cookies and similar technologies on sidago.com and related digital properties (the “Sites”). It should be read together with our Privacy Policy.",
+    text: "This Cookies Policy explains how Sidago (“Sidago”, “we”, “us”, or “our”) uses cookies and similar technologies on sidago.com and related digital properties (the “Sites”). It should be read together with our Privacy Policy.",
   },
   {
     type: "p",

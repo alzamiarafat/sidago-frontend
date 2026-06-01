@@ -1,4 +1,4 @@
-/** SIDAGO — Modern Slavery Statement (website-ready). Last updated: 14 May 2026 */
+/** Sidago — Modern Slavery Statement (website-ready). Last updated: 14 May 2026 */
 
 export const modernSlaveryBlocks = [
   {
@@ -8,7 +8,7 @@ export const modernSlaveryBlocks = [
   },
   {
     type: "p",
-    text: "SIDAGO is committed to conducting business with integrity and respect for human rights. We oppose modern slavery in all its forms, including forced labor, human trafficking, debt bondage, child labor where prohibited, and other exploitative practices in our operations and supply chains.",
+    text: "Sidago is committed to conducting business with integrity and respect for human rights. We oppose modern slavery in all its forms, including forced labor, human trafficking, debt bondage, child labor where prohibited, and other exploitative practices in our operations and supply chains.",
   },
   {
     type: "p",
@@ -36,7 +36,7 @@ export const modernSlaveryBlocks = [
   },
   {
     type: "p",
-    text: "SIDAGO provides modern digital services and related professional capabilities delivered through distributed teams, technology partners, and vendors. While our risk profile may differ from heavily industrial sectors, we take a disciplined approach to ethics and responsible sourcing.",
+    text: "Sidago provides modern digital services and related professional capabilities delivered through distributed teams, technology partners, and vendors. While our risk profile may differ from heavily industrial sectors, we take a disciplined approach to ethics and responsible sourcing.",
   },
 
   {

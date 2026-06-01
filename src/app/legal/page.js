@@ -27,7 +27,7 @@ export default function LegalPoliciesHubPage() {
       <header className="relative border-b border-white/[0.08] bg-[#1C211E]">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(211,76,45,0.06)_0%,transparent_45%)]" aria-hidden />
         <div className="relative mx-auto max-w-6xl px-4 py-12 md:px-8 md:py-16">
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-white/35">SIDAGO</p>
+          <p className="text-[0.65rem] font-semibold tracking-[0.28em] text-white/35">Sidago</p>
           <h1 className="mt-4 max-w-2xl font-saans text-[clamp(1.9rem,4vw,2.6rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-white">
             Legal &amp; compliance center
           </h1>

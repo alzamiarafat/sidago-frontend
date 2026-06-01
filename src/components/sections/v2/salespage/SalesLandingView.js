@@ -62,7 +62,7 @@ const heroStats = [
   {
     value: "8",
     suffix: " hubs",
-    label: "listed SIDAGO office locations supporting delivery",
+    label: "listed Sidago office locations supporting delivery",
     activeDotColor: "#ff8c6a",
   },
   {
@@ -77,19 +77,19 @@ const serviceCards = [
   {
     title: "Customer Acquisition & Sales",
     body:
-      "SIDAGO lists customer acquisition and sales as a core marketing capability for teams that need disciplined growth execution.",
+      "Sidago lists customer acquisition and sales as a core marketing capability for teams that need disciplined growth execution.",
     icon: FiTrendingUp,
   },
   {
     title: "Telemarketing & Telesales",
     body:
-      "SIDAGO's broader outsourcing model includes telesales and online marketing for companies expanding demand without building every role in-house.",
+      "Sidago's broader outsourcing model includes telesales and online marketing for companies expanding demand without building every role in-house.",
     icon: FiMessageSquare,
   },
   {
     title: "CRM / Contact Management",
     body:
-      "Contact management and CRM management are presented by SIDAGO as practical support for protecting customer relationships at scale.",
+      "Contact management and CRM management are presented by Sidago as practical support for protecting customer relationships at scale.",
     icon: FiLayers,
   },
   {
@@ -107,7 +107,7 @@ const serviceCards = [
   {
     title: "Negotiation Management",
     body:
-      "SIDAGO emphasizes support for important business relationships, including mediation and negotiation when outcomes need to stay mutually beneficial.",
+      "Sidago emphasizes support for important business relationships, including mediation and negotiation when outcomes need to stay mutually beneficial.",
     icon: FiShield,
   },
 ];
@@ -116,17 +116,17 @@ const featureHighlights = [
   {
     title: "Improve employee teamwork",
     text:
-      "The original SIDAGO sales page focuses on training sessions, team building, and positive attitudes that improve productivity and customer satisfaction.",
+      "The original Sidago sales page focuses on training sessions, team building, and positive attitudes that improve productivity and customer satisfaction.",
   },
   {
     title: "Strengthen external relationships",
     text:
-      "SIDAGO positions sales support around maintaining profitable, efficient relationships with other organizations and business partners.",
+      "Sidago positions sales support around maintaining profitable, efficient relationships with other organizations and business partners.",
   },
   {
     title: "Use online networks with confidence",
     text:
-      "SIDAGO specifically highlights online networks as a way to make communication easier while keeping information safe and secure.",
+      "Sidago specifically highlights online networks as a way to make communication easier while keeping information safe and secure.",
   },
 ];
 
@@ -149,13 +149,13 @@ const workflowSteps = [
     step: "01",
     title: "Assess relationship pressure points",
     body:
-      "SIDAGO starts from the idea that businesses rely on many kinds of relationships to stay profitable, so the first job is understanding where friction exists.",
+      "Sidago starts from the idea that businesses rely on many kinds of relationships to stay profitable, so the first job is understanding where friction exists.",
   },
   {
     step: "02",
     title: "Deploy the right support mix",
     body:
-      "From customer acquisition and telesales to customer service and administrative support, SIDAGO's service catalog lets teams assemble practical commercial coverage.",
+      "From customer acquisition and telesales to customer service and administrative support, Sidago's service catalog lets teams assemble practical commercial coverage.",
   },
   {
     step: "03",
@@ -187,7 +187,7 @@ const deliverySignals = [
   {
     title: "Outsourcing and offshoring depth",
     body:
-      "SIDAGO combines lower operating cost with scalable business support.",
+      "Sidago combines lower operating cost with scalable business support.",
   },
   {
     title: "Global operating footprint",
@@ -287,9 +287,9 @@ function HeroSection({ reduce }) {
           <div>
             <motion.div
               variants={fadeUp}
-              className="inline-flex items-center gap-3 rounded-full bg-white/[0.06] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#d7e8de] shadow-[0_20px_60px_rgba(0,0,0,0.2)] backdrop-blur-xl"
+              className="inline-flex items-center gap-3 rounded-full bg-white/[0.06] px-4 py-2 text-[0.72rem] font-semibold tracking-[0.24em] text-[#d7e8de] shadow-[0_20px_60px_rgba(0,0,0,0.2)] backdrop-blur-xl"
             >
-              SIDAGO Sales
+              Sidago Sales
               <span className="h-1.5 w-1.5 rounded-full bg-[#ff8c6a]" />
               <span className="text-[#9ce7bc]">
                 Business relationships that drive profitability
@@ -309,7 +309,7 @@ function HeroSection({ reduce }) {
               variants={fadeUp}
               className="mt-6 max-w-2xl text-base leading-8 text-[#d0ddd6] md:text-xl"
             >
-              SIDAGO improves teamwork, customer service, and partner
+              Sidago improves teamwork, customer service, and partner
               coordination for stronger growth.
             </motion.p>
 
@@ -319,9 +319,9 @@ function HeroSection({ reduce }) {
             >
               <Link
                 href="/contact"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#ff7a59] px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_18px_40px_rgba(255,122,89,0.24)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ff6a44]"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#ff7a59] px-7 py-3 text-sm font-semibold tracking-[0.18em] text-white shadow-[0_18px_40px_rgba(255,122,89,0.24)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ff6a44]"
               >
-                Contact SIDAGO
+                Contact Sidago
                 <FiArrowRight
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden
@@ -366,7 +366,7 @@ function HeroSection({ reduce }) {
                     Revenue operations
                   </p>
                   <h3 className="mt-2 text-xl text-white">
-                    SIDAGO relationship dashboard
+                    Sidago relationship dashboard
                   </h3>
                 </div>
                 <div className="flex items-center gap-2">
@@ -381,7 +381,7 @@ function HeroSection({ reduce }) {
                 <div className="overflow-hidden rounded-[1.5rem] bg-[#112118]">
                   <Image
                     src="/images/sidago-performance-dashboard.png"
-                    alt="SIDAGO dashboard style presentation"
+                    alt="Sidago dashboard style presentation"
                     width={1200}
                     height={900}
                     className="h-full w-full object-cover opacity-80"
@@ -464,8 +464,8 @@ function TrustSection() {
   return (
     <section className="border-y border-white/[0.04] bg-[#08140f] px-5 py-10 md:px-10">
       <div className="container">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.26em] text-[#86c4a0]">
-          Global SIDAGO footprint
+        <p className="text-center text-xs font-semibold tracking-[0.26em] text-[#86c4a0]">
+          Global Sidago footprint
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           {trustChips.map((item) => (
@@ -498,8 +498,8 @@ function ServicesSection({ reduce }) {
         >
           <SectionHeader
             eyebrow="Core services"
-            title="A premium commercial layer built from SIDAGO's original service stack"
-            description="The public SIDAGO service catalog spans customer acquisition and sales, telemarketing, market research, customer service, branding, negotiation management, and broader administrative support."
+            title="A premium commercial layer built from Sidago's original service stack"
+            description="The public Sidago service catalog spans customer acquisition and sales, telemarketing, market research, customer service, branding, negotiation management, and broader administrative support."
           />
         </motion.div>
 
@@ -552,10 +552,10 @@ function FeaturesSection({ reduce }) {
             Feature highlights
           </p>
           <h2 className="mt-4 text-3xl font-medium leading-tight tracking-[-0.04em] text-[#11251a] md:text-5xl">
-            The original SIDAGO sales message translated into a more premium product experience.
+            The original Sidago sales message translated into a more premium product experience.
           </h2>
           <p className="mt-5 text-base leading-8 text-[#55675c] md:text-lg">
-            Instead of generic marketing copy, this page keeps SIDAGO&apos;s
+            Instead of generic marketing copy, this page keeps Sidago&apos;s
             actual commercial themes: teamwork, relationship strength, customer
             satisfaction, communication, and mutually beneficial business outcomes.
           </p>
@@ -563,7 +563,7 @@ function FeaturesSection({ reduce }) {
           <div className="mt-10 overflow-hidden rounded-[2.2rem] bg-[#dce7df] shadow-[0_28px_80px_rgba(17,43,30,0.12)]">
             <Image
               src="/images/Telemarketing2.jpg"
-              alt="SIDAGO sales operations support"
+              alt="Sidago sales operations support"
               width={1200}
               height={900}
               className="h-full w-full object-cover"
@@ -616,8 +616,8 @@ function AnalyticsSection({ reduce }) {
         >
           <SectionHeader
             eyebrow="Analytics showcase"
-            title="A dashboard-style section that makes SIDAGO's sales model easier to understand"
-            description="The visuals are product-like, but the content remains anchored in SIDAGO's real business areas: customer service, outreach, CRM, research, and multi-channel communication."
+            title="A dashboard-style section that makes Sidago's sales model easier to understand"
+            description="The visuals are product-like, but the content remains anchored in Sidago's real business areas: customer service, outreach, CRM, research, and multi-channel communication."
           />
           <ul className="mt-8 space-y-4">
             {benefitRows.map((item) => (
@@ -741,7 +741,7 @@ function WorkflowSection({ reduce }) {
           <SectionHeader
             eyebrow="How it works"
             title="A cleaner workflow for companies that need sales support with less friction"
-            description="This section reframes SIDAGO's original positioning into a simple three-step enterprise process while staying faithful to the source material."
+            description="This section reframes Sidago's original positioning into a simple three-step enterprise process while staying faithful to the source material."
             eyebrowClassName="!text-[#3f7a58]"
             titleClassName="!text-[#0f1f16]"
             descriptionClassName="!text-[#4f6257]"
@@ -791,8 +791,8 @@ function SuccessSection({ reduce }) {
         >
           <SectionHeader
             eyebrow="Project categories"
-            title="Commercial work areas already visible across SIDAGO's public case studies"
-            description="SIDAGO's homepage highlights project categories such as data mining, public relations, telemarketing, market research, negotiation, and web research. This gives the sales page concrete proof of adjacent commercial delivery."
+            title="Commercial work areas already visible across Sidago's public case studies"
+            description="Sidago's homepage highlights project categories such as data mining, public relations, telemarketing, market research, negotiation, and web research. This gives the sales page concrete proof of adjacent commercial delivery."
           />
           <div className="mt-8 rounded-[2rem] bg-white/[0.05] p-6 shadow-[0_26px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl">
             <div className="grid gap-3 sm:grid-cols-2">
@@ -820,7 +820,7 @@ function SuccessSection({ reduce }) {
               icon: FiBriefcase,
               title: "Customer success angle",
               body:
-                "SIDAGO's customer service messaging centers on rapport, reputation, and loyal customers. That makes the sales page feel more credible than a generic demand-generation pitch.",
+                "Sidago's customer service messaging centers on rapport, reputation, and loyal customers. That makes the sales page feel more credible than a generic demand-generation pitch.",
             },
             {
               icon: FiUsers,
@@ -832,7 +832,7 @@ function SuccessSection({ reduce }) {
               icon: FiTrendingUp,
               title: "Growth angle",
               body:
-                "Across its public site, SIDAGO repeatedly connects outsourcing support to savings, implementation, and growth, which aligns well with a modern conversion-focused landing page.",
+                "Across its public site, Sidago repeatedly connects outsourcing support to savings, implementation, and growth, which aligns well with a modern conversion-focused landing page.",
             },
           ].map((item) => {
             const Icon = item.icon;
@@ -882,8 +882,8 @@ function ConversionBanner({ reduce }) {
               Do not leave important business relationships to chance.
             </h2>
             <p className="mt-5 text-base leading-8 text-[#55675c] md:text-lg">
-              SIDAGO&apos;s own sales message ends with a direct call to action:
-              contact SIDAGO today to see results. This section keeps that tone,
+              Sidago&apos;s own sales message ends with a direct call to action:
+              contact Sidago today to see results. This section keeps that tone,
               but presents it with a more premium enterprise layout.
             </p>
             <div className="mt-6 flex flex-wrap gap-5 text-sm text-[#224132]">
@@ -906,9 +906,9 @@ function ConversionBanner({ reduce }) {
             </Link>
             <a
               href="mailto:contact+chicago@sidago.com"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#102117] shadow-[0_16px_40px_rgba(16,33,23,0.08)] transition duration-300 hover:-translate-y-0.5"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold tracking-[0.18em] text-[#102117] shadow-[0_16px_40px_rgba(16,33,23,0.08)] transition duration-300 hover:-translate-y-0.5"
             >
-              Email SIDAGO
+              Email Sidago
             </a>
           </div>
         </div>

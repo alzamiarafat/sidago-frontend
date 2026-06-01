@@ -38,7 +38,7 @@ export default async function SalesPage() {
             lighterTheme={true}
             videoSrc="https://www.wintermute.com/videos/heroes/cfds.mp4"
             titles={titles}
-            subtitle="Strengthen employee teamwork, customer service, and external business relationships with SIDAGO to create more reliable sales growth and stronger long-term business value."
+            subtitle="Strengthen employee teamwork, customer service, and external business relationships with Sidago to create more reliable sales growth and stronger long-term business value."
             videoClass={"left-[500px] !w-3/4"}
             lighterBgColor="bg-[#f8f8f8]"
           />

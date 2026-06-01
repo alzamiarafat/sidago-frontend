@@ -144,7 +144,7 @@ const benefits = [
     viewBox: "0 0 18 18",
   },
   {
-    text: "Added exposure to institutional investors via SIDAGO OTC",
+    text: "Added exposure to institutional investors via Sidago OTC",
     svgPath: (
       <>
         <path

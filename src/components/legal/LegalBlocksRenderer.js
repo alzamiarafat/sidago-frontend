@@ -55,7 +55,7 @@ function renderBodyBlock(block, i) {
           className="mt-8 rounded-lg border border-white/[0.1] bg-white/[0.03] p-6 md:p-7"
         >
           {intro ? <p className={`${p} mb-4`}>{intro}</p> : null}
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">SIDAGO</p>
+          <p className="text-xs font-semibold tracking-[0.2em] text-white/50">Sidago</p>
           <ul className="legal-policy-meta-list mt-4 list-none space-y-3 pl-0 text-sm text-white/72 md:text-base">
             {lines.map((line, j) => (
               <li key={j} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">

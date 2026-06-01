@@ -22,8 +22,8 @@ export default function Statistics({
   const matrixFontSizeDesktop =
     fontSizeDesktop ?? (compact ? 84 : dense ? 76 : 115);
   const defaultLabelClass = compact || dense
-    ? "text-[0.72rem] lg:text-[0.78rem]"
-    : "text-xl";
+    ? "text-[0.72rem] leading-snug tracking-wide lg:text-[0.78rem]"
+    : "text-sm leading-snug tracking-wide text-xl lg:text-base";
   const isStartAlign = align === "start";
   const itemAlignClass = isStartAlign
     ? "items-start text-left"
@@ -78,21 +78,25 @@ export default function Statistics({
               />
             </div>
             <div
-              className={`mt-5 max-w-full uppercase transition-all duration-1000 ${
+              className={`mt-4 max-w-full uppercase transition-all duration-1000 ${
                 labelClassName ?? defaultLabelClass
               } ${!lighterTheme ? "text-white" : "text-black"}`}
               style={{
                 color: active === i ? "var(--active-color)" : undefined,
               }}
             >
-              {labelLines.map((line, lineIndex) => (
-                <span
-                  key={lineIndex}
-                  className={`block ${isStartAlign ? "whitespace-nowrap" : ""}`}
-                >
-                  {line}
-                </span>
-              ))}
+              {labelLines.length > 1 ? (
+                labelLines.map((line, lineIndex) => (
+                  <span
+                    key={lineIndex}
+                    className={`block ${isStartAlign ? "whitespace-nowrap" : ""}`}
+                  >
+                    {line}
+                  </span>
+                ))
+              ) : (
+                <span className="block whitespace-nowrap">{labelLines[0]}</span>
+              )}
             </div>
           </div>
           );

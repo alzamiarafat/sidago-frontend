@@ -61,7 +61,7 @@ export default function PerformanceTabsSlider({ section }) {
       <div className="container py-16 md:py-20">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <div className="font-blender text-sm uppercase tracking-[0.24em] text-[#E7512F] md:text-base">
+            <div className="font-blender text-sm tracking-[0.24em] text-[#E7512F] md:text-base">
               {section.eyebrow}
             </div>
             <h2 className="mt-5 text-3xl font-normal leading-[1.06] text-[#111511] md:text-5xl">

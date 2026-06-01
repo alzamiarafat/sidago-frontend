@@ -223,7 +223,7 @@ const clientLogos = [
 function SectionHeader({ eyebrow, title, description, className = "" }) {
   return (
     <div className={`max-w-5xl ${className}`}>
-      <div className="font-blender text-sm uppercase tracking-[0.24em] text-[#E7512F] md:text-base">
+      <div className="font-blender text-sm tracking-[0.24em] text-[#E7512F] md:text-base">
         {eyebrow}
       </div>
       <h2 className="mt-5 text-3xl font-normal leading-[1.06] text-white md:text-5xl">

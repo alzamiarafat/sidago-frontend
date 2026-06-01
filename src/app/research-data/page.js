@@ -96,7 +96,7 @@ function Section({ id, eyebrow, title, description, children, tone = "base", cla
     >
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-8 max-w-3xl md:mb-12">
-          <div className="font-blender text-sm uppercase tracking-[0.24em] text-[#E7512F]">{eyebrow}</div>
+          <div className="font-blender text-sm tracking-[0.24em] text-[#E7512F]">{eyebrow}</div>
           <h2 className="mt-4 text-3xl font-normal leading-[1.05] text-white md:text-5xl">{title}</h2>
           {description ? <p className="mt-4 text-base leading-relaxed text-gray-off-white/64 md:text-lg">{description}</p> : null}
         </div>
@@ -138,11 +138,11 @@ function Hero({ onNavigate }) {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.04fr_0.96fr]">
         <motion.div variants={stagger} initial="hidden" animate="visible">
-          <motion.div variants={fadeUp} className="font-blender text-sm uppercase tracking-[0.28em] text-[#E7512F] md:text-base">
-            SIDAGO intelligence platform
+          <motion.div variants={fadeUp} className="font-blender text-sm tracking-[0.28em] text-[#E7512F] md:text-base">
+            Sidago intelligence platform
           </motion.div>
           <motion.h1 variants={fadeUp} className="mt-5 max-w-5xl text-4xl font-normal leading-[0.98] text-white md:text-6xl lg:text-7xl">
-            SIDAGO Research & Data Center
+            Sidago Research & Data Center
           </motion.h1>
           <motion.p variants={fadeUp} className="mt-6 max-w-2xl text-base leading-relaxed text-gray-off-white/72 md:text-xl">
             Clean research, survey intelligence, reports, and open datasets for teams that need evidence-led decisions.
@@ -232,7 +232,7 @@ function ReportsSection({ selectedFilter, setSelectedFilter, showToast }) {
             <div className="relative min-h-44 overflow-hidden bg-[#101814]">
               <div className="absolute inset-0 opacity-80" style={{ background: `radial-gradient(circle at 24% 24%, ${report.color}44, transparent 18rem)` }} />
               <div className="absolute bottom-5 left-5 right-5">
-                <div className="font-blender text-xs uppercase tracking-[0.22em] text-white/58">SIDAGO research</div>
+                <div className="font-blender text-xs tracking-[0.22em] text-white/58">Sidago research</div>
                 <h3 className="mt-2 text-2xl leading-tight text-white">{report.title}</h3>
               </div>
             </div>

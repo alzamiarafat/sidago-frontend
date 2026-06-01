@@ -621,23 +621,25 @@ export default function Navigation() {
       <header className="header sticky top-0 z-50 -mb-[4.5rem] bg-gray-night-green bg-opacity-90 pb-md text-gray-off-white lg:hidden">
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="#">
-            <div className="flex items-center gap-md">
-              <Image
-                alt="SIDAGO"
-                loading="lazy"
-                width={33}
-                height={24}
-                unoptimized
-                className="[color:transparent]"
-                src="/images/favicon-1.ico"
-              />
-              <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
-                {/* <span
-                  className="text-2xl tracking-wide font-normal"
-                  style={{ letterSpacing: "5px" }}
+            <div className="flex items-stretch gap-0.5">
+              <div className="flex shrink-0 self-stretch">
+                <Image
+                  alt="SIDAGO"
+                  loading="lazy"
+                  width={56}
+                  height={56}
+                  unoptimized
+                  className="h-full w-auto object-contain [color:transparent]"
+                  src="/images/favicon-1.ico"
+                />
+              </div>
+              <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F] leading-none">
+                <span
+                  className="text-xl tracking-wide font-normal"
+                  style={{ letterSpacing: "4px" }}
                 >
                   SIDAGO
-                </span> */}
+                </span>
               </div>
             </div>
           </a>
@@ -701,17 +703,19 @@ export default function Navigation() {
             >
               <div className="border-b border-white/10 px-5 py-5">
                 <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <Image
-                      alt="SIDAGO"
-                      loading="lazy"
-                      width={33}
-                      height={24}
-                      unoptimized
-                      className="[color:transparent]"
-                      src="/images/favicon-1.ico"
-                    />
-                    <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
+                  <div className="flex items-stretch gap-0.5">
+                    <div className="flex shrink-0 self-stretch">
+                      <Image
+                        alt="SIDAGO"
+                        loading="lazy"
+                        width={56}
+                        height={56}
+                        unoptimized
+                        className="h-full w-auto object-contain [color:transparent]"
+                        src="/images/favicon-1.ico"
+                      />
+                    </div>
+                    <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F] leading-none">
                       <span
                         className="text-xl tracking-wide font-normal"
                         style={{ letterSpacing: "4px" }}
@@ -2355,17 +2359,19 @@ export default function Navigation() {
       <header className="header sticky top-0 z-20 hidden bg-gray-night-green pb-md pt-3xl text-gray-off-white lg:block">
         <div className="container flex items-center justify-between">
           <a className="z-10 flex h-3xl flex-col justify-center" href="/">
-            <div className="flex items-center">
-              <Image
-                alt="SIDAGO"
-                loading="lazy"
-                width={33}
-                height={24}
-                unoptimized
-                className="[color:transparent]"
-                src="/images/favicon-1.ico"
-              />
-              <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F]">
+            <div className="flex items-stretch gap-0.5">
+              <div className="flex shrink-0 self-stretch">
+                <Image
+                  alt="SIDAGO"
+                  loading="lazy"
+                  width={56}
+                  height={56}
+                  unoptimized
+                  className="h-full w-auto object-contain [color:transparent]"
+                  src="/images/favicon-1.ico"
+                />
+              </div>
+              <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F] leading-none">
                 <span
                   className="text-2xl tracking-wide font-normal"
                   style={{ letterSpacing: "5px" }}

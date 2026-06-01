@@ -38,7 +38,7 @@ export const legalTabs = [
     sections: [
       {
         title: "Scope & collection",
-        body: "How SIDAGO collects personal information across sidago.com and related services—including what you provide, what is collected automatically, and limited third-party sources.",
+        body: "How Sidago collects personal information across sidago.com and related services—including what you provide, what is collected automatically, and limited third-party sources.",
       },
       {
         title: "Use, sharing & transfers",
@@ -80,7 +80,7 @@ export const legalTabs = [
     sections: [
       {
         title: "Commitment & human rights",
-        body: "SIDAGO’s stance on forced labor, trafficking, and exploitative practices across operations and supply chains.",
+        body: "Sidago’s stance on forced labor, trafficking, and exploitative practices across operations and supply chains.",
       },
       {
         title: "Suppliers & diligence",

@@ -161,8 +161,8 @@ export default function ContactUs() {
               </p>
 
               <div className="pt-6 text-green-dark">
-                <p className="text-sm uppercase tracking-[0.18em] text-gray-tradfi-frost">
-                  WHAT TOPIC WOULD YOU LIKE TO CONTACT SIDAGO ABOUT?
+                <p className="text-sm tracking-[0.18em] text-gray-tradfi-frost">
+                  What topic would you like to contact Sidago about?
                 </p>
               </div>
             </div>

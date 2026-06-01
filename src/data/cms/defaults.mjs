@@ -588,7 +588,7 @@ export const defaultHomepage = {
     },
     {
       title: "Apply",
-      description: "To join the SIDAGO team",
+      description: "To join the Sidago team",
       href: "/contact",
       srLabel: "Company › Opportunities",
       backgroundColor: "#FF8C69",

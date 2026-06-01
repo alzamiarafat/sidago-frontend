@@ -8,7 +8,7 @@ export default function TradeOption() {
               id="trade-with-sidago"
               className="font-blender text-xl uppercase text-black"
             >
-              Trade with SIDAGO
+              Trade with Sidago
             </h2>
           </div>
           <hr className="border-gray-tradfi-steel" />

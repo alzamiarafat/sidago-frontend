@@ -10,7 +10,7 @@ export default function PartnerBenefit({ benefits }) {
               id="sidago-as-your-liquidity-partner"
               className="font-blender text-xl uppercase text-green-dark"
             >
-              SIDAGO as your liquidity partner
+              Sidago as your liquidity partner
             </h2>
           </div>
           <hr className="!border-[#AB290E]" />

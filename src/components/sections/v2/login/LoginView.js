@@ -116,7 +116,7 @@ export default function LoginView({
         <section className="login-card" aria-labelledby="login-heading">
           <div className="login-card__brand">
             <BrandLogo />
-            <span className="login-card__brand-name">SIDAGO</span>
+            <span className="login-card__brand-name">Sidago</span>
           </div>
 
           <h1 id="login-heading" className="login-card__title">

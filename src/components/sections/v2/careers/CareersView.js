@@ -37,7 +37,7 @@ function SectionHeader({ eyebrow, title, description, light = false }) {
   return (
     <div className="mb-10 max-w-3xl md:mb-14">
       {eyebrow ? (
-        <p className="font-blender text-sm uppercase tracking-[0.22em] text-green-dark">
+        <p className="font-blender text-sm tracking-[0.22em] text-green-dark">
           {eyebrow}
         </p>
       ) : null}

@@ -1,4 +1,4 @@
-/** SIDAGO — Privacy Policy (website-ready). Last updated: 14 May 2026 */
+/** Sidago — Privacy Policy (website-ready). Last updated: 14 May 2026 */
 
 export const privacyBlocks = [
   {
@@ -8,7 +8,7 @@ export const privacyBlocks = [
   },
   {
     type: "p",
-    text: "SIDAGO (“SIDAGO”, “we”, “us”, or “our”) respects your privacy. This Privacy Policy describes how we collect, use, disclose, retain, and safeguard personal information in connection with sidago.com and related digital services, communications, and business interactions (collectively, the “Services”).",
+    text: "Sidago (“Sidago”, “we”, “us”, or “our”) respects your privacy. This Privacy Policy describes how we collect, use, disclose, retain, and safeguard personal information in connection with sidago.com and related digital services, communications, and business interactions (collectively, the “Services”).",
   },
   {
     type: "p",
@@ -26,7 +26,7 @@ export const privacyBlocks = [
   },
   {
     type: "p",
-    text: "SIDAGO operates as a modern digital company delivering professional services and related digital experiences. Depending on the nature of your relationship with us, SIDAGO or an affiliated entity may act as the organization responsible for decisions about personal information as described in this Policy.",
+    text: "Sidago operates as a modern digital company delivering professional services and related digital experiences. Depending on the nature of your relationship with us, Sidago or an affiliated entity may act as the organization responsible for decisions about personal information as described in this Policy.",
   },
   {
     type: "p",
@@ -167,7 +167,7 @@ export const privacyBlocks = [
   },
   {
     type: "p",
-    text: "SIDAGO may process and store information in countries other than where you live. Where required, we implement appropriate safeguards for cross-border transfers, such as contractual protections and organizational measures designed to provide a consistent standard of protection.",
+    text: "Sidago may process and store information in countries other than where you live. Where required, we implement appropriate safeguards for cross-border transfers, such as contractual protections and organizational measures designed to provide a consistent standard of protection.",
   },
 
   {
@@ -249,7 +249,7 @@ export const privacyBlocks = [
   },
   {
     type: "p",
-    text: "If you have questions about this Policy or SIDAGO’s privacy practices, please contact us:",
+    text: "If you have questions about this Policy or Sidago’s privacy practices, please contact us:",
   },
   {
     type: "contact",
