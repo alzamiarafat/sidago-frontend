@@ -35,7 +35,7 @@ const DEFAULT_CTA_BUTTON_CLASS =
 const DEFAULT_CTA_FOCUS_CLASS =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E3502E]";
 
-function HeroCtaButton({ label, href, buttonClassName, focusClassName }) {
+function HeroCtaButton({ label, href, buttonClassName, focusClassName, srText }) {
   const isAccentCta = buttonClassName?.includes("bg-[#958dec]");
   const textToneClass = isAccentCta
     ? "!text-black hover:!text-black"
@@ -47,6 +47,7 @@ function HeroCtaButton({ label, href, buttonClassName, focusClassName }) {
       style={{ position: "relative", color: isAccentCta ? "#000" : undefined }}
       className={`${buttonClassName || DEFAULT_CTA_BUTTON_CLASS} ${focusClassName || DEFAULT_CTA_FOCUS_CLASS} ${textToneClass}`}
     >
+      {srText ? <span className="sr-only">{srText}</span> : null}
       <span className={isAccentCta ? "text-black" : undefined}>{label}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -74,6 +75,7 @@ export default function HeroBannerSection({
   subtitle,
   ctaLabel,
   ctaHref,
+  ctaSrText,
   ctaButtonClass,
   ctaFocusClassName,
   useVideo = false,
@@ -186,6 +188,7 @@ export default function HeroBannerSection({
             <HeroCtaButton
               label={ctaLabel}
               href={ctaHref}
+              srText={ctaSrText}
               buttonClassName={ctaButtonClass}
               focusClassName={ctaFocusClassName}
             />

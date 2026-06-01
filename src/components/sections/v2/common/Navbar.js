@@ -1465,7 +1465,7 @@ export default function Navigation() {
               </a>
             </el-popover-group>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
+              <a href="/login" className="text-sm/6 font-semibold text-gray-900">
                 Log in <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
@@ -1608,7 +1608,7 @@ export default function Navigation() {
                       </div>
                       <div className="py-6">
                         <a
-                          href="#"
+                          href="/login"
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                         >
                           Log in
@@ -1748,8 +1748,7 @@ export default function Navigation() {
               <a
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
-                target=""
-                href="#"
+                href="/login"
               >
                 <span itemProp="name">Log-In</span>
                 <svg
@@ -2869,7 +2868,7 @@ export default function Navigation() {
                 style={{ position: "relative" }}
                 target=""
                 className="group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs bg-gray-defi-charcoal text-[0.875rem] text-green-dark"
-                href="#"
+                href="/login"
                 itemProp="url"
               >
                 <span className="sr-only">Node.Sidago.Com</span>Log-In

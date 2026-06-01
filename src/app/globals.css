@@ -1361,3 +1361,224 @@ body {
 .legal-policy-document ul.legal-policy-meta-list li {
   padding-left: 0;
 }
+
+/* Careers teams accordion — per-item hover panel colors */
+@media (min-width: 1024px) {
+  .team-accordion-hover-0:hover {
+    background-color: #958dec;
+  }
+  .team-accordion-hover-1:hover {
+    background-color: #ec9be5;
+  }
+  .team-accordion-hover-2:hover {
+    background-color: #ef7b7b;
+  }
+  .team-accordion-hover-3:hover {
+    background-color: #7fb2f1;
+  }
+}
+
+/* Login page — Sidago brand accents */
+.login-page {
+  --login-brand: #e7512f;
+  --login-brand-hover: #cf4526;
+  --login-brand-muted: #f5ddd6;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem 2.5rem;
+  background-color: #e8e8e8;
+  color: #070b09;
+}
+
+.login-page__shell {
+  width: 100%;
+  max-width: 26.5rem;
+}
+
+.login-card,
+.login-info {
+  border-radius: 0.75rem;
+}
+
+.login-card {
+  background: #ffffff;
+  border: 1px solid rgba(7, 11, 9, 0.08);
+  padding: 2rem 1.75rem 1.75rem;
+}
+
+.login-card__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 2rem;
+  color: var(--login-brand);
+}
+
+.login-card__logo {
+  display: block;
+  width: 2rem;
+  height: auto;
+}
+
+.login-card__brand-name {
+  font-family: blender, saans, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--login-brand);
+}
+
+.login-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.login-card__subtitle {
+  margin: 0 0 1.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: rgba(7, 11, 9, 0.72);
+}
+
+.login-card__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.login-field {
+  position: relative;
+}
+
+.login-field__label {
+  position: absolute;
+  top: -0.55rem;
+  left: 0.875rem;
+  z-index: 1;
+  padding: 0 0.35rem;
+  background: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: rgba(7, 11, 9, 0.72);
+  pointer-events: none;
+}
+
+.login-field__control {
+  position: relative;
+}
+
+.login-field__input {
+  width: 100%;
+  border: 1px solid #c8c8c8;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  padding: 0.95rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #070b09;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.login-field__input:focus {
+  border-color: #070b09;
+}
+
+.login-field__trailing {
+  position: absolute;
+  top: 50%;
+  right: 0.875rem;
+  transform: translateY(-50%);
+}
+
+.login-field__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(7, 11, 9, 0.55);
+  cursor: pointer;
+}
+
+.login-field__toggle:hover {
+  color: #070b09;
+}
+
+.login-field:has(.login-field__trailing) .login-field__input {
+  padding-right: 2.75rem;
+}
+
+.login-forgot {
+  align-self: flex-start;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--login-brand);
+  text-decoration: none;
+}
+
+.login-forgot:hover {
+  text-decoration: underline;
+}
+
+.login-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--login-brand);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.login-submit:hover {
+  background: var(--login-brand-hover);
+}
+
+.login-submit:active {
+  background: var(--login-brand-hover);
+}
+
+.login-info {
+  margin-top: 1rem;
+  background: var(--login-brand-muted);
+  padding: 1.75rem;
+}
+
+.login-info__title {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.login-info__text {
+  margin: 0 0 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #070b09;
+}
+
+.login-info__text:last-of-type {
+  margin-bottom: 1.25rem;
+}
+
+.login-submit--info {
+  margin-top: 0.25rem;
+}

@@ -9,9 +9,25 @@ export default function Statistics({
   lighterTheme = false,
   dotColor = "#E9EEE9",
   compact = false,
+  fontSizeMobile,
+  fontSizeDesktop,
+  labelClassName,
+  /** "center" (default) or "start" for left-aligned stat blocks */
+  align = "center",
 }) {
   const [active, setActive] = useState(-1);
   const dense = !compact && stats?.length > 5;
+  const matrixFontSizeMobile =
+    fontSizeMobile ?? (compact || dense ? 60 : 68);
+  const matrixFontSizeDesktop =
+    fontSizeDesktop ?? (compact ? 84 : dense ? 76 : 115);
+  const defaultLabelClass = compact || dense
+    ? "text-[0.72rem] lg:text-[0.78rem]"
+    : "text-xl";
+  const isStartAlign = align === "start";
+  const itemAlignClass = isStartAlign
+    ? "items-start text-left"
+    : "items-center text-center";
 
   return (
     <section className={`${bgColor} text-green-500`} style={{ width: "full" }}>
@@ -24,11 +40,21 @@ export default function Statistics({
               : "container flex flex-col gap-2xl py-10 sm:py-11 lg:flex-row lg:py-12"
         }
       >
-        {stats.map((s, i) => (
+        {stats.map((s, i) => {
+          const labelLines =
+            s.labelLines ??
+            (Array.isArray(s.label) ? s.label : [s.label].filter(Boolean));
+          const statKey = s.sortOrder ?? labelLines.join("-") ?? i;
+
+          return (
           <div
-            key={s.label}
-            className={`group stat flex min-w-0 flex-col items-center text-center ${
-              compact || dense ? "overflow-hidden" : "lg:flex-1 lg:py-16"
+            key={statKey}
+            className={`group stat flex min-w-0 flex-col ${itemAlignClass} ${
+              compact || dense
+                ? isStartAlign
+                  ? ""
+                  : "overflow-hidden"
+                : "lg:flex-1 lg:py-16"
             }`}
             style={{
               ["--stat-width"]: s.width ? `${s.width}px` : undefined,
@@ -37,7 +63,9 @@ export default function Statistics({
             onMouseEnter={() => setActive(i)}
             onMouseLeave={() => setActive(-1)}
           >
-            <div className="flex w-full justify-center">
+            <div
+              className={`flex w-full ${isStartAlign ? "justify-start" : "justify-center"}`}
+            >
               <DotMatrixText
                 text={s.stat}
                 active={active === i}
@@ -45,22 +73,30 @@ export default function Statistics({
                 dotSpacing={2}
                 dotColor={dotColor}
                 activeDotColor={s.activeDotColor}
-                fontSizeMobile={compact || dense ? 60 : 68}
-                fontSizeDesktop={compact ? 84 : dense ? 76 : 115}
+                fontSizeMobile={matrixFontSizeMobile}
+                fontSizeDesktop={matrixFontSizeDesktop}
               />
             </div>
             <div
-              className={`mt-4 max-w-full text-sm uppercase leading-snug tracking-wide transition-all duration-1000 lg:text-base ${
-                compact || dense ? "text-[0.72rem] lg:text-[0.78rem]" : "text-xl"
+              className={`mt-5 max-w-full uppercase transition-all duration-1000 ${
+                labelClassName ?? defaultLabelClass
               } ${!lighterTheme ? "text-white" : "text-black"}`}
               style={{
                 color: active === i ? "var(--active-color)" : undefined,
               }}
             >
-              {s.label}
+              {labelLines.map((line, lineIndex) => (
+                <span
+                  key={lineIndex}
+                  className={`block ${isStartAlign ? "whitespace-nowrap" : ""}`}
+                >
+                  {line}
+                </span>
+              ))}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

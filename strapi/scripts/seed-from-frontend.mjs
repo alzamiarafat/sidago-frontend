@@ -120,6 +120,7 @@ async function loadPayloadFromFrontendDefaults() {
     const defaultsModule = await import(pathToFileURL(candidatePath).href);
     const {
       defaultBusinessProcessesPage,
+      defaultCareersPage,
       defaultExecutionPage,
       defaultGlobalSettings,
       defaultHomepage,
@@ -129,6 +130,12 @@ async function loadPayloadFromFrontendDefaults() {
       defaultPerformancePage,
       defaultServicesPage,
     } = defaultsModule;
+
+    const careersPageModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "careers-page.mjs"),
+      ).href
+    );
 
     return {
       generatedAt: new Date().toISOString(),
@@ -150,6 +157,9 @@ async function loadPayloadFromFrontendDefaults() {
       performance: defaultPerformancePage,
       execution: defaultExecutionPage,
       servicesPage: defaultServicesPage,
+      careersPage: careersPageModule.careersPageToStrapiSeed(
+        defaultCareersPage,
+      ),
     };
   }
 
@@ -456,6 +466,11 @@ async function pushViaLocalStrapi(payload) {
     strapi,
     "api::strategy-page.strategy-page",
     payload.strategyPage,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::careers-page.careers-page",
+    payload.careersPage,
   );
 }
 

@@ -32,7 +32,8 @@ module.exports = {
       !payload?.execution ||
       !payload?.servicesPage ||
       !payload?.industriesPage ||
-      !payload?.strategyPage
+      !payload?.strategyPage ||
+      !payload?.careersPage
     ) {
       ctx.throw(400, "Missing required seed payload.");
     }
@@ -63,6 +64,10 @@ module.exports = {
       "api::strategy-page.strategy-page",
       payload.strategyPage,
     );
+    await upsertSingleType(
+      "api::careers-page.careers-page",
+      payload.careersPage,
+    );
 
     ctx.body = {
       data: {
@@ -78,6 +83,7 @@ module.exports = {
           "servicesPage",
           "industriesPage",
           "strategyPage",
+          "careersPage",
         ],
       },
     };

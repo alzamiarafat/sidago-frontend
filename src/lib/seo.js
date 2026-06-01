@@ -228,6 +228,19 @@ export const routeMetadata = {
       "workflow scaling",
     ],
   }),
+  careers: buildPageMetadata({
+    title: "Careers",
+    description:
+      "Join Sidago: remote-first roles in operations, digital support, process improvement, marketing growth, and client delivery. View open positions and our hiring process.",
+    path: "/company/careers",
+    keywords: [
+      "Sidago careers",
+      "Sidago jobs",
+      "remote operations jobs",
+      "digital support careers",
+      "BPO careers",
+    ],
+  }),
   legalPolicies: buildPageMetadata({
     title: "Legal & Compliance Policies",
     description:

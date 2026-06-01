@@ -10,6 +10,7 @@ import {
   defaultPerformancePage,
   defaultServicesPage,
 } from "@/src/data/cms/defaults";
+import { defaultCareersPage } from "@/src/data/cms/careers-page";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -813,6 +814,313 @@ function normalizeOperationsPage(entry) {
   };
 }
 
+function normalizeCareersStatisticItem(item, fallbackItem) {
+  const labelLines = Array.isArray(item?.labelLines)
+    ? item.labelLines.filter((line) => `${line}`.trim())
+    : null;
+
+  if (!item?.stat || !labelLines?.length) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    stat: `${item.stat}`.trim() || fallbackItem.stat,
+    labelLines,
+    width: item.width ?? fallbackItem.width,
+    activeDotColor: item.activeDotColor || fallbackItem.activeDotColor,
+    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+  };
+}
+
+function normalizeCareersTeamLink(item, fallbackItem) {
+  if (!item?.href || !item?.label) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    href: item.href.trim(),
+    label: item.label.trim(),
+    srText: item.srText?.trim() || item.label.trim(),
+    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+  };
+}
+
+function normalizeCareersTeamItem(item, fallbackItem) {
+  if (!item?.title || !item?.description || !item?.imageSrc) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    title: item.title.trim(),
+    description: item.description.trim(),
+    hoverColor: item.hoverColor?.trim() || fallbackItem.hoverColor,
+    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+    image: {
+      src: item.imageSrc.trim(),
+      width: item.imageWidth ?? fallbackItem.image?.width ?? 1152,
+      height: item.imageHeight ?? fallbackItem.image?.height ?? 1182,
+    },
+    links:
+      item.links?.length > 0
+        ? item.links
+            .filter((link) => link?.href && link?.label)
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((link, index) =>
+              normalizeCareersTeamLink(
+                link,
+                fallbackItem.links[index] || fallbackItem.links[0],
+              ),
+            )
+        : fallbackItem.links,
+  };
+}
+
+function normalizeCareersValuesItem(item, fallbackItem) {
+  const bullets = Array.isArray(item?.bullets)
+    ? item.bullets.filter((line) => `${line}`.trim())
+    : null;
+
+  if (!item?.title || !bullets?.length) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    title: item.title.trim(),
+    iconType: item.iconType || fallbackItem.iconType,
+    bullets,
+    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+  };
+}
+
+function normalizeCareersTestimonialItem(item, fallbackItem) {
+  const titleParts = Array.isArray(item?.titleParts)
+    ? item.titleParts.filter((part) => part?.text)
+    : null;
+
+  if (!item?.name || !item?.role || !item?.quote || !item?.imageSrc) {
+    return fallbackItem;
+  }
+
+  return {
+    ...fallbackItem,
+    name: item.name.trim(),
+    role: item.role.trim(),
+    quote: item.quote.trim(),
+    titleParts: titleParts?.length ? titleParts : fallbackItem.titleParts,
+    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+    image: {
+      src: item.imageSrc.trim(),
+      width: item.imageWidth ?? fallbackItem.image?.width ?? 1100,
+      height: item.imageHeight ?? fallbackItem.image?.height ?? 880,
+      alt: item.imageAlt?.trim() || fallbackItem.image?.alt || item.name,
+    },
+  };
+}
+
+function normalizeCareersPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultCareersPage;
+  }
+
+  const hero = normalizeHero(item.hero, defaultCareersPage.hero);
+
+  return {
+    hero: {
+      ...hero,
+      ctaLabel:
+        item.heroCtaLabel?.trim() ||
+        defaultCareersPage.hero.ctaLabel,
+      ctaHref:
+        item.heroCtaHref?.trim() || defaultCareersPage.hero.ctaHref,
+      ctaSrText:
+        item.heroCtaSrText?.trim() ||
+        defaultCareersPage.hero.ctaSrText,
+      ctaButtonClass:
+        item.heroCtaButtonClass?.trim() ||
+        defaultCareersPage.hero.ctaButtonClass,
+    },
+    statistics:
+      item.statistics?.length > 0
+        ? item.statistics
+            .filter((stat) => stat?.stat && stat?.labelLines?.length)
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((stat, index) =>
+              normalizeCareersStatisticItem(
+                stat,
+                defaultCareersPage.statistics[index] ||
+                  defaultCareersPage.statistics[0],
+              ),
+            )
+        : defaultCareersPage.statistics,
+    quoteSection: {
+      quote:
+        item.quoteSection?.quote?.trim() ||
+        defaultCareersPage.quoteSection.quote,
+      attribution:
+        item.quoteSection?.attribution?.trim() ||
+        defaultCareersPage.quoteSection.attribution,
+    },
+    valuesFlipSection: {
+      title:
+        item.valuesTitle?.trim() || defaultCareersPage.valuesFlipSection.title,
+      headingId:
+        item.valuesHeadingId?.trim() ||
+        defaultCareersPage.valuesFlipSection.headingId,
+      items:
+        item.valuesItems?.length > 0
+          ? item.valuesItems
+              .filter((value) => value?.title && value?.bullets?.length)
+              .slice()
+              .sort(
+                (left, right) =>
+                  (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((value, index) =>
+                normalizeCareersValuesItem(
+                  value,
+                  defaultCareersPage.valuesFlipSection.items[index] ||
+                    defaultCareersPage.valuesFlipSection.items[0],
+                ),
+              )
+          : defaultCareersPage.valuesFlipSection.items,
+    },
+    teamsSection: {
+      lead:
+        item.teamsLead?.trim() || defaultCareersPage.teamsSection.lead,
+      highlight:
+        item.teamsHighlight?.trim() ||
+        defaultCareersPage.teamsSection.highlight,
+      headingId:
+        item.teamsHeadingId?.trim() ||
+        defaultCareersPage.teamsSection.headingId,
+      items:
+        item.teamsItems?.length > 0
+          ? item.teamsItems
+              .filter(
+                (team) => team?.title && team?.description && team?.imageSrc,
+              )
+              .slice()
+              .sort(
+                (left, right) =>
+                  (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((team, index) =>
+                normalizeCareersTeamItem(
+                  team,
+                  defaultCareersPage.teamsSection.items[index] ||
+                    defaultCareersPage.teamsSection.items[0],
+                ),
+              )
+          : defaultCareersPage.teamsSection.items,
+    },
+    teamTestimonialsSection: {
+      title:
+        item.testimonialsTitle?.trim() ||
+        defaultCareersPage.teamTestimonialsSection.title,
+      headingId:
+        item.testimonialsHeadingId?.trim() ||
+        defaultCareersPage.teamTestimonialsSection.headingId,
+      className:
+        item.testimonialsClassName?.trim() ||
+        defaultCareersPage.teamTestimonialsSection.className,
+      items:
+        item.testimonialsItems?.length > 0
+          ? item.testimonialsItems
+              .filter(
+                (testimonial) =>
+                  testimonial?.name &&
+                  testimonial?.role &&
+                  testimonial?.quote &&
+                  testimonial?.imageSrc,
+              )
+              .slice()
+              .sort(
+                (left, right) =>
+                  (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((testimonial, index) =>
+                normalizeCareersTestimonialItem(
+                  testimonial,
+                  defaultCareersPage.teamTestimonialsSection.items[index] ||
+                    defaultCareersPage.teamTestimonialsSection.items[0],
+                ),
+              )
+          : defaultCareersPage.teamTestimonialsSection.items,
+    },
+    lifeSection: {
+      lead: item.lifeLead?.trim() || defaultCareersPage.lifeSection.lead,
+      highlight:
+        item.lifeHighlight?.trim() ||
+        defaultCareersPage.lifeSection.highlight,
+      headingId:
+        item.lifeHeadingId?.trim() ||
+        defaultCareersPage.lifeSection.headingId,
+      description:
+        item.lifeDescription?.trim() ||
+        defaultCareersPage.lifeSection.description,
+      decorImage: {
+        src:
+          item.lifeDecorImageSrc?.trim() ||
+          defaultCareersPage.lifeSection.decorImage.src,
+        alt:
+          item.lifeDecorImageAlt?.trim() ||
+          defaultCareersPage.lifeSection.decorImage.alt,
+        width:
+          item.lifeDecorImageWidth ??
+          defaultCareersPage.lifeSection.decorImage.width,
+        height:
+          item.lifeDecorImageHeight ??
+          defaultCareersPage.lifeSection.decorImage.height,
+      },
+      video: {
+        src:
+          item.lifeVideoSrc?.trim() ||
+          defaultCareersPage.lifeSection.video.src,
+        preload:
+          item.lifeVideoPreload?.trim() ||
+          defaultCareersPage.lifeSection.video.preload,
+      },
+    },
+    lifeStatsSection: {
+      fontSizeMobile:
+        item.lifeStatsFontSizeMobile ??
+        defaultCareersPage.lifeStatsSection.fontSizeMobile,
+      fontSizeDesktop:
+        item.lifeStatsFontSizeDesktop ??
+        defaultCareersPage.lifeStatsSection.fontSizeDesktop,
+      items:
+        item.lifeStatsItems?.length > 0
+          ? item.lifeStatsItems
+              .filter((stat) => stat?.stat && stat?.label)
+              .slice()
+              .sort(
+                (left, right) =>
+                  (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((stat, index) =>
+                normalizeStatisticItem(
+                  stat,
+                  defaultCareersPage.lifeStatsSection.items[index] ||
+                    defaultCareersPage.lifeStatsSection.items[0],
+                ),
+              )
+          : defaultCareersPage.lifeStatsSection.items,
+    },
+  };
+}
+
 function normalizeInfrastructurePage(entry) {
   const item = unwrapEntity(entry);
 
@@ -1284,4 +1592,12 @@ export const getPerformancePage = cache(async () => {
     { revalidate: 180 },
   );
   return normalizePerformancePage(data?.data);
+});
+
+export const getCareersPage = cache(async () => {
+  const data = await fetchAPI(
+    "careers-page?populate[hero][populate][titles]=*&populate[statistics]=*&populate[quoteSection]=*&populate[valuesItems]=*&populate[teamsItems][populate][links]=*&populate[testimonialsItems]=*&populate[lifeStatsItems]=*",
+    { revalidate: 180 },
+  );
+  return normalizeCareersPage(data?.data);
 });

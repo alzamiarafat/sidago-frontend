@@ -1,3 +1,5 @@
+export { defaultCareersPage } from "./careers-page.mjs";
+
 export const defaultGlobalSettings = {
   siteName: "Sidago",
   siteContactEmail: "mailto:hello@sidago.com",
@@ -28,7 +30,12 @@ export const defaultGlobalSettings = {
   footer: {
     navLinks: [
       { label: "Contact", href: "/contact", srLabel: "Contact", sortOrder: 1 },
-      { label: "Careers", href: "/contact", srLabel: "Careers", sortOrder: 2 },
+      {
+        label: "Careers",
+        href: "/company/careers",
+        srLabel: "Careers",
+        sortOrder: 2,
+      },
       {
         label: "Events",
         href: "/marketing-growth",

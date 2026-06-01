@@ -29,14 +29,117 @@ const visionItems = [
   },
 ];
 
-function VisionIcon({ type }) {
+const THEMES = {
+  orange: {
+    iconClass: "text-orange-dark",
+    backClass: "bg-orange-mid",
+    dividerClass: "!border-[#AB290E]",
+    expandIconClass: "",
+    sectionClass: "",
+    cardsSectionClass: "bg-gray-night-green text-gray-off-white",
+  },
+  green: {
+    iconClass: "text-green-dark",
+    backClass: "bg-green-light",
+    dividerClass: "border-[#006623]",
+    expandIconClass: "text-gray-off-white tio-6",
+    sectionClass: "bg-[#070B09]",
+    cardsSectionClass: "bg-[#070B09] text-gray-off-white",
+  },
+};
+
+function VisionIcon({ type, className }) {
+  if (type === "ambitious") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 40 40"
+        className={className}
+      >
+        <path
+          stroke="currentColor"
+          strokeLinejoin="bevel"
+          strokeWidth="0.7"
+          d="M5 35V25h10V15h10V5h10"
+        />
+      </svg>
+    );
+  }
+
+  if (type === "collaborative") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 40 40"
+        className={className}
+      >
+        <path
+          stroke="currentColor"
+          strokeLinejoin="bevel"
+          strokeWidth="0.7"
+          d="M13.333 5 20 7.5l2.667 6.25L20 20l-6.667 2.5L6.667 20 4 13.75 6.667 7.5zM26.667 17.5l6.666 2.5L36 26.25l-2.666 6.25-6.667 2.5L20 32.5l-2.666-6.25L20 20z"
+        />
+        <path
+          stroke="currentColor"
+          strokeLinejoin="bevel"
+          strokeWidth="0.7"
+          d="M26.667 5 20 7.5l-2.666 6.25L20 20l6.667 2.5 6.666-2.5L36 13.75 33.334 7.5zM13.333 17.5 6.667 20 4 26.25l2.667 6.25 6.666 2.5L20 32.5l2.667-6.25L20 20z"
+        />
+      </svg>
+    );
+  }
+
+  if (type === "entrepreneurial") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 40 40"
+        className={className}
+      >
+        <path
+          stroke="currentColor"
+          strokeLinejoin="bevel"
+          strokeWidth="0.7"
+          d="M32.5 31.063v-5l2.5-2.5v-10l-5-5M28.906 33.563v-7.5h-12.5l-5-5"
+        />
+        <path
+          stroke="currentColor"
+          strokeLinejoin="bevel"
+          strokeWidth="0.7"
+          d="M32.5 21.063h-15l-5-5H5v-5l2.5-2.5M17.5 13.094H10M31.25 17l-7.5-10h-10l-2.5 2.5M25.469 18.563l-3.75-5"
+        />
+      </svg>
+    );
+  }
+
+  if (type === "meritocratic") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 40 40"
+        className={className}
+      >
+        <path
+          stroke="currentColor"
+          strokeLinejoin="bevel"
+          strokeWidth="0.7"
+          d="M5 14h30M5 26.857h30"
+        />
+      </svg>
+    );
+  }
+
   if (type === "security") {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 40 40"
-        className="h-[5.25rem] w-[5.25rem] text-orange-dark"
+        className={className}
       >
         <path
           stroke="currentColor"
@@ -54,7 +157,7 @@ function VisionIcon({ type }) {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 40 40"
-        className="h-[5.25rem] w-[5.25rem] text-orange-dark"
+        className={className}
       >
         <path
           stroke="currentColor"
@@ -72,7 +175,7 @@ function VisionIcon({ type }) {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 40 40"
-        className="h-[5.25rem] w-[5.25rem] text-orange-dark"
+        className={className}
       >
         <path
           stroke="currentColor"
@@ -107,7 +210,7 @@ function VisionIcon({ type }) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 84 84"
-      className="h-[5.25rem] w-[5.25rem] text-orange-dark"
+      className={className}
     >
       <path
         fill="currentColor"
@@ -125,13 +228,13 @@ function VisionIcon({ type }) {
   );
 }
 
-function ExpandIcon() {
+function ExpandIcon({ className = "" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 40 41"
-      className="absolute right-6 top-6 z-10 h-[3.5rem] w-[3.5rem]"
+      className={`absolute right-6 top-6 z-10 h-[3.5rem] w-[3.5rem] ${className}`.trim()}
     >
       <path
         fill="currentColor"
@@ -167,7 +270,23 @@ function CollapseIcon() {
   );
 }
 
-function VisionCard({ item, isFlipped, onToggle, onEnter, onLeave }) {
+function CardBody({ item }) {
+  if (item.bullets?.length) {
+    return (
+      <ul>
+        {item.bullets.map((line) => (
+          <li key={line}>{line}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  return item.description;
+}
+
+function VisionCard({ item, isFlipped, onToggle, onEnter, onLeave, theme }) {
+  const iconClass = `h-[5.25rem] w-[5.25rem] ${theme.iconClass}`;
+
   return (
     <button
       type="button"
@@ -176,31 +295,28 @@ function VisionCard({ item, isFlipped, onToggle, onEnter, onLeave }) {
       onMouseLeave={onLeave}
       onFocus={onEnter}
       onBlur={onLeave}
-      className={`flipper card relative col-span-1 flex h-[15.625rem] w-full shrink-0 justify-center overflow-visible text-left transition-all md:h-[17.8125rem] ${
-        isFlipped ? "flipper--flipped" : ""
-      }`}
+      className={`flipper card relative col-span-1 flex h-[15.625rem] w-full shrink-0 justify-center overflow-visible text-left transition-all md:h-[17.8125rem] ${isFlipped ? "flipper--flipped" : ""
+        }`}
       aria-pressed={isFlipped}
     >
       <div className="front bevel bg-gray-defi-charcoal">
         <div className="relative flex h-full flex-col justify-between p-6">
           <div>
-            <VisionIcon type={item.iconType} />
+            <VisionIcon type={item.iconType} className={iconClass} />
           </div>
           <div className="text-xl text-gray-off-white md:text-2xl">
             {item.title}
           </div>
-          <div className="text-gray-off-white">
-            <ExpandIcon />
-          </div>
+          <ExpandIcon className={theme.expandIconClass} />
         </div>
       </div>
 
-      <div className="back bevel bg-orange-mid">
+      <div className={`back bevel ${theme.backClass}`}>
         <div className="flex h-full flex-col justify-end text-gray-night-green md:flex-row md:justify-start">
           <div className="flex flex-col justify-end gap-4 p-4 md:p-6">
             <p className="text-xl md:text-2xl">{item.title}</p>
             <div className="removePaddingList removeSpacesList bullet-text-gray-night-green text-sm">
-              {item.description}
+              <CardBody item={item} />
             </div>
           </div>
           <CollapseIcon />
@@ -212,41 +328,48 @@ function VisionCard({ item, isFlipped, onToggle, onEnter, onLeave }) {
 
 export default function OurVision({
   title = "Principles that guide our vision",
-  description =
-    "The infrastructure behind Sidago is designed for resilience, security, and the operational clarity teams need to scale with confidence.",
+  description,
   items = visionItems,
+  headingId = "principles-that-guide-our-vision",
+  variant = "orange",
+  dividerClassName,
 }) {
   const [activeIndex, setActiveIndex] = useState(null);
+  const theme = THEMES[variant] ?? THEMES.orange;
+  const dividerClass = dividerClassName ?? theme.dividerClass;
   const orderedItems =
     items?.length > 0
       ? items
-          .slice()
-          .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+        .slice()
+        .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
       : visionItems;
 
   return (
-    <section>
+    <section className={theme.sectionClass}>
       <div className="container py-block">
         <div className="mb-3xl flex flex-col gap-xl">
           <div className="flex flex-col gap-xs">
             <h2
-              id="principles-that-guide-our-vision"
+              id={headingId}
               className="font-blender text-xl uppercase text-green-dark"
             >
               {title}
             </h2>
-            <p className="max-w-3xl text-base leading-relaxed text-[#A7ACA8] md:text-lg">
-              {description}
-            </p>
+            {description ? (
+              <p className="max-w-3xl text-base leading-relaxed text-[#A7ACA8] md:text-lg">
+                {description}
+              </p>
+            ) : null}
           </div>
           <hr className="!border-[#AB290E]" />
         </div>
-        <section className="bg-gray-night-green text-gray-off-white">
+        <section className={theme.cardsSectionClass}>
           <div className="flex flex-col gap-6 gap-y-8 overflow-hidden md:grid md:grid-cols-2">
             {orderedItems.map((item, index) => (
               <VisionCard
                 key={item.title}
                 item={item}
+                theme={theme}
                 isFlipped={activeIndex === index}
                 onToggle={() =>
                   setActiveIndex((current) =>
@@ -254,7 +377,11 @@ export default function OurVision({
                   )
                 }
                 onEnter={() => setActiveIndex(index)}
-                onLeave={() => setActiveIndex((current) => (current === index ? null : current))}
+                onLeave={() =>
+                  setActiveIndex((current) =>
+                    current === index ? null : current,
+                  )
+                }
               />
             ))}
           </div>

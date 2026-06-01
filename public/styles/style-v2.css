@@ -3976,6 +3976,47 @@ strong {
 .group\/interactive:hover .group-hover\/interactive\:mr-\[--arrow-offset\] {
   margin-right: var(--arrow-offset);
 }
+@media (min-width: 1024px) {
+  .teams-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+  }
+}
+.teams-accordion-inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.teams-accordion-header {
+  min-height: 0;
+}
+.teams-accordion-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s ease-in-out;
+}
+.group\/accordion:hover .teams-accordion-expand {
+  grid-template-rows: 1fr;
+}
+.group\/accordion:hover .teams-accordion-inner {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.group\/accordion:hover .teams-accordion-title,
+.group\/accordion:hover .teams-accordion-description {
+  --tw-text-opacity: 1;
+  color: rgb(7 11 9 / var(--tw-text-opacity, 1));
+}
+.group\/accordion:hover .teams-accordion-icon-bar {
+  --tw-bg-opacity: 1;
+  background-color: rgb(7 11 9 / var(--tw-bg-opacity, 1));
+}
+.group\/accordion:hover .group-hover\/accordion\:scale-y-0 {
+  --tw-scale-y: 0;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .group\/accordion:hover .group-hover\/accordion\:h-\[14\.8125rem\] {
   height: 14.8125rem;
 }
