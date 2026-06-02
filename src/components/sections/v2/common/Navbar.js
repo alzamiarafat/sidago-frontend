@@ -27,6 +27,33 @@ function pathMatchesServiceItem(item, pathname) {
   );
 }
 
+/** Logo mark + SIDAGO wordmark; both blocks share one height. */
+function NavbarBrand({ wordmarkClassName = "text-lg", letterSpacing = "3px" }) {
+  return (
+    <div className="flex h-9 items-stretch gap-0.5">
+      <div className="flex shrink-0 self-stretch">
+        <Image
+          alt="SIDAGO"
+          loading="lazy"
+          width={36}
+          height={36}
+          unoptimized
+          className="h-full w-auto object-contain [color:transparent]"
+          src="/images/favicon-1.ico"
+        />
+      </div>
+      <div className="flex items-center gap-xs self-stretch !border-y-3 py-1 !border-[#E7512F] leading-none">
+        <span
+          className={`font-normal uppercase tracking-wide ${wordmarkClassName}`}
+          style={{ letterSpacing }}
+        >
+          SIDAGO
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function Navigation() {
   const settings = useGlobal();
   const [openMenu, setOpenMenu] = useState(null); // "services", "industries", or null
@@ -620,29 +647,9 @@ export default function Navigation() {
     <>
       <header className="header sticky top-0 z-50 -mb-[4.5rem] bg-gray-night-green bg-opacity-90 pb-md text-gray-off-white lg:hidden">
         <div className="container flex items-center justify-between">
-          <a className="z-10 flex h-3xl flex-col justify-center" href="#">
-            <div className="flex items-stretch gap-0.5">
-              <div className="flex shrink-0 self-stretch">
-                <Image
-                  alt="SIDAGO"
-                  loading="lazy"
-                  width={56}
-                  height={56}
-                  unoptimized
-                  className="h-full w-auto object-contain [color:transparent]"
-                  src="/images/favicon-1.ico"
-                />
-              </div>
-              <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F] leading-none">
-                <span
-                  className="text-xl tracking-wide font-normal"
-                  style={{ letterSpacing: "4px" }}
-                >
-                  SIDAGO
-                </span>
-              </div>
-            </div>
-          </a>
+          <Link className="z-10 flex h-3xl flex-col justify-center" href="/">
+            <NavbarBrand />
+          </Link>
           {/* <a className="z-10 flex h-3xl flex-col justify-center" href="#">
             <div className="flex items-center gap-md">
               <div className="flex items-center gap-xs bg-white p-3">
@@ -703,27 +710,7 @@ export default function Navigation() {
             >
               <div className="border-b border-white/10 px-5 py-5">
                 <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-stretch gap-0.5">
-                    <div className="flex shrink-0 self-stretch">
-                      <Image
-                        alt="SIDAGO"
-                        loading="lazy"
-                        width={56}
-                        height={56}
-                        unoptimized
-                        className="h-full w-auto object-contain [color:transparent]"
-                        src="/images/favicon-1.ico"
-                      />
-                    </div>
-                    <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F] leading-none">
-                      <span
-                        className="text-xl tracking-wide font-normal"
-                        style={{ letterSpacing: "4px" }}
-                      >
-                        SIDAGO
-                      </span>
-                    </div>
-                  </div>
+                  <NavbarBrand />
                   <button
                     type="button"
                     aria-label="Close menu"
@@ -2358,29 +2345,9 @@ export default function Navigation() {
       </nav>
       <header className="header sticky top-0 z-20 hidden bg-gray-night-green pb-md pt-3xl text-gray-off-white lg:block">
         <div className="container flex items-center justify-between">
-          <a className="z-10 flex h-3xl flex-col justify-center" href="/">
-            <div className="flex items-stretch gap-0.5">
-              <div className="flex shrink-0 self-stretch">
-                <Image
-                  alt="SIDAGO"
-                  loading="lazy"
-                  width={56}
-                  height={56}
-                  unoptimized
-                  className="h-full w-auto object-contain [color:transparent]"
-                  src="/images/favicon-1.ico"
-                />
-              </div>
-              <div className="flex items-center gap-xs !border-y-3 py-1 !border-[#E7512F] leading-none">
-                <span
-                  className="text-2xl tracking-wide font-normal"
-                  style={{ letterSpacing: "5px" }}
-                >
-                  SIDAGO
-                </span>
-              </div>
-            </div>
-          </a>
+          <Link className="z-10 flex h-3xl flex-col justify-center" href="/">
+            <NavbarBrand wordmarkClassName="text-xl" letterSpacing="4px" />
+          </Link>
           {/* <a className="z-10 flex h-3xl flex-col justify-center pb-4" href="#">
             <div className="flex items-center gap-md">
               <div className="flex items-center gap-xs bg-white bg-opacity-10 px-3 py-2">
