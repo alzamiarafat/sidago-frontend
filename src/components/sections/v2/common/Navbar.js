@@ -30,19 +30,19 @@ function pathMatchesServiceItem(item, pathname) {
 /** Logo mark + SIDAGO wordmark; both blocks share one height. */
 function NavbarBrand({ wordmarkClassName = "text-lg", letterSpacing = "3px" }) {
   return (
-    <div className="flex h-9 items-stretch gap-0.5">
+    <div className="flex h-10 items-stretch gap-0">
       <div className="flex shrink-0 self-stretch">
         <Image
           alt="SIDAGO"
           loading="lazy"
-          width={36}
-          height={36}
+          width={560}
+          height={446}
           unoptimized
           className="h-full w-auto object-contain [color:transparent]"
-          src="/images/favicon-1.ico"
+          src="/images/navbar-logo-icon.png"
         />
       </div>
-      <div className="flex items-center gap-xs self-stretch !border-y-3 py-1 !border-[#E7512F] leading-none">
+      <div className="-ml-1 flex items-center gap-xs self-stretch !border-y-3 py-1 !border-[#E7512F] leading-none sm:-ml-1.5">
         <span
           className={`font-normal uppercase tracking-wide ${wordmarkClassName}`}
           style={{ letterSpacing }}
