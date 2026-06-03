@@ -2,49 +2,9 @@
 
 import Image from "next/image";
 import { useCallback, useState } from "react";
-
-const NAV_ARROW_PATH =
-  "M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z";
-
-function NavArrowRight() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 40 40"
-      className="h-lg w-lg shrink-0"
-      aria-hidden
-    >
-      <path
-        fill="currentColor"
-        fillRule="evenodd"
-        d={NAV_ARROW_PATH}
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}
-
-function NavArrowLeft() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 40 40"
-      className="h-lg w-lg shrink-0"
-      aria-hidden
-    >
-      <g transform="matrix(-1 0 0 1 40 0)">
-        <path
-          fill="currentColor"
-          fillRule="evenodd"
-          d={NAV_ARROW_PATH}
-          clipRule="evenodd"
-        />
-      </g>
-    </svg>
-  );
-}
+import BevelNavButton, {
+  BEVEL_NAV_BUTTON_CLASS,
+} from "@/src/components/sections/v2/common/BevelNavButton";
 
 function TestimonialTitle({ parts }) {
   return (
@@ -129,8 +89,7 @@ export default function CareersTeamTestimonialsSection({
   const handlePrev = () => goToIndex(activeIndex - 1);
   const handleNext = () => goToIndex(activeIndex + 1);
 
-  const navButtonClass =
-    "inline-flex items-center justify-center bg-green-dark p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50";
+  const navButtonClass = `${BEVEL_NAV_BUTTON_CLASS} text-gray-night-green`;
 
   if (total === 0) {
     return null;
@@ -158,22 +117,18 @@ export default function CareersTeamTestimonialsSection({
               </div>
             </div>
             <div className="flex gap-md">
-              <button
-                type="button"
-                aria-label="Previous testimonial"
+              <BevelNavButton
+                direction="left"
+                ariaLabel="Previous testimonial"
                 onClick={handlePrev}
                 className={navButtonClass}
-              >
-                <NavArrowLeft />
-              </button>
-              <button
-                type="button"
-                aria-label="Next testimonial"
+              />
+              <BevelNavButton
+                direction="right"
+                ariaLabel="Next testimonial"
                 onClick={handleNext}
                 className={navButtonClass}
-              >
-                <NavArrowRight />
-              </button>
+              />
             </div>
             <div className="hidden items-center gap-[0.125rem] lg:flex">
               {slides.map((slide, index) => (

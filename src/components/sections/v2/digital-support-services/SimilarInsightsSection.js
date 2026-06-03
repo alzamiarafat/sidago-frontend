@@ -3,26 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useMemo, useRef, useState } from "react";
+import BevelNavButton, {
+  BEVEL_NAV_BUTTON_CLASS,
+} from "@/src/components/sections/v2/common/BevelNavButton";
+import { BRAND_COLORS } from "@/src/data/brand-colors";
 import { similarInsightsContent } from "@/src/components/sections/v2/digital-support-services/data";
-
-function NavArrow({ className = "" }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 40 40"
-      className={`h-lg w-lg ${className}`}
-      aria-hidden
-    >
-      <path
-        fill="currentColor"
-        fillRule="evenodd"
-        d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}
 
 function InsightCardLink({ card, className, style, children }) {
   const linkStyle = { position: "relative", ...style };
@@ -136,6 +121,8 @@ function isLightCardBg(color) {
   return isLightSectionBg(color) || normalized === INSIGHT_CARD_BG.light.toLowerCase();
 }
 
+const NAV_BUTTON_CLASS = `${BEVEL_NAV_BUTTON_CLASS} text-gray-night-green`;
+
 export default function SimilarInsightsSection({
   content = similarInsightsContent,
   /** Passed from parent page — e.g. #070B09 (dark) or #FFFFFF (light). */
@@ -187,8 +174,7 @@ export default function SimilarInsightsSection({
   const handlePrev = () => scrollToIndex(activeIndex - 1);
   const handleNext = () => scrollToIndex(activeIndex + 1);
 
-  const navButtonClass =
-    "group/interactive inline-flex items-center justify-between gap-md bg-green-dark p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50";
+  const navButtonClass = NAV_BUTTON_CLASS;
 
   const isLightBg = isLightSection;
   const isLightCard = isLightCardBg(resolvedCardBgColor);
@@ -240,31 +226,30 @@ export default function SimilarInsightsSection({
                   ))}
                 </div>
                 <div className="flex gap-md">
-                  <button
-                    type="button"
-                    aria-label="Previous"
+                  <BevelNavButton
+                    direction="left"
+                    ariaLabel="Previous"
+                    bgColor={BRAND_COLORS.orange}
                     onClick={handlePrev}
                     className={navButtonClass}
-                  >
-                    <NavArrow className="rotate-180" />
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Next"
+                  />
+                  <BevelNavButton
+                    direction="right"
+                    ariaLabel="Next"
+                    bgColor={BRAND_COLORS.orange}
                     onClick={handleNext}
                     className={navButtonClass}
-                  >
-                    <NavArrow />
-                  </button>
+                  />
                 </div>
                 <div className="hidden lg:flex">
                   {cards.map((_, index) => (
                     <div
                       key={index}
-                      className={`h-[0.25rem] transition-all bg-green-dark first:ml-0 ${index === activeIndex
+                      className={`h-[0.25rem] transition-all first:ml-0 ${index === activeIndex
                         ? "ml-[0.125rem] w-sm"
                         : "ml-[0.125rem] w-sm opacity-30"
                         }`}
+                      style={{ backgroundColor: BRAND_COLORS.orange }}
                     />
                   ))}
                 </div>

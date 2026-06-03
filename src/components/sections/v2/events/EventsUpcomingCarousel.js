@@ -2,15 +2,17 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import EventCard from "@/src/components/sections/v2/events/EventCard";
-import EventsCarouselNavArrow from "@/src/components/sections/v2/events/shared/EventsCarouselNavArrow";
+import BevelNavButton, {
+  BEVEL_NAV_BUTTON_CLASS,
+} from "@/src/components/sections/v2/common/BevelNavButton";
+import { BRAND_COLORS } from "@/src/data/brand-colors";
 
 const DESKTOP_COLUMNS = 3;
 const CARD_WIDTH_STYLE = {
   "--link-card-desktop-width": `calc(100% / ${DESKTOP_COLUMNS} + 1rem)`,
 };
 
-const NAV_BUTTON_CLASS =
-  "group/interactive inline-flex items-center justify-between gap-md font-medium text-gray-night-green bevel bevel-[0.25rem] bg-pink-mid p-[0.625rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50";
+const NAV_BUTTON_CLASS = `${BEVEL_NAV_BUTTON_CLASS} text-gray-night-green`;
 
 export default function EventsUpcomingCarousel({ items = [] }) {
   const trackRef = useRef(null);
@@ -63,24 +65,22 @@ export default function EventsUpcomingCarousel({ items = [] }) {
     >
       <div className="flex items-center justify-between gap-3xl lg:items-center">
         <div className="flex gap-md">
-          <button
-            type="button"
-            aria-label="Previous events"
+          <BevelNavButton
+            direction="left"
+            ariaLabel="Previous events"
+            bgColor={BRAND_COLORS.pinkMid}
             disabled={pageIndex === 0}
             onClick={() => scrollToPage(pageIndex - 1)}
             className={NAV_BUTTON_CLASS}
-          >
-            <EventsCarouselNavArrow direction="left" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next events"
+          />
+          <BevelNavButton
+            direction="right"
+            ariaLabel="Next events"
+            bgColor={BRAND_COLORS.pinkMid}
             disabled={pageIndex >= pageCount - 1}
             onClick={() => scrollToPage(pageIndex + 1)}
             className={NAV_BUTTON_CLASS}
-          >
-            <EventsCarouselNavArrow direction="right" />
-          </button>
+          />
         </div>
 
         <div className="hidden lg:flex" aria-hidden>
