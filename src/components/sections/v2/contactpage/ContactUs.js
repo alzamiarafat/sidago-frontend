@@ -122,18 +122,18 @@ export default function ContactUs() {
       <div className="container">
         <div className="flex items-stretch gap-4 sm:gap-6 lg:gap-8">
           <div
-            className="core-column--stacked-on-mobile relative w-11 shrink-0 sm:w-12 lg:w-[9.5rem] lg:max-w-[min(100%,16rem)]"
+            className="core-column--stacked-on-mobile relative w-11 shrink-0 self-stretch sm:w-12 lg:w-[9.5rem] lg:max-w-[min(100%,16rem)]"
             style={{ "--core-column-width": "9.5rem" }}
             aria-hidden
           >
-            <div className="bevel bevel-[0.25rem] absolute inset-0 overflow-hidden">
+            <div className="bevel absolute inset-0 overflow-hidden bg-[#454A47]">
               <Image
                 alt=""
                 loading="lazy"
                 fill
                 unoptimized
                 sizes="(max-width: 1024px) 3rem, 9.5rem"
-                className="object-cover object-center"
+                className="h-full w-full object-cover object-center"
                 src="/images/contact-graphic.svg"
               />
             </div>
