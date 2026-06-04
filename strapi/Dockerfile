@@ -1,32 +1,16 @@
-FROM node:20.19.0-slim AS build
+FROM node:20.18.0
 
 WORKDIR /app
 
-ENV NPM_CONFIG_FETCH_RETRIES=5
-ENV NPM_CONFIG_FETCH_RETRY_MINTIMEOUT=20000
-ENV NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT=120000
+COPY package*.json ./
 
-COPY package.json package-lock.json* ./
-RUN npm install --no-audit --no-fund --legacy-peer-deps \
-  && npm uninstall better-sqlite3 --no-audit --no-fund
+RUN npm install
 
 COPY . .
 
-ENV NODE_ENV=production
-
-RUN npm run build \
-  && npm prune --omit=dev \
-  && npm cache clean --force
-
-FROM node:20.19.0-slim AS runner
-
-WORKDIR /app
-
-ENV NODE_ENV=production
-
-COPY --from=build /app ./
-
 RUN mkdir -p /app/public/uploads
+
+RUN npm run build
 
 EXPOSE 9012
 
