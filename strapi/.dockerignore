@@ -1,0 +1,11 @@
+node_modules
+.cache
+.strapi
+.tmp
+build
+npm-debug.log*
+.DS_Store
+public/uploads/*
+!public/uploads/.gitkeep
+.env
+.env.*

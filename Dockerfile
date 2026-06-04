@@ -1,32 +1,42 @@
-FROM node:20.18.0 AS builder
+FROM node:20.19.0 AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+ENV NPM_CONFIG_FETCH_RETRIES=5
+ENV NPM_CONFIG_FETCH_RETRY_MINTIMEOUT=20000
+ENV NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT=120000
+
+COPY package.json package-lock.json ./
+RUN npm ci --include=dev --no-audit --no-fund --legacy-peer-deps
 
 COPY . .
 
-# .env is gitignored; use example defaults for build-time static generation
 RUN cp .env.example .env
 
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
-RUN npm run build
+RUN npm run build \
+  && npm cache clean --force
 
-FROM node:20.18.0 AS runner
+FROM node:20.19.0-slim AS runner
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=9010
+ENV HOSTNAME=0.0.0.0
 
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
+RUN groupadd --system --gid 1001 nodejs \
+  && useradd --system --uid 1001 --gid nodejs nextjs
+
 COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
 
 EXPOSE 9010
 
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]

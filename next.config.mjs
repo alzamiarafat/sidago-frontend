@@ -19,6 +19,7 @@ function strapiRemotePatterns() {
 }
 
 const nextConfig = {
+  output: "standalone",
   compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
