@@ -216,10 +216,10 @@ export default function ReportContentsSection({
     <section className="bg-[#FAFAFA] text-black">
       <div className="container flex flex-col gap-x-container gap-y-4xl py-block lg:flex-row">
         <div
-          className="core-column--stacked-on-mobile"
+          className="core-column--stacked-on-mobile shrink-0"
           style={{ "--core-column-width": "33.33%" }}
         >
-          <div className="sticky top-[calc(var(--header-height)+1.5rem)] lg:max-h-[calc(100svh-var(--header-height)-1.5rem-1.5rem)]">
+          <div className="sticky top-[calc(var(--header-height)+1.5rem)] lg:max-h-[calc(100svh-var(--header-height)-1.5rem-1.5rem)] lg:overflow-y-auto">
             <div className="mb-3xl flex flex-col gap-xl">
               <div className="flex flex-col gap-xs">
                 <h2
@@ -269,7 +269,7 @@ export default function ReportContentsSection({
         </div>
 
         <article
-          className="post-body-container core-column--stacked-on-mobile text-lg leading-[1.6] text-black"
+          className="post-body-container core-column--stacked-on-mobile min-w-0 text-lg leading-[1.6] text-black"
           style={{ "--core-column-width": "66.66%" }}
         >
           <div>

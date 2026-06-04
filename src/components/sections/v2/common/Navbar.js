@@ -64,6 +64,18 @@ export default function Navigation() {
   const [mobileNestedServiceKey, setMobileNestedServiceKey] = useState("");
 
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const stickyNavClass = scrolled
+    ? "bg-gray-night-green shadow-[0_1px_0_rgba(255,255,255,0.08)]"
+    : "bg-gray-night-green";
 
   const activeRoutes = ["/industries", "/services", "/strategy"];
   // const menuItems = [
@@ -645,7 +657,9 @@ export default function Navigation() {
 
   return (
     <>
-      <header className="header sticky top-0 z-50 -mb-[4.5rem] bg-gray-night-green bg-opacity-90 pb-md text-gray-off-white lg:hidden">
+      <header
+        className={`header sticky top-0 z-50 -mb-[4.5rem] pb-md text-gray-off-white transition-[box-shadow] duration-300 ease-out lg:hidden ${stickyNavClass}`}
+      >
         <div className="container flex items-center justify-between">
           <Link className="z-10 flex h-3xl flex-col justify-center" href="/">
             <NavbarBrand />
@@ -2343,7 +2357,9 @@ export default function Navigation() {
           </div>
         </div>
       </nav>
-      <header className="header sticky top-0 z-20 hidden bg-gray-night-green pb-md pt-3xl text-gray-off-white lg:block">
+      <header
+        className={`header sticky top-0 z-50 hidden pb-md pt-3xl text-gray-off-white transition-[box-shadow] duration-300 ease-out lg:block ${stickyNavClass}`}
+      >
         <div className="container flex items-center justify-between">
           <Link className="z-10 flex h-3xl flex-col justify-center" href="/">
             <NavbarBrand wordmarkClassName="text-xl" letterSpacing="4px" />

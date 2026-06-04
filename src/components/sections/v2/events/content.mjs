@@ -30,13 +30,48 @@ export const endpointSection = {
       "activeDotColor": "#EC5B5B"
     }
   ],
-  "video": {
-    "headingId": "wintermute-endpoint",
+  "showcase": {
+    "headingId": "sidago-endpoint",
     "titleBefore": "Sidago ",
     "titleHighlight": "Endpoint",
-    "posterSrc": "/images/EP-Video-Image-3.svg",
-    "posterAlt": "Sidago Endpoint",
-    "videoSrc": "https://wp-corp-site.s3.amazonaws.com/wp-content/uploads/2026/04/13193815/Lower%20bit%20rate%20export.mp4"
+    "logoSrc": "/images/EndPoint-logo-graphite.svg",
+    "logoAlt": "Sidago Endpoint",
+    "eyebrow": "The Endpoint experience",
+    "subtitle": "A curated series for builders, operators, and researchers shaping what comes next in crypto.",
+    "panels": [
+      {
+        "id": "spark",
+        "title": "Spark",
+        "headline": "Where ideas begin",
+        "description": "Endpoint opens with sharp, honest conversations — not polished keynotes. Speakers share what they are building before it is finished.",
+        "accent": "#F075E4",
+        "highlight": { "value": "28", "label": "Speakers to date" }
+      },
+      {
+        "id": "connect",
+        "title": "Connect",
+        "headline": "Relationships that compound",
+        "description": "The room is designed for collision — founders meet operators, researchers meet traders, and conversations continue long after the session ends.",
+        "accent": "#958DEC",
+        "highlight": { "value": "1400", "label": "Attendees to date" }
+      },
+      {
+        "id": "build",
+        "title": "Build",
+        "headline": "Show what you ship",
+        "description": "Live demos, product walkthroughs, and technical deep-dives. Endpoint rewards substance over slides — builders show their work.",
+        "accent": "#00F554",
+        "highlight": { "value": "30", "label": "Session hours" }
+      },
+      {
+        "id": "signal",
+        "title": "Signal",
+        "headline": "Clarity on what's next",
+        "description": "Leave with a sharper read on infrastructure, markets, and culture — the kind of context you cannot get from a feed or a deck.",
+        "accent": "#7FB2F1",
+        "highlight": { "value": "01", "label": "Exclusive Sidago series" }
+      }
+    ]
   },
   "coHost": {
     "title": "Co-host an EndPoint",

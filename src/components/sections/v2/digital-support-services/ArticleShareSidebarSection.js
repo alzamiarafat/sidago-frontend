@@ -198,10 +198,10 @@ export default function ArticleShareSidebarSection({
     <section className={className}>
       <div className="container flex flex-col gap-x-container gap-y-4xl py-block lg:flex-row">
         <div
-          className="core-column--stacked-on-mobile"
+          className="core-column--stacked-on-mobile shrink-0"
           style={{ "--core-column-width": "33.33%" }}
         >
-          <div className="sticky top-[calc(var(--header-height)+1.5rem)] flex flex-col gap-2xl lg:max-h-[calc(100svh-var(--header-height)-1.5rem-1.5rem)]">
+          <div className="sticky top-[calc(var(--header-height)+1.5rem)] flex flex-col gap-2xl lg:max-h-[calc(100svh-var(--header-height)-1.5rem-1.5rem)] lg:overflow-y-auto">
             <div className="flex items-center gap-4">
               <div className="relative h-[2.625rem] w-[2.625rem] shrink-0 overflow-hidden rounded-full">
                 <Image
@@ -240,7 +240,7 @@ export default function ArticleShareSidebarSection({
         </div>
 
         <article
-          className="post-body-container core-column--stacked-on-mobile text-lg leading-[1.6] text-gray-off-white"
+          className="post-body-container core-column--stacked-on-mobile min-w-0 text-lg leading-[1.6] text-gray-off-white"
           style={{ "--core-column-width": "66.66%" }}
         >
           <div>

@@ -29,9 +29,9 @@ export default async function EventsPage() {
 
   return (
     <div className="flex min-h-svh flex-col bg-[#151B17] text-base">
-      <div className="flex flex-1 flex-col overflow-x-hidden">
-        <Navigation />
+      <Navigation />
 
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-[#151B17] text-gray-off-white"
           style={{ colorScheme: "dark" }}

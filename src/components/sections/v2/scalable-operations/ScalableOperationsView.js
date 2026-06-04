@@ -18,8 +18,9 @@ export default function ScalableOperationsView({ footer, hero }) {
 
   return (
     <div className="flex min-h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-x-hidden">
-        <Navigation />
+      <Navigation />
+
+      <div className="flex flex-1 flex-col">
         <main className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1">
           {heroNode}
           <ArticleShareSidebarSection content={pressReleaseContent} />

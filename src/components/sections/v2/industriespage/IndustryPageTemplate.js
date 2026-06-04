@@ -252,9 +252,9 @@ export default function IndustryPageTemplate({
 
   return (
     <div className="flex min-h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-x-hidden">
-        <Navigation />
+      <Navigation />
 
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}

@@ -8,8 +8,9 @@ export default async function LegalChromeLayout({ children }) {
 
   return (
     <div className="flex min-h-svh flex-col text-base">
+      <Navigation />
+
       <div className="flex flex-1 flex-col overflow-x-hidden">
-        <Navigation />
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative isolate flex-1 bg-[#1C211E] text-gray-off-white dark"
           style={{ colorScheme: "dark" }}

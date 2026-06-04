@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EventsEndpointExperience from "@/src/components/sections/v2/events/EventsEndpointExperience";
 import EventsIntroBlock from "@/src/components/sections/v2/events/shared/EventsIntroBlock";
 import EventsSectionHeading from "@/src/components/sections/v2/events/shared/EventsSectionHeading";
 import EventsStatsSection from "@/src/components/sections/v2/events/EventsStatsSection";
@@ -11,7 +12,7 @@ import {
 } from "@/src/components/sections/v2/events/content";
 
 export default function EventsEndpointSection() {
-  const { intro, stats, video, coHost } = endpointSection;
+  const { intro, stats, showcase, coHost } = endpointSection;
 
   return (
     <section className="bg-gray-defi-shadow">
@@ -51,25 +52,22 @@ export default function EventsEndpointSection() {
 
         <div className="bg-gray-defi-shadow pt-4xl">
           <EventsIntroBlock
-            headingId={video.headingId}
+            headingId={showcase.headingId}
             title={
               <>
-                {video.titleBefore}
-                <span className="text-pink-mid">{video.titleHighlight}</span>
+                {showcase.titleBefore}
+                <span className="text-pink-mid">{showcase.titleHighlight}</span>
               </>
             }
-            logoSrc={video.posterSrc}
-            logoAlt={video.posterAlt}
+            logoSrc={showcase.logoSrc}
+            logoAlt={showcase.logoAlt}
           />
           <div className="pt-lg pb-lg">
-            <video
-              playsInline
-              preload="metadata"
-              className="bevel w-full"
-              controls
-            >
-              <source src={video.videoSrc} />
-            </video>
+            <EventsEndpointExperience
+              panels={showcase.panels}
+              eyebrow={showcase.eyebrow}
+              subtitle={showcase.subtitle}
+            />
           </div>
         </div>
 

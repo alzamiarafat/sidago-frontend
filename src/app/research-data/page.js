@@ -352,8 +352,9 @@ export default function ResearchDataPage() {
 
   return (
     <div className="flex min-h-svh flex-col text-base">
+      <Navigation />
+
       <div className="flex flex-1 flex-col overflow-x-hidden">
-        <Navigation />
         <main
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] flex-1 dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}

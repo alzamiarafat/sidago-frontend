@@ -12,9 +12,9 @@ export const metadata = routeMetadata.contact;
 export default function ContactPage() {
   return (
     <div className="flex min-h-svh flex-col text-base">
-      <div className="flex flex-1 flex-col overflow-x-hidden">
-        <Navigation />
+      <Navigation />
 
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <main
           className="relative isolate overflow-x-hidden bg-gray-night-green text-gray-off-white [&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark"
           style={{ colorScheme: "dark" }}
