@@ -1,4 +1,4 @@
-FROM node:20.19.0 AS builder
+FROM node:20.19.0-slim AS builder
 
 WORKDIR /app
 
@@ -21,7 +21,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
 RUN npm run build \
-  && npm cache clean --force
+  && npm cache clean --force \
+  && rm -rf node_modules
 
 FROM node:20.19.0-slim AS runner
 

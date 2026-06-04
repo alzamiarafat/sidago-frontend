@@ -1,10 +1,14 @@
-FROM node:20.19.0 AS build
+FROM node:20.19.0-slim AS build
 
 WORKDIR /app
 
 ENV NPM_CONFIG_FETCH_RETRIES=5
 ENV NPM_CONFIG_FETCH_RETRY_MINTIMEOUT=20000
 ENV NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT=120000
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends python3 make g++ \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY package.json package-lock.json* ./
 RUN if [ -f package-lock.json ]; then \
