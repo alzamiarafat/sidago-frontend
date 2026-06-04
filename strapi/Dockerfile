@@ -7,12 +7,8 @@ ENV NPM_CONFIG_FETCH_RETRY_MINTIMEOUT=20000
 ENV NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT=120000
 
 COPY package.json package-lock.json* ./
-RUN if [ -f package-lock.json ]; then \
-      npm ci --no-audit --no-fund --legacy-peer-deps; \
-    else \
-      npm install --no-audit --no-fund --legacy-peer-deps; \
-    fi \
-    && npm uninstall better-sqlite3 --no-audit --no-fund
+RUN npm install --no-audit --no-fund --legacy-peer-deps \
+  && npm uninstall better-sqlite3 --no-audit --no-fund
 
 COPY . .
 
