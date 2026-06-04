@@ -1,4 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // import "../styles/default.css";
 // import "../styles/light.css";
@@ -45,20 +44,6 @@ function V2FirstPaintHints() {
     />
   );
 }
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: true,
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: true,
-});
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -144,13 +129,7 @@ export default async function RootLayout({ children }) {
         ))}
       </head>
       <body
-        className={[
-          `version-${version}`,
-          version === "v1" ? `${geistSans.variable} ${geistMono.variable}` : "",
-          "antialiased",
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        className={[`version-${version}`, "antialiased"].join(" ")}
       >
         <GlobalProvider settings={settings}>{children}</GlobalProvider>
       </body>
