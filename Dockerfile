@@ -6,8 +6,12 @@ ENV NPM_CONFIG_FETCH_RETRIES=5
 ENV NPM_CONFIG_FETCH_RETRY_MINTIMEOUT=20000
 ENV NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT=120000
 
-COPY package.json package-lock.json ./
-RUN npm ci --include=dev --no-audit --no-fund --legacy-peer-deps
+COPY package.json package-lock.json* ./
+RUN if [ -f package-lock.json ]; then \
+      npm ci --include=dev --no-audit --no-fund --legacy-peer-deps; \
+    else \
+      npm install --include=dev --no-audit --no-fund --legacy-peer-deps; \
+    fi
 
 COPY . .
 
