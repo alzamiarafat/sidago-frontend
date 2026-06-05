@@ -1,7 +1,22 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const HEADLINE_FONT_SIZE = "clamp(2rem, 6.5vw, 6rem)";
+
+function normalizePanel(panel, index) {
+  return {
+    id: panel.id,
+    index: panel.index ?? String(index + 1).padStart(2, "0"),
+    label: panel.label ?? panel.title,
+    headline: panel.headline,
+    description: panel.description,
+    stat: panel.stat ?? panel.highlight?.value,
+    statLabel: panel.statLabel ?? panel.highlight?.label,
+    color: panel.color ?? panel.accent,
+  };
+}
 
 const PANELS = [
   {
@@ -19,7 +34,7 @@ const PANELS = [
     id: "connect",
     index: "02",
     label: "Connect",
-    headline: "Relationships that compound",
+    headline: "Collide and connect",
     description:
       "Founders meet operators, researchers meet traders. The room is engineered for collision — conversations continue long after the session.",
     stat: "1,400",
@@ -94,7 +109,7 @@ function AnimatedHeadline({ text }) {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="mr-[0.25em] inline-block"
+          className="mr-[0.28em] inline-block whitespace-nowrap"
           style={{ color: "#ffffff" }}
         >
           {word}
@@ -107,18 +122,22 @@ function AnimatedHeadline({ text }) {
 export default function EventsEndpointExperience({
   panels = PANELS,
 }) {
+  const normalizedPanels = useMemo(
+    () => panels.map(normalizePanel),
+    [panels],
+  );
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef(null);
-  const activePanel = panels[activeIndex] ?? panels[0];
+  const activePanel = normalizedPanels[activeIndex] ?? normalizedPanels[0];
 
   useEffect(() => {
     if (!isAutoPlaying) return;
     intervalRef.current = setInterval(() => {
-      setActiveIndex((i) => (i + 1) % panels.length);
+      setActiveIndex((i) => (i + 1) % normalizedPanels.length);
     }, 5000);
     return () => clearInterval(intervalRef.current);
-  }, [isAutoPlaying, panels.length]);
+  }, [isAutoPlaying, normalizedPanels.length]);
 
   const handleSelect = (i) => {
     setActiveIndex(i);
@@ -196,7 +215,7 @@ export default function EventsEndpointExperience({
         </p>
 
         <nav className="flex gap-xl" aria-label="Endpoint panels">
-          {panels.map((panel, i) => {
+          {normalizedPanels.map((panel, i) => {
             const active = activeIndex === i;
             return (
               <button
@@ -207,13 +226,13 @@ export default function EventsEndpointExperience({
                 className="group flex flex-col items-center gap-[6px]"
               >
                 <span
-                  className="font-blender text-[0.65rem] tabular-nums tracking-[0.28em] transition-colors duration-300"
+                  className="font-blender text-xs tabular-nums tracking-[0.28em] transition-colors duration-300"
                   style={{ color: active ? "#ffffff" : "rgba(255,255,255,0.3)" }}
                 >
                   {panel.index}
                 </span>
                 <span
-                  className="font-blender text-[0.6rem] uppercase tracking-[0.22em] transition-colors duration-300"
+                  className="font-blender text-xs uppercase tracking-[0.22em] transition-colors duration-300"
                   style={{ color: active ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.22)" }}
                 >
                   {panel.label}
@@ -273,11 +292,15 @@ export default function EventsEndpointExperience({
 
         {/* Animated headline — word by word */}
         <h3
-          className="mb-xl max-w-4xl text-[clamp(2.25rem,5vw,4.5rem)] font-light leading-[1.08] tracking-tight"
+          className="mb-xl w-full font-light leading-[1.08] tracking-tight whitespace-nowrap"
+          style={{ fontSize: HEADLINE_FONT_SIZE }}
           aria-live="polite"
         >
           <AnimatePresence mode="wait">
-            <motion.span key={activePanel.id + "-headline"} className="inline">
+            <motion.span
+              key={activePanel.id + "-headline"}
+              className="inline whitespace-nowrap"
+            >
               <AnimatedHeadline text={activePanel.headline} />
             </motion.span>
           </AnimatePresence>
@@ -307,8 +330,11 @@ export default function EventsEndpointExperience({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="max-w-2xl text-base leading-loose lg:text-lg"
-            style={{ color: "rgba(255,255,255,0.55)" }}
+            className="max-w-2xl leading-loose"
+            style={{
+              color: "rgba(255,255,255,0.55)",
+              fontSize: "clamp(1rem, 1.75vw, 1.375rem)",
+            }}
           >
             {activePanel.description}
           </motion.p>
@@ -317,7 +343,7 @@ export default function EventsEndpointExperience({
 
       {/* ── Bottom bar ── */}
       <div
-        className="relative z-20 flex items-center justify-between px-md pb-lg lg:px-xl"
+        className="relative z-20 flex items-center px-md pb-lg lg:px-xl"
         style={{
           borderTop: "1px solid rgba(255,255,255,0.12)",
           paddingTop: "1.25rem",
@@ -325,7 +351,7 @@ export default function EventsEndpointExperience({
       >
         {/* Panel indicators with brand color bg */}
         <div className="flex items-center gap-md">
-          {panels.map((panel, i) => {
+          {normalizedPanels.map((panel, i) => {
             const active = activeIndex === i;
             return (
               <button
@@ -367,15 +393,6 @@ export default function EventsEndpointExperience({
             );
           })}
         </div>
-
-        <button
-          type="button"
-          onClick={() => setIsAutoPlaying((v) => !v)}
-          className="font-blender text-[0.6rem] uppercase tracking-[0.25em] transition-colors duration-200"
-          style={{ color: isAutoPlaying ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.3)" }}
-        >
-          {isAutoPlaying ? "● Auto" : "○ Paused"}
-        </button>
       </div>
     </div>
   );

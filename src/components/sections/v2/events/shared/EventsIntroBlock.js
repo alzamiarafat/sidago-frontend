@@ -6,7 +6,7 @@ export default function EventsIntroBlock({
   description,
   logoSrc,
   logoAlt,
-  logoClassName = "absolute -top-block right-0 w-[50%] md:w-[40%] lg:w-[28%]",
+  logoClassName = "pointer-events-none absolute -top-block right-0 w-[50%] md:w-[40%] lg:w-[28%]",
 }) {
   return (
     <div className="pb-container">
@@ -23,13 +23,16 @@ export default function EventsIntroBlock({
           ) : null}
         </div>
         {logoSrc ? (
-          <Image
-            src={logoSrc}
-            alt={logoAlt || ""}
-            width={1152}
-            height={1152}
-            className={logoClassName}
-          />
+          <div className={logoClassName} aria-hidden>
+            <Image
+              src={logoSrc}
+              alt={logoAlt || ""}
+              width={352}
+              height={191}
+              className="h-auto w-full"
+              style={{ color: "transparent" }}
+            />
+          </div>
         ) : null}
       </div>
     </div>

@@ -17,24 +17,27 @@ export default function EventsEndpointSection() {
   return (
     <section className="bg-gray-defi-shadow">
       <div className="container py-block">
-        <EventsIntroBlock
-          headingId={intro.headingId}
-          title={
-            <>
-              {intro.titleBefore}
-              <span className="text-pink-mid">{intro.titleHighlight}</span>
-            </>
-          }
-          description={intro.description}
-          logoSrc={intro.logoSrc}
-          logoAlt={intro.logoAlt}
-        />
+        <div className="relative">
+          <EventsIntroBlock
+            headingId={intro.headingId}
+            title={
+              <>
+                {intro.titleBefore}
+                <span className="text-pink-mid">{intro.titleHighlight}</span>
+              </>
+            }
+            description={intro.description}
+            logoSrc={intro.logoSrc}
+            logoAlt={intro.logoAlt}
+          />
+          <EventsStatsSection
+            stats={stats}
+            fontSizeMobile={48}
+            fontSizeDesktop={64}
+          />
+        </div>
 
-        <section className="bg-gray-defi-shadow text-gray-off-white">
-          <EventsStatsSection stats={stats} />
-        </section>
-
-        <div className="pt-container pb-xs">
+        <div className="relative overflow-hidden pt-container pb-xs">
           <EventsSectionHeading
             id="past-speakers"
             title="Past speakers"
@@ -59,8 +62,6 @@ export default function EventsEndpointSection() {
                 <span className="text-pink-mid">{showcase.titleHighlight}</span>
               </>
             }
-            logoSrc={showcase.logoSrc}
-            logoAlt={showcase.logoAlt}
           />
           <div className="pt-lg pb-lg">
             <EventsEndpointExperience

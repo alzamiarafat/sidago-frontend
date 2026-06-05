@@ -34,8 +34,6 @@ export const endpointSection = {
     "headingId": "sidago-endpoint",
     "titleBefore": "Sidago ",
     "titleHighlight": "Endpoint",
-    "logoSrc": "/images/EndPoint-logo-graphite.svg",
-    "logoAlt": "Sidago Endpoint",
     "eyebrow": "The Endpoint experience",
     "subtitle": "A curated series for builders, operators, and researchers shaping what comes next in crypto.",
     "panels": [
@@ -50,7 +48,7 @@ export const endpointSection = {
       {
         "id": "connect",
         "title": "Connect",
-        "headline": "Relationships that compound",
+        "headline": "Collide and connect",
         "description": "The room is designed for collision — founders meet operators, researchers meet traders, and conversations continue long after the session ends.",
         "accent": "#958DEC",
         "highlight": { "value": "1400", "label": "Attendees to date" }
