@@ -99,7 +99,11 @@ export const performanceStats = [
 
 export const atAGlanceContent = {
   authorName: "Sidago",
-  authorImageSrc: "/images/image.png",
+  authorImageSrc: "/images/navbar-logo-icon.png",
+  authorImageAlt: "Sidago logo",
+  authorImageClassName: "h-full w-full object-contain p-1",
+  authorImageWrapperClassName: "bg-white",
+  authorImageUnoptimized: true,
   tags: [
     {
       label: "Digital support",

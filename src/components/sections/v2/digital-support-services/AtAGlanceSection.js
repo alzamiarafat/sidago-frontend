@@ -35,6 +35,10 @@ function AtAGlanceBullets({ bullets }) {
 export default function AtAGlanceSection({
   authorName = atAGlanceContent.authorName,
   authorImageSrc = atAGlanceContent.authorImageSrc,
+  authorImageAlt = atAGlanceContent.authorImageAlt,
+  authorImageClassName = atAGlanceContent.authorImageClassName,
+  authorImageWrapperClassName = atAGlanceContent.authorImageWrapperClassName,
+  authorImageUnoptimized = atAGlanceContent.authorImageUnoptimized,
   tags = atAGlanceContent.tags,
   heading = atAGlanceContent.heading,
   headingId = atAGlanceContent.headingId,
@@ -50,13 +54,18 @@ export default function AtAGlanceSection({
           style={{ "--core-column-width": "33.33%" }}
         >
           <div className="flex items-center gap-4">
-            <div className="relative h-[2.625rem] w-[2.625rem] shrink-0 overflow-hidden rounded-full">
+            <div
+              className={`relative h-[2.625rem] w-[2.625rem] shrink-0 overflow-hidden rounded-full ${authorImageWrapperClassName || ""}`.trim()}
+            >
               <Image
-                alt={authorName}
+                alt={authorImageAlt || authorName}
                 src={authorImageSrc}
                 width={96}
                 height={96}
-                className="h-full w-full object-cover"
+                unoptimized={Boolean(authorImageUnoptimized)}
+                className={
+                  authorImageClassName || "h-full w-full object-cover"
+                }
               />
             </div>
             <p className="font-blender uppercase text-black">{authorName}</p>

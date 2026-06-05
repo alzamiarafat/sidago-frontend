@@ -5,9 +5,21 @@ import ContactUs from "@/src/components/sections/v2/contactpage/ContactUs";
 import ContactPremiumHero from "@/src/components/sections/v2/contactpage/ContactPremiumHero";
 import ContactLeadForm from "@/src/components/sections/v2/contactpage/ContactLeadForm";
 import ContactOfficesMap from "@/src/components/sections/v2/contactpage/ContactOfficesMap";
+import { defaultHomepage } from "@/src/data/cms/defaults";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.contact;
+
+const contactPageCta = [
+  {
+    ...defaultHomepage.cta[0],
+    title: "Explore",
+    description: "To find tailored liquidity solutions",
+    href: "/who-we-serve",
+    srLabel: "Explore tailored liquidity solutions",
+  },
+  ...defaultHomepage.cta.slice(1),
+];
 
 export default function ContactPage() {
   return (
@@ -28,7 +40,7 @@ export default function ContactPage() {
             {/* <ContactLeadForm /> */}
             {/* <ContactOfficesMap /> */}
             <ContactUs />
-            <CTASection />
+            <CTASection items={contactPageCta} />
             <Footer />
           </div>
         </main>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import BevelNavButton, {
   BEVEL_NAV_BUTTON_CLASS,
 } from "@/src/components/sections/v2/common/BevelNavButton";
@@ -39,14 +39,16 @@ function InsightCard({
   desktopColumns = 4,
   wrapperClassName = "",
   cardBgColor = "#FFFFFF",
+  cardClassName = "",
   isLightCard = true,
+  showDescription = true,
 }) {
   const cardWidthStyle = {
     "--link-card-desktop-width": `calc(100% / ${desktopColumns} + 1rem)`,
   };
 
   const linkClassName =
-    "flex h-full flex-col transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70";
+    `flex h-full flex-col transition-all bevel lg:group-hover/cards:[&:not(:hover)]:opacity-70 ${cardClassName}`.trim();
   const textPrimaryClass = isLightCard
     ? "text-gray-night-green"
     : "text-gray-off-white";
@@ -56,20 +58,22 @@ function InsightCard({
 
   return (
     <div
-      className={`w-[calc(100%-1rem)] shrink-0 pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem] ${wrapperClassName}`.trim()}
+      data-insight-slide
+      className={`w-[calc(100%-1rem)] shrink-0 snap-start pl-md lg:w-[--link-card-desktop-width] lg:pl-0 lg:pr-[3rem] ${wrapperClassName}`.trim()}
       style={cardWidthStyle}
     >
       <InsightCardLink
         card={card}
         className={linkClassName}
-        style={{ backgroundColor: cardBgColor }}
+        style={cardClassName ? undefined : { backgroundColor: cardBgColor }}
       >
         <span className="sr-only">{card.srText}</span>
         <Image
           alt={card.imageAlt}
           src={card.imageSrc}
-          width={800}
-          height={600}
+          width={card.imageSrc?.endsWith(".svg") ? 557 : 800}
+          height={card.imageSrc?.endsWith(".svg") ? 291 : 600}
+          unoptimized={card.imageSrc?.endsWith(".svg")}
           className="aspect-[1.66] w-full object-cover bevel"
         />
         <div className="z-10 flex flex-1 justify-between p-xl">
@@ -85,11 +89,13 @@ function InsightCard({
               >
                 {card.title}
               </div>
-              <div
-                className={`ellipsis-4 max-h-[4lh] text-sm ${textMutedClass}`}
-              >
-                {card.description}
-              </div>
+              {showDescription && card.description ? (
+                <div
+                  className={`ellipsis-4 max-h-[4lh] text-sm ${textMutedClass}`}
+                >
+                  {card.description}
+                </div>
+              ) : null}
             </div>
             <div className={`font-blender text-xs uppercase ${textPrimaryClass}`}>
               <span>{card.date}</span>
@@ -127,10 +133,24 @@ export default function SimilarInsightsSection({
   content = similarInsightsContent,
   /** Passed from parent page — e.g. #070B09 (dark) or #FFFFFF (light). */
   sectionBgColor = "#FFFFFF",
+  /** Tailwind classes for section background (overrides sectionBgColor when set). */
+  sectionClassName,
   /** Override card background; defaults to #E5E6E5 (light) or #1C211E (dark). */
   cardBgColor,
+  /** Tailwind classes for card background (overrides cardBgColor when set). */
+  cardClassName,
+  /** Accent for nav buttons and desktop progress dots. */
+  navAccentColor = BRAND_COLORS.orange,
+  /** Muted accent for disabled nav buttons and inactive progress dots. */
+  navMutedColor = BRAND_COLORS.greenMuted,
+  /** Show optional description line on cards. */
+  showDescription = true,
 }) {
-  const isLightSection = isLightSectionBg(sectionBgColor);
+  const isLightSection = sectionClassName
+    ? sectionClassName.includes("bg-white") ||
+    sectionClassName.includes("bg-[#FFFFFF") ||
+    sectionClassName.includes("bg-[#fff")
+    : isLightSectionBg(sectionBgColor);
   const resolvedCardBgColor =
     cardBgColor ??
     (isLightSection ? INSIGHT_CARD_BG.light : INSIGHT_CARD_BG.dark);
@@ -153,23 +173,50 @@ export default function SimilarInsightsSection({
 
   const scrollToIndex = useCallback(
     (index) => {
-      const el = scrollRef.current;
-      if (!el || total === 0) {
+      const track = scrollRef.current;
+      if (!track || total === 0) {
         return;
       }
-      const next = ((index % total) + total) % total;
-      const card = el.children[next];
-      if (card) {
-        card.scrollIntoView({
-          behavior: "smooth",
-          inline: "start",
-          block: "nearest",
-        });
+
+      const slide = track.querySelector("[data-insight-slide]");
+      if (!slide) {
+        return;
       }
+
+      const next = Math.min(Math.max(index, 0), total - 1);
+      track.scrollTo({
+        left: slide.offsetWidth * next,
+        behavior: "smooth",
+      });
       setActiveIndex(next);
     },
     [total],
   );
+
+  const syncIndexFromScroll = useCallback(() => {
+    const track = scrollRef.current;
+    if (!track || total === 0) {
+      return;
+    }
+
+    const slide = track.querySelector("[data-insight-slide]");
+    if (!slide) {
+      return;
+    }
+
+    const nextIndex = Math.round(track.scrollLeft / slide.offsetWidth);
+    setActiveIndex(Math.min(Math.max(nextIndex, 0), total - 1));
+  }, [total]);
+
+  useEffect(() => {
+    const track = scrollRef.current;
+    if (!track) {
+      return undefined;
+    }
+
+    track.addEventListener("scroll", syncIndexFromScroll, { passive: true });
+    return () => track.removeEventListener("scroll", syncIndexFromScroll);
+  }, [syncIndexFromScroll]);
 
   const handlePrev = () => scrollToIndex(activeIndex - 1);
   const handleNext = () => scrollToIndex(activeIndex + 1);
@@ -186,7 +233,10 @@ export default function SimilarInsightsSection({
     : "text-gray-defi-ash";
 
   return (
-    <section style={{ backgroundColor: sectionBgColor }}>
+    <section
+      className={sectionClassName}
+      style={sectionClassName ? undefined : { backgroundColor: sectionBgColor }}
+    >
       <div className="container py-block">
         <div className="mb-3xl flex flex-col gap-xl">
           <div className="flex flex-col gap-xs">
@@ -194,15 +244,12 @@ export default function SimilarInsightsSection({
               {content.heading}
             </h2>
           </div>
-          <hr className={dividerClassName} />
+          <hr className={`!border-[#AB290D]`} />
         </div>
 
-        <section className={carouselTextClass}>
+        <section className={`${carouselTextClass} overflow-hidden`}>
           <div>
-            <div
-              className="flex flex-col gap-2xl lg:flex-col-reverse lg:gap-4xl"
-              style={{ clipPath: "inset(-100rem -100rem -100rem -100rem)" }}
-            >
+            <div className="flex flex-col gap-2xl lg:flex-col-reverse lg:gap-4xl">
               <div className="flex justify-between gap-3xl lg:items-center">
                 <div className="relative flex flex-1 gap-md lg:hidden">
                   {cards.map((card, index) => (
@@ -229,14 +276,16 @@ export default function SimilarInsightsSection({
                   <BevelNavButton
                     direction="left"
                     ariaLabel="Previous"
-                    bgColor={BRAND_COLORS.orange}
+                    bgColor={navAccentColor}
+                    disabled={activeIndex === 0}
                     onClick={handlePrev}
                     className={navButtonClass}
                   />
                   <BevelNavButton
                     direction="right"
                     ariaLabel="Next"
-                    bgColor={BRAND_COLORS.orange}
+                    bgColor={navAccentColor}
+                    disabled={activeIndex >= total - 1}
                     onClick={handleNext}
                     className={navButtonClass}
                   />
@@ -246,10 +295,13 @@ export default function SimilarInsightsSection({
                     <div
                       key={index}
                       className={`h-[0.25rem] transition-all first:ml-0 ${index === activeIndex
-                        ? "ml-[0.125rem] w-sm"
-                        : "ml-[0.125rem] w-sm opacity-30"
+                          ? "ml-[0.125rem] w-sm"
+                          : "ml-[0.125rem] w-sm opacity-30"
                         }`}
-                      style={{ backgroundColor: BRAND_COLORS.orange }}
+                      style={{
+                        backgroundColor:
+                          index === activeIndex ? navAccentColor : navMutedColor,
+                      }}
                     />
                   ))}
                 </div>
@@ -257,7 +309,7 @@ export default function SimilarInsightsSection({
 
               <div
                 ref={scrollRef}
-                className="group/cards relative -mx-[100rem] flex overflow-x-auto px-[100rem] scrollbar-none"
+                className="group/cards flex snap-x snap-mandatory overflow-x-auto scrollbar-none"
                 style={cardWidthStyle}
               >
                 {cards.map((card) => (
@@ -266,7 +318,9 @@ export default function SimilarInsightsSection({
                     card={card}
                     desktopColumns={desktopColumns}
                     cardBgColor={resolvedCardBgColor}
+                    cardClassName={cardClassName}
                     isLightCard={isLightCard}
+                    showDescription={showDescription}
                   />
                 ))}
               </div>

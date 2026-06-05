@@ -57,8 +57,8 @@ export const reportContentsContent = {
       },
       {
         type: "image",
-        src: "/images/Group-1739328530-5.webp",
-        alt: "Macro and rates chart",
+        src: "/images/group-content-12345.png",
+        alt: "Cross-Asset Performance Week 20",
       },
       {
         type: "paragraph",

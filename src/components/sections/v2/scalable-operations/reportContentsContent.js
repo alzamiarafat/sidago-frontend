@@ -34,7 +34,7 @@ export const reportContentsContent = {
       },
     ],
     image: {
-      src: "/images/Group-1739328530-5.webp",
+      src: "/images/group-content-12345.png",
       alt: "Operations workflow overview",
     },
   },
