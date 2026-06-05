@@ -1411,22 +1411,32 @@ body {
 .login-card__brand {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0;
   margin-bottom: 2rem;
+  font-size: 2rem;
+  line-height: 1;
   color: var(--login-brand);
+}
+
+.login-card__logo-wrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 1em;
 }
 
 .login-card__logo {
   display: block;
-  width: 2rem;
-  height: auto;
+  height: 1em;
+  width: auto;
 }
 
 .login-card__brand-name {
+  margin-left: -0.15rem;
   font-family: blender, saans, sans-serif;
-  font-size: 1.125rem;
+  font-size: 1em;
   line-height: 1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--login-brand);
 }
 
