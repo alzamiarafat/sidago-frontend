@@ -167,6 +167,13 @@ export const upcomingEvents = [
   },
 ];
 
+/** Homepage feed — “What’s happening” carousel (matches reference layout). */
+export const feedWhatsHappeningEvents = upcomingEvents.filter((event) =>
+  ["webx", "malaysia-blockchain-week", "coinfest-asia", "bitcoin-asia"].includes(
+    event.id,
+  ),
+);
+
 export const upcomingEventsSection = {
   headingId: "meet-us-at-whats-next",
   heading: "Meet us at what's next",

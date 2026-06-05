@@ -1,4 +1,6 @@
 import FeedPostCarousel from "./FeedPostCarousel";
+import FeedWhatsHappeningCarousel from "./FeedWhatsHappeningCarousel";
+import { feedWhatsHappeningEvents } from "@/src/components/sections/v2/events/data";
 
 export default function Feed() {
   return (
@@ -7,7 +9,7 @@ export default function Feed() {
         className="container py-block gap-x-block gap-y-4xl flex flex-col lg:flex-row"
       >
         <div
-          className="core-column--stacked-on-mobile"
+          className="core-column--stacked-on-mobile overflow-hidden"
           style={{ "--core-column-width": "50%" }}
         >
           <div className="mb-3xl flex flex-col gap-xl font-blender text-xl">
@@ -542,7 +544,7 @@ export default function Feed() {
           </section>
         </div >
         <div
-          className="core-column--stacked-on-mobile"
+          className="core-column--stacked-on-mobile overflow-hidden"
           style={{ "--core-column-width": "50%" }}
         >
           <div className="mb-3xl flex flex-col gap-xl font-blender text-xl">
@@ -556,9 +558,7 @@ export default function Feed() {
             </div>
             <hr className="!border-[#AB290D]" />
           </div>
-          <div className="pt-2xl">
-            <div className="text-2xl">Nothing here now, check back later!</div>
-          </div>
+          <FeedWhatsHappeningCarousel items={feedWhatsHappeningEvents} />
         </div>
       </div >
     </section >
