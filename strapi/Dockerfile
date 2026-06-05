@@ -6,7 +6,7 @@ ENV NPM_CONFIG_FETCH_RETRIES=5
 ENV NPM_CONFIG_FETCH_RETRY_MINTIMEOUT=20000
 ENV NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT=120000
 
-COPY package.json package-lock.json* ./
+COPY package.json ./
 RUN npm install --no-audit --no-fund --legacy-peer-deps \
   && npm uninstall better-sqlite3 --no-audit --no-fund
 

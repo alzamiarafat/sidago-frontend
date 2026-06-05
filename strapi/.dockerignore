@@ -3,6 +3,7 @@ node_modules
 .strapi
 .tmp
 build
+yarn.lock
 npm-debug.log*
 .DS_Store
 public/uploads/*
