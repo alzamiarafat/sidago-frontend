@@ -830,7 +830,7 @@ export const defaultOperationsPage = {
   },
   videoInMotion: {
     videoSrc: "/videos/overview.mp4",
-    posterSrc: "/images/operations-video-poster.png",
+    posterSrc: "/images/operation-video-placeholder.png",
     posterAlt:
       "Smart home and connected operations dashboard on a tablet in a modern living room",
   },

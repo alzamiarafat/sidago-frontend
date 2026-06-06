@@ -1,721 +1,613 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { defaultOperationsPage } from "@/src/data/cms/defaults.mjs";
-import OperationsMetrics from "./OperationsMetrics";
+import OpsNumbarStat from "./OpsNumbarStat";
+import "./operations-page.css";
 
-const DEFAULT_VIDEO_IN_MOTION = defaultOperationsPage.videoInMotion;
+const OPS_CARD_BEVEL = "ops-card-surface bevel overflow-hidden";
+const OPS_HCARD = "ops-hcard ops-card-surface bevel overflow-hidden";
+const OPS_BEVEL = "bevel overflow-hidden";
 
-function SectionHeading({ eyebrow, title, description, light = false }) {
-  return (
-    <div className="mb-3xl flex flex-col gap-xl">
-      <div className="flex max-w-4xl flex-col gap-xs">
-        <h2
-          className={`font-blender text-xl uppercase tracking-[0.18em] ${light ? "text-black" : "text-[#E7512F]"}`}
-        >
-          {title}
-        </h2>
-        <p className="max-w-4xl text-base leading-relaxed text-[#5F6660] lg:text-lg">
-          {description}
-        </p>
-      </div>
-      <hr className="border-green-dark/30" />
-    </div>
-  );
-}
+const OPS_BTN_PRIMARY =
+  "group/interactive inline-flex items-center justify-center gap-md font-medium bevel bevel-[0.25rem] bg-[#168B50] px-sm py-xs font-blender text-sm uppercase tracking-[0.08em] text-black transition-opacity hover:opacity-90";
 
-function CirclePattern() {
-  return (
-    <div className="relative h-10 w-10 rounded-full border border-current/25">
-      <div className="absolute inset-2 rounded-full border border-current/30"></div>
-      <div className="absolute inset-4 rounded-full bg-current/90"></div>
-    </div>
-  );
-}
+const OPS_BTN_SECONDARY = OPS_BTN_PRIMARY;
 
-function FlowPattern() {
-  return (
-    <div className="flex items-center gap-1">
-      <div className="h-2.5 w-2.5 rounded-full bg-current"></div>
-      <div className="h-px w-7 bg-current/40"></div>
-      <div className="h-2.5 w-2.5 rounded-full border border-current bg-transparent"></div>
-      <div className="h-px w-7 bg-current/40"></div>
-      <div className="h-2.5 w-2.5 rounded-full bg-current/30"></div>
-    </div>
-  );
-}
+const TICKER_ITEMS = [
+  "Process Automation",
+  "Workforce Solutions",
+  "CRM Operations",
+  "Marketing Engine",
+  "HR Management",
+  "Web Delivery",
+  "BPO Support",
+  "Global Operations",
+  "Digital Transformation",
+  "Cost Optimisation",
+];
 
-function StackPattern() {
-  return (
-    <div className="space-y-2">
-      <div className="h-3 w-10 rounded-full bg-current"></div>
-      <div className="h-3 w-14 rounded-full bg-current/65"></div>
-      <div className="h-3 w-8 rounded-full bg-current/35"></div>
-    </div>
-  );
-}
+const HANDLE_CARDS = [
+  { code: "OPS", num: "01 / 06", name: "Operations", val: "75%", tag: "Cost Savings" },
+  { code: "DEV", num: "02 / 06", name: "Development", val: "96%", tag: "Uptime SLA" },
+  { code: "MKT", num: "03 / 06", name: "Marketing", val: "360", tag: "Leads / Month" },
+  { code: "CRM", num: "04 / 06", name: "CRM", val: "92%", tag: "Retention Rate" },
+  { code: "HRM", num: "05 / 06", name: "HR Management", val: "48H", tag: "Hiring Speed" },
+  { code: "BPO", num: "06 / 06", name: "BPO Support", val: "24/7", tag: "Always On" },
+];
 
-function GridPattern() {
-  return (
-    <div className="grid grid-cols-3 gap-1.5">
-      {Array.from({ length: 9 }).map((_, index) => (
-        <div
-          key={index}
-          className={`h-3 w-3 rounded-sm ${index % 2 === 0 ? "bg-current" : "bg-current/25"}`}
-        ></div>
-      ))}
-    </div>
-  );
-}
-
-function ArrowPattern() {
-  return (
-    <div className="flex items-center gap-1.5">
-      <div className="h-px w-8 bg-current"></div>
-      <div className="h-0 w-0 border-y-[6px] border-l-[10px] border-y-transparent border-l-current"></div>
-    </div>
-  );
-}
-
-function ToolGlyph({ type }) {
-  if (type === "flow") {
-    return <FlowPattern />;
-  }
-
-  if (type === "stack") {
-    return <StackPattern />;
-  }
-
-  if (type === "grid") {
-    return <GridPattern />;
-  }
-
-  if (type === "arrow") {
-    return <ArrowPattern />;
-  }
-
-  return <CirclePattern />;
-}
-
-function ArrowIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 40 40"
-      className="ml-[--arrow-offset] transition-all group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset]"
-      style={{
-        "--arrow-offset": "0.4rem",
-        width: "1rem",
-      }}
-    >
-      <path
-        fill="currentColor"
-        fillRule="evenodd"
-        d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-        clipRule="evenodd"
-      ></path>
-    </svg>
-  );
-}
-
-function IconShell({ children }) {
-  return (
-    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F1F7F2] text-[#1F8F4E]">
-      {children}
-    </div>
-  );
-}
-
-function HighlightIcon({ type }) {
-  if (type === "efficiency") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-        <path
-          d="M12 3v6l4-4m-4 4L8 5m4 4c-4.418 0-8 3.134-8 7s3.582 7 8 7 8-3.134 8-7"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-
-  if (type === "scalability") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-        <path
-          d="M4 18h4V8H4v10Zm6 0h4V5h-4v13Zm6 0h4v-7h-4v7Z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-
-  if (type === "transparency") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-        <path
-          d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-        <circle cx="12" cy="12" r="2.5" stroke="currentColor" strokeWidth="1.8" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-      <path
-        d="M12 4 4 8l8 4 8-4-8-4Zm-8 8 8 4 8-4M4 16l8 4 8-4"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function AreaIcon({ type }) {
-  if (type === "supply") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-        <path
-          d="M4 7.5 12 4l8 3.5v9L12 20l-8-3.5v-9Z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M4 7.5 12 11l8-3.5M12 11v9"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-
-  if (type === "logistics") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-        <path
-          d="M3 7h11v8H3V7Zm11 3h3l3 3v2h-6v-5Z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-        <circle cx="7" cy="17.5" r="1.5" stroke="currentColor" strokeWidth="1.8" />
-        <circle cx="18" cy="17.5" r="1.5" stroke="currentColor" strokeWidth="1.8" />
-      </svg>
-    );
-  }
-
-  if (type === "quality") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-        <path
-          d="M12 3 6 5v6c0 4.2 2.6 8.1 6 10 3.4-1.9 6-5.8 6-10V5l-6-2Z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinejoin="round"
-        />
-        <path
-          d="m9.5 12 1.7 1.7 3.8-4"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-      <path
-        d="M4 6h16v12H4V6Zm4-2v4M16 4v4M8 18v2M16 18v2"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M9 10h6M9 14h3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-const highlights = [
+const NUMBAR = [
   {
-    title: "Efficiency",
-    description:
-      "Structured operating rhythms reduce waste, shorten turnaround times, and keep teams aligned on execution.",
-    icon: "efficiency",
+    big: "75",
+    suffix: "%",
+    label: "Cost Savings",
+    sub: "Average reduction in operational overhead across all clients",
   },
   {
-    title: "Scalability",
-    description:
-      "Flexible delivery models help Sidago expand support capacity without adding friction to the workflow.",
-    icon: "scalability",
+    big: "81",
+    suffix: "%",
+    label: "Output Increase",
+    sub: "Measured improvement in team output within 90 days",
   },
   {
-    title: "Transparency",
-    description:
-      "Clear ownership, reporting, and status visibility make decisions easier at every layer of the operation.",
-    icon: "transparency",
+    big: "87",
+    suffix: "%",
+    label: "Operational Efficiency",
+    sub: "Process efficiency score vs industry benchmark of 52%",
   },
   {
-    title: "Innovation",
-    description:
-      "Automation, process design, and integrated tools help modernize repetitive operational work.",
-    icon: "innovation",
+    big: "92",
+    suffix: "%",
+    label: "Client Retention",
+    sub: "Of clients renew after their first full engagement year",
+  },
+  {
+    big: "88",
+    suffix: "%",
+    label: "Service Reliability",
+    sub: "SLA-backed uptime across all service verticals",
   },
 ];
 
-const operationalAreas = [
-  {
-    title: "Supply Chain Management",
-    description:
-      "We coordinate sourcing, vendor communication, and inventory planning to keep material and information flow predictable.",
-    icon: "supply",
-  },
-  {
-    title: "Logistics & Distribution",
-    description:
-      "Sidago designs dependable delivery workflows with route visibility, scheduling discipline, and fulfillment oversight.",
-    icon: "logistics",
-  },
-  {
-    title: "Quality Control",
-    description:
-      "Defined standards, review checkpoints, and escalation paths protect service quality across each operating stage.",
-    icon: "quality",
-  },
-  {
-    title: "Technology Integration",
-    description:
-      "Operational systems are connected through dashboards, automations, and shared data models that support faster action.",
-    icon: "technology",
-  },
-];
-
-const workflow = [
+const PROCESS = [
   {
     step: "01",
-    title: "Planning",
-    description:
-      "Define requirements, service levels, ownership, and expected outcomes before work begins.",
+    title: "Discovery & Audit",
+    desc: "We map your existing operations, identify bottlenecks, and quantify every point of inefficiency before a single recommendation is made.",
+    tags: ["Gap Analysis", "Process Mapping", "Cost Audit"],
   },
   {
     step: "02",
-    title: "Execution",
-    description:
-      "Deploy trained teams, delivery routines, and task controls to move work consistently and on schedule.",
+    title: "Blueprint Design",
+    desc: "A custom operational architecture tailored to your industry vertical, team size, and growth stage — built to scale with you from day one.",
+    tags: ["Org Design", "Workflow Build", "Tool Stack"],
   },
   {
     step: "03",
-    title: "Monitoring",
-    description:
-      "Track throughput, quality signals, response times, and risk points through live operational reporting.",
+    title: "Live Deployment",
+    desc: "Teams go live on a structured rollout. First measurable results within 30 days. Full operational handover by day 90.",
+    tags: ["Team Launch", "Integration", "Training"],
   },
   {
     step: "04",
-    title: "Optimization",
-    description:
-      "Use review cycles and data-backed improvements to remove bottlenecks and strengthen output over time.",
+    title: "Continuous Optimise",
+    desc: "Real-time KPI monitoring, monthly performance reviews, and iterative refinement ensure your operations compound in efficiency over time.",
+    tags: ["Live Dashboards", "QA Cycles", "Reporting"],
   },
 ];
 
-const metrics = [
+const ACCORDION = [
   {
-    label: "Projects Delivered",
-    value: 320,
-    suffix: "+",
-    stat: "320+",
-    width: 250,
-    description:
-      "Cross-functional operational engagements launched and completed across client accounts.",
+    code: "OPS",
+    name: "Operations Management",
+    metric: "75%",
+    desc: "We assume full operational ownership — procurement, vendor management, compliance, logistics, and financial reporting. Your leadership stops managing operations and starts directing strategy.",
+    pills: ["Procurement", "Compliance", "Logistics", "Financial Ops", "Vendor Mgmt", "Reporting"],
   },
   {
-    label: "Delivery Success Rate",
-    value: 98,
-    suffix: "%",
-    stat: "98%",
-    width: 250,
-    description:
-      "Milestones and service commitments met through structured planning and monitored execution.",
+    code: "DEV",
+    name: "Development & Technology",
+    metric: "96% uptime",
+    desc: "Dedicated senior engineering squads embedded in your product roadmap. We handle recruiting, velocity management, QA, DevOps, and infrastructure — you get output without overhead.",
+    pills: ["Full-Stack", "DevOps", "Cloud Infra", "QA", "Security", "CI/CD"],
   },
   {
-    label: "Client Satisfaction",
-    value: 94,
-    suffix: "%",
-    stat: "94%",
-    width: 240,
-    description:
-      "Sustained partner satisfaction driven by responsiveness, clarity, and measurable reliability.",
+    code: "MKT",
+    name: "Marketing Operations",
+    metric: "360 leads/mo",
+    desc: "Integrated demand generation across paid, organic, content, and outbound. Every channel tracked against agreed KPIs. We build compounding growth engines — not one-time campaigns.",
+    pills: ["Paid Media", "SEO", "Content Ops", "Outbound", "Analytics", "Automation"],
   },
   {
-    label: "Process Improvements",
-    value: 45,
-    suffix: "+",
-    stat: "45+",
-    width: 240,
-    description:
-      "Workflow redesigns and automation initiatives implemented to reduce friction and manual overhead.",
-  },
-];
-
-const tools = [
-  {
-    name: "ERP Platforms",
-    description: "Connected planning, procurement, and resource control.",
-    glyph: "circle",
+    code: "CRM",
+    name: "CRM & Retention",
+    metric: "92% retention",
+    desc: "CRM systems implemented, populated, and operated by our team. Every customer touchpoint tracked, every follow-up automated, every churn risk flagged — before it becomes a cancellation.",
+    pills: ["CRM Setup", "Lifecycle Flows", "Segmentation", "NPS", "Win-back", "Dashboards"],
   },
   {
-    name: "WMS & Inventory Systems",
-    description: "Warehouse visibility and stock coordination in real time.",
-    glyph: "grid",
+    code: "HRM",
+    name: "HR & Workforce",
+    metric: "48H hire",
+    desc: "From job spec to signed offer in 48 hours. We manage payroll, compliance, performance management, and offboarding across 40+ jurisdictions — your headcount without the HR overhead.",
+    pills: ["Recruiting", "Payroll", "Performance", "Compliance", "L&D", "Offboarding"],
   },
   {
-    name: "Workflow Automation",
-    description: "Automated handoffs, approvals, and recurring task triggers.",
-    glyph: "flow",
-  },
-  {
-    name: "Analytics Dashboards",
-    description: "Operational reporting for throughput, risk, and service quality.",
-    glyph: "stack",
-  },
-  {
-    name: "Collaboration Suites",
-    description: "Shared communication and documented ownership across teams.",
-    glyph: "arrow",
+    code: "BPO",
+    name: "BPO & Customer Support",
+    metric: "24/7",
+    desc: "Multilingual support teams operating under your brand around the clock. SLA-backed delivery, real-time QA monitoring, full reporting. Your customers never know it's outsourced.",
+    pills: ["Multilingual", "White Label", "Omnichannel", "QA", "SLA", "Analytics"],
   },
 ];
 
-const caseStudies = [
+const VERTICALS = [
   {
-    title: "Regional Distribution Reset",
-    outcome: "28% faster delivery coordination",
-    description:
-      "Sidago redesigned routing approvals and distribution reporting for a multi-location operator, reducing handoff delays and improving schedule accuracy.",
+    icon: (
+      <>
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </>
+    ),
+    name: "Financial Services",
+    desc: "Trading firms, fintechs, and banks needing ironclad compliance, speed, and 24/7 stability across global markets.",
   },
   {
-    title: "Quality Assurance Standardization",
-    outcome: "41% fewer recurring process issues",
-    description:
-      "A fragmented service workflow was unified through control checklists, escalation matrices, and review cadences across departments.",
+    icon: (
+      <>
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </>
+    ),
+    name: "Technology & SaaS",
+    desc: "Scale-ups that need to grow operational capacity without proportionally growing their headcount or overhead.",
   },
   {
-    title: "Operations Visibility Upgrade",
-    outcome: "Real-time status tracking across teams",
-    description:
-      "We implemented dashboard-based monitoring to surface delivery blockers earlier and improve decision speed for leadership.",
+    icon: (
+      <>
+        <path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" />
+        <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+      </>
+    ),
+    name: "E-Commerce & Retail",
+    desc: "High-volume merchants needing seamless supply chain, customer support, and marketing operations at scale.",
+  },
+  {
+    icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
+    name: "Healthcare & Life Sciences",
+    desc: "Regulated industries requiring precision compliance, patient data management, and global coordination.",
+  },
+  {
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+      </>
+    ),
+    name: "Professional Services",
+    desc: "Consulting firms and agencies needing lean operational infrastructure to maintain margins as they scale.",
+  },
+  {
+    icon: <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />,
+    name: "Manufacturing & Logistics",
+    desc: "Production operations, supply chain coordination, and workforce management for complex value chains.",
+  },
+  {
+    icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
+    name: "Government & Public Sector",
+    desc: "Public institutions needing scalable, compliant delivery without expanding permanent civil service headcount.",
+  },
+  {
+    icon: (
+      <>
+        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+        <line x1="4" y1="22" x2="4" y2="15" />
+      </>
+    ),
+    name: "Startups & Scale-ups",
+    desc: "High-growth companies that need enterprise-grade operational infrastructure without building it in-house.",
   },
 ];
+
+const FAQ = [
+  {
+    q: "How quickly can Sidago take over operations?",
+    a: "Most engagements go live within 30 days of signing. Our onboarding team runs a structured handover process — we import your existing workflows, brief your assigned team, and run a parallel period before fully taking over. First results within month one.",
+  },
+  {
+    q: "Do you subcontract any of the services?",
+    a: "No. Every service delivered by Sidago is managed by our in-house teams. We hire, train, and manage all personnel. This is fundamental to our quality control — no hidden layers, no outsourced accountability.",
+  },
+  {
+    q: "What industries do you have most experience in?",
+    a: "Our deepest experience is in financial services, technology/SaaS, and e-commerce — though we have active engagements across healthcare, manufacturing, government, and professional services.",
+  },
+  {
+    q: "How are pricing and contracts structured?",
+    a: "We operate on a managed service retainer model — a fixed monthly fee based on scope, team size, and complexity. No hidden fees or per-transaction charges. Contracts are typically 12 months with quarterly review gates and clear exit terms.",
+  },
+  {
+    q: "What visibility do we get into our operations?",
+    a: "Full visibility. Every client gets access to a real-time operations dashboard showing team activity, KPI performance, SLA status, and financial tracking. Your account director is available daily; weekly formal reviews are standard.",
+  },
+  {
+    q: "Can we start with one service and expand?",
+    a: "Absolutely — most clients start with one or two divisions and expand over the first year. Our modular architecture is designed precisely for this. Adding a new division typically takes less than two weeks to activate.",
+  },
+];
+
+const COUNTRIES = [
+  "United States",
+  "United Kingdom",
+  "Germany",
+  "Singapore",
+  "India",
+  "Australia",
+  "UAE",
+  "Canada",
+  "+ 32 More",
+];
+
+const GLOBE_DOTS = [
+  { top: "10px", left: "50%", transform: "translateX(-50%)" },
+  { bottom: "10px", left: "30%" },
+  { right: "10px", top: "40%" },
+  { left: "10px", top: "60%" },
+  { bottom: "30px", right: "25%" },
+];
+
+function useReveal() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    node.querySelectorAll(".ops-reveal, .ops-nstat").forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return ref;
+}
+
+function Eyebrow({ children }) {
+  return <div className="ops-eyebrow font-blender">{children}</div>;
+}
+
+function SectionPad({ children, className = "" }) {
+  return (
+    <section className={className}>
+      <div className="container py-block">{children}</div>
+    </section>
+  );
+}
+
+function AccordionItem({ item }) {
+  return (
+    <div className="ops-acc-item">
+      <div className="ops-acc-trigger">
+        <span className="ops-acc-left">
+          <span className="ops-acc-code">{item.code}</span>
+          <span className="ops-acc-name">{item.name}</span>
+        </span>
+        <span className="ops-acc-metric">{item.metric}</span>
+        <span className="ops-acc-icon" aria-hidden>
+          <span className="ops-acc-icon-bar ops-acc-icon-h" />
+          <span className="ops-acc-icon-bar ops-acc-icon-v" />
+        </span>
+      </div>
+      <div className="ops-acc-body">
+        <div className="ops-acc-inner">
+          <div className="ops-acc-content">
+            <p className="ops-acc-desc">{item.desc}</p>
+            <div className="ops-acc-pills">
+              {item.pills.map((pill) => (
+                <span key={pill} className="ops-acc-pill">
+                  {pill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FaqItem({ item, index, openIndex, setOpenIndex }) {
+  const isOpen = openIndex === index;
+
+  return (
+    <div className={`ops-faq-item ${isOpen ? "is-open" : ""}`}>
+      <button
+        type="button"
+        className="ops-faq-q font-blender"
+        onClick={() => setOpenIndex(isOpen ? -1 : index)}
+      >
+        {item.q}
+        <span className="ops-faq-plus">+</span>
+      </button>
+      <div className="ops-faq-a">
+        <div className="ops-faq-a-inner">
+          <p>{item.a}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function OperationsPageContent({
-  videoInMotion = DEFAULT_VIDEO_IN_MOTION,
+  videoInMotion = defaultOperationsPage.videoInMotion,
 }) {
-  const { videoSrc, posterSrc, posterAlt } = videoInMotion ?? DEFAULT_VIDEO_IN_MOTION;
+  const pageRef = useReveal();
+  const [faqOpen, setFaqOpen] = useState(-1);
+  const { videoSrc, posterSrc, posterAlt } = videoInMotion ?? defaultOperationsPage.videoInMotion;
+
+  const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS];
+
   return (
-    <>
-      <section className="bg-white text-black">
-        <div className="container grid gap-12 py-block lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
-          <div>
-            <SectionHeading
-              eyebrow="Operations Overview"
-              title="Operational excellence designed for stable growth"
-              description="Sidago’s operations strategy is built around disciplined execution, shared visibility, and repeatable systems that let teams move faster without losing control."
-            />
+    <div ref={pageRef} className="ops-page">
+      {/* Ticker */}
+      <div className="ops-ticker" aria-hidden>
+        <div className="ops-ticker-track">
+          {tickerLoop.map((item, i) => (
+            <span key={`${item}-${i}`} className="ops-ticker-item">
+              <span className="ops-ticker-dot" />
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* What We Handle */}
+      <section className="ops-handle">
+        <div className="container py-block">
+          <div className="ops-reveal ops-handle-top">
+            <div>
+              <Eyebrow>What We Handle</Eyebrow>
+              <h2 className="ops-title">
+                Every operational
+                <br />
+                vertical, unified.
+              </h2>
+            </div>
+            <p className="ops-handle-sub">
+              Six core divisions working in concert — your entire back-office,
+              orchestrated by one trusted partner.
+            </p>
           </div>
-          <div className="bevel bg-gray-tradfi-horizon px-6 py-7 lg:px-8">
-            <div className="flex items-center justify-between border-b border-black/10 pb-6">
-              <div>
-                <div className="text-sm uppercase tracking-[0.2em] text-[#1F8F4E]">
-                  Workflow Control
-                </div>
-                <div className="mt-2 text-2xl font-semibold text-black">
-                  Operational Command View
+          <div className="ops-handle-grid">
+            {HANDLE_CARDS.map((card) => (
+              <div key={card.code} className="ops-card-shell ops-reveal">
+                <div className={OPS_HCARD}>
+                  <div className="ops-hcard-code">{card.code}</div>
+                  <span className="ops-hcard-num">{card.num}</span>
+                  <div className="ops-hcard-name">{card.name}</div>
+                  <div className="ops-hcard-val">{card.val}</div>
+                  <div className="ops-hcard-tag">· {card.tag}</div>
                 </div>
               </div>
-              <div className="text-[#1F8F4E]">
-                <IconShell>
-                  <FlowPattern />
-                </IconShell>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Numbers */}
+      <section className="ops-numbar-wrap">
+        <div className="container pt-md pb-0 lg:pt-lg">
+          <div className={`ops-numbar ${OPS_BEVEL}`}>
+            {NUMBAR.map((item) => (
+              <OpsNumbarStat key={item.label} item={item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="ops-process">
+        <div className="container pb-block pt-8 md:pt-10 lg:pt-12">
+          <div className="ops-reveal">
+            <Eyebrow>How It Works</Eyebrow>
+            <div className="ops-process-header">
+              <h2 className="ops-title">
+                From kickoff to full
+                <br />
+                operational control.
+              </h2>
+              <p className="ops-process-note">
+                A structured methodology refined across 300+ enterprise deployments.
+                Results in 30 days, full integration in 90.
+              </p>
+            </div>
+          </div>
+          <div className="ops-psteps">
+            {PROCESS.map((step) => (
+              <div key={step.step} className="ops-pstep ops-reveal">
+                <div className="ops-pstep-head">
+                  <div className="ops-pstep-circ">
+                    <span className="ops-pstep-n">{step.step}</span>
+                  </div>
+                </div>
+                <h3 className="ops-pstep-title">{step.title}</h3>
+                <p className="ops-pstep-desc">{step.desc}</p>
+                <div className="ops-ptags">
+                  {step.tags.map((tag) => (
+                    <span key={tag} className="ops-ptag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Capabilities Accordion */}
+      <SectionPad>
+        <div className="ops-caps-inner">
+          <div className="ops-caps-sticky ops-reveal">
+            <Eyebrow>Deep Capabilities</Eyebrow>
+            <h2 className="ops-title">
+              Every service.
+              <br />
+              Fully owned
+              <br />
+              by us.
+            </h2>
+            <p className="ops-caps-body">
+              We don&apos;t subcontract. Every service in the Sidago stack is delivered
+              by trained, managed, and accountable teams — on your timeline and your
+              terms.
+            </p>
+            <Link href="/contact" className={OPS_BTN_SECONDARY}>
+              View Full Capability Matrix →
+            </Link>
+          </div>
+          <div className="ops-reveal">
+            {ACCORDION.map((item) => (
+              <AccordionItem key={item.code} item={item} />
+            ))}
+          </div>
+        </div>
+      </SectionPad>
+
+      {/* Video */}
+      <SectionPad className="bg-[#f0f1f1]">
+        <div className="ops-reveal mb-8">
+          <Eyebrow>Operations In Motion</Eyebrow>
+          <h2 className="ops-title">See structured delivery in practice</h2>
+        </div>
+        <div className="ops-video-wrap ops-reveal">
+          <div className="ops-video-grid" aria-hidden />
+          <video
+            playsInline
+            preload="metadata"
+            poster={posterSrc}
+            aria-label={posterAlt}
+            className="relative z-[1] aspect-video w-full object-cover"
+            controls
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        </div>
+      </SectionPad>
+
+      {/* Global Reach */}
+      <section className="ops-reach">
+        <div className="container py-block">
+          <div className="ops-reach-inner">
+            <div className="ops-reveal">
+              <Eyebrow>Global Footprint</Eyebrow>
+              <h2 className="ops-title">
+                Operations without
+                <br />
+                borders.
+              </h2>
+              <p className="ops-reach-body">
+                With talent, infrastructure, and compliance coverage spanning six
+                continents, Sidago lets you operate globally from day one — without
+                the complexity of building international infrastructure yourself.
+              </p>
+              <div className="ops-countries">
+                {COUNTRIES.map((c) => (
+                  <div key={c} className="ops-country">
+                    {c}
+                  </div>
+                ))}
+              </div>
+              <Link href="/contact" className={OPS_BTN_PRIMARY}>
+                Explore Coverage →
+              </Link>
+            </div>
+            <div className="ops-reveal">
+              <div className="ops-globe-wrap">
+                <div className="ops-globe-grid" aria-hidden />
+                <div className="ops-globe-ring">
+                  {GLOBE_DOTS.map((style, i) => (
+                    <span
+                      key={i}
+                      className="ops-globe-dot"
+                      style={{ ...style, animationDelay: `${i * 0.4}s` }}
+                    />
+                  ))}
+                  <div className="ops-globe-center">
+                    40+
+                    <br />
+                    Countries
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="grid gap-6 pt-6 sm:grid-cols-2">
-              <div>
-                <div className="text-xs uppercase tracking-[0.18em] text-[#5F6660]">
-                  Active Streams
-                </div>
-                <div className="mt-3 text-3xl font-semibold text-black">12</div>
-                <div className="mt-3 h-1.5 rounded-full bg-black/10">
-                  <div className="h-1.5 w-[76%] rounded-full bg-[#1F8F4E]"></div>
+      {/* Verticals */}
+      <section className="ops-verticals">
+        <div className="container py-block">
+          <div className="ops-reveal mb-10">
+            <Eyebrow>Who We Serve</Eyebrow>
+            <h2 className="ops-title">
+              Built for industries that
+              <br />
+              can&apos;t afford to slow down.
+            </h2>
+          </div>
+          <div className="ops-vert-grid">
+            {VERTICALS.map((v) => (
+              <div key={v.name} className="ops-card-shell ops-reveal">
+                <div className={`${OPS_CARD_BEVEL} ops-vcard`}>
+                  <div className="ops-vcard-icon">
+                    <svg viewBox="0 0 24 24">{v.icon}</svg>
+                  </div>
+                  <div className="ops-vcard-name">{v.name}</div>
+                  <p className="ops-vcard-desc">{v.desc}</p>
                 </div>
               </div>
-              <div>
-                <div className="text-xs uppercase tracking-[0.18em] text-[#5F6660]">
-                  On-Time Delivery
-                </div>
-                <div className="mt-3 text-3xl font-semibold text-black">98%</div>
-                <div className="mt-3 h-1.5 rounded-full bg-black/10">
-                  <div className="h-1.5 w-[98%] rounded-full bg-[#71C98E]"></div>
-                </div>
-              </div>
-              <div className="border-t border-black/10 pt-6 sm:col-span-2">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.18em] text-[#5F6660]">
-                  <span>Planning</span>
-                  <span>Execution</span>
-                  <span>Monitoring</span>
-                  <span>Optimization</span>
-                </div>
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="h-3 w-3 rounded-full bg-[#1F8F4E]"></div>
-                  <div className="h-px flex-1 bg-black/15"></div>
-                  <div className="h-3 w-3 rounded-full bg-[#71C98E]"></div>
-                  <div className="h-px flex-1 bg-black/15"></div>
-                  <div className="h-3 w-3 rounded-full bg-black/70"></div>
-                  <div className="h-px flex-1 bg-black/15"></div>
-                  <div className="h-3 w-3 rounded-full border border-black/40 bg-transparent"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-gray-tradfi-horizon text-black">
-        <div className="container grid gap-10 py-block lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-          <SectionHeading
-            eyebrow="Operational Highlights"
-            title="A simpler operating model with clearer control"
-            description="The structure stays practical: less friction, easier oversight, and a delivery model that can expand without losing consistency."
-          />
-          <div className="group/cards grid gap-5 sm:grid-cols-2">
-            {highlights.map((item) => (
-              <article
-                key={item.title}
-                className="bevel relative bg-white p-6 transition duration-300 hover:-translate-y-1 lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              >
-                <div className="pointer-events-none absolute inset-x-xl top-0 h-[0.18rem] bg-green-dark/45" />
-                <IconShell>
-                  <HighlightIcon type={item.icon} />
-                </IconShell>
-                <h3 className="mt-5 text-xl font-semibold text-black">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-[#5F6660]">
-                  {item.description}
-                </p>
-              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white text-black">
-        <div className="container py-block">
-          <div className="relative">
-            <SectionHeading
-              eyebrow="Operations In Motion"
-              title="See how Sidago runs structured operational delivery"
-              description="From workflow coordination to execution visibility, Sidago builds operations that stay reliable, measurable, and easier to scale."
-            />
-
-            <Image
-              alt="Operations watermark"
-              loading="lazy"
-              width={1152}
-              height={1152}
-              unoptimized
-              className="pointer-events-none absolute right-0 top-0 hidden w-[24%] opacity-60 lg:block"
-              style={{ color: "transparent" }}
-              src="/images/WatermarkTailoredProd.svg"
-            />
-          </div>
-
-          <div className="bevel overflow-hidden bg-gray-tradfi-horizon">
-            <video
-              playsInline
-              preload="metadata"
-              poster={posterSrc}
-              aria-label={posterAlt}
-              className="aspect-video w-full object-cover"
-              controls
-            >
-              <source src={videoSrc} type="video/mp4" />
-            </video>
-          </div>
-
-          <div className="pt-container flex">
-            <a
-              style={{ position: "relative" }}
-              className="group/interactive inline-flex items-center justify-between gap-md bevel bevel-[0.25rem] bg-green-tradfi px-sm py-xs font-medium text-gray-night-green"
-              href="/contact"
-            >
-              <span className="sr-only">Contact</span>
-              Talk to Sidago
-              <ArrowIcon />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white text-black">
-        <div className="container py-block">
-          <SectionHeading
-            eyebrow="Core Operational Areas"
-            title="Built around the functions that keep operations moving"
-            description="Each delivery area is supported by structured ownership, measurable controls, and tools that make workflows easier to manage at scale."
-          />
-          <div className="mt-12 border-t border-black/10">
-            {operationalAreas.map((area) => (
-              <article
-                key={area.title}
-                className="group grid gap-6 border-b border-black/10 py-8 lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(0,28rem)] lg:items-start"
-              >
-                <IconShell>
-                  <AreaIcon type={area.icon} />
-                </IconShell>
-                <h3 className="text-2xl font-semibold text-black lg:text-3xl">
-                  {area.title}
-                </h3>
-                <p className="text-sm leading-6 text-[#5F6660] lg:text-base">
-                  {area.description}
-                </p>
-              </article>
+      {/* FAQ */}
+      <SectionPad>
+        <div className="ops-faq-inner">
+          <h2 className="ops-faq-title ops-reveal">
+            Questions
+            <br />
+            we hear
+            <br />
+            <em>often.</em>
+          </h2>
+          <div className="ops-reveal">
+            {FAQ.map((item, index) => (
+              <FaqItem
+                key={item.q}
+                item={item}
+                index={index}
+                openIndex={faqOpen}
+                setOpenIndex={setFaqOpen}
+              />
             ))}
           </div>
         </div>
-      </section>
-
-      <section className="bg-gray-tradfi-horizon text-black">
-        <div className="container py-block">
-          <SectionHeading
-            eyebrow="Process Workflow"
-            title="A clear operational rhythm from planning to optimization"
-            description="The operating model is designed to keep every engagement measurable, adaptable, and visible across stakeholders."
-          />
-          <div className="mt-12 grid gap-0 border-y border-black/10 lg:grid-cols-4">
-            {workflow.map((item) => (
-              <article
-                key={item.step}
-                className="relative border-b border-black/10 px-0 py-8 lg:border-b-0 lg:px-6 lg:py-10 lg:[&:not(:last-child)]:border-r lg:[&:not(:last-child)]:border-black/10"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1F8F4E]">
-                    Step {item.step}
-                  </div>
-                  <div className="text-[#1F8F4E]">
-                    <FlowPattern />
-                  </div>
-                </div>
-                <h3 className="mt-6 text-2xl font-semibold text-black">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-[#5F6660]">
-                  {item.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white text-black">
-        <div className="container py-block">
-          <SectionHeading
-            eyebrow="Performance Metrics"
-            title="Numbers that reflect delivery discipline"
-            description="Operational performance is tracked against business outcomes, service quality, and improvement velocity."
-          />
-          <div className="mt-12">
-            <OperationsMetrics
-              metrics={metrics.map((metric) => ({
-                ...metric,
-                activeDotColor: "#168b50",
-              }))}
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-gray-tradfi-horizon text-black">
-        <div className="container py-block">
-          <SectionHeading
-            eyebrow="Technology & Tools"
-            title="Systems that support control, visibility, and speed"
-            description="Sidago combines operations expertise with modern systems to standardize execution and reduce manual friction across business-critical workflows."
-          />
-          <div className="group/cards mt-12 grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-5">
-            {tools.map((tool) => (
-              <article
-                key={tool.name}
-                className="bevel relative bg-white p-xl transition duration-300 hover:-translate-y-1 lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              >
-                <div className="pointer-events-none absolute inset-x-xl top-0 h-[0.18rem] bg-green-dark/45" />
-                <IconShell>
-                  <ToolGlyph type={tool.glyph} />
-                </IconShell>
-                <h3 className="mt-5 text-lg font-semibold text-black">
-                  {tool.name}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-[#5F6660]">
-                  {tool.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white text-black">
-        <div className="container py-block">
-          <SectionHeading
-            eyebrow="Case Studies"
-            title="Examples of operational improvement in practice"
-            description="Recent engagements focused on improving visibility, reducing delay points, and creating cleaner execution models for growing organizations."
-          />
-          <div className="group/cards mt-12 grid gap-5 lg:grid-cols-3">
-            {caseStudies.map((study, index) => (
-              <article
-                key={study.title}
-                className="bevel overflow-hidden bg-white transition duration-300 hover:-translate-y-1 lg:group-hover/cards:[&:not(:hover)]:opacity-70"
-              >
-                <div className="relative border-b border-black/10 bg-gray-tradfi-horizon p-6">
-                  <div className="pointer-events-none absolute inset-x-xl top-0 h-[0.18rem] bg-green-dark/45" />
-                  <div className="flex items-center justify-between">
-                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1F8F4E]">
-                      Success Story {index + 1}
-                    </div>
-                    <div className="px-0 py-1 text-xs font-medium text-black/70">
-                      {study.outcome}
-                    </div>
-                  </div>
-                  <div className="mt-8 p-2 text-[#1F8F4E]">
-                    <GridPattern />
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-black">
-                    {study.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-[#3F6B4E]">
-                    {study.description}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+      </SectionPad>
+    </div>
   );
 }
