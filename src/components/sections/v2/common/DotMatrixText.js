@@ -52,8 +52,17 @@ function drawDotMatrixFrame({
   activeDotColor,
   progress,
 }) {
-  const half = Math.floor(dotSize / 2);
-  const drawDot = (p) => ctx.fillRect(p.x - half, p.y - half, dotSize, dotSize);
+  const drawDot = (p) => {
+    if (dotSize <= 1) {
+      ctx.fillRect(Math.round(p.x), Math.round(p.y), 1, 1);
+      return;
+    }
+
+    const radius = dotSize / 2;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  };
 
   ctx.clearRect(0, 0, canvasW, fontPx);
 
@@ -115,7 +124,7 @@ export function DotMatrixText({
   useEffect(() => {
     const remeasure = () => {
       const fontSize = matchesScreen("lg") ? fontSizeDesktop : fontSizeMobile;
-      const font = `900 ${fontSize}px/1 ${fontFamily}`;
+      const font = `700 ${fontSize}px/1 ${fontFamily}`;
 
       const done = () => {
         const c = measureCanvasRef.current;
@@ -152,7 +161,7 @@ export function DotMatrixText({
     c.width = canvasW;
     c.height = fontPx;
 
-    const font = `900 ${fontPx}px/1 ${fontFamily}`;
+    const font = `700 ${fontPx}px/1 ${fontFamily}`;
     ctx.clearRect(0, 0, canvasW, fontPx);
     ctx.font = font;
     ctx.fillStyle = "#fff";
@@ -207,18 +216,20 @@ export function DotMatrixText({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const half = Math.floor(dotSize / 2);
+    ctx.imageSmoothingEnabled = false;
     ctx.clearRect(0, 0, canvasW, fontPx);
 
     if (progRef.current <= 0 && !active && !wasActivatedRef.current) {
       for (const pair of pairs) {
         ctx.fillStyle = matchesScreen("lg") ? dotColor : activeDotColor;
-        ctx.fillRect(
-          pair.start.x - half,
-          pair.start.y - half,
-          dotSize,
-          dotSize,
-        );
+        if (dotSize <= 1) {
+          ctx.fillRect(Math.round(pair.start.x), Math.round(pair.start.y), 1, 1);
+        } else {
+          const radius = dotSize / 2;
+          ctx.beginPath();
+          ctx.arc(pair.start.x, pair.start.y, radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
 
       return;

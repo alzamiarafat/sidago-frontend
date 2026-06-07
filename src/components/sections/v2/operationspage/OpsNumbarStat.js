@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { DotMatrixText } from "@/src/components/sections/v2/common/DotMatrixText";
 
-const DOT_IDLE = "#4F4E49";
+const DOT_IDLE = "#000000";
 const BRAND_GREEN = "#168B50";
 
 export default function OpsNumbarStat({ item }) {
@@ -19,27 +19,25 @@ export default function OpsNumbarStat({ item }) {
         <DotMatrixText
           text={item.big}
           active={hovered}
-          dotSize={2}
+          dotSize={1}
           dotSpacing={2}
           dotColor={DOT_IDLE}
           activeDotColor={BRAND_GREEN}
-          fontSizeMobile={42}
-          fontSizeDesktop={60}
-          fontFamily="blender, blender Fallback, sans-serif"
+          fontSizeMobile={56}
+          fontSizeDesktop={80}
         />
         <DotMatrixText
           text={item.suffix}
           active={hovered}
-          dotSize={2}
+          dotSize={1}
           dotSpacing={2}
           dotColor={DOT_IDLE}
           activeDotColor={BRAND_GREEN}
-          fontSizeMobile={24}
-          fontSizeDesktop={34}
-          fontFamily="blender, blender Fallback, sans-serif"
+          fontSizeMobile={32}
+          fontSizeDesktop={46}
         />
       </div>
-      <div className="ops-nstat-label font-blender">{item.label}</div>
+      <div className="ops-nstat-label">{item.label}</div>
       <div className="ops-nstat-sub">{item.sub}</div>
     </div>
   );

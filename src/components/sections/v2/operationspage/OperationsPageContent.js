@@ -4,14 +4,23 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { defaultOperationsPage } from "@/src/data/cms/defaults.mjs";
 import OpsNumbarStat from "./OpsNumbarStat";
+import OpsReachGlobe from "./OpsReachGlobe";
 import "./operations-page.css";
 
 const OPS_CARD_BEVEL = "ops-card-surface bevel overflow-hidden";
 const OPS_HCARD = "ops-hcard ops-card-surface bevel overflow-hidden";
 const OPS_BEVEL = "bevel overflow-hidden";
 
+const CHIP_VARIANTS = [
+  "ops-ptag--green",
+  "ops-ptag--orange",
+  "ops-ptag--blue",
+  "ops-ptag--violet",
+  "ops-ptag--pink",
+];
+
 const OPS_BTN_PRIMARY =
-  "group/interactive inline-flex items-center justify-center gap-md font-medium bevel bevel-[0.25rem] bg-[#168B50] px-sm py-xs font-blender text-sm uppercase tracking-[0.08em] text-black transition-opacity hover:opacity-90";
+  "group/interactive inline-flex items-center justify-center gap-md bevel bevel-[0.25rem] bg-[#168B50] px-sm py-xs text-sm font-medium text-gray-night-green transition-opacity hover:opacity-90";
 
 const OPS_BTN_SECONDARY = OPS_BTN_PRIMARY;
 
@@ -142,6 +151,44 @@ const ACCORDION = [
   },
 ];
 
+function buildRandomChipColorMap() {
+  const map = {};
+  const pick = () =>
+    CHIP_VARIANTS[Math.floor(Math.random() * CHIP_VARIANTS.length)];
+
+  PROCESS.forEach((step) => {
+    step.tags.forEach((tag) => {
+      map[`process:${step.step}:${tag}`] = pick();
+    });
+  });
+
+  ACCORDION.forEach((item) => {
+    item.pills.forEach((pill) => {
+      map[`acc:${item.code}:${pill}`] = pick();
+    });
+  });
+
+  return map;
+}
+
+function useRandomChipColors() {
+  const [chipColors, setChipColors] = useState({});
+
+  useEffect(() => {
+    setChipColors(buildRandomChipColorMap());
+  }, []);
+
+  return chipColors;
+}
+
+function OpsChip({ label, variant = CHIP_VARIANTS[0] }) {
+  return (
+    <span tabIndex={0} className={`ops-ptag bevel bevel-[0.25rem] ${variant}`}>
+      {label}
+    </span>
+  );
+}
+
 const VERTICALS = [
   {
     icon: (
@@ -210,51 +257,16 @@ const VERTICALS = [
   },
 ];
 
-const FAQ = [
-  {
-    q: "How quickly can Sidago take over operations?",
-    a: "Most engagements go live within 30 days of signing. Our onboarding team runs a structured handover process — we import your existing workflows, brief your assigned team, and run a parallel period before fully taking over. First results within month one.",
-  },
-  {
-    q: "Do you subcontract any of the services?",
-    a: "No. Every service delivered by Sidago is managed by our in-house teams. We hire, train, and manage all personnel. This is fundamental to our quality control — no hidden layers, no outsourced accountability.",
-  },
-  {
-    q: "What industries do you have most experience in?",
-    a: "Our deepest experience is in financial services, technology/SaaS, and e-commerce — though we have active engagements across healthcare, manufacturing, government, and professional services.",
-  },
-  {
-    q: "How are pricing and contracts structured?",
-    a: "We operate on a managed service retainer model — a fixed monthly fee based on scope, team size, and complexity. No hidden fees or per-transaction charges. Contracts are typically 12 months with quarterly review gates and clear exit terms.",
-  },
-  {
-    q: "What visibility do we get into our operations?",
-    a: "Full visibility. Every client gets access to a real-time operations dashboard showing team activity, KPI performance, SLA status, and financial tracking. Your account director is available daily; weekly formal reviews are standard.",
-  },
-  {
-    q: "Can we start with one service and expand?",
-    a: "Absolutely — most clients start with one or two divisions and expand over the first year. Our modular architecture is designed precisely for this. Adding a new division typically takes less than two weeks to activate.",
-  },
-];
-
-const COUNTRIES = [
-  "United States",
-  "United Kingdom",
-  "Germany",
-  "Singapore",
-  "India",
-  "Australia",
-  "UAE",
-  "Canada",
-  "+ 32 More",
-];
-
-const GLOBE_DOTS = [
-  { top: "10px", left: "50%", transform: "translateX(-50%)" },
-  { bottom: "10px", left: "30%" },
-  { right: "10px", top: "40%" },
-  { left: "10px", top: "60%" },
-  { bottom: "30px", right: "25%" },
+const REACH_COUNTRIES = [
+  { name: "United States", dot: "accent" },
+  { name: "United Kingdom", dot: "blue" },
+  { name: "Germany", dot: "black" },
+  { name: "Singapore", dot: "green" },
+  { name: "India", dot: "accent" },
+  { name: "Australia", dot: "purple" },
+  { name: "UAE", dot: "blue" },
+  { name: "Canada", dot: "black" },
+  { name: "+ 32 More", dot: "accent", more: true },
 ];
 
 function useReveal() {
@@ -285,8 +297,18 @@ function useReveal() {
   return ref;
 }
 
-function Eyebrow({ children }) {
-  return <div className="ops-eyebrow font-blender">{children}</div>;
+function SectionHeader({ eyebrow, children, className = "" }) {
+  return (
+    <div className={`mb-3xl flex flex-col gap-xl ${className}`.trim()}>
+      <div className="flex max-w-4xl flex-col gap-md">
+        <h2 className="font-blender text-xl uppercase text-[#168B50]">{eyebrow}</h2>
+        <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
+          {children}
+        </p>
+      </div>
+      <hr className="!border-[#168B50]" />
+    </div>
+  );
 }
 
 function SectionPad({ children, className = "" }) {
@@ -297,7 +319,7 @@ function SectionPad({ children, className = "" }) {
   );
 }
 
-function AccordionItem({ item }) {
+function AccordionItem({ item, chipColors }) {
   return (
     <div className="ops-acc-item">
       <div className="ops-acc-trigger">
@@ -317,34 +339,14 @@ function AccordionItem({ item }) {
             <p className="ops-acc-desc">{item.desc}</p>
             <div className="ops-acc-pills">
               {item.pills.map((pill) => (
-                <span key={pill} className="ops-acc-pill">
-                  {pill}
-                </span>
+                <OpsChip
+                  key={pill}
+                  label={pill}
+                  variant={chipColors[`acc:${item.code}:${pill}`]}
+                />
               ))}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FaqItem({ item, index, openIndex, setOpenIndex }) {
-  const isOpen = openIndex === index;
-
-  return (
-    <div className={`ops-faq-item ${isOpen ? "is-open" : ""}`}>
-      <button
-        type="button"
-        className="ops-faq-q font-blender"
-        onClick={() => setOpenIndex(isOpen ? -1 : index)}
-      >
-        {item.q}
-        <span className="ops-faq-plus">+</span>
-      </button>
-      <div className="ops-faq-a">
-        <div className="ops-faq-a-inner">
-          <p>{item.a}</p>
         </div>
       </div>
     </div>
@@ -355,7 +357,7 @@ export default function OperationsPageContent({
   videoInMotion = defaultOperationsPage.videoInMotion,
 }) {
   const pageRef = useReveal();
-  const [faqOpen, setFaqOpen] = useState(-1);
+  const chipColors = useRandomChipColors();
   const { videoSrc, posterSrc, posterAlt } = videoInMotion ?? defaultOperationsPage.videoInMotion;
 
   const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS];
@@ -379,12 +381,11 @@ export default function OperationsPageContent({
         <div className="container py-block">
           <div className="ops-reveal ops-handle-top">
             <div>
-              <Eyebrow>What We Handle</Eyebrow>
-              <h2 className="ops-title">
+              <SectionHeader eyebrow="What We Handle">
                 Every operational
                 <br />
                 vertical, unified.
-              </h2>
+              </SectionHeader>
             </div>
             <p className="ops-handle-sub">
               Six core divisions working in concert — your entire back-office,
@@ -422,13 +423,12 @@ export default function OperationsPageContent({
       <section className="ops-process">
         <div className="container pb-block pt-8 md:pt-10 lg:pt-12">
           <div className="ops-reveal">
-            <Eyebrow>How It Works</Eyebrow>
+            <SectionHeader eyebrow="How It Works">
+              From kickoff to full
+              <br />
+              operational control.
+            </SectionHeader>
             <div className="ops-process-header">
-              <h2 className="ops-title">
-                From kickoff to full
-                <br />
-                operational control.
-              </h2>
               <p className="ops-process-note">
                 A structured methodology refined across 300+ enterprise deployments.
                 Results in 30 days, full integration in 90.
@@ -447,9 +447,11 @@ export default function OperationsPageContent({
                 <p className="ops-pstep-desc">{step.desc}</p>
                 <div className="ops-ptags">
                   {step.tags.map((tag) => (
-                    <span key={tag} className="ops-ptag">
-                      {tag}
-                    </span>
+                    <OpsChip
+                      key={tag}
+                      label={tag}
+                      variant={chipColors[`process:${step.step}:${tag}`]}
+                    />
                   ))}
                 </div>
               </div>
@@ -462,14 +464,13 @@ export default function OperationsPageContent({
       <SectionPad>
         <div className="ops-caps-inner">
           <div className="ops-caps-sticky ops-reveal">
-            <Eyebrow>Deep Capabilities</Eyebrow>
-            <h2 className="ops-title">
+            <SectionHeader eyebrow="Deep Capabilities">
               Every service.
               <br />
               Fully owned
               <br />
               by us.
-            </h2>
+            </SectionHeader>
             <p className="ops-caps-body">
               We don&apos;t subcontract. Every service in the Sidago stack is delivered
               by trained, managed, and accountable teams — on your timeline and your
@@ -481,7 +482,7 @@ export default function OperationsPageContent({
           </div>
           <div className="ops-reveal">
             {ACCORDION.map((item) => (
-              <AccordionItem key={item.code} item={item} />
+              <AccordionItem key={item.code} item={item} chipColors={chipColors} />
             ))}
           </div>
         </div>
@@ -489,9 +490,10 @@ export default function OperationsPageContent({
 
       {/* Video */}
       <SectionPad className="bg-[#f0f1f1]">
-        <div className="ops-reveal mb-8">
-          <Eyebrow>Operations In Motion</Eyebrow>
-          <h2 className="ops-title">See structured delivery in practice</h2>
+        <div className="ops-reveal">
+          <SectionHeader eyebrow="Operations In Motion">
+            See structured delivery in practice
+          </SectionHeader>
         </div>
         <div className="ops-video-wrap ops-reveal">
           <div className="ops-video-grid" aria-hidden />
@@ -512,47 +514,36 @@ export default function OperationsPageContent({
       <section className="ops-reach">
         <div className="container py-block">
           <div className="ops-reach-inner">
-            <div className="ops-reveal">
-              <Eyebrow>Global Footprint</Eyebrow>
-              <h2 className="ops-title">
-                Operations without
-                <br />
-                borders.
-              </h2>
+            <div className="ops-reach-left ops-reveal">
+              <SectionHeader eyebrow="Global Footprint">
+                Operations without borders.
+              </SectionHeader>
               <p className="ops-reach-body">
                 With talent, infrastructure, and compliance coverage spanning six
                 continents, Sidago lets you operate globally from day one — without
                 the complexity of building international infrastructure yourself.
               </p>
-              <div className="ops-countries">
-                {COUNTRIES.map((c) => (
-                  <div key={c} className="ops-country">
-                    {c}
+              <div className="ops-reach-countries">
+                {REACH_COUNTRIES.map((country) => (
+                  <div
+                    key={country.name}
+                    className={`ops-reach-cell${country.more ? " ops-reach-cell--more" : ""}`}
+                  >
+                    <span className={`ops-reach-dot ops-reach-dot--${country.dot}`} />
+                    {country.name}
                   </div>
                 ))}
               </div>
-              <Link href="/contact" className={OPS_BTN_PRIMARY}>
-                Explore Coverage →
+              <Link href="/contact" className="ops-reach-cta">
+                Explore Coverage
+                <svg viewBox="0 0 16 16" aria-hidden>
+                  <line x1="2" y1="8" x2="14" y2="8" />
+                  <polyline points="9,3 14,8 9,13" />
+                </svg>
               </Link>
             </div>
-            <div className="ops-reveal">
-              <div className="ops-globe-wrap">
-                <div className="ops-globe-grid" aria-hidden />
-                <div className="ops-globe-ring">
-                  {GLOBE_DOTS.map((style, i) => (
-                    <span
-                      key={i}
-                      className="ops-globe-dot"
-                      style={{ ...style, animationDelay: `${i * 0.4}s` }}
-                    />
-                  ))}
-                  <div className="ops-globe-center">
-                    40+
-                    <br />
-                    Countries
-                  </div>
-                </div>
-              </div>
+            <div className="ops-reach-right ops-reveal">
+              <OpsReachGlobe />
             </div>
           </div>
         </div>
@@ -561,13 +552,10 @@ export default function OperationsPageContent({
       {/* Verticals */}
       <section className="ops-verticals">
         <div className="container py-block">
-          <div className="ops-reveal mb-10">
-            <Eyebrow>Who We Serve</Eyebrow>
-            <h2 className="ops-title">
-              Built for industries that
-              <br />
-              can&apos;t afford to slow down.
-            </h2>
+          <div className="ops-reveal">
+            <SectionHeader eyebrow="Who We Serve">
+              Built for industries that can&apos;t afford to slow down.
+            </SectionHeader>
           </div>
           <div className="ops-vert-grid">
             {VERTICALS.map((v) => (
@@ -584,30 +572,6 @@ export default function OperationsPageContent({
           </div>
         </div>
       </section>
-
-      {/* FAQ */}
-      <SectionPad>
-        <div className="ops-faq-inner">
-          <h2 className="ops-faq-title ops-reveal">
-            Questions
-            <br />
-            we hear
-            <br />
-            <em>often.</em>
-          </h2>
-          <div className="ops-reveal">
-            {FAQ.map((item, index) => (
-              <FaqItem
-                key={item.q}
-                item={item}
-                index={index}
-                openIndex={faqOpen}
-                setOpenIndex={setFaqOpen}
-              />
-            ))}
-          </div>
-        </div>
-      </SectionPad>
     </div>
   );
 }
