@@ -388,11 +388,10 @@ function PerformanceImageCarousel({ section }) {
                       src={item.image}
                       alt={`${item.title} visual`}
                       fill
-                      className={`transition duration-700 ${
-                        item.imageFit === "contain"
+                      className={`transition duration-700 ${item.imageFit === "contain"
                           ? "object-contain p-4"
                           : "object-cover object-center group-hover:scale-[1.03]"
-                      }`}
+                        }`}
                       sizes="(min-width: 768px) 19rem, 16rem"
                     />
                   </div>
@@ -523,7 +522,7 @@ export default async function PerformancePage() {
           <PerformanceImageCarousel section={performancePage.imageCarouselSection} />
           <PerformanceCapabilities section={performancePage.capabilitiesSection} />
           <PerformanceMethod section={performancePage.methodSection} />
-          <CTASection items={performancePage.cta} />
+          <CTASection />
           <Footer footer={settings?.footer} />
         </main>
       </div>

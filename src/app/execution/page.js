@@ -58,18 +58,20 @@ function SupportPills({ chips }) {
 
 function SectionHeading({ label, title, subtitle, className = "max-w-4xl" }) {
   return (
-    <div className={className}>
-      <div className="font-blender text-base uppercase tracking-[0.24em] text-[#d66243] md:text-lg">
-        {label}
+    <div className="w-full">
+      <div className={className}>
+        <div className="font-blender text-base uppercase tracking-[0.24em] text-[#d66243] md:text-lg">
+          {label}
+        </div>
+        <h2 className="mt-5 text-3xl font-normal leading-[1.08] text-white/88 md:text-5xl">
+          {title}
+        </h2>
+        {subtitle ? (
+          <p className="mt-4 max-w-4xl text-base leading-relaxed text-gray-off-white/70 md:text-[1.7rem] md:leading-[1.3]">
+            {subtitle}
+          </p>
+        ) : null}
       </div>
-      <h2 className="mt-5 text-3xl font-normal leading-[1.08] text-white/88 md:text-5xl">
-        {title}
-      </h2>
-      {subtitle ? (
-        <p className="mt-4 max-w-4xl text-base leading-relaxed text-gray-off-white/70 md:text-[1.7rem] md:leading-[1.3]">
-          {subtitle}
-        </p>
-      ) : null}
       <div className="mt-8 h-px w-full bg-[#d66243]/80" />
     </div>
   );
@@ -282,17 +284,15 @@ function AboutSection({ section }) {
 function CoreCapabilities({ section }) {
   return (
     <section>
-      <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-        <SectionHeading
-          label={section.label}
-          title={section.title}
-          subtitle={section.subtitle}
-          className="max-w-4xl"
-        />
-      </div>
+      <SectionHeading
+        label={section.label}
+        title={section.title}
+        subtitle={section.subtitle}
+        className="max-w-4xl"
+      />
 
       <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {section.cards.slice(0, 4).map((card, index) => (
+        {section.cards.map((card, index) => (
           <article
             key={card.title}
             className="execution-card group relative overflow-hidden rounded-lg bg-[#101814] p-6 transition-colors duration-300 hover:bg-[#142119]"
