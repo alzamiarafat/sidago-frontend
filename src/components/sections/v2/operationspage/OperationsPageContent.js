@@ -8,7 +8,6 @@ import OpsReachGlobe from "./OpsReachGlobe";
 import "./operations-page.css";
 
 const OPS_CARD_BEVEL = "ops-card-surface bevel overflow-hidden";
-const OPS_HCARD = "ops-hcard ops-card-surface bevel overflow-hidden";
 const OPS_BEVEL = "bevel overflow-hidden";
 
 const CHIP_VARIANTS = [
@@ -20,7 +19,7 @@ const CHIP_VARIANTS = [
 ];
 
 const OPS_BTN_PRIMARY =
-  "group/interactive inline-flex items-center justify-center gap-md bevel bevel-[0.25rem] bg-[#168B50] px-sm py-xs text-sm font-medium text-gray-night-green transition-opacity hover:opacity-90";
+  "group/interactive inline-flex items-center justify-center gap-md bevel bevel-[0.25rem] bg-[#168B50] px-sm py-xs text-sm font-medium text-white transition-opacity hover:opacity-90";
 
 const OPS_BTN_SECONDARY = OPS_BTN_PRIMARY;
 
@@ -299,14 +298,12 @@ function useReveal() {
 
 function SectionHeader({ eyebrow, children, className = "" }) {
   return (
-    <div className={`mb-3xl flex flex-col gap-xl ${className}`.trim()}>
-      <div className="flex max-w-4xl flex-col gap-md">
-        <h2 className="font-blender text-xl uppercase text-[#168B50]">{eyebrow}</h2>
-        <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
-          {children}
-        </p>
+    <div className={`ops-section-header ${className}`.trim()}>
+      <div className="ops-section-header__copy">
+        <h2 className="ops-section-header__title">{eyebrow}</h2>
+        <p className="ops-section-header__subtitle">{children}</p>
       </div>
-      <hr className="!border-[#168B50]" />
+      <hr className="ops-section-header__rule" />
     </div>
   );
 }
@@ -314,7 +311,7 @@ function SectionHeader({ eyebrow, children, className = "" }) {
 function SectionPad({ children, className = "" }) {
   return (
     <section className={className}>
-      <div className="container py-block">{children}</div>
+      <div className="container">{children}</div>
     </section>
   );
 }
@@ -365,7 +362,7 @@ export default function OperationsPageContent({
   return (
     <div ref={pageRef} className="ops-page">
       {/* Ticker */}
-      <div className="ops-ticker" aria-hidden>
+      <div className="ops-ticker ops-section ops-section--cool" aria-hidden>
         <div className="ops-ticker-track">
           {tickerLoop.map((item, i) => (
             <span key={`${item}-${i}`} className="ops-ticker-item">
@@ -376,41 +373,9 @@ export default function OperationsPageContent({
         </div>
       </div>
 
-      {/* What We Handle */}
-      <section className="ops-handle">
-        <div className="container py-block">
-          <div className="ops-reveal ops-handle-top">
-            <div>
-              <SectionHeader eyebrow="What We Handle">
-                Every operational
-                <br />
-                vertical, unified.
-              </SectionHeader>
-            </div>
-            <p className="ops-handle-sub">
-              Six core divisions working in concert — your entire back-office,
-              orchestrated by one trusted partner.
-            </p>
-          </div>
-          <div className="ops-handle-grid">
-            {HANDLE_CARDS.map((card) => (
-              <div key={card.code} className="ops-card-shell ops-reveal">
-                <div className={OPS_HCARD}>
-                  <div className="ops-hcard-code">{card.code}</div>
-                  <span className="ops-hcard-num">{card.num}</span>
-                  <div className="ops-hcard-name">{card.name}</div>
-                  <div className="ops-hcard-val">{card.val}</div>
-                  <div className="ops-hcard-tag">· {card.tag}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Key Numbers */}
-      <section className="ops-numbar-wrap">
-        <div className="container pt-md pb-0 lg:pt-lg">
+      <section className="ops-numbar-wrap ops-section ops-section--white">
+        <div className="container">
           <div className={`ops-numbar ${OPS_BEVEL}`}>
             {NUMBAR.map((item) => (
               <OpsNumbarStat key={item.label} item={item} />
@@ -419,14 +384,42 @@ export default function OperationsPageContent({
         </div>
       </section>
 
+      {/* What We Handle */}
+      <section className="ops-handle ops-section ops-section--warm">
+        <div className="container">
+          <div className="ops-reveal">
+            <SectionHeader eyebrow="What We Handle">
+              Every operational vertical, unified.
+            </SectionHeader>
+            <p className="ops-handle-intro">
+              Six core divisions working in concert — your entire back-office,
+              orchestrated by one trusted partner.
+            </p>
+          </div>
+          <div className="ops-div-grid">
+            {HANDLE_CARDS.map((card) => (
+              <article key={card.code} className="ops-div-card ops-reveal">
+                <div className="ops-div-card__top">
+                  <span className="ops-div-card__code">{card.code}</span>
+                  <span className="ops-div-card__index">{card.num}</span>
+                </div>
+                <h3 className="ops-div-card__name">{card.name}</h3>
+                <div className="ops-div-card__foot">
+                  <span className="ops-div-card__metric">{card.val}</span>
+                  <span className="ops-div-card__tag">{card.tag}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Process */}
-      <section className="ops-process">
-        <div className="container pb-block pt-8 md:pt-10 lg:pt-12">
+      <section className="ops-process ops-section ops-section--white">
+        <div className="container">
           <div className="ops-reveal">
             <SectionHeader eyebrow="How It Works">
-              From kickoff to full
-              <br />
-              operational control.
+              From kickoff to full operational control.
             </SectionHeader>
             <div className="ops-process-header">
               <p className="ops-process-note">
@@ -461,16 +454,14 @@ export default function OperationsPageContent({
       </section>
 
       {/* Capabilities Accordion */}
-      <SectionPad>
+      <SectionPad className="ops-caps ops-section ops-section--warm">
+        <div className="ops-reveal">
+          <SectionHeader eyebrow="Deep Capabilities">
+            Every service. Fully owned by us.
+          </SectionHeader>
+        </div>
         <div className="ops-caps-inner">
           <div className="ops-caps-sticky ops-reveal">
-            <SectionHeader eyebrow="Deep Capabilities">
-              Every service.
-              <br />
-              Fully owned
-              <br />
-              by us.
-            </SectionHeader>
             <p className="ops-caps-body">
               We don&apos;t subcontract. Every service in the Sidago stack is delivered
               by trained, managed, and accountable teams — on your timeline and your
@@ -489,7 +480,7 @@ export default function OperationsPageContent({
       </SectionPad>
 
       {/* Video */}
-      <SectionPad className="bg-[#f0f1f1]">
+      <SectionPad className="ops-video ops-section ops-section--white">
         <div className="ops-reveal">
           <SectionHeader eyebrow="Operations In Motion">
             See structured delivery in practice
@@ -511,13 +502,15 @@ export default function OperationsPageContent({
       </SectionPad>
 
       {/* Global Reach */}
-      <section className="ops-reach">
-        <div className="container py-block">
+      <section className="ops-reach ops-section ops-section--warm">
+        <div className="container">
+          <div className="ops-reveal">
+            <SectionHeader eyebrow="Global Footprint">
+              Operations without borders.
+            </SectionHeader>
+          </div>
           <div className="ops-reach-inner">
             <div className="ops-reach-left ops-reveal">
-              <SectionHeader eyebrow="Global Footprint">
-                Operations without borders.
-              </SectionHeader>
               <p className="ops-reach-body">
                 With talent, infrastructure, and compliance coverage spanning six
                 continents, Sidago lets you operate globally from day one — without
@@ -534,11 +527,11 @@ export default function OperationsPageContent({
                   </div>
                 ))}
               </div>
-              <Link href="/contact" className="ops-reach-cta">
+              <Link href="/contact" className={OPS_BTN_PRIMARY}>
                 Explore Coverage
-                <svg viewBox="0 0 16 16" aria-hidden>
-                  <line x1="2" y1="8" x2="14" y2="8" />
-                  <polyline points="9,3 14,8 9,13" />
+                <svg viewBox="0 0 16 16" aria-hidden className="h-3.5 w-3.5">
+                  <line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <polyline points="9,3 14,8 9,13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </div>
@@ -550,8 +543,8 @@ export default function OperationsPageContent({
       </section>
 
       {/* Verticals */}
-      <section className="ops-verticals">
-        <div className="container py-block">
+      <section className="ops-verticals ops-section ops-section--white">
+        <div className="container">
           <div className="ops-reveal">
             <SectionHeader eyebrow="Who We Serve">
               Built for industries that can&apos;t afford to slow down.
