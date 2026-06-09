@@ -1,10 +1,90 @@
+export const sidagoServiceLinks = {
+  operations: {
+    href: "/operations",
+    label: "Operations",
+    srText: "Operations",
+  },
+  businessProcesses: {
+    href: "/business-processes",
+    label: "Business Processes",
+    srText: "Business Processes",
+  },
+  performance: {
+    href: "/performance",
+    label: "Performance",
+    srText: "Performance",
+  },
+  execution: {
+    href: "/execution",
+    label: "Execution",
+    srText: "Execution",
+  },
+  infrastructure: {
+    href: "/infrastructure",
+    label: "Infrastructure",
+    srText: "Infrastructure",
+  },
+  insights: {
+    href: "/insights",
+    label: "Insights",
+    srText: "Insights",
+  },
+  marketingGrowth: {
+    href: "/marketing-growth",
+    label: "Marketing & Growth",
+    srText: "Marketing and Growth",
+  },
+  researchData: {
+    href: "/research-data",
+    label: "Research & Data",
+    srText: "Research and Data",
+  },
+  supportCompliance: {
+    href: "/support-compliance",
+    label: "Support & Compliance",
+    srText: "Support and Compliance",
+  },
+  processImprovement: {
+    href: "/process-improvement",
+    label: "Process Improvement",
+    srText: "Process Improvement",
+  },
+  globalWorkforce: {
+    href: "/global-workforce-solutions",
+    label: "Global Workforce",
+    srText: "Global Workforce Solutions",
+  },
+  scalableOps: {
+    href: "/scalable-operations-management",
+    label: "Scalable Operations",
+    srText: "Scalable Operations Management",
+  },
+  strategy: {
+    href: "/strategy",
+    label: "Strategy",
+    srText: "Strategy",
+  },
+  services: {
+    href: "/services",
+    label: "Services",
+    srText: "Services",
+  },
+  contact: {
+    href: "/contact",
+    label: "Contact",
+    srText: "Contact",
+  },
+};
+
+const S = sidagoServiceLinks;
+
 export const whoWeServeIntro = {
-  headingId: "offers-for-every-trading-and-liquidity-need",
-  lead: "Offers for",
+  headingId: "offers-for-every-operational-need",
+  lead: "Built for",
   highlight: "every",
-  trailing: "trading and liquidity need",
+  trailing: "organization that needs operational scale",
   description:
-    "Explore the wide range of trading products that match your specific needs",
+    "Explore Sidago services matched to how your teams plan, deliver, and grow",
   watermark: {
     src: "/images/navbar-logo-icon.png",
     alt: "Sidago logo",
@@ -17,129 +97,61 @@ export const audienceSegments = [
   {
     title: "Institutional and retail brokers",
     description:
-      "Boost your brokerage with flexible settlement and financing options for spot and derivatives, while ensuring top-class liquidity for your clients.",
-    links: [
-      { href: "/otc/spot", label: "Spot", srText: "Otc › Spot" },
-      { href: "/otc/cfds", label: "CFDs", srText: "Otc › Cfds" },
-      { href: "/node", label: "Node", srText: "Node" },
-      { href: "/api", label: "API", srText: "Api" },
-    ],
+      "Scale brokerage operations with structured back-office support, reporting, compliance workflows, and dedicated delivery teams.",
+    links: [S.operations, S.businessProcesses, S.performance, S.infrastructure],
   },
   {
     title: "Asset managers",
     description:
-      "Hedge portfolio risks and build bespoke positional exposure with off-the-shelf or tailored solutions for your active or passive fund.",
-    links: [
-      { href: "/otc/spot", label: "Spot", srText: "Otc › Spot" },
-      { href: "/otc/options", label: "Options", srText: "Otc › Options" },
-      {
-        href: "/otc/tailored-products",
-        label: "Tailored products",
-        srText: "Otc › Tailored products",
-      },
-      {
-        href: "/insights/discover?category=market-color",
-        label: "Market color",
-        srText: "Insights › Discover",
-      },
-    ],
+      "Improve portfolio operations with reporting visibility, process control, execution support, and research-backed decision workflows.",
+    links: [S.operations, S.performance, S.execution, S.insights],
   },
   {
     title: "Banks",
     description:
-      "Access low-latency pricing through institutional-grade secure infrastructure, with complete custodian and prime brokerage support.",
-    links: [
-      { href: "/otc/spot", label: "Spot", srText: "Otc › Spot" },
-      { href: "/otc/forwards", label: "NDFs", srText: "Otc › Forwards" },
-      { href: "/api", label: "API", srText: "Api" },
-    ],
+      "Strengthen operational infrastructure, compliance routines, and day-to-day delivery with secure, scalable Sidago support.",
+    links: [S.supportCompliance, S.infrastructure, S.operations, S.businessProcesses],
   },
   {
     title: "Hedge funds",
     description:
-      "Access deep liquidity and low-latency pricing via institutional-grade infrastructure designed for advanced crypto trading strategies.",
-    links: [
-      {
-        href: "/otc/tailored-products",
-        label: "Tailored products",
-        srText: "Otc › Tailored products",
-      },
-      { href: "/otc/forwards", label: "Forwards", srText: "Otc › Forwards" },
-      { href: "/otc/cfds", label: "CFDs", srText: "Otc › Cfds" },
-      { href: "/api", label: "API", srText: "Api" },
-    ],
+      "Run leaner operations with performance tracking, execution support, research workflows, and managed back-office delivery.",
+    links: [S.performance, S.execution, S.researchData, S.operations],
   },
   {
     title: "Venture capital funds",
     description:
-      "Realize your investment value by trading any token in your portfolio, hedge your exposure with a forward trade, or get yield on your holdings.",
-    links: [
-      { href: "/otc/spot", label: "Spot", srText: "Otc › Spot" },
-      { href: "/otc/forwards", label: "Forwards", srText: "Otc › Forwards" },
-      { href: "/otc/options", label: "Options", srText: "Otc › Options" },
-      {
-        href: "/insights/discover?category=market-color",
-        label: "Market color",
-        srText: "Insights › Discover",
-      },
-    ],
+      "Support portfolio companies with execution planning, growth operations, reporting visibility, and structured delivery support.",
+    links: [S.execution, S.performance, S.marketingGrowth, S.insights],
   },
   {
     title: "Family offices",
     description:
-      "Optimize your family office’s crypto exposure through tailored liquidity solutions, secure infrastructure, and personalized service from our OTC desk.",
-    links: [
-      { href: "/otc/forwards", label: "Forwards", srText: "Otc › Forwards" },
-      {
-        href: "/otc/tailored-products",
-        label: "Tailored products",
-        srText: "Otc › Tailored products",
-      },
-      { href: "/otc/options", label: "Options", srText: "Otc › Options" },
-    ],
+      "Manage complex operational workloads with discreet support, compliance routines, reporting, and dedicated Sidago teams.",
+    links: [S.operations, S.supportCompliance, S.businessProcesses, S.performance],
   },
   {
     title: "Crypto projects",
     description:
-      "Optimize token liquidity, secure strategic funding, and increase visibility among institutional market participants.",
-    links: [
-      { href: "/liquidity", label: "Liquidity", srText: "Liquidity" },
-      { href: "/otc/options", label: "Options", srText: "Otc › Options" },
-      { href: "/ventures", label: "Ventures", srText: "Ventures" },
-      { href: "/defi", label: "DeFi", srText: "Defi" },
-    ],
+      "Build operational capacity across growth, delivery, performance reporting, and scalable service execution.",
+    links: [S.marketingGrowth, S.operations, S.performance, S.services],
   },
   {
     title: "HNWIs",
     description:
-      "Execute large, discreet transactions with personalized white-glove service through our OTC desk, tailored to high-net-worth individuals",
-    links: [
-      { href: "/otc/spot", label: "Spot", srText: "Otc › Spot" },
-      { href: "/otc/options", label: "Options", srText: "Otc › Options" },
-      { href: "/otc/forwards", label: "Forwards", srText: "Otc › Forwards" },
-    ],
+      "Access white-glove operational support for documentation, coordination, compliance, and managed business workflows.",
+    links: [S.operations, S.supportCompliance, S.businessProcesses, S.contact],
   },
   {
     title: "Miners",
     description:
-      "Lock in predictable earnings for your mining operation by hedging profits against market volatility with tailored futures and options solutions.",
-    links: [
-      { href: "/otc/spot", label: "Spot", srText: "Otc › Spot" },
-      { href: "/otc/options", label: "Options", srText: "Otc › Options" },
-      { href: "/otc/forwards", label: "Forwards", srText: "Otc › Forwards" },
-    ],
+      "Improve operational efficiency with workflow optimization, performance visibility, infrastructure support, and process control.",
+    links: [S.operations, S.performance, S.processImprovement, S.infrastructure],
   },
   {
     title: "Exchanges and DeFi trading venues",
     description:
-      "Enhance liquidity on your exchange or trading platform, ensuring liquidity across all trading pairs, products, and currencies",
-    links: [
-      {
-        href: "/algorithmic-trading",
-        label: "Algorithmic trading",
-        srText: "Algorithmic trading",
-      },
-      { href: "/defi", label: "DeFi", srText: "Defi" },
-    ],
+      "Strengthen platform operations with infrastructure support, delivery teams, performance reporting, and compliance workflows.",
+    links: [S.infrastructure, S.operations, S.performance, S.supportCompliance],
   },
 ];
