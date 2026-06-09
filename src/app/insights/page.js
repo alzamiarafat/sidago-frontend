@@ -1,10 +1,10 @@
 
-import Image from "next/image";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
+import CoverageMatrixSection from "@/src/components/sections/v2/insights/CoverageMatrixSection";
 import { Discover } from "@/src/components/sections/v2/insights/Discover";
 import { getGlobalSettings, getInsightsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
@@ -273,58 +273,6 @@ function StudioRail({ section }) {
   );
 }
 
-function MatrixSection({ section }) {
-  const items = section?.items?.length > 0 ? section.items : [];
-
-  return (
-    <section className="bg-gray-night-green text-gray-off-white">
-      <div className="container py-block">
-        <div className="mb-3xl flex flex-col gap-xl">
-          <div className="flex max-w-4xl flex-col gap-md">
-            <h2 className="font-blender text-xl uppercase text-green-dark">
-              {section?.title}
-            </h2>
-            <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
-              {section?.subtitle}
-            </p>
-          </div>
-          <hr className="!border-[#AB290E]" />
-        </div>
-
-        <div className="grid gap-lg md:grid-cols-2 xl:grid-cols-3">
-          {items.map((item) => (
-            <article
-              key={item.title}
-              className="group overflow-hidden bevel bg-gray-defi-charcoal transition-colors hover:bg-[#202725]"
-            >
-              <div className="relative aspect-[1.7] overflow-hidden bg-gray-night-green">
-                <Image
-                  src={item.image}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  loading="lazy"
-                  className="object-cover opacity-75 grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:opacity-90 group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-defi-charcoal via-gray-defi-charcoal/20 to-transparent" />
-              </div>
-
-              <div className="p-lg lg:p-xl">
-                <div className="font-blender text-sm uppercase tracking-[0.2em] text-green-dark">
-                  {item.title}
-                </div>
-                <p className="mt-lg text-sm leading-6 text-gray-tradfi-silver">
-                  {item.description}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function TimelineSection({ section }) {
   const items = section?.items?.length > 0 ? section.items : [];
 
@@ -414,7 +362,7 @@ export default async function InsightPage() {
           <Statistics stats={insightsPage.statistics} compact />
           <InsightBenefitsSection section={insightsPage.benefits} />
           <StudioRail section={insightsPage.featuredInsights} />
-          <MatrixSection section={insightsPage.coverageMatrix} />
+          <CoverageMatrixSection section={insightsPage.coverageMatrix} />
           <TimelineSection section={insightsPage.timeline} />
           <Discover section={insightsPage.discover} />
           <CTASection />
