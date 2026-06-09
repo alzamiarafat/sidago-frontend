@@ -342,30 +342,6 @@
   min-height: 52px;
 }
 
-.ops-nstat-static {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-}
-
-.ops-nstat-static-big {
-  font-family: var(--ops-font-display);
-  font-size: clamp(2.5rem, 4vw, 5rem);
-  font-weight: 700;
-  line-height: 1;
-  color: #000;
-  letter-spacing: -0.02em;
-}
-
-.ops-nstat-static-suffix {
-  padding-bottom: 0.12em;
-  font-family: var(--ops-font-display);
-  font-size: clamp(1.5rem, 2.5vw, 2.875rem);
-  font-weight: 700;
-  line-height: 1;
-  color: #000;
-}
-
 .ops-nstat-label {
   margin-top: 4px;
   font-size: 11px;
