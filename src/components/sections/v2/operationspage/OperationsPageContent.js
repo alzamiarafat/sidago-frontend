@@ -1,11 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { defaultOperationsPage } from "@/src/data/cms/defaults.mjs";
 import OpsNumbarStat from "./OpsNumbarStat";
-import OpsReachGlobe from "./OpsReachGlobe";
-import "./operations-page.css";
+
+const OpsReachGlobe = dynamic(() => import("./OpsReachGlobe"), {
+  loading: () => <div className="ops-reach-globe-box" aria-hidden />,
+});
+
+const DEFAULT_VIDEO_IN_MOTION = {
+  videoSrc: "/videos/overview.mp4",
+  posterSrc: "/images/operation-video-placeholder.png",
+  posterAlt:
+    "Smart home and connected operations dashboard on a tablet in a modern living room",
+};
 
 const OPS_CARD_BEVEL = "ops-card-surface bevel overflow-hidden";
 const OPS_BEVEL = "bevel overflow-hidden";
@@ -150,35 +158,33 @@ const ACCORDION = [
   },
 ];
 
-function buildRandomChipColorMap() {
+function hashChipVariant(key) {
+  let hash = 0;
+  for (let i = 0; i < key.length; i += 1) {
+    hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+  }
+  return CHIP_VARIANTS[hash % CHIP_VARIANTS.length];
+}
+
+function buildChipColorMap() {
   const map = {};
-  const pick = () =>
-    CHIP_VARIANTS[Math.floor(Math.random() * CHIP_VARIANTS.length)];
 
   PROCESS.forEach((step) => {
     step.tags.forEach((tag) => {
-      map[`process:${step.step}:${tag}`] = pick();
+      map[`process:${step.step}:${tag}`] = hashChipVariant(`process:${step.step}:${tag}`);
     });
   });
 
   ACCORDION.forEach((item) => {
     item.pills.forEach((pill) => {
-      map[`acc:${item.code}:${pill}`] = pick();
+      map[`acc:${item.code}:${pill}`] = hashChipVariant(`acc:${item.code}:${pill}`);
     });
   });
 
   return map;
 }
 
-function useRandomChipColors() {
-  const [chipColors, setChipColors] = useState({});
-
-  useEffect(() => {
-    setChipColors(buildRandomChipColorMap());
-  }, []);
-
-  return chipColors;
-}
+const CHIP_COLORS = buildChipColorMap();
 
 function OpsChip({ label, variant = CHIP_VARIANTS[0] }) {
   return (
@@ -268,34 +274,6 @@ const REACH_COUNTRIES = [
   { name: "+ 32 More", dot: "accent", more: true },
 ];
 
-function useReveal() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.1 },
-    );
-
-    node.querySelectorAll(".ops-reveal, .ops-nstat").forEach((el) => {
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  return ref;
-}
-
 function SectionHeader({ eyebrow, children, className = "" }) {
   return (
     <div className={`ops-section-header ${className}`.trim()}>
@@ -351,16 +329,14 @@ function AccordionItem({ item, chipColors }) {
 }
 
 export default function OperationsPageContent({
-  videoInMotion = defaultOperationsPage.videoInMotion,
+  videoInMotion = DEFAULT_VIDEO_IN_MOTION,
 }) {
-  const pageRef = useReveal();
-  const chipColors = useRandomChipColors();
-  const { videoSrc, posterSrc, posterAlt } = videoInMotion ?? defaultOperationsPage.videoInMotion;
+  const { videoSrc, posterSrc, posterAlt } = videoInMotion ?? DEFAULT_VIDEO_IN_MOTION;
 
   const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
   return (
-    <div ref={pageRef} className="ops-page">
+    <div className="ops-page">
       {/* Ticker */}
       <div className="ops-ticker ops-section ops-section--cool" aria-hidden>
         <div className="ops-ticker-track">
@@ -398,17 +374,19 @@ export default function OperationsPageContent({
           </div>
           <div className="ops-div-grid">
             {HANDLE_CARDS.map((card) => (
-              <article key={card.code} className="ops-div-card ops-reveal">
-                <div className="ops-div-card__top">
-                  <span className="ops-div-card__code">{card.code}</span>
-                  <span className="ops-div-card__index">{card.num}</span>
-                </div>
-                <h3 className="ops-div-card__name">{card.name}</h3>
-                <div className="ops-div-card__foot">
-                  <span className="ops-div-card__metric">{card.val}</span>
-                  <span className="ops-div-card__tag">{card.tag}</span>
-                </div>
-              </article>
+              <div key={card.code} className="ops-card-shell ops-reveal">
+                <article className="ops-div-card bevel overflow-hidden">
+                  <div className="ops-div-card__top">
+                    <span className="ops-div-card__code bevel bevel-[0.25rem]">{card.code}</span>
+                    <span className="ops-div-card__index">{card.num}</span>
+                  </div>
+                  <h3 className="ops-div-card__name">{card.name}</h3>
+                  <div className="ops-div-card__foot">
+                    <span className="ops-div-card__metric">{card.val}</span>
+                    <span className="ops-div-card__tag">{card.tag}</span>
+                  </div>
+                </article>
+              </div>
             ))}
           </div>
         </div>
@@ -421,12 +399,9 @@ export default function OperationsPageContent({
             <SectionHeader eyebrow="How It Works">
               From kickoff to full operational control.
             </SectionHeader>
-            <div className="ops-process-header">
-              <p className="ops-process-note">
-                A structured methodology refined across 300+ enterprise deployments.
-                Results in 30 days, full integration in 90.
-              </p>
-            </div>
+            <p className="ops-handle-intro">
+              A structured methodology refined across 300+ enterprise deployments. Results in 30 days, full integration in 90.
+            </p>
           </div>
           <div className="ops-psteps">
             {PROCESS.map((step) => (
@@ -443,7 +418,7 @@ export default function OperationsPageContent({
                     <OpsChip
                       key={tag}
                       label={tag}
-                      variant={chipColors[`process:${step.step}:${tag}`]}
+                      variant={CHIP_COLORS[`process:${step.step}:${tag}`]}
                     />
                   ))}
                 </div>
@@ -473,7 +448,7 @@ export default function OperationsPageContent({
           </div>
           <div className="ops-reveal">
             {ACCORDION.map((item) => (
-              <AccordionItem key={item.code} item={item} chipColors={chipColors} />
+              <AccordionItem key={item.code} item={item} chipColors={CHIP_COLORS} />
             ))}
           </div>
         </div>
@@ -490,7 +465,7 @@ export default function OperationsPageContent({
           <div className="ops-video-grid" aria-hidden />
           <video
             playsInline
-            preload="metadata"
+            preload="none"
             poster={posterSrc}
             aria-label={posterAlt}
             className="relative z-[1] aspect-video w-full object-cover"
