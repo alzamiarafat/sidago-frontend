@@ -41,6 +41,27 @@ const stagger = {
 
 const viewportOnce = { once: true, amount: 0.14 };
 
+const featureCardVariants = {
+  rest: {
+    borderColor: "#e8e5e0",
+  },
+  hover: {
+    borderColor: "#ff7a59",
+    transition: { duration: 0.28, ease: "easeOut" },
+  },
+};
+
+const featureBarVariants = {
+  rest: {
+    scaleX: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+  hover: {
+    scaleX: 1,
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+};
+
 const trustChips = [
   "Chicago, USA",
   "Dhaka, Bangladesh",
@@ -127,6 +148,11 @@ const featureHighlights = [
     title: "Use online networks with confidence",
     text:
       "Sidago specifically highlights online networks as a way to make communication easier while keeping information safe and secure.",
+  },
+  {
+    title: "Deliver measurable business outcomes",
+    text:
+      "Every Sidago engagement is tied to real results — reduced costs, faster execution, and compounding value across every service line.",
   },
 ];
 
@@ -538,41 +564,75 @@ function ServicesSection({ reduce }) {
   );
 }
 
+function OptimaTaxLogo() {
+  return (
+    <svg
+      viewBox="0 0 380 180"
+      xmlns="http://www.w3.org/2000/svg"
+      width="320"
+      height="152"
+      aria-hidden
+      className="mx-auto max-w-full"
+    >
+      <defs>
+        <linearGradient id="sales-optima-blue1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#5ab4e8" />
+          <stop offset="100%" stopColor="#1a6ab0" />
+        </linearGradient>
+        <linearGradient id="sales-optima-blue2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#1a3a7a" />
+          <stop offset="100%" stopColor="#0d2050" />
+        </linearGradient>
+        <filter id="sales-optima-ds">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#1a3a7a" floodOpacity="0.2" />
+        </filter>
+      </defs>
+      <path d="M80 110 Q100 60 130 50 Q115 90 120 120 Q100 130 80 110Z" fill="url(#sales-optima-blue1)" opacity="0.45" />
+      <path d="M95 118 Q118 58 148 40 Q136 82 138 118 Q118 130 95 118Z" fill="url(#sales-optima-blue1)" opacity="0.65" />
+      <path d="M112 122 Q140 52 168 32 Q158 76 156 122 Q136 134 112 122Z" fill="url(#sales-optima-blue2)" filter="url(#sales-optima-ds)" />
+      <path d="M72 128 Q130 118 188 128 Q130 142 72 128Z" fill="url(#sales-optima-blue1)" opacity="0.5" />
+      <path d="M80 134 Q130 125 180 134" fill="none" stroke="url(#sales-optima-blue1)" strokeWidth="2.5" opacity="0.6" />
+      <text x="198" y="80" fontFamily="Georgia,serif" fontSize="36" fontWeight="700" fill="#1a2a5a" letterSpacing="-0.5">Optima</text>
+      <text x="198" y="116" fontFamily="Georgia,serif" fontSize="36" fontWeight="700" fill="#1a2a5a" letterSpacing="-0.5">Tax</text>
+      <text x="313" y="86" fontFamily="saans,sans-serif" fontSize="10" fontWeight="500" fill="#666">SM</text>
+      <line x1="198" y1="126" x2="360" y2="126" stroke="#1a2a5a" strokeWidth="1.2" />
+      <text x="198" y="148" fontFamily="saans,sans-serif" fontSize="17" fontWeight="600" fill="#1a2a5a" letterSpacing="7">RELIEF</text>
+    </svg>
+  );
+}
+
 function FeaturesSection({ reduce }) {
   return (
-    <section className="bg-[#f3f0e8] px-5 py-20 text-[#102117] md:px-10 md:py-28">
-      <div className="container grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
+    <section className="bg-[#f3f0e8] px-5 py-20 text-[#11251a] md:px-12 md:py-[5.5rem]">
+      <div className="container grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-16">
         <motion.div
+          className="flex h-full min-h-0 flex-col"
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
           variants={fadeIn}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#4d8665] md:text-sm">
-            Feature highlights
+          <p className="mb-5 flex items-center gap-2.5 font-blender text-[10px] font-semibold uppercase tracking-[0.2em] text-[#4d8665]">
+            <span className="block h-[1.5px] w-5 bg-[#4d8665]" aria-hidden />
+            Feature Highlights
           </p>
-          <h2 className="mt-4 text-3xl font-medium leading-tight tracking-[-0.04em] text-[#11251a] md:text-5xl">
-            The original Sidago sales message translated into a more premium product experience.
+          <h2 className="text-3xl font-medium leading-tight tracking-[-0.04em] text-[#11251a] md:text-5xl">
+            The original Sidago sales message translated into a more premium
+            product experience.
           </h2>
-          <p className="mt-5 text-base leading-8 text-[#55675c] md:text-lg">
+          <p className="mb-10 mt-5 max-w-2xl text-base leading-8 text-[#55675c] md:text-lg">
             Instead of generic marketing copy, this page keeps Sidago&apos;s
             actual commercial themes: teamwork, relationship strength, customer
             satisfaction, communication, and mutually beneficial business outcomes.
           </p>
 
-          <div className="mt-10 overflow-hidden rounded-[2.2rem] bg-[#dce7df] shadow-[0_28px_80px_rgba(17,43,30,0.12)]">
-            <Image
-              src="/images/Telemarketing2.jpg"
-              alt="Sidago sales operations support"
-              width={1200}
-              height={900}
-              className="h-full w-full object-cover"
-            />
+          <div className="relative flex min-h-[11.5rem] flex-1 items-center justify-center overflow-hidden rounded-2xl border border-[#e8e5e0] bg-white px-8 py-10 before:absolute before:inset-y-0 before:left-0 before:w-1 before:rounded-l-2xl before:bg-[#ff7a59]">
+            <OptimaTaxLogo />
           </div>
         </motion.div>
 
         <motion.div
-          className="grid gap-5"
+          className="flex h-full min-h-0 flex-col gap-4 lg:gap-5"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -582,20 +642,27 @@ function FeaturesSection({ reduce }) {
             <motion.article
               key={item.title}
               variants={fadeUp}
-              transition={{ duration: reduce ? 0 : undefined }}
-              className="rounded-[2rem] bg-white p-8 shadow-[0_24px_70px_rgba(16,33,23,0.1)]"
+              transition={{ duration: reduce ? 0 : undefined, delay: reduce ? 0 : 0.08 + index * 0.08 }}
             >
-              <div className="flex items-center gap-4">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#102117] text-sm font-semibold text-white">
-                  0{index + 1}
-                </span>
-                <h3 className="text-2xl font-medium tracking-[-0.03em] text-[#13271c]">
+              <motion.div
+                initial="rest"
+                animate="rest"
+                whileHover={reduce ? undefined : "hover"}
+                variants={featureCardVariants}
+                className="relative flex h-full w-full cursor-default flex-col overflow-hidden rounded-2xl border bg-white px-7 py-7 md:px-8 md:py-8"
+              >
+                <motion.span
+                  aria-hidden
+                  variants={featureBarVariants}
+                  className="pointer-events-none absolute left-0 top-0 h-[3px] w-full origin-left bg-[#ff7a59]"
+                />
+                <h3 className="text-base font-extrabold tracking-[-0.025em] text-[#11251a]">
                   {item.title}
                 </h3>
-              </div>
-              <p className="mt-5 text-base leading-7 text-[#586b5f]">
-                {item.text}
-              </p>
+                <p className="mt-2.5 text-[0.8125rem] leading-[1.72] text-[#55675c]">
+                  {item.text}
+                </p>
+              </motion.div>
             </motion.article>
           ))}
         </motion.div>
