@@ -180,12 +180,62 @@ export default function ReportContentsSection({
   shareUrl: shareUrlProp,
 }) {
   const [shareUrl, setShareUrl] = useState(shareUrlProp || "");
+  const [activeSectionId, setActiveSectionId] = useState(
+    content.tableOfContents?.[0]?.id || "",
+  );
 
   useEffect(() => {
     if (!shareUrlProp && typeof window !== "undefined") {
       setShareUrl(window.location.href);
     }
   }, [shareUrlProp]);
+
+  useEffect(() => {
+    const sectionIds = content.tableOfContents?.map((item) => item.id) || [];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (!elements.length) return;
+
+    const getScrollOffset = () => {
+      const header = document.querySelector("header");
+      const headerHeight = header?.getBoundingClientRect().height ?? 80;
+      return headerHeight + 24;
+    };
+
+    const getDocumentTop = (element) =>
+      element.getBoundingClientRect().top + window.scrollY;
+
+    const updateActiveSection = () => {
+      const probe = window.scrollY + getScrollOffset();
+      let currentId = elements[0].id;
+
+      for (let index = 0; index < elements.length - 1; index += 1) {
+        const sectionStart = getDocumentTop(elements[index]);
+        const nextStart = getDocumentTop(elements[index + 1]);
+        const nextRect = elements[index + 1].getBoundingClientRect();
+        const passedSectionThreshold =
+          probe >= sectionStart + (nextStart - sectionStart) * 0.78;
+        const nextSectionEnteringView = nextRect.top <= window.innerHeight * 0.78;
+
+        if (passedSectionThreshold || nextSectionEnteringView) {
+          currentId = elements[index + 1].id;
+        }
+      }
+
+      setActiveSectionId((prev) => (prev === currentId ? prev : currentId));
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, [content.tableOfContents]);
 
   const encodedShareUrl = encodeURIComponent(shareUrl || "");
   const shareLinks = [
@@ -233,17 +283,26 @@ export default function ReportContentsSection({
             </div>
 
             <nav className="flex flex-col gap-xs" aria-label="Article contents">
-              {tableOfContents.map((item) => (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  style={{ position: "relative" }}
-                  className="block text-black hover:opacity-80"
-                >
-                  <span className="sr-only">{item.srText || item.label}</span>
-                  {item.label}
-                </a>
-              ))}
+              {tableOfContents.map((item) => {
+                const isActive = activeSectionId === item.id;
+
+                return (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    style={{ position: "relative" }}
+                    aria-current={isActive ? "location" : undefined}
+                    className={`block border-l-2 py-1 pl-3 transition-colors duration-300 ${
+                      isActive
+                        ? "border-green-tradfi font-medium text-green-tradfi"
+                        : "border-transparent text-black hover:opacity-80"
+                    }`}
+                  >
+                    <span className="sr-only">{item.srText || item.label}</span>
+                    {item.label}
+                  </a>
+                );
+              })}
             </nav>
 
             <div className="mt-2xl flex gap-lg">
