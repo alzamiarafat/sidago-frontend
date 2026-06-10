@@ -4,9 +4,9 @@ import { Suspense, useId, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const TOPIC_OPTIONS = [
-  "OTC trading",
-  "Liquidity provision",
-  "Ventures",
+  "Digital Support Services",
+  "Global Workforce Solutions",
+  "Scalable Operations",
   "Recruitment",
   "Events",
   "Media",

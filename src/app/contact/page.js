@@ -2,6 +2,7 @@ import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import ContactUs from "@/src/components/sections/v2/contactpage/ContactUs";
+import DigitalSupportInquirySection from "@/src/components/sections/v2/contactpage/DigitalSupportInquirySection";
 import ContactPremiumHero from "@/src/components/sections/v2/contactpage/ContactPremiumHero";
 import ContactLeadForm from "@/src/components/sections/v2/contactpage/ContactLeadForm";
 import ContactOfficesMap from "@/src/components/sections/v2/contactpage/ContactOfficesMap";
@@ -40,6 +41,7 @@ export default function ContactPage() {
             {/* <ContactLeadForm /> */}
             {/* <ContactOfficesMap /> */}
             <ContactUs />
+            <DigitalSupportInquirySection />
             <CTASection items={contactPageCta} />
             <Footer />
           </div>

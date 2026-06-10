@@ -2,23 +2,23 @@ import Image from "next/image";
 
 const CONTACT_TOPICS = [
   {
-    label: "OTC trading",
-    href: "/contact",
-    srLabel: "Contact › Otc",
+    label: "Digital Support Services",
+    href: "/contact#digital-support-inquiry",
+    srLabel: "Contact › Digital Support Services",
     cardClassName: "bg-gray-tradfi-silver text-gray-night-green",
     spanClassName: "col-span-4 xl:col-span-3",
   },
   {
-    label: "Liquidity provision",
+    label: "Global Workforce Solutions",
     href: "/contact",
-    srLabel: "Contact › Liquidity",
+    srLabel: "Contact › Global Workforce Solutions",
     cardClassName: "bg-gray-night-green text-gray-off-white",
     spanClassName: "col-span-4 xl:col-span-3",
   },
   {
-    label: "Ventures",
+    label: "Scalable Operations",
     href: "/contact",
-    srLabel: "Contact › Ventures",
+    srLabel: "Contact › Scalable Operations",
     cardClassName: "bg-blue-dark text-gray-night-green",
     spanClassName: "col-span-4 xl:col-span-3",
   },
@@ -60,6 +60,9 @@ const CONTACT_TOPICS = [
 ];
 
 function topicHref(topic) {
+  if (topic.href.includes("#")) {
+    return topic.href;
+  }
   const q = new URLSearchParams({ topic: topic.label });
   return `${topic.href}?${q.toString()}#contact-form`;
 }
@@ -134,7 +137,7 @@ export default function ContactUs() {
                 unoptimized
                 sizes="(max-width: 1024px) 3rem, 9.5rem"
                 className="h-full w-full object-cover object-center"
-                src="/images/contact-graphic.svg"
+                src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/26202946/Contact-graphic.svg"
               />
             </div>
           </div>

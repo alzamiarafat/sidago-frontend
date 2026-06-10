@@ -46,17 +46,15 @@ export default function InsightNews({
 
               <div className="flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
                 <div className="flex flex-1 items-center justify-between gap-xs">
-                  {/* Title */}
-                  <div className="text-xl lg:text-lg group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
+                  <div className="min-w-0 flex-1 pr-xs text-xl leading-snug lg:text-lg group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
                     {item.title}
                   </div>
 
-                  {/* Mobile Arrow */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 40 40"
-                    className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] shrink-0 lg:hidden text-green-dark"
+                    className="ml-[--arrow-offset] shrink-0 transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] lg:hidden text-green-dark"
                     style={{
                       "--arrow-offset": "1rem",
                       width: "2.5rem",
@@ -70,12 +68,11 @@ export default function InsightNews({
                     ></path>
                   </svg>
 
-                  {/* Desktop Arrow */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 40 40"
-                    className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] hidden shrink-0 lg:inline text-green-dark"
+                    className="ml-[--arrow-offset] hidden shrink-0 transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] lg:inline text-green-dark"
                     style={{
                       "--arrow-offset": "0.6rem",
                       width: "1.5rem",
