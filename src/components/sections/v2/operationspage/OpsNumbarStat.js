@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { DotMatrixText } from "@/src/components/sections/v2/common/DotMatrixText";
 
-const DOT_IDLE = "#000000";
-const BRAND_GREEN = "#168B50";
+const DOT_IDLE = "#5A615E";
+const OPS_GREEN = "#168B50";
 
 export default function OpsNumbarStat({ item }) {
   const [hovered, setHovered] = useState(false);
+  const activeDotColor = item.activeDotColor ?? OPS_GREEN;
 
   return (
     <div
@@ -22,9 +23,9 @@ export default function OpsNumbarStat({ item }) {
           dotSize={1}
           dotSpacing={2}
           dotColor={DOT_IDLE}
-          activeDotColor={BRAND_GREEN}
-          fontSizeMobile={56}
-          fontSizeDesktop={80}
+          activeDotColor={activeDotColor}
+          fontSizeMobile={48}
+          fontSizeDesktop={64}
         />
         <DotMatrixText
           text={item.suffix}
@@ -32,13 +33,15 @@ export default function OpsNumbarStat({ item }) {
           dotSize={1}
           dotSpacing={2}
           dotColor={DOT_IDLE}
-          activeDotColor={BRAND_GREEN}
+          activeDotColor={activeDotColor}
           fontSizeMobile={32}
-          fontSizeDesktop={46}
+          fontSizeDesktop={44}
         />
       </div>
-      <div className="ops-nstat-label">{item.label}</div>
-      <div className="ops-nstat-sub">{item.sub}</div>
+      <div className="ops-nstat-label font-blender text-base uppercase tracking-wide text-gray-off-white lg:text-lg">
+        {item.label}
+      </div>
+      <div className="ops-nstat-sub text-base text-gray-off-white/70">{item.sub}</div>
     </div>
   );
 }

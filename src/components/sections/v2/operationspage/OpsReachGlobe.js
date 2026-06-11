@@ -7,7 +7,7 @@ const CONNECTOR_LINES = [
   { x: 440, y: 30, color: "rgba(43, 111, 207, 0.2)" },
   { x: 455, y: 340, color: "rgba(45, 158, 82, 0.2)" },
   { x: 60, y: 340, color: "rgba(127, 90, 240, 0.2)" },
-  { x: 480, y: 187, color: "rgba(0, 0, 0, 0.1)" },
+  { x: 480, y: 187, color: "rgba(255, 255, 255, 0.12)" },
 ];
 
 const REGION_TAGS = [
@@ -15,7 +15,7 @@ const REGION_TAGS = [
   { label: "Europe", dot: "#2b6fcf", className: "ops-reach-rtag--2" },
   { label: "SE Asia", dot: "#2d9e52", className: "ops-reach-rtag--3" },
   { label: "Middle East", dot: "#7f5af0", className: "ops-reach-rtag--4" },
-  { label: "Americas", dot: "#0c0c0b", className: "ops-reach-rtag--5" },
+  { label: "Americas", dot: "#f4f6f5", className: "ops-reach-rtag--5" },
 ];
 
 function NodeAnchor({ style, children }) {

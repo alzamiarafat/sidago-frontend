@@ -2,6 +2,7 @@ import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
+import InsightNews from "@/src/components/sections/v2/homepage/InsightNews";
 import OperationsPageContent from "@/src/components/sections/v2/operationspage/OperationsPageContent";
 import "@/src/components/sections/v2/operationspage/operations-page.css";
 import { getGlobalSettings, getOperationsPage } from "@/src/lib/api";
@@ -33,21 +34,34 @@ export default async function OperationsPage() {
     ...operationsPage.hero,
     titles: heroTitles,
     videoClass: `${operationsPage.hero?.videoClass} operations-hero-video`,
+    lighterTheme: false,
+    videoOverlay: true,
+    fontWeight: 400,
+    videoSectionClass: "bg-gray-night-green text-gray-off-white",
+    backgroundClassName: "bg-gray-night-green",
+    lighterBgColor: "bg-gray-night-green",
   };
 
   return (
-    <div className="flex min-h-svh flex-col text-base">
+    <div className="flex min-h-svh flex-col bg-gray-night-green text-base">
       <Navigation />
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] flex-1 bg-white text-black"
-          style={{ colorScheme: "light" }}
+          className="relative isolate flex-1 overflow-x-hidden bg-gray-night-green text-gray-off-white [&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark"
+          style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...hero} />
-          <OperationsPageContent videoInMotion={operationsPage.videoInMotion} />
-          <CTASection />
-          <Footer footer={settings?.footer} />
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_-5%,rgba(22,139,80,0.1),transparent_56%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_18%,transparent_82%,rgba(255,255,255,0.02))]"
+            aria-hidden
+          />
+          <div className="relative z-[1]">
+            <HeroBannerSection {...hero} />
+            <InsightNews items={operationsPage.insightNews} />
+            <OperationsPageContent videoInMotion={operationsPage.videoInMotion} />
+            <CTASection />
+            <Footer footer={settings?.footer} />
+          </div>
         </main>
       </div>
     </div>

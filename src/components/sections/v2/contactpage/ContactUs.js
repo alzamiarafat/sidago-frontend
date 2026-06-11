@@ -119,7 +119,7 @@ export default function ContactUs() {
   return (
     <section
       id="contact-topics"
-      className="bg-[linear-gradient(180deg,#1a211e_0%,#111715_100%)] py-block"
+      className="bg-gray-night-green py-block"
       aria-labelledby="contact-topics-heading"
     >
       <div className="container">

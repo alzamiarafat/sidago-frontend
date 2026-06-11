@@ -803,13 +803,13 @@ export const defaultBusinessProcessesPage = {
 export const defaultOperationsPage = {
   hero: {
     useVideo: true,
-    lighterTheme: true,
+    lighterTheme: false,
     videoSrc: "https://www.wintermute.com/videos/heroes/spot.mp4",
     imageSrc: null,
     titles: [
       {
         title: "Operations built for",
-        color: "#1F8F4E",
+        color: "#168b50",
         className: null,
         sortOrder: 1,
       },
@@ -822,11 +822,13 @@ export const defaultOperationsPage = {
     ],
     subtitle:
       "Scale daily workflows with dedicated Sidago teams, structured processes, and clear performance visibility.",
-    videoSectionClass: "bg-[#f0f1f1] text-gray-night-green",
+    videoSectionClass: "bg-gray-night-green text-gray-off-white",
     videoClass: "left-[500px] !w-3/4",
     fontWeight: 400,
     loop: true,
-    lighterBgColor: "bg-[#f0f1f1]",
+    videoOverlay: true,
+    backgroundClassName: "bg-gray-night-green",
+    lighterBgColor: "bg-gray-night-green",
   },
   videoInMotion: {
     videoSrc: "/videos/overview.mp4",

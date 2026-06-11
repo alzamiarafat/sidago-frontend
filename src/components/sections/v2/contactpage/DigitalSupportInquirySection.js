@@ -91,7 +91,7 @@ export default function DigitalSupportInquirySection() {
   return (
     <section
       id="digital-support-inquiry"
-      className="dss-inquiry bg-[#111715] py-block text-gray-off-white"
+      className="dss-inquiry bg-gray-night-green py-block text-gray-off-white"
       aria-labelledby={`${formId}-title`}
     >
       <div className="container">

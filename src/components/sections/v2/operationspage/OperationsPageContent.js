@@ -27,7 +27,7 @@ const CHIP_VARIANTS = [
 ];
 
 const OPS_BTN_PRIMARY =
-  "group/interactive inline-flex items-center justify-center gap-md bevel bevel-[0.25rem] bg-[#168B50] px-sm py-xs text-sm font-medium text-white transition-opacity hover:opacity-90";
+  "group/interactive inline-flex items-center justify-center gap-md bevel bevel-[0.25rem] bg-green-tradfi px-sm py-xs text-sm font-medium text-gray-night-green transition-opacity hover:opacity-90";
 
 const OPS_BTN_SECONDARY = OPS_BTN_PRIMARY;
 
@@ -276,12 +276,14 @@ const REACH_COUNTRIES = [
 
 function SectionHeader({ eyebrow, children, className = "" }) {
   return (
-    <div className={`ops-section-header ${className}`.trim()}>
-      <div className="ops-section-header__copy">
-        <h2 className="ops-section-header__title">{eyebrow}</h2>
-        <p className="ops-section-header__subtitle">{children}</p>
+    <div className={`mb-3xl flex flex-col gap-xl ${className}`.trim()}>
+      <div className="flex flex-col gap-xs">
+        <h2 className="font-blender text-xl uppercase text-green-dark">{eyebrow}</h2>
+        {children ? (
+          <p className="text-2xl text-gray-off-white lg:text-3xl">{children}</p>
+        ) : null}
       </div>
-      <hr className="ops-section-header__rule" />
+      <hr className="!border-[#AB290D]" />
     </div>
   );
 }
@@ -336,9 +338,9 @@ export default function OperationsPageContent({
   const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
   return (
-    <div className="ops-page">
+    <div className="ops-page text-base text-gray-off-white">
       {/* Ticker */}
-      <div className="ops-ticker ops-section ops-section--cool" aria-hidden>
+      <div className="ops-ticker ops-section bg-gray-defi-shadow" aria-hidden>
         <div className="ops-ticker-track">
           {tickerLoop.map((item, i) => (
             <span key={`${item}-${i}`} className="ops-ticker-item">
@@ -350,9 +352,9 @@ export default function OperationsPageContent({
       </div>
 
       {/* Key Numbers */}
-      <section className="ops-numbar-wrap ops-section ops-section--white">
+      <section className="ops-numbar-wrap ops-section bg-gray-night-green">
         <div className="container">
-          <div className={`ops-numbar ${OPS_BEVEL}`}>
+          <div className={`ops-numbar border border-gray-defi-graphite ${OPS_BEVEL}`}>
             {NUMBAR.map((item) => (
               <OpsNumbarStat key={item.label} item={item} />
             ))}
@@ -361,7 +363,7 @@ export default function OperationsPageContent({
       </section>
 
       {/* What We Handle */}
-      <section className="ops-handle ops-section ops-section--warm">
+      <section className="ops-handle ops-section bg-gray-defi-shadow">
         <div className="container">
           <div className="ops-reveal">
             <SectionHeader eyebrow="What We Handle">
@@ -375,7 +377,7 @@ export default function OperationsPageContent({
           <div className="ops-div-grid">
             {HANDLE_CARDS.map((card) => (
               <div key={card.code} className="ops-card-shell ops-reveal">
-                <article className="ops-div-card bevel overflow-hidden">
+                <article className="ops-div-card bg-gray-defi-charcoal bevel overflow-hidden">
                   <div className="ops-div-card__top">
                     <span className="ops-div-card__code bevel bevel-[0.25rem]">{card.code}</span>
                     <span className="ops-div-card__index">{card.num}</span>
@@ -393,7 +395,7 @@ export default function OperationsPageContent({
       </section>
 
       {/* Process */}
-      <section className="ops-process ops-section ops-section--white">
+      <section className="ops-process ops-section bg-gray-night-green">
         <div className="container">
           <div className="ops-reveal">
             <SectionHeader eyebrow="How It Works">
@@ -429,7 +431,7 @@ export default function OperationsPageContent({
       </section>
 
       {/* Capabilities Accordion */}
-      <SectionPad className="ops-caps ops-section ops-section--warm">
+      <SectionPad className="ops-caps ops-section bg-gray-defi-shadow">
         <div className="ops-reveal">
           <SectionHeader eyebrow="Deep Capabilities">
             Every service. Fully owned by us.
@@ -455,7 +457,7 @@ export default function OperationsPageContent({
       </SectionPad>
 
       {/* Video */}
-      <SectionPad className="ops-video ops-section ops-section--white">
+      <SectionPad className="ops-video ops-section bg-gray-night-green">
         <div className="ops-reveal">
           <SectionHeader eyebrow="Operations In Motion">
             See structured delivery in practice
@@ -477,7 +479,7 @@ export default function OperationsPageContent({
       </SectionPad>
 
       {/* Global Reach */}
-      <section className="ops-reach ops-section ops-section--warm">
+      <section className="ops-reach ops-section bg-gray-defi-shadow">
         <div className="container">
           <div className="ops-reveal">
             <SectionHeader eyebrow="Global Footprint">
@@ -518,7 +520,7 @@ export default function OperationsPageContent({
       </section>
 
       {/* Verticals */}
-      <section className="ops-verticals ops-section ops-section--white">
+      <section className="ops-verticals ops-section bg-gray-night-green">
         <div className="container">
           <div className="ops-reveal">
             <SectionHeader eyebrow="Who We Serve">
@@ -528,7 +530,7 @@ export default function OperationsPageContent({
           <div className="ops-vert-grid">
             {VERTICALS.map((v) => (
               <div key={v.name} className="ops-card-shell ops-reveal">
-                <div className={`${OPS_CARD_BEVEL} ops-vcard`}>
+                <div className={`${OPS_CARD_BEVEL} ops-vcard bg-gray-defi-graphite`}>
                   <div className="ops-vcard-icon">
                     <svg viewBox="0 0 24 24">{v.icon}</svg>
                   </div>
