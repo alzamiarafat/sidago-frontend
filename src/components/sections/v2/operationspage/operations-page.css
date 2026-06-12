@@ -228,71 +228,6 @@
   transition: background 0.3s;
 }
 
-/* ── Numbar ── */
-.ops-numbar-wrap {
-  padding: 0;
-}
-
-.ops-numbar {
-  --bevel-size: 0.625rem;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background: rgb(28 33 30);
-}
-
-.ops-nstat {
-  position: relative;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  gap: 8px;
-  padding: 1.5rem 1.25rem;
-  border-right: 1px solid var(--ops-line);
-}
-
-.ops-nstat:last-child {
-  border-right: none;
-}
-
-.ops-nstat::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--ops-or) 0%, transparent 100%);
-  opacity: 0.35;
-  transform: scaleX(1);
-  transform-origin: left;
-  transition: opacity 0.25s ease;
-}
-
-.ops-nstat:hover::after {
-  opacity: 1;
-}
-
-.ops-nstat:hover .ops-nstat-label {
-  color: var(--ops-or);
-}
-
-.ops-nstat-matrix {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  min-height: 52px;
-}
-
-.ops-nstat-label {
-  min-height: 2.75em;
-  line-height: 1.25;
-}
-
-.ops-nstat-sub {
-  min-height: 4.2em;
-  line-height: 1.4;
-}
-
 .ops-psteps {
   position: relative;
   display: grid;
@@ -1198,14 +1133,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .ops-numbar {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .ops-nstat:nth-child(2) {
-    border-right: none;
-  }
-
   .ops-psteps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2.5rem;
@@ -1234,15 +1161,6 @@
   .ops-div-grid,
   .ops-vert-grid {
     grid-template-columns: 1fr;
-  }
-
-  .ops-numbar {
-    grid-template-columns: 1fr;
-  }
-
-  .ops-nstat {
-    border-right: none;
-    border-bottom: 1px solid var(--ops-line);
   }
 
   .ops-psteps {

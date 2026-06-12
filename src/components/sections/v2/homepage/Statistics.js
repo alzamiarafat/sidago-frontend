@@ -25,9 +25,12 @@ export default function Statistics({
     ? "text-[0.72rem] leading-snug tracking-wide lg:text-[0.78rem]"
     : "text-sm leading-snug tracking-wide text-xl lg:text-base";
   const isStartAlign = align === "start";
+  const hasSubCopy = stats?.some((s) => s.sub);
   const itemAlignClass = isStartAlign
     ? "items-start text-left"
     : "items-center text-center";
+  const suffixFontSizeMobile = Math.round(matrixFontSizeMobile * 0.67);
+  const suffixFontSizeDesktop = Math.round(matrixFontSizeDesktop * 0.69);
 
   return (
     <section className={`${bgColor} text-green-500`} style={{ width: "full" }}>
@@ -64,7 +67,9 @@ export default function Statistics({
             onMouseLeave={() => setActive(-1)}
           >
             <div
-              className={`flex w-full ${isStartAlign ? "justify-start" : "justify-center"}`}
+              className={`flex w-full items-end gap-0.5 ${
+                isStartAlign ? "justify-start" : "justify-center"
+              }`}
             >
               <DotMatrixText
                 text={s.stat}
@@ -76,11 +81,25 @@ export default function Statistics({
                 fontSizeMobile={matrixFontSizeMobile}
                 fontSizeDesktop={matrixFontSizeDesktop}
               />
+              {s.statSuffix ? (
+                <DotMatrixText
+                  text={s.statSuffix}
+                  active={active === i}
+                  dotSize={1}
+                  dotSpacing={2}
+                  dotColor={dotColor}
+                  activeDotColor={s.activeDotColor}
+                  fontSizeMobile={suffixFontSizeMobile}
+                  fontSizeDesktop={suffixFontSizeDesktop}
+                />
+              ) : null}
             </div>
             <div
               className={`mt-4 max-w-full uppercase transition-all duration-1000 ${
                 labelClassName ?? defaultLabelClass
-              } ${!lighterTheme ? "text-white" : "text-black"}`}
+              } ${!lighterTheme ? "text-white" : "text-black"} ${
+                hasSubCopy ? "min-h-[2.75em] leading-tight" : ""
+              }`}
               style={{
                 color: active === i ? "var(--active-color)" : undefined,
               }}
@@ -89,15 +108,28 @@ export default function Statistics({
                 labelLines.map((line, lineIndex) => (
                   <span
                     key={lineIndex}
-                    className={`block ${isStartAlign ? "whitespace-nowrap" : ""}`}
+                    className={`block ${isStartAlign || hasSubCopy ? "" : "whitespace-nowrap"}`}
                   >
                     {line}
                   </span>
                 ))
               ) : (
-                <span className="block whitespace-nowrap">{labelLines[0]}</span>
+                <span
+                  className={`block ${isStartAlign || hasSubCopy ? "" : "whitespace-nowrap"}`}
+                >
+                  {labelLines[0]}
+                </span>
               )}
             </div>
+            {s.sub ? (
+              <p
+                className={`mt-3 max-w-full text-base normal-case leading-snug ${
+                  !lighterTheme ? "text-white/70" : "text-black/70"
+                } ${hasSubCopy ? "min-h-[4.2em]" : ""}`}
+              >
+                {s.sub}
+              </p>
+            ) : null}
           </div>
           );
         })}

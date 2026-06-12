@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import OpsNumbarStat from "./OpsNumbarStat";
+import Statistics from "../homepage/Statistics";
 import OpsVerticalFlipCard from "./OpsVerticalFlipCard";
 
 const OpsReachGlobe = dynamic(() => import("./OpsReachGlobe"), {
@@ -17,8 +17,6 @@ const DEFAULT_VIDEO_IN_MOTION = {
 };
 
 const OPS_CARD_BEVEL = "ops-card-surface bevel overflow-hidden";
-const OPS_BEVEL = "bevel overflow-hidden";
-
 const CHIP_VARIANTS = [
   "ops-ptag--green",
   "ops-ptag--orange",
@@ -54,36 +52,46 @@ const HANDLE_CARDS = [
   { code: "BPO", num: "06 / 06", name: "BPO Support", val: "24/7", tag: "Always On" },
 ];
 
-const NUMBAR = [
+const OPS_STATISTICS = [
   {
-    big: "75",
-    suffix: "%",
+    stat: "75",
+    statSuffix: "%",
     label: "Cost Savings",
     sub: "Average reduction in operational overhead across all clients",
+    activeDotColor: "#168B50",
+    sortOrder: 1,
   },
   {
-    big: "81",
-    suffix: "%",
+    stat: "81",
+    statSuffix: "%",
     label: "Output Increase",
     sub: "Measured improvement in team output within 90 days",
+    activeDotColor: "#168B50",
+    sortOrder: 2,
   },
   {
-    big: "87",
-    suffix: "%",
+    stat: "87",
+    statSuffix: "%",
     label: "Operational Efficiency",
     sub: "Process efficiency score vs industry benchmark of 52%",
+    activeDotColor: "#168B50",
+    sortOrder: 3,
   },
   {
-    big: "92",
-    suffix: "%",
+    stat: "92",
+    statSuffix: "%",
     label: "Client Retention",
     sub: "Of clients renew after their first full engagement year",
+    activeDotColor: "#168B50",
+    sortOrder: 4,
   },
   {
-    big: "88",
-    suffix: "%",
+    stat: "88",
+    statSuffix: "%",
     label: "Service Reliability",
     sub: "SLA-backed uptime across all service verticals",
+    activeDotColor: "#168B50",
+    sortOrder: 5,
   },
 ];
 
@@ -369,15 +377,16 @@ export default function OperationsPageContent({
       </div>
 
       {/* Key Numbers */}
-      <section className="ops-numbar-wrap ops-section bg-gray-night-green">
-        <div className="container">
-          <div className={`ops-numbar border border-gray-defi-graphite ${OPS_BEVEL}`}>
-            {NUMBAR.map((item) => (
-              <OpsNumbarStat key={item.label} item={item} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <Statistics
+        stats={OPS_STATISTICS}
+        bgColor="bg-gray-defi-shadow"
+        compact
+        align="start"
+        dotColor="#5A615E"
+        fontSizeMobile={48}
+        fontSizeDesktop={64}
+        labelClassName="font-blender text-base uppercase tracking-wide lg:text-lg"
+      />
 
       {/* What We Handle */}
       <section className="ops-handle ops-section bg-gray-defi-shadow">
