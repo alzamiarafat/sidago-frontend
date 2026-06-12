@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import LinkTitleWithArrow from "@/src/components/sections/v2/common/LinkTitleWithArrow";
 
 function isInternalHref(href) {
   return href?.startsWith("/") && !href.startsWith("//");
@@ -21,7 +22,8 @@ export default function InsightNews({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col lg:flex-row lg:container">
+      <div className="container relative z-10 w-full">
+        <div className="flex w-full flex-col lg:flex-row">
         {items?.map((item, index) => {
           const internal = isInternalHref(item.href);
           const LinkTag = internal ? Link : "a";
@@ -40,52 +42,22 @@ export default function InsightNews({
             <LinkTag
               {...linkProps}
               style={{ position: "relative" }}
-              className="group/interactive flex-1"
+              className="group/interactive flex min-w-0 flex-1 basis-0"
             >
               <span className="sr-only">{item.srText}</span>
 
-              <div className="flex h-full flex-col gap-sm py-md lg:px-md lg:py-xl">
-                <div className="flex flex-1 items-center justify-between gap-xs">
-                  <div className="min-w-0 flex-1 pr-xs text-xl leading-snug lg:text-lg group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
-                    {item.title}
-                  </div>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 40 40"
-                    className="ml-[--arrow-offset] shrink-0 transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] lg:hidden text-green-dark"
-                    style={{
-                      "--arrow-offset": "1rem",
-                      width: "2.5rem",
-                    }}
-                  >
-                    <path
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 40 40"
-                    className="ml-[--arrow-offset] hidden shrink-0 transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] lg:inline text-green-dark"
-                    style={{
-                      "--arrow-offset": "0.6rem",
-                      width: "1.5rem",
-                    }}
-                  >
-                    <path
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
+              <div className="flex h-full w-full items-center px-md py-md lg:px-md lg:py-xl">
+                <LinkTitleWithArrow
+                  title={item.title}
+                  textClassName="text-xl font-medium leading-snug lg:text-lg group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100"
+                  arrowClassName="text-green-dark"
+                  alignClassName="w-full justify-between"
+                  textWrapperClassName={
+                    index === 2
+                      ? "max-w-[10.75rem] sm:max-w-[11.5rem] lg:max-w-[12rem]"
+                      : ""
+                  }
+                />
               </div>
             </LinkTag>
 
@@ -96,6 +68,7 @@ export default function InsightNews({
           </React.Fragment>
           );
         })}
+        </div>
       </div>
     </section>
   );

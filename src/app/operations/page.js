@@ -2,7 +2,6 @@ import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
-import InsightNews from "@/src/components/sections/v2/homepage/InsightNews";
 import OperationsPageContent from "@/src/components/sections/v2/operationspage/OperationsPageContent";
 import "@/src/components/sections/v2/operationspage/operations-page.css";
 import { getGlobalSettings, getOperationsPage } from "@/src/lib/api";
@@ -32,6 +31,8 @@ export default async function OperationsPage() {
   );
   const hero = {
     ...operationsPage.hero,
+    videoSrc:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200719/Accordion-OTC.mp4#t=2",
     titles: heroTitles,
     videoClass: `${operationsPage.hero?.videoClass} operations-hero-video`,
     lighterTheme: false,
@@ -57,7 +58,6 @@ export default async function OperationsPage() {
           />
           <div className="relative z-[1]">
             <HeroBannerSection {...hero} />
-            <InsightNews items={operationsPage.insightNews} />
             <OperationsPageContent videoInMotion={operationsPage.videoInMotion} />
             <CTASection />
             <Footer footer={settings?.footer} />

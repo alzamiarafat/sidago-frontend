@@ -5,6 +5,17 @@ import { useState } from "react";
 
 const DEFAULT_END_BACKGROUND = "/images/hero-video-end-background.png";
 
+function parseVideoStartTime(src) {
+  if (!src) return 0;
+  const match = src.match(/#t=([0-9.]+)/);
+  return match ? Number.parseFloat(match[1]) : 0;
+}
+
+function stripVideoTimeHash(src) {
+  if (!src) return src;
+  return src.split("#")[0];
+}
+
 export default function HeroVideoBackground({
   videoSrc,
   videoPoster = "",
@@ -16,8 +27,24 @@ export default function HeroVideoBackground({
 }) {
   const overlayEnabled = showOverlay ?? true;
   const [videoEnded, setVideoEnded] = useState(false);
+  const startTime = parseVideoStartTime(videoSrc);
+  const resolvedVideoSrc = stripVideoTimeHash(videoSrc);
 
   const showEndBackground = videoEnded && Boolean(endBackgroundSrc?.trim());
+
+  const handleLoadedMetadata = (event) => {
+    if (startTime <= 0) return;
+    event.currentTarget.currentTime = startTime;
+  };
+
+  const handleTimeUpdate = (event) => {
+    if (!loop || startTime <= 0) return;
+    const video = event.currentTarget;
+    if (!video.duration) return;
+    if (video.currentTime >= video.duration - 0.08) {
+      video.currentTime = startTime;
+    }
+  };
 
   return (
     <div
@@ -47,8 +74,10 @@ export default function HeroVideoBackground({
             setVideoEnded(true);
           }
         }}
+        onLoadedMetadata={handleLoadedMetadata}
+        onTimeUpdate={handleTimeUpdate}
         {...(videoPoster?.trim() ? { poster: videoPoster.trim() } : {})}
-        src={videoSrc}
+        src={resolvedVideoSrc}
       />
     </div>
   );

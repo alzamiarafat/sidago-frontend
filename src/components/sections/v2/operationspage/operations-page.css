@@ -243,8 +243,9 @@
 .ops-nstat {
   position: relative;
   display: flex;
+  height: 100%;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   padding: 1.5rem 1.25rem;
   border-right: 1px solid var(--ops-line);
 }
@@ -283,11 +284,13 @@
 }
 
 .ops-nstat-label {
-  margin-top: 4px;
+  min-height: 2.75em;
+  line-height: 1.25;
 }
 
 .ops-nstat-sub {
-  margin-top: 8px;
+  min-height: 4.2em;
+  line-height: 1.4;
 }
 
 .ops-psteps {
@@ -412,46 +415,46 @@
 .ops-ptag:focus-visible {
   border-color: var(--ptag-accent);
   background: var(--ptag-accent);
-  color: #fff;
+  color: #fafafa;
   outline: none;
   transform: translateY(-1px);
   box-shadow: 0 4px 14px color-mix(in srgb, var(--ptag-accent) 35%, transparent);
 }
 
+/* Tertiary palette — Armitage blue, Case orange, Molly purple, Neuromancer pink */
 .ops-ptag--green {
-  --ptag-accent: #168b50;
-  --ptag-bg: rgba(22, 139, 80, 0.1);
-  --ptag-border: rgba(22, 139, 80, 0.28);
+  --ptag-accent: #00d64a;
+  --ptag-bg: #00d64a;
+  --ptag-border: #00d64a;
+  color: #070b09;
 }
 
 .ops-ptag--orange {
-  --ptag-accent: #e7512f;
-  --ptag-bg: rgba(231, 81, 47, 0.1);
-  --ptag-border: rgba(231, 81, 47, 0.28);
+  --ptag-accent: #ec5b5b;
+  --ptag-bg: #ef7b7b;
+  --ptag-border: #ec5b5b;
+  color: #070b09;
 }
 
 .ops-ptag--blue {
-  --ptag-accent: #3c85dd;
-  --ptag-bg: rgba(60, 133, 221, 0.1);
-  --ptag-border: rgba(60, 133, 221, 0.28);
+  --ptag-accent: #2471cc;
+  --ptag-bg: #3c85dd;
+  --ptag-border: #2471cc;
+  color: #070b09;
 }
 
 .ops-ptag--violet {
-  --ptag-accent: #958dec;
-  --ptag-bg: rgba(149, 141, 236, 0.12);
-  --ptag-border: rgba(149, 141, 236, 0.32);
+  --ptag-accent: #746be6;
+  --ptag-bg: #958dec;
+  --ptag-border: #746be6;
+  color: #070b09;
 }
 
 .ops-ptag--pink {
-  --ptag-accent: #f075e4;
-  --ptag-bg: rgba(240, 117, 228, 0.12);
-  --ptag-border: rgba(240, 117, 228, 0.32);
-  color: #f4c8ef;
-}
-
-.ops-ptag--pink:hover,
-.ops-ptag--pink:focus-visible {
-  color: #fff;
+  --ptag-accent: #db33cb;
+  --ptag-bg: #f075e4;
+  --ptag-border: #db33cb;
+  color: #070b09;
 }
 
 /* ── Accordion ── */
@@ -1053,13 +1056,35 @@
 /* ── Verticals ── */
 .ops-vert-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 12.5rem;
   gap: 8px;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .ops-vert-grid {
+    grid-auto-rows: 13.5rem;
+  }
+}
+
+.ops-vcard-flip-btn {
+  cursor: default;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.flipper .ops-vcard--back {
+  background: #168b50;
+}
+
+.ops-vcard--static {
+  padding: 2rem 1.5rem;
 }
 
 .ops-vcard {
   position: relative;
-  background: rgb(50 57 53);
 }
 
 .ops-vcard::before {
@@ -1072,39 +1097,75 @@
   background: #168b50;
 }
 
+.ops-vcard--front {
+  background: rgb(50 57 53);
+}
+
+.ops-vcard--front::before {
+  background: #168b50;
+}
+
+.ops-vcard--back {
+  background: #168b50;
+}
+
+.ops-vcard--back::before {
+  background: #070b09;
+}
+
 .ops-vcard-icon {
   display: flex;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   border: 1px solid rgba(125, 255, 192, 0.55);
   background: rgba(22, 139, 80, 0.22);
 }
 
 .ops-vcard-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   stroke: #7dffc0;
   fill: none;
   stroke-width: 2;
 }
 
 .ops-vcard-name {
-  margin-bottom: 10px;
-  font-size: 1.375rem;
+  margin: 0 0 10px;
+  font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0;
   color: #fff;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.ops-vcard-name--back {
+  color: #070b09;
 }
 
 .ops-vcard-desc {
+  margin: 0;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.92);
+}
+
+.ops-vcard-desc--back {
+  min-height: 0;
+  overflow-y: auto;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #070b09;
+  overflow-wrap: break-word;
+  word-break: normal;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(7, 11, 9, 0.35) transparent;
 }
 
 /* ── Video ── */
@@ -1165,7 +1226,7 @@
   }
 
   .ops-vert-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

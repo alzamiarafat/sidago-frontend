@@ -1,3 +1,4 @@
+import LinkTitleWithArrow from "@/src/components/sections/v2/common/LinkTitleWithArrow";
 import { defaultHomepage } from "@/src/data/cms/defaults";
 function CTAItem({ item, isLast }) {
   return (
@@ -12,45 +13,11 @@ function CTAItem({ item, isLast }) {
           className="flex h-full flex-col gap-sm px-md py-md lg:px-md lg:py-xl"
           style={{ backgroundColor: item.backgroundColor }}
         >
-          <div className="flex flex-1 items-center justify-between gap-xs">
-            <div className="text-xl font-medium lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
-              {item.title}
-            </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 40 40"
-              className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] shrink-0 lg:hidden text-gray-night-green"
-              style={{
-                "--arrow-offset": "1rem",
-                width: "2.5rem",
-              }}
-            >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 40 40"
-              className="ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] hidden shrink-0 lg:inline text-gray-night-green"
-              style={{
-                "--arrow-offset": "0.6rem",
-                width: "1.5rem",
-              }}
-            >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </div>
+          <LinkTitleWithArrow
+            title={item.title}
+            textClassName="text-xl font-medium leading-snug lg:text-xl group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100"
+            arrowClassName="text-gray-night-green"
+          />
           <div className="font-blender text-sm uppercase group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100">
             {item.description}
           </div>

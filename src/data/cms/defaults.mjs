@@ -804,7 +804,8 @@ export const defaultOperationsPage = {
   hero: {
     useVideo: true,
     lighterTheme: false,
-    videoSrc: "https://www.wintermute.com/videos/heroes/spot.mp4",
+    videoSrc:
+      "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200719/Accordion-OTC.mp4#t=2",
     imageSrc: null,
     titles: [
       {

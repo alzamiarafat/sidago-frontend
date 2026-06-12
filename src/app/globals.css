@@ -228,7 +228,7 @@ body {
 }
 
 .operations-hero-video {
-  background-color: #070b09;
+  background: linear-gradient(90deg, #050807 0%, #3f4642 52%, #6b726d 100%);
   isolation: isolate;
 }
 
@@ -238,27 +238,27 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(7, 11, 9, 0.2) 0%,
-    rgba(7, 11, 9, 0) 100%
+    rgba(5, 8, 7, 0.18) 0%,
+    rgba(5, 8, 7, 0) 100%
   );
   pointer-events: none;
   z-index: 1;
 }
 
 .operations-hero-video video {
-  filter: saturate(0.92) brightness(0.82) contrast(1.05);
+  filter: saturate(1.02) brightness(0.96) contrast(1.02);
   mix-blend-mode: normal;
-  opacity: 0.78;
+  opacity: 0.92;
 }
 
 .operations-hero-video.video-dark-overlay::after {
   background: linear-gradient(
     to right,
-    rgba(7, 11, 9, 0.94) 0%,
-    rgba(7, 11, 9, 0.72) 18%,
-    rgba(7, 11, 9, 0.38) 40%,
-    rgba(7, 11, 9, 0.12) 62%,
-    rgba(7, 11, 9, 0) 100%
+    rgba(5, 8, 7, 0.96) 0%,
+    rgba(5, 8, 7, 0.82) 20%,
+    rgba(5, 8, 7, 0.42) 42%,
+    rgba(5, 8, 7, 0.12) 64%,
+    rgba(5, 8, 7, 0) 100%
   ) !important;
   z-index: 2;
 }

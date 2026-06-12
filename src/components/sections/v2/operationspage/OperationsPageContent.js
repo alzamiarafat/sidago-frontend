@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import OpsNumbarStat from "./OpsNumbarStat";
+import OpsVerticalFlipCard from "./OpsVerticalFlipCard";
 
 const OpsReachGlobe = dynamic(() => import("./OpsReachGlobe"), {
   loading: () => <div className="ops-reach-globe-box" aria-hidden />,
@@ -85,6 +86,21 @@ const NUMBAR = [
     sub: "SLA-backed uptime across all service verticals",
   },
 ];
+
+const PROCESS_TAG_VARIANTS = {
+  "Gap Analysis": "ops-ptag--blue",
+  "Process Mapping": "ops-ptag--orange",
+  "Cost Audit": "ops-ptag--green",
+  "Org Design": "ops-ptag--blue",
+  "Workflow Build": "ops-ptag--orange",
+  "Tool Stack": "ops-ptag--violet",
+  "Team Launch": "ops-ptag--blue",
+  Integration: "ops-ptag--blue",
+  Training: "ops-ptag--blue",
+  "Live Dashboards": "ops-ptag--green",
+  "QA Cycles": "ops-ptag--violet",
+  Reporting: "ops-ptag--blue",
+};
 
 const PROCESS = [
   {
@@ -171,7 +187,8 @@ function buildChipColorMap() {
 
   PROCESS.forEach((step) => {
     step.tags.forEach((tag) => {
-      map[`process:${step.step}:${tag}`] = hashChipVariant(`process:${step.step}:${tag}`);
+      map[`process:${step.step}:${tag}`] =
+        PROCESS_TAG_VARIANTS[tag] ?? hashChipVariant(`process:${step.step}:${tag}`);
     });
   });
 
@@ -366,9 +383,7 @@ export default function OperationsPageContent({
       <section className="ops-handle ops-section bg-gray-defi-shadow">
         <div className="container">
           <div className="ops-reveal">
-            <SectionHeader eyebrow="What We Handle">
-              Every operational vertical, unified.
-            </SectionHeader>
+            <SectionHeader eyebrow="What We Handle" />
             <p className="ops-handle-intro">
               Six core divisions working in concert — your entire back-office,
               orchestrated by one trusted partner.
@@ -398,9 +413,7 @@ export default function OperationsPageContent({
       <section className="ops-process ops-section bg-gray-night-green">
         <div className="container">
           <div className="ops-reveal">
-            <SectionHeader eyebrow="How It Works">
-              From kickoff to full operational control.
-            </SectionHeader>
+            <SectionHeader eyebrow="How It Works" />
             <p className="ops-handle-intro">
               A structured methodology refined across 300+ enterprise deployments. Results in 30 days, full integration in 90.
             </p>
@@ -433,9 +446,7 @@ export default function OperationsPageContent({
       {/* Capabilities Accordion */}
       <SectionPad className="ops-caps ops-section bg-gray-defi-shadow">
         <div className="ops-reveal">
-          <SectionHeader eyebrow="Deep Capabilities">
-            Every service. Fully owned by us.
-          </SectionHeader>
+          <SectionHeader eyebrow="Deep Capabilities" />
         </div>
         <div className="ops-caps-inner">
           <div className="ops-caps-sticky ops-reveal">
@@ -459,9 +470,7 @@ export default function OperationsPageContent({
       {/* Video */}
       <SectionPad className="ops-video ops-section bg-gray-night-green">
         <div className="ops-reveal">
-          <SectionHeader eyebrow="Operations In Motion">
-            See structured delivery in practice
-          </SectionHeader>
+          <SectionHeader eyebrow="Operations In Motion" />
         </div>
         <div className="ops-video-wrap ops-reveal">
           <div className="ops-video-grid" aria-hidden />
@@ -482,9 +491,7 @@ export default function OperationsPageContent({
       <section className="ops-reach ops-section bg-gray-defi-shadow">
         <div className="container">
           <div className="ops-reveal">
-            <SectionHeader eyebrow="Global Footprint">
-              Operations without borders.
-            </SectionHeader>
+            <SectionHeader eyebrow="Global Footprint" />
           </div>
           <div className="ops-reach-inner">
             <div className="ops-reach-left ops-reveal">
@@ -523,21 +530,11 @@ export default function OperationsPageContent({
       <section className="ops-verticals ops-section bg-gray-night-green">
         <div className="container">
           <div className="ops-reveal">
-            <SectionHeader eyebrow="Who We Serve">
-              Built for industries that can&apos;t afford to slow down.
-            </SectionHeader>
+            <SectionHeader eyebrow="Who We Serve" />
           </div>
           <div className="ops-vert-grid">
             {VERTICALS.map((v) => (
-              <div key={v.name} className="ops-card-shell ops-reveal">
-                <div className={`${OPS_CARD_BEVEL} ops-vcard bg-gray-defi-graphite`}>
-                  <div className="ops-vcard-icon">
-                    <svg viewBox="0 0 24 24">{v.icon}</svg>
-                  </div>
-                  <div className="ops-vcard-name">{v.name}</div>
-                  <p className="ops-vcard-desc">{v.desc}</p>
-                </div>
-              </div>
+              <OpsVerticalFlipCard key={v.name} vertical={v} />
             ))}
           </div>
         </div>
