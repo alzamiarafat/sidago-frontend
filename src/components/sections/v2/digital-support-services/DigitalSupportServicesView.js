@@ -96,7 +96,7 @@ function HeroSection({ reduce }) {
             className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Link
-              href="/contact"
+              href="/contact/digital-support"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#E7512F] px-6 py-3 font-blender text-sm uppercase tracking-[0.14em] text-white transition hover:bg-[#cf4526] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E7512F]"
             >
               Discuss support scope

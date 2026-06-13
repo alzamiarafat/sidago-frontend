@@ -78,7 +78,7 @@ function FloatingField({
 
 export default function LoginView({
   productName = "Node",
-  registerHref = "/contact",
+  registerHref = "/contact/digital-support",
 }) {
   const emailId = useId();
   const passwordId = useId();

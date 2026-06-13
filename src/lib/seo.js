@@ -77,6 +77,12 @@ export const routeMetadata = {
       "Get in touch with Sidago to discuss digital services, business strategy, operations, and project delivery support.",
     path: "/contact",
   }),
+  contactDigitalSupport: buildPageMetadata({
+    title: "Contact — Digital Support Services",
+    description:
+      "Get in touch with Sidago about Digital Support Services — help desk, triage, and operational digital support for your team.",
+    path: "/contact/digital-support",
+  }),
   events: buildPageMetadata({
     title: "Sidago Events",
     description:

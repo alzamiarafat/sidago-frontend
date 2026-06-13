@@ -2,7 +2,6 @@ import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import ContactUs from "@/src/components/sections/v2/contactpage/ContactUs";
-import DigitalSupportInquirySection from "@/src/components/sections/v2/contactpage/DigitalSupportInquirySection";
 import ContactPremiumHero from "@/src/components/sections/v2/contactpage/ContactPremiumHero";
 import ContactLeadForm from "@/src/components/sections/v2/contactpage/ContactLeadForm";
 import ContactOfficesMap from "@/src/components/sections/v2/contactpage/ContactOfficesMap";
@@ -24,12 +23,12 @@ const contactPageCta = [
 
 export default function ContactPage() {
   return (
-    <div className="flex min-h-svh flex-col text-base">
+    <div className="flex min-h-svh flex-col bg-[#1C211E] text-base">
       <Navigation />
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <main
-          className="relative isolate overflow-x-hidden bg-gray-night-green text-gray-off-white [&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark"
+          className="relative isolate overflow-x-hidden bg-[#1C211E] text-gray-off-white [&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark"
           style={{ colorScheme: "dark" }}
         >
           <div
@@ -41,7 +40,6 @@ export default function ContactPage() {
             {/* <ContactLeadForm /> */}
             {/* <ContactOfficesMap /> */}
             <ContactUs />
-            <DigitalSupportInquirySection />
             <CTASection items={contactPageCta} />
             <Footer />
           </div>

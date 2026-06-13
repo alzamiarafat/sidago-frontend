@@ -1,71 +1,8 @@
 import Image from "next/image";
-
-const CONTACT_TOPICS = [
-  {
-    label: "Digital Support Services",
-    href: "/contact#digital-support-inquiry",
-    srLabel: "Contact › Digital Support Services",
-    cardClassName: "bg-gray-tradfi-silver text-gray-night-green",
-    spanClassName: "col-span-4 xl:col-span-3",
-  },
-  {
-    label: "Global Workforce Solutions",
-    href: "/contact",
-    srLabel: "Contact › Global Workforce Solutions",
-    cardClassName: "bg-gray-night-green text-gray-off-white",
-    spanClassName: "col-span-4 xl:col-span-3",
-  },
-  {
-    label: "Scalable Operations",
-    href: "/contact",
-    srLabel: "Contact › Scalable Operations",
-    cardClassName: "bg-blue-dark text-gray-night-green",
-    spanClassName: "col-span-4 xl:col-span-3",
-  },
-  {
-    label: "Recruitment",
-    href: "/contact",
-    srLabel: "Contact › Recruiting",
-    cardClassName: "bg-green-light text-gray-night-green",
-    spanClassName: "col-span-6 xl:col-span-3",
-  },
-  {
-    label: "Events",
-    href: "/contact",
-    srLabel: "Contact › Events",
-    cardClassName: "bg-pink-light text-gray-night-green",
-    spanClassName: "col-span-6 xl:col-span-3",
-  },
-  {
-    label: "Media",
-    href: "/contact",
-    srLabel: "Contact › Media",
-    cardClassName: "bg-gray-defi-ash text-gray-off-white",
-    spanClassName: "col-span-4 xl:col-span-3",
-  },
-  {
-    label: "Legal and Compliance",
-    href: "/contact",
-    srLabel: "Contact › Legal compliance",
-    cardClassName: "bg-orange-light text-gray-night-green",
-    spanClassName: "col-span-4 xl:col-span-3",
-  },
-  {
-    label: "Other",
-    href: "/contact",
-    srLabel: "Contact › Other",
-    cardClassName: "bg-gray-defi-graphite text-gray-off-white",
-    spanClassName: "col-span-4 xl:col-span-3",
-  },
-];
-
-function topicHref(topic) {
-  if (topic.href.includes("#")) {
-    return topic.href;
-  }
-  const q = new URLSearchParams({ topic: topic.label });
-  return `${topic.href}?${q.toString()}#contact-form`;
-}
+import {
+  CONTACT_TOPICS,
+  getContactTopicHref,
+} from "@/src/components/sections/v2/contactpage/contactTopics";
 
 function ArrowIcon({ mobile = false }) {
   return (
@@ -94,7 +31,7 @@ function ArrowIcon({ mobile = false }) {
 function ContactTopicCard({ topic }) {
   return (
     <a
-      href={topicHref(topic)}
+      href={getContactTopicHref(topic.slug)}
       className={`group/interactive pointer-events-auto h-[14.5rem] transition-opacity lg:h-[11.375rem] lg:group-hover/cards:[&:not(:hover)]:opacity-70 ${topic.spanClassName}`}
       style={{ position: "relative" }}
     >
@@ -119,7 +56,7 @@ export default function ContactUs() {
   return (
     <section
       id="contact-topics"
-      className="bg-gray-night-green py-block"
+      className="bg-[#1C211E] py-block"
       aria-labelledby="contact-topics-heading"
     >
       <div className="container">
@@ -158,11 +95,6 @@ export default function ContactUs() {
                 Get in touch with Sidago
               </h2>
 
-              <p className="mt-4 text-base leading-8 text-gray-off-white/75">
-                Choose a topic below to reach the right Sidago team quickly and
-                keep the enquiry aligned with your needs.
-              </p>
-
               <div className="pt-6 text-green-dark">
                 <p className="text-sm tracking-[0.18em] text-gray-tradfi-frost">
                   What topic would you like to contact Sidago about?
@@ -172,7 +104,7 @@ export default function ContactUs() {
 
             <div className="group/cards pointer-events-none relative mt-8 flex grid-cols-12 flex-col gap-5 text-gray-off-white lg:grid lg:grid-rows-auto lg:gap-4">
               {CONTACT_TOPICS.map((topic) => (
-                <ContactTopicCard key={topic.label} topic={topic} />
+                <ContactTopicCard key={topic.slug} topic={topic} />
               ))}
             </div>
           </div>

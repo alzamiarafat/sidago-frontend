@@ -112,7 +112,7 @@ export const atAGlanceContent = {
     },
     {
       label: "Help desk",
-      href: "/contact",
+      href: "/contact/digital-support",
       srText: "Contact Sidago",
     },
   ],
@@ -174,7 +174,7 @@ export const reportContentsContent = {
     id: "get-started",
     title: "Get started",
     label: "Contact us",
-    href: "/contact",
+    href: "/contact/digital-support",
     srText: "Contact Sidago about digital support",
   },
   disclaimers: [
