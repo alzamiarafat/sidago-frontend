@@ -247,7 +247,7 @@ export const similarInsightsContent = {
       href: "/insights/views/opinions/digital-assets-in-2026-the-clearing-layer-for-the-internet-economy",
       srText:
         "Insights › Views › Opinions › Digital assets in 2026 the clearing layer for the internet economy",
-      imageSrc: "/images/image_3.png",
+      imageSrc: "/images/image_10.jpg",
       imageAlt:
         "Digital assets in 2026: The clearing layer for the internet economy",
       category: "Opinions",
@@ -261,7 +261,7 @@ export const similarInsightsContent = {
       href: "/insights/market-color/reports/digital-asset-otc-markets-2025",
       srText:
         "Insights › Market color › Reports › Digital asset otc markets 2025",
-      imageSrc: "/images/image_2.png",
+      imageSrc: "/images/image_16.jpg",
       imageAlt: "Digital asset OTC market 2025",
       category: "Reports",
       title: "Digital asset OTC market 2025",

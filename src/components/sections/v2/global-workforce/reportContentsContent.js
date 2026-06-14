@@ -59,6 +59,10 @@ export const reportContentsContent = {
         type: "image",
         src: "/images/group-content-12345.png",
         alt: "Cross-Asset Performance Week 20",
+        previewTitle: "Cross-asset performance",
+        previewWeek: "Week 20",
+        previewSource: "SOURCE: SIDAGO OTC (DATA AS OF 18 MAY 2026)",
+        previewTableOnly: true,
       },
       {
         type: "paragraph",

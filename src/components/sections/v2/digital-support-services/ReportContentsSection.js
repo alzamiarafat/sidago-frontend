@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { reportContentsContent } from "@/src/components/sections/v2/digital-support-services/data";
+import "./report-image-preview.css";
 
 function ShareLinkedInIcon() {
   return (
@@ -113,6 +114,14 @@ function ArticleParagraph({ paragraph }) {
 
 function ArticleImage({ image }) {
   const dialogRef = useRef(null);
+  const hasRichPreview = Boolean(
+    image?.previewTitle || image?.previewWeek || image?.previewSource,
+  );
+  const previewSrc = image?.previewSrc || image?.src;
+  const previewTitle =
+    image?.previewTitle ||
+    image?.alt?.replace(/\s+Week\s+\d+$/i, "") ||
+    "Chart preview";
 
   const openDialog = useCallback(() => {
     dialogRef.current?.showModal();
@@ -122,55 +131,135 @@ function ArticleImage({ image }) {
     dialogRef.current?.close();
   }, []);
 
+  const handleBackdropClick = useCallback(
+    (event) => {
+      if (event.target === dialogRef.current) {
+        closeDialog();
+      }
+    },
+    [closeDialog],
+  );
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog || !hasRichPreview) return undefined;
+
+    const onToggle = () => {
+      document.body.style.overflow = dialog.open ? "hidden" : "";
+    };
+
+    dialog.addEventListener("toggle", onToggle);
+    return () => {
+      dialog.removeEventListener("toggle", onToggle);
+      document.body.style.overflow = "";
+    };
+  }, [hasRichPreview]);
+
   if (!image?.src) {
     return null;
   }
 
   return (
     <div className="my-4xl flex flex-col gap-md">
-      <button type="button" onClick={openDialog} className="text-left">
-        <Image
-          alt={image.alt || ""}
-          src={image.src}
-          width={1152}
-          height={1152}
-          className="bevel w-full"
-        />
-      </button>
-      <dialog
-        ref={dialogRef}
-        className="container fixed flex flex-col gap-xl bg-transparent opacity-0 transition-all backdrop:bg-gray-night-green backdrop:opacity-50 open:opacity-100"
-        onCancel={closeDialog}
+      <button
+        type="button"
+        onClick={openDialog}
+        className={`cursor-pointer text-left ${hasRichPreview ? "report-image-preview__trigger" : ""}`}
+        aria-label={`Open preview: ${image.alt || previewTitle}`}
       >
         <Image
           alt={image.alt || ""}
           src={image.src}
           width={1152}
           height={1152}
-          className="bevel w-full"
+          className="bevel bevel-2 w-full cursor-pointer"
         />
-        <div className="flex justify-end">
-          <button
-            type="button"
-            aria-label="Close image"
-            onClick={closeDialog}
-            className="group/interactive inline-flex items-center justify-between gap-md bg-green-dark p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
+      </button>
+
+      {hasRichPreview ? (
+        <dialog
+          ref={dialogRef}
+          className="report-image-preview"
+          onCancel={closeDialog}
+          onClick={handleBackdropClick}
+        >
+          <div
+            className="report-image-preview__wrap"
+            onClick={(event) => event.stopPropagation()}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 40 40"
-              className="h-lg w-lg"
-              aria-hidden
+            <div className="report-image-preview__panel report-image-preview__panel--composite bevel bevel-2">
+              <figure className="report-image-preview__figure">
+                <Image
+                  alt={image.alt || previewTitle}
+                  src={previewSrc}
+                  width={1400}
+                  height={900}
+                  className="w-full"
+                  sizes="(min-width: 1024px) 64rem, 100vw"
+                  priority
+                />
+              </figure>
+            </div>
+
+            <div className="report-image-preview__actions">
+              <button
+                type="button"
+                aria-label="Close preview"
+                onClick={closeDialog}
+                className="report-image-preview__close bevel bevel-[0.25rem] bg-green-tradfi text-gray-off-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 40 40"
+                  className="h-lg w-lg"
+                  aria-hidden
+                >
+                  <path
+                    fill="currentColor"
+                    d="m10.667 30.513-1.18-1.18L18.82 20l-9.333-9.333 1.18-1.18L20 18.82l9.333-9.333 1.18 1.18L21.18 20l9.333 9.333-1.18 1.18L20 21.18z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </dialog>
+      ) : (
+        <dialog
+          ref={dialogRef}
+          className="container fixed flex flex-col gap-xl bg-transparent opacity-0 transition-all backdrop:bg-gray-night-green backdrop:opacity-50 open:opacity-100"
+          onCancel={closeDialog}
+        >
+          <Image
+            alt={image.alt || ""}
+            src={image.src}
+            width={1152}
+            height={1152}
+            className="bevel bevel-2 w-full"
+          />
+          <div className="flex justify-end">
+            <button
+              type="button"
+              aria-label="Close image"
+              onClick={closeDialog}
+              className="group/interactive inline-flex items-center justify-between gap-md bg-green-dark p-[0.625rem] font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
             >
-              <path
-                fill="currentColor"
-                d="m10.667 30.513-1.18-1.18L18.82 20l-9.333-9.333 1.18-1.18L20 18.82l9.333-9.333 1.18 1.18L21.18 20l9.333 9.333-1.18 1.18L20 21.18z"
-              />
-            </svg>
-          </button>
-        </div>
-      </dialog>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 40 40"
+                className="h-lg w-lg"
+                aria-hidden
+              >
+                <path
+                  fill="currentColor"
+                  d="m10.667 30.513-1.18-1.18L18.82 20l-9.333-9.333 1.18-1.18L20 18.82l9.333-9.333 1.18 1.18L21.18 20l9.333 9.333-1.18 1.18L20 21.18z"
+                />
+              </svg>
+            </button>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 }
