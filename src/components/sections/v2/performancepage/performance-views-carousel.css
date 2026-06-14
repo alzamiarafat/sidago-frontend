@@ -79,7 +79,7 @@
 }
 
 .perf-views__track--auto {
-  animation: perf-views-infinite 18s linear infinite;
+  animation: perf-views-infinite 40s linear infinite;
 }
 
 .perf-views__track--auto:hover {
@@ -87,8 +87,12 @@
 }
 
 @keyframes perf-views-infinite {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
   to {
-    transform: translateX(-50%);
+    transform: translate3d(var(--perf-views-loop, -50%), 0, 0);
   }
 }
 
