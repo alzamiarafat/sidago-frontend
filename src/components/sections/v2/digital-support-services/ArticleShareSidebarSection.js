@@ -57,6 +57,24 @@ function ShareTelegramIcon() {
   );
 }
 
+function SidagoBrand({ className = "" }) {
+  return (
+    <div className={`flex items-center gap-2 ${className}`.trim()}>
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-tradfi-steel bg-white p-1">
+        <Image
+          alt="Sidago"
+          width={560}
+          height={446}
+          unoptimized
+          className="h-full w-full object-contain [color:transparent]"
+          src="/images/navbar-logo-icon.png"
+        />
+      </div>
+      <p className="font-blender uppercase text-gray-off-white">Sidago</p>
+    </div>
+  );
+}
+
 function CtaArrow() {
   return (
     <svg
@@ -202,20 +220,24 @@ export default function ArticleShareSidebarSection({
           style={{ "--core-column-width": "33.33%" }}
         >
           <div className="sticky top-[calc(var(--header-height)+1.5rem)] flex flex-col gap-2xl lg:max-h-[calc(100svh-var(--header-height)-1.5rem-1.5rem)] lg:overflow-y-auto">
-            <div className="flex items-center gap-4">
-              <div className="relative h-[2.625rem] w-[2.625rem] shrink-0 overflow-hidden rounded-full">
-                <Image
-                  alt={author.name}
-                  src={author.imageSrc}
-                  width={96}
-                  height={96}
-                  className="h-full w-full object-cover"
-                />
+            {author?.useBrandLogo ? (
+              <SidagoBrand />
+            ) : (
+              <div className="flex items-center gap-4">
+                <div className="relative h-[2.625rem] w-[2.625rem] shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    alt={author.name}
+                    src={author.imageSrc}
+                    width={96}
+                    height={96}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <p className="font-blender uppercase text-gray-off-white">
+                  {author.name}
+                </p>
               </div>
-              <p className="font-blender uppercase text-gray-off-white">
-                {author.name}
-              </p>
-            </div>
+            )}
 
             <div className="mt-2xl flex gap-lg">
               {shareLinks.map((link) => {

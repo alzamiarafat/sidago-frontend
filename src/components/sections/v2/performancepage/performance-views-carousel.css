@@ -1,0 +1,237 @@
+/* Performance Views carousel — dark theme */
+.perf-views {
+  --pv-accent: #e7512f;
+  --pv-bg: #0f140f;
+  --pv-card: #171d18;
+  --pv-card-hover: #1f2621;
+  --pv-line: rgba(255, 255, 255, 0.08);
+  --pv-muted: rgba(244, 246, 245, 0.52);
+  --pv-faint: rgba(244, 246, 245, 0.38);
+  --pv-card-gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .perf-views {
+    --pv-card-gap: 1.5rem;
+  }
+}
+
+.perf-views__hd {
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .perf-views__hd {
+    margin-bottom: 3rem;
+  }
+}
+
+.perf-views__ey {
+  font-family: blender, blender Fallback, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  color: #e7512f;
+}
+
+@media (min-width: 768px) {
+  .perf-views__ey {
+    font-size: 1rem;
+  }
+}
+
+.perf-views__title {
+  margin-top: 1.25rem;
+  font-size: clamp(1.375rem, 2.8vw, 3rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.perf-views__desc {
+  margin-top: 1.25rem;
+  max-width: 48rem;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: #f4f6f5;
+}
+
+@media (min-width: 768px) {
+  .perf-views__desc {
+    font-size: 1.125rem;
+  }
+}
+
+.perf-views__outer {
+  overflow: hidden;
+}
+
+.perf-views__track {
+  display: flex;
+  gap: var(--pv-card-gap);
+  will-change: transform;
+}
+
+.perf-views__track--animate {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.perf-views__track--auto {
+  animation: perf-views-infinite 18s linear infinite;
+}
+
+.perf-views__track--auto:hover {
+  animation-play-state: paused;
+}
+
+@keyframes perf-views-infinite {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.perf-views__card {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f5f4ef;
+  border-top: 2px solid #0c0c0b;
+  cursor: default;
+  transition: background 0.25s;
+}
+
+.perf-views__card:hover {
+  background: #ffffff;
+}
+
+.perf-views__card::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--pv-accent);
+  transition: width 0.4s ease;
+}
+
+.perf-views__card:hover::after {
+  width: 100%;
+}
+
+.perf-views__thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.perf-views__thumb svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.perf-views__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.5rem 1.375rem 1.75rem;
+}
+
+.perf-views__tag {
+  margin-bottom: 0.625rem;
+  font-family: blender, blender Fallback, sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b0aeaa;
+}
+
+.perf-views__ctitle {
+  margin-bottom: 0.625rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #0c0c0b;
+}
+
+@media (min-width: 1024px) {
+  .perf-views__ctitle {
+    font-size: 1.0625rem;
+  }
+}
+
+.perf-views__cdesc {
+  flex: 1;
+  font-size: 0.75rem;
+  line-height: 1.72;
+  color: #8a8882;
+}
+
+.perf-views__clink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  margin-top: 1.125rem;
+  font-family: blender, blender Fallback, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pv-accent);
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.perf-views__clink:hover {
+  gap: 0.5625rem;
+}
+
+.perf-views__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding-top: 1.75rem;
+}
+
+.perf-views__dot {
+  width: 1.25rem;
+  height: 2px;
+  border: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.perf-views__dot--active {
+  width: 2rem;
+  background: #f4f6f5;
+}
+
+.perf-views__dot:hover:not(.perf-views__dot--active) {
+  background: rgba(244, 246, 245, 0.42);
+}
+
+@media (max-width: 767px) {
+  .perf-views__hd {
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .perf-views__track--auto {
+    animation: none;
+  }
+
+  .perf-views__track--animate {
+    transition: none;
+  }
+}

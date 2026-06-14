@@ -1,7 +1,6 @@
 export const pressReleaseContent = {
   author: {
-    name: "Sidago",
-    imageSrc: "/images/image_5.jpg",
+    useBrandLogo: true,
   },
   blocks: [
     {

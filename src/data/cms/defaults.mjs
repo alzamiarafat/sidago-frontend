@@ -1284,48 +1284,42 @@ export const defaultPerformancePage = {
     title: "A visual layer for Sidago Performance work.",
     description:
       "Simple image-backed views for visibility, quality, review rhythm, and capacity conversations.",
-    fallbackImages: [
-      "/images/sidago-performance-view.png",
-      "/images/sidago-performance-capacity.png",
-    ],
+    viewAllHref: "/performance",
     items: [
+      {
+        title: "Sidago Performance capacity",
+        description:
+          "Gives teams a practical capacity view before workload issues slow delivery.",
+        visual: "capacity",
+        href: "/performance",
+      },
       {
         title: "Sidago Performance visibility",
         description:
-          "Sidago Performance turns workflow activity into clearer delivery visibility and review context.",
-        metric: "96%",
-        label: "Coverage",
-        imageFit: "contain",
-        imageBackground: "#eef4fb",
+          "Turns workflow activity into clearer delivery visibility and review context.",
+        visual: "visibility",
+        href: "/performance",
       },
       {
         title: "Sidago Performance quality",
         description:
-          "Sidago Performance helps teams protect standards, reduce rework, and keep operations measurable.",
-        metric: "28%",
-        label: "Less rework",
-        image: "/images/performance-quality-slide.png",
-        imageFit: "contain",
-        imageBackground: "#eef4fb",
+          "Helps teams protect standards, reduce rework, and keep operations measurable.",
+        visual: "quality",
+        href: "/performance",
       },
       {
         title: "Sidago Performance rhythm",
         description:
-          "Sidago Performance connects reviews, risks, actions, and measurable service movement.",
-        metric: "3.4x",
-        label: "Review pace",
-        image: "/images/performance-rhythm-slide-v2.png",
-        imageFit: "contain",
-        imageBackground: "#edf3ff",
+          "Connects reviews, risks, actions, and measurable service movement.",
+        visual: "rhythm",
+        href: "/performance",
       },
       {
-        title: "Sidago Performance capacity",
+        title: "Sidago Performance insight",
         description:
-          "Sidago Performance gives teams a practical capacity view before workload issues slow delivery.",
-        metric: "86%",
-        label: "Owner coverage",
-        imageFit: "contain",
-        imageBackground: "#f2efe8",
+          "Surfaces patterns and signals across teams so decision-makers always have context.",
+        visual: "insight",
+        href: "/performance",
       },
     ],
   },

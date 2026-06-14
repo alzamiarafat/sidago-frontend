@@ -5,7 +5,7 @@ import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import ArticleShareSidebarSection from "@/src/components/sections/v2/digital-support-services/ArticleShareSidebarSection";
 import ReportInsightHero from "@/src/components/sections/v2/digital-support-services/ReportInsightHero";
 import SimilarInsightsSection from "@/src/components/sections/v2/digital-support-services/SimilarInsightsSection";
-import SubscribeSection from "@/src/components/sections/v2/digital-support-services/SubscribeSection";
+import SidagoPerformanceCarousel from "@/src/components/sections/v2/scalable-operations/SidagoPerformanceCarousel";
 import {
   pressReleaseContent,
   reportInsightHero,
@@ -24,11 +24,7 @@ export default function ScalableOperationsView({ footer, hero }) {
         <main className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1">
           {heroNode}
           <ArticleShareSidebarSection content={pressReleaseContent} />
-          <section className="bg-gray-defi-charcoal">
-            <div className="container py-block">
-              <div className="pb-container" />
-            </div>
-          </section>
+          <SidagoPerformanceCarousel />
           {/* <SubscribeSection content={subscribeContent} /> */}
           <SimilarInsightsSection
             content={similarInsightsContent}

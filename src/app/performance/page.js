@@ -1,9 +1,9 @@
-import Image from "next/image";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import PerformanceCapabilitiesCarousel from "@/src/components/sections/v2/performancepage/PerformanceCapabilitiesCarousel";
+import PerformanceViewsCarousel from "@/src/components/sections/v2/performancepage/PerformanceViewsCarousel";
 import PerformanceTabsSlider from "@/src/components/sections/v2/performancepage/PerformanceTabsSlider";
 import { getGlobalSettings, getPerformancePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
@@ -117,106 +117,6 @@ const performanceSteps = [
     title: "Improve every cycle",
     description:
       "Use review routines, escalation paths, and reporting loops to make improvement repeatable.",
-  },
-];
-
-const performanceCarouselItems = [
-  {
-    title: "Sidago Performance visibility",
-    description:
-      "Sidago Performance turns workflow activity into clearer delivery visibility and review context.",
-    metric: "96%",
-    label: "Coverage",
-    visual: "dashboard",
-    imageFit: "contain",
-    imageBackground: "#eef4fb",
-  },
-  {
-    title: "Sidago Performance quality",
-    description:
-      "Sidago Performance helps teams protect standards, reduce rework, and keep operations measurable.",
-    metric: "28%",
-    label: "Less rework",
-    visual: "quality",
-    image: "/images/performance-quality-slide.png",
-    imageFit: "contain",
-    imageBackground: "#eef4fb",
-  },
-  {
-    title: "Sidago Performance rhythm",
-    description:
-      "Sidago Performance connects reviews, risks, actions, and measurable service movement.",
-    metric: "3.4x",
-    label: "Review pace",
-    visual: "rhythm",
-    image: "/images/performance-rhythm-slide-v2.png",
-    imageFit: "contain",
-    imageBackground: "#edf3ff",
-  },
-  {
-    title: "Sidago Performance capacity",
-    description:
-      "Sidago Performance gives teams a practical capacity view before workload issues slow delivery.",
-    metric: "86%",
-    label: "Owner coverage",
-    visual: "capacity",
-    imageFit: "contain",
-    imageBackground: "#f2efe8",
-  },
-  {
-    title: "Sidago Performance control",
-    description:
-      "Sidago Performance keeps operating signals organized for clearer ownership and follow-through.",
-    metric: "42%",
-    label: "Faster turnaround",
-    visual: "control",
-  },
-  {
-    title: "Sidago Performance reporting",
-    description:
-      "Sidago Performance turns updates into focused reporting that supports faster decisions.",
-    metric: "91%",
-    label: "SLA visibility",
-    visual: "reporting",
-  },
-  {
-    title: "Sidago Performance alignment",
-    description:
-      "Sidago Performance aligns teams around scorecards, service visibility, and improvement cadence.",
-    metric: "18h",
-    label: "Avg cycle",
-    visual: "alignment",
-  },
-];
-
-const clientLogos = [
-  {
-    name: "HCI Group",
-    image: "/images/our-client1.jpg",
-  },
-  {
-    name: "RAM Modular",
-    image: "/images/our-client2.jpg",
-  },
-  {
-    name: "Provider Power",
-    image: "/images/our-client4.jpg",
-  },
-  {
-    name: "Prescient Edge",
-    image: "/images/our-client5.jpg",
-  },
-  {
-    name: "Go Energies",
-    image: "/images/our-client6.jpg",
-  },
-  {
-    name: "Acacia",
-    image: "/images/our-client11.jpg",
-  },
-  {
-    name: "Daiichi Sankyo",
-    image: "/images/daiichi-sanko.png",
   },
 ];
 
@@ -351,83 +251,6 @@ function PerformanceCapabilities({ section }) {
   );
 }
 
-function PerformanceImageCarousel({ section }) {
-  const carouselImages = section.fallbackImages || [];
-  const carouselItems = section.items.map((item, index) => ({
-    ...item,
-    image: item.image || carouselImages[index % carouselImages.length],
-  }));
-  const loopItems = [...carouselItems, ...carouselItems];
-
-  return (
-    <section className="overflow-hidden bg-[#0f140f] text-gray-off-white">
-      <div className="container py-16 md:py-20">
-        <SectionHeader
-          eyebrow={section.eyebrow}
-          title={section.title}
-          description={section.description}
-        />
-
-        <div className="mt-10 overflow-hidden">
-          <div className="performance-carousel-track flex w-max gap-5 md:gap-6 will-change-transform">
-            {loopItems.map((item, index) => (
-              <article
-                key={`${item.title}-${index}`}
-                className="group relative flex h-[25rem] w-[17rem] shrink-0 flex-col overflow-hidden rounded-[1.2rem] bg-[#f5f4ef] text-[#243047] shadow-[0_18px_44px_rgba(0,0,0,0.14)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_24px_56px_rgba(0,0,0,0.18)] md:h-[27rem] md:w-[20rem]"
-              >
-                <div className="p-0">
-                  <div
-                    className="relative h-[12.8rem] overflow-hidden md:h-[14.5rem]"
-                    style={
-                      item.imageBackground
-                        ? { backgroundColor: item.imageBackground }
-                        : { backgroundColor: "#e9edf3" }
-                    }
-                  >
-                    <Image
-                      src={item.image}
-                      alt={`${item.title} visual`}
-                      fill
-                      className={`transition duration-700 ${item.imageFit === "contain"
-                          ? "object-contain p-4"
-                          : "object-cover object-center group-hover:scale-[1.03]"
-                        }`}
-                      sizes="(min-width: 768px) 19rem, 16rem"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-1 flex-col justify-between px-5 pb-5 pt-5 md:px-6 md:pb-6">
-                  <div>
-                    <div className="font-blender text-[0.68rem] uppercase tracking-[0.2em] text-[#7f8898]">
-                      Sidago Performance
-                    </div>
-                    <h3 className="mt-3 text-[2rem] font-medium leading-[1.04] text-[#243047] md:text-[2.2rem]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-4 min-h-[6rem] text-[1.02rem] leading-[1.6] text-[#536179]">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-5 flex items-center justify-between gap-3 border-t border-[#d8dde6] pt-4">
-                    <div className="text-xs uppercase tracking-[0.18em] text-[#7f8898]">
-                      {item.label}
-                    </div>
-                    <div className="font-blender text-2xl leading-none text-[#4d5d7a]">
-                      {item.metric}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function PerformanceMethod({ section }) {
   const renderMethodIcon = (icon) => {
     if (icon === "scorecard") {
@@ -519,7 +342,7 @@ export default async function PerformancePage() {
           <PerformanceStats items={performancePage.stats} />
           <PerformanceDashboard section={performancePage.dashboardSection} />
           <PerformanceTabsSlider section={performancePage.tabsSection} />
-          <PerformanceImageCarousel section={performancePage.imageCarouselSection} />
+          <PerformanceViewsCarousel section={performancePage.imageCarouselSection} />
           <PerformanceCapabilities section={performancePage.capabilitiesSection} />
           <PerformanceMethod section={performancePage.methodSection} />
           <CTASection />
