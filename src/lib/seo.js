@@ -247,6 +247,19 @@ export const routeMetadata = {
       "BPO careers",
     ],
   }),
+  careersOpportunities: buildPageMetadata({
+    title: "Opportunities",
+    description:
+      "Search Sidago open roles by location, team, and work type—or send us an open application to join the team.",
+    path: "/company/opportunities",
+    keywords: [
+      "Sidago opportunities",
+      "Sidago jobs",
+      "Sidago careers",
+      "remote jobs",
+      "operations jobs",
+    ],
+  }),
   legalPolicies: buildPageMetadata({
     title: "Legal & Compliance Policies",
     description:

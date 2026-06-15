@@ -117,19 +117,15 @@ function RestoreWellnessLogoMark() {
 
 export default function RestoreWellnessLogoCard({
   label = "Active delivery view",
-  status = "Live",
 }) {
   return (
     <div className="execution-logo-card flex min-h-[16rem] flex-col overflow-hidden rounded-md bg-white shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
       <div className="execution-logo-card__inner flex flex-1 items-center justify-center px-6 py-8">
         <RestoreWellnessLogoMark />
       </div>
-      <div className="execution-logo-card__footer flex items-center justify-between gap-3 border-t border-[#e8ebe8] px-5 py-3.5">
+      <div className="execution-logo-card__footer border-t border-[#e8ebe8] px-5 py-3.5">
         <span className="font-blender text-[0.625rem] font-bold uppercase tracking-[0.16em] text-[#3c85dd]">
           {label}
-        </span>
-        <span className="rounded-full bg-[#168b50]/12 px-3 py-1 font-blender text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-[#168b50]">
-          {status}
         </span>
       </div>
     </div>

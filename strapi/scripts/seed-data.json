@@ -3092,7 +3092,7 @@
       ]
     },
     "heroCtaLabel": "Explore open roles",
-    "heroCtaHref": "#open-roles",
+    "heroCtaHref": "/company/opportunities",
     "heroCtaSrText": "Company › Opportunities",
     "heroCtaButtonClass": "group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs text-gray-night-green bg-green-dark",
     "statistics": [
