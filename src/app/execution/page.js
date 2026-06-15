@@ -1,9 +1,9 @@
-import Image from "next/image";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
+import RestoreWellnessLogoCard from "@/src/components/sections/v2/executionpage/RestoreWellnessLogoCard";
+import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import { getExecutionPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
@@ -97,23 +97,11 @@ function AboutVisual({ visual, supportChips, overviewItems }) {
         <div className="execution-scan" />
         <div className="absolute inset-0 execution-grid bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:36px_36px]" />
         <div className="relative grid gap-4 p-4 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:p-5">
-          <div className="relative min-h-[16rem] overflow-hidden rounded-md">
-            <Image
-              src={visual.imageSrc}
-              alt={visual.imageAlt}
-              fill
-              className="object-cover"
-              sizes="(min-width: 768px) 28rem, 100vw"
+          <div className="relative min-h-[16rem]">
+            <RestoreWellnessLogoCard
+              label={visual.imageEyebrow}
+              status={visual.statusText}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07100c] via-[#07100c]/25 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-4">
-              <div className="text-xs uppercase tracking-[0.18em] text-[#3c85dd]">
-                {visual.imageEyebrow}
-              </div>
-              <div className="mt-2 max-w-xs text-lg leading-snug text-white">
-                {visual.imageTitle}
-              </div>
-            </div>
           </div>
 
           <div className="space-y-3">
