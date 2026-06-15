@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PerformanceViewThumb } from "./PerformanceViewThumbs";
 import "./performance-views-carousel.css";
@@ -20,21 +19,38 @@ export default function PerformanceViewsCarousel({ section, visibleCount = 4 }) 
   const items = section?.items ?? [];
   const outerRef = useRef(null);
   const trackRef = useRef(null);
-  const [cardWidth, setCardWidth] = useState(0);
+  const [metrics, setMetrics] = useState({ cardWidth: 0, loopWidth: 0 });
   const loopItems = useMemo(() => [...items, ...items], [items]);
 
   useEffect(() => {
-    const updateWidth = () => {
+    const updateMetrics = () => {
       if (!outerRef.current || !trackRef.current || !items.length) return;
+
       const outerWidth = outerRef.current.offsetWidth;
       const gap = parseFloat(getComputedStyle(trackRef.current).gap) || 20;
-      const width = (outerWidth - gap * (visibleCount - 1)) / visibleCount;
-      setCardWidth(width);
+      const cardWidth = (outerWidth - gap * (visibleCount - 1)) / visibleCount;
+      const loopWidth = items.length * cardWidth + (items.length - 1) * gap;
+
+      setMetrics({ cardWidth, loopWidth });
     };
 
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
+    updateMetrics();
+
+    const observer =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(updateMetrics)
+        : null;
+
+    if (observer && outerRef.current) {
+      observer.observe(outerRef.current);
+    }
+
+    window.addEventListener("resize", updateMetrics);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", updateMetrics);
+    };
   }, [items.length, visibleCount]);
 
   if (!items.length) return null;
@@ -51,12 +67,24 @@ export default function PerformanceViewsCarousel({ section, visibleCount = 4 }) 
         </div>
 
         <div className="perf-views__outer" ref={outerRef}>
-          <div className="perf-views__track perf-views__track--auto" ref={trackRef}>
+          <div
+            className="perf-views__track perf-views__track--auto"
+            ref={trackRef}
+            style={
+              metrics.loopWidth
+                ? { "--perf-views-loop": `-${metrics.loopWidth}px` }
+                : undefined
+            }
+          >
             {loopItems.map((item, index) => (
               <article
                 key={`${item.title}-${index}`}
                 className="perf-views__card"
-                style={cardWidth ? { width: `${cardWidth}px` } : undefined}
+                style={
+                  metrics.cardWidth
+                    ? { width: `${metrics.cardWidth}px` }
+                    : undefined
+                }
               >
                 <div className="perf-views__thumb">
                   <PerformanceViewThumb visual={resolveVisual(item)} />
@@ -67,11 +95,6 @@ export default function PerformanceViewsCarousel({ section, visibleCount = 4 }) 
                   </div>
                   <h3 className="perf-views__ctitle">{item.title}</h3>
                   <p className="perf-views__cdesc">{item.description}</p>
-                  {item.href ? (
-                    <Link href={item.href} className="perf-views__clink">
-                      Learn more →
-                    </Link>
-                  ) : null}
                 </div>
               </article>
             ))}

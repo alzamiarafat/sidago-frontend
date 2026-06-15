@@ -1222,6 +1222,28 @@ function normalizeInfrastructurePage(entry) {
   };
 }
 
+function mergePerformanceHeroTitles(titles, fallbackTitles) {
+  const pieces = (titles ?? [])
+    .filter((item) => item?.title)
+    .slice()
+    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0));
+
+  if (!pieces.length) {
+    return fallbackTitles;
+  }
+
+  if (pieces.length >= 3) {
+    return pieces.map((item, index) => ({
+      ...(fallbackTitles[index] || fallbackTitles[fallbackTitles.length - 1]),
+      ...item,
+      line: index + 1,
+      sortOrder: index + 1,
+    }));
+  }
+
+  return pieces;
+}
+
 function normalizePerformancePage(entry) {
   const item = unwrapEntity(entry);
 
@@ -1230,7 +1252,13 @@ function normalizePerformancePage(entry) {
   }
 
   return {
-    hero: normalizeHero(item.hero, defaultPerformancePage.hero),
+    hero: {
+      ...normalizeHero(item.hero, defaultPerformancePage.hero),
+      titles: mergePerformanceHeroTitles(
+        normalizeHero(item.hero, defaultPerformancePage.hero).titles,
+        defaultPerformancePage.hero.titles,
+      ),
+    },
     stats:
       Array.isArray(item.stats) && item.stats.length > 0
         ? item.stats
