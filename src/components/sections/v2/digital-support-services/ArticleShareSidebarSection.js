@@ -60,7 +60,7 @@ function ShareTelegramIcon() {
 function SidagoBrand({ className = "" }) {
   return (
     <div className={`flex items-center gap-2 ${className}`.trim()}>
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-tradfi-steel bg-white p-1">
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-tradfi-steel bg-black p-px">
         <Image
           alt="Sidago"
           width={560}

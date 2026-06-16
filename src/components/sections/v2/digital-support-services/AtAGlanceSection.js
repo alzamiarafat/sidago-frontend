@@ -55,20 +55,33 @@ export default function AtAGlanceSection({
           style={{ "--core-column-width": "33.33%" }}
         >
           <div className="flex items-center gap-4">
-            <div
-              className={`relative h-[2.625rem] w-[2.625rem] shrink-0 overflow-hidden rounded-full ${authorImageWrapperClassName || ""}`.trim()}
-            >
-              <Image
-                alt={authorImageAlt || authorName}
-                src={authorImageSrc}
-                width={96}
-                height={96}
-                unoptimized={Boolean(authorImageUnoptimized)}
-                className={
-                  authorImageClassName || "h-full w-full object-cover"
-                }
-              />
-            </div>
+            {authorImageSrc?.includes("navbar-logo-icon.png") ? (
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-tradfi-steel bg-black p-px">
+                <Image
+                  alt={authorImageAlt || authorName}
+                  src={authorImageSrc}
+                  width={560}
+                  height={446}
+                  unoptimized
+                  className="h-full w-full object-contain [color:transparent]"
+                />
+              </div>
+            ) : (
+              <div
+                className={`relative h-[2.625rem] w-[2.625rem] shrink-0 overflow-hidden rounded-full ${authorImageWrapperClassName || ""}`.trim()}
+              >
+                <Image
+                  alt={authorImageAlt || authorName}
+                  src={authorImageSrc}
+                  width={96}
+                  height={96}
+                  unoptimized={Boolean(authorImageUnoptimized)}
+                  className={
+                    authorImageClassName || "h-full w-full object-cover"
+                  }
+                />
+              </div>
+            )}
             <p className="font-blender uppercase text-black">{authorName}</p>
           </div>
 
