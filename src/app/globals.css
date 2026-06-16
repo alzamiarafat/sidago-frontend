@@ -20,6 +20,51 @@
   color: #070b09;
 }
 
+.v2-subscribe--dark {
+  --v2-subscribe-brand: #e7512f;
+  background-color: #1c211e;
+  color: #f5f4ef;
+}
+
+.v2-subscribe--dark .v2-subscribe__title {
+  color: #f5f4ef;
+}
+
+.v2-subscribe--dark .v2-subscribe__legend {
+  color: #e7512f;
+}
+
+.v2-subscribe--dark .v2-subscribe__input,
+.v2-subscribe--dark .v2-subscribe__option {
+  color: #f5f4ef;
+}
+
+.v2-subscribe--dark .v2-subscribe__checkbox {
+  border-color: #f5f4ef;
+}
+
+.v2-subscribe--dark .v2-subscribe__submit {
+  background-color: #e7512f;
+  color: #f5f4ef;
+}
+
+.v2-subscribe--dark .v2-subscribe__submit:hover {
+  opacity: 0.92;
+  background-color: #cf4526;
+}
+
+@media (min-width: 1024px) {
+  .v2-subscribe--narrow .v2-subscribe__form {
+    max-width: 65%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .v2-subscribe--dark .v2-subscribe__form {
+    max-width: 65%;
+  }
+}
+
 .v2-subscribe__inner {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -51,19 +96,19 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 @media (min-width: 1024px) {
   .v2-subscribe__form {
-    gap: 4rem;
+    gap: 2rem;
   }
 }
 
 .v2-subscribe__field {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .v2-subscribe__email-label {
@@ -80,7 +125,7 @@
   border: 0;
   border-bottom: 1px solid #9ea4a0;
   background: transparent;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   font-size: 1rem;
   line-height: 1.5;
   color: #070b09;
@@ -103,7 +148,7 @@
 .v2-subscribe__legend {
   display: block;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   padding: 0;
   font-family: blender, saans, sans-serif;
   font-size: 0.875rem;

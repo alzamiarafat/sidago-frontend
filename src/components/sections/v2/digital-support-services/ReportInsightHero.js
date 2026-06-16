@@ -26,6 +26,8 @@ function BreadcrumbSeparator() {
 export default function ReportInsightHero({
   imageSrc = "/images/OTC-report-2025_svg.svg",
   imageAlt = "",
+  imageWidth = 1152,
+  imageHeight = 1152,
   breadcrumbs = [],
   title,
   description,
@@ -48,7 +50,7 @@ export default function ReportInsightHero({
   return (
     <section
       className={[
-        "relative text-gray-night-green",
+        "relative text-gray-defi-shadow",
         className || "bg-gray-tradfi-horizon",
       ]
         .filter(Boolean)
@@ -57,13 +59,14 @@ export default function ReportInsightHero({
       <Image
         alt={imageAlt || title}
         loading="lazy"
-        width={1152}
-        height={1152}
-        className="right-0 top-0 -mt-4xl object-cover lg:absolute lg:mt-0 lg:h-full lg:w-1/2"
+        width={imageWidth}
+        height={imageHeight}
+        unoptimized={imageSrc.endsWith(".svg") || imageSrc.includes(".svg?")}
+        className="right-0 top-0 -mt-block object-cover lg:absolute lg:mt-0 lg:h-full lg:w-1/2"
         style={{ color: "transparent" }}
         src={imageSrc}
       />
-      <div className="container flex flex-col items-center gap-2xl pb-4xl lg:flex-row-reverse lg:gap-4xl lg:pt-4xl">
+      <div className="container flex flex-col items-center gap-2xl pb-block lg:min-h-[75svh] lg:flex-row-reverse lg:gap-4xl lg:pt-block">
         <div className="hidden lg:block lg:flex-1" />
         <div className="flex flex-1 flex-col gap-2xl lg:gap-3xl">
           {breadcrumbs?.length > 0 ? (

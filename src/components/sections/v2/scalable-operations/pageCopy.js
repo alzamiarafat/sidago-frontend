@@ -51,7 +51,7 @@ export const similarInsightsContent = {
       date: "11 Apr 2026",
     },
     {
-      href: "/insights/discover",
+      href: "/insights/subscribe",
       srText:
         "Insights › News › Announcements › Unlocking electronic pricing for options based yield across majors 50 altcoins",
       imageSrc: "/images/image_2.jpg",
@@ -80,7 +80,7 @@ export const similarInsightsContent = {
       date: "25 Mar 2026",
     },
     {
-      href: "/insights/discover",
+      href: "/insights/subscribe",
       srText:
         "Insights › News › Announcements › Sidago launches 24 7 crude oil cfd trading to meet demand for weekend liquidity",
       imageSrc: "/images/image_3.jpg",
@@ -107,7 +107,7 @@ export const similarInsightsContent = {
       date: "10 Feb 2026",
     },
     {
-      href: "/insights/discover",
+      href: "/insights/subscribe",
       srText:
         "Insights › News › Announcements › Sidago trader assessment day",
       imageSrc: "/images/image_1.jpg",

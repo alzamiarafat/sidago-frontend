@@ -1,0 +1,176 @@
+<svg viewBox="0 0 1456 816" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:1456px;display:block;">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eff0f0"/>
+      <stop offset="100%" stop-color="#e5e6e5"/>
+    </linearGradient>
+    <linearGradient id="og" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e7512f"/>
+      <stop offset="100%" stop-color="#f07a5a"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e7512f"/>
+      <stop offset="100%" stop-color="#ab290d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000" flood-opacity="0.18"/>
+    </filter>
+    <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <clipPath id="card1clip"><rect x="0" y="0" width="310" height="400" rx="8"/></clipPath>
+    <clipPath id="card2clip"><rect x="0" y="0" width="320" height="420" rx="8"/></clipPath>
+  </defs>
+
+  <rect width="1456" height="816" fill="url(#bg)"/>
+
+  <g fill="#0a0a09" opacity="0.025">
+    <circle cx="100" cy="100" r="1.5"/><circle cx="200" cy="80" r="1.5"/><circle cx="300" cy="120" r="1.5"/><circle cx="400" cy="90" r="1.5"/><circle cx="500" cy="110" r="1.5"/>
+    <circle cx="80" cy="200" r="1.5"/><circle cx="180" cy="220" r="1.5"/><circle cx="350" cy="200" r="1.5"/><circle cx="450" cy="230" r="1.5"/>
+    <circle cx="60" cy="700" r="1.5"/><circle cx="160" cy="720" r="1.5"/><circle cx="260" cy="700" r="1.5"/><circle cx="360" cy="730" r="1.5"/>
+    <circle cx="1200" cy="700" r="1.5"/><circle cx="1300" cy="720" r="1.5"/><circle cx="1400" cy="700" r="1.5"/>
+  </g>
+
+  <rect x="1218" y="54" width="174" height="52" rx="10" fill="url(#badge)"/>
+  <text x="1305" y="87" font-family="Inter,sans-serif" font-size="18" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="3">REPORT</text>
+
+  <g transform="translate(80,54)">
+    <polygon points="22,0 44,13 44,39 22,52 0,39 0,13" fill="none" stroke="#e7512f" stroke-width="2.2"/>
+    <polygon points="22,8 36,16 36,36 22,44 8,36 8,16" fill="none" stroke="#e7512f" stroke-width="1.2" opacity="0.45"/>
+    <text x="22" y="31" font-family="Inter,sans-serif" font-size="11" font-weight="900" fill="#e7512f" text-anchor="middle">S</text>
+  </g>
+  <text x="138" y="88" font-family="Inter,sans-serif" font-size="20" font-weight="800" fill="#0c0c0b" letter-spacing="4">SIDAGO</text>
+
+  <text x="80" y="290" font-family="Inter,sans-serif" font-size="88" font-weight="900" fill="#0c0c0b" letter-spacing="-3">Operations</text>
+  <text x="80" y="400" font-family="Inter,sans-serif" font-size="88" font-weight="900" letter-spacing="-3">
+    <tspan fill="url(#og)">Intelligence</tspan>
+  </text>
+
+  <g fill="#0c0c0b" opacity="0.13">
+    <rect x="80" y="440" width="7" height="7" rx="1"/><rect x="92" y="440" width="7" height="7" rx="1"/><rect x="104" y="440" width="7" height="7" rx="1"/>
+    <rect x="104" y="452" width="7" height="7" rx="1"/>
+    <rect x="80" y="464" width="7" height="7" rx="1"/><rect x="92" y="464" width="7" height="7" rx="1"/><rect x="104" y="464" width="7" height="7" rx="1"/>
+    <rect x="80" y="476" width="7" height="7" rx="1"/>
+    <rect x="80" y="488" width="7" height="7" rx="1"/><rect x="92" y="488" width="7" height="7" rx="1"/><rect x="104" y="488" width="7" height="7" rx="1"/>
+    <rect x="126" y="440" width="7" height="7" rx="1"/><rect x="138" y="440" width="7" height="7" rx="1"/><rect x="150" y="440" width="7" height="7" rx="1"/>
+    <rect x="126" y="452" width="7" height="7" rx="1"/><rect x="150" y="452" width="7" height="7" rx="1"/>
+    <rect x="126" y="464" width="7" height="7" rx="1"/><rect x="150" y="464" width="7" height="7" rx="1"/>
+    <rect x="126" y="476" width="7" height="7" rx="1"/><rect x="150" y="476" width="7" height="7" rx="1"/>
+    <rect x="126" y="488" width="7" height="7" rx="1"/><rect x="138" y="488" width="7" height="7" rx="1"/><rect x="150" y="488" width="7" height="7" rx="1"/>
+    <rect x="172" y="440" width="7" height="7" rx="1"/><rect x="184" y="440" width="7" height="7" rx="1"/><rect x="196" y="440" width="7" height="7" rx="1"/>
+    <rect x="196" y="452" width="7" height="7" rx="1"/>
+    <rect x="172" y="464" width="7" height="7" rx="1"/><rect x="184" y="464" width="7" height="7" rx="1"/><rect x="196" y="464" width="7" height="7" rx="1"/>
+    <rect x="172" y="476" width="7" height="7" rx="1"/>
+    <rect x="172" y="488" width="7" height="7" rx="1"/><rect x="184" y="488" width="7" height="7" rx="1"/><rect x="196" y="488" width="7" height="7" rx="1"/>
+    <rect x="218" y="440" width="7" height="7" rx="1"/><rect x="230" y="440" width="7" height="7" rx="1"/><rect x="242" y="440" width="7" height="7" rx="1"/>
+    <rect x="218" y="452" width="7" height="7" rx="1"/>
+    <rect x="218" y="464" width="7" height="7" rx="1"/><rect x="230" y="464" width="7" height="7" rx="1"/><rect x="242" y="464" width="7" height="7" rx="1"/>
+    <rect x="242" y="476" width="7" height="7" rx="1"/>
+    <rect x="218" y="488" width="7" height="7" rx="1"/><rect x="230" y="488" width="7" height="7" rx="1"/><rect x="242" y="488" width="7" height="7" rx="1"/>
+    <rect x="80" y="500" width="7" height="7" rx="1"/><rect x="92" y="500" width="7" height="7" rx="1"/><rect x="104" y="500" width="7" height="7" rx="1"/>
+    <rect x="126" y="500" width="7" height="7" rx="1"/><rect x="150" y="500" width="7" height="7" rx="1"/>
+    <rect x="172" y="500" width="7" height="7" rx="1"/><rect x="184" y="500" width="7" height="7" rx="1"/><rect x="196" y="500" width="7" height="7" rx="1"/>
+    <rect x="218" y="500" width="7" height="7" rx="1"/><rect x="230" y="500" width="7" height="7" rx="1"/><rect x="242" y="500" width="7" height="7" rx="1"/>
+  </g>
+
+  <text x="80" y="600" font-family="Inter,sans-serif" font-size="30" font-weight="400" fill="#3a3835">How Sidago turns strategy into</text>
+  <text x="80" y="640" font-family="Inter,sans-serif" font-size="30" font-weight="400" fill="#3a3835">disciplined, measurable execution</text>
+
+  <text x="80" y="720" font-family="Inter,sans-serif" font-size="14" font-weight="500" fill="#8a8882" letter-spacing="2">REVIEW BY SIDAGO</text>
+
+  <g transform="translate(760,80) rotate(-4)" filter="url(#shadow2)">
+    <g clip-path="url(#card1clip)">
+      <rect width="310" height="400" fill="#fff" rx="8"/>
+      <rect width="310" height="6" fill="#e7512f"/>
+      <g transform="translate(16,20)">
+        <polygon points="10,0 20,6 20,18 10,24 0,18 0,6" fill="none" stroke="#e7512f" stroke-width="1.2"/>
+        <text x="10" y="15" font-family="Inter,sans-serif" font-size="5" font-weight="900" fill="#e7512f" text-anchor="middle">S</text>
+      </g>
+      <text x="38" y="33" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#0c0c0b" letter-spacing="2">SIDAGO</text>
+      <text x="16" y="70" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#0c0c0b">Operations landscape:</text>
+      <text x="16" y="90" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#0c0c0b">Broadening at the</text>
+      <text x="16" y="110" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#0c0c0b">top of the market</text>
+      <rect x="16" y="122" width="278" height="52" rx="4" fill="#fff8f5" stroke="#f0c4b0" stroke-width="1"/>
+      <text x="24" y="142" font-family="Inter,sans-serif" font-size="9" fill="#8a8882">"Workflows were increasingly flowing into</text>
+      <text x="24" y="156" font-family="Inter,sans-serif" font-size="9" fill="#8a8882">structured delivery, driven by OKRs and</text>
+      <text x="24" y="170" font-family="Inter,sans-serif" font-size="9" fill="#8a8882">performance routines."</text>
+      <rect x="16" y="186" width="278" height="140" rx="4" fill="#f8f7f4"/>
+      <text x="24" y="204" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#b0aeaa" letter-spacing="1">EXHIBIT 4</text>
+      <text x="24" y="218" font-family="Inter,sans-serif" font-size="9" fill="#0c0c0b" font-weight="600">Breadth of ops tracked via Sidago</text>
+      <g transform="translate(24,228)">
+        <rect x="0" y="40" width="18" height="55" fill="#e7512f" opacity="0.6"/>
+        <rect x="24" y="28" width="18" height="67" fill="#e7512f" opacity="0.7"/>
+        <rect x="48" y="18" width="18" height="77" fill="#e7512f" opacity="0.8"/>
+        <rect x="72" y="10" width="18" height="85" fill="#e7512f" opacity="0.85"/>
+        <rect x="96" y="20" width="18" height="75" fill="#e7512f" opacity="0.75"/>
+        <rect x="120" y="8" width="18" height="87" fill="#e7512f"/>
+        <rect x="144" y="15" width="18" height="80" fill="#e7512f" opacity="0.9"/>
+        <rect x="168" y="5" width="18" height="90" fill="#e7512f"/>
+        <rect x="192" y="12" width="18" height="83" fill="#e7512f" opacity="0.95"/>
+        <line x1="0" y1="96" x2="270" y2="96" stroke="#e0ddd8" stroke-width="1"/>
+      </g>
+      <text x="16" y="385" font-family="Inter,sans-serif" font-size="7" fill="#b0aeaa">SOURCE: SIDAGO OPERATIONS DATA</text>
+    </g>
+  </g>
+
+  <g transform="translate(870,120)" filter="url(#shadow)">
+    <g clip-path="url(#card2clip)">
+      <rect width="320" height="420" fill="#fff" rx="8"/>
+      <rect width="320" height="8" fill="#e7512f"/>
+      <g fill="#e7512f" opacity="0.18">
+        <rect x="220" y="20" width="5" height="5" rx="1"/><rect x="232" y="20" width="5" height="5" rx="1"/><rect x="244" y="20" width="5" height="5" rx="1"/><rect x="256" y="20" width="5" height="5" rx="1"/><rect x="268" y="20" width="5" height="5" rx="1"/><rect x="280" y="20" width="5" height="5" rx="1"/><rect x="292" y="20" width="5" height="5" rx="1"/><rect x="304" y="20" width="5" height="5" rx="1"/>
+        <rect x="220" y="32" width="5" height="5" rx="1"/><rect x="232" y="32" width="5" height="5" rx="1"/><rect x="244" y="32" width="5" height="5" rx="1"/><rect x="256" y="32" width="5" height="5" rx="1"/><rect x="268" y="32" width="5" height="5" rx="1"/><rect x="280" y="32" width="5" height="5" rx="1"/><rect x="292" y="32" width="5" height="5" rx="1"/><rect x="304" y="32" width="5" height="5" rx="1"/>
+        <rect x="232" y="44" width="5" height="5" rx="1"/><rect x="244" y="44" width="5" height="5" rx="1"/><rect x="256" y="44" width="5" height="5" rx="1"/><rect x="268" y="44" width="5" height="5" rx="1"/><rect x="280" y="44" width="5" height="5" rx="1"/><rect x="292" y="44" width="5" height="5" rx="1"/><rect x="304" y="44" width="5" height="5" rx="1"/>
+        <rect x="244" y="56" width="5" height="5" rx="1"/><rect x="256" y="56" width="5" height="5" rx="1"/><rect x="268" y="56" width="5" height="5" rx="1"/><rect x="280" y="56" width="5" height="5" rx="1"/><rect x="292" y="56" width="5" height="5" rx="1"/><rect x="304" y="56" width="5" height="5" rx="1"/>
+        <rect x="256" y="68" width="5" height="5" rx="1"/><rect x="268" y="68" width="5" height="5" rx="1"/><rect x="280" y="68" width="5" height="5" rx="1"/><rect x="292" y="68" width="5" height="5" rx="1"/><rect x="304" y="68" width="5" height="5" rx="1"/>
+      </g>
+      <g transform="translate(16,18)">
+        <polygon points="10,0 20,6 20,18 10,24 0,18 0,6" fill="none" stroke="#e7512f" stroke-width="1.5"/>
+        <text x="10" y="15" font-family="Inter,sans-serif" font-size="5.5" font-weight="900" fill="#e7512f" text-anchor="middle">S</text>
+      </g>
+      <text x="40" y="35" font-family="Inter,sans-serif" font-size="9" font-weight="800" fill="#0c0c0b" letter-spacing="2">SIDAGO</text>
+      <text x="16" y="80" font-family="Inter,sans-serif" font-size="22" font-weight="900" fill="#0c0c0b" letter-spacing="-0.5">Operations</text>
+      <text x="16" y="108" font-family="Inter,sans-serif" font-size="22" font-weight="900" fill="#e7512f" letter-spacing="-0.5">Intelligence</text>
+      <g fill="#e7512f" opacity="0.22">
+        <rect x="16" y="122" width="5" height="5" rx="1"/><rect x="26" y="122" width="5" height="5" rx="1"/><rect x="36" y="122" width="5" height="5" rx="1"/><rect x="46" y="122" width="5" height="5" rx="1"/>
+        <rect x="16" y="132" width="5" height="5" rx="1"/>
+        <rect x="16" y="142" width="5" height="5" rx="1"/><rect x="26" y="142" width="5" height="5" rx="1"/><rect x="36" y="142" width="5" height="5" rx="1"/>
+        <rect x="46" y="132" width="5" height="5" rx="1"/>
+        <rect x="16" y="152" width="5" height="5" rx="1"/><rect x="26" y="152" width="5" height="5" rx="1"/><rect x="36" y="152" width="5" height="5" rx="1"/><rect x="46" y="152" width="5" height="5" rx="1"/>
+        <rect x="60" y="122" width="5" height="5" rx="1"/><rect x="70" y="122" width="5" height="5" rx="1"/><rect x="80" y="122" width="5" height="5" rx="1"/>
+        <rect x="60" y="132" width="5" height="5" rx="1"/>
+        <rect x="60" y="142" width="5" height="5" rx="1"/><rect x="70" y="142" width="5" height="5" rx="1"/><rect x="80" y="142" width="5" height="5" rx="1"/>
+        <rect x="80" y="152" width="5" height="5" rx="1"/>
+        <rect x="60" y="162" width="5" height="5" rx="1"/><rect x="70" y="162" width="5" height="5" rx="1"/><rect x="80" y="162" width="5" height="5" rx="1"/>
+      </g>
+      <text x="16" y="198" font-family="Inter,sans-serif" font-size="9" font-weight="500" fill="#8a8882" letter-spacing="2">REVIEW BY SIDAGO</text>
+      <line x1="16" y1="210" x2="304" y2="210" stroke="#e8e5e0" stroke-width="1"/>
+      <rect x="16" y="222" width="6" height="6" rx="1" fill="#e7512f"/>
+      <text x="28" y="230" font-family="Inter,sans-serif" font-size="10" fill="#0c0c0b" font-weight="500">Strategy implementation</text>
+      <rect x="16" y="240" width="6" height="6" rx="1" fill="#e7512f"/>
+      <text x="28" y="248" font-family="Inter,sans-serif" font-size="10" fill="#0c0c0b" font-weight="500">Operating rhythm &amp; cadence</text>
+      <rect x="16" y="258" width="6" height="6" rx="1" fill="#e7512f"/>
+      <text x="28" y="266" font-family="Inter,sans-serif" font-size="10" fill="#0c0c0b" font-weight="500">Delivery governance</text>
+      <rect x="16" y="276" width="6" height="6" rx="1" fill="#e7512f"/>
+      <text x="28" y="284" font-family="Inter,sans-serif" font-size="10" fill="#0c0c0b" font-weight="500">Performance visibility</text>
+      <rect x="16" y="296" width="288" height="90" rx="4" fill="#f8f7f4"/>
+      <polyline points="24,368 56,350 88,354 120,330 152,336 184,310 216,316 248,298 280,304 298,296" fill="none" stroke="#e7512f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polygon points="24,368 56,350 88,354 120,330 152,336 184,310 216,316 248,298 280,304 298,296 298,376 24,376" fill="#e7512f" opacity="0.08"/>
+      <polyline points="24,376 56,368 88,370 120,362 152,364 184,356 216,358 248,352 280,354 298,350" fill="none" stroke="#0c0c0b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3" opacity="0.3"/>
+      <text x="16" y="408" font-family="Inter,sans-serif" font-size="7" fill="#b0aeaa" letter-spacing="0.5">SOURCE: SIDAGO OPERATIONS DATA AS OF 2025</text>
+    </g>
+  </g>
+
+  <g fill="#e7512f" opacity="0.12">
+    <rect x="1360" y="400" width="6" height="6" rx="1"/><rect x="1374" y="400" width="6" height="6" rx="1"/><rect x="1388" y="400" width="6" height="6" rx="1"/><rect x="1402" y="400" width="6" height="6" rx="1"/><rect x="1416" y="400" width="6" height="6" rx="1"/><rect x="1430" y="400" width="6" height="6" rx="1"/>
+    <rect x="1374" y="416" width="6" height="6" rx="1"/><rect x="1388" y="416" width="6" height="6" rx="1"/><rect x="1402" y="416" width="6" height="6" rx="1"/><rect x="1416" y="416" width="6" height="6" rx="1"/><rect x="1430" y="416" width="6" height="6" rx="1"/>
+    <rect x="1388" y="432" width="6" height="6" rx="1"/><rect x="1402" y="432" width="6" height="6" rx="1"/><rect x="1416" y="432" width="6" height="6" rx="1"/><rect x="1430" y="432" width="6" height="6" rx="1"/>
+    <rect x="1402" y="448" width="6" height="6" rx="1"/><rect x="1416" y="448" width="6" height="6" rx="1"/><rect x="1430" y="448" width="6" height="6" rx="1"/>
+    <rect x="1416" y="464" width="6" height="6" rx="1"/><rect x="1430" y="464" width="6" height="6" rx="1"/>
+    <rect x="1430" y="480" width="6" height="6" rx="1"/>
+    <rect x="1360" y="480" width="6" height="6" rx="1"/><rect x="1374" y="480" width="6" height="6" rx="1"/><rect x="1388" y="480" width="6" height="6" rx="1"/>
+    <rect x="1360" y="496" width="6" height="6" rx="1"/><rect x="1374" y="496" width="6" height="6" rx="1"/>
+    <rect x="1360" y="512" width="6" height="6" rx="1"/>
+    <rect x="1360" y="528" width="6" height="6" rx="1"/><rect x="1374" y="528" width="6" height="6" rx="1"/><rect x="1388" y="528" width="6" height="6" rx="1"/>
+  </g>
+</svg>

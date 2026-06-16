@@ -14,12 +14,12 @@ export const reportInsightHero = {
   breadcrumbs: [
     {
       label: "Insights",
-      href: "/insights/discover",
-      srText: "Insights › Discover",
+      href: "/insights/subscribe",
+      srText: "Insights › Subscribe",
     },
     {
       label: "News",
-      href: "/insights/discover",
+      href: "/insights/subscribe",
       srText: "Insights › News",
     },
   ],

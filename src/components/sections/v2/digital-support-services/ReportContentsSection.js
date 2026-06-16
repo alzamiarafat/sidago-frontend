@@ -159,6 +159,23 @@ function ArticleImage({ image }) {
     return null;
   }
 
+  const isSvg = image.src.includes(".svg");
+
+  if (isSvg) {
+    return (
+      <div className="my-4xl overflow-hidden">
+        <Image
+          alt={image.alt || ""}
+          src={image.src}
+          width={image.width || 1456}
+          height={image.height || 816}
+          unoptimized
+          className="h-auto w-full max-w-full object-contain"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="my-4xl flex flex-col gap-md">
       <button
@@ -459,14 +476,28 @@ export default function ReportContentsSection({
                 </h2>
 
                 <div className="flex">
-                  <Link
-                    href={ctaSection.href}
-                    className="group/interactive inline-flex items-center justify-between gap-md bg-green-tradfi px-sm py-xs font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
-                  >
-                    <span className="sr-only">{ctaSection.srText}</span>
-                    {ctaSection.label}
-                    <ArrowIcon />
-                  </Link>
+                  {/^https?:\/\//i.test(ctaSection.href) ? (
+                    <a
+                      href={ctaSection.href}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      referrerPolicy="no-referrer"
+                      className="group/interactive inline-flex items-center justify-between gap-md bg-green-tradfi px-sm py-xs font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100"
+                    >
+                      <span className="sr-only">{ctaSection.srText}</span>
+                      {ctaSection.label}
+                      <ArrowIcon />
+                    </a>
+                  ) : (
+                    <Link
+                      href={ctaSection.href}
+                      className="group/interactive inline-flex items-center justify-between gap-md bg-green-tradfi px-sm py-xs font-medium text-gray-night-green bevel bevel-[0.25rem] hover:lg:opacity-70 active:opacity-70 active:lg:opacity-100 disabled:opacity-50"
+                    >
+                      <span className="sr-only">{ctaSection.srText}</span>
+                      {ctaSection.label}
+                      <ArrowIcon />
+                    </Link>
+                  )}
                 </div>
               </>
             ) : null}

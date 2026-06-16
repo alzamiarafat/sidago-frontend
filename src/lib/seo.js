@@ -125,6 +125,30 @@ export const routeMetadata = {
       "Explore Sidago options research, market insights, and strategic content for modern digital finance and business operations.",
     path: "/insights",
   }),
+  insightsSubscribe: buildPageMetadata({
+    title: "Subscribe to Insights",
+    description:
+      "Subscribe to Sidago market updates, research insights, and announcements to stay informed on business and market developments.",
+    path: "/insights/subscribe",
+    keywords: [
+      "Sidago insights subscribe",
+      "newsletter",
+      "market updates",
+      "research insights",
+    ],
+  }),
+  insightsReport: buildPageMetadata({
+    title: "Digital Asset OTC Market 2025",
+    description:
+      "Sidago's 2025 digital asset OTC market review analyzes crypto liquidity flows, institutional trading behavior, and derivatives growth.",
+    path: "/insights/insight-report",
+    keywords: [
+      "Sidago OTC report",
+      "digital asset OTC",
+      "crypto liquidity",
+      "institutional trading",
+    ],
+  }),
   research: buildPageMetadata({
     title: "Research",
     description:

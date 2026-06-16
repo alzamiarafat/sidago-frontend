@@ -44,10 +44,11 @@ export default function AtAGlanceSection({
   headingId = atAGlanceContent.headingId,
   body = atAGlanceContent.body,
   bullets,
+  sectionClassName = "bg-[#D8DAD8]",
   className = "",
 }) {
   return (
-    <section className={`bg-[#D8DAD8] text-black ${className}`.trim()}>
+    <section className={`${sectionClassName} text-black ${className}`.trim()}>
       <div className="container flex flex-col gap-x-container gap-y-4xl py-block pb-container pt-container lg:flex-row">
         <div
           className="core-column--stacked-on-mobile flex flex-col gap-2xl"

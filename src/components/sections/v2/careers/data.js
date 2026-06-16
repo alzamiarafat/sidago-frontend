@@ -497,17 +497,18 @@ export const openRolesPage = {
     {
       key: "locationType",
       label: "Location type",
-      color: "#EC9BE5",
+      color: "#EFA4E5",
       options: ["All", "Onsite", "Remote", "Hybrid"],
     },
     {
       key: "location",
       label: "Location",
-      color: "#958DEC",
+      color: "#B1A9E9",
       options: [
         "All",
         "New York",
         "London",
+        "London/New York",
         "Singapore",
         "Remote · Global",
         "Remote · APAC / EMEA",
@@ -517,7 +518,7 @@ export const openRolesPage = {
     {
       key: "team",
       label: "Team",
-      color: "#FF8C69",
+      color: "#F19E9E",
       options: [
         "All",
         "Trading",
@@ -534,7 +535,7 @@ export const openRolesPage = {
     {
       key: "workType",
       label: "Work type",
-      color: "#7FB2F1",
+      color: "#7FB1EF",
       options: ["All", "Full-time", "Part-time", "Contract"],
     },
   ],
@@ -600,6 +601,36 @@ export const openRolesPage = {
       href: "/contact",
     },
     {
+      id: "bd-partnerships-director",
+      title: "Business Development & Partnerships Director",
+      department: "BUSINESS DEVELOPMENT",
+      locationType: "Hybrid",
+      location: "London",
+      team: "Business Development",
+      workType: "Full-time",
+      href: "/contact",
+    },
+    {
+      id: "institutional-bd-director",
+      title: "Institutional Business Development Director",
+      department: "BUSINESS DEVELOPMENT",
+      locationType: "Hybrid",
+      location: "London/New York",
+      team: "Business Development",
+      workType: "Full-time",
+      href: "/contact",
+    },
+    {
+      id: "institutional-bd-manager",
+      title: "Institutional Business Development Manager",
+      department: "BUSINESS DEVELOPMENT",
+      locationType: "Hybrid",
+      location: "London/New York",
+      team: "Business Development",
+      workType: "Full-time",
+      href: "/contact",
+    },
+    {
       id: "bd-manager-london",
       title: "Business Development Manager",
       department: "BUSINESS DEVELOPMENT",
@@ -661,6 +692,34 @@ export const openRolesPage = {
     },
   ],
 };
+
+/** CTA row for opportunities page — replaces Apply with Meet us → events. */
+export const openRolesPageCta = [
+  {
+    title: "Contact",
+    description: "To access top crypto liquidity",
+    href: "/contact",
+    srLabel: "Contact",
+    backgroundColor: "#FF5D3C",
+    sortOrder: 1,
+  },
+  {
+    title: "Subscribe",
+    description: "To get the latest insights",
+    href: "/insights/subscribe",
+    srLabel: "Insights › Subscribe",
+    backgroundColor: "#FA7248",
+    sortOrder: 2,
+  },
+  {
+    title: "Meet us",
+    description: "To chat with us at the next event",
+    href: "/events",
+    srLabel: "Events",
+    backgroundColor: "#FF8C69",
+    sortOrder: 3,
+  },
+];
 
 export const hiringSteps = [
   {

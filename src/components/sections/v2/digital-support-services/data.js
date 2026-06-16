@@ -258,7 +258,7 @@ export const similarInsightsContent = {
       date: "28 Jan 2026",
     },
     {
-      href: "/insights/market-color/reports/digital-asset-otc-markets-2025",
+      href: "/insights/insight-report",
       srText:
         "Insights › Market color › Reports › Digital asset otc markets 2025",
       imageSrc: "/images/image_16.jpg",

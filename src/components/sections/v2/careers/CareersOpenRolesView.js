@@ -1,12 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import { DotMatrixText } from "@/src/components/sections/v2/common/DotMatrixText";
+import CTASection from "@/src/components/sections/v2/common/CTA";
+import BevelNavArrow from "@/src/components/sections/v2/common/BevelNavArrow";
 import {
   openRolesPage as defaultOpenRolesPage,
+  openRolesPageCta,
 } from "@/src/components/sections/v2/careers/data";
 import "@/src/components/sections/v2/careers/careers-open-roles.css";
 
@@ -25,25 +28,6 @@ function ChevronIcon() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function JobArrowIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 40 40"
-      className="h-5 w-5"
-      aria-hidden
-    >
-      <path
-        fill="currentColor"
-        fillRule="evenodd"
-        d="M26.049 9.579 25.033 10v9.405H5.807v1.19h19.226v9.524l1.017.42L36.11 20.45l-.002-.842zm.175 11.016v8.084l8.06-8.084zm7.994-1.19-7.994-7.97v7.97z"
-        clipRule="evenodd"
       />
     </svg>
   );
@@ -83,7 +67,7 @@ function FilterDropdown({ filter, value, onChange, isOpen, onToggle, onClose }) 
         aria-haspopup="listbox"
         onClick={onToggle}
       >
-        {filter.label}
+        <span className="careers-open-roles-filter__label">{filter.label}</span>
         <ChevronIcon />
       </button>
       {isOpen ? (
@@ -98,7 +82,9 @@ function FilterDropdown({ filter, value, onChange, isOpen, onToggle, onClose }) 
               type="button"
               role="option"
               aria-selected={value === option}
-              className="careers-open-roles-filter__option"
+              className={`careers-open-roles-filter__option${
+                value === option ? " careers-open-roles-filter__option--selected" : ""
+              }`}
               onClick={() => {
                 onChange(option);
                 onClose();
@@ -171,39 +157,38 @@ export default function CareersOpenRolesView({
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <main className="relative flex-1 [&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)]">
           <section className="careers-open-roles-hero">
-            <div className="container careers-open-roles-hero__inner">
-              <div>
-                <h1 className="careers-open-roles-hero__title text-gray-off-white">
-                  {hero.titlePrefix}{" "}
-                  <span className="text-green-dark">{hero.titleHighlight}</span>
-                </h1>
-                <p className="careers-open-roles-hero__subtitle">
-                  {hero.subtitlePrefix}{" "}
-                  <Link href={hero.openApplicationHref}>
-                    {hero.openApplicationLabel}
-                  </Link>
-                </p>
-              </div>
-
-              <div className="careers-open-roles-hero__decor" aria-hidden>
-                <DotMatrixText
-                  text="S"
-                  active
-                  dotSize={2}
-                  dotSpacing={4}
-                  dotColor="#E9EEE9"
-                  activeDotColor="#E9EEE9"
-                  fontSizeMobile={120}
-                  fontSizeDesktop={280}
-                  displayWidth={280}
-                  displayHeight={280}
-                />
+            <div className="container py-block">
+              <div className="relative">
+                <div className="flex flex-col gap-6 lg:gap-8">
+                  <h1
+                    className="z-10 inline-block max-w-[60%] text-2xl lg:text-3xl"
+                    id="careers-opportunities-heading"
+                  >
+                    {hero.titlePrefix}{" "}
+                    <span className="text-green-dark">{hero.titleHighlight}</span>
+                  </h1>
+                  <p className="z-10 max-w-[85%] text-base md:max-w-[70%]">
+                    {hero.subtitlePrefix} {hero.openApplicationLabel}
+                  </p>
+                </div>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex w-[40%] items-center justify-end md:w-[32%] lg:w-[22%]">
+                  <Image
+                    alt=""
+                    src="/images/navbar-logo-icon.png"
+                    width={560}
+                    height={446}
+                    unoptimized
+                    className="h-auto w-full max-w-[9.5rem] sm:max-w-[10.5rem] md:max-w-[12rem] lg:max-w-[14rem]"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </section>
 
-          <section className="container">
-            <div className="careers-open-roles-filters">
+          <section className="careers-open-roles-content">
+            <div className="container careers-open-roles-content__inner">
+              <div className="careers-open-roles-filters">
               {filters.map((filter) => (
                 <FilterDropdown
                   key={filter.key}
@@ -241,11 +226,11 @@ export default function CareersOpenRolesView({
                       <Link
                         key={role.id}
                         href={role.href}
-                        className="careers-open-roles-job"
+                        className="careers-open-roles-job group/interactive"
                       >
                         <div className="careers-open-roles-job__row">
                           <span className="careers-open-roles-job__arrow">
-                            <JobArrowIcon />
+                            <BevelNavArrow className="careers-open-roles-job__arrow-icon ml-[--arrow-offset] transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset]" />
                           </span>
                           <div>
                             <h3 className="careers-open-roles-job__title">
@@ -256,10 +241,10 @@ export default function CareersOpenRolesView({
                                 {role.locationType}
                               </span>
                               <span className="careers-open-roles-job__tag">
-                                {role.workType}
+                                {role.location}
                               </span>
                               <span className="careers-open-roles-job__tag">
-                                {role.location}
+                                {role.workType}
                               </span>
                             </div>
                           </div>
@@ -270,8 +255,10 @@ export default function CareersOpenRolesView({
                 ))
               )}
             </div>
+            </div>
           </section>
 
+          <CTASection items={openRolesPageCta} />
           <Footer footer={footer} />
         </main>
       </div>

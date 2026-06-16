@@ -26,6 +26,7 @@ function SubmitArrow() {
 export default function SubscribeSection({
   content = subscribeContent,
   onSubmit,
+  className = "",
 }) {
   const [email, setEmail] = useState("");
   const [newsletters, setNewsletters] = useState(() =>
@@ -48,7 +49,7 @@ export default function SubscribeSection({
   };
 
   return (
-    <section className="v2-subscribe">
+    <section className={`v2-subscribe ${className}`.trim()}>
       <div className="container v2-subscribe__inner">
         <h2 className="v2-subscribe__title" id={content.headingId}>
           {content.heading}

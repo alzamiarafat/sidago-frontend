@@ -581,8 +581,8 @@ export const defaultHomepage = {
     {
       title: "Subscribe",
       description: "To get the latest insights",
-      href: "/contact",
-      srLabel: "Insights",
+      href: "/insights/subscribe",
+      srLabel: "Insights › Subscribe",
       backgroundColor: "#FA7248",
       sortOrder: 2,
     },

@@ -12,18 +12,18 @@ export const reportInsightHero = {
   breadcrumbs: [
     {
       label: "Insights",
-      href: "/insights/discover",
-      srText: "Insights › Discover",
+      href: "/insights/subscribe",
+      srText: "Insights › Subscribe",
     },
     {
       label: "Market Color",
-      href: "/insights/discover?category=market-update&category=reports",
-      srText: "Insights › Discover",
+      href: "/insights/subscribe?category=market-update&category=reports",
+      srText: "Insights › Subscribe",
     },
     {
       label: "Market Update",
-      href: "/insights/discover?category=market-update",
-      srText: "Insights › Discover",
+      href: "/insights/subscribe?category=market-update",
+      srText: "Insights › Subscribe",
     },
   ],
   title: "Market Update: 18 May 2026",
@@ -41,13 +41,13 @@ export const atAGlanceContent = {
   tags: [
     {
       label: "BTC",
-      href: "/insights/discover?tag=btc",
-      srText: "Insights › Discover",
+      href: "/insights/subscribe?tag=btc",
+      srText: "Insights › Subscribe",
     },
     {
       label: "Macro",
-      href: "/insights/discover?tag=macro",
-      srText: "Insights › Discover",
+      href: "/insights/subscribe?tag=macro",
+      srText: "Insights › Subscribe",
     },
   ],
   heading: "At a glance",

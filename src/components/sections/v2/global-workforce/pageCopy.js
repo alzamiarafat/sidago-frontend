@@ -36,7 +36,7 @@ export const similarInsightsContent = {
       date: "18 May 2026",
     },
     {
-      href: "/insights/discover?category=market-update",
+      href: "/insights/subscribe?category=market-update",
       srText:
         "Insights › Market color › Market update › Market update 11 may 2026",
       imageSrc: "/images/image_3.jpg",
@@ -48,7 +48,7 @@ export const similarInsightsContent = {
       date: "11 May 2026",
     },
     {
-      href: "/insights/discover?category=reports",
+      href: "/insights/subscribe?category=reports",
       srText:
         "Insights › Views › Opinions › Digital assets in 2026 the clearing layer for the internet economy",
       imageSrc: "/images/image_10.jpg",
@@ -62,7 +62,7 @@ export const similarInsightsContent = {
       date: "28 Jan 2026",
     },
     {
-      href: "/insights/discover?category=market-update&category=reports",
+      href: "/insights/subscribe?category=market-update&category=reports",
       srText:
         "Insights › Market color › Reports › Digital asset otc markets 2025",
       imageSrc: "/images/image_16.jpg",

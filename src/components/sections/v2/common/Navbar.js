@@ -2198,9 +2198,9 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/insights/discover"
+                href="/insights/subscribe"
               >
-                <span itemProp="name">Discover</span>
+                <span itemProp="name">Subscribe</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
