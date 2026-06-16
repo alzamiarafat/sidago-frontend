@@ -104,9 +104,9 @@ function UnderlineField({
   );
 }
 
-function UnderlineTextarea({ id, label, name, value, onChange, rows = 4 }) {
+function UnderlineTextarea({ id, label, name, value, onChange, rows = 1 }) {
   return (
-    <div className="dss-inquiry-field">
+    <div className="dss-inquiry-field dss-inquiry-field--textarea">
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <textarea
         id={id}
