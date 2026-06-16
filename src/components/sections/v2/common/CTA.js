@@ -1,11 +1,41 @@
+import Link from "next/link";
 import { defaultHomepage } from "@/src/data/cms/defaults";
+
+const SUBSCRIBE_CTA_HREF = "/insights/subscribe";
+const APPLY_CTA_HREF = "/company/opportunities";
+
+function resolveCtaHref(item) {
+  const title = item?.title?.trim().toLowerCase();
+
+  if (title === "subscribe") {
+    return SUBSCRIBE_CTA_HREF;
+  }
+
+  if (title === "apply") {
+    return APPLY_CTA_HREF;
+  }
+
+  return item?.href?.trim() || "";
+}
+
 function CTAItem({ item, isLast }) {
+  const href = resolveCtaHref(item);
+  const isExternal = /^https?:\/\//i.test(href);
+  const Wrapper = isExternal ? "a" : Link;
+  const wrapperProps = isExternal
+    ? {
+        href,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : { href };
+
   return (
     <>
-      <a
+      <Wrapper
+        {...wrapperProps}
         style={{ position: "relative" }}
         className="group/interactive flex-1"
-        href={item.href}
         aria-label={item.srLabel}
       >
         <div
@@ -55,7 +85,7 @@ function CTAItem({ item, isLast }) {
             {item.description}
           </div>
         </div>
-      </a>
+      </Wrapper>
       {!isLast && (
         <div className="hidden -mx-[0.0625rem] w-[0.125rem] lg:my-xl lg:block"></div>
       )}
@@ -63,7 +93,13 @@ function CTAItem({ item, isLast }) {
   );
 }
 export default function CTASection({ items = defaultHomepage.cta }) {
-  const ctaItems = items?.filter((item) => item?.title && item?.href) || [];
+  const ctaItems =
+    items
+      ?.map((item) => ({
+        ...item,
+        href: resolveCtaHref(item),
+      }))
+      .filter((item) => item?.title && item?.href) || [];
   if (ctaItems.length === 0) {
     return null;
   }

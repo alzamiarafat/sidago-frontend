@@ -1,5 +1,6 @@
 "use client";
 
+import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import AtAGlanceSection from "@/src/components/sections/v2/digital-support-services/AtAGlanceSection";
@@ -32,6 +33,7 @@ export default function GlobalWorkforceView({ footer, hero }) {
             content={similarInsightsContent}
             sectionBgColor="#FFFFFF"
           />
+          <CTASection />
           <Footer footer={footer} />
         </main>
       </div>

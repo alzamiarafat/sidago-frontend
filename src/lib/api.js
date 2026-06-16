@@ -382,7 +382,19 @@ function normalizeFooter(footer) {
 }
 
 function normalizeCtaItem(item, fallbackItem) {
-  if (!item?.title || !item?.description || !item?.href) {
+  if (!item?.title || !item?.description) {
+    return fallbackItem;
+  }
+
+  const title = item.title.trim().toLowerCase();
+  const href =
+    title === "subscribe"
+      ? "/insights/subscribe"
+      : title === "apply"
+        ? "/company/opportunities"
+        : item.href?.trim() || fallbackItem?.href?.trim() || "";
+
+  if (!href) {
     return fallbackItem;
   }
 
@@ -391,7 +403,7 @@ function normalizeCtaItem(item, fallbackItem) {
     ...item,
     title: item.title.trim(),
     description: item.description.trim(),
-    href: item.href.trim(),
+    href,
     srLabel: item.srLabel?.trim() || item.title,
     backgroundColor:
       item.backgroundColor?.trim() || fallbackItem.backgroundColor,
@@ -584,7 +596,7 @@ function normalizeHomepage(entry) {
         ? cta
             .filter(
               (ctaItem) =>
-                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+                ctaItem?.title && ctaItem?.description,
             )
             .slice()
             .sort(
@@ -808,7 +820,7 @@ function normalizeOperationsPage(entry) {
         ? item.cta
             .filter(
               (ctaItem) =>
-                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+                ctaItem?.title && ctaItem?.description,
             )
             .slice()
             .sort(
@@ -1288,7 +1300,7 @@ function normalizePerformancePage(entry) {
         ? item.cta
             .filter(
               (ctaItem) =>
-                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+                ctaItem?.title && ctaItem?.description,
             )
             .slice()
             .sort(
@@ -1377,7 +1389,7 @@ function normalizeExecutionPage(entry) {
         ? item.cta
             .filter(
               (ctaItem) =>
-                ctaItem?.title && ctaItem?.description && ctaItem?.href,
+                ctaItem?.title && ctaItem?.description,
             )
             .slice()
             .sort(

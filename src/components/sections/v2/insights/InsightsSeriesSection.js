@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { insightsSeriesContent } from "@/src/components/sections/v2/insights/data";
 
 function SeriesArrow({ mobile = false }) {
@@ -7,7 +6,7 @@ function SeriesArrow({ mobile = false }) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 40 40"
-      className={`ml-[--arrow-offset] shrink-0 transition-all group-active/interactive:ml-0 group-active/interactive:mr-[--arrow-offset] group-active/interactive:lg:ml-[--arrow-offset] group-active/interactive:lg:mr-0 group-hover/interactive:ml-0 group-hover/interactive:mr-[--arrow-offset] text-green-dark ${
+      className={`ml-[--arrow-offset] shrink-0 text-green-dark ${
         mobile ? "lg:hidden" : "hidden lg:inline"
       }`}
       style={{
@@ -26,21 +25,14 @@ function SeriesArrow({ mobile = false }) {
   );
 }
 
-function SeriesLink({ item }) {
+function SeriesItem({ item }) {
   return (
     <>
-      <Link
-        href={item.href}
-        style={{ position: "relative" }}
-        className="group/interactive flex justify-between gap-xl"
-      >
-        <span className="sr-only">{item.srText}</span>
-        <div className="text-2xl transition-all group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100 lg:text-3xl">
-          {item.label}
-        </div>
+      <div className="flex justify-between gap-xl">
+        <div className="text-2xl lg:text-3xl">{item.label}</div>
         <SeriesArrow mobile />
         <SeriesArrow />
-      </Link>
+      </div>
       <hr className="border-gray-defi-graphite" />
     </>
   );
@@ -67,7 +59,7 @@ export default function InsightsSeriesSection() {
         <section className="bg-gray-defi-shadow text-gray-off-white">
           <div className="flex flex-col gap-xl">
             {items.map((item) => (
-              <SeriesLink key={item.label} item={item} />
+              <SeriesItem key={item.label} item={item} />
             ))}
           </div>
         </section>
