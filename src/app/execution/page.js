@@ -96,9 +96,12 @@ function AboutVisual({ visual, supportChips, overviewItems }) {
         <div className="execution-visual-glow absolute left-[-18%] top-[-30%] h-40 w-40 rounded-full bg-[#3c85dd]/16 blur-3xl" />
         <div className="execution-scan" />
         <div className="absolute inset-0 execution-grid bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:36px_36px]" />
-        <div className="relative grid gap-4 p-4 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:p-5">
-          <div className="relative min-h-[16rem]">
-            <RestoreWellnessLogoCard label={visual.imageEyebrow} />
+        <div className="relative grid items-stretch gap-4 p-4 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] md:p-5">
+          <div className="relative flex min-h-0">
+            <RestoreWellnessLogoCard
+              className="w-full"
+              label={visual.imageEyebrow}
+            />
           </div>
 
           <div className="space-y-3">

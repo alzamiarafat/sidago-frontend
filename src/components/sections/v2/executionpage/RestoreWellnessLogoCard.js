@@ -117,10 +117,13 @@ function RestoreWellnessLogoMark() {
 
 export default function RestoreWellnessLogoCard({
   label = "Active delivery view",
+  className = "",
 }) {
   return (
-    <div className="execution-logo-card flex min-h-[16rem] flex-col overflow-hidden rounded-md bg-white shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
-      <div className="execution-logo-card__inner flex flex-1 items-center justify-center px-6 py-8">
+    <div
+      className={`execution-logo-card flex h-full min-h-[12rem] flex-col overflow-hidden rounded-md bg-white shadow-[0_18px_40px_rgba(0,0,0,0.22)] ${className}`.trim()}
+    >
+      <div className="execution-logo-card__inner flex flex-1 items-center justify-center px-6 py-6">
         <RestoreWellnessLogoMark />
       </div>
       <div className="execution-logo-card__footer border-t border-[#e8ebe8] px-5 py-3.5">
