@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { defaultHomepage } from "@/src/data/cms/defaults";
+import { getSectionColumnPadding } from "@/src/utils/sectionColumnPadding";
 
 const SUBSCRIBE_CTA_HREF = "/insights/subscribe";
 const APPLY_CTA_HREF = "/company/opportunities";
@@ -18,7 +19,7 @@ function resolveCtaHref(item) {
   return item?.href?.trim() || "";
 }
 
-function CTAItem({ item, isLast }) {
+function CTAItem({ item, index, total, isLast }) {
   const href = resolveCtaHref(item);
   const isExternal = /^https?:\/\//i.test(href);
   const Wrapper = isExternal ? "a" : Link;
@@ -39,7 +40,10 @@ function CTAItem({ item, isLast }) {
         aria-label={item.srLabel}
       >
         <div
-          className="flex h-full flex-col gap-sm px-md py-md lg:px-md lg:py-xl"
+          className={`flex h-full flex-col gap-sm ${getSectionColumnPadding(
+            index,
+            total,
+          )}`}
           style={{ backgroundColor: item.backgroundColor }}
         >
           <div className="flex flex-1 items-center justify-between gap-xs">
@@ -118,11 +122,13 @@ export default function CTASection({ items = defaultHomepage.cta }) {
           }}
         ></div>
       </div>
-      <div className="relative z-10 flex flex-col lg:container lg:flex-row">
+      <div className="relative z-10 container flex flex-col lg:flex-row">
         {ctaItems.map((item, index) => (
           <CTAItem
             key={`${item.title}-${index}`}
             item={item}
+            index={index}
+            total={ctaItems.length}
             isLast={index === ctaItems.length - 1}
           />
         ))}

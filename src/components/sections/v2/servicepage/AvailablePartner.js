@@ -126,7 +126,7 @@ export default function AvailablePartner({
           className={`relative mt-8 md:mt-10 ${
             isDarkSurface
               ? "border-t border-white/[0.07] bg-transparent pt-8 md:pt-10"
-              : "rounded-2xl border border-black/[0.06] bg-black/[0.03] px-2 py-6 shadow-[0_12px_40px_rgba(0,0,0,0.06)] md:px-3 md:py-8"
+              : "rounded-2xl border border-black/[0.06] bg-black/[0.03] py-6 pl-0 pr-2 shadow-[0_12px_40px_rgba(0,0,0,0.06)] md:py-8 md:pr-3"
           }`}
         >
           <div
@@ -140,7 +140,7 @@ export default function AvailablePartner({
           >
             <div
               ref={trackRef}
-              className="flex w-max items-stretch gap-x-4 gap-y-3 pl-1 will-change-transform sm:gap-x-5 md:gap-x-5 md:pl-2 lg:gap-x-6"
+              className="flex w-max items-stretch gap-x-4 gap-y-3 will-change-transform sm:gap-x-5 md:gap-x-5 lg:gap-x-6"
             >
               {duplicatedLogos.map((item, i) => (
                 <span key={`${item.src}-${i}`} className={cardClass}>

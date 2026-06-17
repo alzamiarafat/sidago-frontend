@@ -39,12 +39,12 @@ export default function Home({ homepage = defaultHomepage, settings }) {
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
+          className="homepage-main [&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection {...hero} imageSrc="" />
           <InsightNews items={insightNews} />
-          <Statistics stats={statistics} />
+          <Statistics stats={statistics} align="start" />
           <MarketTicker items={marketTicker} />
           <Capabilities
             items={capabilities}

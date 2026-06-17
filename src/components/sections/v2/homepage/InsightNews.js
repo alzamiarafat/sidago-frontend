@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import LinkTitleWithArrow from "@/src/components/sections/v2/common/LinkTitleWithArrow";
+import { getSectionColumnPadding } from "@/src/utils/sectionColumnPadding";
 
 function isInternalHref(href) {
   return href?.startsWith("/") && !href.startsWith("//");
@@ -46,7 +47,12 @@ export default function InsightNews({
             >
               <span className="sr-only">{item.srText}</span>
 
-              <div className="flex h-full w-full items-center px-md py-md lg:px-md lg:py-xl">
+              <div
+                className={`flex h-full w-full items-center ${getSectionColumnPadding(
+                  index,
+                  items.length,
+                )}`}
+              >
                 <LinkTitleWithArrow
                   title={item.title}
                   textClassName="text-xl font-medium leading-snug lg:text-lg group-hover/interactive:opacity-80 group-active/interactive:opacity-80 group-active/interactive:lg:opacity-100"

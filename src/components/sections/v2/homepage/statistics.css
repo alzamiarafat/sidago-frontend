@@ -1,0 +1,90 @@
+.statistics-even {
+  display: grid;
+  width: 100%;
+  justify-items: start;
+  align-items: start;
+}
+
+.statistics-even .stat {
+  max-width: none;
+  width: 100%;
+}
+
+.statistics-even--center {
+  justify-items: center;
+}
+
+@media (min-width: 40rem) {
+  .statistics-even--cols-5.statistics-even--center
+    > :last-child:nth-child(odd):not(:only-child) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 11.5rem);
+  }
+}
+
+@media (min-width: 64rem) {
+  .statistics-even--cols-5.statistics-even--center
+    > :last-child:nth-child(odd):not(:only-child) {
+    grid-column: auto;
+    justify-self: center;
+    width: 100%;
+  }
+}
+
+.statistics-even--cols-4 {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem 1rem;
+}
+
+@media (min-width: 40rem) {
+  .statistics-even--cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.25rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .statistics-even--cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.statistics-even--cols-5 {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem 1rem;
+}
+
+@media (min-width: 40rem) {
+  .statistics-even--cols-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.25rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .statistics-even--cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.statistics-even--cols-6 {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem 1rem;
+}
+
+@media (min-width: 40rem) {
+  .statistics-even--cols-6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.25rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .statistics-even--cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}

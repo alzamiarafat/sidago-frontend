@@ -6,7 +6,7 @@ import { TiArrowSortedDown } from "react-icons/ti";
 function TrackerRow({ coin, dimmed = false }) {
   return (
     <div
-      className={`grid h-[var(--ticker-row-height)] w-full grid-cols-[minmax(0,1.15fr)_minmax(0,0.9fr)_minmax(0,0.95fr)] items-center gap-4 px-3 sm:px-4 lg:px-0 ${
+      className={`grid h-[var(--ticker-row-height)] w-full grid-cols-[minmax(0,1.15fr)_minmax(0,0.9fr)_minmax(0,0.95fr)] items-center gap-4 ${
         dimmed ? "opacity-35" : "opacity-100"
       }`}
     >
