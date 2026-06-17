@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import BrandLogoPreview from "@/src/components/sections/v2/brand/BrandLogoPreview";
 import "@/src/components/sections/v2/brand/brand-logo-carousel.css";
 
 const SLIDE_DURATION_MS = 4000;
@@ -9,42 +10,26 @@ const SLIDES = [
   {
     id: "horizontal",
     label: "Horizontal",
-    image: {
-      src: "/images/image_5.png",
-      srcSet: "/images/image_13.png 1x, /images/image_5.png 2x",
-    },
     caption:
-      "Use the horizontal logo where possible, keeping white space equal to the ‘W’ in the wordmark.",
+      "Use the horizontal lockup where space allows, keeping clear space equal to the height of the logo mark.",
   },
   {
     id: "vertical",
     label: "Vertical",
-    image: {
-      src: "/images/image_1.png",
-      srcSet: "/images/image_14.png 1x, /images/image_1.png 2x",
-    },
     caption:
-      "Use the vertical logo where space appropriate, keeping white space equal to the ‘W’ in the wordmark.",
+      "Use the vertical lockup in tighter layouts, keeping clear space equal to the height of the logo mark.",
   },
   {
     id: "symbol",
     label: "Symbol",
-    image: {
-      src: "/images/brand-logo-symbol.png",
-      srcSet: "/images/brand-logo-symbol.png 1x, /images/brand-logo-symbol.png 2x",
-    },
     caption:
-      "Use the symbol only if the other two lockups aren’t viable, keeping white space equal to the ‘W’ in the wordmark.",
+      "Use the symbol only when full lockups aren't viable, with equal clear space on all sides.",
   },
   {
     id: "color",
     label: "Color",
-    image: {
-      src: "/images/image_4.png",
-      srcSet: "/images/image_15.png 1x, /images/image_4.png 2x",
-    },
     caption:
-      "A) Default Gibson green B) Dark green if visibility's an issue. C/D) Use only as a last resort when A/B aren't viable.",
+      "A) Default brand orange. B) Brand orange on white. C/D) Use only as a last resort when A/B aren't viable.",
   },
 ];
 
@@ -93,18 +78,12 @@ function ProgressBar({ active, cycleKey }) {
 
 function LogoSlideCard({ slide }) {
   return (
-    <div className="brand-logo-carousel__card bevel bg-gray-defi-ash">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        alt=""
-        loading="lazy"
-        width={700}
-        height={700}
-        decoding="async"
-        className="brand-logo-carousel__card-image bevel"
-        srcSet={slide.image.srcSet}
-        src={slide.image.src}
-      />
+    <div
+      className={`brand-logo-carousel__card bevel bg-gray-defi-ash ${
+        slide.id === "color" ? "brand-logo-carousel__card--color" : ""
+      }`}
+    >
+      <BrandLogoPreview variant={slide.id} />
       <div className="brand-logo-carousel__card-caption">{slide.caption}</div>
     </div>
   );

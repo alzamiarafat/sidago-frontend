@@ -14,7 +14,8 @@ export default function BrandLogoSection() {
               Logo
             </h2>
             <div className="text-gray-off-white">
-              Our logo, a stylised 'W', deliberately invites interpretation
+              The Sidago mark and wordmark — built for clarity across digital
+              and print
             </div>
           </div>
           <hr className="!border-[#AB290D]" />
