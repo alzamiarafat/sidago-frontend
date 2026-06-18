@@ -31,6 +31,7 @@ export default function ReportInsightHero({
   breadcrumbs = [],
   title,
   description,
+  descriptionParts,
   date,
   category,
   className = "",
@@ -46,6 +47,25 @@ export default function ReportInsightHero({
   const meta = metaStyles[metaTone] ?? metaStyles.green;
   const metaRowClass = meta.text;
   const metaDividerClass = meta.divider;
+
+  const renderDescriptionPart = (part, index) => {
+    if (part.type === "link") {
+      const inner = part.strong ? <strong>{part.value}</strong> : part.value;
+      return (
+        <Link
+          key={index}
+          href={part.href}
+          className="text-green-dark hover:opacity-80"
+          target={part.external ? "_blank" : undefined}
+          rel={part.external ? "noopener noreferrer" : undefined}
+        >
+          {inner}
+        </Link>
+      );
+    }
+
+    return <span key={index}>{part.value}</span>;
+  };
 
   return (
     <section
@@ -89,7 +109,13 @@ export default function ReportInsightHero({
 
           {title ? <p className="text-2xl lg:text-3xl">{title}</p> : null}
 
-          {description ? <p className="text-lg">{description}</p> : null}
+          {descriptionParts?.length ? (
+            <p className="text-lg [&_a]:text-green-dark">
+              {descriptionParts.map(renderDescriptionPart)}
+            </p>
+          ) : description ? (
+            <p className="text-lg">{description}</p>
+          ) : null}
 
           {date || category ? (
             <div

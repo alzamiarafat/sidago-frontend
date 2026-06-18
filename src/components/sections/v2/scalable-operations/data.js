@@ -25,8 +25,20 @@ export const reportInsightHero = {
   ],
   title:
     "Sidago launches Armitage, bringing its DeFi and trading expertise to vault curation",
-  description:
-    "Sidago today announced Armitage, a new DeFi vault curation business. The first two Armitage vaults will be deployed on Morpho in May, both denominated in USDC.",
+  descriptionParts: [
+    { type: "text", value: "Sidago today announced " },
+    {
+      type: "link",
+      value: "Armitage",
+      href: "/armitage",
+      strong: true,
+    },
+    {
+      type: "text",
+      value:
+        ", a new DeFi vault curation business. The first two Armitage vaults will be deployed on Morpho in May, both denominated in USDC.",
+    },
+  ],
   date: "19 May 2026",
   category: "News",
   className: "bg-[#151916] text-gray-off-white",

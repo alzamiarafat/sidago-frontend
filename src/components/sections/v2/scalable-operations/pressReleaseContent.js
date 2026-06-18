@@ -10,9 +10,8 @@ export const pressReleaseContent = {
         {
           type: "link",
           value: "Armitage",
-          href: "https://armitage.sidago.com",
+          href: "/armitage",
           strong: true,
-          external: true,
         },
         {
           type: "text",
@@ -70,8 +69,9 @@ export const pressReleaseContent = {
     {
       type: "cta",
       label: "Visit Armitage",
-      href: "https://armitage.sidago.com",
-      srText: "Armitage.Sidago.Com",
+      href: "/armitage",
+      external: false,
+      srText: "Visit Armitage",
     },
     {
       type: "heading",
