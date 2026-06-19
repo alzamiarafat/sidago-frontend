@@ -142,9 +142,9 @@ export const teamsSection = {
           srText: "Company › Opportunities",
         },
         {
-          href: "/algorithmic-trading",
-          label: "Explore algorithmic trading",
-          srText: "Algorithmic trading",
+          href: "/infrastructure",
+          label: "Explore Sidago trading",
+          srText: "Sidago infrastructure",
         },
       ],
     },
@@ -162,9 +162,9 @@ export const teamsSection = {
           srText: "Company › Opportunities",
         },
         {
-          href: "/algorithmic-trading",
-          label: "Explore algorithmic trading",
-          srText: "Algorithmic trading",
+          href: "/infrastructure",
+          label: "Explore Sidago technology",
+          srText: "Sidago infrastructure",
         },
       ],
     },
@@ -237,9 +237,9 @@ export const teamsSection = {
       image: { src: "/images/image_4.jpg", width: 1152, height: 1182 },
       links: [
         {
-          href: "/company/careers",
+          href: "/company/opportunities",
           label: "Open roles",
-          srText: "Company › Careers",
+          srText: "Company › Opportunities",
         },
       ],
     },

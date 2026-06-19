@@ -857,15 +857,30 @@ function normalizeCareersStatisticItem(item, fallbackItem) {
 }
 
 function normalizeCareersTeamLink(item, fallbackItem) {
-  if (!item?.href || !item?.label) {
+  if (!item?.label) {
+    return fallbackItem;
+  }
+
+  const label = item.label.trim();
+  const href =
+    item.href?.trim() ||
+    (label === "Open roles"
+      ? "/company/opportunities"
+      : label === "Explore Sidago trading" ||
+          label === "Explore Sidago infrastructure" ||
+          label === "Explore Sidago technology"
+        ? "/infrastructure"
+        : fallbackItem.href);
+
+  if (!href) {
     return fallbackItem;
   }
 
   return {
     ...fallbackItem,
-    href: item.href.trim(),
-    label: item.label.trim(),
-    srText: item.srText?.trim() || item.label.trim(),
+    href,
+    label,
+    srText: item.srText?.trim() || fallbackItem.srText || label,
     sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
   };
 }

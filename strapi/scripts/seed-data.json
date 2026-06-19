@@ -3214,9 +3214,9 @@
             "sortOrder": 1
           },
           {
-            "href": "/algorithmic-trading",
-            "label": "Explore algorithmic trading",
-            "srText": "Algorithmic trading",
+            "href": "/infrastructure",
+            "label": "Explore Sidago trading",
+            "srText": "Sidago infrastructure",
             "sortOrder": 2
           }
         ],
@@ -3237,9 +3237,9 @@
             "sortOrder": 1
           },
           {
-            "href": "/algorithmic-trading",
-            "label": "Explore algorithmic trading",
-            "srText": "Algorithmic trading",
+            "href": "/infrastructure",
+            "label": "Explore Sidago technology",
+            "srText": "Sidago infrastructure",
             "sortOrder": 2
           }
         ],
@@ -3322,9 +3322,9 @@
         "imageHeight": 1182,
         "links": [
           {
-            "href": "/company/careers",
+            "href": "/company/opportunities",
             "label": "Open roles",
-            "srText": "Company › Careers",
+            "srText": "Company › Opportunities",
             "sortOrder": 1
           }
         ],

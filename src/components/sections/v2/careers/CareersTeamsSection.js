@@ -31,12 +31,27 @@ function PlusIcon({ hovered }) {
   );
 }
 
+const OPPORTUNITIES_HREF = "/company/opportunities";
+
+const TEAM_CTA_DEFAULT_HREFS = {
+  "Open roles": OPPORTUNITIES_HREF,
+  "Explore Sidago trading": "/infrastructure",
+  "Explore Sidago infrastructure": "/infrastructure",
+  "Explore Sidago technology": "/infrastructure",
+};
+
+function resolveTeamCtaHref(href, label) {
+  return href?.trim() || TEAM_CTA_DEFAULT_HREFS[label] || href;
+}
+
 function TeamCtaLink({ href, label, srText, visible }) {
+  const resolvedHref = resolveTeamCtaHref(href, label);
+
   return (
     <Link
-      href={href}
+      href={resolvedHref}
       style={{ position: "relative" }}
-      className={`group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs text-base bg-gray-defi-charcoal text-green-dark transition-opacity duration-700 ${visible ? "opacity-100" : "opacity-0"
+      className={`group/interactive gap-md inline-flex items-center justify-between font-medium disabled:opacity-50 bevel bevel-[0.25rem] px-sm py-xs text-base bg-gray-defi-charcoal text-green-dark transition-opacity duration-700 ${visible ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
     >
       {srText ? <span className="sr-only">{srText}</span> : null}
