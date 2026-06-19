@@ -23,6 +23,14 @@ export const heroBanner = {
   fontWeight: 400,
   lighterTheme: false,
   loop: false,
+  sideLogo: {
+    src: "/images/navbar-logo-icon.png",
+    alt: "Sidago",
+    width: 560,
+    height: 446,
+    position: "right",
+    offsetRight: "3rem",
+  },
 };
 
 /** Quote block below statistics (culture / hiring message). */

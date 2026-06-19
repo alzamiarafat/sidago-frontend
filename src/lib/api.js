@@ -985,6 +985,7 @@ function normalizeCareersPage(entry) {
       ctaButtonClass:
         item.heroCtaButtonClass?.trim() ||
         defaultCareersPage.hero.ctaButtonClass,
+      sideLogo: defaultCareersPage.hero.sideLogo,
     },
     statistics:
       item.statistics?.length > 0

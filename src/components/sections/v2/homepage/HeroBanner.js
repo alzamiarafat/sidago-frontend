@@ -77,6 +77,34 @@ function HeroCtaButton({ label, href, buttonClassName, focusClassName, srText })
   );
 }
 
+const DEFAULT_SIDE_LOGO_CLASS =
+  "h-auto w-full max-w-[9.5rem] sm:max-w-[10.5rem] md:max-w-[12rem] lg:max-w-[14rem]";
+
+function HeroSideLogoImage({ sideLogo }) {
+  const size = sideLogo.size;
+
+  return (
+    <Image
+      alt={sideLogo.alt ?? "Sidago"}
+      src={sideLogo.src}
+      width={sideLogo.width ?? 560}
+      height={sideLogo.height ?? 446}
+      unoptimized
+      priority
+      style={
+        size
+          ? { width: size, height: "auto", maxWidth: size }
+          : undefined
+      }
+      className={
+        size
+          ? "h-auto object-contain"
+          : sideLogo.className ?? DEFAULT_SIDE_LOGO_CLASS
+      }
+    />
+  );
+}
+
 export default function HeroBannerSection({
   videoSrc,
   imageSrc,
@@ -98,6 +126,7 @@ export default function HeroBannerSection({
   backgroundClassName,
   videoOverlay,
   videoEndBackgroundSrc,
+  sideLogo,
 }) {
   const backgroundClass =
     backgroundClassName ??
@@ -167,8 +196,20 @@ export default function HeroBannerSection({
 
       {/* <div className="absolute inset-0 bg-opacity-90 bg-gradient-to-t to-transparent to-50% lg:bg-gradient-to-r lg:to-100% from-gray-night-green"></div> */}
 
-      <div className="z-10 grid-cols-4 items-center lg:grid container py-block">
-        <div className="col-span-2 flex flex-col items-start gap-2xl lg:pr-2xl">
+      <div className="container relative z-10 py-block">
+        <div className="relative lg:grid lg:grid-cols-4 lg:items-center">
+          {sideLogo?.src && sideLogo.position !== "left" ? (
+            <div
+              className="pointer-events-none absolute inset-y-0 flex w-[40%] items-center justify-end md:w-[32%] lg:w-[22%]"
+              style={{ right: sideLogo.offsetRight ?? 0 }}
+            >
+              <HeroSideLogoImage sideLogo={sideLogo} />
+            </div>
+          ) : null}
+          <div className="col-span-2 flex flex-col items-start gap-2xl lg:pr-2xl">
+          {sideLogo?.src && sideLogo.position === "left" ? (
+            <HeroSideLogoImage sideLogo={sideLogo} />
+          ) : null}
           <h1
             className="max-w-2xl text-2xl leading-[1.15] tracking-[-0.02em] lg:text-3xl"
             style={{ fontWeight }}
@@ -207,6 +248,7 @@ export default function HeroBannerSection({
               focusClassName={ctaFocusClassName}
             />
           ) : null}
+          </div>
         </div>
       </div>
     </section>
