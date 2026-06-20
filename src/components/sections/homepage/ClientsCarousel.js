@@ -5,50 +5,14 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
-const clients = [
-  {
-    id: 1,
-    image: "/images/our-client1.jpg",
-    alt: "our-client1",
-    href: "http://www.thehcigroup.com/",
-  },
-  {
-    id: 2,
-    image: "/images/our-client2.jpg",
-    alt: "our-client2",
-    href: "http://rammodular.com/",
-  },
-  {
-    id: 3,
-    image: "/images/our-client4.jpg",
-    alt: "our-client4",
-    href: "http://providerpower.com/",
-  },
-  {
-    id: 4,
-    image: "/images/our-client5.jpg",
-    alt: "our-client5",
-    href: "http://www.prescientedge.com/",
-  },
-  {
-    id: 5,
-    image: "/images/our-client6.jpg",
-    alt: "our-client6",
-    href: "http://goenergies.com/",
-  },
-  {
-    id: 6,
-    image: "/images/our-client11.jpg",
-    alt: "our-client11",
-    href: "http://acacia-inc.com/",
-  },
-  {
-    id: 7,
-    image: "/images/daiichi-sanko.png",
-    alt: "our-client13",
-    href: "https://www.daiichisankyo.com/",
-  },
-];
+import { clients } from "@/src/data/clients";
+
+const carouselClients = clients.map((client, index) => ({
+  id: index + 1,
+  image: client.image,
+  alt: client.name,
+  href: client.href,
+}));
 
 const ITEMS_TO_SHOW = 5;
 const AUTO_PLAY_SPEED = 2000;
@@ -56,14 +20,14 @@ const TRANSITION_SPEED = 500;
 
 export default function ClientsCarousel() {
   // Triple clone for infinite effect
-  const clonedClients = [...clients, ...clients, ...clients];
+  const clonedClients = [...carouselClients, ...carouselClients, ...carouselClients];
 
   const trackRef = useRef(null);
   const autoPlayRef = useRef(null);
   const isTransitioningRef = useRef(false);
 
   // Start from middle clone set
-  const [currentIndex, setCurrentIndex] = useState(clients.length);
+  const [currentIndex, setCurrentIndex] = useState(carouselClients.length);
   const [isTransition, setIsTransition] = useState(true);
 
   // Single item width as percentage of track
@@ -97,13 +61,13 @@ export default function ClientsCarousel() {
     isTransitioningRef.current = false;
 
     // Reached end clone set → jump to original
-    if (currentIndex >= clients.length * 2) {
-      moveTo(clients.length, false);
+    if (currentIndex >= carouselClients.length * 2) {
+      moveTo(carouselClients.length, false);
     }
 
     // Reached start clone set → jump to original end
     if (currentIndex <= 0) {
-      moveTo(clients.length * 2 - 1, false);
+      moveTo(carouselClients.length * 2 - 1, false);
     }
   }, [currentIndex, moveTo]);
 
@@ -134,7 +98,8 @@ export default function ClientsCarousel() {
 
   // Active dot index
   const activeDotIndex =
-    (currentIndex - clients.length + clients.length * 10) % clients.length;
+    (currentIndex - carouselClients.length + carouselClients.length * 10) %
+    carouselClients.length;
 
   return (
     <div className="section sm-padding" style={{ backgroundColor: "#e5e5e5" }}>
@@ -232,6 +197,7 @@ export default function ClientsCarousel() {
                         src={client.image}
                         alt={client.alt}
                         fill
+                        unoptimized
                         className="object-contain transition-transform
                       duration-300 group-hover:scale-105"
                       />

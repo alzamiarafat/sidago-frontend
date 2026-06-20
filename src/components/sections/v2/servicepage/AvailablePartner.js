@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { ecosystemPartnerLogos } from "./ecosystemPartnersData";
 
 export default function AvailablePartner({
   bgColor = "bg-gray-off-white",
@@ -15,39 +15,7 @@ export default function AvailablePartner({
     (titleColor.includes("text-white") || titleColor.includes("white"));
 
   const sectionBg = bgColor;
-
-  /** Legacy WordPress / site client marks (raster, typically on white) */
-  const logos = [
-    {
-      src: "https://sidago.com/wp-content/uploads/2016/01/our-client2.jpg",
-      alt: "Client logo",
-    },
-    {
-      src: "https://sidago.com/wp-content/uploads/2016/01/our-client4.jpg",
-      alt: "Client logo",
-    },
-    {
-      src: "https://sidago.com/wp-content/uploads/2016/01/our-client5.jpg",
-      alt: "Client logo",
-    },
-    {
-      src: "https://sidago.com/wp-content/uploads/2016/01/our-client6.jpg",
-      alt: "Client logo",
-    },
-    {
-      src: "https://sidago.com/wp-content/uploads/2016/01/our-client11.jpg",
-      alt: "Client logo",
-    },
-    {
-      src: "https://sidago.com/images/daiichi-sanko.png",
-      alt: "Daiichi-Sankyo logo",
-    },
-    {
-      src: "https://sidago.com/wp-content/uploads/2016/01/our-client1.jpg",
-      alt: "Client logo",
-    },
-  ];
-
+  const logos = ecosystemPartnerLogos;
   const duplicatedLogos = [...logos, ...logos];
 
   useEffect(() => {
@@ -84,13 +52,9 @@ export default function AvailablePartner({
     return () => cancelAnimationFrame(animationFrame);
   }, []);
 
-  /** Smaller cards; contain = no side crop; padding avoids hard edge clipping */
   const cardClass = isDarkSurface
-    ? "inline-flex h-[5.35rem] w-[9rem] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/[0.12] bg-white p-2 shadow-[0_6px_22px_rgba(0,0,0,0.35)] sm:h-[5.65rem] sm:w-[9.75rem] sm:p-2.5 md:h-[5.9rem] md:w-[10.5rem] lg:h-24 lg:w-[11.25rem]"
-    : "inline-flex h-[5.35rem] w-[9rem] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-black/[0.08] bg-white p-2 shadow-sm sm:h-[5.65rem] sm:w-[9.75rem] sm:p-2.5 md:h-[5.9rem] md:w-[10.5rem] lg:h-24 lg:w-[11.25rem]";
-
-  const logoClass =
-    "max-h-full max-w-full h-auto w-auto object-contain object-center opacity-[0.98] transition-opacity duration-200 hover:opacity-100";
+    ? "inline-flex h-[6.125rem] w-[10.5rem] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/[0.12] bg-white px-3 py-2 shadow-[0_6px_22px_rgba(0,0,0,0.35)] sm:w-[11rem] md:w-[11.5rem] lg:w-48"
+    : "inline-flex h-[6.125rem] w-[10.5rem] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-black/[0.08] bg-white px-3 py-2 shadow-sm sm:w-[11rem] md:w-[11.5rem] lg:w-48";
 
   return (
     <section
@@ -144,16 +108,23 @@ export default function AvailablePartner({
             >
               {duplicatedLogos.map((item, i) => (
                 <span key={`${item.src}-${i}`} className={cardClass}>
-                <Image
-                  src={item.src}
-                  alt={i < logos.length ? item.alt : ""}
-                  aria-hidden={i >= logos.length}
-                  priority={i < logos.length}
-                  width={400}
-                  height={240}
-                  className={logoClass}
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+                  {/* Native img at source dimensions — no upscale, no Next.js compression */}
+                  <img
+                    src={item.src}
+                    alt={i < logos.length ? item.alt : ""}
+                    aria-hidden={i >= logos.length}
+                    width={item.width}
+                    height={item.height}
+                    loading={i < logos.length ? "eager" : "lazy"}
+                    decoding="async"
+                    draggable={false}
+                    className="block object-contain object-center"
+                    style={{
+                      width: `${Math.min(167, item.width)}px`,
+                      height: "auto",
+                      maxHeight: `${Math.min(98, Math.round((item.height / item.width) * Math.min(167, item.width)))}px`,
+                    }}
+                  />
                 </span>
               ))}
             </div>

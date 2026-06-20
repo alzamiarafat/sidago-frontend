@@ -1006,33 +1006,33 @@ export const defaultInfrastructurePage = {
   },
   visionTitle: "Principles that guide our vision",
   visionDescription:
-    "The infrastructure behind Sidago is designed for resilience, security, and the operational clarity teams need to scale with confidence.",
+    "The infrastructure behind Sidago is designed for resilience, security, and the operational clarity teams need to scale with confidence. These principles guide how we build, support, and evolve the systems that keep clients running reliably every day.",
   vision: [
     {
       title: "Reliable uptime",
       description:
-        "Build resilient systems with stable hosting, proactive monitoring, and rapid issue response to keep operations running without interruption.",
+        "Build resilient systems with stable hosting, proactive monitoring, and rapid issue response to keep operations running without interruption. We design for redundancy, clear escalation paths, and recovery practices that limit downtime and restore service quickly when issues arise.",
       iconType: "uptime",
       sortOrder: 1,
     },
     {
       title: "Secure by design",
       description:
-        "Protect business-critical systems through controlled access, hardened environments, backup discipline, and continuous risk awareness.",
+        "Protect business-critical systems through controlled access, hardened environments, backup discipline, and continuous risk awareness. Security is built into how infrastructure is planned, deployed, and maintained—not bolted on after the fact.",
       iconType: "security",
       sortOrder: 2,
     },
     {
       title: "Scalable architecture",
       description:
-        "Design infrastructure that can grow with demand, support expansion, and adapt to new workflows without creating operational friction.",
+        "Design infrastructure that can grow with demand, support expansion, and adapt to new workflows without creating operational friction. Modular foundations and consistent standards make it easier to add capacity, teams, and tools without rebuilding from scratch.",
       iconType: "architecture",
       sortOrder: 3,
     },
     {
       title: "Operational visibility",
       description:
-        "Give teams clear insight into system health, performance, and dependencies so decisions can be made faster and with confidence.",
+        "Give teams clear insight into system health, performance, and dependencies so decisions can be made faster and with confidence. Dashboards, alerts, and structured reporting turn operational data into actionable intelligence across the business.",
       iconType: "visibility",
       sortOrder: 4,
     },
