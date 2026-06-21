@@ -1,6 +1,11 @@
-import { cookiesBlocks } from "../legal/cookiesBlocks.js";
-import { modernSlaveryBlocks } from "../legal/modernSlaveryBlocks.js";
-import { privacyBlocks } from "../legal/privacyBlocks.js";
+import * as cookiesBlocksModule from "../legal/cookiesBlocks.js";
+import * as modernSlaveryBlocksModule from "../legal/modernSlaveryBlocks.js";
+import * as privacyBlocksModule from "../legal/privacyBlocks.js";
+import { unwrapModule } from "./esm-compat.mjs";
+
+const { cookiesBlocks } = unwrapModule(cookiesBlocksModule);
+const { modernSlaveryBlocks } = unwrapModule(modernSlaveryBlocksModule);
+const { privacyBlocks } = unwrapModule(privacyBlocksModule);
 
 export const defaultPrivacyPolicy = {
   title: "Privacy Policy",

@@ -1,5 +1,8 @@
-import { CONTACT_TOPICS } from "../../components/sections/v2/contactpage/contactTopics.js";
+import * as contactTopicsModule from "../../components/sections/v2/contactpage/contactTopics.js";
 import { defaultHomepage } from "./defaults.mjs";
+import { unwrapModule } from "./esm-compat.mjs";
+
+const { CONTACT_TOPICS } = unwrapModule(contactTopicsModule);
 
 export const defaultContactPage = {
   eyebrow: "Contact us",

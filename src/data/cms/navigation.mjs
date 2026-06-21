@@ -1,5 +1,8 @@
 import { defaultServicesPage } from "./defaults.mjs";
-import { strategyMenuItems } from "../../data/strategy-menu.js";
+import * as strategyMenuModule from "../../data/strategy-menu.js";
+import { unwrapModule } from "./esm-compat.mjs";
+
+const { strategyMenuItems } = unwrapModule(strategyMenuModule);
 
 export const defaultIndustryMenuGroups = [
   {

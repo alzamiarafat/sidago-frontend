@@ -1,9 +1,4 @@
-import {
-  buildHeroTitlesFromLines,
-  eventsHero,
-  upcomingEvents,
-  upcomingEventsSection,
-} from "../../components/sections/v2/events/data.js";
+import * as eventsDataModule from "../../components/sections/v2/events/data.js";
 import {
   bootcampSection,
   endpointSection,
@@ -11,6 +6,14 @@ import {
   pastSpeakers,
 } from "../../components/sections/v2/events/content.mjs";
 import { defaultHomepage } from "./defaults.mjs";
+import { unwrapModule } from "./esm-compat.mjs";
+
+const {
+  buildHeroTitlesFromLines,
+  eventsHero,
+  upcomingEvents,
+  upcomingEventsSection,
+} = unwrapModule(eventsDataModule);
 
 export const defaultEventsPage = {
   hero: {

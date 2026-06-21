@@ -1,4 +1,7 @@
-import {
+import * as careersDataModule from "../../components/sections/v2/careers/data.js";
+import { unwrapModule } from "./esm-compat.mjs";
+
+const {
   heroBanner,
   lifeSection,
   lifeStatsSection,
@@ -7,7 +10,7 @@ import {
   teamTestimonialsSection,
   teamsSection,
   valuesFlipSection,
-} from "../../components/sections/v2/careers/data.js";
+} = unwrapModule(careersDataModule);
 
 export const defaultCareersPage = {
   hero: heroBanner,

@@ -1,13 +1,29 @@
-import * as marketingGrowthData from "../../components/sections/v2/marketing-growth/data.js";
-import * as supportComplianceData from "../../components/sections/v2/support-compliance/data.js";
-import * as salesData from "../../components/sections/v2/salespage/data.js";
-import {
+import * as marketingGrowthDataModule from "../../components/sections/v2/marketing-growth/data.js";
+import * as supportComplianceDataModule from "../../components/sections/v2/support-compliance/data.js";
+import * as salesDataModule from "../../components/sections/v2/salespage/data.js";
+import * as whoWeServeDataModule from "../../components/sections/v2/whoweserve/data.js";
+import * as researchDataModule from "../../components/sections/v2/research-data/data.js";
+import * as processImprovementDataModule from "../../components/process-improvement/data.js";
+import * as insightsDataModule from "../../components/sections/v2/insights/data.js";
+import * as careersDataModule from "../../components/sections/v2/careers/data.js";
+import * as armitageDataModule from "../../components/sections/v2/armitage/data.js";
+import { unwrapModule } from "./esm-compat.mjs";
+
+const marketingGrowthData = unwrapModule(marketingGrowthDataModule);
+const supportComplianceData = unwrapModule(supportComplianceDataModule);
+const salesData = unwrapModule(salesDataModule);
+
+const {
   audienceSegments,
   whoWeServeIntro,
-} from "../../components/sections/v2/whoweserve/data.js";
-import { defaultResearchDataPageContent } from "../../components/sections/v2/research-data/data.js";
-import { defaultProcessImprovementPageContent } from "../../components/process-improvement/data.js";
-import {
+} = unwrapModule(whoWeServeDataModule);
+
+const { defaultResearchDataPageContent } = unwrapModule(researchDataModule);
+const { defaultProcessImprovementPageContent } = unwrapModule(
+  processImprovementDataModule,
+);
+
+const {
   insightsDiscoverCards,
   insightsFilterGroups,
   insightsSeriesContent,
@@ -15,13 +31,15 @@ import {
   recommendedInsightsContent,
   subscribeHero,
   subscribePageContent,
-} from "../../components/sections/v2/insights/data.js";
-import {
+} = unwrapModule(insightsDataModule);
+
+const {
   openRoles,
   openRolesPage,
   openRolesPageCta,
-} from "../../components/sections/v2/careers/data.js";
-import {
+} = unwrapModule(careersDataModule);
+
+const {
   ARMITAGE_ABOUT_TABS,
   ARMITAGE_FAQ,
   ARMITAGE_FOOTER_DISCLAIMERS,
@@ -29,7 +47,7 @@ import {
   ARMITAGE_NAV_LINKS,
   ARMITAGE_STATS,
   ARMITAGE_VAULTS,
-} from "../../components/sections/v2/armitage/data.js";
+} = unwrapModule(armitageDataModule);
 
 const supportComplianceHero = {
   useVideo: true,

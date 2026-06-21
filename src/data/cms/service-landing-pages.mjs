@@ -1,30 +1,47 @@
-import {
-  atAGlanceContent as digitalAtAGlance,
-  reportContentsContent as digitalReportContents,
-  similarInsightsContent as digitalSimilarInsights,
-  subscribeContent as digitalSubscribe,
-} from "../../components/sections/v2/digital-support-services/data.js";
-import {
-  atAGlanceContent as globalAtAGlance,
-  reportInsightHero as globalHero,
-  similarInsightsContent as globalSimilarInsights,
-  subscribeContent as globalSubscribe,
-} from "../../components/sections/v2/global-workforce/data.js";
-import { reportContentsContent as globalReportContents } from "../../components/sections/v2/global-workforce/reportContentsContent.js";
-import {
-  atAGlanceContent as scalableAtAGlance,
-  reportInsightHero as scalableHero,
-  similarInsightsContent as scalableSimilarInsights,
-  subscribeContent as scalableSubscribe,
-} from "../../components/sections/v2/scalable-operations/data.js";
-import { pressReleaseContent as scalablePressRelease } from "../../components/sections/v2/scalable-operations/pressReleaseContent.js";
-import {
-  atAGlanceContent as insightAtAGlance,
-  reportContentsContent as insightReportContents,
-  reportInsightHero as insightHero,
-  similarInsightsContent as insightSimilar,
-  subscribeContent as insightSubscribe,
-} from "../../components/sections/v2/insights/insightReportData.js";
+import * as digitalSupportDataModule from "../../components/sections/v2/digital-support-services/data.js";
+import * as globalWorkforceDataModule from "../../components/sections/v2/global-workforce/data.js";
+import * as globalReportContentsModule from "../../components/sections/v2/global-workforce/reportContentsContent.js";
+import * as scalableOperationsDataModule from "../../components/sections/v2/scalable-operations/data.js";
+import * as scalablePressReleaseModule from "../../components/sections/v2/scalable-operations/pressReleaseContent.js";
+import * as insightReportDataModule from "../../components/sections/v2/insights/insightReportData.js";
+import { unwrapModule } from "./esm-compat.mjs";
+
+const {
+  atAGlanceContent: digitalAtAGlance,
+  reportContentsContent: digitalReportContents,
+  similarInsightsContent: digitalSimilarInsights,
+  subscribeContent: digitalSubscribe,
+} = unwrapModule(digitalSupportDataModule);
+
+const {
+  atAGlanceContent: globalAtAGlance,
+  reportInsightHero: globalHero,
+  similarInsightsContent: globalSimilarInsights,
+  subscribeContent: globalSubscribe,
+} = unwrapModule(globalWorkforceDataModule);
+
+const { reportContentsContent: globalReportContents } = unwrapModule(
+  globalReportContentsModule,
+);
+
+const {
+  atAGlanceContent: scalableAtAGlance,
+  reportInsightHero: scalableHero,
+  similarInsightsContent: scalableSimilarInsights,
+  subscribeContent: scalableSubscribe,
+} = unwrapModule(scalableOperationsDataModule);
+
+const { pressReleaseContent: scalablePressRelease } = unwrapModule(
+  scalablePressReleaseModule,
+);
+
+const {
+  atAGlanceContent: insightAtAGlance,
+  reportContentsContent: insightReportContents,
+  reportInsightHero: insightHero,
+  similarInsightsContent: insightSimilar,
+  subscribeContent: insightSubscribe,
+} = unwrapModule(insightReportDataModule);
 
 const digitalSupportHero = {
   imageSrc: "/images/OTC-report-2025_svg.svg",
