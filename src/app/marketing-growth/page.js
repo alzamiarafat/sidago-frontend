@@ -1,12 +1,15 @@
 
 import MarketingGrowthView from "@/src/components/sections/v2/marketing-growth/MarketingGrowthView";
-import { getGlobalSettings } from "@/src/lib/api";
+import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.marketingGrowth;
 
 export default async function MarketingGrowthPage() {
-  const settings = await getGlobalSettings();
+  const [settings, content] = await Promise.all([
+    getGlobalSettings(),
+    getSitePage("marketing-growth"),
+  ]);
 
-  return <MarketingGrowthView footer={settings?.footer} />;
+  return <MarketingGrowthView footer={settings?.footer} content={content} />;
 }

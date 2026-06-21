@@ -6,14 +6,13 @@ import EventsUpcomingSection from "@/src/components/sections/v2/events/EventsUpc
 import EventsEndpointSection from "@/src/components/sections/v2/events/EventsEndpointSection";
 import EventsPastConversationsSection from "@/src/components/sections/v2/events/EventsPastConversationsSection";
 import EventsBootcampSection from "@/src/components/sections/v2/events/EventsBootcampSection";
-import { getEventsHeroProps } from "@/src/components/sections/v2/events/data";
-import { getGlobalSettings } from "@/src/lib/api";
+import { getEventsPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Events",
   description:
-    "Sidago Events are a great way to stay up to date with the latest news and updates from Sidago.",
+    "Sidago Events are a great way to stay up to date with the news and updates from Sidago.",
   path: "/events",
   keywords: [
     "Sidago events",
@@ -25,7 +24,11 @@ export const metadata = buildPageMetadata({
 });
 
 export default async function EventsPage() {
-  const settings = await getGlobalSettings();
+  const [settings, events] = await Promise.all([
+    getGlobalSettings(),
+    getEventsPage(),
+  ]);
+  const { pageContent } = events;
 
   return (
     <div className="flex min-h-svh flex-col bg-[#151B17] text-base">
@@ -36,12 +39,20 @@ export default async function EventsPage() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-[#151B17] text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...getEventsHeroProps()} />
-          <EventsUpcomingSection />
-          <EventsEndpointSection />
-          <EventsPastConversationsSection />
-          <EventsBootcampSection />
-          <CTASection />
+          <HeroBannerSection {...events.heroProps} />
+          <EventsUpcomingSection
+            events={pageContent.upcomingEvents}
+            content={pageContent.upcomingEventsSection}
+          />
+          <EventsEndpointSection
+            content={pageContent.endpointSection}
+            speakers={pageContent.pastSpeakers}
+          />
+          <EventsPastConversationsSection
+            content={pageContent.pastConversationsSection}
+          />
+          <EventsBootcampSection content={pageContent.bootcampSection} />
+          <CTASection items={pageContent.cta} />
           <Footer footer={settings?.footer} />
         </main>
       </div>

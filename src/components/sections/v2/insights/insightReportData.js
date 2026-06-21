@@ -1,4 +1,4 @@
-import { subscribePageContent } from "@/src/components/sections/v2/insights/data";
+import { subscribePageContent } from "./data.js";
 
 export const reportInsightHero = {
   imageSrc: "/images/OTC-report-2025_svg.svg?v=brand",

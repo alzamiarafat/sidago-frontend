@@ -93,7 +93,7 @@ function MobileFilterGroup({ group }) {
   );
 }
 
-function InsightsFilterPanel() {
+function InsightsFilterPanel({ filterGroups = insightsFilterGroups }) {
   const [desktopOpen, setDesktopOpen] = useState(false);
 
   return (
@@ -102,7 +102,7 @@ function InsightsFilterPanel() {
       <div className="flex flex-col gap-2xl bg-gray-defi-graphite p-md text-sm bevel lg:hidden">
         <div className="font-blender text-sm uppercase">Filter By</div>
         <div className="flex flex-col gap-xl">
-          {insightsFilterGroups.map((group) => (
+          {filterGroups.map((group) => (
             <MobileFilterGroup key={group.title} group={group} />
           ))}
         </div>
@@ -129,7 +129,7 @@ function InsightsFilterPanel() {
           style={{ height: desktopOpen ? "auto" : 0 }}
         >
           <div className="grid grid-cols-4 gap-xl">
-            {insightsFilterGroups.map((group) => (
+            {filterGroups.map((group) => (
               <div key={group.title} className="flex flex-col gap-6 text-xl">
                 <div className="h-7 font-semibold">{group.title}</div>
                 <div className="grid gap-x-10 gap-y-4">
@@ -210,18 +210,21 @@ function DiscoverAllLink() {
   );
 }
 
-export default function InsightsDiscoverSection() {
+export default function InsightsDiscoverSection({
+  cards = insightsDiscoverCards,
+  filterGroups = insightsFilterGroups,
+}) {
   return (
     <section className="bg-gray-night-green text-gray-off-white">
       <div className="container py-block">
         <div className="pb-container">
-          <InsightsFilterPanel />
+          <InsightsFilterPanel filterGroups={filterGroups} />
         </div>
 
         <section className="bg-gray-night-green text-gray-off-white">
           <div className="flex flex-col gap-2xl lg:flex">
             <div className="group/cards grid grid-cols-1 gap-xl lg:grid-cols-4">
-              {insightsDiscoverCards.map((card, index) => (
+              {cards.map((card, index) => (
                 <div
                   key={card.href}
                   className={

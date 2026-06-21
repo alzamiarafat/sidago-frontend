@@ -126,9 +126,18 @@ function roleMatchesFilters(role, filters) {
 
 export default function CareersOpenRolesView({
   footer,
+  content,
   page = defaultOpenRolesPage,
+  cta = openRolesPageCta,
 }) {
-  const { hero, filters, roles } = page;
+  const pageData = content
+    ? {
+        hero: content.openRolesPage?.hero ?? defaultOpenRolesPage.hero,
+        filters: content.openRolesPage?.filters ?? defaultOpenRolesPage.filters,
+        roles: content.openRoles ?? defaultOpenRolesPage.roles,
+      }
+    : page;
+  const { hero, filters, roles } = pageData;
   const [openFilterKey, setOpenFilterKey] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState(() =>
     Object.fromEntries(filters.map((filter) => [filter.key, "All"])),
@@ -258,7 +267,7 @@ export default function CareersOpenRolesView({
             </div>
           </section>
 
-          <CTASection items={openRolesPageCta} />
+          <CTASection items={cta} />
           <Footer footer={footer} />
         </main>
       </div>

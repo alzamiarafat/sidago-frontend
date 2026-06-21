@@ -1,11 +1,23 @@
 import ScalableOperationsView from "@/src/components/sections/v2/scalable-operations/ScalableOperationsView";
-import { getGlobalSettings } from "@/src/lib/api";
+import ReportInsightHero from "@/src/components/sections/v2/digital-support-services/ReportInsightHero";
+import { getGlobalSettings, getServiceLandingPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.scalableOperationsManagement;
 
 export default async function ScalableOperationsManagementPage() {
-  const settings = await getGlobalSettings();
+  const [settings, page] = await Promise.all([
+    getGlobalSettings(),
+    getServiceLandingPage("scalable-operations-management"),
+  ]);
 
-  return <ScalableOperationsView footer={settings?.footer} />;
+  return (
+    <ScalableOperationsView
+      footer={settings?.footer}
+      hero={<ReportInsightHero {...page.hero} />}
+      pressRelease={page.pressRelease}
+      similarInsights={page.similarInsights}
+      includePerformanceCarousel={page.includePerformanceCarousel}
+    />
+  );
 }

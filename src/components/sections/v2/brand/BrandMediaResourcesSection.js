@@ -1,38 +1,5 @@
 import BrandDownloadLink from "@/src/components/sections/v2/brand/BrandDownloadLink";
-
-const HEADSHOTS = [
-  {
-    src: "/images/brand-headshot-evgeny.png",
-    alt: "Evgeny — headshot backdrop",
-  },
-  {
-    src: "/images/brand-headshot-marina.png",
-    alt: "Marina — headshot backdrop",
-  },
-  {
-    src: "/images/brand-headshot-yoann.png",
-    alt: "Yoann — headshot backdrop",
-  },
-];
-
-const BACKDROPS = [
-  {
-    src: "/images/brand-backdrop-1.png",
-    alt: "Media backdrop — network pattern",
-  },
-  {
-    src: "/images/brand-backdrop-2.png",
-    alt: "Media backdrop — 2024",
-  },
-  {
-    src: "/images/brand-backdrop-3.png",
-    alt: "Media backdrop — 1H25",
-  },
-  {
-    src: "/images/brand-backdrop-4.png",
-    alt: "Media backdrop — 2025",
-  },
-];
+import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 
 function MediaImageGrid({ items }) {
   return (
@@ -55,7 +22,9 @@ function MediaImageGrid({ items }) {
   );
 }
 
-export default function BrandMediaResourcesSection() {
+export default function BrandMediaResourcesSection({
+  content = defaultBrandPage.pageContent.media,
+}) {
   return (
     <section className="bg-gray-defi-shadow">
       <div className="container py-block">
@@ -65,31 +34,30 @@ export default function BrandMediaResourcesSection() {
               id="media-resources"
               className="font-blender text-xl uppercase text-green-dark"
             >
-              Media resources
+              {content.eyebrow}
             </h2>
             <div className="text-gray-off-white">
-              Download headshots and use these backdrops when you need
-              something that looks like Sidago
+              {content.description}
             </div>
           </div>
           <hr className="!border-[#AB290D]" />
         </div>
-        <MediaImageGrid items={HEADSHOTS} />
+        <MediaImageGrid items={content.headshots} />
         <div className="pt-container pb-container flex">
           <BrandDownloadLink
-            href="https://docsend.com/view/iibf68mib7htjh5q"
-            srLabel="View › Iibf68mib7htjh5q"
+            href={content.headshotsDownload.href}
+            srLabel={content.headshotsDownload.srLabel}
           >
-            Download all
+            {content.headshotsDownload.label}
           </BrandDownloadLink>
         </div>
-        <MediaImageGrid items={BACKDROPS} />
+        <MediaImageGrid items={content.backdrops} />
         <div className="pt-container flex">
           <BrandDownloadLink
-            href="https://docsend.com/view/qvfbtisjy5uzkpzd"
-            srLabel="View › Qvfbtisjy5uzkpzd"
+            href={content.backdropsDownload.href}
+            srLabel={content.backdropsDownload.srLabel}
           >
-            Download all
+            {content.backdropsDownload.label}
           </BrandDownloadLink>
         </div>
       </div>

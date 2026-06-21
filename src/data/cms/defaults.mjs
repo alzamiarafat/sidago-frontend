@@ -289,7 +289,6 @@ export const defaultHomepage = {
     useVideo: true,
     videoSrc: "/videos/home2.mp4",
     videoPoster: "",
-    videoEndBackgroundSrc: "/images/hero-video-end-background.png",
     imageSrc: "",
     subtitle:
       "Sidago helps companies streamline operations, reduce costs, and scale efficiently through reliable outsourcing and digital solutions.",

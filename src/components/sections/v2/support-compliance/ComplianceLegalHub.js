@@ -6,7 +6,7 @@ import { FiDownload, FiShield } from "react-icons/fi";
 import { legalTabs } from "@/src/components/sections/v2/support-compliance/data";
 import { fadeIn, viewportOnce } from "@/src/components/sections/v2/support-compliance/motion";
 
-export default function ComplianceLegalHub() {
+export default function ComplianceLegalHub({ legalTabs: tabs = legalTabs }) {
   return (
     <section
       id="compliance-documents"
@@ -32,7 +32,7 @@ export default function ComplianceLegalHub() {
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {legalTabs.map((tab, index) => (
+          {tabs.map((tab, index) => (
             <motion.article
               key={tab.id}
               initial={{ opacity: 0, y: 10 }}

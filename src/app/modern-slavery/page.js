@@ -1,16 +1,18 @@
-import { modernSlaveryBlocks } from "@/src/data/legal/modernSlaveryBlocks";
 import LegalPolicyPageShell from "@/src/components/legal/LegalPolicyPageShell";
+import { getModernSlaveryPolicy } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.legalModernSlavery;
 
-export default function ModernSlaveryStatementPage() {
+export default async function ModernSlaveryStatementPage() {
+  const policy = await getModernSlaveryPolicy();
+
   return (
     <LegalPolicyPageShell
-      title="Modern Slavery Statement"
-      lastUpdated="14 May 2026"
-      blocks={modernSlaveryBlocks}
-      activePolicy="modern-slavery"
+      title={policy.title}
+      lastUpdated={policy.lastUpdated}
+      blocks={policy.blocks}
+      activePolicy={policy.activePolicy}
     />
   );
 }

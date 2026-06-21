@@ -16,7 +16,14 @@ import {
   subscribeContent,
 } from "@/src/components/sections/v2/global-workforce/data";
 
-export default function GlobalWorkforceView({ footer, hero }) {
+export default function GlobalWorkforceView({
+  footer,
+  hero,
+  atAGlance = atAGlanceContent,
+  reportContents = reportContentsContent,
+  subscribe = subscribeContent,
+  similarInsights = similarInsightsContent,
+}) {
   const heroNode = hero ?? <ReportInsightHero {...reportInsightHero} />;
 
   return (
@@ -26,12 +33,12 @@ export default function GlobalWorkforceView({ footer, hero }) {
       <div className="flex flex-1 flex-col">
         <main className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1">
           {heroNode}
-          <AtAGlanceSection {...atAGlanceContent} />
-          <ReportContentsSection content={reportContentsContent} />
-          <SubscribeSection content={subscribeContent} />
+          <AtAGlanceSection {...atAGlance} />
+          <ReportContentsSection content={reportContents} />
+          <SubscribeSection content={subscribe} />
           <SimilarInsightsSection
-            content={similarInsightsContent}
-            sectionBgColor="#FFFFFF"
+            content={similarInsights}
+            sectionBgColor={similarInsights?.sectionBgColor || "#FFFFFF"}
           />
           <CTASection />
           <Footer footer={footer} />

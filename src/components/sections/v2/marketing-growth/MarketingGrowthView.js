@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -41,6 +41,25 @@ import {
 } from "@/src/components/sections/v2/marketing-growth/motion";
 
 const serviceIcons = [FiLayers, FiZap, FiUsers, FiTarget, FiSearch, FiBarChart2];
+
+const defaultMarketingContent = {
+  strategyPillars,
+  coreServices,
+  insightBlocks,
+  conversionItems,
+  progressMetrics,
+  campaignBars,
+  performanceStats,
+  caseStudies,
+  processSteps,
+  faqItems,
+};
+
+const MarketingGrowthContentContext = createContext(defaultMarketingContent);
+
+function useMarketingContent() {
+  return useContext(MarketingGrowthContentContext);
+}
 
 /** Page background palette (marketing growth only) */
 const MG = {
@@ -139,6 +158,7 @@ function MarketingHero({ reduce }) {
 }
 
 function StrategySection({ reduce }) {
+  const pageData = useMarketingContent();
   return (
     <section
       id="strategy"
@@ -164,7 +184,7 @@ function StrategySection({ reduce }) {
           viewport={viewportOnce}
           className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {strategyPillars.map((item) => (
+          {pageData.strategyPillars.map((item) => (
             <motion.article
               key={item.title}
               variants={fadeUp}
@@ -185,6 +205,7 @@ function StrategySection({ reduce }) {
 }
 
 function ServicesSection({ reduce }) {
+  const pageData = useMarketingContent();
   return (
     <section
       id="services"
@@ -210,7 +231,7 @@ function ServicesSection({ reduce }) {
           viewport={viewportOnce}
           className="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
         >
-          {coreServices.map((svc, index) => {
+          {pageData.coreServices.map((svc, index) => {
             const Icon = serviceIcons[index] ?? FiLayers;
             return (
               <motion.article
@@ -243,6 +264,7 @@ function ServicesSection({ reduce }) {
 }
 
 function InsightsSection({ reduce }) {
+  const pageData = useMarketingContent();
   return (
     <section className="scroll-mt-24 bg-gray-night-green px-5 text-gray-off-white md:px-10">
       <div className="container py-block">
@@ -259,7 +281,7 @@ function InsightsSection({ reduce }) {
               description="We combine quantitative signals with qualitative context so leaders see both the trend and the why behind it."
             />
             <ul className="mt-8 space-y-5">
-              {insightBlocks.map((block) => (
+              {pageData.insightBlocks.map((block) => (
                 <li
                   key={block.label}
                   className={`flex gap-4 rounded-xl ${MG.elevated} p-4 shadow-[0_8px_28px_rgba(0,0,0,0.22)]`}
@@ -292,7 +314,7 @@ function InsightsSection({ reduce }) {
               Illustrative blend across a mature growth program (normalized).
             </p>
             <div className="mt-8 space-y-5">
-              {campaignBars.map((bar) => (
+              {pageData.campaignBars.map((bar) => (
                 <div key={bar.label}>
                   <div className="mb-1.5 flex justify-between text-xs text-gray-tradfi-silver">
                     <span>{bar.label}</span>
@@ -324,6 +346,7 @@ function InsightsSection({ reduce }) {
 }
 
 function ConversionSection({ reduce }) {
+  const pageData = useMarketingContent();
   return (
     <section className={`scroll-mt-24 ${MG.elevated} px-5 text-gray-off-white md:px-10`}>
       <div className="container py-block">
@@ -347,7 +370,7 @@ function ConversionSection({ reduce }) {
             viewport={viewportOnce}
             className="space-y-4"
           >
-            {conversionItems.map((item) => (
+            {pageData.conversionItems.map((item) => (
               <motion.article
                 key={item.title}
                 variants={fadeUp}
@@ -376,7 +399,7 @@ function ConversionSection({ reduce }) {
               Example readiness scores from a joint marketing–sales review.
             </p>
             <div className="mt-8 space-y-6">
-              {progressMetrics.map((row) => (
+              {pageData.progressMetrics.map((row) => (
                 <div key={row.label}>
                   <div className="mb-2 flex justify-between text-sm">
                     <span className="text-gray-off-white">{row.label}</span>
@@ -407,6 +430,7 @@ function ConversionSection({ reduce }) {
 }
 
 function MetricsSection({ reduce }) {
+  const pageData = useMarketingContent();
   return (
     <section className={`scroll-mt-24 ${MG.deep} px-5 text-gray-off-white md:px-10`}>
       <div className="container py-block">
@@ -429,7 +453,7 @@ function MetricsSection({ reduce }) {
           viewport={viewportOnce}
           className="grid gap-4 sm:grid-cols-3"
         >
-          {performanceStats.map((row) => (
+          {pageData.performanceStats.map((row) => (
             <motion.div
               key={row.label}
               variants={fadeUp}
@@ -451,6 +475,7 @@ function MetricsSection({ reduce }) {
 }
 
 function CaseStudySection({ reduce }) {
+  const pageData = useMarketingContent();
   return (
     <section className={`scroll-mt-24 ${MG.mid} px-5 text-gray-off-white md:px-10`}>
       <div className="container py-block">
@@ -473,7 +498,7 @@ function CaseStudySection({ reduce }) {
           viewport={viewportOnce}
           className="grid gap-6 lg:grid-cols-2"
         >
-          {caseStudies.map((cs) => (
+          {pageData.caseStudies.map((cs) => (
             <motion.article
               key={cs.title}
               variants={fadeUp}
@@ -501,6 +526,7 @@ function CaseStudySection({ reduce }) {
 }
 
 function ProcessSection({ reduce }) {
+  const pageData = useMarketingContent();
   return (
     <section className={`scroll-mt-24 ${MG.elevated} px-5 text-gray-off-white md:px-10`}>
       <div className="container py-block">
@@ -523,7 +549,7 @@ function ProcessSection({ reduce }) {
           viewport={viewportOnce}
           className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
         >
-          {processSteps.map((step) => (
+          {pageData.processSteps.map((step) => (
             <motion.li
               key={step.step}
               variants={fadeUp}
@@ -546,6 +572,8 @@ function ProcessSection({ reduce }) {
 }
 
 function FaqSection() {
+  const pageData = useMarketingContent();
+
   const [openIndex, setOpenIndex] = useState(null);
   const reduce = useReducedMotion();
 
@@ -571,7 +599,7 @@ function FaqSection() {
           variants={stagger}
           className="mt-4 flex flex-col gap-2"
         >
-          {faqItems.map((item, index) => {
+          {pageData.faqItems.map((item, index) => {
             const open = openIndex === index;
             return (
               <motion.div
@@ -616,11 +644,13 @@ function FaqSection() {
   );
 }
 
-export default function MarketingGrowthView({ footer }) {
+export default function MarketingGrowthView({ footer, content = {} }) {
+  const pageData = { ...defaultMarketingContent, ...content };
   const reduce = useReducedMotion();
 
   return (
-    <div className="flex min-h-svh flex-col text-base">
+    <MarketingGrowthContentContext.Provider value={pageData}>
+      <div className="flex min-h-svh flex-col text-base">
       <Navigation />
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
@@ -642,5 +672,6 @@ export default function MarketingGrowthView({ footer }) {
         </main>
       </div>
     </div>
+    </MarketingGrowthContentContext.Provider>
   );
 }

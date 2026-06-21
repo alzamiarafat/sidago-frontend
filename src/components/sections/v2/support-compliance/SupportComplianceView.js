@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -22,11 +22,16 @@ import SupportBrutalistShowcase from "@/src/components/sections/v2/support-compl
 import SupportHelpHub from "@/src/components/sections/v2/support-compliance/SupportHelpHub";
 import {
   complianceCards,
+  docLinks,
   faqItems,
+  helpCategories,
+  legalTabs,
   metricStats,
   regulatoryTopics,
   riskPoints,
   securityItems,
+  supportPillars,
+  workflowSteps,
 } from "@/src/components/sections/v2/support-compliance/data";
 import {
   fadeIn,
@@ -45,6 +50,26 @@ const GLASS_SOFT =
   "rounded-3xl bg-white/[0.035] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.48)] backdrop-blur-xl md:p-7";
 
 const pillarIcons = [FiUsers, FiShield, FiLock, FiTarget];
+
+const defaultSupportContent = {
+  helpCategories,
+  legalTabs,
+  supportPillars,
+  complianceCards,
+  securityItems,
+  riskPoints,
+  regulatoryTopics,
+  docLinks,
+  workflowSteps,
+  metricStats,
+  faqItems,
+};
+
+const SupportComplianceContentContext = createContext(defaultSupportContent);
+
+function useSupportContent() {
+  return useContext(SupportComplianceContentContext);
+}
 
 function SectionHeader({ eyebrow, title, description, className = "" }) {
   return (
@@ -67,6 +92,7 @@ function SectionHeader({ eyebrow, title, description, className = "" }) {
 }
 
 function ComplianceSection() {
+  const pageData = useSupportContent();
   return (
     <section
       id="compliance-standards"
@@ -92,7 +118,7 @@ function ComplianceSection() {
           viewport={viewportOnce}
           className="grid gap-6 overflow-visible md:grid-cols-3 md:gap-8"
         >
-          {complianceCards.map((card, index) => (
+          {pageData.complianceCards.map((card, index) => (
             <motion.div key={card.title} variants={fadeUp} className="h-full">
               <ComplianceStandardsFlipCard card={card} index={index} />
             </motion.div>
@@ -104,6 +130,7 @@ function ComplianceSection() {
 }
 
 function SecurityPrivacySection({ reduce }) {
+  const pageData = useSupportContent();
   return (
     <section
       id="security-privacy"
@@ -130,7 +157,7 @@ function SecurityPrivacySection({ reduce }) {
             viewport={viewportOnce}
             className="space-y-5"
           >
-            {securityItems.map((item) => (
+            {pageData.securityItems.map((item) => (
               <motion.article
                 key={item.title}
                 variants={fadeUp}
@@ -154,7 +181,7 @@ function SecurityPrivacySection({ reduce }) {
               Risk management focus
             </p>
             <ul className="mt-6 space-y-4">
-              {riskPoints.map((line) => (
+              {pageData.riskPoints.map((line) => (
                 <li key={line} className="flex gap-3 text-sm leading-relaxed text-gray-tradfi-silver">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#E7512F]" />
                   <span>{line}</span>
@@ -169,6 +196,7 @@ function SecurityPrivacySection({ reduce }) {
 }
 
 function DataProtectionSection() {
+  const pageData = useSupportContent();
   const [active, setActive] = useState(-1);
 
   return (
@@ -196,7 +224,7 @@ function DataProtectionSection() {
           viewport={viewportOnce}
           className="grid gap-6 sm:grid-cols-3 sm:gap-8"
         >
-          {metricStats.map((row, index) => (
+          {pageData.metricStats.map((row, index) => (
             <motion.div
               key={row.label}
               variants={fadeUp}
@@ -228,6 +256,7 @@ function DataProtectionSection() {
 }
 
 function RegulatorySection({ reduce }) {
+  const pageData = useSupportContent();
   return (
     <section
       id="regulatory-guidelines"
@@ -253,7 +282,7 @@ function RegulatorySection({ reduce }) {
           viewport={viewportOnce}
           className="grid gap-6 md:grid-cols-3 md:gap-8"
         >
-          {regulatoryTopics.map((topic) => (
+          {pageData.regulatoryTopics.map((topic) => (
             <motion.article
               key={topic.label}
               variants={fadeUp}
@@ -274,6 +303,7 @@ function RegulatorySection({ reduce }) {
 }
 
 function FaqSection() {
+  const pageData = useSupportContent();
   const [openIndex, setOpenIndex] = useState(null);
   const reduce = useReducedMotion();
 
@@ -301,7 +331,7 @@ function FaqSection() {
           variants={stagger}
           className="mt-8 flex flex-col gap-5"
         >
-          {faqItems.map((item, index) => {
+          {pageData.faqItems.map((item, index) => {
             const open = openIndex === index;
             return (
               <motion.div
@@ -346,21 +376,24 @@ function FaqSection() {
   );
 }
 
-export default function SupportComplianceView({ footer }) {
+export default function SupportComplianceView({ footer, content = {} }) {
+  const pageData = { ...defaultSupportContent, ...content };
   const reduce = useReducedMotion();
 
   return (
-    <div className="font-saans">
-      <SupportHelpHub />
+    <SupportComplianceContentContext.Provider value={pageData}>
+      <div className="font-saans">
+      <SupportHelpHub helpCategories={pageData.helpCategories} />
       <SupportBrutalistShowcase />
       <ComplianceSection />
-      <ComplianceLegalHub />
+      <ComplianceLegalHub legalTabs={pageData.legalTabs} />
       <SecurityPrivacySection reduce={reduce} />
       <DataProtectionSection />
       <RegulatorySection reduce={reduce} />
       <FaqSection />
       <CTASection />
       <Footer footer={footer} />
-    </div>
+      </div>
+    </SupportComplianceContentContext.Provider>
   );
 }

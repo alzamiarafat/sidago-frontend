@@ -6,7 +6,7 @@ import ArmitageButton from "./ArmitageButton";
 import ArmitageLogo from "./ArmitageLogo";
 import { ARMITAGE_NAV_LINKS } from "./data";
 
-export default function ArmitageNavbar() {
+export default function ArmitageNavbar({ links = ARMITAGE_NAV_LINKS }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,7 +20,7 @@ export default function ArmitageNavbar() {
 
         <div className={`armitage-navbar__panel ${open ? "armitage-navbar__panel--open" : ""}`}>
           <nav className="armitage-navbar__links" aria-label="Primary">
-            {ARMITAGE_NAV_LINKS.map((link) =>
+            {links.map((link) =>
               link.external ? (
                 <a
                   key={link.href}

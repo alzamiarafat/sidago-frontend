@@ -13,7 +13,13 @@ import {
   subscribeContent,
 } from "@/src/components/sections/v2/scalable-operations/data";
 
-export default function ScalableOperationsView({ footer, hero }) {
+export default function ScalableOperationsView({
+  footer,
+  hero,
+  pressRelease = pressReleaseContent,
+  similarInsights = similarInsightsContent,
+  includePerformanceCarousel = true,
+}) {
   const heroNode = hero ?? <ReportInsightHero {...reportInsightHero} />;
 
   return (
@@ -23,12 +29,12 @@ export default function ScalableOperationsView({ footer, hero }) {
       <div className="flex flex-1 flex-col">
         <main className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1">
           {heroNode}
-          <ArticleShareSidebarSection content={pressReleaseContent} />
-          <SidagoPerformanceCarousel />
+          <ArticleShareSidebarSection content={pressRelease} />
+          {includePerformanceCarousel ? <SidagoPerformanceCarousel /> : null}
           {/* <SubscribeSection content={subscribeContent} /> */}
           <SimilarInsightsSection
-            content={similarInsightsContent}
-            sectionBgColor="#070B09"
+            content={similarInsights}
+            sectionBgColor={similarInsights?.sectionBgColor || "#070B09"}
           />
           <Footer footer={footer} />
         </main>

@@ -52,7 +52,13 @@ function ContactTopicCard({ topic }) {
   );
 }
 
-export default function ContactUs() {
+export default function ContactUs({
+  eyebrow = "Contact us",
+  heading = "Get in touch with Sidago",
+  subheading = "What topic would you like to contact Sidago about?",
+  sidebarImageSrc = "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/26202946/Contact-graphic.svg",
+  topics = CONTACT_TOPICS,
+}) {
   return (
     <section
       id="contact-topics"
@@ -74,7 +80,7 @@ export default function ContactUs() {
                 unoptimized
                 sizes="(max-width: 1024px) 3rem, 9.5rem"
                 className="h-full w-full object-cover object-center"
-                src="https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/26202946/Contact-graphic.svg"
+                src={sidebarImageSrc}
               />
             </div>
           </div>
@@ -85,25 +91,25 @@ export default function ContactUs() {
           >
             <div className="max-w-[44rem]">
               <p className="text-sm uppercase tracking-[0.2em] text-green-dark">
-                Contact us
+                {eyebrow}
               </p>
 
               <h2
                 className="mt-2 text-3xl text-gray-off-white sm:text-4xl"
                 id="contact-topics-heading"
               >
-                Get in touch with Sidago
+                {heading}
               </h2>
 
               <div className="pt-6 text-green-dark">
                 <p className="text-sm tracking-[0.18em] text-gray-tradfi-frost">
-                  What topic would you like to contact Sidago about?
+                  {subheading}
                 </p>
               </div>
             </div>
 
             <div className="group/cards pointer-events-none relative mt-8 flex grid-cols-12 flex-col gap-5 text-gray-off-white lg:grid lg:grid-rows-auto lg:gap-4">
-              {CONTACT_TOPICS.map((topic) => (
+              {topics.map((topic) => (
                 <ContactTopicCard key={topic.slug} topic={topic} />
               ))}
             </div>

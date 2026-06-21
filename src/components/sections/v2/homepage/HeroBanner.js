@@ -125,7 +125,6 @@ export default function HeroBannerSection({
   lighterBgColor = "bg-[#f0f1f1]",
   backgroundClassName,
   videoOverlay,
-  videoEndBackgroundSrc,
   sideLogo,
 }) {
   const backgroundClass =
@@ -161,7 +160,6 @@ export default function HeroBannerSection({
             lighterTheme={lighterTheme}
             loop={loop}
             showOverlay={videoOverlay}
-            endBackgroundSrc={videoEndBackgroundSrc}
           />
         )}
 

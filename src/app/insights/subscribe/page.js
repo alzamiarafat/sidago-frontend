@@ -6,14 +6,16 @@ import InsightsSeriesSection from "@/src/components/sections/v2/insights/Insight
 import RecommendedInsightsSection from "@/src/components/sections/v2/insights/RecommendedInsightsSection";
 import SubscribeSection from "@/src/components/sections/v2/digital-support-services/SubscribeSection";
 import InsightsSubscribeHero from "@/src/components/sections/v2/insights/InsightsSubscribeHero";
-import { subscribePageContent } from "@/src/components/sections/v2/insights/data";
-import { getGlobalSettings } from "@/src/lib/api";
+import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.insightsSubscribe;
 
 export default async function InsightsSubscribePage() {
-  const settings = await getGlobalSettings();
+  const [settings, content] = await Promise.all([
+    getGlobalSettings(),
+    getSitePage("insights-subscribe"),
+  ]);
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -21,12 +23,15 @@ export default async function InsightsSubscribePage() {
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <main className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1">
-          <InsightsSubscribeHero />
-          <RecommendedInsightsSection />
-          <InsightsDiscoverSection />
-          <InsightsSeriesSection />
+          <InsightsSubscribeHero hero={content.subscribeHero} />
+          <RecommendedInsightsSection content={content.recommendedInsightsContent} />
+          <InsightsDiscoverSection
+            cards={content.insightsDiscoverCards}
+            filterGroups={content.insightsFilterGroups}
+          />
+          <InsightsSeriesSection content={content.insightsSeriesContent} />
           <SubscribeSection
-            content={subscribePageContent}
+            content={content.subscribePageContent}
             className="v2-subscribe--dark v2-subscribe--narrow"
           />
           <CTASection />

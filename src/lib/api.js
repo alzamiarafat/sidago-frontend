@@ -11,6 +11,35 @@ import {
   defaultServicesPage,
 } from "@/src/data/cms/defaults";
 import { defaultCareersPage } from "@/src/data/cms/careers-page";
+import { defaultContactPage } from "@/src/data/cms/contact-page.mjs";
+import { defaultBrandPage, normalizeBrandPageFromStrapi } from "@/src/data/cms/brand-page.mjs";
+import {
+  defaultEventsPage,
+  normalizeEventsPageFromStrapi,
+} from "@/src/data/cms/events-page.mjs";
+import {
+  defaultCookiesPolicy,
+  defaultLegalHub,
+  defaultModernSlaveryPolicy,
+  defaultPrivacyPolicy,
+  normalizeLegalBlocksFromStrapi,
+  normalizeLegalDocumentsFromStrapi,
+} from "@/src/data/cms/legal-pages.mjs";
+import {
+  getDefaultServiceLandingPage,
+  normalizeServiceLandingPageFromStrapi,
+} from "@/src/data/cms/service-landing-pages.mjs";
+import {
+  buildMainNavigation,
+  defaultIndustryMenuGroups,
+  defaultMainNavigation,
+  defaultUtilityLinks,
+  strategyMenuItemsToGroups,
+} from "@/src/data/cms/navigation.mjs";
+import {
+  getDefaultSitePage,
+  normalizeSitePageFromStrapi,
+} from "@/src/data/cms/site-pages.mjs";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -659,7 +688,7 @@ function normalizeServicesPage(entry) {
   };
 }
 
-function normalizeMenuGroupsPage(entry) {
+function normalizeMenuGroupsPage(entry, fallbackGroups = []) {
   const item = unwrapEntity(entry);
   const groups = Array.isArray(item?.menuGroups)
     ? item.menuGroups
@@ -670,7 +699,7 @@ function normalizeMenuGroupsPage(entry) {
     : [];
 
   return {
-    menuGroups: groups,
+    menuGroups: groups.length > 0 ? groups : fallbackGroups,
   };
 }
 
@@ -1596,7 +1625,7 @@ export const getIndustriesPage = cache(async () => {
     "industries-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
     { revalidate: 180 },
   );
-  return normalizeMenuGroupsPage(data?.data);
+  return normalizeMenuGroupsPage(data?.data, defaultIndustryMenuGroups);
 });
 
 export const getStrategyPage = cache(async () => {
@@ -1604,7 +1633,10 @@ export const getStrategyPage = cache(async () => {
     "strategy-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
     { revalidate: 180 },
   );
-  return normalizeMenuGroupsPage(data?.data);
+  return normalizeMenuGroupsPage(
+    data?.data,
+    strategyMenuItemsToGroups(),
+  );
 });
 
 export const getBusinessProcessesPage = cache(async () => {
@@ -1667,4 +1699,295 @@ export const getCareersPage = cache(async () => {
     { revalidate: 180 },
   );
   return normalizeCareersPage(data?.data);
+});
+
+function mergePageContent(defaultContent, cmsContent) {
+  if (!cmsContent || typeof cmsContent !== "object") {
+    return defaultContent;
+  }
+
+  return {
+    ...defaultContent,
+    ...cmsContent,
+  };
+}
+
+function normalizeContactTopic(item, fallbackItem, index) {
+  if (!item?.slug || !item?.label) {
+    return fallbackItem;
+  }
+
+  return {
+    slug: item.slug.trim(),
+    label: item.label.trim(),
+    srLabel: item.srLabel?.trim() || fallbackItem?.srLabel || item.label.trim(),
+    cardClassName:
+      item.cardClassName?.trim() ||
+      fallbackItem?.cardClassName ||
+      "bg-gray-defi-graphite text-gray-off-white",
+    spanClassName:
+      item.spanClassName?.trim() ||
+      fallbackItem?.spanClassName ||
+      "col-span-4 xl:col-span-3",
+    showServicesField:
+      item.showServicesField ?? fallbackItem?.showServicesField ?? false,
+    description:
+      item.description?.trim() ||
+      fallbackItem?.description ||
+      `Contact Sidago about ${item.label.trim()}.`,
+    sortOrder: item.sortOrder ?? fallbackItem?.sortOrder ?? index + 1,
+  };
+}
+
+function normalizeContactPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultContactPage;
+  }
+
+  return {
+    eyebrow: item.eyebrow?.trim() || defaultContactPage.eyebrow,
+    heading: item.heading?.trim() || defaultContactPage.heading,
+    subheading: item.subheading?.trim() || defaultContactPage.subheading,
+    sidebarImageSrc:
+      item.sidebarImageSrc?.trim() || defaultContactPage.sidebarImageSrc,
+    topics:
+      item.topics?.length > 0
+        ? item.topics
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((topic, index) =>
+              normalizeContactTopic(
+                topic,
+                defaultContactPage.topics[index] ||
+                  defaultContactPage.topics[0],
+                index,
+              ),
+            )
+        : defaultContactPage.topics,
+    cta:
+      item.cta?.length > 0
+        ? item.cta
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((ctaItem, index) =>
+              normalizeCtaItem(
+                ctaItem,
+                defaultContactPage.cta[index] || defaultContactPage.cta[0],
+              ),
+            )
+        : defaultContactPage.cta,
+  };
+}
+
+function normalizeBrandPage(entry) {
+  return normalizeBrandPageFromStrapi(unwrapEntity(entry));
+}
+
+function normalizeEventsPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultEventsPage;
+  }
+
+  const normalized = normalizeEventsPageFromStrapi(item);
+  const hero = normalizeHero(item.hero, defaultEventsPage.hero);
+
+  return {
+    ...defaultEventsPage,
+    ...normalized,
+    hero: {
+      ...hero,
+      backgroundClassName:
+        item.backgroundClassName?.trim() ||
+        defaultEventsPage.backgroundClassName,
+      videoClass: item.videoClass?.trim() || defaultEventsPage.videoClass,
+    },
+    heroProps: {
+      ...hero,
+      backgroundClassName:
+        item.backgroundClassName?.trim() ||
+        defaultEventsPage.backgroundClassName,
+      videoClass: item.videoClass?.trim() || defaultEventsPage.videoClass,
+      titles: hero.titles,
+    },
+  };
+}
+
+function normalizeLegalPolicy(entry, fallbackPolicy) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return fallbackPolicy;
+  }
+
+  const blocks = normalizeLegalBlocksFromStrapi(item.blocks);
+
+  return {
+    title: item.title?.trim() || fallbackPolicy.title,
+    lastUpdated: item.lastUpdated?.trim() || fallbackPolicy.lastUpdated,
+    activePolicy: item.activePolicy?.trim() || fallbackPolicy.activePolicy,
+    blocks: blocks.length > 0 ? blocks : fallbackPolicy.blocks,
+  };
+}
+
+function normalizeLegalHub(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return defaultLegalHub;
+  }
+
+  const documents = normalizeLegalDocumentsFromStrapi(item.documents);
+
+  return {
+    hubTitle: item.hubTitle?.trim() || defaultLegalHub.hubTitle,
+    hubDescription:
+      item.hubDescription?.trim() || defaultLegalHub.hubDescription,
+    lastUpdated: item.lastUpdated?.trim() || defaultLegalHub.lastUpdated,
+    documents: documents.length > 0 ? documents : defaultLegalHub.documents,
+  };
+}
+
+export const getContactPage = cache(async () => {
+  const data = await fetchAPI(
+    "contact-page?populate[topics]=*&populate[cta]=*",
+    { revalidate: 180 },
+  );
+  return normalizeContactPage(data?.data);
+});
+
+export const getBrandPage = cache(async () => {
+  const data = await fetchAPI(
+    "brand-page?populate[logoSlides]=*&populate[harnessingImages]=*&populate[mediaHeadshots]=*&populate[mediaBackdrops]=*",
+    { revalidate: 180 },
+  );
+  return normalizeBrandPage(data?.data);
+});
+
+const EVENTS_POPULATE =
+  "events-page?populate[hero][populate][titles]=*&populate[upcomingEvents]=*&populate[endpointStats]=*&populate[endpointShowcasePanels]=*&populate[pastSpeakers]=*&populate[pastConversationsItems]=*&populate[cta]=*";
+
+export const getEventsPage = cache(async () => {
+  const data = await fetchAPI(EVENTS_POPULATE, { revalidate: 180 });
+  return normalizeEventsPage(data?.data);
+});
+
+const LEGAL_BLOCKS_POPULATE =
+  "populate[blocks][on][shared.legal-bullet-list][populate][items]=*&populate[blocks][on][shared.legal-contact-box][populate][lines]=*&populate[blocks][populate]=*";
+
+export const getPrivacyPolicy = cache(async () => {
+  const data = await fetchAPI(`privacy-policy?${LEGAL_BLOCKS_POPULATE}`, {
+    revalidate: 900,
+  });
+  return normalizeLegalPolicy(data?.data, defaultPrivacyPolicy);
+});
+
+export const getCookiesPolicy = cache(async () => {
+  const data = await fetchAPI(`cookies-policy?${LEGAL_BLOCKS_POPULATE}`, {
+    revalidate: 900,
+  });
+  return normalizeLegalPolicy(data?.data, defaultCookiesPolicy);
+});
+
+export const getModernSlaveryPolicy = cache(async () => {
+  const data = await fetchAPI(`modern-slavery-policy?${LEGAL_BLOCKS_POPULATE}`, {
+    revalidate: 900,
+  });
+  return normalizeLegalPolicy(data?.data, defaultModernSlaveryPolicy);
+});
+
+export const getLegalHub = cache(async () => {
+  const data = await fetchAPI("legal-hub?populate[documents]=*", {
+    revalidate: 900,
+  });
+  return normalizeLegalHub(data?.data);
+});
+
+const SERVICE_LANDING_POPULATE = [
+  "populate[hero][populate][breadcrumbs]=*",
+  "populate[hero][populate][descriptionParts]=*",
+  "populate[atAGlance][populate][tags]=*",
+  "populate[atAGlance][populate][bullets]=*",
+  "populate[reportContents][populate][tableOfContents]=*",
+  "populate[reportContents][populate][mainSectionParagraphs][populate][parts]=*",
+  "populate[reportContents][populate][mainSectionBlocks][on][shared.service-landing-report-paragraph][populate][parts]=*",
+  "populate[reportContents][populate][mainSectionBlocks][on][shared.service-landing-report-image][populate]=*",
+  "populate[reportContents][populate][mainSectionImage]=*",
+  "populate[reportContents][populate][disclaimers]=*",
+  "populate[pressRelease][populate][blocks][on][shared.service-landing-report-paragraph][populate][parts]=*",
+  "populate[pressRelease][populate][blocks][on][shared.service-landing-report-image][populate]=*",
+  "populate[subscribe][populate][newsletterOptions]=*",
+  "populate[similarInsights][populate][cards]=*",
+].join("&");
+
+export const getServiceLandingPage = cache(async (slug) => {
+  const fallback = getDefaultServiceLandingPage(slug);
+  const data = await fetchAPI(
+    `service-landing-pages?filters[slug][$eq]=${encodeURIComponent(slug)}&${SERVICE_LANDING_POPULATE}`,
+    { revalidate: 180 },
+  );
+  const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
+
+  return normalizeServiceLandingPageFromStrapi(unwrapEntity(item), fallback);
+});
+
+function normalizeMainNavigationUtilityLinks(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item?.utilityLinks?.length) {
+    return defaultUtilityLinks;
+  }
+
+  return item.utilityLinks
+    .slice()
+    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+    .map((link, index) => ({
+      label: link.label?.trim() || defaultUtilityLinks[index]?.label,
+      href: link.href?.trim() || defaultUtilityLinks[index]?.href,
+      srLabel: link.srLabel?.trim() || link.label?.trim(),
+      sortOrder: link.sortOrder ?? index + 1,
+    }));
+}
+
+export const getMainNavigation = cache(async () => {
+  const [servicesPage, industriesPage, strategyPage, mainNavigation] =
+    await Promise.all([
+      getServicesPage(),
+      getIndustriesPage(),
+      getStrategyPage(),
+      fetchAPI("main-navigation?populate[utilityLinks]=*", {
+        revalidate: 180,
+      }),
+    ]);
+
+  const utilityLinks = normalizeMainNavigationUtilityLinks(
+    mainNavigation?.data,
+  );
+
+  return buildMainNavigation({
+    serviceGroups: servicesPage?.serviceGroups,
+    industryGroups: industriesPage?.menuGroups,
+    strategyGroups: strategyPage?.menuGroups,
+    utilityLinks,
+  });
+});
+
+export { defaultMainNavigation };
+
+export const getSitePage = cache(async (slug) => {
+  const fallback = getDefaultSitePage(slug);
+  const data = await fetchAPI(
+    `site-pages?filters[slug][$eq]=${encodeURIComponent(slug)}`,
+    { revalidate: 180 },
+  );
+  const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
+
+  return normalizeSitePageFromStrapi(unwrapEntity(item), fallback);
 });

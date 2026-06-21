@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { createContext, useContext } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   FiArrowRight,
@@ -16,6 +17,22 @@ import {
   FiZap,
 } from "react-icons/fi";
 import SalesHeroSpotlightStatCard from "@/src/components/sections/v2/salespage/SalesHeroSpotlightStatCard";
+import { defaultSalesPageContent } from "./data.js";
+
+const SERVICE_ICONS = [
+  FiTrendingUp,
+  FiMessageSquare,
+  FiLayers,
+  FiUsers,
+  FiBarChart2,
+  FiShield,
+];
+
+const SalesContentContext = createContext(defaultSalesPageContent);
+
+function useSalesContent() {
+  return useContext(SalesContentContext);
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -61,166 +78,6 @@ const featureBarVariants = {
     transition: { duration: 0.4, ease: "easeOut" },
   },
 };
-
-const trustChips = [
-  "Chicago, USA",
-  "Dhaka, Bangladesh",
-  "Bogra, Bangladesh",
-  "Bharatpur, India",
-  "Lucknow, India",
-  "Bucharest, Romania",
-  "Manila, Philippines",
-  "Cavite, Philippines",
-];
-
-const heroStats = [
-  {
-    value: "24",
-    suffix: "hrs",
-    label: "target response window for sales follow-up",
-    activeDotColor: "#5cf0a5",
-  },
-  {
-    value: "8",
-    suffix: " hubs",
-    label: "listed Sidago office locations supporting delivery",
-    activeDotColor: "#ff8c6a",
-  },
-  {
-    value: "6",
-    suffix: "+",
-    label: "core commercial support areas across sales and service",
-    activeDotColor: "#7aa8ff",
-  },
-];
-
-const serviceCards = [
-  {
-    title: "Customer Acquisition & Sales",
-    body:
-      "Sidago lists customer acquisition and sales as a core marketing capability for teams that need disciplined growth execution.",
-    icon: FiTrendingUp,
-  },
-  {
-    title: "Telemarketing & Telesales",
-    body:
-      "Sidago's broader outsourcing model includes telesales and online marketing for companies expanding demand without building every role in-house.",
-    icon: FiMessageSquare,
-  },
-  {
-    title: "CRM / Contact Management",
-    body:
-      "Contact management and CRM management are presented by Sidago as practical support for protecting customer relationships at scale.",
-    icon: FiLayers,
-  },
-  {
-    title: "Customer Service",
-    body:
-      "Customer service is treated as a business-critical retention layer, with support available across phone, email, and social channels.",
-    icon: FiUsers,
-  },
-  {
-    title: "Market Research & Data Mining",
-    body:
-      "Research and data support help commercial teams reach better accounts with stronger context before outreach begins.",
-    icon: FiBarChart2,
-  },
-  {
-    title: "Negotiation Management",
-    body:
-      "Sidago emphasizes support for important business relationships, including mediation and negotiation when outcomes need to stay mutually beneficial.",
-    icon: FiShield,
-  },
-];
-
-const featureHighlights = [
-  {
-    title: "Improve employee teamwork",
-    text:
-      "The original Sidago sales page focuses on training sessions, team building, and positive attitudes that improve productivity and customer satisfaction.",
-  },
-  {
-    title: "Strengthen external relationships",
-    text:
-      "Sidago positions sales support around maintaining profitable, efficient relationships with other organizations and business partners.",
-  },
-  {
-    title: "Use online networks with confidence",
-    text:
-      "Sidago specifically highlights online networks as a way to make communication easier while keeping information safe and secure.",
-  },
-  {
-    title: "Deliver measurable business outcomes",
-    text:
-      "Every Sidago engagement is tied to real results — reduced costs, faster execution, and compounding value across every service line.",
-  },
-];
-
-const dashboardBars = [
-  { label: "Customer service", value: 92, color: "#5CF0A5" },
-  { label: "Telesales / outreach", value: 84, color: "#FF7A59" },
-  { label: "CRM management", value: 76, color: "#7AA8FF" },
-  { label: "Market research", value: 68, color: "#C7F36B" },
-];
-
-const benefitRows = [
-  "Save on operating costs while growing the business",
-  "Access customer service, tech support, telesales, and online marketing support",
-  "Use solutions personalized for your business and relationship model",
-  "Support customers through phone, email, and social media channels",
-];
-
-const workflowSteps = [
-  {
-    step: "01",
-    title: "Assess relationship pressure points",
-    body:
-      "Sidago starts from the idea that businesses rely on many kinds of relationships to stay profitable, so the first job is understanding where friction exists.",
-  },
-  {
-    step: "02",
-    title: "Deploy the right support mix",
-    body:
-      "From customer acquisition and telesales to customer service and administrative support, Sidago's service catalog lets teams assemble practical commercial coverage.",
-  },
-  {
-    step: "03",
-    title: "Improve loyalty, visibility, and follow-through",
-    body:
-      "The intended outcome is stronger teamwork, happier customers, more reliable outreach, and external relationships that become more profitable over time.",
-  },
-];
-
-const caseStudyAreas = [
-  "Data Mining",
-  "Public Relations",
-  "Telemarketing",
-  "Web Content",
-  "Market Research",
-  "General Offshoring",
-  "Expert Negotiation",
-  "Administrative Assistants",
-  "Web Research",
-  "Web Development",
-];
-
-const deliverySignals = [
-  {
-    title: "Business relationship focus",
-    body:
-      "Built to improve how companies manage teams, customers, and partner relationships.",
-  },
-  {
-    title: "Outsourcing and offshoring depth",
-    body:
-      "Sidago combines lower operating cost with scalable business support.",
-  },
-  {
-    title: "Global operating footprint",
-    body:
-      "Operations span the United States, Bangladesh, India, Romania, and the Philippines.",
-  },
-];
 
 function SectionHeader({
   eyebrow,
@@ -281,6 +138,8 @@ function AmbientOrb({ className, color, duration, reduce }) {
 }
 
 function HeroSection({ reduce }) {
+  const { heroStats, dashboardBars, deliverySignals } = useSalesContent();
+
   return (
     <section className="relative isolate overflow-hidden bg-[#07110d] px-5 pb-20 pt-[calc(var(--header-height)+2rem)] md:px-10 md:pb-28 md:pt-[calc(var(--header-height)+3rem)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(92,240,165,0.12),_transparent_25%),radial-gradient(circle_at_80%_18%,_rgba(255,122,89,0.14),_transparent_28%),linear-gradient(180deg,#08120d_0%,#091611_55%,#0c1c15_100%)]" />
@@ -487,6 +346,8 @@ function HeroSection({ reduce }) {
 }
 
 function TrustSection() {
+  const { trustChips } = useSalesContent();
+
   return (
     <section className="border-y border-white/[0.04] bg-[#08140f] px-5 py-10 md:px-10">
       <div className="container">
@@ -509,6 +370,8 @@ function TrustSection() {
 }
 
 function ServicesSection({ reduce }) {
+  const { serviceCards } = useSalesContent();
+
   return (
     <section
       id="core-services"
@@ -536,8 +399,8 @@ function ServicesSection({ reduce }) {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          {serviceCards.map((card) => {
-            const Icon = card.icon;
+          {serviceCards.map((card, index) => {
+            const Icon = SERVICE_ICONS[index] || FiBriefcase;
 
             return (
               <motion.article
@@ -602,6 +465,8 @@ function OptimaTaxLogo() {
 }
 
 function FeaturesSection({ reduce }) {
+  const { featureHighlights } = useSalesContent();
+
   return (
     <section className="bg-[#f3f0e8] px-5 py-20 text-[#11251a] md:px-12 md:py-[5.5rem]">
       <div className="container grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-stretch lg:gap-16">
@@ -672,6 +537,8 @@ function FeaturesSection({ reduce }) {
 }
 
 function AnalyticsSection({ reduce }) {
+  const { benefitRows, dashboardBars } = useSalesContent();
+
   return (
     <section className="bg-[#091511] px-5 py-20 md:px-10 md:py-28">
       <div className="container grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
@@ -796,6 +663,8 @@ function AnalyticsSection({ reduce }) {
 }
 
 function WorkflowSection({ reduce }) {
+  const { workflowSteps } = useSalesContent();
+
   return (
     <section className="bg-[#f3f0e8] px-5 py-20 text-[#102117] md:px-10 md:py-28">
       <div className="container">
@@ -847,6 +716,8 @@ function WorkflowSection({ reduce }) {
 }
 
 function SuccessSection({ reduce }) {
+  const { caseStudyAreas } = useSalesContent();
+
   return (
     <section className="bg-[#0b1712] px-5 py-20 md:px-10 md:py-28">
       <div className="container grid gap-10 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:items-start">
@@ -984,11 +855,12 @@ function ConversionBanner({ reduce }) {
   );
 }
 
-export default function SalesLandingView() {
+export default function SalesLandingView({ content = {} }) {
   const reduce = useReducedMotion();
+  const pageData = { ...defaultSalesPageContent, ...content };
 
   return (
-    <>
+    <SalesContentContext.Provider value={pageData}>
       <HeroSection reduce={reduce} />
       <TrustSection />
       <ServicesSection reduce={reduce} />
@@ -997,6 +869,6 @@ export default function SalesLandingView() {
       <WorkflowSection reduce={reduce} />
       <SuccessSection reduce={reduce} />
       <ConversionBanner reduce={reduce} />
-    </>
+    </SalesContentContext.Provider>
   );
 }

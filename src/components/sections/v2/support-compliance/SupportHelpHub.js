@@ -14,20 +14,20 @@ const categoryIcons = {
   account: FiUser,
 };
 
-export default function SupportHelpHub() {
+export default function SupportHelpHub({ helpCategories: categories = helpCategories }) {
   const [query, setQuery] = useState("");
   const searchInputRef = useRef(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) {
-      return helpCategories;
+      return categories;
     }
-    return helpCategories.filter(
+    return categories.filter(
       (c) =>
         c.title.toLowerCase().includes(q) || c.body.toLowerCase().includes(q),
     );
-  }, [query]);
+  }, [categories, query]);
 
   return (
     <section

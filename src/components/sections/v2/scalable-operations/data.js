@@ -1,11 +1,11 @@
 /** Static copy for Scalable Operations Management */
 
-export { pressReleaseContent } from "@/src/components/sections/v2/scalable-operations/pressReleaseContent";
-export { reportContentsContent } from "@/src/components/sections/v2/scalable-operations/reportContentsContent";
+export { pressReleaseContent } from "./pressReleaseContent.js";
+export { reportContentsContent } from "./reportContentsContent.js";
 export {
   subscribeContent,
   similarInsightsContent,
-} from "@/src/components/sections/v2/scalable-operations/pageCopy";
+} from "./pageCopy.js";
 
 export const reportInsightHero = {
   imageSrc: "/images/Armitage.svg",

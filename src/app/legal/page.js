@@ -1,27 +1,12 @@
 import Link from "next/link";
+import { getLegalHub } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.legalPolicies;
 
-const docs = [
-  {
-    href: "/privacy",
-    title: "Privacy Policy",
-    blurb: "Collection, use, sharing, international transfers, retention, security, and your choices.",
-  },
-  {
-    href: "/cookies",
-    title: "Cookies Policy",
-    blurb: "Necessary, functional, analytics, and advertising technologies—and how to manage them.",
-  },
-  {
-    href: "/modern-slavery",
-    title: "Modern Slavery Statement",
-    blurb: "Ethical conduct, supplier expectations, risk assessment, diligence, and reporting.",
-  },
-];
+export default async function LegalPoliciesHubPage() {
+  const legalHub = await getLegalHub();
 
-export default function LegalPoliciesHubPage() {
   return (
     <div className="min-h-[50vh]">
       <header className="relative border-b border-white/[0.08] bg-[#1C211E]">
@@ -29,21 +14,17 @@ export default function LegalPoliciesHubPage() {
         <div className="relative mx-auto max-w-6xl px-4 py-12 md:px-8 md:py-16">
           <p className="text-[0.65rem] font-semibold tracking-[0.28em] text-white/35">Sidago</p>
           <h1 className="mt-4 max-w-2xl font-saans text-[clamp(1.9rem,4vw,2.6rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-white">
-            Legal &amp; compliance center
+            {legalHub.hubTitle}
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/55 md:text-base">
-            Website-ready policies for sidago.com. Last updated{" "}
-            <time dateTime="2026-05-14" className="text-white/70">
-              14 May 2026
-            </time>
-            .
+            {legalHub.hubDescription}
           </p>
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 md:py-16">
         <div className="grid gap-4 md:grid-cols-3 md:gap-5">
-          {docs.map((doc) => (
+          {legalHub.documents.map((doc) => (
             <Link
               key={doc.href}
               href={doc.href}

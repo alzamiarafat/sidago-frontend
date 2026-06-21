@@ -2,36 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react";
 import BrandLogoPreview from "@/src/components/sections/v2/brand/BrandLogoPreview";
+import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 import "@/src/components/sections/v2/brand/brand-logo-carousel.css";
 
 const SLIDE_DURATION_MS = 4000;
 
-const SLIDES = [
-  {
-    id: "horizontal",
-    label: "Horizontal",
-    caption:
-      "Use the horizontal lockup where space allows, keeping clear space equal to the height of the logo mark.",
-  },
-  {
-    id: "vertical",
-    label: "Vertical",
-    caption:
-      "Use the vertical lockup in tighter layouts, keeping clear space equal to the height of the logo mark.",
-  },
-  {
-    id: "symbol",
-    label: "Symbol",
-    caption:
-      "Use the symbol only when full lockups aren't viable, with equal clear space on all sides.",
-  },
-  {
-    id: "color",
-    label: "Color",
-    caption:
-      "A) Default brand orange. B) Brand orange on white. C/D) Use only as a last resort when A/B aren't viable.",
-  },
-];
+const DEFAULT_SLIDES = defaultBrandPage.pageContent.logo.slides;
 
 function CarouselArrow({ direction = "next", onClick }) {
   return (
@@ -105,33 +81,33 @@ function DesktopMenuItem({ slide, index, activeIndex, cycleKey, onSelect }) {
   );
 }
 
-export default function BrandLogoCarousel() {
+export default function BrandLogoCarousel({ slides = DEFAULT_SLIDES }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cycleKey, setCycleKey] = useState(0);
 
   const goTo = useCallback((index) => {
-    const nextIndex = (index + SLIDES.length) % SLIDES.length;
+    const nextIndex = (index + slides.length) % slides.length;
     setActiveIndex(nextIndex);
     setCycleKey((key) => key + 1);
-  }, []);
+  }, [slides.length]);
 
   const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
   const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % SLIDES.length);
+      setActiveIndex((current) => (current + 1) % slides.length);
       setCycleKey((key) => key + 1);
     }, SLIDE_DURATION_MS);
 
     return () => window.clearInterval(timer);
-  }, [activeIndex]);
+  }, [activeIndex, slides.length]);
 
   return (
     <div className="flex flex-col justify-between gap-2xl overflow-hidden text-gray-off-white lg:flex-row lg:gap-[5rem] xl:gap-[10.75rem]">
       <div className="flex justify-between gap-3xl lg:items-center lg:hidden">
         <div className="brand-logo-carousel__mobile-label">
-          {SLIDES.map((slide, index) => (
+          {slides.map((slide, index) => (
             <button
               key={slide.id}
               type="button"
@@ -147,7 +123,7 @@ export default function BrandLogoCarousel() {
                 <div className="flex font-blender text-sm font-medium uppercase text-gray-defi-ash">
                   <span className="min-w-md">{index + 1}</span>
                   <span className="min-w-sm">/</span>
-                  <span className="min-w-md">{SLIDES.length}</span>
+                  <span className="min-w-md">{slides.length}</span>
                 </div>
               </div>
               <ProgressBar active cycleKey={cycleKey} />
@@ -162,7 +138,7 @@ export default function BrandLogoCarousel() {
       </div>
 
       <div className="brand-logo-carousel__desktop-nav">
-        {SLIDES.map((slide, index) => (
+        {slides.map((slide, index) => (
           <DesktopMenuItem
             key={slide.id}
             slide={slide}
@@ -175,7 +151,7 @@ export default function BrandLogoCarousel() {
       </div>
 
       <div className="brand-logo-carousel__panel">
-        {SLIDES.map((slide, index) => (
+        {slides.map((slide, index) => (
           <div
             key={slide.id}
             className={`brand-logo-carousel__slide ${

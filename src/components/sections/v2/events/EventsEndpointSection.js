@@ -11,8 +11,11 @@ import {
   pastSpeakers,
 } from "@/src/components/sections/v2/events/content";
 
-export default function EventsEndpointSection() {
-  const { intro, stats, showcase, coHost } = endpointSection;
+export default function EventsEndpointSection({
+  content = endpointSection,
+  speakers = pastSpeakers,
+}) {
+  const { intro, stats, showcase, coHost } = content;
 
   return (
     <section className="bg-gray-defi-shadow">
@@ -44,7 +47,7 @@ export default function EventsEndpointSection() {
           />
           <section className="bg-gray-defi-shadow text-gray-off-white">
             <EventsCardGrid
-              items={pastSpeakers}
+              items={speakers}
               cardType="speaker"
               mobileInitialCount={4}
               mobileGridClassName="group/cards grid grid-cols-1 gap-xl"

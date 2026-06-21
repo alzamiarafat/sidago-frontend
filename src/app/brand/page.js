@@ -7,7 +7,7 @@ import BrandIntroSection from "@/src/components/sections/v2/brand/BrandIntroSect
 import BrandLogoSection from "@/src/components/sections/v2/brand/BrandLogoSection";
 import BrandMediaResourcesSection from "@/src/components/sections/v2/brand/BrandMediaResourcesSection";
 import BrandSubBrandsSection from "@/src/components/sections/v2/brand/BrandSubBrandsSection";
-import { getGlobalSettings } from "@/src/lib/api";
+import { getBrandPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
 export const metadata = buildPageMetadata({
@@ -25,7 +25,11 @@ export const metadata = buildPageMetadata({
 });
 
 export default async function BrandPage() {
-  const settings = await getGlobalSettings();
+  const [settings, brand] = await Promise.all([
+    getGlobalSettings(),
+    getBrandPage(),
+  ]);
+  const content = brand.pageContent;
 
   return (
     <div className="flex min-h-svh flex-col bg-[#151B17] text-base">
@@ -36,13 +40,13 @@ export default async function BrandPage() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-[#151B17] text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <BrandIntroSection />
-          <BrandHarnessingSection />
-          <BrandLogoSection />
-          <BrandColorIntroSection />
+          <BrandIntroSection content={content.intro} />
+          <BrandHarnessingSection content={content.harnessing} />
+          <BrandLogoSection content={content.logo} />
+          <BrandColorIntroSection content={content.colorIntro} />
           <BrandColorSystemSection />
-          <BrandMediaResourcesSection />
-          <BrandSubBrandsSection />
+          <BrandMediaResourcesSection content={content.media} />
+          <BrandSubBrandsSection content={content.subBrands} />
           <Footer footer={settings?.footer} />
         </main>
       </div>

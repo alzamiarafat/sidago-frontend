@@ -7,7 +7,7 @@ import "./globals.css";
 // import "../styles/style.min_2.css";
 // import "../styles/js_composer.css";
 // import "../styles/case-study-style.css";
-import { getGlobalSettings } from "../lib/api";
+import { getGlobalSettings, getMainNavigation } from "../lib/api";
 import { GlobalProvider } from "../hooks/useGlobal";
 import { SITE_NAME, SITE_URL, routeMetadata } from "../lib/seo";
 
@@ -96,7 +96,10 @@ export const metadata = {
 
 
 export default async function RootLayout({ children }) {
-  const settings = await getGlobalSettings();
+  const [settings, navigation] = await Promise.all([
+    getGlobalSettings(),
+    getMainNavigation(),
+  ]);
 
   if (!settings) {
     return <div>No data found</div>;
@@ -131,7 +134,9 @@ export default async function RootLayout({ children }) {
       <body
         className={[`version-${version}`, "antialiased"].join(" ")}
       >
-        <GlobalProvider settings={settings}>{children}</GlobalProvider>
+        <GlobalProvider settings={{ ...settings, navigation }}>
+          {children}
+        </GlobalProvider>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import ArmitageView from "@/src/components/sections/v2/armitage/ArmitageView";
+import { getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
 export const metadata = buildPageMetadata({
@@ -16,6 +17,8 @@ export const metadata = buildPageMetadata({
   ],
 });
 
-export default function ArmitagePage() {
-  return <ArmitageView />;
+export default async function ArmitagePage() {
+  const content = await getSitePage("armitage");
+
+  return <ArmitageView content={content} />;
 }

@@ -1,10 +1,10 @@
 /** Static copy for Global Workforce Solutions */
 
-export { reportContentsContent } from "@/src/components/sections/v2/global-workforce/reportContentsContent";
+export { reportContentsContent } from "./reportContentsContent.js";
 export {
   subscribeContent,
   similarInsightsContent,
-} from "@/src/components/sections/v2/global-workforce/pageCopy";
+} from "./pageCopy.js";
 
 export const reportInsightHero = {
   imageSrc: "/images/Market-Update-1.svg",

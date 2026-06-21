@@ -38,8 +38,10 @@ function SeriesItem({ item }) {
   );
 }
 
-export default function InsightsSeriesSection() {
-  const { heading, headingId, dividerClassName, items } = insightsSeriesContent;
+export default function InsightsSeriesSection({
+  content = insightsSeriesContent,
+}) {
+  const { heading, headingId, dividerClassName, items } = content;
 
   return (
     <section className="bg-gray-defi-shadow">

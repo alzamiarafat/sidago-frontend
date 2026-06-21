@@ -120,13 +120,23 @@ function HeroSection({ reduce }) {
   );
 }
 
-function PageBody({ reduce, hero }) {
+function PageBody({
+  reduce,
+  hero,
+  atAGlance,
+  reportContents,
+  subscribe,
+  similarInsights,
+}) {
   const lightSections = (
     <>
-      <AtAGlanceSection />
-      <ReportContentsSection />
-      <SubscribeSection />
-      <SimilarInsightsSection />
+      <AtAGlanceSection {...atAGlance} />
+      <ReportContentsSection content={reportContents} />
+      <SubscribeSection content={subscribe} />
+      <SimilarInsightsSection
+        content={similarInsights}
+        sectionBgColor={similarInsights?.sectionBgColor}
+      />
     </>
   );
 
@@ -152,7 +162,14 @@ function PageBody({ reduce, hero }) {
   );
 }
 
-export default function DigitalSupportServicesView({ footer, hero }) {
+export default function DigitalSupportServicesView({
+  footer,
+  hero,
+  atAGlance,
+  reportContents,
+  subscribe,
+  similarInsights,
+}) {
   const reduce = useReducedMotion();
 
   return (
@@ -165,7 +182,14 @@ export default function DigitalSupportServicesView({ footer, hero }) {
             }`}
           style={hero ? undefined : { colorScheme: "dark" }}
         >
-          <PageBody reduce={reduce} hero={hero} />
+          <PageBody
+            reduce={reduce}
+            hero={hero}
+            atAGlance={atAGlance}
+            reportContents={reportContents}
+            subscribe={subscribe}
+            similarInsights={similarInsights}
+          />
           <CTASection />
           <Footer footer={footer} />
         </main>

@@ -2,11 +2,10 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import SimilarInsightsSection from "@/src/components/sections/v2/digital-support-services/SimilarInsightsSection";
-import { latestInsightsContent } from "@/src/components/sections/v2/insights/data";
 import WhoWeServeAudienceSection from "@/src/components/sections/v2/whoweserve/WhoWeServeAudienceSection";
 import WhoWeServeIntroSection from "@/src/components/sections/v2/whoweserve/WhoWeServeIntroSection";
 import { BRAND_COLORS } from "@/src/data/brand-colors";
-import { getGlobalSettings } from "@/src/lib/api";
+import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
 export const metadata = buildPageMetadata({
@@ -23,7 +22,10 @@ export const metadata = buildPageMetadata({
 });
 
 export default async function WhoWeServePage() {
-  const settings = await getGlobalSettings();
+  const [settings, content] = await Promise.all([
+    getGlobalSettings(),
+    getSitePage("who-we-serve"),
+  ]);
 
   return (
     <div className="flex min-h-svh flex-col bg-[#151B17] text-base">
@@ -34,10 +36,10 @@ export default async function WhoWeServePage() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-[#151B17] text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <WhoWeServeIntroSection />
-          <WhoWeServeAudienceSection />
+          <WhoWeServeIntroSection intro={content.intro} />
+          <WhoWeServeAudienceSection segments={content.audienceSegments} />
           <SimilarInsightsSection
-            content={latestInsightsContent}
+            content={content.latestInsights}
             sectionClassName="bg-gray-defi-shadow text-gray-off-white"
             cardClassName="bg-gray-defi-charcoal"
             navAccentColor={BRAND_COLORS.orange}

@@ -18,6 +18,7 @@ import {
 } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { fadeIn, fadeUp, stagger, viewportOnce } from "./motion";
+import { defaultProcessImprovementPageContent } from "./data.js";
 
 /** Sidago brand — orange #E7512F, green #168b50, forest #006623 (see style-v2 / site usage) */
 const BR = {
@@ -27,92 +28,7 @@ const BR = {
   g: "22,139,80",
 };
 
-const LOGOS = [
-  "Axiom North",
-  "Velora Labs",
-  "Kiteframe",
-  "Helix Meridian",
-  "Northwind Ops",
-  "Cinder & Co",
-];
-
-const FEATURES = [
-  {
-    title: "Adaptive workflow automation",
-    body: "Sidago maps decision paths, handoffs, and exceptions so repetitive cycles compress without losing human judgment at the edge.",
-    icon: FiCpu,
-  },
-  {
-    title: "Signal-rich process analysis",
-    body: "We fuse operational telemetry with qualitative context to expose bottlenecks that spreadsheets and static maps routinely miss.",
-    icon: FiActivity,
-  },
-  {
-    title: "Efficiency without fragility",
-    body: "Tighter throughput is staged with rollback lanes, observability hooks, and change windows that keep production calm.",
-    icon: FiZap,
-  },
-  {
-    title: "Narrative-grade reporting",
-    body: "Leaders receive living briefs—trendlines, variance drivers, and next actions—instead of flat monthly reconciliations.",
-    icon: FiBarChart2,
-  },
-  {
-    title: "Collaboration in one plane",
-    body: "Design, risk, and delivery share a single source of intent with versioned rationale so alignment survives turnover.",
-    icon: FiMessageCircle,
-  },
-  {
-    title: "Predictive optimization loops",
-    body: "Forecast-informed capacity and backlog shaping reduce fire drills while keeping service promises defensible.",
-    icon: FiTrendingUp,
-  },
-];
-
-const WORKFLOW_STEPS = [
-  {
-    title: "Sense",
-    detail: "Ingest live signals from systems, tickets, and stakeholder touchpoints.",
-  },
-  {
-    title: "Diagnose",
-    detail: "Isolate root friction with traceable evidence—not anecdotal heat maps alone.",
-  },
-  {
-    title: "Design",
-    detail: "Co-author target flows with guardrails, SLAs, and measurable exit criteria.",
-  },
-  {
-    title: "Deploy",
-    detail: "Roll out in waves with automated checks and human checkpoints at critical seams.",
-  },
-  {
-    title: "Evolve",
-    detail: "Close the loop with retrospectives that feed the next optimization sprint.",
-  },
-];
-
-const DASHBOARD_SLIDES = [
-  {
-    title: "Latency-aware throughput",
-    caption: "Live corridor view of queue depth, aging risk, and predicted breach windows.",
-  },
-  {
-    title: "Decision confidence index",
-    caption: "Blended model of data completeness, policy fit, and historical resolution quality.",
-  },
-  {
-    title: "Automation coverage map",
-    caption: "Where machines assist, where humans decide, and where hybrid review is mandatory.",
-  },
-];
-
-const WHY_METRICS = [
-  { label: "Faster cycle completion", value: "38%", hint: "median uplift across pilot programs" },
-  { label: "Manual touch reduction", value: "52%", hint: "on audited high-volume paths" },
-  { label: "Decision latency drop", value: "41%", hint: "executive review windows compressed" },
-  { label: "Live health coverage", value: "24/7", hint: "always-on observability surfaces" },
-];
+const FEATURE_ICONS = [FiCpu, FiActivity, FiZap, FiBarChart2, FiMessageCircle, FiTrendingUp];
 
 /** Repeating SVG noise — each layer is isolated; safe to stack per section */
 function CssNoise({ className = "opacity-[0.045]" }) {
@@ -197,18 +113,25 @@ function DashboardMockup() {
   );
 }
 
-export default function ProcessImprovementView() {
+export default function ProcessImprovementView({ content = {} }) {
+  const page = { ...defaultProcessImprovementPageContent, ...content };
+  const { hero, logos, features, workflowSteps, dashboardSlides, whyMetrics } = page;
+  const featuresWithIcons = features.map((feature, index) => ({
+    ...feature,
+    icon: FEATURE_ICONS[index] || FiCpu,
+  }));
+
   const reduce = useReducedMotion();
   const [dashIx, setDashIx] = useState(0);
   const [compare, setCompare] = useState(52);
 
   useEffect(() => {
-    if (reduce) return undefined;
+    if (reduce || !dashboardSlides.length) return undefined;
     const id = window.setInterval(() => {
-      setDashIx((i) => (i + 1) % DASHBOARD_SLIDES.length);
+      setDashIx((i) => (i + 1) % dashboardSlides.length);
     }, 5200);
     return () => clearInterval(id);
-  }, [reduce]);
+  }, [reduce, dashboardSlides.length]);
 
   const shell =
     "font-saans bg-[#030712] text-slate-100 selection:bg-[#168b50]/35 selection:text-white";
@@ -229,19 +152,19 @@ export default function ProcessImprovementView() {
                 variants={fadeUp}
                 className="text-[0.65rem] uppercase tracking-[0.28em] text-[#168b50]/95"
               >
-                Process improvement · AI-native
+                {hero.eyebrow}
               </motion.p>
               <motion.h1
                 variants={fadeUp}
                 className="mt-4 text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
               >
-                Orchestrate sharper decisions across every operational lane.
+                {hero.title}
               </motion.h1>
               <motion.p
                 variants={fadeUp}
                 className="mt-5 text-base leading-relaxed text-slate-400 sm:text-lg"
               >
-                Sidago fuses human expertise with intelligent systems to redesign how work moves—measured, humane, and built for enterprises that cannot afford guesswork.
+                {hero.subtitle}
               </motion.p>
               <motion.div
                 variants={fadeUp}
@@ -286,7 +209,7 @@ export default function ProcessImprovementView() {
           </p>
           <div className="relative overflow-hidden">
             <div className="pi-trusted-marquee gap-12 whitespace-nowrap sm:gap-16 md:gap-20">
-              {[...LOGOS, ...LOGOS].map((name, i) => (
+              {[...logos, ...logos].map((name, i) => (
                 <span
                   key={`${name}-${i}`}
                   className="shrink-0 text-lg uppercase tracking-[0.2em] text-slate-500 opacity-70 sm:text-xl"
@@ -326,7 +249,7 @@ export default function ProcessImprovementView() {
             variants={stagger}
             className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {FEATURES.map((f) => (
+            {featuresWithIcons.map((f) => (
               <motion.article
                 key={f.title}
                 variants={fadeUp}
@@ -380,7 +303,7 @@ export default function ProcessImprovementView() {
               role="list"
               aria-label="Operating cadence phases"
             >
-              {WORKFLOW_STEPS.map((s, i) => (
+              {workflowSteps.map((s, i) => (
                 <motion.article
                   key={s.title}
                   role="listitem"
@@ -392,7 +315,7 @@ export default function ProcessImprovementView() {
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-[0.65rem] font-medium uppercase tracking-[0.18em] text-slate-500">
-                      Phase {i + 1} of {WORKFLOW_STEPS.length}
+                      Phase {i + 1} of {workflowSteps.length}
                     </span>
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#168b50] text-xs font-semibold tabular-nums text-white shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                       {i + 1}
@@ -422,7 +345,7 @@ export default function ProcessImprovementView() {
                 Rotate through three representative views—each designed to collapse noise into decisive signal.
               </p>
               <div className="mt-8 flex gap-2">
-                {DASHBOARD_SLIDES.map((_, i) => (
+                {dashboardSlides.map((_, i) => (
                   <button
                     key={i}
                     type="button"
@@ -445,14 +368,14 @@ export default function ProcessImprovementView() {
                   transition={{ duration: 0.45 }}
                 >
                   <p className="text-[0.6rem] uppercase tracking-[0.22em] text-[#E7512F]/90">
-                    View {dashIx + 1} / {DASHBOARD_SLIDES.length}
+                    View {dashIx + 1} / {dashboardSlides.length}
                   </p>
                   <h3
                     className={`mt-3 text-2xl text-white`}
                   >
-                    {DASHBOARD_SLIDES[dashIx].title}
+                    {dashboardSlides[dashIx].title}
                   </h3>
-                  <p className="mt-3 text-sm text-slate-400">{DASHBOARD_SLIDES[dashIx].caption}</p>
+                  <p className="mt-3 text-sm text-slate-400">{dashboardSlides[dashIx].caption}</p>
                   <div className="mt-8 grid grid-cols-2 gap-3">
                     <StatPill label="Signal density" value="High" />
                     <StatPill label="Drift alerts" value="3 live" />
@@ -486,7 +409,7 @@ export default function ProcessImprovementView() {
               </p>
             </motion.div>
             <motion.div variants={fadeUp} className="grid grid-cols-2 gap-4">
-              {WHY_METRICS.map((m) => (
+              {whyMetrics.map((m) => (
                 <div
                   key={m.label}
                   className="rounded-2xl bg-[#151916] p-4 shadow-[0_12px_40px_rgba(0,0,0,0.45)]"

@@ -1,7 +1,10 @@
 import BrandDownloadLink from "@/src/components/sections/v2/brand/BrandDownloadLink";
 import BrandLogoCarousel from "@/src/components/sections/v2/brand/BrandLogoCarousel";
+import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 
-export default function BrandLogoSection() {
+export default function BrandLogoSection({
+  content = defaultBrandPage.pageContent.logo,
+}) {
   return (
     <section className="bg-gray-defi-shadow">
       <div className="container py-block">
@@ -11,22 +14,21 @@ export default function BrandLogoSection() {
               id="logo"
               className="font-blender text-xl uppercase text-green-dark"
             >
-              Logo
+              {content.eyebrow}
             </h2>
             <div className="text-gray-off-white">
-              The Sidago mark and wordmark — built for clarity across digital
-              and print
+              {content.description}
             </div>
           </div>
           <hr className="!border-[#AB290D]" />
         </div>
-        <BrandLogoCarousel />
+        <BrandLogoCarousel slides={content.slides} />
         <div className="pt-container flex">
           <BrandDownloadLink
-            href="https://docsend.com/view/vpn4kstcxxbj7tyt"
-            srLabel="View › Vpn4kstcxxbj7tyt"
+            href={content.download.href}
+            srLabel={content.download.srLabel}
           >
-            Download logos
+            {content.download.label}
           </BrandDownloadLink>
         </div>
       </div>
