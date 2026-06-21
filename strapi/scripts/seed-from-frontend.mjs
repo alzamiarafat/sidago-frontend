@@ -136,6 +136,41 @@ async function loadPayloadFromFrontendDefaults() {
         path.resolve(path.dirname(candidatePath), "careers-page.mjs"),
       ).href
     );
+    const contactPageModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "contact-page.mjs"),
+      ).href
+    );
+    const brandPageModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "brand-page.mjs"),
+      ).href
+    );
+    const eventsPageModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "events-page.mjs"),
+      ).href
+    );
+    const legalPagesModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "legal-pages.mjs"),
+      ).href
+    );
+    const serviceLandingPagesModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "service-landing-pages.mjs"),
+      ).href
+    );
+    const navigationModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "navigation.mjs"),
+      ).href
+    );
+    const sitePagesModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "site-pages.mjs"),
+      ).href
+    );
 
     return {
       generatedAt: new Date().toISOString(),
@@ -160,6 +195,23 @@ async function loadPayloadFromFrontendDefaults() {
       careersPage: careersPageModule.careersPageToStrapiSeed(
         defaultCareersPage,
       ),
+      contactPage: contactPageModule.contactPageToStrapiSeed(),
+      brandPage: brandPageModule.brandPageToStrapiSeed(),
+      eventsPage: eventsPageModule.eventsPageToStrapiSeed(),
+      privacyPolicy: legalPagesModule.legalPolicyToStrapiSeed(
+        legalPagesModule.defaultPrivacyPolicy,
+      ),
+      cookiesPolicy: legalPagesModule.legalPolicyToStrapiSeed(
+        legalPagesModule.defaultCookiesPolicy,
+      ),
+      modernSlaveryPolicy: legalPagesModule.legalPolicyToStrapiSeed(
+        legalPagesModule.defaultModernSlaveryPolicy,
+      ),
+      legalHub: legalPagesModule.legalHubToStrapiSeed(),
+      serviceLandingPages:
+        serviceLandingPagesModule.serviceLandingPagesToStrapiSeed(),
+      mainNavigation: navigationModule.mainNavigationToStrapiSeed(),
+      sitePages: sitePagesModule.sitePagesToStrapiSeed(),
     };
   }
 
@@ -409,6 +461,34 @@ async function upsertSingleType(strapi, uid, data) {
   });
 }
 
+async function upsertCollectionBySlug(strapi, uid, items = []) {
+  for (const item of items) {
+    const slug = item?.slug;
+
+    if (!slug) {
+      continue;
+    }
+
+    const existing = await strapi.documents(uid).findFirst({
+      filters: { slug },
+    });
+
+    if (existing?.documentId) {
+      await strapi.documents(uid).update({
+        documentId: existing.documentId,
+        data: item,
+        status: "published",
+      });
+      continue;
+    }
+
+    await strapi.documents(uid).create({
+      data: item,
+      status: "published",
+    });
+  }
+}
+
 async function pushViaLocalStrapi(payload) {
   const { createRequire } = await import("node:module");
   const require = createRequire(import.meta.url);
@@ -471,6 +551,48 @@ async function pushViaLocalStrapi(payload) {
     strapi,
     "api::careers-page.careers-page",
     payload.careersPage,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::contact-page.contact-page",
+    payload.contactPage,
+  );
+  await upsertSingleType(strapi, "api::brand-page.brand-page", payload.brandPage);
+  await upsertSingleType(
+    strapi,
+    "api::events-page.events-page",
+    payload.eventsPage,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::privacy-policy.privacy-policy",
+    payload.privacyPolicy,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::cookies-policy.cookies-policy",
+    payload.cookiesPolicy,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::modern-slavery-policy.modern-slavery-policy",
+    payload.modernSlaveryPolicy,
+  );
+  await upsertSingleType(strapi, "api::legal-hub.legal-hub", payload.legalHub);
+  await upsertCollectionBySlug(
+    strapi,
+    "api::service-landing-page.service-landing-page",
+    payload.serviceLandingPages,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::main-navigation.main-navigation",
+    payload.mainNavigation,
+  );
+  await upsertCollectionBySlug(
+    strapi,
+    "api::site-page.site-page",
+    payload.sitePages,
   );
 }
 
