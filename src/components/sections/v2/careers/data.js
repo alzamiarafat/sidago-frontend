@@ -333,26 +333,35 @@ export const teamTestimonialsSection = {
   ],
 };
 
-/** “Wintermute life” heading, copy, decor, video + stats (CareersLifeSection). */
+/** Sidago life heading, copy, decor, and culture network stage (CareersLifeSection). */
 export const lifeSection = {
   lead: "Sidago",
   highlight: "life",
-  headingId: "wintermute-life",
+  headingId: "sidago-life",
   description:
     "Sidago's culture is all about balance, we work hard and play hard. With an informal, non-hierarchical environment, we bond over shared meals, social events, and unique experiences that build a strong sense of connection and community.",
-  decorImage: {
-    src: "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212507/test-taller-w.svg",
-    alt: "Sidago life",
-    width: 1152,
-    height: 1152,
-  },
-  video: {
-    src: "https://wp-corp-site.s3.amazonaws.com/wp-content/uploads/2025/05/27134002/WMT-office-4MB.mp4",
-    preload: "metadata",
+  stage: {
+    label: "Culture orbit",
+    footTitle: "Where teams actually connect",
+    footDescription:
+      "Sidago life isn't a slide — it's shared meals, clubs, offsites, and the informal rituals that keep global teams aligned without adding hierarchy.",
+    pillars: [
+      { label: "Shared meals", tone: "warm" },
+      { label: "Game nights", tone: "hot" },
+      { label: "Offsites", tone: "cool" },
+      { label: "Interest clubs", tone: "glow" },
+      { label: "Workshops", tone: "warm" },
+      { label: "Mentorship", tone: "hot" },
+    ],
+    stats: [
+      { value: 52, suffix: "", label: "events / year" },
+      { value: 0, suffix: "", label: "hierarchy layers" },
+      { value: 100, suffix: "%", label: "teams connected" },
+    ],
   },
 };
 
-/** Sidago life culture stats (dot-matrix animated numbers). */
+/** @deprecated Stats now live on lifeSection.stage.stats; kept for Strapi seed compat. */
 export const lifeStatsSection = {
   fontSizeMobile: 36,
   fontSizeDesktop: 48,

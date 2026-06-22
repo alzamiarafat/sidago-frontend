@@ -1138,27 +1138,33 @@ function normalizeCareersPage(entry) {
       description:
         item.lifeDescription?.trim() ||
         defaultCareersPage.lifeSection.description,
-      decorImage: {
-        src:
-          item.lifeDecorImageSrc?.trim() ||
-          defaultCareersPage.lifeSection.decorImage.src,
-        alt:
-          item.lifeDecorImageAlt?.trim() ||
-          defaultCareersPage.lifeSection.decorImage.alt,
-        width:
-          item.lifeDecorImageWidth ??
-          defaultCareersPage.lifeSection.decorImage.width,
-        height:
-          item.lifeDecorImageHeight ??
-          defaultCareersPage.lifeSection.decorImage.height,
-      },
-      video: {
-        src:
-          item.lifeVideoSrc?.trim() ||
-          defaultCareersPage.lifeSection.video.src,
-        preload:
-          item.lifeVideoPreload?.trim() ||
-          defaultCareersPage.lifeSection.video.preload,
+      stage: {
+        label:
+          item.lifeStageLabel?.trim() ||
+          defaultCareersPage.lifeSection.stage.label,
+        footTitle:
+          item.lifeStageFootTitle?.trim() ||
+          defaultCareersPage.lifeSection.stage.footTitle,
+        footDescription:
+          item.lifeStageFootDescription?.trim() ||
+          defaultCareersPage.lifeSection.stage.footDescription,
+        stats:
+          item.lifeStageStats?.length > 0
+            ? item.lifeStageStats.map((stat, index) => ({
+                value:
+                  stat.value ??
+                  defaultCareersPage.lifeSection.stage.stats[index]?.value ??
+                  0,
+                suffix:
+                  stat.suffix ??
+                  defaultCareersPage.lifeSection.stage.stats[index]?.suffix ??
+                  "",
+                label:
+                  stat.label?.trim() ||
+                  defaultCareersPage.lifeSection.stage.stats[index]?.label ||
+                  "",
+              }))
+            : defaultCareersPage.lifeSection.stage.stats,
       },
     },
     lifeStatsSection: {

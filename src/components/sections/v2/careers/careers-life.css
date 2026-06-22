@@ -1,0 +1,392 @@
+@keyframes careers-life-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes careers-life-pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(231, 81, 47, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(231, 81, 47, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 81, 47, 0);
+  }
+}
+
+@keyframes careers-life-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes careers-life-ring-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes careers-life-aurora {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(16px, -12px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes careers-life-line-flow {
+  from {
+    stroke-dashoffset: 32;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes careers-life-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes careers-life-core-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.3;
+  }
+}
+
+@keyframes careers-life-node-pulse {
+  0%,
+  100% {
+    r: 4.5;
+    opacity: 0.85;
+  }
+  50% {
+    r: 6;
+    opacity: 1;
+  }
+}
+
+@keyframes careers-life-signal-ping {
+  0% {
+    r: 8;
+    opacity: 0.65;
+    stroke-width: 1.5;
+  }
+  100% {
+    r: 28;
+    opacity: 0;
+    stroke-width: 0.5;
+  }
+}
+
+@keyframes careers-life-scan {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes careers-life-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.35;
+  }
+  33% {
+    transform: translate(12px, -18px);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translate(-8px, 10px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes careers-life-live-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes careers-life-bg-ring-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.28);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes careers-life-grid-pulse {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.careers-life-rise {
+  opacity: 0;
+  animation: careers-life-rise 0.8s ease forwards;
+}
+
+.careers-life-rise-delay-3 {
+  animation-delay: 0.26s;
+}
+
+.careers-life-pulse-dot {
+  animation: careers-life-pulse-dot 2.2s infinite;
+}
+
+.careers-life-live-blink {
+  animation: careers-life-live-blink 1.4s ease-in-out infinite;
+}
+
+.careers-life-aurora-a {
+  animation: careers-life-aurora 13s ease-in-out infinite;
+}
+
+.careers-life-aurora-b {
+  animation: careers-life-aurora 17s ease-in-out infinite reverse;
+}
+
+.careers-life-aurora-c {
+  animation: careers-life-aurora 21s ease-in-out infinite;
+}
+
+.careers-life-ring-spin {
+  transform-origin: center;
+  animation: careers-life-ring-spin 48s linear infinite;
+}
+
+.careers-life-ring-spin-reverse {
+  transform-origin: center;
+  animation: careers-life-ring-spin-reverse 64s linear infinite;
+}
+
+.careers-life-spoke {
+  stroke-dasharray: 8 8;
+  animation: careers-life-line-flow 2.2s linear infinite;
+}
+
+.careers-life-marquee-track {
+  animation: careers-life-marquee 28s linear infinite;
+}
+
+.careers-life-core-ring {
+  transform-origin: center;
+  animation: careers-life-core-ring 3.2s ease-in-out infinite;
+}
+
+.careers-life-node-pulse {
+  animation: careers-life-node-pulse 2.6s ease-in-out infinite;
+}
+
+.careers-life-signal-ping {
+  transform-origin: center;
+  animation: careers-life-signal-ping 2.8s ease-out infinite;
+}
+
+.careers-life-scan {
+  transform-origin: center;
+  animation: careers-life-scan 7s linear infinite;
+}
+
+.careers-life-float-a {
+  animation: careers-life-float 16s ease-in-out infinite;
+}
+
+.careers-life-float-b {
+  animation: careers-life-float 20s ease-in-out infinite reverse;
+}
+
+.careers-life-float-c {
+  animation: careers-life-float 24s ease-in-out infinite;
+}
+
+.careers-life-stage-shell {
+  background: #000000;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.45),
+    0 32px 96px rgba(0, 0, 0, 0.72);
+}
+
+.careers-life-stage-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 90% 100% at 78% 50%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.careers-life-stage-grid {
+  z-index: 0;
+  opacity: 0.14;
+  mask-image: radial-gradient(ellipse 72% 62% at 28% 44%, black 18%, transparent 82%);
+  animation: careers-life-grid-pulse 7s ease-in-out infinite;
+}
+
+.careers-life-bg-layer {
+  mask-image: radial-gradient(ellipse 92% 82% at 30% 46%, black 28%, transparent 92%);
+}
+
+.careers-life-bg-canvas {
+  opacity: 1;
+}
+
+.careers-life-bg-rings {
+  position: absolute;
+  inset: 0;
+}
+
+.careers-life-bg-rings span {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  animation: careers-life-bg-ring-expand 5.5s ease-out infinite;
+}
+
+.careers-life-bg-rings--left span {
+  top: 46%;
+  left: 28%;
+  width: min(46vw, 380px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.careers-life-bg-rings--left span:nth-child(2) {
+  animation-delay: 1.8s;
+}
+
+.careers-life-bg-rings--left span:nth-child(3) {
+  animation-delay: 3.6s;
+}
+
+.careers-life-bg-rings--right span {
+  top: 44%;
+  left: 62%;
+  width: min(38vw, 300px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0.55;
+}
+
+.careers-life-bg-rings--right span:nth-child(2) {
+  animation-delay: 2.4s;
+}
+
+.careers-life-compass-frame {
+  background: #0a0a0a;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 16px 48px rgba(0, 0, 0, 0.55);
+}
+
+.careers-life-stat-card {
+  transition:
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.careers-life-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.careers-life-stat-card--warm:hover {
+  background-color: rgba(231, 81, 47, 0.09);
+  box-shadow: 0 12px 36px rgba(231, 81, 47, 0.14);
+}
+
+.careers-life-stat-card--cool:hover {
+  background-color: rgba(122, 155, 181, 0.1);
+  box-shadow: 0 12px 36px rgba(122, 155, 181, 0.12);
+}
+
+.careers-life-stat-card--hot:hover {
+  background-color: rgba(255, 138, 92, 0.1);
+  box-shadow: 0 12px 36px rgba(255, 138, 92, 0.12);
+}
+
+.careers-life-marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .careers-life-rise,
+  .careers-life-pulse-dot,
+  .careers-life-live-blink,
+  .careers-life-aurora-a,
+  .careers-life-aurora-b,
+  .careers-life-aurora-c,
+  .careers-life-ring-spin,
+  .careers-life-ring-spin-reverse,
+  .careers-life-spoke,
+  .careers-life-marquee-track,
+  .careers-life-core-ring,
+  .careers-life-node-pulse,
+  .careers-life-signal-ping,
+  .careers-life-scan,
+  .careers-life-float-a,
+  .careers-life-float-b,
+  .careers-life-float-c,
+  .careers-life-stat-card,
+  .careers-life-stage-grid,
+  .careers-life-bg-rings span {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

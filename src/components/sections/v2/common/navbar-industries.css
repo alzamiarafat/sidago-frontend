@@ -1,0 +1,17 @@
+.navbar-industry-list {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.navbar-industry-list::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.navbar-industry-list::-webkit-scrollbar-thumb,
+.navbar-industry-list::-webkit-scrollbar-track {
+  display: none !important;
+  background: transparent !important;
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, startTransition } from "react";
+import { useState, useEffect, useRef, useCallback, startTransition } from "react";
 import { useGlobal } from "@/src/hooks/useGlobal";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -11,6 +11,21 @@ import Image3 from "@/src/data/image-3";
 import Image4 from "@/src/data/image-4";
 import { usePathname } from "next/navigation";
 import { defaultMainNavigation } from "@/src/data/cms/navigation.mjs";
+import { withIndustryNavVisuals } from "@/src/data/industryNavVisuals";
+import "./navbar-industries.css";
+
+function shortenNavDescription(text = "", maxWords = 5) {
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  if (!words.length) {
+    return "";
+  }
+
+  if (words.length <= maxWords) {
+    return words.join(" ");
+  }
+
+  return `${words.slice(0, maxWords).join(" ")}…`;
+}
 
 function pathMatchesServiceItem(item, pathname) {
   if (!item?.href || !pathname) {
@@ -206,10 +221,53 @@ export default function Navigation() {
     // Add more items here
   ];
 
-  const menuItems = navigation.industries;
+  const menuItems = withIndustryNavVisuals(navigation.industries);
 
   const [activeIndustryTitle, setActiveIndustryTitle] = useState(null);
   const [activeItemTop, setActiveItemTop] = useState(0);
+  const industryMenuRef = useRef(null);
+  const industryListRef = useRef(null);
+  const industryFlyoutRef = useRef(null);
+
+  const updateIndustryFlyoutTop = useCallback((element) => {
+    const menu = industryMenuRef.current;
+    const flyout = industryFlyoutRef.current;
+    if (!menu || !element) return;
+
+    const menuRect = menu.getBoundingClientRect();
+    const itemRect = element.getBoundingClientRect();
+    let nextTop = itemRect.top - menuRect.top;
+
+    if (flyout) {
+      const flyoutHeight = flyout.offsetHeight;
+      const maxTop = Math.max(0, menuRect.height - flyoutHeight - 8);
+      nextTop = Math.min(Math.max(0, nextTop), maxTop);
+    }
+
+    setActiveItemTop(nextTop);
+  }, []);
+
+  useEffect(() => {
+    const list = industryListRef.current;
+    if (!list || !activeIndustryTitle) return undefined;
+
+    const syncPosition = () => {
+      const index = menuItems.findIndex((item) => item.title === activeIndustryTitle);
+      const element = list.children[index];
+      if (element instanceof HTMLElement) {
+        updateIndustryFlyoutTop(element);
+      }
+    };
+
+    syncPosition();
+    list.addEventListener("scroll", syncPosition, { passive: true });
+    window.addEventListener("resize", syncPosition);
+
+    return () => {
+      list.removeEventListener("scroll", syncPosition);
+      window.removeEventListener("resize", syncPosition);
+    };
+  }, [activeIndustryTitle, menuItems, updateIndustryFlyoutTop]);
 
   const activeIndustryData =
     menuItems.find((item) => item.title === activeIndustryTitle) ?? null;
@@ -2237,11 +2295,16 @@ export default function Navigation() {
                 <div className="pt-2xl group-hover/menu-item:pointer-events-auto">
                   <div className="-mt-1.5">
                     <div
-                      className="group/sub-menu relative w-fit"
+                      ref={industryMenuRef}
+                      data-industry-menu
+                      className="group/sub-menu relative flex w-fit max-h-[calc(100dvh-4.5rem)]"
                       onMouseLeave={() => setActiveIndustryTitle(null)}
                     >
-                      <div className="w-[26rem] bg-gray-defi-charcoal bg-opacity-98 p-xl bevel">
-                        <div className="flex w-full flex-col gap-3">
+                      <div className="flex w-[26rem] max-h-[inherit] flex-col overflow-hidden bg-gray-defi-charcoal bg-opacity-98 p-xl bevel">
+                        <div
+                          ref={industryListRef}
+                          className="navbar-industry-list [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden flex max-h-[min(36rem,calc(100dvh-7rem))] w-full flex-col gap-3 overflow-y-auto overscroll-contain"
+                        >
                           {menuItems.map((item, index) => {
                             const isActive =
                               activeIndustryData?.title === item.title;
@@ -2258,41 +2321,45 @@ export default function Navigation() {
                                 href={item.href}
                                 onMouseEnter={(e) => {
                                   setActiveIndustryTitle(item.title);
-                                  setActiveItemTop(e.currentTarget.offsetTop);
+                                  updateIndustryFlyoutTop(e.currentTarget);
                                 }}
                                 onFocus={(e) => {
                                   setActiveIndustryTitle(item.title);
-                                  setActiveItemTop(e.currentTarget.offsetTop);
+                                  updateIndustryFlyoutTop(e.currentTarget);
                                 }}
                               >
                                 <span className="sr-only">{item.title}</span>
 
-                                <div className="relative aspect-[1.4] w-[6.25rem] shrink-0 bg-gray-defi-shadow bevel">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 200 200"
-                                    className={`absolute origin-top-left transition-all w-[5.625rem] ${item.svgClass} -scale-x-100 ${isActive
-                                        ? "text-green-tradfi"
-                                        : "text-gray-defi-ash group-hover/interactive:text-green-tradfi"
-                                      }`}
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      fillRule="evenodd"
-                                      d={item.path}
-                                    />
-                                  </svg>
+                                <div className="relative aspect-[1.4] w-[6.25rem] shrink-0 overflow-hidden bg-gray-defi-shadow bevel">
+                                  {item.path ? (
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="none"
+                                      viewBox="0 0 200 200"
+                                      className={`absolute origin-top-left left-[1.1rem] top-[0.15rem] w-[5.625rem] transition-all ${item.svgClass ?? ""} -scale-x-100 ${isActive
+                                          ? "text-green-tradfi"
+                                          : "text-gray-tradfi-steel group-hover/interactive:text-green-tradfi"
+                                        }`}
+                                    >
+                                      <path
+                                        fill="currentColor"
+                                        fillRule="evenodd"
+                                        d={item.path}
+                                      />
+                                    </svg>
+                                  ) : null}
                                 </div>
 
-                                <div className="flex flex-1 items-center justify-between gap-md">
-                                  <div className="flex flex-col gap-xs">
-                                    <span className="whitespace-nowrap font-blender uppercase leading-none">
+                                <div className="flex min-w-0 flex-1 items-center justify-between gap-md">
+                                  <div className="flex min-w-0 flex-col gap-xs">
+                                    <span className="font-blender uppercase leading-none">
                                       {item.title}
                                     </span>
-                                    <span className="max-w-[12rem] whitespace-normal break-words text-[0.72rem] leading-tight text-gray-defi-ash opacity-70">
-                                      {item.description}
-                                    </span>
+                                    {item.description ? (
+                                      <span className="max-w-[12rem] truncate text-[0.72rem] leading-tight text-gray-defi-ash opacity-70">
+                                        {shortenNavDescription(item.description)}
+                                      </span>
+                                    ) : null}
                                   </div>
 
                                   {hasChildren && (
@@ -2322,7 +2389,8 @@ export default function Navigation() {
                       </div>
 
                       <div
-                        className="absolute left-full z-10 min-h-full transition-all pointer-events-auto"
+                        ref={industryFlyoutRef}
+                        className="absolute left-full z-10 max-h-[min(32rem,calc(100dvh-7rem))] transition-all pointer-events-auto"
                         style={{ top: activeItemTop }}
                       >
                         <AnimatePresence mode="wait">
@@ -2334,13 +2402,13 @@ export default function Navigation() {
                                 initial="hidden"
                                 animate="visible"
                                 exit="exit"
-                                className="flex min-w-[18rem] flex-col gap-2 bg-gray-defi-charcoal bg-opacity-98 p-md bevel"
+                                className="navbar-industry-list [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ml-2 flex max-h-[inherit] min-w-[18rem] flex-col gap-2 overflow-y-auto overscroll-contain bg-gray-defi-charcoal bg-opacity-98 p-md bevel"
                               >
                                 {activeIndustryLinks.map((link) => (
                                   <a
                                     key={link.href}
                                     href={link.href}
-                                    className="border-b border-gray-defi-ash/20 pb-2 whitespace-nowrap text-sm text-gray-tradfi-steel transition last:border-b-0 last:pb-0 hover:text-white"
+                                    className="border-b border-gray-defi-ash/20 pb-2 text-sm text-gray-tradfi-steel transition last:border-b-0 last:pb-0 hover:text-white whitespace-nowrap"
                                   >
                                     <span>{link.title}</span>
                                   </a>

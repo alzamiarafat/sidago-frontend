@@ -21,7 +21,6 @@ import {
   values,
   teamsSection as defaultTeamsSection,
   lifeSection as defaultLifeSection,
-  lifeStatsSection as defaultLifeStatsSection,
   teamTestimonialsSection as defaultTeamTestimonialsSection,
   valuesFlipSection as defaultValuesFlipSection,
 } from "@/src/components/sections/v2/careers/data";
@@ -88,7 +87,6 @@ export default function CareersView({
   teamsSection = defaultTeamsSection,
   teamTestimonialsSection = defaultTeamTestimonialsSection,
   lifeSection = defaultLifeSection,
-  lifeStatsSection = defaultLifeStatsSection,
 }) {
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -115,7 +113,7 @@ export default function CareersView({
           />
           <CareersTeamsSection {...teamsSection} />
           <CareersTeamTestimonialsSection {...teamTestimonialsSection} />
-          <CareersLifeSection {...lifeSection} statsSection={lifeStatsSection} />
+          <CareersLifeSection {...lifeSection} />
 
 
 

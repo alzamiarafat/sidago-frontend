@@ -81,6 +81,9 @@
     "lifeLead": {
       "type": "string"
     },
+    "lifeEyebrow": {
+      "type": "string"
+    },
     "lifeHighlight": {
       "type": "string"
     },
@@ -89,6 +92,18 @@
     },
     "lifeDescription": {
       "type": "text"
+    },
+    "lifeStageLabel": {
+      "type": "string"
+    },
+    "lifeStageFootTitle": {
+      "type": "string"
+    },
+    "lifeStageFootDescription": {
+      "type": "text"
+    },
+    "lifeStageStats": {
+      "type": "json"
     },
     "lifeDecorImageSrc": {
       "type": "string"
