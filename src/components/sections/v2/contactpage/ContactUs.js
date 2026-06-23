@@ -3,6 +3,7 @@ import {
   CONTACT_TOPICS,
   getContactTopicHref,
 } from "@/src/components/sections/v2/contactpage/contactTopics";
+import "./contact-us-mobile.css";
 
 function ArrowIcon({ mobile = false }) {
   return (
@@ -62,23 +63,23 @@ export default function ContactUs({
   return (
     <section
       id="contact-topics"
-      className="bg-[#1C211E] py-block"
+      className="contact-us-section bg-[#1C211E] py-block"
       aria-labelledby="contact-topics-heading"
     >
       <div className="container">
-        <div className="flex items-stretch gap-4 sm:gap-6 lg:gap-8">
+        <div className="contact-us-layout flex items-stretch gap-4 sm:gap-6 lg:gap-8">
           <div
-            className="core-column--stacked-on-mobile relative w-11 shrink-0 self-stretch sm:w-12 lg:w-[9.5rem] lg:max-w-[min(100%,16rem)]"
+            className="contact-us-graphic core-column--stacked-on-mobile relative w-11 shrink-0 self-stretch sm:w-12 lg:w-[9.5rem] lg:max-w-[min(100%,16rem)]"
             style={{ "--core-column-width": "9.5rem" }}
             aria-hidden
           >
-            <div className="bevel absolute inset-0 overflow-hidden bg-[#454A47]">
+            <div className="contact-us-graphic-inner bevel absolute inset-0 overflow-hidden bg-[#454A47]">
               <Image
                 alt=""
                 loading="lazy"
                 fill
                 unoptimized
-                sizes="(max-width: 1024px) 3rem, 9.5rem"
+                sizes="(max-width: 1023px) 100vw, 9.5rem"
                 className="h-full w-full object-cover object-center"
                 src={sidebarImageSrc}
               />
@@ -86,29 +87,29 @@ export default function ContactUs({
           </div>
 
           <div
-            className="core-column--stacked-on-mobile flex min-w-0 flex-1 flex-col"
+            className="contact-us-content core-column--stacked-on-mobile flex min-w-0 flex-1 flex-col"
             style={{ "--core-column-width": "85%" }}
           >
             <div className="max-w-[44rem]">
-              <p className="text-sm uppercase tracking-[0.2em] text-green-dark">
+              <p className="contact-us-eyebrow text-sm uppercase tracking-[0.2em] text-green-dark">
                 {eyebrow}
               </p>
 
               <h2
-                className="mt-2 text-3xl text-gray-off-white sm:text-4xl"
+                className="contact-us-heading mt-2 text-3xl text-gray-off-white sm:text-4xl"
                 id="contact-topics-heading"
               >
                 {heading}
               </h2>
 
-              <div className="pt-6 text-green-dark">
-                <p className="text-sm tracking-[0.18em] text-gray-tradfi-frost">
+              <div className="contact-us-intro pt-6 text-green-dark">
+                <p className="contact-us-subheading text-sm tracking-[0.18em] text-gray-tradfi-frost">
                   {subheading}
                 </p>
               </div>
             </div>
 
-            <div className="group/cards pointer-events-none relative mt-8 flex grid-cols-12 flex-col gap-5 text-gray-off-white lg:grid lg:grid-rows-auto lg:gap-4">
+            <div className="contact-us-cards group/cards pointer-events-none relative mt-8 flex grid-cols-12 flex-col gap-5 text-gray-off-white lg:grid lg:grid-rows-auto lg:gap-4">
               {topics.map((topic) => (
                 <ContactTopicCard key={topic.slug} topic={topic} />
               ))}
