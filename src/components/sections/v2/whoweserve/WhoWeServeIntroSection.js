@@ -1,11 +1,14 @@
 import Image from "next/image";
-import { whoWeServeIntro } from "./data";
 import "./who-we-serve-mobile.css";
 
 export default function WhoWeServeIntroSection({
-  intro = whoWeServeIntro,
+  intro,
   className = "",
 }) {
+  if (!intro?.lead || !intro?.watermark?.src) {
+    return null;
+  }
+
   return (
     <section className={`who-we-serve-intro-section ${className}`.trim()}>
       <div className="container py-block">

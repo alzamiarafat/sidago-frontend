@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { subscribeHero as defaultHero } from "@/src/components/sections/v2/insights/data";
 
 function ReadArticleArrow() {
   return (
@@ -23,19 +22,23 @@ function ReadArticleArrow() {
 }
 
 export default function InsightsSubscribeHero({
-  imageSrc = defaultHero.imageSrc,
-  imageAlt = defaultHero.imageAlt,
-  imageWidth = defaultHero.imageWidth ?? 1152,
-  imageHeight = defaultHero.imageHeight ?? 1152,
-  titleLead = defaultHero.titleLead,
-  titleAccent = defaultHero.titleAccent,
-  description = defaultHero.description,
-  date = defaultHero.date,
-  category = defaultHero.category,
-  ctaLabel = defaultHero.cta.label,
-  ctaHref = defaultHero.cta.href,
-  ctaSrText = defaultHero.cta.srText,
+  imageSrc,
+  imageAlt,
+  imageWidth = 1152,
+  imageHeight = 1152,
+  titleLead,
+  titleAccent,
+  description,
+  date,
+  category,
+  ctaLabel,
+  ctaHref,
+  ctaSrText,
 }) {
+  if (!imageSrc || !titleLead || !ctaHref) {
+    return null;
+  }
+
   return (
     <section className="relative bg-gray-tradfi-horizon text-gray-defi-shadow">
       <Image

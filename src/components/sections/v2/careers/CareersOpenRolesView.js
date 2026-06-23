@@ -7,10 +7,6 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import BevelNavArrow from "@/src/components/sections/v2/common/BevelNavArrow";
-import {
-  openRolesPage as defaultOpenRolesPage,
-  openRolesPageCta,
-} from "@/src/components/sections/v2/careers/data";
 import "@/src/components/sections/v2/careers/careers-open-roles.css";
 
 function ChevronIcon() {
@@ -126,18 +122,14 @@ function roleMatchesFilters(role, filters) {
 
 export default function CareersOpenRolesView({
   footer,
-  content,
-  page = defaultOpenRolesPage,
-  cta = openRolesPageCta,
+  page,
+  cta,
 }) {
-  const pageData = content
-    ? {
-        hero: content.openRolesPage?.hero ?? defaultOpenRolesPage.hero,
-        filters: content.openRolesPage?.filters ?? defaultOpenRolesPage.filters,
-        roles: content.openRoles ?? defaultOpenRolesPage.roles,
-      }
-    : page;
-  const { hero, filters, roles } = pageData;
+  if (!page?.hero || !page?.filters?.length || !page?.roles) {
+    return null;
+  }
+
+  const { hero, filters, roles } = page;
   const [openFilterKey, setOpenFilterKey] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState(() =>
     Object.fromEntries(filters.map((filter) => [filter.key, "All"])),

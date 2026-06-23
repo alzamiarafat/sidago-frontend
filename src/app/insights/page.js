@@ -9,6 +9,7 @@ import { Discover } from "@/src/components/sections/v2/insights/Discover";
 import "@/src/components/sections/v2/insights/insights-hero-mobile.css";
 import { getGlobalSettings, getInsightsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.insights;
 
@@ -340,6 +341,11 @@ export default async function InsightPage() {
     getGlobalSettings(),
     getInsightsPage(),
   ]);
+
+  if (!insightsPage?.hero) {
+    notFound();
+  }
+
   const hero = {
     ...insightsPage.hero,
     videoClass:

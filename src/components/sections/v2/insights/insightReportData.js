@@ -1,5 +1,3 @@
-import { subscribePageContent } from "./data.js";
-
 export const reportInsightHero = {
   imageSrc: "/images/OTC-report-2025_svg.svg?v=brand",
   imageAlt: "Digital asset OTC market 2025",
@@ -145,8 +143,6 @@ export const reportContentsContent = {
     },
   ],
 };
-
-export const subscribeContent = subscribePageContent;
 
 export const similarInsightsContent = {
   heading: "Explore similar Insights",

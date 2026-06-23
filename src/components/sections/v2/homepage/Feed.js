@@ -1,16 +1,22 @@
 import FeedPostCarousel from "./FeedPostCarousel";
 import FeedPostSlide from "./FeedPostSlide";
 import FeedWhatsHappeningCarousel from "./FeedWhatsHappeningCarousel";
-import {
-  sidagoFeedPosts,
-  sidagoFeedProfile,
-  sidagoFeedTimestamp,
-} from "./feedData";
-import { feedWhatsHappeningEvents } from "@/src/components/sections/v2/events/data";
 import Image from "next/image";
 
-export default function Feed() {
-  const profile = sidagoFeedProfile;
+export default function Feed({
+  profile,
+  posts,
+  timestamp,
+  whatsHappeningEvents,
+}) {
+  if (
+    !profile ||
+    !posts?.length ||
+    !timestamp ||
+    !whatsHappeningEvents?.length
+  ) {
+    return null;
+  }
 
   return (
     <section className="bg-gray-defi-graphite bevel -my-lg">
@@ -108,17 +114,17 @@ export default function Feed() {
                   </svg>
                 </div>
                 <FeedPostCarousel intervalMs={5000}>
-                  {sidagoFeedPosts.map((post) => (
+                  {posts.map((post) => (
                     <FeedPostSlide key={post.srText + post.href} post={post} />
                   ))}
                 </FeedPostCarousel>
                 <div className="flex flex-row items-center gap-xs text-sm text-gray-defi-ash">
                   <div className="relative tracking-[-0.03em]">
-                    {sidagoFeedTimestamp.time}
+                    {timestamp.time}
                   </div>
                   <div className="h-[0.125rem] w-[0.125rem] rounded-full bg-gray-defi-ash" />
                   <div className="relative tracking-[-0.03em]">
-                    {sidagoFeedTimestamp.date}
+                    {timestamp.date}
                   </div>
                 </div>
               </div>
@@ -140,7 +146,7 @@ export default function Feed() {
             </div>
             <hr className="!border-[#AB290D]" />
           </div>
-          <FeedWhatsHappeningCarousel items={feedWhatsHappeningEvents} />
+          <FeedWhatsHappeningCarousel items={whatsHappeningEvents} />
         </div>
       </div>
     </section>

@@ -12,7 +12,6 @@ import {
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import { defaultResearchDataPageContent } from "./data.js";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -281,8 +280,11 @@ function Toast({ visible }) {
   );
 }
 
-export default function ResearchDataView({ footer, content = {} }) {
-  const page = { ...defaultResearchDataPageContent, ...content };
+export default function ResearchDataView({ footer, content }) {
+  if (!content?.hero || !content?.reports || !content?.filters || !content?.datasets || !content?.insights) {
+    return null;
+  }
+
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [toastVisible, setToastVisible] = useState(false);
 
@@ -304,16 +306,16 @@ export default function ResearchDataView({ footer, content = {} }) {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] flex-1 dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <Hero hero={page.hero} onNavigate={navigateToSection} />
+          <Hero hero={content.hero} onNavigate={navigateToSection} />
           <ReportsSection
-            reports={page.reports}
-            filters={page.filters}
+            reports={content.reports}
+            filters={content.filters}
             selectedFilter={selectedFilter}
             setSelectedFilter={setSelectedFilter}
             showToast={showToast}
           />
-          <DatasetsSection datasets={page.datasets} showToast={showToast} />
-          <InsightsSection insights={page.insights} />
+          <DatasetsSection datasets={content.datasets} showToast={showToast} />
+          <InsightsSection insights={content.insights} />
           <CTASection />
           <Footer footer={footer} />
         </main>

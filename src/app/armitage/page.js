@@ -1,6 +1,7 @@
 import ArmitageView from "@/src/components/sections/v2/armitage/ArmitageView";
 import { getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Armitage by Sidago",
@@ -19,6 +20,10 @@ export const metadata = buildPageMetadata({
 
 export default async function ArmitagePage() {
   const content = await getSitePage("armitage");
+
+  if (!content) {
+    notFound();
+  }
 
   return <ArmitageView content={content} />;
 }

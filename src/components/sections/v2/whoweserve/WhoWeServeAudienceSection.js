@@ -1,12 +1,15 @@
 "use client";
 
-import { audienceSegments } from "./data";
 import WhoWeServeAccordionItem from "./WhoWeServeAccordionItem";
 
 export default function WhoWeServeAudienceSection({
-  segments = audienceSegments,
+  segments,
   className = "bg-gray-defi-charcoal py-lg text-gray-off-white",
 }) {
+  if (!segments?.length) {
+    return null;
+  }
+
   return (
     <section className={className}>
       <div className="hidden w-full flex-col lg:flex">

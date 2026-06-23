@@ -2,11 +2,9 @@ import BrandSubBrandEventsCard from "@/src/components/sections/v2/brand/BrandSub
 import BrandSubBrandNodeCard from "@/src/components/sections/v2/brand/BrandSubBrandNodeCard";
 import BrandSubBrandResearchCard from "@/src/components/sections/v2/brand/BrandSubBrandResearchCard";
 import BrandSubBrandVenturesCard from "@/src/components/sections/v2/brand/BrandSubBrandVenturesCard";
-import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 
-export default function BrandSubBrandsSection({
-  content = defaultBrandPage.pageContent.subBrands,
-}) {
+export default function BrandSubBrandsSection({ content }) {
+  if (!content) return null;
   return (
     <section className="bg-gray-defi-graphite">
       <div className="container py-block">

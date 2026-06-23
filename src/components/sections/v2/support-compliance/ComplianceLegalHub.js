@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiDownload, FiShield } from "react-icons/fi";
-import { legalTabs } from "@/src/components/sections/v2/support-compliance/data";
 import { fadeIn, viewportOnce } from "@/src/components/sections/v2/support-compliance/motion";
 
-export default function ComplianceLegalHub({ legalTabs: tabs = legalTabs }) {
+export default function ComplianceLegalHub({ legalTabs: tabs }) {
+  if (!tabs?.length) {
+    return null;
+  }
+
   return (
     <section
       id="compliance-documents"

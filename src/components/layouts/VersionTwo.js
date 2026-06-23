@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import HeroBannerSection from "../sections/v2/homepage/HeroBanner";
 import LazyNavigation from "../sections/v2/common/LazyNavigation";
-import { defaultHomepage } from "@/src/data/cms/defaults";
 import Feed from "../sections/v2/homepage/Feed";
 
 const InsightNews = dynamic(() =>
@@ -21,15 +20,17 @@ const AvailablePartner = dynamic(() =>
 const CTASection = dynamic(() => import("../sections/v2/common/CTA"));
 const Footer = dynamic(() => import("../sections/v2/common/Footer"));
 
-export default function Home({ homepage = defaultHomepage, settings }) {
-  const hero = homepage?.hero || defaultHomepage.hero;
-  const insightNews = homepage?.insightNews || defaultHomepage.insightNews;
-  const statistics = homepage?.statistics || defaultHomepage.statistics;
-  const marketTicker = homepage?.marketTicker || defaultHomepage.marketTicker;
-  const capabilities = homepage?.capabilities || defaultHomepage.capabilities;
-  const whoWeServe = homepage?.whoWeServe || defaultHomepage.whoWeServe;
-  const cardsGrid = homepage?.cardsGrid || defaultHomepage.cardsGrid;
-  const cta = homepage?.cta || defaultHomepage.cta;
+export default function Home({ homepage, settings }) {
+  if (!homepage) return null;
+
+  const hero = homepage.hero;
+  const insightNews = homepage.insightNews;
+  const statistics = homepage.statistics;
+  const marketTicker = homepage.marketTicker;
+  const capabilities = homepage.capabilities;
+  const whoWeServe = homepage.whoWeServe;
+  const cardsGrid = homepage.cardsGrid;
+  const cta = homepage.cta;
   const footer = settings?.footer;
 
   return (

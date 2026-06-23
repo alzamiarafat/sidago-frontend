@@ -7,7 +7,6 @@ import EventsEndpointSection from "@/src/components/sections/v2/events/EventsEnd
 import EventsPastConversationsSection from "@/src/components/sections/v2/events/EventsPastConversationsSection";
 import EventsBootcampSection from "@/src/components/sections/v2/events/EventsBootcampSection";
 import "@/src/components/sections/v2/events/events-hero-mobile.css";
-import { eventsHero } from "@/src/components/sections/v2/events/data.js";
 import { getEventsPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
@@ -34,9 +33,9 @@ export default async function EventsPage() {
   const heroProps = {
     ...events.heroProps,
     videoClass: "events-hero-video",
-    backgroundClassName: eventsHero.backgroundClassName,
-    syncBackgroundColor: eventsHero.syncBackgroundColor,
-    videoOverlay: eventsHero.videoOverlay,
+    backgroundClassName: events.backgroundClassName || events.heroProps?.backgroundClassName,
+    syncBackgroundColor: true,
+    videoOverlay: false,
     videoSectionClass: [
       "events-hero-section",
       events.heroProps?.videoSectionClass,

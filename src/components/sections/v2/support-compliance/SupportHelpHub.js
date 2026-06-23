@@ -4,7 +4,6 @@ import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FiCpu, FiCreditCard, FiLayers, FiSearch, FiUser } from "react-icons/fi";
 import SupportHubTopicGrid from "@/src/components/sections/v2/support-compliance/SupportHubTopicGrid";
-import { helpCategories } from "@/src/components/sections/v2/support-compliance/data";
 import { fadeUp, transitionQuick, viewportOnce } from "@/src/components/sections/v2/support-compliance/motion";
 
 const categoryIcons = {
@@ -14,7 +13,11 @@ const categoryIcons = {
   account: FiUser,
 };
 
-export default function SupportHelpHub({ helpCategories: categories = helpCategories }) {
+export default function SupportHelpHub({ helpCategories: categories }) {
+  if (!categories?.length) {
+    return null;
+  }
+
   const [query, setQuery] = useState("");
   const searchInputRef = useRef(null);
 

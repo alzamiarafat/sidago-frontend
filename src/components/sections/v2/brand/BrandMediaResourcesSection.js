@@ -1,5 +1,4 @@
 import BrandDownloadLink from "@/src/components/sections/v2/brand/BrandDownloadLink";
-import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 
 function MediaImageGrid({ items }) {
   return (
@@ -22,9 +21,9 @@ function MediaImageGrid({ items }) {
   );
 }
 
-export default function BrandMediaResourcesSection({
-  content = defaultBrandPage.pageContent.media,
-}) {
+export default function BrandMediaResourcesSection({ content }) {
+  if (!content) return null;
+
   return (
     <section className="bg-gray-defi-shadow">
       <div className="container py-block">
@@ -36,9 +35,7 @@ export default function BrandMediaResourcesSection({
             >
               {content.eyebrow}
             </h2>
-            <div className="text-gray-off-white">
-              {content.description}
-            </div>
+            <div className="text-gray-off-white">{content.description}</div>
           </div>
           <hr className="!border-[#AB290D]" />
         </div>

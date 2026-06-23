@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { subscribeContent } from "@/src/components/sections/v2/digital-support-services/data";
 
 function SubmitArrow() {
   return (
@@ -24,10 +23,14 @@ function SubmitArrow() {
 }
 
 export default function SubscribeSection({
-  content = subscribeContent,
+  content,
   onSubmit,
   className = "",
 }) {
+  if (!content?.heading || !content?.newsletterOptions?.length) {
+    return null;
+  }
+
   const [email, setEmail] = useState("");
   const [newsletters, setNewsletters] = useState(() =>
     Object.fromEntries(

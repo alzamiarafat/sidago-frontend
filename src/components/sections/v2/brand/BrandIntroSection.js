@@ -1,10 +1,8 @@
 import Image from "next/image";
-import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 import "./brand-mobile.css";
 
-export default function BrandIntroSection({
-  content = defaultBrandPage.pageContent.intro,
-}) {
+export default function BrandIntroSection({ content }) {
+  if (!content) return null;
   return (
     <section className="brand-intro-section">
       <div className="container py-block">

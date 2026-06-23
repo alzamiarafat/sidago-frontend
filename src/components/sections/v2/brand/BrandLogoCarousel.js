@@ -2,12 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import BrandLogoPreview from "@/src/components/sections/v2/brand/BrandLogoPreview";
-import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 import "@/src/components/sections/v2/brand/brand-logo-carousel.css";
 
 const SLIDE_DURATION_MS = 4000;
-
-const DEFAULT_SLIDES = defaultBrandPage.pageContent.logo.slides;
 
 function CarouselArrow({ direction = "next", onClick }) {
   return (
@@ -81,7 +78,8 @@ function DesktopMenuItem({ slide, index, activeIndex, cycleKey, onSelect }) {
   );
 }
 
-export default function BrandLogoCarousel({ slides = DEFAULT_SLIDES }) {
+export default function BrandLogoCarousel({ slides = [] }) {
+  if (!slides.length) return null;
   const [activeIndex, setActiveIndex] = useState(0);
   const [cycleKey, setCycleKey] = useState(0);
 

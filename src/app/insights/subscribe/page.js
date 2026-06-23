@@ -8,6 +8,7 @@ import SubscribeSection from "@/src/components/sections/v2/digital-support-servi
 import InsightsSubscribeHero from "@/src/components/sections/v2/insights/InsightsSubscribeHero";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.insightsSubscribe;
 
@@ -16,6 +17,10 @@ export default async function InsightsSubscribePage() {
     getGlobalSettings(),
     getSitePage("insights-subscribe"),
   ]);
+
+  if (!content) {
+    notFound();
+  }
 
   return (
     <div className="flex min-h-svh flex-col text-base">

@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { defaultHomepage } from "@/src/data/cms/defaults";
-
-const defaults = defaultHomepage.whoWeServe;
 
 function ExploreArrow() {
   return (
@@ -27,12 +24,11 @@ function isInternalHref(href) {
   return href?.startsWith("/") && !href.startsWith("//");
 }
 
-export default function WhoWeServe({
-  title = defaults.title,
-  description = defaults.description,
-  ctaLabel = defaults.ctaLabel,
-  href = defaults.href,
-}) {
+export default function WhoWeServe({ title, description, ctaLabel, href }) {
+  if (!title || !description || !ctaLabel || !href) {
+    return null;
+  }
+
   const LinkTag = isInternalHref(href) ? Link : "a";
   const linkProps = isInternalHref(href)
     ? { href }

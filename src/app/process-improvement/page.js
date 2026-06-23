@@ -5,6 +5,7 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import ProcessImprovementView from "@/src/components/process-improvement/ProcessImprovementView";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.processImprovement;
 
@@ -13,6 +14,10 @@ export default async function ProcessImprovementPage() {
     getGlobalSettings(),
     getSitePage("process-improvement"),
   ]);
+
+  if (!content) {
+    notFound();
+  }
 
   return (
     <div className="flex min-h-svh flex-col text-base">

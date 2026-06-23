@@ -1,9 +1,7 @@
 import BrandDownloadLink from "@/src/components/sections/v2/brand/BrandDownloadLink";
-import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 
-export default function BrandHarnessingSection({
-  content = defaultBrandPage.pageContent.harnessing,
-}) {
+export default function BrandHarnessingSection({ content }) {
+  if (!content) return null;
   return (
     <section className="bg-gray-defi-graphite">
       <div className="container py-block">

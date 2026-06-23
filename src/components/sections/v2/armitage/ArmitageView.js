@@ -5,50 +5,35 @@ import ArmitageHero from "./ArmitageHero";
 import ArmitageNavbar from "./ArmitageNavbar";
 import ArmitageStats from "./ArmitageStats";
 import ArmitageVaults from "./ArmitageVaults";
-import {
-  ARMITAGE_ABOUT_TABS,
-  ARMITAGE_FAQ,
-  ARMITAGE_FOOTER_DISCLAIMERS,
-  ARMITAGE_FOOTER_LINKS,
-  ARMITAGE_NAV_LINKS,
-  ARMITAGE_STATS,
-  ARMITAGE_VAULTS,
-} from "./data";
 import "./armitage.css";
 
-const defaultArmitageContent = {
-  navLinks: ARMITAGE_NAV_LINKS,
-  hero: {
-    titleLead: "A new standard",
-    titleAccent: "vault curation",
-    subtitle:
-      "Armitage curates onchain vaults, managing risk and earning yield for depositors backed by 9 years of active trading.",
-    videoSrc: "/media/hero-matrix.mp4",
-  },
-  vaults: ARMITAGE_VAULTS,
-  aboutTabs: ARMITAGE_ABOUT_TABS,
-  stats: ARMITAGE_STATS,
-  faq: ARMITAGE_FAQ,
-  footerLinks: ARMITAGE_FOOTER_LINKS,
-  footerDisclaimers: ARMITAGE_FOOTER_DISCLAIMERS,
-};
-
-export default function ArmitageView({ content = {} }) {
-  const page = { ...defaultArmitageContent, ...content };
+export default function ArmitageView({ content }) {
+  if (
+    !content?.navLinks?.length ||
+    !content?.hero ||
+    !content?.vaults?.length ||
+    !content?.aboutTabs?.length ||
+    !content?.stats?.length ||
+    !content?.faq?.length ||
+    !content?.footerLinks?.length ||
+    !content?.footerDisclaimers?.length
+  ) {
+    return null;
+  }
 
   return (
     <div className="armitage-page min-h-svh">
-      <ArmitageNavbar links={page.navLinks} />
+      <ArmitageNavbar links={content.navLinks} />
       <main>
-        <ArmitageHero hero={page.hero} />
-        <ArmitageVaults vaults={page.vaults} />
-        <ArmitageAbout tabs={page.aboutTabs} />
-        <ArmitageStats stats={page.stats} />
-        <ArmitageFaq items={page.faq} />
+        <ArmitageHero hero={content.hero} />
+        <ArmitageVaults vaults={content.vaults} />
+        <ArmitageAbout tabs={content.aboutTabs} />
+        <ArmitageStats stats={content.stats} />
+        <ArmitageFaq items={content.faq} />
       </main>
       <ArmitageFooter
-        links={page.footerLinks}
-        disclaimers={page.footerDisclaimers}
+        links={content.footerLinks}
+        disclaimers={content.footerDisclaimers}
       />
     </div>
   );

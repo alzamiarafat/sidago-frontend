@@ -3542,6 +3542,38 @@
         "sortOrder": 8
       }
     ],
+    "inquiryServices": [
+      {
+        "title": "Help desk & triage",
+        "description": "First-line support for users and internal teams—intake, categorization, resolution, and clean handoffs to specialists.",
+        "sortOrder": 1
+      },
+      {
+        "title": "Technical assistance",
+        "description": "Application troubleshooting, access requests, environment checks, and coordination with engineering when fixes need depth.",
+        "sortOrder": 2
+      },
+      {
+        "title": "Customer success ops",
+        "description": "Onboarding checklists, health monitoring, renewal prep, and proactive outreach so accounts do not stall silently.",
+        "sortOrder": 3
+      },
+      {
+        "title": "Content & knowledge base",
+        "description": "Articles, macros, and internal playbooks that shorten handle time and keep answers aligned with product changes.",
+        "sortOrder": 4
+      },
+      {
+        "title": "Back-office digital tasks",
+        "description": "Data hygiene, catalog updates, moderation, and recurring operational work that frees core teams for higher-value work.",
+        "sortOrder": 5
+      },
+      {
+        "title": "Incident coordination",
+        "description": "Structured comms during outages or escalations—status updates, stakeholder routing, and post-incident summaries.",
+        "sortOrder": 6
+      }
+    ],
     "cta": [
       {
         "title": "Explore",

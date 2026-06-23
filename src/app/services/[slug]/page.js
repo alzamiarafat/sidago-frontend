@@ -1,5 +1,4 @@
 import ServicePageTemplate from "@/src/components/sections/v2/servicepage/ServicePageTemplate";
-import { defaultServicesPage } from "@/src/data/cms/defaults";
 import { getServicesPage } from "@/src/lib/api";
 import { collectSlugsFromMenuGroups } from "@/src/lib/menu-static-slugs";
 import { getServiceMetadata } from "@/src/lib/seo";
@@ -21,12 +20,7 @@ export async function generateStaticParams() {
   }
 
   if (slugs.size === 0) {
-    for (const slug of collectSlugsFromMenuGroups(
-      defaultServicesPage.serviceGroups ?? [],
-      "services",
-    )) {
-      slugs.add(slug);
-    }
+    return [];
   }
 
   return [...slugs].map((slug) => ({ slug }));

@@ -28,6 +28,9 @@
       "repeatable": true,
       "component": "shared.contact-topic-item"
     },
+    "inquiryServices": {
+      "type": "json"
+    },
     "cta": {
       "type": "component",
       "repeatable": true,

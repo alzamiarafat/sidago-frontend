@@ -17,7 +17,6 @@ import {
   FiZap,
 } from "react-icons/fi";
 import SalesHeroSpotlightStatCard from "@/src/components/sections/v2/salespage/SalesHeroSpotlightStatCard";
-import { defaultSalesPageContent } from "./data.js";
 
 const SERVICE_ICONS = [
   FiTrendingUp,
@@ -28,7 +27,7 @@ const SERVICE_ICONS = [
   FiShield,
 ];
 
-const SalesContentContext = createContext(defaultSalesPageContent);
+const SalesContentContext = createContext(null);
 
 function useSalesContent() {
   return useContext(SalesContentContext);
@@ -855,12 +854,15 @@ function ConversionBanner({ reduce }) {
   );
 }
 
-export default function SalesLandingView({ content = {} }) {
+export default function SalesLandingView({ content }) {
+  if (!content) {
+    return null;
+  }
+
   const reduce = useReducedMotion();
-  const pageData = { ...defaultSalesPageContent, ...content };
 
   return (
-    <SalesContentContext.Provider value={pageData}>
+    <SalesContentContext.Provider value={content}>
       <HeroSection reduce={reduce} />
       <TrustSection />
       <ServicesSection reduce={reduce} />

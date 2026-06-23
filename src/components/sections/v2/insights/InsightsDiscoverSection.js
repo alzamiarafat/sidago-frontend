@@ -3,10 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  insightsDiscoverCards,
-  insightsFilterGroups,
-} from "@/src/components/sections/v2/insights/data";
 
 const MOBILE_INITIAL_VISIBLE = 3;
 
@@ -93,7 +89,11 @@ function MobileFilterGroup({ group }) {
   );
 }
 
-function InsightsFilterPanel({ filterGroups = insightsFilterGroups }) {
+function InsightsFilterPanel({ filterGroups }) {
+  if (!filterGroups?.length) {
+    return null;
+  }
+
   const [desktopOpen, setDesktopOpen] = useState(false);
 
   return (
@@ -211,9 +211,13 @@ function DiscoverAllLink() {
 }
 
 export default function InsightsDiscoverSection({
-  cards = insightsDiscoverCards,
-  filterGroups = insightsFilterGroups,
+  cards,
+  filterGroups,
 }) {
+  if (!cards?.length) {
+    return null;
+  }
+
   return (
     <section className="bg-gray-night-green text-gray-off-white">
       <div className="container py-block">

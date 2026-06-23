@@ -5,6 +5,7 @@ import SupportComplianceView from "@/src/components/sections/v2/support-complian
 import "@/src/components/sections/v2/support-compliance/support-compliance-hero-mobile.css";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.supportCompliance;
 
@@ -13,6 +14,11 @@ export default async function SupportCompliancePage() {
     getGlobalSettings(),
     getSitePage("support-compliance"),
   ]);
+
+  if (!content?.hero) {
+    notFound();
+  }
+
   const hero = {
     ...content.hero,
     videoClass: "support-compliance-hero-video lg:left-[500px] lg:!w-3/4",

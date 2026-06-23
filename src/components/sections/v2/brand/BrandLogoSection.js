@@ -1,10 +1,8 @@
 import BrandDownloadLink from "@/src/components/sections/v2/brand/BrandDownloadLink";
 import BrandLogoCarousel from "@/src/components/sections/v2/brand/BrandLogoCarousel";
-import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
 
-export default function BrandLogoSection({
-  content = defaultBrandPage.pageContent.logo,
-}) {
+export default function BrandLogoSection({ content }) {
+  if (!content) return null;
   return (
     <section className="bg-gray-defi-shadow">
       <div className="container py-block">

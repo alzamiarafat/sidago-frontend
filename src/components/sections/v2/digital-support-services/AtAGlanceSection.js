@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { atAGlanceContent } from "@/src/components/sections/v2/digital-support-services/data";
 
 function AtAGlanceBullets({ bullets }) {
   if (!bullets?.length) {
@@ -33,20 +32,24 @@ function AtAGlanceBullets({ bullets }) {
 }
 
 export default function AtAGlanceSection({
-  authorName = atAGlanceContent.authorName,
-  authorImageSrc = atAGlanceContent.authorImageSrc,
-  authorImageAlt = atAGlanceContent.authorImageAlt,
-  authorImageClassName = atAGlanceContent.authorImageClassName,
-  authorImageWrapperClassName = atAGlanceContent.authorImageWrapperClassName,
-  authorImageUnoptimized = atAGlanceContent.authorImageUnoptimized,
-  tags = atAGlanceContent.tags,
-  heading = atAGlanceContent.heading,
-  headingId = atAGlanceContent.headingId,
-  body = atAGlanceContent.body,
+  authorName,
+  authorImageSrc,
+  authorImageAlt,
+  authorImageClassName,
+  authorImageWrapperClassName,
+  authorImageUnoptimized,
+  tags,
+  heading,
+  headingId,
+  body,
   bullets,
   sectionClassName = "bg-[#D8DAD8]",
   className = "",
 }) {
+  if (!heading) {
+    return null;
+  }
+
   return (
     <section className={`${sectionClassName} text-black ${className}`.trim()}>
       <div className="container flex flex-col gap-x-container gap-y-4xl py-block pb-container pt-container lg:flex-row">

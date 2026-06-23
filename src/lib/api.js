@@ -1,45 +1,12 @@
 import { cache } from "react";
 import {
-  defaultBusinessProcessesPage,
-  defaultExecutionPage,
-  defaultGlobalSettings,
-  defaultHomepage,
-  defaultInfrastructurePage,
-  defaultInsightsPage,
-  defaultOperationsPage,
-  defaultPerformancePage,
-  defaultServicesPage,
-} from "@/src/data/cms/defaults";
-import { defaultCareersPage } from "@/src/data/cms/careers-page";
-import { defaultContactPage } from "@/src/data/cms/contact-page.mjs";
-import { defaultBrandPage, normalizeBrandPageFromStrapi } from "@/src/data/cms/brand-page.mjs";
-import {
-  defaultEventsPage,
+  normalizeBrandPageFromStrapi,
   normalizeEventsPageFromStrapi,
-} from "@/src/data/cms/events-page.mjs";
-import {
-  defaultCookiesPolicy,
-  defaultLegalHub,
-  defaultModernSlaveryPolicy,
-  defaultPrivacyPolicy,
   normalizeLegalBlocksFromStrapi,
   normalizeLegalDocumentsFromStrapi,
-} from "@/src/data/cms/legal-pages.mjs";
-import {
-  getDefaultServiceLandingPage,
   normalizeServiceLandingPageFromStrapi,
-} from "@/src/data/cms/service-landing-pages.mjs";
-import {
-  buildMainNavigation,
-  defaultIndustryMenuGroups,
-  defaultMainNavigation,
-  defaultUtilityLinks,
-  strategyMenuItemsToGroups,
-} from "@/src/data/cms/navigation.mjs";
-import {
-  getDefaultSitePage,
-  normalizeSitePageFromStrapi,
-} from "@/src/data/cms/site-pages.mjs";
+} from "@/src/lib/cms-transforms.mjs";
+import { buildMainNavigation } from "@/src/lib/navigation-build.js";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -81,29 +48,29 @@ function normalizeGlobalSettings(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultGlobalSettings;
+    return null;
   }
 
   const footer = item.footer;
 
   return {
-    siteName: item.siteName || defaultGlobalSettings.siteName,
+    siteName: item.siteName || "",
     siteContactEmail: item.siteContactEmail
       ? `mailto:${item.siteContactEmail.replace(/^mailto:/, "")}`
-      : defaultGlobalSettings.siteContactEmail,
-    siteLogo: resolveMedia(item.siteLogo) || defaultGlobalSettings.siteLogo,
-    version: item.version || defaultGlobalSettings.version,
+      : null,
+    siteLogo: resolveMedia(item.siteLogo),
+    version: item.version,
     socialLinks:
       item.socialLinks?.length > 0
         ? item.socialLinks
-        : defaultGlobalSettings.socialLinks,
-    footer: footer ? normalizeFooter(footer) : defaultGlobalSettings.footer,
+        : null,
+    footer: footer ? normalizeFooter(footer) : null,
   };
 }
 
-function normalizeHero(hero, fallbackHero = defaultHomepage.hero) {
+function normalizeHero(hero) {
   if (!hero) {
-    return fallbackHero;
+    return null;
   }
 
   const titles =
@@ -111,10 +78,9 @@ function normalizeHero(hero, fallbackHero = defaultHomepage.hero) {
       ?.filter((title) => title?.title)
       .slice()
       .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0)) ||
-    fallbackHero.titles;
+    [];
 
   return {
-    ...fallbackHero,
     ...hero,
     titles,
   };
@@ -142,49 +108,33 @@ function mergeHomepageHeroTitles(titles, canonicalTitles) {
   return pieces;
 }
 
-function resolveInsightNewsHref(itemHref, fallbackHref) {
+function resolveInsightNewsHref(itemHref) {
   const trimmed = itemHref?.trim();
-  if (!trimmed || trimmed === "#") {
-    const fallback = fallbackHref?.trim();
-    return fallback && fallback !== "#" ? fallback : "#";
-  }
-  return trimmed;
+  return trimmed && trimmed !== "#" ? trimmed : "#";
 }
 
-function normalizeInsightNewsItem(item, fallbackItem) {
-  if (!item?.title) {
-    return fallbackItem;
-  }
-
+function normalizeInsightNewsItem(item) {
+  if (!item?.title) return null;
   return {
-    ...fallbackItem,
     ...item,
-    href: resolveInsightNewsHref(item.href, fallbackItem.href),
+    href: resolveInsightNewsHref(item.href),
     srText: item.srText?.trim() || item.title,
   };
 }
 
-function normalizeStatisticItem(item, fallbackItem) {
-  if (!item?.label || !item?.stat) {
-    return fallbackItem;
-  }
-
+function normalizeStatisticItem(item) {
+  if (!item?.label || !item?.stat) return null;
   return {
-    ...fallbackItem,
     ...item,
-    stat: `${item.stat}`.trim() || fallbackItem.stat,
+    stat: `${item.stat}`.trim(),
     label: item.label.trim(),
-    activeDotColor: item.activeDotColor || fallbackItem.activeDotColor,
+    activeDotColor: item.activeDotColor || "",
   };
 }
 
-function normalizeMarketTickerItem(item, fallbackItem) {
-  if (!item?.title || !item?.price || !item?.avg) {
-    return fallbackItem;
-  }
-
+function normalizeMarketTickerItem(item) {
+  if (!item?.title || !item?.price || !item?.avg) return null;
   return {
-    ...fallbackItem,
     ...item,
     title: item.title.trim(),
     price: item.price.trim(),
@@ -192,20 +142,15 @@ function normalizeMarketTickerItem(item, fallbackItem) {
   };
 }
 
-function normalizeCapabilityItem(item, fallbackItem) {
-  if (!item?.title || !item?.description || !item?.href || !item?.video) {
-    return fallbackItem;
-  }
-
+function normalizeCapabilityItem(item) {
+  if (!item?.title || !item?.description || !item?.href || !item?.video) return null;
   return {
-    ...fallbackItem,
     ...item,
     title: item.title.trim(),
     description: item.description.trim(),
     href: item.href.trim(),
     video: item.video.trim(),
-    rotate: item.rotate?.trim() || fallbackItem.rotate || "rotate(0deg)",
-    sr: item.sr?.trim() || item.title,
+    rotate: item.rotate?.trim() || "rotate(0deg)",
   };
 }
 
@@ -227,36 +172,32 @@ const CARDS_GRID_THEME_BY_ID = {
   },
 };
 
-function normalizeCardsGridItem(item, fallbackItem) {
+function normalizeCardsGridItem(item) {
   if (!item?.cardId || !item?.href || !item?.title) {
-    return fallbackItem;
+    return null;
   }
 
   const cardId = item.cardId.trim();
   const theme = CARDS_GRID_THEME_BY_ID[cardId];
-  const bgClass =
-    theme?.bgClass || item.bgClass?.trim() || fallbackItem.bgClass;
-  const textClass =
-    theme?.textClass || item.textClass?.trim() || fallbackItem.textClass;
+  const bgClass = theme?.bgClass || item.bgClass?.trim() || "";
+  const textClass = theme?.textClass || item.textClass?.trim() || "";
 
   return {
-    ...fallbackItem,
     ...item,
     cardId,
     href: item.href.trim(),
-    srLabel: item.srLabel?.trim() || fallbackItem.srLabel || item.title,
+    srLabel: item.srLabel?.trim() || item.title,
     bgClass,
     textClass,
-    colSpan: item.colSpan?.trim() || fallbackItem.colSpan,
+    colSpan: item.colSpan?.trim() || "",
     title: item.title.trim(),
     subtitle: item.subtitle?.trim() || "",
-    decorationType:
-      item.decorationType || fallbackItem.decorationType || "none",
-    topType: item.topType || fallbackItem.topType || "none",
+    decorationType: item.decorationType || "none",
+    topType: item.topType || "none",
     leadingIcon:
       item.leadingIcon != null && `${item.leadingIcon}`.trim() !== ""
         ? `${item.leadingIcon}`.trim()
-        : fallbackItem.leadingIcon,
+        : undefined,
   };
 }
 
@@ -273,9 +214,9 @@ const FOOTER_NAV_HREF_BY_LABEL = {
   Brand: "/brand",
 };
 
-function normalizeFooterLink(item, fallbackItem) {
+function normalizeFooterLink(item) {
   if (!item?.label) {
-    return fallbackItem;
+    return null;
   }
 
   const label = item.label.trim();
@@ -290,26 +231,21 @@ function normalizeFooterLink(item, fallbackItem) {
       href = policyHref;
     }
   }
-  if (!href) {
-    href = fallbackItem.href;
-  }
 
   return {
-    ...fallbackItem,
     ...item,
     label,
-    href,
+    href: href || "#",
     srLabel: item.srLabel?.trim() || label,
   };
 }
 
-function normalizeFooterSocialLink(item, fallbackItem) {
+function normalizeFooterSocialLink(item) {
   if (!item?.label || !item?.href || !item?.platform) {
-    return fallbackItem;
+    return null;
   }
 
   return {
-    ...fallbackItem,
     ...item,
     label: item.label.trim(),
     href: item.href.trim(),
@@ -317,43 +253,23 @@ function normalizeFooterSocialLink(item, fallbackItem) {
   };
 }
 
-function normalizeFooterLegalBlock(item, fallbackItem) {
+function normalizeFooterLegalBlock(item) {
   if (!item?.text) {
-    return fallbackItem;
+    return null;
   }
 
   return {
-    ...fallbackItem,
     ...item,
     text: item.text.trim(),
   };
 }
 
 function normalizeFooterNavLinks(navLinks) {
-  const brandFallback = defaultGlobalSettings.footer.navLinks.find(
-    (link) => link.label === "Brand",
-  );
-
-  const mapped = navLinks
+  return navLinks
     .slice()
     .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
-    .map((link, index) =>
-      normalizeFooterLink(
-        link,
-        defaultGlobalSettings.footer.navLinks[index] ||
-          defaultGlobalSettings.footer.navLinks[0],
-      ),
-    );
-
-  const hasBrand = mapped.some(
-    (link) => link.label?.trim().toLowerCase() === "brand",
-  );
-
-  if (!hasBrand && brandFallback) {
-    return [...mapped, brandFallback];
-  }
-
-  return mapped;
+    .map((link) => normalizeFooterLink(link))
+    .filter(Boolean);
 }
 
 function normalizeFooter(footer) {
@@ -361,7 +277,7 @@ function normalizeFooter(footer) {
     navLinks:
       footer.navLinks?.length > 0
         ? normalizeFooterNavLinks(footer.navLinks)
-        : defaultGlobalSettings.footer.navLinks,
+        : null,
     socialLinks:
       footer.socialLinks?.length > 0
         ? footer.socialLinks
@@ -369,14 +285,9 @@ function normalizeFooter(footer) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((link, index) =>
-              normalizeFooterSocialLink(
-                link,
-                defaultGlobalSettings.footer.socialLinks[index] ||
-                  defaultGlobalSettings.footer.socialLinks[0],
-              ),
-            )
-        : defaultGlobalSettings.footer.socialLinks,
+            .map((link) => normalizeFooterSocialLink(link))
+            .filter(Boolean)
+        : null,
     legalBlocks:
       footer.legalBlocks?.length > 0
         ? footer.legalBlocks
@@ -384,14 +295,9 @@ function normalizeFooter(footer) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((block, index) =>
-              normalizeFooterLegalBlock(
-                block,
-                defaultGlobalSettings.footer.legalBlocks[index] ||
-                  defaultGlobalSettings.footer.legalBlocks[0],
-              ),
-            )
-        : defaultGlobalSettings.footer.legalBlocks,
+            .map((block) => normalizeFooterLegalBlock(block))
+            .filter(Boolean)
+        : null,
     policyLinks:
       footer.policyLinks?.length > 0
         ? footer.policyLinks
@@ -399,47 +305,33 @@ function normalizeFooter(footer) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((link, index) =>
-              normalizeFooterLink(
-                link,
-                defaultGlobalSettings.footer.policyLinks[index] ||
-                  defaultGlobalSettings.footer.policyLinks[0],
-              ),
-            )
-        : defaultGlobalSettings.footer.policyLinks,
+            .map((link) => normalizeFooterLink(link))
+            .filter(Boolean)
+        : null,
   };
 }
 
-function normalizeCtaItem(item, fallbackItem) {
-  if (!item?.title || !item?.description) {
-    return fallbackItem;
-  }
-
+function normalizeCtaItem(item) {
+  if (!item?.title || !item?.description) return null;
   const title = item.title.trim().toLowerCase();
   const href =
     title === "subscribe"
       ? "/insights/subscribe"
       : title === "apply"
         ? "/company/opportunities"
-        : item.href?.trim() || fallbackItem?.href?.trim() || "";
-
-  if (!href) {
-    return fallbackItem;
-  }
-
+        : item.href?.trim() || "";
+  if (!href) return null;
   return {
-    ...fallbackItem,
     ...item,
     title: item.title.trim(),
     description: item.description.trim(),
     href,
     srLabel: item.srLabel?.trim() || item.title,
-    backgroundColor:
-      item.backgroundColor?.trim() || fallbackItem.backgroundColor,
+    backgroundColor: item.backgroundColor?.trim() || "",
   };
 }
 
-function normalizeInfrastructureProfileItem(item, fallbackItem) {
+function normalizeInfrastructureProfileItem(item) {
   if (
     !item?.eyebrow ||
     !item?.title ||
@@ -447,50 +339,44 @@ function normalizeInfrastructureProfileItem(item, fallbackItem) {
     !item?.cta ||
     !item?.href
   ) {
-    return fallbackItem;
+    return null;
   }
 
   return {
-    ...fallbackItem,
     ...item,
     eyebrow: item.eyebrow.trim(),
     title: item.title.trim(),
     description: item.description.trim(),
     cta: item.cta.trim(),
     href: item.href.trim(),
-    visualType: item.visualType || fallbackItem.visualType || "dashboard",
+    visualType: item.visualType || "dashboard",
     srText: item.srText?.trim() || item.title,
   };
 }
 
-function normalizeInfrastructureVisionItem(item, fallbackItem) {
+function normalizeInfrastructureVisionItem(item) {
   if (!item?.title || !item?.description) {
-    return fallbackItem;
+    return null;
   }
 
   return {
-    ...fallbackItem,
     ...item,
     title: item.title.trim(),
     description: item.description.trim(),
-    iconType: item.iconType || fallbackItem.iconType || "uptime",
+    iconType: item.iconType || "uptime",
   };
 }
 
-function normalizeInfrastructureSupportItem(item, fallbackItem) {
+function normalizeInfrastructureSupportItem(item) {
   if (!item?.title || !item?.description) {
-    return fallbackItem;
+    return null;
   }
 
   return {
-    ...fallbackItem,
     ...item,
     title: item.title.trim(),
     description: item.description.trim(),
-    expandedClassName:
-      item.expandedClassName?.trim() ||
-      fallbackItem.expandedClassName ||
-      "bg-green-light",
+    expandedClassName: item.expandedClassName?.trim() || "bg-green-light",
   };
 }
 
@@ -513,18 +399,15 @@ function normalizeHomepage(entry) {
     !cardsGrid &&
     !cta
   ) {
-    return defaultHomepage;
+    return null;
   }
 
-  const normalizedHero = normalizeHero(hero, defaultHomepage.hero);
+  const normalizedHero = normalizeHero(hero);
 
   return {
     hero: {
       ...normalizedHero,
-      titles: mergeHomepageHeroTitles(
-        normalizedHero.titles,
-        defaultHomepage.hero.titles,
-      ),
+      titles: normalizedHero?.titles || [],
     },
     insightNews:
       insightNews?.length > 0
@@ -534,14 +417,8 @@ function normalizeHomepage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((newsItem, index) =>
-              normalizeInsightNewsItem(
-                newsItem,
-                defaultHomepage.insightNews[index] ||
-                  defaultHomepage.insightNews[0],
-              ),
-            )
-        : defaultHomepage.insightNews,
+            .map((newsItem) => normalizeInsightNewsItem(newsItem)).filter(Boolean)
+        : [],
     statistics:
       statistics?.length > 0
         ? statistics
@@ -550,14 +427,8 @@ function normalizeHomepage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((statItem, index) =>
-              normalizeStatisticItem(
-                statItem,
-                defaultHomepage.statistics[index] ||
-                  defaultHomepage.statistics[0],
-              ),
-            )
-        : defaultHomepage.statistics,
+            .map((statItem) => normalizeStatisticItem(statItem)).filter(Boolean)
+        : [],
     marketTicker:
       marketTicker?.length > 0
         ? marketTicker
@@ -569,14 +440,8 @@ function normalizeHomepage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((tickerItem, index) =>
-              normalizeMarketTickerItem(
-                tickerItem,
-                defaultHomepage.marketTicker[index] ||
-                  defaultHomepage.marketTicker[0],
-              ),
-            )
-        : defaultHomepage.marketTicker,
+            .map((tickerItem) => normalizeMarketTickerItem(tickerItem)).filter(Boolean)
+        : [],
     capabilities:
       capabilities?.length > 0
         ? capabilities
@@ -591,14 +456,8 @@ function normalizeHomepage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((capabilityItem, index) =>
-              normalizeCapabilityItem(
-                capabilityItem,
-                defaultHomepage.capabilities[index] ||
-                  defaultHomepage.capabilities[0],
-              ),
-            )
-        : defaultHomepage.capabilities,
+            .map((capabilityItem) => normalizeCapabilityItem(capabilityItem)).filter(Boolean)
+        : [],
     cardsGrid:
       cardsGrid?.length > 0
         ? cardsGrid
@@ -611,15 +470,9 @@ function normalizeHomepage(entry) {
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
             .map((cardItem, index) => {
-              const cardFallback =
-                defaultHomepage.cardsGrid.find(
-                  (row) => row.cardId === cardItem.cardId,
-                ) ||
-                defaultHomepage.cardsGrid[index] ||
-                defaultHomepage.cardsGrid[0];
-              return normalizeCardsGridItem(cardItem, cardFallback);
+              return normalizeCardsGridItem(cardItem);
             })
-        : defaultHomepage.cardsGrid,
+        : [],
     cta:
       cta?.length > 0
         ? cta
@@ -632,12 +485,9 @@ function normalizeHomepage(entry) {
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
             .map((ctaItem, index) =>
-              normalizeCtaItem(
-                ctaItem,
-                defaultHomepage.cta[index] || defaultHomepage.cta[0],
-              ),
+              normalizeCtaItem(ctaItem),
             )
-        : defaultHomepage.cta,
+        : [],
   };
 }
 
@@ -684,7 +534,7 @@ function normalizeServicesPage(entry) {
 
   return {
     serviceGroups:
-      groups.length > 0 ? groups : defaultServicesPage.serviceGroups,
+      groups,
   };
 }
 
@@ -699,23 +549,22 @@ function normalizeMenuGroupsPage(entry, fallbackGroups = []) {
     : [];
 
   return {
-    menuGroups: groups.length > 0 ? groups : fallbackGroups,
+    menuGroups: groups,
   };
 }
 
-function normalizeJsonSection(section, fallbackSection, childKey = "items") {
+function normalizeJsonSection(section, childKey = "items") {
   if (!section?.title) {
-    return fallbackSection;
+    return null;
   }
 
   const children = Array.isArray(section[childKey])
     ? section[childKey].filter((item) => item?.title)
-    : fallbackSection[childKey];
+    : [];
 
   return {
-    ...fallbackSection,
     ...section,
-    [childKey]: children?.length > 0 ? children : fallbackSection[childKey],
+    [childKey]: children,
   };
 }
 
@@ -723,11 +572,11 @@ function normalizeBusinessProcessesPage(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultBusinessProcessesPage;
+    return null;
   }
 
   return {
-    hero: normalizeHero(item.hero, defaultBusinessProcessesPage.hero),
+    hero: normalizeHero(item.hero),
     statistics:
       item.statistics?.length > 0
         ? item.statistics
@@ -736,37 +585,26 @@ function normalizeBusinessProcessesPage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((statItem, index) =>
-              normalizeStatisticItem(
-                statItem,
-                defaultBusinessProcessesPage.statistics[index] ||
-                  defaultBusinessProcessesPage.statistics[0],
-              ),
-            )
-        : defaultBusinessProcessesPage.statistics,
+            .map((statItem) => normalizeStatisticItem(statItem)).filter(Boolean)
+        : null,
     partnerBenefit: normalizeJsonSection(
       item.partnerBenefit,
-      defaultBusinessProcessesPage.partnerBenefit,
       "benefits",
     ),
     processes: normalizeJsonSection(
-      item.processes,
-      defaultBusinessProcessesPage.processes,
-    ),
+      item.processes),
     solutions: normalizeJsonSection(
-      item.solutions,
-      defaultBusinessProcessesPage.solutions,
-    ),
+      item.solutions),
     workOverview: item.workOverview?.title
       ? {
-          ...defaultBusinessProcessesPage.workOverview,
+          
           ...item.workOverview,
           metrics:
             item.workOverview.metrics?.length > 0
               ? item.workOverview.metrics
-              : defaultBusinessProcessesPage.workOverview.metrics,
+              : null,
         }
-      : defaultBusinessProcessesPage.workOverview,
+      : null,
   };
 }
 
@@ -774,21 +612,21 @@ function normalizeOperationsPage(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultOperationsPage;
+    return null;
   }
 
   return {
-    hero: normalizeHero(item.hero, defaultOperationsPage.hero),
+    hero: normalizeHero(item.hero),
     videoInMotion: {
       videoSrc:
         item.videoInMotion?.videoSrc?.trim() ||
-        defaultOperationsPage.videoInMotion.videoSrc,
+        "",
       posterSrc:
         item.videoInMotion?.posterSrc?.trim() ||
-        defaultOperationsPage.videoInMotion.posterSrc,
+        "",
       posterAlt:
         item.videoInMotion?.posterAlt?.trim() ||
-        defaultOperationsPage.videoInMotion.posterAlt,
+        "",
     },
     insightNews:
       item.insightNews?.length > 0
@@ -798,14 +636,8 @@ function normalizeOperationsPage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((newsItem, index) =>
-              normalizeInsightNewsItem(
-                newsItem,
-                defaultOperationsPage.insightNews[index] ||
-                  defaultOperationsPage.insightNews[0],
-              ),
-            )
-        : defaultOperationsPage.insightNews,
+            .map((newsItem) => normalizeInsightNewsItem(newsItem)).filter(Boolean)
+        : null,
     statistics:
       item.statistics?.length > 0
         ? item.statistics
@@ -814,14 +646,8 @@ function normalizeOperationsPage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((statItem, index) =>
-              normalizeStatisticItem(
-                statItem,
-                defaultOperationsPage.statistics[index] ||
-                  defaultOperationsPage.statistics[0],
-              ),
-            )
-        : defaultOperationsPage.statistics,
+            .map((statItem) => normalizeStatisticItem(statItem)).filter(Boolean)
+        : null,
     capabilities:
       item.capabilities?.length > 0
         ? item.capabilities
@@ -836,14 +662,8 @@ function normalizeOperationsPage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((capabilityItem, index) =>
-              normalizeCapabilityItem(
-                capabilityItem,
-                defaultOperationsPage.capabilities[index] ||
-                  defaultOperationsPage.capabilities[0],
-              ),
-            )
-        : defaultOperationsPage.capabilities,
+            .map((capabilityItem) => normalizeCapabilityItem(capabilityItem)).filter(Boolean)
+        : null,
     cta:
       item.cta?.length > 0
         ? item.cta
@@ -857,38 +677,30 @@ function normalizeOperationsPage(entry) {
             )
             .map((ctaItem, index) =>
               normalizeCtaItem(
-                ctaItem,
-                defaultOperationsPage.cta[index] ||
-                  defaultOperationsPage.cta[0],
-              ),
+                ctaItem),
             )
-        : defaultOperationsPage.cta,
+        : null,
   };
 }
 
-function normalizeCareersStatisticItem(item, fallbackItem) {
+function normalizeCareersStatisticItem(item) {
   const labelLines = Array.isArray(item?.labelLines)
     ? item.labelLines.filter((line) => `${line}`.trim())
     : null;
 
-  if (!item?.stat || !labelLines?.length) {
-    return fallbackItem;
-  }
+  if (!item?.stat || !labelLines?.length) return null;
 
   return {
-    ...fallbackItem,
-    stat: `${item.stat}`.trim() || fallbackItem.stat,
+    stat: `${item.stat}`.trim(),
     labelLines,
-    width: item.width ?? fallbackItem.width,
-    activeDotColor: item.activeDotColor || fallbackItem.activeDotColor,
-    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+    width: item.width,
+    activeDotColor: item.activeDotColor || "",
+    sortOrder: item.sortOrder,
   };
 }
 
-function normalizeCareersTeamLink(item, fallbackItem) {
-  if (!item?.label) {
-    return fallbackItem;
-  }
+function normalizeCareersTeamLink(item) {
+  if (!item?.label) return null;
 
   const label = item.label.trim();
   const href =
@@ -899,36 +711,30 @@ function normalizeCareersTeamLink(item, fallbackItem) {
           label === "Explore Sidago infrastructure" ||
           label === "Explore Sidago technology"
         ? "/infrastructure"
-        : fallbackItem.href);
+        : "");
 
-  if (!href) {
-    return fallbackItem;
-  }
+  if (!href) return null;
 
   return {
-    ...fallbackItem,
     href,
     label,
-    srText: item.srText?.trim() || fallbackItem.srText || label,
-    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+    srText: item.srText?.trim() || label,
+    sortOrder: item.sortOrder,
   };
 }
 
-function normalizeCareersTeamItem(item, fallbackItem) {
-  if (!item?.title || !item?.description || !item?.imageSrc) {
-    return fallbackItem;
-  }
+function normalizeCareersTeamItem(item) {
+  if (!item?.title || !item?.description || !item?.imageSrc) return null;
 
   return {
-    ...fallbackItem,
     title: item.title.trim(),
     description: item.description.trim(),
-    hoverColor: item.hoverColor?.trim() || fallbackItem.hoverColor,
-    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+    hoverColor: item.hoverColor?.trim() || "",
+    sortOrder: item.sortOrder,
     image: {
       src: item.imageSrc.trim(),
-      width: item.imageWidth ?? fallbackItem.image?.width ?? 1152,
-      height: item.imageHeight ?? fallbackItem.image?.height ?? 1182,
+      width: item.imageWidth ?? 1152,
+      height: item.imageHeight ?? 1182,
     },
     links:
       item.links?.length > 0
@@ -938,55 +744,47 @@ function normalizeCareersTeamItem(item, fallbackItem) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((link, index) =>
-              normalizeCareersTeamLink(
-                link,
-                fallbackItem.links[index] || fallbackItem.links[0],
-              ),
-            )
-        : fallbackItem.links,
+            .map((link) => normalizeCareersTeamLink(link))
+            .filter(Boolean)
+        : [],
   };
 }
 
-function normalizeCareersValuesItem(item, fallbackItem) {
+function normalizeCareersValuesItem(item) {
   const bullets = Array.isArray(item?.bullets)
     ? item.bullets.filter((line) => `${line}`.trim())
     : null;
 
-  if (!item?.title || !bullets?.length) {
-    return fallbackItem;
-  }
+  if (!item?.title || !bullets?.length) return null;
 
   return {
-    ...fallbackItem,
     title: item.title.trim(),
-    iconType: item.iconType || fallbackItem.iconType,
+    iconType: item.iconType || "",
     bullets,
-    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+    sortOrder: item.sortOrder,
   };
 }
 
-function normalizeCareersTestimonialItem(item, fallbackItem) {
+function normalizeCareersTestimonialItem(item) {
   const titleParts = Array.isArray(item?.titleParts)
     ? item.titleParts.filter((part) => part?.text)
     : null;
 
   if (!item?.name || !item?.role || !item?.quote || !item?.imageSrc) {
-    return fallbackItem;
+    return null;
   }
 
   return {
-    ...fallbackItem,
     name: item.name.trim(),
     role: item.role.trim(),
     quote: item.quote.trim(),
-    titleParts: titleParts?.length ? titleParts : fallbackItem.titleParts,
-    sortOrder: item.sortOrder ?? fallbackItem.sortOrder,
+    titleParts: titleParts?.length ? titleParts : [],
+    sortOrder: item.sortOrder,
     image: {
       src: item.imageSrc.trim(),
-      width: item.imageWidth ?? fallbackItem.image?.width ?? 1100,
-      height: item.imageHeight ?? fallbackItem.image?.height ?? 880,
-      alt: item.imageAlt?.trim() || fallbackItem.image?.alt || item.name,
+      width: item.imageWidth ?? 1100,
+      height: item.imageHeight ?? 880,
+      alt: item.imageAlt?.trim() || item.name,
     },
   };
 }
@@ -995,26 +793,26 @@ function normalizeCareersPage(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultCareersPage;
+    return null;
   }
 
-  const hero = normalizeHero(item.hero, defaultCareersPage.hero);
+  const hero = normalizeHero(item.hero);
 
   return {
     hero: {
       ...hero,
       ctaLabel:
         item.heroCtaLabel?.trim() ||
-        defaultCareersPage.hero.ctaLabel,
+        "",
       ctaHref:
-        item.heroCtaHref?.trim() || defaultCareersPage.hero.ctaHref,
+        item.heroCtaHref?.trim() || "",
       ctaSrText:
         item.heroCtaSrText?.trim() ||
-        defaultCareersPage.hero.ctaSrText,
+        "",
       ctaButtonClass:
         item.heroCtaButtonClass?.trim() ||
-        defaultCareersPage.hero.ctaButtonClass,
-      sideLogo: defaultCareersPage.hero.sideLogo,
+        "",
+      sideLogo: null,
     },
     statistics:
       item.statistics?.length > 0
@@ -1024,28 +822,23 @@ function normalizeCareersPage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((stat, index) =>
-              normalizeCareersStatisticItem(
-                stat,
-                defaultCareersPage.statistics[index] ||
-                  defaultCareersPage.statistics[0],
-              ),
-            )
-        : defaultCareersPage.statistics,
+            .map((stat) => normalizeCareersStatisticItem(stat))
+            .filter(Boolean)
+        : null,
     quoteSection: {
       quote:
         item.quoteSection?.quote?.trim() ||
-        defaultCareersPage.quoteSection.quote,
+        "",
       attribution:
         item.quoteSection?.attribution?.trim() ||
-        defaultCareersPage.quoteSection.attribution,
+        "",
     },
     valuesFlipSection: {
       title:
-        item.valuesTitle?.trim() || defaultCareersPage.valuesFlipSection.title,
+        item.valuesTitle?.trim() || "",
       headingId:
         item.valuesHeadingId?.trim() ||
-        defaultCareersPage.valuesFlipSection.headingId,
+        "",
       items:
         item.valuesItems?.length > 0
           ? item.valuesItems
@@ -1055,24 +848,19 @@ function normalizeCareersPage(entry) {
                 (left, right) =>
                   (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
               )
-              .map((value, index) =>
-                normalizeCareersValuesItem(
-                  value,
-                  defaultCareersPage.valuesFlipSection.items[index] ||
-                    defaultCareersPage.valuesFlipSection.items[0],
-                ),
-              )
-          : defaultCareersPage.valuesFlipSection.items,
+              .map((value) => normalizeCareersValuesItem(value))
+              .filter(Boolean)
+          : null,
     },
     teamsSection: {
       lead:
-        item.teamsLead?.trim() || defaultCareersPage.teamsSection.lead,
+        item.teamsLead?.trim() || "",
       highlight:
         item.teamsHighlight?.trim() ||
-        defaultCareersPage.teamsSection.highlight,
+        "",
       headingId:
         item.teamsHeadingId?.trim() ||
-        defaultCareersPage.teamsSection.headingId,
+        "",
       items:
         item.teamsItems?.length > 0
           ? item.teamsItems
@@ -1084,25 +872,20 @@ function normalizeCareersPage(entry) {
                 (left, right) =>
                   (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
               )
-              .map((team, index) =>
-                normalizeCareersTeamItem(
-                  team,
-                  defaultCareersPage.teamsSection.items[index] ||
-                    defaultCareersPage.teamsSection.items[0],
-                ),
-              )
-          : defaultCareersPage.teamsSection.items,
+              .map((team) => normalizeCareersTeamItem(team))
+              .filter(Boolean)
+          : null,
     },
     teamTestimonialsSection: {
       title:
         item.testimonialsTitle?.trim() ||
-        defaultCareersPage.teamTestimonialsSection.title,
+        "",
       headingId:
         item.testimonialsHeadingId?.trim() ||
-        defaultCareersPage.teamTestimonialsSection.headingId,
+        "",
       className:
         item.testimonialsClassName?.trim() ||
-        defaultCareersPage.teamTestimonialsSection.className,
+        "",
       items:
         item.testimonialsItems?.length > 0
           ? item.testimonialsItems
@@ -1118,62 +901,50 @@ function normalizeCareersPage(entry) {
                 (left, right) =>
                   (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
               )
-              .map((testimonial, index) =>
-                normalizeCareersTestimonialItem(
-                  testimonial,
-                  defaultCareersPage.teamTestimonialsSection.items[index] ||
-                    defaultCareersPage.teamTestimonialsSection.items[0],
-                ),
+              .map((testimonial) =>
+                normalizeCareersTestimonialItem(testimonial),
               )
-          : defaultCareersPage.teamTestimonialsSection.items,
+              .filter(Boolean)
+          : null,
     },
     lifeSection: {
-      lead: item.lifeLead?.trim() || defaultCareersPage.lifeSection.lead,
+      lead: item.lifeLead?.trim() || "",
       highlight:
         item.lifeHighlight?.trim() ||
-        defaultCareersPage.lifeSection.highlight,
+        "",
       headingId:
         item.lifeHeadingId?.trim() ||
-        defaultCareersPage.lifeSection.headingId,
+        "",
       description:
         item.lifeDescription?.trim() ||
-        defaultCareersPage.lifeSection.description,
+        "",
       stage: {
         label:
           item.lifeStageLabel?.trim() ||
-          defaultCareersPage.lifeSection.stage.label,
+          "",
         footTitle:
           item.lifeStageFootTitle?.trim() ||
-          defaultCareersPage.lifeSection.stage.footTitle,
+          "",
         footDescription:
           item.lifeStageFootDescription?.trim() ||
-          defaultCareersPage.lifeSection.stage.footDescription,
+          "",
         stats:
           item.lifeStageStats?.length > 0
-            ? item.lifeStageStats.map((stat, index) => ({
-                value:
-                  stat.value ??
-                  defaultCareersPage.lifeSection.stage.stats[index]?.value ??
-                  0,
-                suffix:
-                  stat.suffix ??
-                  defaultCareersPage.lifeSection.stage.stats[index]?.suffix ??
-                  "",
-                label:
-                  stat.label?.trim() ||
-                  defaultCareersPage.lifeSection.stage.stats[index]?.label ||
-                  "",
+            ? item.lifeStageStats.map((stat) => ({
+                value: stat.value ?? 0,
+                suffix: stat.suffix ?? "",
+                label: stat.label?.trim() || "",
               }))
-            : defaultCareersPage.lifeSection.stage.stats,
+            : [],
       },
     },
     lifeStatsSection: {
       fontSizeMobile:
         item.lifeStatsFontSizeMobile ??
-        defaultCareersPage.lifeStatsSection.fontSizeMobile,
+        "",
       fontSizeDesktop:
         item.lifeStatsFontSizeDesktop ??
-        defaultCareersPage.lifeStatsSection.fontSizeDesktop,
+        "",
       items:
         item.lifeStatsItems?.length > 0
           ? item.lifeStatsItems
@@ -1185,12 +956,9 @@ function normalizeCareersPage(entry) {
               )
               .map((stat, index) =>
                 normalizeStatisticItem(
-                  stat,
-                  defaultCareersPage.lifeStatsSection.items[index] ||
-                    defaultCareersPage.lifeStatsSection.items[0],
-                ),
+                  stat),
               )
-          : defaultCareersPage.lifeStatsSection.items,
+          : null,
     },
   };
 }
@@ -1199,16 +967,16 @@ function normalizeInfrastructurePage(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultInfrastructurePage;
+    return null;
   }
 
   return {
-    hero: normalizeHero(item.hero, defaultInfrastructurePage.hero),
+    hero: normalizeHero(item.hero),
     visionTitle:
-      item.visionTitle?.trim() || defaultInfrastructurePage.visionTitle,
+      item.visionTitle?.trim() || "",
     visionDescription:
       item.visionDescription?.trim() ||
-      defaultInfrastructurePage.visionDescription,
+      "",
     vision:
       item.vision?.length > 0
         ? item.vision
@@ -1217,25 +985,22 @@ function normalizeInfrastructurePage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((visionItem, index) =>
-              normalizeInfrastructureVisionItem(
-                visionItem,
-                defaultInfrastructurePage.vision[index] ||
-                  defaultInfrastructurePage.vision[0],
-              ),
+            .map((visionItem) =>
+              normalizeInfrastructureVisionItem(visionItem),
             )
-        : defaultInfrastructurePage.vision,
+            .filter(Boolean)
+        : null,
     supportTitle:
-      item.supportTitle?.trim() || defaultInfrastructurePage.supportTitle,
+      item.supportTitle?.trim() || "",
     supportHighlight:
       item.supportHighlight?.trim() ||
-      defaultInfrastructurePage.supportHighlight,
+      "",
     supportDescription:
       item.supportDescription?.trim() ||
-      defaultInfrastructurePage.supportDescription,
+      "",
     supportImageSrc:
       item.supportImageSrc?.trim() ||
-      defaultInfrastructurePage.supportImageSrc,
+      "",
     support:
       item.support?.length > 0
         ? item.support
@@ -1246,19 +1011,16 @@ function normalizeInfrastructurePage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((supportItem, index) =>
-              normalizeInfrastructureSupportItem(
-                supportItem,
-                defaultInfrastructurePage.support[index] ||
-                  defaultInfrastructurePage.support[0],
-              ),
+            .map((supportItem) =>
+              normalizeInfrastructureSupportItem(supportItem),
             )
-        : defaultInfrastructurePage.support,
+            .filter(Boolean)
+        : null,
     profilesTitle:
-      item.profilesTitle?.trim() || defaultInfrastructurePage.profilesTitle,
+      item.profilesTitle?.trim() || "",
     profilesDescription:
       item.profilesDescription?.trim() ||
-      defaultInfrastructurePage.profilesDescription,
+      "",
     profiles:
       item.profiles?.length > 0
         ? item.profiles
@@ -1274,76 +1036,62 @@ function normalizeInfrastructurePage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((profileItem, index) =>
-              normalizeInfrastructureProfileItem(
-                profileItem,
-                defaultInfrastructurePage.profiles[index] ||
-                  defaultInfrastructurePage.profiles[0],
-              ),
+            .map((profileItem) =>
+              normalizeInfrastructureProfileItem(profileItem),
             )
-        : defaultInfrastructurePage.profiles,
+            .filter(Boolean)
+        : null,
   };
 }
 
-function mergePerformanceHeroTitles(titles, fallbackTitles) {
-  const pieces = (titles ?? [])
+function mergePerformanceHeroTitles(titles) {
+  return (titles ?? [])
     .filter((item) => item?.title)
     .slice()
-    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0));
-
-  if (!pieces.length) {
-    return fallbackTitles;
-  }
-
-  if (pieces.length >= 3) {
-    return pieces.map((item, index) => ({
-      ...(fallbackTitles[index] || fallbackTitles[fallbackTitles.length - 1]),
+    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+    .map((item, index) => ({
       ...item,
       line: index + 1,
       sortOrder: index + 1,
     }));
-  }
-
-  return pieces;
 }
 
 function normalizePerformancePage(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultPerformancePage;
+    return null;
   }
+
+  const heroData = normalizeHero(item.hero);
 
   return {
     hero: {
-      ...normalizeHero(item.hero, defaultPerformancePage.hero),
-      titles: mergePerformanceHeroTitles(
-        normalizeHero(item.hero, defaultPerformancePage.hero).titles,
-        defaultPerformancePage.hero.titles,
-      ),
+      ...heroData,
+      titles: mergePerformanceHeroTitles(heroData?.titles),
     },
     stats:
       Array.isArray(item.stats) && item.stats.length > 0
         ? item.stats
-        : defaultPerformancePage.stats,
+        : null,
     dashboardSection: {
-      ...defaultPerformancePage.dashboardSection,
+      
       ...(item.dashboardSection || {}),
     },
     tabsSection: {
-      ...defaultPerformancePage.tabsSection,
+      
       ...(item.tabsSection || {}),
     },
     imageCarouselSection: {
-      ...defaultPerformancePage.imageCarouselSection,
+      
       ...(item.imageCarouselSection || {}),
     },
     capabilitiesSection: {
-      ...defaultPerformancePage.capabilitiesSection,
+      
       ...(item.capabilitiesSection || {}),
     },
     methodSection: {
-      ...defaultPerformancePage.methodSection,
+      
       ...(item.methodSection || {}),
     },
     cta:
@@ -1359,82 +1107,103 @@ function normalizePerformancePage(entry) {
             )
             .map((ctaItem, index) =>
               normalizeCtaItem(
-                ctaItem,
-                defaultPerformancePage.cta[index] ||
-                  defaultPerformancePage.cta[0],
-              ),
+                ctaItem),
             )
-        : defaultPerformancePage.cta,
+        : null,
   };
 }
 
-function normalizeInsightsSection(section, fallbackSection) {
+function normalizeInsightsSection(section) {
   if (!section?.title) {
-    return fallbackSection;
+    return null;
   }
 
   const items = Array.isArray(section.items)
     ? section.items.filter((item) => item?.title)
-    : fallbackSection.items;
+    : [];
 
   return {
-    ...fallbackSection,
     ...section,
-    items: items?.length > 0 ? items : fallbackSection.items,
+    items,
   };
+}
+
+function mergeInsightsHeroTitles(titles) {
+  const pieces = (titles ?? [])
+    .filter((item) => item?.title)
+    .slice()
+    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0));
+
+  if (!pieces.length) {
+    return [];
+  }
+
+  const findPiece = (pattern) =>
+    pieces.find((item) => pattern.test(`${item.title}`.trim()));
+
+  const lineOne = findPiece(/^turning data into$/i) || pieces[0];
+  const actionable =
+    findPiece(/^actionable$/i) || findPiece(/actionable/i) || pieces[1] || pieces[0];
+  const business =
+    findPiece(/business insights/i) ||
+    pieces[pieces.length - 1] ||
+    pieces[0];
+
+  return [
+    {
+      ...lineOne,
+      title: "Turning data into",
+      color: lineOne.color || "",
+      line: 1,
+      sortOrder: 1,
+    },
+    {
+      ...actionable,
+      title: "actionable",
+      color: actionable.color || "#958dec",
+      line: 1,
+      sortOrder: 2,
+    },
+    {
+      ...business,
+      title: "business insights",
+      color: business.color || "#958dec",
+      line: 2,
+      sortOrder: 3,
+    },
+  ];
 }
 
 function normalizeExecutionPage(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultExecutionPage;
+    return null;
   }
 
-  const normalizeSection = (section, fallbackSection, arrayKeys = []) => {
-    const normalized = {
-      ...fallbackSection,
-      ...(section || {}),
-    };
-
+  const normalizeSection = (section, arrayKeys = []) => {
+    const normalized = { ...(section || {}) };
     arrayKeys.forEach((key) => {
       normalized[key] =
         Array.isArray(section?.[key]) && section[key].length > 0
           ? section[key]
-          : fallbackSection[key];
+          : [];
     });
-
     return normalized;
   };
 
-  const aboutSection = normalizeSection(
-    item.aboutSection,
-    defaultExecutionPage.aboutSection,
-    ["supportChips", "overviewItems"],
-  );
-  aboutSection.visual = {
-    ...defaultExecutionPage.aboutSection.visual,
-    ...(item.aboutSection?.visual || {}),
-  };
+  const aboutSection = normalizeSection(item.aboutSection, [
+    "supportChips",
+    "overviewItems",
+  ]);
+  aboutSection.visual = { ...(item.aboutSection?.visual || {}) };
 
   return {
-    hero: normalizeHero(item.hero, defaultExecutionPage.hero),
+    hero: normalizeHero(item.hero),
     aboutSection,
-    coreSection: normalizeSection(
-      item.coreSection,
-      defaultExecutionPage.coreSection,
-      ["cards"],
-    ),
-    workflowSection: normalizeSection(
-      item.workflowSection,
-      defaultExecutionPage.workflowSection,
-      ["steps"],
-    ),
-    resultsSection: normalizeSection(
-      item.resultsSection,
-      defaultExecutionPage.resultsSection,
-      ["metrics"],
-    ),
+    coreSection: normalizeSection(item.coreSection, ["cards"]),
+    workflowSection: normalizeSection(item.workflowSection, ["steps"]),
+    resultsSection: normalizeSection(item.resultsSection, ["metrics"]),
     cta:
       item.cta?.length > 0
         ? item.cta
@@ -1446,78 +1215,25 @@ function normalizeExecutionPage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((ctaItem, index) =>
-              normalizeCtaItem(
-                ctaItem,
-                defaultExecutionPage.cta[index] || defaultExecutionPage.cta[0],
-              ),
-            )
-        : defaultExecutionPage.cta,
+            .map((ctaItem) => normalizeCtaItem(ctaItem))
+            .filter(Boolean)
+        : null,
   };
-}
-
-function mergeInsightsHeroTitles(titles, canonicalTitles) {
-  const pieces = (titles ?? [])
-    .filter((item) => item?.title)
-    .slice()
-    .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0));
-
-  if (!pieces.length) {
-    return canonicalTitles;
-  }
-
-  const findPiece = (pattern) =>
-    pieces.find((item) => pattern.test(`${item.title}`.trim()));
-
-  const lineOne = findPiece(/^turning data into$/i) || pieces[0];
-  const actionable =
-    findPiece(/^actionable$/i) || findPiece(/actionable/i) || canonicalTitles[1];
-  const business =
-    findPiece(/business insights/i) ||
-    pieces[pieces.length - 1] ||
-    canonicalTitles[2];
-
-  return [
-    {
-      ...canonicalTitles[0],
-      ...lineOne,
-      title: "Turning data into",
-      color: lineOne.color || "",
-      line: 1,
-      sortOrder: 1,
-    },
-    {
-      ...canonicalTitles[1],
-      ...actionable,
-      title: "actionable",
-      color: actionable.color || "#958dec",
-      line: 1,
-      sortOrder: 2,
-    },
-    {
-      ...canonicalTitles[2],
-      ...business,
-      title: "business insights",
-      color: business.color || "#958dec",
-      line: 2,
-      sortOrder: 3,
-    },
-  ];
 }
 
 function normalizeInsightsPage(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultInsightsPage;
+    return null;
   }
 
-  const hero = normalizeHero(item.hero, defaultInsightsPage.hero);
+  const hero = normalizeHero(item.hero);
 
   return {
     hero: {
       ...hero,
-      titles: mergeInsightsHeroTitles(hero.titles, defaultInsightsPage.hero.titles),
+      titles: mergeInsightsHeroTitles(hero.titles),
     },
     statistics:
       item.statistics?.length > 0
@@ -1527,34 +1243,18 @@ function normalizeInsightsPage(entry) {
             .sort(
               (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
             )
-            .map((statItem, index) =>
-              normalizeStatisticItem(
-                statItem,
-                defaultInsightsPage.statistics[index] ||
-                  defaultInsightsPage.statistics[0],
-              ),
-            )
-        : defaultInsightsPage.statistics,
+            .map((statItem) => normalizeStatisticItem(statItem)).filter(Boolean)
+        : null,
     benefits: normalizeInsightsSection(
-      item.benefits,
-      defaultInsightsPage.benefits,
-    ),
+      item.benefits),
     featuredInsights: normalizeInsightsSection(
-      item.featuredInsights,
-      defaultInsightsPage.featuredInsights,
-    ),
+      item.featuredInsights),
     coverageMatrix: normalizeInsightsSection(
-      item.coverageMatrix,
-      defaultInsightsPage.coverageMatrix,
-    ),
+      item.coverageMatrix),
     timeline: normalizeInsightsSection(
-      item.timeline,
-      defaultInsightsPage.timeline,
-    ),
+      item.timeline),
     discover: normalizeInsightsSection(
-      item.discover,
-      defaultInsightsPage.discover,
-    ),
+      item.discover),
   };
 }
 
@@ -1631,7 +1331,7 @@ export const getIndustriesPage = cache(async () => {
     "industries-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
     { revalidate: 180 },
   );
-  return normalizeMenuGroupsPage(data?.data, defaultIndustryMenuGroups);
+  return normalizeMenuGroupsPage(data?.data);
 });
 
 export const getStrategyPage = cache(async () => {
@@ -1639,10 +1339,7 @@ export const getStrategyPage = cache(async () => {
     "strategy-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
     { revalidate: 180 },
   );
-  return normalizeMenuGroupsPage(
-    data?.data,
-    strategyMenuItemsToGroups(),
-  );
+  return normalizeMenuGroupsPage(data?.data);
 });
 
 export const getBusinessProcessesPage = cache(async () => {
@@ -1707,87 +1404,57 @@ export const getCareersPage = cache(async () => {
   return normalizeCareersPage(data?.data);
 });
 
-function mergePageContent(defaultContent, cmsContent) {
-  if (!cmsContent || typeof cmsContent !== "object") {
-    return defaultContent;
-  }
-
-  return {
-    ...defaultContent,
-    ...cmsContent,
-  };
-}
-
-function normalizeContactTopic(item, fallbackItem, index) {
-  if (!item?.slug || !item?.label) {
-    return fallbackItem;
-  }
-
+function normalizeContactTopic(item, index) {
+  if (!item?.slug || !item?.label) return null;
   return {
     slug: item.slug.trim(),
     label: item.label.trim(),
-    srLabel: item.srLabel?.trim() || fallbackItem?.srLabel || item.label.trim(),
-    cardClassName:
-      item.cardClassName?.trim() ||
-      fallbackItem?.cardClassName ||
-      "bg-gray-defi-graphite text-gray-off-white",
-    spanClassName:
-      item.spanClassName?.trim() ||
-      fallbackItem?.spanClassName ||
-      "col-span-4 xl:col-span-3",
-    showServicesField:
-      item.showServicesField ?? fallbackItem?.showServicesField ?? false,
-    description:
-      item.description?.trim() ||
-      fallbackItem?.description ||
-      `Contact Sidago about ${item.label.trim()}.`,
-    sortOrder: item.sortOrder ?? fallbackItem?.sortOrder ?? index + 1,
+    srLabel: item.srLabel?.trim() || item.label.trim(),
+    cardClassName: item.cardClassName?.trim() || "bg-gray-defi-graphite text-gray-off-white",
+    spanClassName: item.spanClassName?.trim() || "col-span-4 xl:col-span-3",
+    showServicesField: item.showServicesField ?? false,
+    description: item.description?.trim() || `Contact Sidago about ${item.label.trim()}.`,
+    sortOrder: item.sortOrder ?? index + 1,
   };
 }
 
 function normalizeContactPage(entry) {
   const item = unwrapEntity(entry);
+  if (!item) return null;
 
-  if (!item) {
-    return defaultContactPage;
-  }
+  const inquiryServices = Array.isArray(item.inquiryServices)
+    ? item.inquiryServices
+        .filter((service) => service?.title)
+        .slice()
+        .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+        .map((service) => ({
+          title: service.title.trim(),
+          description: service.description?.trim() || "",
+        }))
+    : [];
 
   return {
-    eyebrow: item.eyebrow?.trim() || defaultContactPage.eyebrow,
-    heading: item.heading?.trim() || defaultContactPage.heading,
-    subheading: item.subheading?.trim() || defaultContactPage.subheading,
-    sidebarImageSrc:
-      item.sidebarImageSrc?.trim() || defaultContactPage.sidebarImageSrc,
+    eyebrow: item.eyebrow?.trim() || "",
+    heading: item.heading?.trim() || "",
+    subheading: item.subheading?.trim() || "",
+    sidebarImageSrc: item.sidebarImageSrc?.trim() || "",
+    inquiryServices,
     topics:
       item.topics?.length > 0
         ? item.topics
             .slice()
-            .sort(
-              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
-            )
-            .map((topic, index) =>
-              normalizeContactTopic(
-                topic,
-                defaultContactPage.topics[index] ||
-                  defaultContactPage.topics[0],
-                index,
-              ),
-            )
-        : defaultContactPage.topics,
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((topic, index) => normalizeContactTopic(topic, index))
+            .filter(Boolean)
+        : [],
     cta:
       item.cta?.length > 0
         ? item.cta
             .slice()
-            .sort(
-              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
-            )
-            .map((ctaItem, index) =>
-              normalizeCtaItem(
-                ctaItem,
-                defaultContactPage.cta[index] || defaultContactPage.cta[0],
-              ),
-            )
-        : defaultContactPage.cta,
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((ctaItem) => normalizeCtaItem(ctaItem))
+            .filter(Boolean)
+        : [],
   };
 }
 
@@ -1797,49 +1464,38 @@ function normalizeBrandPage(entry) {
 
 function normalizeEventsPage(entry) {
   const item = unwrapEntity(entry);
-
-  if (!item) {
-    return defaultEventsPage;
-  }
+  if (!item) return null;
 
   const normalized = normalizeEventsPageFromStrapi(item);
-  const hero = normalizeHero(item.hero, defaultEventsPage.hero);
+  if (!normalized) return null;
+
+  const hero = normalizeHero(item.hero);
 
   return {
-    ...defaultEventsPage,
     ...normalized,
     hero: {
       ...hero,
-      backgroundClassName:
-        item.backgroundClassName?.trim() ||
-        defaultEventsPage.backgroundClassName,
-      videoClass: defaultEventsPage.videoClass,
+      backgroundClassName: item.backgroundClassName?.trim() || "",
+      videoClass: "events-hero-video",
     },
     heroProps: {
       ...hero,
-      backgroundClassName:
-        item.backgroundClassName?.trim() ||
-        defaultEventsPage.backgroundClassName,
-      videoClass: defaultEventsPage.videoClass,
-      titles: hero.titles,
+      backgroundClassName: item.backgroundClassName?.trim() || "",
+      videoClass: "events-hero-video",
+      titles: hero?.titles,
     },
   };
 }
 
-function normalizeLegalPolicy(entry, fallbackPolicy) {
+function normalizeLegalPolicy(entry) {
   const item = unwrapEntity(entry);
-
-  if (!item) {
-    return fallbackPolicy;
-  }
-
-  const blocks = normalizeLegalBlocksFromStrapi(item.blocks);
-
+  if (!item) return null;
+  const blocks = normalizeLegalBlocksFromStrapi(item.blocks || []);
   return {
-    title: item.title?.trim() || fallbackPolicy.title,
-    lastUpdated: item.lastUpdated?.trim() || fallbackPolicy.lastUpdated,
-    activePolicy: item.activePolicy?.trim() || fallbackPolicy.activePolicy,
-    blocks: blocks.length > 0 ? blocks : fallbackPolicy.blocks,
+    title: item.title?.trim() || "",
+    lastUpdated: item.lastUpdated?.trim() || "",
+    activePolicy: item.activePolicy?.trim() || "",
+    blocks,
   };
 }
 
@@ -1847,17 +1503,17 @@ function normalizeLegalHub(entry) {
   const item = unwrapEntity(entry);
 
   if (!item) {
-    return defaultLegalHub;
+    return null;
   }
 
   const documents = normalizeLegalDocumentsFromStrapi(item.documents);
 
   return {
-    hubTitle: item.hubTitle?.trim() || defaultLegalHub.hubTitle,
+    hubTitle: item.hubTitle?.trim() || "",
     hubDescription:
-      item.hubDescription?.trim() || defaultLegalHub.hubDescription,
-    lastUpdated: item.lastUpdated?.trim() || defaultLegalHub.lastUpdated,
-    documents: documents.length > 0 ? documents : defaultLegalHub.documents,
+      item.hubDescription?.trim() || "",
+    lastUpdated: item.lastUpdated?.trim() || "",
+    documents: documents,
   };
 }
 
@@ -1892,21 +1548,21 @@ export const getPrivacyPolicy = cache(async () => {
   const data = await fetchAPI(`privacy-policy?${LEGAL_BLOCKS_POPULATE}`, {
     revalidate: 900,
   });
-  return normalizeLegalPolicy(data?.data, defaultPrivacyPolicy);
+  return normalizeLegalPolicy(data?.data);
 });
 
 export const getCookiesPolicy = cache(async () => {
   const data = await fetchAPI(`cookies-policy?${LEGAL_BLOCKS_POPULATE}`, {
     revalidate: 900,
   });
-  return normalizeLegalPolicy(data?.data, defaultCookiesPolicy);
+  return normalizeLegalPolicy(data?.data);
 });
 
 export const getModernSlaveryPolicy = cache(async () => {
   const data = await fetchAPI(`modern-slavery-policy?${LEGAL_BLOCKS_POPULATE}`, {
     revalidate: 900,
   });
-  return normalizeLegalPolicy(data?.data, defaultModernSlaveryPolicy);
+  return normalizeLegalPolicy(data?.data);
 });
 
 export const getLegalHub = cache(async () => {
@@ -1934,30 +1590,26 @@ const SERVICE_LANDING_POPULATE = [
 ].join("&");
 
 export const getServiceLandingPage = cache(async (slug) => {
-  const fallback = getDefaultServiceLandingPage(slug);
   const data = await fetchAPI(
     `service-landing-pages?filters[slug][$eq]=${encodeURIComponent(slug)}&${SERVICE_LANDING_POPULATE}`,
     { revalidate: 180 },
   );
   const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
 
-  return normalizeServiceLandingPageFromStrapi(unwrapEntity(item), fallback);
+  return normalizeServiceLandingPageFromStrapi(unwrapEntity(item));
 });
 
 function normalizeMainNavigationUtilityLinks(entry) {
   const item = unwrapEntity(entry);
-
-  if (!item?.utilityLinks?.length) {
-    return defaultUtilityLinks;
-  }
+  if (!item?.utilityLinks?.length) return [];
 
   return item.utilityLinks
     .slice()
     .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
     .map((link, index) => ({
-      label: link.label?.trim() || defaultUtilityLinks[index]?.label,
-      href: link.href?.trim() || defaultUtilityLinks[index]?.href,
-      srLabel: link.srLabel?.trim() || link.label?.trim(),
+      label: link.label?.trim() || "",
+      href: link.href?.trim() || "",
+      srLabel: link.srLabel?.trim() || link.label?.trim() || "",
       sortOrder: link.sortOrder ?? index + 1,
     }));
 }
@@ -1985,15 +1637,14 @@ export const getMainNavigation = cache(async () => {
   });
 });
 
-export { defaultMainNavigation };
-
 export const getSitePage = cache(async (slug) => {
-  const fallback = getDefaultSitePage(slug);
   const data = await fetchAPI(
     `site-pages?filters[slug][$eq]=${encodeURIComponent(slug)}`,
     { revalidate: 180 },
   );
   const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
 
-  return normalizeSitePageFromStrapi(unwrapEntity(item), fallback);
+  const entry = unwrapEntity(item);
+  if (!entry?.content) return null;
+  return entry.content;
 });

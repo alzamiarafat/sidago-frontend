@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { reportContentsContent } from "@/src/components/sections/v2/digital-support-services/data";
 import "./report-image-preview.css";
 
 function ShareLinkedInIcon() {
@@ -282,9 +281,13 @@ function ArticleImage({ image }) {
 }
 
 export default function ReportContentsSection({
-  content = reportContentsContent,
+  content,
   shareUrl: shareUrlProp,
 }) {
+  if (!content?.mainSection) {
+    return null;
+  }
+
   const [shareUrl, setShareUrl] = useState(shareUrlProp || "");
   const [activeSectionId, setActiveSectionId] = useState(
     content.tableOfContents?.[0]?.id || "",
@@ -389,7 +392,7 @@ export default function ReportContentsSection({
             </div>
 
             <nav className="flex flex-col gap-xs" aria-label="Article contents">
-              {tableOfContents.map((item) => {
+              {(tableOfContents ?? []).map((item) => {
                 const isActive = activeSectionId === item.id;
 
                 return (

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import BevelNavButton from "@/src/components/sections/v2/common/BevelNavButton";
-import { recommendedInsightsContent } from "@/src/components/sections/v2/insights/data";
 
 const MOBILE_INITIAL_COUNT = 2;
 const MOBILE_LOAD_STEP = 2;
@@ -120,8 +119,12 @@ function FeaturedInsightCard({ card, desktopColumns, className = "", layout = "c
 }
 
 export default function RecommendedInsightsSection({
-  content = recommendedInsightsContent,
+  content,
 }) {
+  if (!content?.heading || !content?.cards?.length) {
+    return null;
+  }
+
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileVisibleCount, setMobileVisibleCount] = useState(MOBILE_INITIAL_COUNT);

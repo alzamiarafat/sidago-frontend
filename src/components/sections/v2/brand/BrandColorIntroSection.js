@@ -1,8 +1,5 @@
-import { defaultBrandPage } from "@/src/data/cms/brand-page.mjs";
-
-export default function BrandColorIntroSection({
-  content = defaultBrandPage.pageContent.colorIntro,
-}) {
+export default function BrandColorIntroSection({ content }) {
+  if (!content) return null;
   return (
     <section className="bg-gray-night-green text-gray-off-white">
       <div className="container py-block pt-4xl pb-xl">

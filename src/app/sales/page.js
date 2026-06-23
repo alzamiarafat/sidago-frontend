@@ -5,6 +5,7 @@ import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner"
 import SalesLandingView from "@/src/components/sections/v2/salespage/SalesLandingView";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.sales;
 
@@ -13,6 +14,10 @@ export default async function SalesPage() {
     getGlobalSettings(),
     getSitePage("sales"),
   ]);
+
+  if (!content?.hero) {
+    notFound();
+  }
 
   return (
     <div className="flex min-h-svh flex-col text-base">

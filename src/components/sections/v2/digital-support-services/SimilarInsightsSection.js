@@ -7,7 +7,6 @@ import BevelNavButton, {
   BEVEL_NAV_BUTTON_CLASS,
 } from "@/src/components/sections/v2/common/BevelNavButton";
 import { BRAND_COLORS } from "@/src/data/brand-colors";
-import { similarInsightsContent } from "@/src/components/sections/v2/digital-support-services/data";
 
 function InsightCardLink({ card, className, style, children }) {
   const linkStyle = { position: "relative", ...style };
@@ -130,7 +129,7 @@ function isLightCardBg(color) {
 const NAV_BUTTON_CLASS = `${BEVEL_NAV_BUTTON_CLASS} text-gray-night-green`;
 
 export default function SimilarInsightsSection({
-  content = similarInsightsContent,
+  content,
   /** Passed from parent page — e.g. #070B09 (dark) or #FFFFFF (light). */
   sectionBgColor = "#FFFFFF",
   /** Tailwind classes for section background (overrides sectionBgColor when set). */
@@ -146,6 +145,10 @@ export default function SimilarInsightsSection({
   /** Show optional description line on cards. */
   showDescription = true,
 }) {
+  if (!content?.heading || !content?.cards?.length) {
+    return null;
+  }
+
   const isLightSection = sectionClassName
     ? sectionClassName.includes("bg-white") ||
     sectionClassName.includes("bg-[#FFFFFF") ||

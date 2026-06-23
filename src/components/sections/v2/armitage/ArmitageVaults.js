@@ -1,6 +1,5 @@
 import ArmitageBadge from "./ArmitageBadge";
 import ArmitageButton from "./ArmitageButton";
-import { ARMITAGE_VAULTS } from "./data";
 
 const VAULT_COLUMNS = "armitage-vaults__columns";
 
@@ -43,7 +42,11 @@ function VaultCard({ vault, isLast }) {
   );
 }
 
-export default function ArmitageVaults() {
+export default function ArmitageVaults({ vaults }) {
+  if (!vaults?.length) {
+    return null;
+  }
+
   return (
     <div className="armitage-vaults">
       <section className="armitage-container armitage-vaults__section" id="vault">
@@ -55,11 +58,11 @@ export default function ArmitageVaults() {
           <span />
         </div>
 
-        {ARMITAGE_VAULTS.map((vault, index) => (
+        {vaults.map((vault, index) => (
           <VaultCard
             key={vault.name}
             vault={vault}
-            isLast={index === ARMITAGE_VAULTS.length - 1}
+            isLast={index === vaults.length - 1}
           />
         ))}
       </section>

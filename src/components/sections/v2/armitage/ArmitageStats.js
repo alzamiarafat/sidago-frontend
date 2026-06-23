@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { DotMatrixText } from "../common/DotMatrixText";
-import { ARMITAGE_STATS } from "./data";
 
 const DOT_COLORS = ["#0dcfcf", "#3c85dd", "#7fb2f1", "#66ff9a"];
 
-export default function ArmitageStats() {
+export default function ArmitageStats({ stats }) {
   const [active, setActive] = useState(-1);
+
+  if (!stats?.length) {
+    return null;
+  }
 
   return (
     <div className="armitage-stats">
@@ -20,7 +23,7 @@ export default function ArmitageStats() {
 
         <div className="armitage-stats__group">
           <div className="armitage-stats__grid">
-            {ARMITAGE_STATS.map((item, index) => (
+            {stats.map((item, index) => (
               <div
                 key={item.label}
                 className="armitage-stats__item"

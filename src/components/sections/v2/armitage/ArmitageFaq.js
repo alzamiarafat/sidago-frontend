@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { ARMITAGE_FAQ } from "./data";
 
 function FaqIcon({ open }) {
   return (
@@ -16,8 +15,12 @@ function FaqIcon({ open }) {
   );
 }
 
-export default function ArmitageFaq() {
+export default function ArmitageFaq({ items }) {
   const [openIndex, setOpenIndex] = useState(-1);
+
+  if (!items?.length) {
+    return null;
+  }
 
   return (
     <div className="armitage-faq">
@@ -25,7 +28,7 @@ export default function ArmitageFaq() {
         <h2 className="armitage-faq__title">Frequently Asked Questions</h2>
 
         <div className="armitage-faq__list">
-          {ARMITAGE_FAQ.map((item, index) => {
+          {items.map((item, index) => {
             const isOpen = openIndex === index;
             return (
               <div key={item.question} className="armitage-faq__item">

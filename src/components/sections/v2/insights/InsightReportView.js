@@ -3,28 +3,22 @@
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import ReportInsightHero from "@/src/components/sections/v2/digital-support-services/ReportInsightHero";
 import AtAGlanceSection from "@/src/components/sections/v2/digital-support-services/AtAGlanceSection";
 import ReportContentsSection from "@/src/components/sections/v2/digital-support-services/ReportContentsSection";
 import SubscribeSection from "@/src/components/sections/v2/digital-support-services/SubscribeSection";
 import SimilarInsightsSection from "@/src/components/sections/v2/digital-support-services/SimilarInsightsSection";
-import {
-  atAGlanceContent,
-  reportContentsContent,
-  reportInsightHero,
-  similarInsightsContent,
-  subscribeContent,
-} from "@/src/components/sections/v2/insights/insightReportData";
 
 export default function InsightReportView({
   footer,
   hero,
-  atAGlance = atAGlanceContent,
-  reportContents = reportContentsContent,
-  subscribe = subscribeContent,
-  similarInsights = similarInsightsContent,
+  atAGlance,
+  reportContents,
+  subscribe,
+  similarInsights,
 }) {
-  const heroNode = hero ?? <ReportInsightHero {...reportInsightHero} />;
+  if (!hero || !atAGlance || !reportContents || !subscribe || !similarInsights) {
+    return null;
+  }
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -32,7 +26,7 @@ export default function InsightReportView({
 
       <div className="flex flex-1 flex-col">
         <main className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1">
-          {heroNode}
+          {hero}
           <AtAGlanceSection {...atAGlance} />
           <ReportContentsSection content={reportContents} />
           <SubscribeSection content={subscribe} />

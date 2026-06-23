@@ -1,5 +1,3 @@
-import { insightsSeriesContent } from "@/src/components/sections/v2/insights/data";
-
 function SeriesArrow({ mobile = false }) {
   return (
     <svg
@@ -38,9 +36,11 @@ function SeriesItem({ item }) {
   );
 }
 
-export default function InsightsSeriesSection({
-  content = insightsSeriesContent,
-}) {
+export default function InsightsSeriesSection({ content }) {
+  if (!content?.heading || !content?.items?.length) {
+    return null;
+  }
+
   const { heading, headingId, dividerClassName, items } = content;
 
   return (

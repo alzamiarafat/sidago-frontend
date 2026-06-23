@@ -22,18 +22,6 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
 import {
-  campaignBars,
-  caseStudies,
-  conversionItems,
-  coreServices,
-  faqItems,
-  insightBlocks,
-  performanceStats,
-  processSteps,
-  progressMetrics,
-  strategyPillars,
-} from "@/src/components/sections/v2/marketing-growth/data";
-import {
   fadeIn,
   fadeUp,
   stagger,
@@ -42,20 +30,7 @@ import {
 
 const serviceIcons = [FiLayers, FiZap, FiUsers, FiTarget, FiSearch, FiBarChart2];
 
-const defaultMarketingContent = {
-  strategyPillars,
-  coreServices,
-  insightBlocks,
-  conversionItems,
-  progressMetrics,
-  campaignBars,
-  performanceStats,
-  caseStudies,
-  processSteps,
-  faqItems,
-};
-
-const MarketingGrowthContentContext = createContext(defaultMarketingContent);
+const MarketingGrowthContentContext = createContext(null);
 
 function useMarketingContent() {
   return useContext(MarketingGrowthContentContext);
@@ -644,12 +619,15 @@ function FaqSection() {
   );
 }
 
-export default function MarketingGrowthView({ footer, content = {} }) {
-  const pageData = { ...defaultMarketingContent, ...content };
+export default function MarketingGrowthView({ footer, content }) {
+  if (!content) {
+    return null;
+  }
+
   const reduce = useReducedMotion();
 
   return (
-    <MarketingGrowthContentContext.Provider value={pageData}>
+    <MarketingGrowthContentContext.Provider value={content}>
       <div className="flex min-h-svh flex-col text-base">
       <Navigation />
 

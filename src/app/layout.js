@@ -1,4 +1,5 @@
 import "./globals.css";
+import AppStatusScreen from "@/src/components/sections/v2/common/AppStatusScreen";
 // import "../styles/default.css";
 // import "../styles/light.css";
 // import "../styles/responsive.css";
@@ -101,11 +102,7 @@ export default async function RootLayout({ children }) {
     getMainNavigation(),
   ]);
 
-  if (!settings) {
-    return <div>No data found</div>;
-  }
-
-  const version = settings.version?.label;
+  const version = settings?.version?.label ?? "v2";
   const versionCSS =
     version === "v1"
       ? [
@@ -134,8 +131,20 @@ export default async function RootLayout({ children }) {
       <body
         className={[`version-${version}`, "antialiased"].join(" ")}
       >
-        <GlobalProvider settings={{ ...settings, navigation }}>
-          {children}
+        <GlobalProvider
+          settings={settings ? { ...settings, navigation } : null}
+        >
+          {!settings ? (
+            <AppStatusScreen
+              code="503"
+              eyebrow="Connection issue"
+              title="Unable to load site content"
+              description="We couldn't reach the CMS to load global settings. Please check your connection and refresh the page."
+              showLogo
+            />
+          ) : (
+            children
+          )}
         </GlobalProvider>
       </body>
     </html>

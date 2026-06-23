@@ -18,7 +18,6 @@ import {
 } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { fadeIn, fadeUp, stagger, viewportOnce } from "./motion";
-import { defaultProcessImprovementPageContent } from "./data.js";
 import "./process-improvement-mobile.css";
 
 /** Sidago brand — orange #E7512F, green #168b50, forest #006623 (see style-v2 / site usage) */
@@ -114,9 +113,19 @@ function DashboardMockup() {
   );
 }
 
-export default function ProcessImprovementView({ content = {} }) {
-  const page = { ...defaultProcessImprovementPageContent, ...content };
-  const { hero, logos, features, workflowSteps, dashboardSlides, whyMetrics } = page;
+export default function ProcessImprovementView({ content }) {
+  if (
+    !content?.hero ||
+    !content?.logos?.length ||
+    !content?.features?.length ||
+    !content?.workflowSteps?.length ||
+    !content?.dashboardSlides?.length ||
+    !content?.whyMetrics?.length
+  ) {
+    return null;
+  }
+
+  const { hero, logos, features, workflowSteps, dashboardSlides, whyMetrics } = content;
   const featuresWithIcons = features.map((feature, index) => ({
     ...feature,
     icon: FEATURE_ICONS[index] || FiCpu,

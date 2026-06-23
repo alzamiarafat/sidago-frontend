@@ -2,10 +2,13 @@
 
 import { useRef } from "react";
 import ArmitageFooterAsciiCanvas from "./ArmitageFooterAsciiCanvas";
-import { ARMITAGE_FOOTER_DISCLAIMERS, ARMITAGE_FOOTER_LINKS } from "./data";
 import "./armitage-footer.css";
 
-export default function ArmitageFooter() {
+export default function ArmitageFooter({ links, disclaimers }) {
+  if (!links?.length || !disclaimers?.length) {
+    return null;
+  }
+
   const wrapperRef = useRef(null);
 
   return (
@@ -52,7 +55,7 @@ export default function ArmitageFooter() {
 
           <div className="armitage-footer__row">
             <nav className="armitage-footer__nav">
-              {ARMITAGE_FOOTER_LINKS.map((link) =>
+              {links.map((link) =>
                 link.external ? (
                   <a
                     key={link.href}
@@ -119,7 +122,7 @@ export default function ArmitageFooter() {
           <hr className="armitage-footer-divider" />
 
           <div className="armitage-footer__legal">
-            {ARMITAGE_FOOTER_DISCLAIMERS.map((text) => (
+            {disclaimers.map((text) => (
               <p key={text.slice(0, 48)} className="armitage-footer__disclaimer">
                 {text}
               </p>

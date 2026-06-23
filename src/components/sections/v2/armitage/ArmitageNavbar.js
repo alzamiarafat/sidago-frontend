@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import ArmitageButton from "./ArmitageButton";
 import ArmitageLogo from "./ArmitageLogo";
-import { ARMITAGE_NAV_LINKS } from "./data";
 
-export default function ArmitageNavbar({ links = ARMITAGE_NAV_LINKS }) {
+export default function ArmitageNavbar({ links }) {
   const [open, setOpen] = useState(false);
+
+  if (!links?.length) {
+    return null;
+  }
 
   return (
     <header className="armitage-navbar">

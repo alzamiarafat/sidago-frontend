@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useId, useState } from "react";
-import { coreServices } from "@/src/components/sections/v2/digital-support-services/data";
 import "./digital-support-inquiry.css";
 
 const CONTACT_EMAIL = "hello@sidago.com";
@@ -151,6 +150,7 @@ function SelectField({ id, label, hint, name, required, value, onChange, options
 export default function DigitalSupportInquirySection({
   topicLabel = "Digital Support Services",
   showServicesField = false,
+  services = [],
 }) {
   const formId = useId();
   const inquiryTitle = `Get in touch about ${topicLabel}`;
@@ -296,7 +296,7 @@ export default function DigitalSupportInquirySection({
                     Services interested
                   </FieldLabel>
                   <ul className="dss-inquiry-checks__list">
-                    {coreServices.map((service) => {
+                    {services.map((service) => {
                       const checked = values.services.includes(service.title);
                       const optionId = `${formId}-${service.title.replace(/\W+/g, "-").toLowerCase()}`;
 

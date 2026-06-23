@@ -7,6 +7,7 @@ import WhoWeServeIntroSection from "@/src/components/sections/v2/whoweserve/WhoW
 import { BRAND_COLORS } from "@/src/data/brand-colors";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Who we serve",
@@ -26,6 +27,10 @@ export default async function WhoWeServePage() {
     getGlobalSettings(),
     getSitePage("who-we-serve"),
   ]);
+
+  if (!content) {
+    notFound();
+  }
 
   return (
     <div className="flex min-h-svh flex-col bg-[#151B17] text-base">

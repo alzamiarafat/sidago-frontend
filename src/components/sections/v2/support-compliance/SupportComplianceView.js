@@ -8,10 +8,6 @@ import {
 } from "framer-motion";
 import {
   FiChevronDown,
-  FiLock,
-  FiShield,
-  FiTarget,
-  FiUsers,
 } from "react-icons/fi";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
@@ -20,19 +16,6 @@ import ComplianceLegalHub from "@/src/components/sections/v2/support-compliance/
 import ComplianceStandardsFlipCard from "@/src/components/sections/v2/support-compliance/ComplianceStandardsFlipCard";
 import SupportBrutalistShowcase from "@/src/components/sections/v2/support-compliance/SupportBrutalistShowcase";
 import SupportHelpHub from "@/src/components/sections/v2/support-compliance/SupportHelpHub";
-import {
-  complianceCards,
-  docLinks,
-  faqItems,
-  helpCategories,
-  legalTabs,
-  metricStats,
-  regulatoryTopics,
-  riskPoints,
-  securityItems,
-  supportPillars,
-  workflowSteps,
-} from "@/src/components/sections/v2/support-compliance/data";
 import {
   fadeIn,
   fadeUp,
@@ -49,23 +32,7 @@ const GLASS =
 const GLASS_SOFT =
   "rounded-3xl bg-white/[0.035] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.48)] backdrop-blur-xl md:p-7";
 
-const pillarIcons = [FiUsers, FiShield, FiLock, FiTarget];
-
-const defaultSupportContent = {
-  helpCategories,
-  legalTabs,
-  supportPillars,
-  complianceCards,
-  securityItems,
-  riskPoints,
-  regulatoryTopics,
-  docLinks,
-  workflowSteps,
-  metricStats,
-  faqItems,
-};
-
-const SupportComplianceContentContext = createContext(defaultSupportContent);
+const SupportComplianceContentContext = createContext(null);
 
 function useSupportContent() {
   return useContext(SupportComplianceContentContext);
@@ -376,17 +343,20 @@ function FaqSection() {
   );
 }
 
-export default function SupportComplianceView({ footer, content = {} }) {
-  const pageData = { ...defaultSupportContent, ...content };
+export default function SupportComplianceView({ footer, content }) {
+  if (!content) {
+    return null;
+  }
+
   const reduce = useReducedMotion();
 
   return (
-    <SupportComplianceContentContext.Provider value={pageData}>
+    <SupportComplianceContentContext.Provider value={content}>
       <div className="font-saans">
-      <SupportHelpHub helpCategories={pageData.helpCategories} />
+      <SupportHelpHub helpCategories={content.helpCategories} />
       <SupportBrutalistShowcase />
       <ComplianceSection />
-      <ComplianceLegalHub legalTabs={pageData.legalTabs} />
+      <ComplianceLegalHub legalTabs={content.legalTabs} />
       <SecurityPrivacySection reduce={reduce} />
       <DataProtectionSection />
       <RegulatorySection reduce={reduce} />

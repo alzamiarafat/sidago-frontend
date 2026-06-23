@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { defaultHomepage } from "@/src/data/cms/defaults";
 import { getSectionColumnPadding } from "@/src/utils/sectionColumnPadding";
 import "./cta-mobile.css";
 
@@ -97,7 +96,7 @@ function CTAItem({ item, index, total, isLast }) {
     </>
   );
 }
-export default function CTASection({ items = defaultHomepage.cta }) {
+export default function CTASection({ items = [] }) {
   const ctaItems =
     items
       ?.map((item) => ({

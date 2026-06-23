@@ -10,7 +10,6 @@ import Image2 from "@/src/data/image-2";
 import Image3 from "@/src/data/image-3";
 import Image4 from "@/src/data/image-4";
 import { usePathname } from "next/navigation";
-import { defaultMainNavigation } from "@/src/data/cms/navigation.mjs";
 import { withIndustryNavVisuals } from "@/src/data/industryNavVisuals";
 import "./navbar-industries.css";
 import "./navbar-mobile.css";
@@ -101,8 +100,8 @@ export default function Navigation() {
   // const isActive = activeRoutes.some((route) => pathname.startsWith(route));
 
   // const isActive = pathname.startsWith(item.href); // checks if route matches
-  const navigation = settings?.navigation ?? defaultMainNavigation;
-  const productSections = navigation.services;
+  const navigation = settings?.navigation;
+  const productSections = navigation?.services ?? [];
 
   useEffect(() => {
     startTransition(() => {
@@ -397,7 +396,7 @@ export default function Navigation() {
                   width={170}
                   height={16}
                   className="[color:transparent]"
-                  src={`/images/${settings.siteLogo.name}`}
+                  src={`/images/${settings?.siteLogo?.name ?? "navbar-logo-icon.png"}`}
                 />
               </div>
             </div>
@@ -2097,7 +2096,7 @@ export default function Navigation() {
                   width={160}
                   height={14}
                   className="[color:transparent]"
-                  src={`/images/${settings.siteLogo.name}`}
+                  src={`/images/${settings?.siteLogo?.name ?? "navbar-logo-icon.png"}`}
                 />
               </div>
             </div>

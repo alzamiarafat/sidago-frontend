@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const contact = await getContactPage();
+  if (!contact?.topics?.length) return [];
   return contact.topics.map((topic) => ({ topic: topic.slug }));
 }
 
@@ -49,6 +50,7 @@ export default async function ContactTopicPage({ params }) {
             <DigitalSupportInquirySection
               topicLabel={topic.label}
               showServicesField={Boolean(topic.showServicesField)}
+              services={contact.inquiryServices}
             />
             <CTASection items={contact.cta} />
             <Footer />

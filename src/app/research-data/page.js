@@ -1,6 +1,7 @@
 import ResearchDataView from "@/src/components/sections/v2/research-data/ResearchDataView";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Research & Data",
@@ -14,6 +15,10 @@ export default async function ResearchDataPage() {
     getGlobalSettings(),
     getSitePage("research-data"),
   ]);
+
+  if (!content) {
+    notFound();
+  }
 
   return <ResearchDataView footer={settings?.footer} content={content} />;
 }

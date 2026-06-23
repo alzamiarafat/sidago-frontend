@@ -1,24 +1,26 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ARMITAGE_ABOUT_TABS } from "./data";
 
 const AUTO_ADVANCE_MS = 8000;
 
-export default function ArmitageAbout() {
+export default function ArmitageAbout({ tabs }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const startRef = useRef(Date.now());
   const rafRef = useRef(null);
   const videoRefs = useRef([]);
+  const tabCount = tabs?.length ?? 0;
 
   const advance = useCallback(() => {
-    setActiveIndex((i) => (i + 1) % ARMITAGE_ABOUT_TABS.length);
+    if (!tabCount) return;
+    setActiveIndex((i) => (i + 1) % tabCount);
     startRef.current = Date.now();
     setProgress(0);
-  }, []);
+  }, [tabCount]);
 
   useEffect(() => {
+    if (!tabCount) return undefined;
     const tick = () => {
       const elapsed = Date.now() - startRef.current;
       const next = Math.min(elapsed / AUTO_ADVANCE_MS, 1);
@@ -31,9 +33,10 @@ export default function ArmitageAbout() {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [activeIndex, advance]);
+  }, [activeIndex, advance, tabCount]);
 
   useEffect(() => {
+    if (!tabCount) return undefined;
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
       if (index === activeIndex) {
@@ -46,13 +49,17 @@ export default function ArmitageAbout() {
         video.pause();
       }
     });
-  }, [activeIndex]);
+  }, [activeIndex, tabCount]);
 
   const selectTab = (index) => {
     setActiveIndex(index);
     startRef.current = Date.now();
     setProgress(0);
   };
+
+  if (!tabCount) {
+    return null;
+  }
 
   return (
     <section className="armitage-about" id="about">
@@ -65,7 +72,7 @@ export default function ArmitageAbout() {
 
         <div className="armitage-about__grid">
           <div className="armitage-about__tabs">
-            {ARMITAGE_ABOUT_TABS.map((tab, index) => {
+            {tabs.map((tab, index) => {
               const isActive = index === activeIndex;
               return (
                 <button
@@ -107,7 +114,7 @@ export default function ArmitageAbout() {
           </div>
 
           <div className="armitage-about__visual armitage-bevel-md">
-            {ARMITAGE_ABOUT_TABS.map((tab, index) => (
+            {tabs.map((tab, index) => (
               <video
                 key={tab.id}
                 ref={(el) => {
