@@ -27,6 +27,7 @@ export const defaultEventsPage = {
     lighterTheme: eventsHero.lighterTheme ?? false,
     loop: eventsHero.loop ?? true,
     lighterBgColor: eventsHero.lighterBgColor || "bg-[#f0f1f1]",
+    syncBackgroundColor: eventsHero.syncBackgroundColor ?? false,
     titles: buildHeroTitlesFromLines(
       eventsHero.titleLines,
       eventsHero.accentColor,

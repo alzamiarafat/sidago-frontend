@@ -308,6 +308,68 @@ body {
   z-index: 2;
 }
 
+[data-hero-bg-sync] {
+  --hero-bg-left: #070807;
+  --hero-bg-mid: #070807;
+  --hero-bg-right: #000000;
+  background: linear-gradient(
+    90deg,
+    var(--hero-bg-left) 0%,
+    var(--hero-bg-left) 44%,
+    var(--hero-bg-mid) 56%,
+    var(--hero-bg-right) 100%
+  ) !important;
+}
+
+.events-hero-video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: min(31.25rem, 42vw);
+  width: auto;
+  background-color: #070807;
+  isolation: isolate;
+}
+
+.events-hero-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    #070807 0%,
+    rgba(7, 8, 7, 0.94) 14%,
+    rgba(7, 8, 7, 0.62) 26%,
+    rgba(7, 8, 7, 0.28) 40%,
+    rgba(7, 8, 7, 0) 54%
+  );
+}
+
+.events-hero-video video {
+  filter: saturate(1.02) brightness(0.97) contrast(1.02);
+  opacity: 1;
+}
+
+@media (max-width: 1023px) {
+  .events-hero-video {
+    left: 0;
+    width: 100%;
+  }
+
+  .events-hero-video::after {
+    background: linear-gradient(
+      to right,
+      #070807 0%,
+      rgba(7, 8, 7, 0.9) 18%,
+      rgba(7, 8, 7, 0.45) 34%,
+      rgba(7, 8, 7, 0) 52%
+    );
+  }
+}
+
 .support-compliance-hero-video {
   background-color: #f1f3f1;
   isolation: isolate;

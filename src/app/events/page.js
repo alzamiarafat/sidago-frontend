@@ -31,12 +31,12 @@ export default async function EventsPage() {
   const { pageContent } = events;
 
   return (
-    <div className="flex min-h-svh flex-col bg-[#151B17] text-base">
+    <div className="flex min-h-svh flex-col bg-[#070807] text-base">
       <Navigation />
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <main
-          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-[#151B17] text-gray-off-white"
+          className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-[#070807] text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection {...events.heroProps} />

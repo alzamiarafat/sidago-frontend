@@ -15,8 +15,38 @@ function resolveVisual(item) {
   return "capacity";
 }
 
+function useResponsiveVisibleCount(visibleCount) {
+  const [resolvedVisibleCount, setResolvedVisibleCount] = useState(visibleCount);
+
+  useEffect(() => {
+    const update = () => {
+      const width = window.innerWidth;
+
+      if (width < 768) {
+        setResolvedVisibleCount(1);
+        return;
+      }
+
+      if (width < 1024) {
+        setResolvedVisibleCount(2);
+        return;
+      }
+
+      setResolvedVisibleCount(visibleCount);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+
+    return () => window.removeEventListener("resize", update);
+  }, [visibleCount]);
+
+  return resolvedVisibleCount;
+}
+
 export default function PerformanceViewsCarousel({ section, visibleCount = 4 }) {
   const items = section?.items ?? [];
+  const resolvedVisibleCount = useResponsiveVisibleCount(visibleCount);
   const outerRef = useRef(null);
   const trackRef = useRef(null);
   const [metrics, setMetrics] = useState({ cardWidth: 0, loopWidth: 0 });
@@ -28,7 +58,8 @@ export default function PerformanceViewsCarousel({ section, visibleCount = 4 }) 
 
       const outerWidth = outerRef.current.offsetWidth;
       const gap = parseFloat(getComputedStyle(trackRef.current).gap) || 20;
-      const cardWidth = (outerWidth - gap * (visibleCount - 1)) / visibleCount;
+      const cardWidth =
+        (outerWidth - gap * (resolvedVisibleCount - 1)) / resolvedVisibleCount;
       const loopWidth = items.length * cardWidth + (items.length - 1) * gap;
 
       setMetrics({ cardWidth, loopWidth });
@@ -51,7 +82,7 @@ export default function PerformanceViewsCarousel({ section, visibleCount = 4 }) 
       observer?.disconnect();
       window.removeEventListener("resize", updateMetrics);
     };
-  }, [items.length, visibleCount]);
+  }, [items.length, resolvedVisibleCount]);
 
   if (!items.length) return null;
 

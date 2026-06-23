@@ -40,10 +40,11 @@ export const eventsHero = {
   fontWeight: 400,
   loop: true,
   lighterBgColor: "bg-[#f0f1f1]",
-  backgroundClassName: "bg-[#151B17]",
+  backgroundClassName: "bg-[#070807]",
   videoOverlay: false,
+  syncBackgroundColor: true,
   videoSectionClass: "",
-  videoClass: "left-[500px] !w-3/4",
+  videoClass: "events-hero-video",
   accentColor: EVENTS_HERO_ACCENT,
   subtitle: "Find out where to meet, talk, and build with us next",
   titleLines: [

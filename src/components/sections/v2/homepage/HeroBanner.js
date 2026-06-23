@@ -125,6 +125,7 @@ export default function HeroBannerSection({
   lighterBgColor = "bg-[#f0f1f1]",
   backgroundClassName,
   videoOverlay,
+  syncBackgroundColor = false,
   sideLogo,
 }) {
   const backgroundClass =
@@ -150,7 +151,10 @@ export default function HeroBannerSection({
     <section
       className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
     >
-      <div className={`absolute inset-0 ${backgroundClass}`}>
+      <div
+        className={`absolute inset-0 ${syncBackgroundColor ? "" : backgroundClass}`}
+        {...(syncBackgroundColor ? { "data-hero-bg-sync": "" } : {})}
+      >
         {/* Keep your exact structure */}
         {useVideo && (
           <HeroVideoBackground
@@ -160,6 +164,7 @@ export default function HeroBannerSection({
             lighterTheme={lighterTheme}
             loop={loop}
             showOverlay={videoOverlay}
+            syncBackgroundColor={syncBackgroundColor}
           />
         )}
 
