@@ -9,7 +9,9 @@ import { Discover } from "@/src/components/sections/v2/insights/Discover";
 import "@/src/components/sections/v2/insights/insights-hero-mobile.css";
 import { getGlobalSettings, getInsightsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
+import CMSPageUnavailable from "@/src/components/sections/v2/common/CMSPageUnavailable";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = routeMetadata.insights;
 
@@ -337,13 +339,16 @@ function TimelineSection({ section }) {
 }
 
 export default async function InsightPage() {
-  const [settings, insightsPage] = await Promise.all([
-    getGlobalSettings(),
-    getInsightsPage(),
-  ]);
+  const insightsPage = await getInsightsPage();
+  const settings = await getGlobalSettings();
 
   if (!insightsPage?.hero) {
-    notFound();
+    return (
+      <div className="flex min-h-svh flex-col text-base">
+        <Navigation />
+        <CMSPageUnavailable className="min-h-[calc(100svh-var(--header-height))]" />
+      </div>
+    );
   }
 
   const hero = {

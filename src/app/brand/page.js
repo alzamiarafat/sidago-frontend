@@ -1,4 +1,5 @@
 import Footer from "@/src/components/sections/v2/common/Footer";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import BrandColorIntroSection from "@/src/components/sections/v2/brand/BrandColorIntroSection";
 import BrandColorSystemSection from "@/src/components/sections/v2/brand/BrandColorSystemSection";
@@ -9,7 +10,6 @@ import BrandMediaResourcesSection from "@/src/components/sections/v2/brand/Brand
 import BrandSubBrandsSection from "@/src/components/sections/v2/brand/BrandSubBrandsSection";
 import { getBrandPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Brand",
@@ -25,6 +25,7 @@ export const metadata = buildPageMetadata({
   ],
 });
 
+
 export default async function BrandPage() {
   const [settings, brand] = await Promise.all([
     getGlobalSettings(),
@@ -32,7 +33,7 @@ export default async function BrandPage() {
   ]);
 
   if (!brand?.pageContent) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-[#151B17] text-base" />;
   }
 
   const content = brand.pageContent;

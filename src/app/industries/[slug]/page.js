@@ -1,9 +1,9 @@
 import IndustryPageTemplate from "@/src/components/sections/v2/industriespage/IndustryPageTemplate";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getIndustriesPage } from "@/src/lib/api";
 import { collectSlugsFromMenuGroups } from "@/src/lib/menu-static-slugs";
 import { getIndustryMetadata } from "@/src/lib/seo";
 import { getIndustryMenuGroups } from "@/src/utils/navigationTabUtils";
-import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const slugs = new Set([
@@ -29,13 +29,14 @@ export async function generateMetadata({ params }) {
   return getIndustryMetadata(slug);
 }
 
+
 export default async function IndustryDetailPage({ params }) {
   const { slug } = await params;
   const variant = slug === "b2b-commercial" ? "b2b" : "default";
   const industriesPage = await getIndustriesPage();
 
   if (!industriesPage?.menuGroups) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

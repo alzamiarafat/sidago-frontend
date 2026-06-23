@@ -1,5 +1,6 @@
 
 import CTASection from "@/src/components/sections/v2/common/CTA";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
@@ -9,15 +10,15 @@ import Support from "@/src/components/sections/v2/servicepage/Support";
 import "@/src/components/sections/v2/infrastructure/infrastructure-hero-mobile.css";
 import { getInfrastructurePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.forwards;
+
 
 export default async function InfrastructurePage() {
   const infrastructurePage = await getInfrastructurePage();
 
   if (!infrastructurePage?.hero) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   const hero = {

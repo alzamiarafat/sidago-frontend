@@ -1,4 +1,5 @@
 import CTASection from "@/src/components/sections/v2/common/CTA";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
@@ -8,7 +9,6 @@ import PerformanceViewsCarousel from "@/src/components/sections/v2/performancepa
 import PerformanceTabsSlider from "@/src/components/sections/v2/performancepage/PerformanceTabsSlider";
 import { getGlobalSettings, getPerformancePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Performance",
@@ -23,6 +23,7 @@ export const metadata = buildPageMetadata({
     "operational analytics",
   ],
 });
+
 
 const defaultTitles = [
   {
@@ -332,7 +333,7 @@ export default async function PerformancePage() {
   ]);
 
   if (!performancePage?.hero) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   const hero = {

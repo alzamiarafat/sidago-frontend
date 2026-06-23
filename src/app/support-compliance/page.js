@@ -1,13 +1,14 @@
 
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import SupportComplianceView from "@/src/components/sections/v2/support-compliance/SupportComplianceView";
 import "@/src/components/sections/v2/support-compliance/support-compliance-hero-mobile.css";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.supportCompliance;
+
 
 export default async function SupportCompliancePage() {
   const [settings, content] = await Promise.all([
@@ -16,7 +17,7 @@ export default async function SupportCompliancePage() {
   ]);
 
   if (!content?.hero) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   const hero = {

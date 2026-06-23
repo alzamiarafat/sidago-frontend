@@ -11,6 +11,51 @@ import { buildMainNavigation } from "@/src/lib/navigation-build.js";
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchCMSSingleType(path, normalize, validate, options = {}) {
+  const isValid =
+    validate ??
+    ((page) => page !== null && page !== undefined);
+  const { revalidate = 180 } = options;
+
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    const data = await fetchAPI(path, { revalidate, retries: 2 });
+    const normalized = normalize(data?.data);
+    if (isValid(normalized)) {
+      return normalized;
+    }
+    if (attempt < 5) {
+      await sleep(500 * attempt);
+    }
+  }
+
+  return null;
+}
+
+async function fetchCMSCollectionItem(path, normalize, validate, options = {}) {
+  const isValid =
+    validate ??
+    ((page) => page !== null && page !== undefined);
+  const { revalidate = 180 } = options;
+
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    const data = await fetchAPI(path, { revalidate, retries: 2 });
+    const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
+    const normalized = normalize(unwrapEntity(item));
+    if (isValid(normalized)) {
+      return normalized;
+    }
+    if (attempt < 5) {
+      await sleep(500 * attempt);
+    }
+  }
+
+  return null;
+}
+
 function unwrapEntity(entity) {
   if (!entity) {
     return null;
@@ -1267,6 +1312,7 @@ export async function fetchAPI(path, options = {}) {
     headers = {},
     logErrors = true,
     revalidate = 120,
+    retries = 3,
     next: nextFromUser,
     ...fetchOptions
   } = options;
@@ -1277,132 +1323,147 @@ export async function fetchAPI(path, options = {}) {
     ...(nextFromUser && typeof nextFromUser === "object" ? nextFromUser : {}),
   };
 
-  try {
-    const res = await fetch(`${STRAPI_URL}/api/${path}`, {
-      headers: {
-        "Content-Type": "application/json",
-        ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
-        ...headers,
-      },
-      next: nextConfig,
-      ...fetchOptions,
-    });
+  const requestUrl = `${STRAPI_URL}/api/${path}`;
+  const requestInit = {
+    headers: {
+      "Content-Type": "application/json",
+      ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
+      ...headers,
+    },
+    next: nextConfig,
+    ...fetchOptions,
+  };
 
-    if (!res.ok) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(requestUrl, requestInit);
+
+      if (res.ok) {
+        return await res.json();
+      }
+
+      const isRetryable = res.status >= 500 || res.status === 429;
+      if (isRetryable && attempt < retries) {
+        await sleep(500 * attempt);
+        continue;
+      }
+
       if (logErrors) {
         console.error("API Error:", res.status, path);
       }
       return null;
-    }
+    } catch (error) {
+      if (attempt < retries) {
+        await sleep(500 * attempt);
+        continue;
+      }
 
-    return await res.json();
-  } catch (error) {
-    console.error("Fetch failed:", error);
-    return null;
+      if (logErrors) {
+        console.error("Fetch failed:", error);
+      }
+      return null;
+    }
   }
+
+  return null;
 }
 
-export const getGlobalSettings = cache(async () => {
-  const data = await fetchAPI(
+export const getGlobalSettings = cache(async () =>
+  fetchCMSSingleType(
     "global?populate[siteLogo][fields][0]=url&populate[siteLogo][fields][1]=alternativeText&populate[socialLinks]=*&populate[version]=*&populate[footer][populate][navLinks]=*&populate[footer][populate][socialLinks]=*&populate[footer][populate][legalBlocks]=*&populate[footer][populate][policyLinks]=*",
+    normalizeGlobalSettings,
+    (page) => Boolean(page?.siteName),
     { revalidate: 900 },
-  );
-  return normalizeGlobalSettings(data?.data);
-});
+  ),
+);
 
-export const getHomepage = cache(async () => {
-  const data = await fetchAPI(
+export const getHomepage = cache(async () =>
+  fetchCMSSingleType(
     "homepage?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[marketTicker]=*&populate[capabilities]=*&populate[cardsGrid]=*&populate[cta]=*",
-    { revalidate: 180 },
-  );
-  return normalizeHomepage(data?.data);
-});
+    normalizeHomepage,
+    Boolean,
+  ),
+);
 
-export const getServicesPage = cache(async () => {
-  const data = await fetchAPI(
+export const getServicesPage = cache(async () =>
+  fetchCMSSingleType(
     "services-page?populate[serviceGroups][populate][children][populate][paragraphs]=*&populate[serviceGroups][populate][children][populate][children][populate]=*",
-    { revalidate: 180 },
-  );
-  return normalizeServicesPage(data?.data);
-});
+    normalizeServicesPage,
+    (page) => Boolean(page?.serviceGroups?.length),
+  ),
+);
 
-export const getIndustriesPage = cache(async () => {
-  const data = await fetchAPI(
+export const getIndustriesPage = cache(async () =>
+  fetchCMSSingleType(
     "industries-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
-    { revalidate: 180 },
-  );
-  return normalizeMenuGroupsPage(data?.data);
-});
+    (entry) => normalizeMenuGroupsPage(entry),
+    (page) => Boolean(page?.menuGroups?.length),
+  ),
+);
 
-export const getStrategyPage = cache(async () => {
-  const data = await fetchAPI(
+export const getStrategyPage = cache(async () =>
+  fetchCMSSingleType(
     "strategy-page?populate[menuGroups][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][paragraphs]=*&populate[menuGroups][populate][children][populate][children][populate]=*",
-    { revalidate: 180 },
-  );
-  return normalizeMenuGroupsPage(data?.data);
-});
+    (entry) => normalizeMenuGroupsPage(entry),
+    (page) => Boolean(page?.menuGroups?.length),
+  ),
+);
 
-export const getBusinessProcessesPage = cache(async () => {
-  const data = await fetchAPI(
+export const getBusinessProcessesPage = cache(async () =>
+  fetchCMSSingleType(
     "business-process?populate[hero][populate][titles]=*&populate[statistics]=*",
-    { revalidate: 180 },
-  );
-  return normalizeBusinessProcessesPage(data?.data);
-});
+    normalizeBusinessProcessesPage,
+    (page) => Boolean(page?.hero),
+  ),
+);
 
-export const getOperationsPage = cache(async () => {
-  const dataWithInfrastructure = await fetchAPI(
+export const getOperationsPage = cache(async () =>
+  fetchCMSSingleType(
     "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
-    { logErrors: false, revalidate: 180 },
-  );
-  const data =
-    dataWithInfrastructure ||
-    (await fetchAPI(
-      "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
-      { revalidate: 180 },
-    ));
-  return normalizeOperationsPage(data?.data);
-});
+    normalizeOperationsPage,
+    (page) => Boolean(page?.hero),
+  ),
+);
 
-export const getInfrastructurePage = cache(async () => {
-  const data = await fetchAPI(
+export const getInfrastructurePage = cache(async () =>
+  fetchCMSSingleType(
     "infrastructure?populate[hero][populate][titles]=*&populate[vision]=*&populate[support]=*&populate[profiles]=*",
-    { revalidate: 180 },
-  );
-  return normalizeInfrastructurePage(data?.data);
-});
+    normalizeInfrastructurePage,
+    (page) => Boolean(page?.hero),
+  ),
+);
 
-export const getInsightsPage = cache(async () => {
-  const data = await fetchAPI(
+export const getInsightsPage = cache(async () =>
+  fetchCMSSingleType(
     "insight?populate[hero][populate][titles]=*&populate[statistics]=*",
-    { revalidate: 180 },
-  );
-  return normalizeInsightsPage(data?.data);
-});
+    normalizeInsightsPage,
+    (page) => Boolean(page?.hero),
+  ),
+);
 
-export const getExecutionPage = cache(async () => {
-  const data = await fetchAPI(
+export const getExecutionPage = cache(async () =>
+  fetchCMSSingleType(
     "execution?populate[hero][populate][titles]=*&populate[cta]=*",
-    { revalidate: 180 },
-  );
-  return normalizeExecutionPage(data?.data);
-});
+    normalizeExecutionPage,
+    (page) => Boolean(page?.hero),
+  ),
+);
 
-export const getPerformancePage = cache(async () => {
-  const data = await fetchAPI(
+export const getPerformancePage = cache(async () =>
+  fetchCMSSingleType(
     "performance?populate[hero][populate][titles]=*&populate[cta]=*",
-    { revalidate: 180 },
-  );
-  return normalizePerformancePage(data?.data);
-});
+    normalizePerformancePage,
+    (page) => Boolean(page?.hero),
+  ),
+);
 
-export const getCareersPage = cache(async () => {
-  const data = await fetchAPI(
+export const getCareersPage = cache(async () =>
+  fetchCMSSingleType(
     "careers-page?populate[hero][populate][titles]=*&populate[statistics]=*&populate[quoteSection]=*&populate[valuesItems]=*&populate[teamsItems][populate][links]=*&populate[testimonialsItems]=*&populate[lifeStatsItems]=*",
-    { revalidate: 180 },
-  );
-  return normalizeCareersPage(data?.data);
-});
+    normalizeCareersPage,
+    (page) => Boolean(page?.hero),
+  ),
+);
 
 function normalizeContactTopic(item, index) {
   if (!item?.slug || !item?.label) return null;
@@ -1517,60 +1578,71 @@ function normalizeLegalHub(entry) {
   };
 }
 
-export const getContactPage = cache(async () => {
-  const data = await fetchAPI(
+export const getContactPage = cache(async () =>
+  fetchCMSSingleType(
     "contact-page?populate[topics]=*&populate[cta]=*",
-    { revalidate: 180 },
-  );
-  return normalizeContactPage(data?.data);
-});
+    normalizeContactPage,
+    (page) => Boolean(page?.heading || page?.topics?.length),
+  ),
+);
 
-export const getBrandPage = cache(async () => {
-  const data = await fetchAPI(
+export const getBrandPage = cache(async () =>
+  fetchCMSSingleType(
     "brand-page?populate[logoSlides]=*&populate[harnessingImages]=*&populate[mediaHeadshots]=*&populate[mediaBackdrops]=*",
-    { revalidate: 180 },
-  );
-  return normalizeBrandPage(data?.data);
-});
+    normalizeBrandPage,
+    (page) => Boolean(page?.pageContent),
+  ),
+);
 
 const EVENTS_POPULATE =
   "events-page?populate[hero][populate][titles]=*&populate[upcomingEvents]=*&populate[endpointStats]=*&populate[endpointShowcasePanels]=*&populate[pastSpeakers]=*&populate[pastConversationsItems]=*&populate[cta]=*";
 
-export const getEventsPage = cache(async () => {
-  const data = await fetchAPI(EVENTS_POPULATE, { revalidate: 180 });
-  return normalizeEventsPage(data?.data);
-});
+export const getEventsPage = cache(async () =>
+  fetchCMSSingleType(
+    EVENTS_POPULATE,
+    normalizeEventsPage,
+    (page) => Boolean(page?.heroProps && page?.pageContent),
+  ),
+);
 
 const LEGAL_BLOCKS_POPULATE =
   "populate[blocks][on][shared.legal-bullet-list][populate][items]=*&populate[blocks][on][shared.legal-contact-box][populate][lines]=*&populate[blocks][populate]=*";
 
-export const getPrivacyPolicy = cache(async () => {
-  const data = await fetchAPI(`privacy-policy?${LEGAL_BLOCKS_POPULATE}`, {
-    revalidate: 900,
-  });
-  return normalizeLegalPolicy(data?.data);
-});
+export const getPrivacyPolicy = cache(async () =>
+  fetchCMSSingleType(
+    `privacy-policy?${LEGAL_BLOCKS_POPULATE}`,
+    normalizeLegalPolicy,
+    (page) => Boolean(page?.blocks?.length),
+    { revalidate: 900 },
+  ),
+);
 
-export const getCookiesPolicy = cache(async () => {
-  const data = await fetchAPI(`cookies-policy?${LEGAL_BLOCKS_POPULATE}`, {
-    revalidate: 900,
-  });
-  return normalizeLegalPolicy(data?.data);
-});
+export const getCookiesPolicy = cache(async () =>
+  fetchCMSSingleType(
+    `cookies-policy?${LEGAL_BLOCKS_POPULATE}`,
+    normalizeLegalPolicy,
+    (page) => Boolean(page?.blocks?.length),
+    { revalidate: 900 },
+  ),
+);
 
-export const getModernSlaveryPolicy = cache(async () => {
-  const data = await fetchAPI(`modern-slavery-policy?${LEGAL_BLOCKS_POPULATE}`, {
-    revalidate: 900,
-  });
-  return normalizeLegalPolicy(data?.data);
-});
+export const getModernSlaveryPolicy = cache(async () =>
+  fetchCMSSingleType(
+    `modern-slavery-policy?${LEGAL_BLOCKS_POPULATE}`,
+    normalizeLegalPolicy,
+    (page) => Boolean(page?.blocks?.length),
+    { revalidate: 900 },
+  ),
+);
 
-export const getLegalHub = cache(async () => {
-  const data = await fetchAPI("legal-hub?populate[documents]=*", {
-    revalidate: 900,
-  });
-  return normalizeLegalHub(data?.data);
-});
+export const getLegalHub = cache(async () =>
+  fetchCMSSingleType(
+    "legal-hub?populate[documents]=*",
+    normalizeLegalHub,
+    (page) => Boolean(page?.documents?.length),
+    { revalidate: 900 },
+  ),
+);
 
 const SERVICE_LANDING_POPULATE = [
   "populate[hero][populate][breadcrumbs]=*",
@@ -1589,15 +1661,13 @@ const SERVICE_LANDING_POPULATE = [
   "populate[similarInsights][populate][cards]=*",
 ].join("&");
 
-export const getServiceLandingPage = cache(async (slug) => {
-  const data = await fetchAPI(
+export const getServiceLandingPage = cache(async (slug) =>
+  fetchCMSCollectionItem(
     `service-landing-pages?filters[slug][$eq]=${encodeURIComponent(slug)}&${SERVICE_LANDING_POPULATE}`,
-    { revalidate: 180 },
-  );
-  const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
-
-  return normalizeServiceLandingPageFromStrapi(unwrapEntity(item));
-});
+    (item) => normalizeServiceLandingPageFromStrapi(item),
+    (page) => Boolean(page?.hero),
+  ),
+);
 
 function normalizeMainNavigationUtilityLinks(entry) {
   const item = unwrapEntity(entry);
@@ -1638,13 +1708,21 @@ export const getMainNavigation = cache(async () => {
 });
 
 export const getSitePage = cache(async (slug) => {
-  const data = await fetchAPI(
-    `site-pages?filters[slug][$eq]=${encodeURIComponent(slug)}`,
-    { revalidate: 180 },
-  );
-  const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
+  const path = `site-pages?filters[slug][$eq]=${encodeURIComponent(slug)}`;
 
-  const entry = unwrapEntity(item);
-  if (!entry?.content) return null;
-  return entry.content;
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    const data = await fetchAPI(path, { revalidate: 180, retries: 2 });
+    const item = Array.isArray(data?.data) ? data.data[0] : data?.data;
+    const entry = unwrapEntity(item);
+
+    if (entry?.content) {
+      return entry.content;
+    }
+
+    if (attempt < 5) {
+      await sleep(500 * attempt);
+    }
+  }
+
+  return null;
 });

@@ -5,9 +5,11 @@ import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat"
 import "@/src/components/sections/v2/executionpage/execution-hero-mobile.css";
 import RestoreWellnessLogoCard from "@/src/components/sections/v2/executionpage/RestoreWellnessLogoCard";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
+import CMSPageUnavailable from "@/src/components/sections/v2/common/CMSPageUnavailable";
 import { getExecutionPage, getGlobalSettings } from "@/src/lib/api";
-import { notFound } from "next/navigation";
 import { buildPageMetadata } from "@/src/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = buildPageMetadata({
   title: "Execution",
@@ -397,13 +399,16 @@ function ExecutionSection({ content }) {
 }
 
 export default async function ExecutionPage() {
-  const [settings, executionContent] = await Promise.all([
-    getGlobalSettings(),
-    getExecutionPage(),
-  ]);
+  const executionContent = await getExecutionPage();
+  const settings = await getGlobalSettings();
 
   if (!executionContent?.hero) {
-    notFound();
+    return (
+      <div className="flex min-h-svh flex-col text-base">
+        <Navigation />
+        <CMSPageUnavailable className="min-h-[calc(100svh-var(--header-height))]" />
+      </div>
+    );
   }
 
   const hero = {

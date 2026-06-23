@@ -1,5 +1,6 @@
 
 import CTASection from "@/src/components/sections/v2/common/CTA";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
@@ -10,7 +11,7 @@ import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBen
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
 import "@/src/components/sections/v2/businessprocesses/business-processes-hero-mobile.css";
 import { getBusinessProcessesPage, getGlobalSettings } from "@/src/lib/api";
-import { notFound } from "next/navigation";
+
 
 export default async function BusinessProcesses() {
   const [page, settings] = await Promise.all([
@@ -19,7 +20,7 @@ export default async function BusinessProcesses() {
   ]);
 
   if (!page?.hero) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   const hero = {

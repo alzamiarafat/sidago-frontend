@@ -1,15 +1,16 @@
 import Link from "next/link";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getLegalHub } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.legalPolicies;
+
 
 export default async function LegalPoliciesHubPage() {
   const legalHub = await getLegalHub();
 
   if (!legalHub?.documents?.length) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-[#1C211E] text-base" />;
   }
 
   return (

@@ -1,4 +1,5 @@
 import Footer from "@/src/components/sections/v2/common/Footer";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import SimilarInsightsSection from "@/src/components/sections/v2/digital-support-services/SimilarInsightsSection";
@@ -7,7 +8,6 @@ import WhoWeServeIntroSection from "@/src/components/sections/v2/whoweserve/WhoW
 import { BRAND_COLORS } from "@/src/data/brand-colors";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Who we serve",
@@ -22,6 +22,7 @@ export const metadata = buildPageMetadata({
   ],
 });
 
+
 export default async function WhoWeServePage() {
   const [settings, content] = await Promise.all([
     getGlobalSettings(),
@@ -29,7 +30,7 @@ export default async function WhoWeServePage() {
   ]);
 
   if (!content) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

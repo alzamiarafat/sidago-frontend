@@ -3,20 +3,25 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import SalesLandingView from "@/src/components/sections/v2/salespage/SalesLandingView";
+import CMSPageUnavailable from "@/src/components/sections/v2/common/CMSPageUnavailable";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = routeMetadata.sales;
 
 export default async function SalesPage() {
-  const [settings, content] = await Promise.all([
-    getGlobalSettings(),
-    getSitePage("sales"),
-  ]);
+  const content = await getSitePage("sales");
+  const settings = await getGlobalSettings();
 
   if (!content?.hero) {
-    notFound();
+    return (
+      <div className="flex min-h-svh flex-col text-base">
+        <Navigation />
+        <CMSPageUnavailable className="min-h-[calc(100svh-var(--header-height))]" />
+      </div>
+    );
   }
 
   return (

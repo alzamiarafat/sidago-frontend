@@ -1,18 +1,19 @@
 import CTASection from "@/src/components/sections/v2/common/CTA";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import ContactUs from "@/src/components/sections/v2/contactpage/ContactUs";
 import { getContactPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.contact;
+
 
 export default async function ContactPage() {
   const contact = await getContactPage();
 
   if (!contact) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-[#1C211E] text-base" />;
   }
 
   return (

@@ -1,13 +1,14 @@
 
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import ProcessImprovementView from "@/src/components/process-improvement/ProcessImprovementView";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.processImprovement;
+
 
 export default async function ProcessImprovementPage() {
   const [settings, content] = await Promise.all([
@@ -16,7 +17,7 @@ export default async function ProcessImprovementPage() {
   ]);
 
   if (!content) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

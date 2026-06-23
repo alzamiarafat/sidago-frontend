@@ -1,4 +1,5 @@
 import CTASection from "@/src/components/sections/v2/common/CTA";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
@@ -9,7 +10,6 @@ import EventsBootcampSection from "@/src/components/sections/v2/events/EventsBoo
 import "@/src/components/sections/v2/events/events-hero-mobile.css";
 import { getEventsPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Events",
@@ -25,6 +25,7 @@ export const metadata = buildPageMetadata({
   ],
 });
 
+
 export default async function EventsPage() {
   const [settings, events] = await Promise.all([
     getGlobalSettings(),
@@ -32,7 +33,7 @@ export default async function EventsPage() {
   ]);
 
   if (!events?.pageContent || !events?.heroProps) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-[#070807] text-base" />;
   }
 
   const { pageContent } = events;

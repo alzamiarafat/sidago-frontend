@@ -1,7 +1,7 @@
 import ArmitageView from "@/src/components/sections/v2/armitage/ArmitageView";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Armitage by Sidago",
@@ -18,11 +18,12 @@ export const metadata = buildPageMetadata({
   ],
 });
 
+
 export default async function ArmitagePage() {
   const content = await getSitePage("armitage");
 
   if (!content) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return <ArmitageView content={content} />;

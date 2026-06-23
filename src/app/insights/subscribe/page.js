@@ -1,4 +1,5 @@
 import Footer from "@/src/components/sections/v2/common/Footer";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CTASection from "@/src/components/sections/v2/common/CTA";
 import InsightsDiscoverSection from "@/src/components/sections/v2/insights/InsightsDiscoverSection";
@@ -8,9 +9,9 @@ import SubscribeSection from "@/src/components/sections/v2/digital-support-servi
 import InsightsSubscribeHero from "@/src/components/sections/v2/insights/InsightsSubscribeHero";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.insightsSubscribe;
+
 
 export default async function InsightsSubscribePage() {
   const [settings, content] = await Promise.all([
@@ -19,7 +20,7 @@ export default async function InsightsSubscribePage() {
   ]);
 
   if (!content) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

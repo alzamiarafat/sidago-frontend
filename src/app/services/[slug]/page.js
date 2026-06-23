@@ -1,10 +1,10 @@
 import ServicePageTemplate from "@/src/components/sections/v2/servicepage/ServicePageTemplate";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getServicesPage } from "@/src/lib/api";
 import { collectSlugsFromMenuGroups } from "@/src/lib/menu-static-slugs";
 import { getServiceMetadata } from "@/src/lib/seo";
 import { getServicesMenuGroups } from "@/src/utils/navigationTabUtils";
 import { getServiceTemplateVariant } from "@/src/utils/serviceUtils";
-import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const slugs = new Set([
@@ -34,12 +34,13 @@ export async function generateMetadata({ params }) {
   return getServiceMetadata(slug);
 }
 
+
 export default async function ServiceDetailPage({ params }) {
   const { slug } = await params;
   const servicesPage = await getServicesPage();
 
   if (!servicesPage?.serviceGroups) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

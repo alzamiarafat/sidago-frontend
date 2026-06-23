@@ -1,9 +1,10 @@
 import CareersView from "@/src/components/sections/v2/careers/CareersView";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getCareersPage, getGlobalSettings } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.careers;
+
 
 export default async function CareersPage() {
   const [settings, careers] = await Promise.all([
@@ -12,7 +13,7 @@ export default async function CareersPage() {
   ]);
 
   if (!careers?.hero) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

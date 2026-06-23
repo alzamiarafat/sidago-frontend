@@ -1,9 +1,10 @@
 import CareersOpenRolesView from "@/src/components/sections/v2/careers/CareersOpenRolesView";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.careersOpportunities;
+
 
 export default async function CareersOpportunitiesPage() {
   const [settings, content] = await Promise.all([
@@ -12,7 +13,7 @@ export default async function CareersOpportunitiesPage() {
   ]);
 
   if (!content) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

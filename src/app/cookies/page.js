@@ -1,15 +1,16 @@
 import LegalPolicyPageShell from "@/src/components/legal/LegalPolicyPageShell";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getCookiesPolicy } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.legalCookies;
+
 
 export default async function CookiesPolicyPage() {
   const policy = await getCookiesPolicy();
 
   if (!policy?.blocks) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-[#1C211E] text-base" />;
   }
 
   return (

@@ -3,11 +3,13 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import OperationsPageContent from "@/src/components/sections/v2/operationspage/OperationsPageContent";
+import CMSPageUnavailable from "@/src/components/sections/v2/common/CMSPageUnavailable";
 import "@/src/components/sections/v2/operationspage/operations-page.css";
 import "@/src/components/sections/v2/operationspage/operations-hero-mobile.css";
 import { getGlobalSettings, getOperationsPage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = buildPageMetadata({
   title: "Our Operations",
@@ -24,13 +26,16 @@ export const metadata = buildPageMetadata({
 });
 
 export default async function OperationsPage() {
-  const [settings, operationsPage] = await Promise.all([
-    getGlobalSettings(),
-    getOperationsPage(),
-  ]);
+  const operationsPage = await getOperationsPage();
+  const settings = await getGlobalSettings();
 
   if (!operationsPage?.hero) {
-    notFound();
+    return (
+      <div className="flex min-h-svh flex-col bg-gray-night-green text-base">
+        <Navigation />
+        <CMSPageUnavailable className="min-h-[calc(100svh-var(--header-height))]" />
+      </div>
+    );
   }
 
   const heroTitles = operationsPage.hero?.titles?.map((title, index) =>

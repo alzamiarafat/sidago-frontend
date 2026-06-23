@@ -1,10 +1,11 @@
 import DigitalSupportServicesView from "@/src/components/sections/v2/digital-support-services/DigitalSupportServicesView";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import ReportInsightHero from "@/src/components/sections/v2/digital-support-services/ReportInsightHero";
 import { getGlobalSettings, getServiceLandingPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.digitalSupportServices;
+
 
 export default async function DigitalSupportPage() {
   const [settings, page] = await Promise.all([
@@ -13,7 +14,7 @@ export default async function DigitalSupportPage() {
   ]);
 
   if (!page?.hero) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

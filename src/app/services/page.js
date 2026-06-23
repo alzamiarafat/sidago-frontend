@@ -1,15 +1,16 @@
 import ServicePageTemplate from "@/src/components/sections/v2/servicepage/ServicePageTemplate";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getServicesPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.services;
+
 
 export default async function ServicePage() {
   const servicesPage = await getServicesPage();
 
   if (!servicesPage?.serviceGroups) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return (

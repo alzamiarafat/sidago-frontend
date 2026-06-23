@@ -1,7 +1,7 @@
 import ResearchDataView from "@/src/components/sections/v2/research-data/ResearchDataView";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
-import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Research & Data",
@@ -10,6 +10,7 @@ export const metadata = buildPageMetadata({
   path: "/research-data",
 });
 
+
 export default async function ResearchDataPage() {
   const [settings, content] = await Promise.all([
     getGlobalSettings(),
@@ -17,7 +18,7 @@ export default async function ResearchDataPage() {
   ]);
 
   if (!content) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
   }
 
   return <ResearchDataView footer={settings?.footer} content={content} />;

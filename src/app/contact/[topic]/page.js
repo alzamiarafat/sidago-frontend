@@ -1,4 +1,5 @@
 import CTASection from "@/src/components/sections/v2/common/CTA";
+import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import DigitalSupportInquirySection from "@/src/components/sections/v2/contactpage/DigitalSupportInquirySection";
@@ -28,12 +29,13 @@ export async function generateMetadata({ params }) {
   });
 }
 
+
 export default async function ContactTopicPage({ params }) {
   const { topic: topicSlug } = await params;
   const contact = await getContactPage();
 
   if (!contact) {
-    notFound();
+    return <CMSPageShell className="flex min-h-svh flex-col bg-[#1C211E] text-base" />;
   }
 
   const topic = contact.topics.find((item) => item.slug === topicSlug);

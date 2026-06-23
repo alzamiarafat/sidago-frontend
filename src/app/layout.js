@@ -1,5 +1,4 @@
 import "./globals.css";
-import AppStatusScreen from "@/src/components/sections/v2/common/AppStatusScreen";
 // import "../styles/default.css";
 // import "../styles/light.css";
 // import "../styles/responsive.css";
@@ -12,10 +11,7 @@ import { getGlobalSettings, getMainNavigation } from "../lib/api";
 import { GlobalProvider } from "../hooks/useGlobal";
 import { SITE_NAME, SITE_URL, routeMetadata } from "../lib/seo";
 
-/** Prefer static HTML + ISR; Strapi uses Data Cache via fetch `next` in fetchAPI. */
-export const dynamic = "force-static";
-export const fetchCache = "force-cache";
-export const revalidate = 180;
+export const dynamic = "force-dynamic";
 
 function StrapiConnectionHints() {
   const raw = process.env.NEXT_PUBLIC_STRAPI_URL?.trim();
@@ -97,10 +93,8 @@ export const metadata = {
 
 
 export default async function RootLayout({ children }) {
-  const [settings, navigation] = await Promise.all([
-    getGlobalSettings(),
-    getMainNavigation(),
-  ]);
+  const settings = await getGlobalSettings();
+  const navigation = settings ? await getMainNavigation() : null;
 
   const version = settings?.version?.label ?? "v2";
   const versionCSS =
@@ -134,17 +128,7 @@ export default async function RootLayout({ children }) {
         <GlobalProvider
           settings={settings ? { ...settings, navigation } : null}
         >
-          {!settings ? (
-            <AppStatusScreen
-              code="503"
-              eyebrow="Connection issue"
-              title="Unable to load site content"
-              description="We couldn't reach the CMS to load global settings. Please check your connection and refresh the page."
-              showLogo
-            />
-          ) : (
-            children
-          )}
+          {children}
         </GlobalProvider>
       </body>
     </html>
