@@ -6,6 +6,7 @@ import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner"
 import DelegateProfile from "@/src/components/sections/v2/servicepage/DelegateProfile";
 import OurVision from "@/src/components/sections/v2/servicepage/OurVision";
 import Support from "@/src/components/sections/v2/servicepage/Support";
+import "@/src/components/sections/v2/infrastructure/infrastructure-hero-mobile.css";
 import { getInfrastructurePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
@@ -13,6 +14,16 @@ export const metadata = routeMetadata.forwards;
 
 export default async function InfrastructurePage() {
   const infrastructurePage = await getInfrastructurePage();
+  const hero = {
+    ...infrastructurePage.hero,
+    videoClass: "infrastructure-hero-video lg:left-[500px] lg:!w-3/4",
+    videoSectionClass: [
+      "infrastructure-hero-section",
+      infrastructurePage.hero?.videoSectionClass,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  };
 
   return (
     <div className="flex min-h-svh flex-col bg-gray-night-green text-base">
@@ -23,7 +34,7 @@ export default async function InfrastructurePage() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...infrastructurePage.hero} />
+          <HeroBannerSection {...hero} />
 
           <OurVision
             title={infrastructurePage.visionTitle}

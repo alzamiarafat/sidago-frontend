@@ -1,0 +1,55 @@
+@media (max-width: 1023px) {
+  .business-processes-hero-section {
+    justify-content: flex-end;
+    overflow-x: clip;
+  }
+
+  .business-processes-hero-section > .absolute {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .business-processes-hero-section .video-wrapper.business-processes-hero-video {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+    background: rgb(7 11 9) !important;
+    overflow: hidden;
+  }
+
+  .business-processes-hero-section .video-wrapper.business-processes-hero-video video {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 1;
+    filter: saturate(1.02) brightness(0.97);
+  }
+
+  .business-processes-hero-section .video-wrapper.business-processes-hero-video::before {
+    display: none;
+  }
+
+  .business-processes-hero-section
+    .video-wrapper.business-processes-hero-video.video-dark-overlay::after {
+    display: block !important;
+    background: linear-gradient(
+      180deg,
+      rgba(7, 11, 9, 0.15) 0%,
+      rgba(7, 11, 9, 0.35) 45%,
+      rgba(7, 11, 9, 0.78) 78%,
+      rgba(7, 11, 9, 0.92) 100%
+    ) !important;
+  }
+
+  .business-processes-hero-section .container {
+    padding-top: 0;
+  }
+}

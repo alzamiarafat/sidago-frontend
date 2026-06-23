@@ -3,6 +3,7 @@ import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import PerformanceCapabilitiesCarousel from "@/src/components/sections/v2/performancepage/PerformanceCapabilitiesCarousel";
+import "@/src/components/sections/v2/performancepage/performance-hero-mobile.css";
 import PerformanceViewsCarousel from "@/src/components/sections/v2/performancepage/PerformanceViewsCarousel";
 import PerformanceTabsSlider from "@/src/components/sections/v2/performancepage/PerformanceTabsSlider";
 import { getGlobalSettings, getPerformancePage } from "@/src/lib/api";
@@ -328,6 +329,16 @@ export default async function PerformancePage() {
     getGlobalSettings(),
     getPerformancePage(),
   ]);
+  const hero = {
+    ...performancePage.hero,
+    videoClass: "performance-hero-video lg:left-[500px] lg:!w-3/4",
+    videoSectionClass: [
+      "performance-hero-section",
+      performancePage.hero?.videoSectionClass,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  };
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -338,7 +349,7 @@ export default async function PerformancePage() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...performancePage.hero} />
+          <HeroBannerSection {...hero} />
           <PerformanceStats items={performancePage.stats} />
           <PerformanceDashboard section={performancePage.dashboardSection} />
           <PerformanceTabsSlider section={performancePage.tabsSection} />

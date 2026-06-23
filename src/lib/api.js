@@ -1813,14 +1813,14 @@ function normalizeEventsPage(entry) {
       backgroundClassName:
         item.backgroundClassName?.trim() ||
         defaultEventsPage.backgroundClassName,
-      videoClass: item.videoClass?.trim() || defaultEventsPage.videoClass,
+      videoClass: defaultEventsPage.videoClass,
     },
     heroProps: {
       ...hero,
       backgroundClassName:
         item.backgroundClassName?.trim() ||
         defaultEventsPage.backgroundClassName,
-      videoClass: item.videoClass?.trim() || defaultEventsPage.videoClass,
+      videoClass: defaultEventsPage.videoClass,
       titles: hero.titles,
     },
   };

@@ -19,6 +19,7 @@ import {
 import { useEffect, useState } from "react";
 import { fadeIn, fadeUp, stagger, viewportOnce } from "./motion";
 import { defaultProcessImprovementPageContent } from "./data.js";
+import "./process-improvement-mobile.css";
 
 /** Sidago brand — orange #E7512F, green #168b50, forest #006623 (see style-v2 / site usage) */
 const BR = {
@@ -139,7 +140,7 @@ export default function ProcessImprovementView({ content = {} }) {
   return (
     <div className={shell}>
       {/* Hero — flat canvas (#151916), no radial / noise / motion backdrops */}
-      <section className="relative overflow-hidden bg-[#151916] px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-14 md:px-8 md:pb-28">
+      <section className="process-improvement-hero relative overflow-hidden bg-[#151916] px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-14 md:px-8 md:pb-28">
         <div className="container relative z-10 mx-auto max-w-6xl">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <motion.div

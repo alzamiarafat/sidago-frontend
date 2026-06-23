@@ -4,6 +4,7 @@ import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import OperationsPageContent from "@/src/components/sections/v2/operationspage/OperationsPageContent";
 import "@/src/components/sections/v2/operationspage/operations-page.css";
+import "@/src/components/sections/v2/operationspage/operations-hero-mobile.css";
 import { getGlobalSettings, getOperationsPage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
@@ -34,11 +35,11 @@ export default async function OperationsPage() {
     videoSrc:
       "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/19200719/Accordion-OTC.mp4#t=2",
     titles: heroTitles,
-    videoClass: `${operationsPage.hero?.videoClass} operations-hero-video`,
+    videoClass: "operations-hero-video lg:left-[500px] lg:!w-3/4",
     lighterTheme: false,
     videoOverlay: true,
     fontWeight: 400,
-    videoSectionClass: "bg-gray-night-green text-gray-off-white",
+    videoSectionClass: "operations-hero-section bg-gray-night-green text-gray-off-white",
     backgroundClassName: "bg-gray-night-green",
     lighterBgColor: "bg-gray-night-green",
   };

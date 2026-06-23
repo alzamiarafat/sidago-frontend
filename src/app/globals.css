@@ -308,6 +308,7 @@ body {
   z-index: 2;
 }
 
+
 [data-hero-bg-sync] {
   --hero-bg-left: #070807;
   --hero-bg-mid: #070807;

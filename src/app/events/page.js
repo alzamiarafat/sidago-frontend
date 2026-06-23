@@ -6,6 +6,8 @@ import EventsUpcomingSection from "@/src/components/sections/v2/events/EventsUpc
 import EventsEndpointSection from "@/src/components/sections/v2/events/EventsEndpointSection";
 import EventsPastConversationsSection from "@/src/components/sections/v2/events/EventsPastConversationsSection";
 import EventsBootcampSection from "@/src/components/sections/v2/events/EventsBootcampSection";
+import "@/src/components/sections/v2/events/events-hero-mobile.css";
+import { eventsHero } from "@/src/components/sections/v2/events/data.js";
 import { getEventsPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
 
@@ -29,6 +31,19 @@ export default async function EventsPage() {
     getEventsPage(),
   ]);
   const { pageContent } = events;
+  const heroProps = {
+    ...events.heroProps,
+    videoClass: "events-hero-video",
+    backgroundClassName: eventsHero.backgroundClassName,
+    syncBackgroundColor: eventsHero.syncBackgroundColor,
+    videoOverlay: eventsHero.videoOverlay,
+    videoSectionClass: [
+      "events-hero-section",
+      events.heroProps?.videoSectionClass,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  };
 
   return (
     <div className="flex min-h-svh flex-col bg-[#070807] text-base">
@@ -39,7 +54,7 @@ export default async function EventsPage() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark flex-1 bg-[#070807] text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...events.heroProps} />
+          <HeroBannerSection {...heroProps} />
           <EventsUpcomingSection
             events={pageContent.upcomingEvents}
             content={pageContent.upcomingEventsSection}

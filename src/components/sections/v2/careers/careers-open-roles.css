@@ -7,6 +7,12 @@
   position: relative;
 }
 
+@media (max-width: 1023px) {
+  .careers-open-roles-hero .container {
+    padding-top: calc(var(--header-height, 4.5rem) + 1.5rem) !important;
+  }
+}
+
 .careers-open-roles-content {
   background-color: #151916;
 }

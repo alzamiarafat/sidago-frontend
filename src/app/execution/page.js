@@ -2,6 +2,7 @@ import CTASection from "@/src/components/sections/v2/common/CTA";
 import Footer from "@/src/components/sections/v2/common/Footer";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
+import "@/src/components/sections/v2/executionpage/execution-hero-mobile.css";
 import RestoreWellnessLogoCard from "@/src/components/sections/v2/executionpage/RestoreWellnessLogoCard";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import { getExecutionPage, getGlobalSettings } from "@/src/lib/api";
@@ -399,6 +400,17 @@ export default async function ExecutionPage() {
     getGlobalSettings(),
     getExecutionPage(),
   ]);
+  const hero = {
+    ...executionContent.hero,
+    videoClass:
+      "execution-hero-video lg:left-[500px] lg:top-[70px] lg:!w-3/4 lg:!h-3/4",
+    videoSectionClass: [
+      "execution-hero-section",
+      executionContent.hero?.videoSectionClass,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  };
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -409,7 +421,7 @@ export default async function ExecutionPage() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...executionContent.hero} />
+          <HeroBannerSection {...hero} />
           <ExecutionSection content={executionContent} />
           <CTASection />
           <Footer footer={settings?.footer} />

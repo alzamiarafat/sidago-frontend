@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FiShield } from "react-icons/fi";
 import EventDecoration from "@/src/components/ui/EventDecoration";
+import "./cards-grid-mobile.css";
 
 const ArrowIcon = ({ size = "mobile", tone = "light" }) => (
   <svg
@@ -207,12 +208,12 @@ function Card({ card }) {
     <Link
       href={card.href}
       style={{ position: "relative" }}
-      className={`group/interactive pointer-events-auto min-h-[14.5rem] transition-[opacity,transform] duration-300 lg:min-h-[17.5rem] lg:group-hover/cards:[&:not(:hover)]:opacity-55 ${card.colSpan}`}
+      className={`homepage-card group/interactive pointer-events-auto min-h-[14.5rem] transition-[opacity,transform] duration-300 lg:min-h-[17.5rem] lg:group-hover/cards:[&:not(:hover)]:opacity-55 ${card.colSpan}`}
     >
       <span className="sr-only">{card.srLabel}</span>
 
       <div
-        className={`relative flex h-full min-h-[inherit] flex-col justify-between overflow-hidden p-6 bevel ring-1 ring-inset transition-[box-shadow,filter] duration-300 after:pointer-events-none after:absolute after:inset-0 after:bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_42%)] after:opacity-0 after:transition-opacity after:duration-300 group-hover/interactive:after:opacity-100 lg:p-8 ${theme.bgClass} ${theme.textClass} ${theme.ringClass} group-hover/interactive:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_24px_48px_rgba(0,0,0,0.45)]`}
+        className={`homepage-card-inner relative flex h-full min-h-[inherit] flex-col justify-between overflow-hidden p-6 bevel ring-1 ring-inset transition-[box-shadow,filter] duration-300 after:pointer-events-none after:absolute after:inset-0 after:bg-[linear-gradient(135deg,rgba(255,255,255,0.04)_0%,transparent_42%)] after:opacity-0 after:transition-opacity after:duration-300 group-hover/interactive:after:opacity-100 lg:p-8 ${theme.bgClass} ${theme.textClass} ${theme.ringClass} group-hover/interactive:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_24px_48px_rgba(0,0,0,0.45)]`}
       >
         {resolveDecoration(card.decorationType)}
         <div className="relative z-[1] flex min-h-[4.25rem] shrink-0 items-start pt-1">
@@ -224,13 +225,13 @@ function Card({ card }) {
         <div className="relative z-10 mt-auto flex items-end justify-between gap-4">
           <div className="flex min-w-0 flex-col gap-2">
             <div
-              className={`text-[1.35rem] font-medium leading-[1.15] tracking-[-0.02em] lg:text-[1.6rem] xl:text-[1.7rem] ${theme.titleClass}`}
+              className={`homepage-card-title text-[1.35rem] font-medium leading-[1.15] tracking-[-0.02em] lg:text-[1.6rem] xl:text-[1.7rem] ${theme.titleClass}`}
             >
               {card.title}
             </div>
             {card.subtitle ? (
               <div
-                className={`max-w-[22rem] text-sm leading-relaxed lg:text-[0.95rem] ${theme.subtitleClass}`}
+                className={`homepage-card-subtitle max-w-[22rem] text-sm leading-relaxed lg:text-[0.95rem] ${theme.subtitleClass}`}
               >
                 {card.subtitle}
               </div>
@@ -256,9 +257,9 @@ export default function CardsGrid({ items = [] }) {
   }
 
   return (
-    <section className="bg-transparent text-white">
-      <div className="container py-12 md:py-20 lg:py-28">
-        <div className="group/cards pointer-events-none relative flex flex-col gap-3 bg-transparent lg:grid lg:grid-cols-12 lg:gap-px lg:p-px">
+    <section className="homepage-cards-section bg-transparent text-white">
+      <div className="homepage-cards-container container py-12 md:py-20 lg:py-28">
+        <div className="homepage-cards-grid group/cards pointer-events-none relative flex flex-col gap-3 bg-transparent lg:grid lg:grid-cols-12 lg:gap-px lg:p-px">
           {cards.map((card) => (
             <Card key={card.cardId} card={card} />
           ))}

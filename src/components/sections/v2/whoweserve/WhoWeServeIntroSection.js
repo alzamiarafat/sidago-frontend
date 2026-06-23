@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { whoWeServeIntro } from "./data";
+import "./who-we-serve-mobile.css";
 
 export default function WhoWeServeIntroSection({
   intro = whoWeServeIntro,
   className = "",
 }) {
   return (
-    <section className={className}>
+    <section className={`who-we-serve-intro-section ${className}`.trim()}>
       <div className="container py-block">
         <div className="relative">
           <div className="flex flex-col gap-6 lg:gap-8">

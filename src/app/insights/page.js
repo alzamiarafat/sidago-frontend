@@ -6,6 +6,7 @@ import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner"
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import CoverageMatrixSection from "@/src/components/sections/v2/insights/CoverageMatrixSection";
 import { Discover } from "@/src/components/sections/v2/insights/Discover";
+import "@/src/components/sections/v2/insights/insights-hero-mobile.css";
 import { getGlobalSettings, getInsightsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
@@ -339,6 +340,17 @@ export default async function InsightPage() {
     getGlobalSettings(),
     getInsightsPage(),
   ]);
+  const hero = {
+    ...insightsPage.hero,
+    videoClass:
+      "insights-hero-video lg:left-[500px] lg:top-[70px] lg:!w-3/4 lg:!h-3/4",
+    videoSectionClass: [
+      "insights-hero-section",
+      insightsPage.hero?.videoSectionClass,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  };
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -350,7 +362,7 @@ export default async function InsightPage() {
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection
-            {...insightsPage.hero}
+            {...hero}
             ctaLabel={insightsPage.hero.ctaLabel || "Get in touch"}
             ctaHref={insightsPage.hero.ctaHref || "/contact"}
             ctaButtonClass={

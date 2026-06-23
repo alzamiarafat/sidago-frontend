@@ -1,0 +1,30 @@
+@media (max-width: 1023px) {
+  .homepage-cards-section .homepage-cards-container {
+    padding-top: var(--spacing-block);
+    padding-bottom: var(--spacing-block);
+  }
+
+  .homepage-cards-section .homepage-cards-grid {
+    gap: 2rem;
+  }
+
+  .homepage-cards-section .homepage-card {
+    width: 100%;
+    min-height: unset !important;
+    height: 14.5rem;
+  }
+
+  .homepage-cards-section .homepage-card-inner {
+    padding: 1.25rem !important;
+  }
+
+  .homepage-cards-section .homepage-card-title {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .homepage-cards-section .homepage-card-subtitle {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}

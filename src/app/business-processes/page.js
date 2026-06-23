@@ -8,6 +8,7 @@ import BuildingProduct from "@/src/components/sections/v2/strategypage/BuildingP
 import Investment from "@/src/components/sections/v2/strategypage/Investment";
 import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBenefit";
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
+import "@/src/components/sections/v2/businessprocesses/business-processes-hero-mobile.css";
 import { getBusinessProcessesPage, getGlobalSettings } from "@/src/lib/api";
 
 export default async function BusinessProcesses() {
@@ -15,6 +16,17 @@ export default async function BusinessProcesses() {
     getBusinessProcessesPage(),
     getGlobalSettings(),
   ]);
+  const hero = {
+    ...page.hero,
+    videoClass:
+      "business-processes-hero-video lg:left-[500px] lg:top-[70px] lg:!w-3/4 lg:!h-3/4",
+    videoSectionClass: [
+      "business-processes-hero-section",
+      page.hero?.videoSectionClass,
+    ]
+      .filter(Boolean)
+      .join(" "),
+  };
 
   return (
     <div className="flex min-h-svh flex-col text-base">
@@ -25,7 +37,7 @@ export default async function BusinessProcesses() {
           className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...page.hero} />
+          <HeroBannerSection {...hero} />
           <Statistics stats={page.statistics} compact />
           <PartnerBenefit
             title={page.partnerBenefit.title}

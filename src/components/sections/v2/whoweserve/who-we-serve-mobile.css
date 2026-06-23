@@ -1,0 +1,5 @@
+@media (max-width: 1023px) {
+  .who-we-serve-intro-section .container {
+    padding-top: calc(var(--header-height, 4.5rem) + 1.5rem) !important;
+  }
+}
