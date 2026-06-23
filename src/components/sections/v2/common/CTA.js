@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { defaultHomepage } from "@/src/data/cms/defaults";
 import { getSectionColumnPadding } from "@/src/utils/sectionColumnPadding";
+import "./cta-mobile.css";
 
 const SUBSCRIBE_CTA_HREF = "/insights/subscribe";
 const APPLY_CTA_HREF = "/company/opportunities";
@@ -40,7 +41,7 @@ function CTAItem({ item, index, total, isLast }) {
         aria-label={item.srLabel}
       >
         <div
-          className={`flex h-full flex-col gap-sm ${getSectionColumnPadding(
+          className={`cta-item__inner flex h-full flex-col gap-sm ${getSectionColumnPadding(
             index,
             total,
           )}`}
@@ -108,8 +109,8 @@ export default function CTASection({ items = defaultHomepage.cta }) {
     return null;
   }
   return (
-    <section className="relative bg-gray-night-green text-gray-night-green">
-      <div className="absolute inset-0 flex">
+    <section className="cta-section relative bg-gray-night-green text-gray-night-green">
+      <div className="cta-section__bg absolute inset-0 hidden lg:flex">
         <div
           className="flex-1"
           style={{ backgroundColor: ctaItems[0]?.backgroundColor || "#FF5D3C" }}
@@ -122,7 +123,7 @@ export default function CTASection({ items = defaultHomepage.cta }) {
           }}
         ></div>
       </div>
-      <div className="relative z-10 container flex flex-col lg:flex-row">
+      <div className="cta-section__grid relative z-10 container flex flex-col lg:flex-row">
         {ctaItems.map((item, index) => (
           <CTAItem
             key={`${item.title}-${index}`}

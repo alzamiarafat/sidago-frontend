@@ -1,0 +1,55 @@
+@media (max-width: 639px) {
+  .market-ticker-viewport {
+    --ticker-row-height: clamp(3.75rem, 3.25rem + 2vw, 4.75rem) !important;
+  }
+
+  .market-ticker-row {
+    display: flex !important;
+    grid-template-columns: none !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
+    padding-inline: 0.5rem !important;
+  }
+
+  .market-ticker-row > div {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .market-ticker-row > div:nth-child(2) {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .market-ticker-row > div:first-child span {
+    font-size: clamp(1.65rem, 8.8vw, 2.15rem) !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .market-ticker-row > div:nth-child(2) span {
+    font-size: clamp(0.95rem, 4.6vw, 1.125rem) !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .market-ticker-row > div:nth-child(3) span {
+    font-size: clamp(0.85rem, 4.1vw, 1rem) !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .market-ticker-row > div:nth-child(3) {
+    gap: 0.25rem !important;
+  }
+
+  .market-ticker-row > div:nth-child(3) svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    flex-shrink: 0;
+  }
+}

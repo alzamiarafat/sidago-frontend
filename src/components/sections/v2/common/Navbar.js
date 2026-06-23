@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 import { defaultMainNavigation } from "@/src/data/cms/navigation.mjs";
 import { withIndustryNavVisuals } from "@/src/data/industryNavVisuals";
 import "./navbar-industries.css";
+import "./navbar-mobile.css";
 
 function shortenNavDescription(text = "", maxWords = 5) {
   const words = text.trim().split(/\s+/).filter(Boolean);

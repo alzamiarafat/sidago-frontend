@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { TiArrowSortedDown } from "react-icons/ti";
+import "./tracker-mobile.css";
 
 function TrackerRow({ coin, dimmed = false }) {
   return (
     <div
-      className={`grid h-[var(--ticker-row-height)] w-full grid-cols-[minmax(0,1.15fr)_minmax(0,0.9fr)_minmax(0,0.95fr)] items-center gap-4 ${
+      className={`market-ticker-row grid h-[var(--ticker-row-height)] w-full grid-cols-[minmax(0,1.15fr)_minmax(0,0.9fr)_minmax(0,0.95fr)] items-center gap-4 ${
         dimmed ? "opacity-35" : "opacity-100"
       }`}
     >
@@ -76,7 +77,7 @@ export default function MarketTicker({ items = [] }) {
       <div className="container mx-auto">
         <div className="relative py-2">
           <div
-            className="relative overflow-hidden"
+            className="market-ticker-viewport relative overflow-hidden"
             style={{
               "--ticker-row-height": "clamp(7.6rem, 6.9rem + 1.9vw, 9.6rem)",
               height: "calc(var(--ticker-row-height) * 1.08)",

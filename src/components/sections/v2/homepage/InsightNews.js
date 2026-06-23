@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import LinkTitleWithArrow from "@/src/components/sections/v2/common/LinkTitleWithArrow";
 import { getSectionColumnPadding } from "@/src/utils/sectionColumnPadding";
+import "./insight-news-mobile.css";
 
 function isInternalHref(href) {
   return href?.startsWith("/") && !href.startsWith("//");
@@ -43,12 +44,12 @@ export default function InsightNews({
             <LinkTag
               {...linkProps}
               style={{ position: "relative" }}
-              className="group/interactive flex min-w-0 flex-1 basis-0"
+              className="insight-news-item group/interactive flex min-w-0 flex-1 basis-0"
             >
               <span className="sr-only">{item.srText}</span>
 
               <div
-                className={`flex h-full w-full items-center ${getSectionColumnPadding(
+                className={`insight-news-item__inner flex h-full w-full items-center ${getSectionColumnPadding(
                   index,
                   items.length,
                 )}`}
@@ -60,7 +61,7 @@ export default function InsightNews({
                   alignClassName="w-full justify-between"
                   textWrapperClassName={
                     index === 2
-                      ? "max-w-[10.75rem] sm:max-w-[11.5rem] lg:max-w-[12rem]"
+                      ? "insight-news-text--third max-w-[10.75rem] sm:max-w-[11.5rem] lg:max-w-[12rem]"
                       : ""
                   }
                 />
@@ -69,7 +70,7 @@ export default function InsightNews({
 
             {/* Divider */}
             {index !== items.length - 1 && (
-              <div className="-mx-[0.0625rem] w-[0.125rem] lg:my-xl bg-gray-defi-slate"></div>
+              <div className="insight-news-divider -mx-[0.0625rem] w-[0.125rem] lg:my-xl bg-gray-defi-slate"></div>
             )}
           </React.Fragment>
           );
