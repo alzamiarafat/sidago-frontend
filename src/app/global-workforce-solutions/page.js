@@ -2,6 +2,7 @@ import GlobalWorkforceView from "@/src/components/sections/v2/global-workforce/G
 import ReportInsightHero from "@/src/components/sections/v2/digital-support-services/ReportInsightHero";
 import { getGlobalSettings, getServiceLandingPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.globalWorkforceSolutions;
 
@@ -10,6 +11,10 @@ export default async function GlobalWorkforceSolutionsPage() {
     getGlobalSettings(),
     getServiceLandingPage("global-workforce-solutions"),
   ]);
+
+  if (!page?.hero) {
+    notFound();
+  }
 
   return (
     <GlobalWorkforceView

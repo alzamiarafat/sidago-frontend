@@ -2,6 +2,7 @@ import DigitalSupportServicesView from "@/src/components/sections/v2/digital-sup
 import ReportInsightHero from "@/src/components/sections/v2/digital-support-services/ReportInsightHero";
 import { getGlobalSettings, getServiceLandingPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.digitalSupportServices;
 
@@ -10,6 +11,10 @@ export default async function DigitalSupportPage() {
     getGlobalSettings(),
     getServiceLandingPage("digital-support"),
   ]);
+
+  if (!page?.hero) {
+    notFound();
+  }
 
   return (
     <DigitalSupportServicesView

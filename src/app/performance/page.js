@@ -8,6 +8,7 @@ import PerformanceViewsCarousel from "@/src/components/sections/v2/performancepa
 import PerformanceTabsSlider from "@/src/components/sections/v2/performancepage/PerformanceTabsSlider";
 import { getGlobalSettings, getPerformancePage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Performance",
@@ -329,6 +330,11 @@ export default async function PerformancePage() {
     getGlobalSettings(),
     getPerformancePage(),
   ]);
+
+  if (!performancePage?.hero) {
+    notFound();
+  }
+
   const hero = {
     ...performancePage.hero,
     videoClass: "performance-hero-video lg:left-[500px] lg:!w-3/4",

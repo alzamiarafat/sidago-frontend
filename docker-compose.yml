@@ -37,6 +37,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
+        STRAPI_API_TOKEN: ${STRAPI_API_TOKEN}
     container_name: sidago-nextjs-frontend
     env_file:
       - .env

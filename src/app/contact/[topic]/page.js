@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { topic: topicSlug } = await params;
   const contact = await getContactPage();
-  const topic = contact.topics.find((item) => item.slug === topicSlug);
+  const topic = contact?.topics?.find((item) => item.slug === topicSlug);
 
   if (!topic) {
     return {};
@@ -31,6 +31,11 @@ export async function generateMetadata({ params }) {
 export default async function ContactTopicPage({ params }) {
   const { topic: topicSlug } = await params;
   const contact = await getContactPage();
+
+  if (!contact) {
+    notFound();
+  }
+
   const topic = contact.topics.find((item) => item.slug === topicSlug);
 
   if (!topic) {

@@ -7,6 +7,7 @@ import "@/src/components/sections/v2/operationspage/operations-page.css";
 import "@/src/components/sections/v2/operationspage/operations-hero-mobile.css";
 import { getGlobalSettings, getOperationsPage } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Our Operations",
@@ -27,6 +28,11 @@ export default async function OperationsPage() {
     getGlobalSettings(),
     getOperationsPage(),
   ]);
+
+  if (!operationsPage?.hero) {
+    notFound();
+  }
+
   const heroTitles = operationsPage.hero?.titles?.map((title, index) =>
     index === 0 ? { ...title, className: "", color: "#168b50" } : title,
   );

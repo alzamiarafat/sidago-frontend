@@ -4,11 +4,16 @@ import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import ContactUs from "@/src/components/sections/v2/contactpage/ContactUs";
 import { getContactPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.contact;
 
 export default async function ContactPage() {
   const contact = await getContactPage();
+
+  if (!contact) {
+    notFound();
+  }
 
   return (
     <div className="flex min-h-svh flex-col bg-[#1C211E] text-base">

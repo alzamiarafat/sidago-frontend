@@ -2,6 +2,7 @@ import ScalableOperationsView from "@/src/components/sections/v2/scalable-operat
 import ReportInsightHero from "@/src/components/sections/v2/digital-support-services/ReportInsightHero";
 import { getGlobalSettings, getServiceLandingPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.scalableOperationsManagement;
 
@@ -10,6 +11,10 @@ export default async function ScalableOperationsManagementPage() {
     getGlobalSettings(),
     getServiceLandingPage("scalable-operations-management"),
   ]);
+
+  if (!page?.hero) {
+    notFound();
+  }
 
   return (
     <ScalableOperationsView

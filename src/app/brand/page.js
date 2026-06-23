@@ -9,6 +9,7 @@ import BrandMediaResourcesSection from "@/src/components/sections/v2/brand/Brand
 import BrandSubBrandsSection from "@/src/components/sections/v2/brand/BrandSubBrandsSection";
 import { getBrandPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Brand",
@@ -29,6 +30,11 @@ export default async function BrandPage() {
     getGlobalSettings(),
     getBrandPage(),
   ]);
+
+  if (!brand?.pageContent) {
+    notFound();
+  }
+
   const content = brand.pageContent;
 
   return (

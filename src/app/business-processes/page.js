@@ -10,12 +10,18 @@ import PartnerBenefit from "@/src/components/sections/v2/strategypage/PartnerBen
 import WorkOverview from "@/src/components/sections/v2/strategypage/WorkOverview";
 import "@/src/components/sections/v2/businessprocesses/business-processes-hero-mobile.css";
 import { getBusinessProcessesPage, getGlobalSettings } from "@/src/lib/api";
+import { notFound } from "next/navigation";
 
 export default async function BusinessProcesses() {
   const [page, settings] = await Promise.all([
     getBusinessProcessesPage(),
     getGlobalSettings(),
   ]);
+
+  if (!page?.hero) {
+    notFound();
+  }
+
   const hero = {
     ...page.hero,
     videoClass:

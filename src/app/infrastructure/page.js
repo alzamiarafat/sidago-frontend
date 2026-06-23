@@ -9,11 +9,17 @@ import Support from "@/src/components/sections/v2/servicepage/Support";
 import "@/src/components/sections/v2/infrastructure/infrastructure-hero-mobile.css";
 import { getInfrastructurePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.forwards;
 
 export default async function InfrastructurePage() {
   const infrastructurePage = await getInfrastructurePage();
+
+  if (!infrastructurePage?.hero) {
+    notFound();
+  }
+
   const hero = {
     ...infrastructurePage.hero,
     videoClass: "infrastructure-hero-video lg:left-[500px] lg:!w-3/4",

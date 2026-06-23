@@ -3,6 +3,7 @@ import { getIndustriesPage } from "@/src/lib/api";
 import { collectSlugsFromMenuGroups } from "@/src/lib/menu-static-slugs";
 import { getIndustryMetadata } from "@/src/lib/seo";
 import { getIndustryMenuGroups } from "@/src/utils/navigationTabUtils";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const slugs = new Set([
@@ -11,11 +12,13 @@ export async function generateStaticParams() {
 
   const page = await getIndustriesPage();
 
-  for (const slug of collectSlugsFromMenuGroups(
-    page.menuGroups ?? [],
-    "industries",
-  )) {
-    slugs.add(slug);
+  if (page?.menuGroups) {
+    for (const slug of collectSlugsFromMenuGroups(
+      page.menuGroups,
+      "industries",
+    )) {
+      slugs.add(slug);
+    }
   }
 
   return [...slugs].map((slug) => ({ slug }));
@@ -30,6 +33,10 @@ export default async function IndustryDetailPage({ params }) {
   const { slug } = await params;
   const variant = slug === "b2b-commercial" ? "b2b" : "default";
   const industriesPage = await getIndustriesPage();
+
+  if (!industriesPage?.menuGroups) {
+    notFound();
+  }
 
   return (
     <IndustryPageTemplate

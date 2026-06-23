@@ -1,6 +1,7 @@
 import CareersView from "@/src/components/sections/v2/careers/CareersView";
 import { getCareersPage, getGlobalSettings } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.careers;
 
@@ -9,6 +10,10 @@ export default async function CareersPage() {
     getGlobalSettings(),
     getCareersPage(),
   ]);
+
+  if (!careers?.hero) {
+    notFound();
+  }
 
   return (
     <CareersView

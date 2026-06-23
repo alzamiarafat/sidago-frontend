@@ -9,6 +9,7 @@ import EventsBootcampSection from "@/src/components/sections/v2/events/EventsBoo
 import "@/src/components/sections/v2/events/events-hero-mobile.css";
 import { getEventsPage, getGlobalSettings } from "@/src/lib/api";
 import { buildPageMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = buildPageMetadata({
   title: "Events",
@@ -29,6 +30,11 @@ export default async function EventsPage() {
     getGlobalSettings(),
     getEventsPage(),
   ]);
+
+  if (!events?.pageContent || !events?.heroProps) {
+    notFound();
+  }
+
   const { pageContent } = events;
   const heroProps = {
     ...events.heroProps,

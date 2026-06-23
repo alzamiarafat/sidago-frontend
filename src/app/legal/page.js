@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { getLegalHub } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
+import { notFound } from "next/navigation";
 
 export const metadata = routeMetadata.legalPolicies;
 
 export default async function LegalPoliciesHubPage() {
   const legalHub = await getLegalHub();
+
+  if (!legalHub?.documents?.length) {
+    notFound();
+  }
 
   return (
     <div className="min-h-[50vh]">

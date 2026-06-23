@@ -6,6 +6,7 @@ import "@/src/components/sections/v2/executionpage/execution-hero-mobile.css";
 import RestoreWellnessLogoCard from "@/src/components/sections/v2/executionpage/RestoreWellnessLogoCard";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import { getExecutionPage, getGlobalSettings } from "@/src/lib/api";
+import { notFound } from "next/navigation";
 import { buildPageMetadata } from "@/src/lib/seo";
 
 export const metadata = buildPageMetadata({
@@ -400,6 +401,11 @@ export default async function ExecutionPage() {
     getGlobalSettings(),
     getExecutionPage(),
   ]);
+
+  if (!executionContent?.hero) {
+    notFound();
+  }
+
   const hero = {
     ...executionContent.hero,
     videoClass:
