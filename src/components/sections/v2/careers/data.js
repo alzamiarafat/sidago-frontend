@@ -363,39 +363,66 @@ export const lifeSection = {
 
 /** @deprecated Stats now live on lifeSection.stage.stats; kept for Strapi seed compat. */
 export const lifeStatsSection = {
-  fontSizeMobile: 36,
-  fontSizeDesktop: 48,
+  fontSizeMobile: 28,
+  fontSizeDesktop: 40,
   items: [
     {
       stat: "1K",
       label: "Working lunch options",
       sortOrder: 1,
-      width: 90,
+      width: 72,
       activeDotColor: "#E7512F",
     },
     {
       stat: "12",
       label: "Activities organized at our annual team building event",
       sortOrder: 2,
-      width: 72,
+      width: 56,
       activeDotColor: "#E7512F",
     },
     {
       stat: "10",
       label: "Interest clubs with monthly activity",
       sortOrder: 3,
-      width: 72,
+      width: 56,
       activeDotColor: "#7A9BB5",
     },
     {
       stat: "200",
       label: "Hours people played D&D in the office",
       sortOrder: 4,
-      width: 110,
+      width: 84,
       activeDotColor: "#E7512F",
     },
   ],
 };
+
+export const careersCta = [
+  {
+    title: "Contact",
+    description: "To access top crypto liquidity",
+    href: "/contact",
+    srLabel: "Contact",
+    backgroundColor: "#FF5D3C",
+    sortOrder: 1,
+  },
+  {
+    title: "Subscribe",
+    description: "To get the latest insights",
+    href: "/insights/subscribe",
+    srLabel: "Insights › Subscribe",
+    backgroundColor: "#FA7248",
+    sortOrder: 2,
+  },
+  {
+    title: "Apply",
+    description: "To join the Sidago team",
+    href: "/company/opportunities",
+    srLabel: "Company › Opportunities",
+    backgroundColor: "#FF8C69",
+    sortOrder: 3,
+  },
+];
 
 export const values = [
   {

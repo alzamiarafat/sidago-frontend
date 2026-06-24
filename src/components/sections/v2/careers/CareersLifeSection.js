@@ -1,4 +1,5 @@
 import CareersLifeCultureStage from "@/src/components/sections/v2/careers/CareersLifeCultureStage";
+import CareersLifeStatsSection from "@/src/components/sections/v2/careers/CareersLifeStatsSection";
 
 const defaultStage = {
   label: "Culture orbit",
@@ -29,14 +30,15 @@ export default function CareersLifeSection({
   headingId = "sidago-life",
   description,
   stage = defaultStage,
-  className = "bg-gray-defi-shadow",
+  statsSection,
+  className = "bg-[#151916] text-gray-off-white",
   titleClassName = "z-10 inline-block max-w-[60%] text-2xl text-white lg:text-3xl",
   highlightClassName = "text-green-dark",
   descriptionClassName = "z-10 max-w-[85%] text-white md:max-w-[70%]",
 }) {
   return (
     <section className={className} aria-labelledby={headingId}>
-      <div className="container py-block">
+      <div className="container pt-block pb-lg">
         <div className="pb-container">
           <div className="flex flex-col gap-6 lg:gap-8">
             <h2 id={headingId} className={titleClassName}>
@@ -62,6 +64,18 @@ export default function CareersLifeSection({
             stats={stage.stats?.length ? stage.stats : defaultStage.stats}
           />
         </div>
+
+        {statsSection?.items?.length ? (
+          <div className="pb-container pt-8 md:pt-10">
+            <CareersLifeStatsSection
+              embedded
+              items={statsSection.items}
+              fontSizeMobile={28}
+              fontSizeDesktop={40}
+              className="text-gray-off-white"
+            />
+          </div>
+        ) : null}
       </div>
     </section>
   );

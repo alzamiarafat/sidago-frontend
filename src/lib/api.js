@@ -1005,6 +1005,16 @@ function normalizeCareersPage(entry) {
               )
           : null,
     },
+    cta:
+      item.cta?.length > 0
+        ? item.cta
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((ctaItem) => normalizeCtaItem(ctaItem))
+            .filter(Boolean)
+        : null,
   };
 }
 

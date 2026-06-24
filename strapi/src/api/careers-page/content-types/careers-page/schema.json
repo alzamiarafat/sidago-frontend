@@ -136,6 +136,11 @@
       "type": "component",
       "repeatable": true,
       "component": "shared.statistic-item"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.cta-item"
     }
   }
 }

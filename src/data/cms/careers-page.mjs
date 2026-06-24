@@ -2,6 +2,7 @@ import * as careersDataModule from "../../components/sections/v2/careers/data.js
 import { unwrapModule } from "./esm-compat.mjs";
 
 const {
+  careersCta,
   heroBanner,
   lifeSection,
   lifeStatsSection,
@@ -21,6 +22,7 @@ export const defaultCareersPage = {
   teamTestimonialsSection,
   lifeSection,
   lifeStatsSection,
+  cta: careersCta,
 };
 
 function sortByOrder(items) {
@@ -115,14 +117,22 @@ export function careersPageToStrapiSeed(page = defaultCareersPage) {
       label: item.label ?? "",
       sortOrder: index + 1,
     })),
-    lifeStatsFontSizeMobile: page.lifeStatsSection?.fontSizeMobile ?? 36,
-    lifeStatsFontSizeDesktop: page.lifeStatsSection?.fontSizeDesktop ?? 48,
+    lifeStatsFontSizeMobile: page.lifeStatsSection?.fontSizeMobile ?? 28,
+    lifeStatsFontSizeDesktop: page.lifeStatsSection?.fontSizeDesktop ?? 40,
     lifeStatsItems: sortByOrder(page.lifeStatsSection?.items).map((item) => ({
       stat: item.stat,
       label: item.label,
       width: item.width,
       activeDotColor: item.activeDotColor,
       sortOrder: item.sortOrder ?? 0,
+    })),
+    cta: sortByOrder(page.cta ?? careersCta).map((item, index) => ({
+      title: item.title,
+      description: item.description,
+      href: item.href,
+      srLabel: item.srLabel,
+      backgroundColor: item.backgroundColor,
+      sortOrder: item.sortOrder ?? index + 1,
     })),
   };
 }

@@ -26,6 +26,8 @@ export default async function CareersPage() {
       teamsSection={careers.teamsSection}
       teamTestimonialsSection={careers.teamTestimonialsSection}
       lifeSection={careers.lifeSection}
+      lifeStatsSection={careers.lifeStatsSection}
+      cta={careers.cta}
     />
   );
 }

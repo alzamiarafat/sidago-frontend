@@ -11,6 +11,7 @@ import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner"
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import CareersQuoteSection from "@/src/components/sections/v2/careers/CareersQuoteSection";
 import OurVision from "@/src/components/sections/v2/servicepage/OurVision";
+import { careersCta } from "@/src/components/sections/v2/careers/data.js";
 
 export default function CareersView({
   footer,
@@ -21,6 +22,8 @@ export default function CareersView({
   teamsSection,
   teamTestimonialsSection,
   lifeSection,
+  lifeStatsSection,
+  cta,
 }) {
   if (
     !hero ||
@@ -59,7 +62,7 @@ export default function CareersView({
           />
           <CareersTeamsSection {...teamsSection} />
           <CareersTeamTestimonialsSection {...teamTestimonialsSection} />
-          <CareersLifeSection {...lifeSection} />
+          <CareersLifeSection {...lifeSection} statsSection={lifeStatsSection} />
 
 
 
@@ -67,7 +70,7 @@ export default function CareersView({
 
 
 
-          <CTASection />
+          <CTASection items={cta?.length ? cta : careersCta} />
           <Footer footer={footer} />
         </main>
       </div>

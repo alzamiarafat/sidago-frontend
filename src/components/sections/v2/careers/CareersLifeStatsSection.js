@@ -11,6 +11,7 @@ function LifeStatRow({
   onDeactivate,
   fontSizeMobile,
   fontSizeDesktop,
+  widthScale = 1,
 }) {
   const label =
     typeof item.label === "string"
@@ -21,7 +22,7 @@ function LifeStatRow({
     <div className="flex flex-col gap-md">
       {index > 0 ? <hr className="border-current opacity-30" /> : null}
       <div
-        className="stat group flex flex-col-reverse justify-between gap-xl lg:flex-row lg:items-center"
+        className="stat group flex flex-col-reverse justify-between gap-md lg:flex-row lg:items-center lg:gap-lg"
         onMouseEnter={onActivate}
         onMouseLeave={onDeactivate}
         onFocus={onActivate}
@@ -30,7 +31,9 @@ function LifeStatRow({
         <div
           className="flex shrink-0 justify-start"
           style={{
-            ["--stat-width"]: item.width ? `${item.width}px` : undefined,
+            ["--stat-width"]: item.width
+              ? `${Math.round(item.width * widthScale)}px`
+              : undefined,
             ["--active-color"]: item.activeDotColor,
           }}
         >
@@ -46,7 +49,7 @@ function LifeStatRow({
           />
         </div>
         <div
-          className="font-blender text-xl uppercase text-gray-off-white transition-all duration-1000 lg:max-w-[50%] lg:text-right"
+          className="font-blender text-base uppercase leading-snug text-gray-off-white transition-all duration-1000 lg:max-w-[50%] lg:text-right lg:text-lg"
           style={{
             color: active ? item.activeDotColor : undefined,
           }}
@@ -62,12 +65,15 @@ function LifeStatRow({
  * Vertical life/culture stats with animated dot-matrix numbers (careers page).
  */
 export default function CareersLifeStatsSection({
+  embedded = false,
   items = [],
   className = "bg-gray-defi-shadow text-gray-off-white",
-  fontSizeMobile = 36,
-  fontSizeDesktop = 48,
+  fontSizeMobile = 28,
+  fontSizeDesktop = 40,
+  widthScale = embedded ? 0.78 : 1,
 }) {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const Tag = embedded ? "div" : "section";
 
   const orderedItems = items
     .slice()
@@ -78,8 +84,8 @@ export default function CareersLifeStatsSection({
   }
 
   return (
-    <section className={className}>
-      <div className="flex flex-col gap-2xl">
+    <Tag className={className}>
+      <div className="flex flex-col gap-xl">
         {orderedItems.map((item, index) => (
           <LifeStatRow
             key={item.stat + String(item.sortOrder ?? index)}
@@ -88,11 +94,12 @@ export default function CareersLifeStatsSection({
             active={activeIndex === index}
             fontSizeMobile={fontSizeMobile}
             fontSizeDesktop={fontSizeDesktop}
+            widthScale={widthScale}
             onActivate={() => setActiveIndex(index)}
             onDeactivate={() => setActiveIndex(-1)}
           />
         ))}
       </div>
-    </section>
+    </Tag>
   );
 }
