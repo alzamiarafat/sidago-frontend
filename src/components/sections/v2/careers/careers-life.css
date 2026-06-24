@@ -245,23 +245,8 @@
 }
 
 .careers-life-stage-shell {
-  background: #000000;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.45),
-    0 32px 96px rgba(0, 0, 0, 0.72);
-}
-
-.careers-life-stage-shell::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 90% 100% at 78% 50%,
-    transparent 30%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
+  background: #1c211e;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
 .careers-life-stage-grid {
@@ -320,10 +305,8 @@
 }
 
 .careers-life-compass-frame {
-  background: #0a0a0a;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 16px 48px rgba(0, 0, 0, 0.55);
+  background: #151916;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .careers-life-stat-card {

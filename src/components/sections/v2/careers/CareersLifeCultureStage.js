@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useId, useRef, useState } from "react";
-import CareersLifeStageBg from "@/src/components/sections/v2/careers/CareersLifeStageBg";
 import { DotMatrixText } from "@/src/components/sections/v2/common/DotMatrixText";
 import "./careers-life.css";
 
@@ -165,10 +164,6 @@ function CultureCompass({ pillars, reduce, activeIndex, onHoverIndex }) {
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       className="careers-life-compass-frame bevel bevel-2 relative mx-auto aspect-square w-full max-w-[440px] overflow-hidden p-3 md:p-4"
     >
-      <div className="careers-life-aurora-a pointer-events-none absolute -left-6 top-4 h-36 w-36 rounded-full bg-[radial-gradient(circle,rgba(231,81,47,0.32),transparent_70%)] blur-2xl" />
-      <div className="careers-life-aurora-b pointer-events-none absolute -right-4 bottom-4 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(122,155,181,0.28),transparent_70%)] blur-2xl" />
-      <div className="careers-life-aurora-c pointer-events-none absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,138,92,0.24),transparent_70%)] blur-2xl" />
-
       <svg
         viewBox="0 0 400 400"
         className="relative z-[1] h-full w-full"
@@ -523,18 +518,6 @@ export default function CareersLifeCultureStage({
       ref={stageRef}
       className="careers-life-rise careers-life-rise-delay-3 careers-life-stage-shell bevel bevel-2 relative isolate overflow-hidden"
     >
-      <CareersLifeStageBg active={active} />
-
-      <div
-        className="careers-life-stage-grid pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
-        }}
-        aria-hidden
-      />
-
       <div className="relative z-[2] flex items-center justify-between border-b border-white/[0.06] px-5 py-4 md:px-8">
         <div className="flex items-center gap-3">
           <span className="careers-life-pulse-dot h-[7px] w-[7px] rounded-full bg-[#E7512F]" />
