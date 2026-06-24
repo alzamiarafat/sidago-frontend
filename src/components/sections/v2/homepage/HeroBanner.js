@@ -80,8 +80,11 @@ function HeroCtaButton({ label, href, buttonClassName, focusClassName, srText })
 const DEFAULT_SIDE_LOGO_CLASS =
   "h-auto w-full max-w-[9.5rem] sm:max-w-[10.5rem] md:max-w-[12rem] lg:max-w-[14rem]";
 
-function HeroSideLogoImage({ sideLogo }) {
+function HeroSideLogoImage({ sideLogo, compactMobile = false }) {
   const size = sideLogo.size;
+  const responsiveClass = compactMobile
+    ? "h-auto w-full max-w-[5.25rem] sm:max-w-[6rem] md:max-w-[7rem] lg:max-w-[14rem]"
+    : sideLogo.className ?? DEFAULT_SIDE_LOGO_CLASS;
 
   return (
     <Image
@@ -96,11 +99,7 @@ function HeroSideLogoImage({ sideLogo }) {
           ? { width: size, height: "auto", maxWidth: size }
           : undefined
       }
-      className={
-        size
-          ? "h-auto object-contain"
-          : sideLogo.className ?? DEFAULT_SIDE_LOGO_CLASS
-      }
+      className={size ? "h-auto object-contain" : responsiveClass}
     />
   );
 }
@@ -127,10 +126,23 @@ export default function HeroBannerSection({
   videoOverlay,
   syncBackgroundColor = false,
   sideLogo,
+  compactMobile = false,
 }) {
   const backgroundClass =
     backgroundClassName ??
     (lighterTheme ? lighterBgColor : "bg-[#020405]");
+  const hasRightLogo = Boolean(sideLogo?.src && sideLogo.position !== "left");
+  const useCompactMobile = compactMobile && hasRightLogo;
+  const ctaButton =
+    ctaLabel && ctaHref ? (
+      <HeroCtaButton
+        label={ctaLabel}
+        href={ctaHref}
+        srText={ctaSrText}
+        buttonClassName={ctaButtonClass}
+        focusClassName={ctaFocusClassName}
+      />
+    ) : null;
 
   return (
     // <section className="relative flex flex-col justify-center items-center min-h-[70svh] lg:flex-row lg:items-center lg:justify-center text-gray-off-white lg:min-h-[calc(100svh - var(--header-height) - 6.125rem)]">
@@ -149,7 +161,11 @@ export default function HeroBannerSection({
     // </section>
 
     <section
-      className={`relative flex min-h-svh flex-col justify-end lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
+      className={`relative flex flex-col ${
+        useCompactMobile
+          ? "max-lg:min-h-0 max-lg:justify-start lg:min-h-svh lg:justify-end"
+          : "min-h-svh justify-end"
+      } lg:flex-row lg:items-center ${videoSectionClass} lg:min-h-[calc(100svh-var(--header-height)-6.125rem)]`}
     >
       <div
         className={`absolute inset-0 ${syncBackgroundColor ? "" : backgroundClass}`}
@@ -199,22 +215,43 @@ export default function HeroBannerSection({
 
       {/* <div className="absolute inset-0 bg-opacity-90 bg-gradient-to-t to-transparent to-50% lg:bg-gradient-to-r lg:to-100% from-gray-night-green"></div> */}
 
-      <div className="container relative z-10 py-block">
+      <div
+        className={`container relative z-10 ${
+          useCompactMobile
+            ? "max-lg:pb-8 max-lg:pt-[calc(var(--header-height,4.5rem)+1.5rem)] lg:py-block"
+            : "py-block"
+        }`}
+      >
         <div className="relative lg:grid lg:grid-cols-4 lg:items-center">
-          {sideLogo?.src && sideLogo.position !== "left" ? (
+          {hasRightLogo ? (
             <div
-              className="pointer-events-none absolute inset-y-0 flex w-[40%] items-center justify-end md:w-[32%] lg:w-[22%]"
-              style={{ right: sideLogo.offsetRight ?? 0 }}
+              className={`pointer-events-none absolute right-0 z-[1] flex w-[38%] justify-end sm:w-[34%] md:w-[32%] lg:inset-y-0 lg:w-[22%] lg:items-center ${
+                useCompactMobile ? "top-0 max-lg:items-start" : "inset-y-0 items-center"
+              }`}
+              style={
+                sideLogo.offsetRight
+                  ? { right: sideLogo.offsetRight }
+                  : undefined
+              }
             >
-              <HeroSideLogoImage sideLogo={sideLogo} />
+              <HeroSideLogoImage
+                sideLogo={sideLogo}
+                compactMobile={useCompactMobile}
+              />
             </div>
           ) : null}
-          <div className="col-span-2 flex flex-col items-start gap-2xl lg:pr-2xl">
+          <div
+            className={`relative z-[2] col-span-2 flex w-full flex-col items-start lg:gap-2xl lg:pr-2xl ${
+              useCompactMobile ? "max-lg:gap-6" : "gap-2xl"
+            }`}
+          >
           {sideLogo?.src && sideLogo.position === "left" ? (
             <HeroSideLogoImage sideLogo={sideLogo} />
           ) : null}
           <h1
-            className="max-w-2xl text-2xl leading-[1.15] tracking-[-0.02em] lg:text-3xl"
+            className={`max-w-2xl text-2xl leading-[1.15] tracking-[-0.02em] lg:text-3xl${
+              useCompactMobile ? " max-lg:max-w-[58%] max-lg:pr-1" : ""
+            }`}
             style={{ fontWeight }}
           >
             {groupHeroTitleLines(titles).map((lineItems, lineIndex) => (
@@ -237,21 +274,23 @@ export default function HeroBannerSection({
           </h1>
 
           <div
-            className={`text-base ${lighterTheme ? "text-black" : ""} lg:text-lg`}
+            className={`text-base lg:text-lg${
+              useCompactMobile ? " max-lg:max-w-[62%] max-lg:pr-1" : ""
+            } ${lighterTheme ? " text-black" : ""}`}
           >
             {subtitle}
           </div>
 
-          {ctaLabel && ctaHref ? (
-            <HeroCtaButton
-              label={ctaLabel}
-              href={ctaHref}
-              srText={ctaSrText}
-              buttonClassName={ctaButtonClass}
-              focusClassName={ctaFocusClassName}
-            />
-          ) : null}
+          {useCompactMobile ? (
+            <div className="hidden lg:block">{ctaButton}</div>
+          ) : (
+            ctaButton
+          )}
           </div>
+
+          {useCompactMobile && ctaButton ? (
+            <div className="relative z-[2] col-span-2 mt-6 lg:hidden">{ctaButton}</div>
+          ) : null}
         </div>
       </div>
     </section>

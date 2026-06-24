@@ -29,7 +29,7 @@ export const heroBanner = {
     width: 560,
     height: 446,
     position: "right",
-    offsetRight: "3rem",
+    offsetRight: 0,
   },
 };
 

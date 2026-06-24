@@ -11,7 +11,7 @@ import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner"
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import CareersQuoteSection from "@/src/components/sections/v2/careers/CareersQuoteSection";
 import OurVision from "@/src/components/sections/v2/servicepage/OurVision";
-import { careersCta } from "@/src/components/sections/v2/careers/data.js";
+import { careersCta, heroBanner as careersHeroDefaults } from "@/src/components/sections/v2/careers/data.js";
 
 export default function CareersView({
   footer,
@@ -43,12 +43,16 @@ export default function CareersView({
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <main className="[&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] relative flex-1">
-          <HeroBannerSection {...hero} />
+          <HeroBannerSection
+            {...hero}
+            compactMobile
+            sideLogo={hero.sideLogo ?? careersHeroDefaults.sideLogo}
+          />
           <Statistics
             stats={statistics}
             compact
             align="start"
-            bgColor="bg-gray-night-green"
+            bgColor="bg-[#151916]"
             fontSizeMobile={72}
             fontSizeDesktop={100}
             labelClassName="font-blender text-sm leading-[1.12] tracking-[0.1em] sm:text-[0.9375rem] lg:text-base"
