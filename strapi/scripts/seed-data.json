@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:49:38.315Z",
+  "generatedAt": "2026-06-24T20:04:39.787Z",
   "global": {
     "siteName": "Sidago",
     "siteContactEmail": "hello@sidago.com",
@@ -3414,14 +3414,31 @@
     ],
     "lifeLead": "Sidago",
     "lifeHighlight": "life",
-    "lifeHeadingId": "wintermute-life",
+    "lifeHeadingId": "sidago-life",
     "lifeDescription": "Sidago's culture is all about balance, we work hard and play hard. With an informal, non-hierarchical environment, we bond over shared meals, social events, and unique experiences that build a strong sense of connection and community.",
-    "lifeDecorImageSrc": "https://wp-corp-site.s3.eu-central-1.amazonaws.com/wp-content/uploads/2025/03/17212507/test-taller-w.svg",
-    "lifeDecorImageAlt": "Sidago life",
-    "lifeDecorImageWidth": 1152,
-    "lifeDecorImageHeight": 1152,
-    "lifeVideoSrc": "https://wp-corp-site.s3.amazonaws.com/wp-content/uploads/2025/05/27134002/WMT-office-4MB.mp4",
-    "lifeVideoPreload": "metadata",
+    "lifeStageLabel": "Culture orbit",
+    "lifeStageFootTitle": "Where teams actually connect",
+    "lifeStageFootDescription": "Sidago life isn't a slide — it's shared meals, clubs, offsites, and the informal rituals that keep global teams aligned without adding hierarchy.",
+    "lifeStageStats": [
+      {
+        "value": 52,
+        "suffix": "",
+        "label": "events / year",
+        "sortOrder": 1
+      },
+      {
+        "value": 0,
+        "suffix": "",
+        "label": "hierarchy layers",
+        "sortOrder": 2
+      },
+      {
+        "value": 100,
+        "suffix": "%",
+        "label": "teams connected",
+        "sortOrder": 3
+      }
+    ],
     "lifeStatsFontSizeMobile": 36,
     "lifeStatsFontSizeDesktop": 48,
     "lifeStatsItems": [
@@ -3452,6 +3469,445 @@
         "width": 110,
         "activeDotColor": "#E7512F",
         "sortOrder": 4
+      }
+    ]
+  },
+  "companyPage": {
+    "hero": {
+      "useVideo": true,
+      "imageSrc": "",
+      "subtitle": "Learn about a leading algorithmic trading firm and builder advancing the decentralized world",
+      "videoSectionClass": "",
+      "videoClass": "company-hero-video",
+      "fontWeight": 400,
+      "lighterTheme": false,
+      "loop": true,
+      "lighterBgColor": "bg-[#f0f1f1]",
+      "videoSrc": "/media/company-1280w.mp4",
+      "titles": [
+        {
+          "title": "Building the future of ",
+          "sortOrder": 0
+        },
+        {
+          "title": "decentralized finance",
+          "className": "text-[#00F554]",
+          "sortOrder": 1
+        }
+      ]
+    },
+    "whatWeDoHeadingBefore": "What ",
+    "whatWeDoHeadingHighlight": "Sidago",
+    "whatWeDoHeadingAfter": " does",
+    "whatWeDoHeadingId": "what-sidago-does",
+    "whatWeDoIntro": "Sidago delivers integrated operational, strategic, and digital support that helps organizations scale with more control and consistency. Our core capabilities include:",
+    "businessLines": [
+      {
+        "lineId": "operations",
+        "srOnly": "Operations",
+        "href": "/operations",
+        "colSpan": "col-span-6",
+        "cardClassName": "bg-gray-defi-ash text-gray-off-white",
+        "title": "Operations",
+        "description": "We help teams run day-to-day work with structured back-office support, workflow design, and dependable delivery across growing businesses.",
+        "decoration": "algorithmic",
+        "sortOrder": 1
+      },
+      {
+        "lineId": "strategy",
+        "srOnly": "Strategy",
+        "href": "/strategy",
+        "colSpan": "col-span-6",
+        "cardClassName": "bg-gray-tradfi-steel text-gray-night-green",
+        "title": "Strategy & execution",
+        "description": "We partner with organizations to align priorities, improve processes, and turn business goals into clear, executable plans.",
+        "decoration": "otc",
+        "sortOrder": 2
+      },
+      {
+        "lineId": "marketing-growth",
+        "srOnly": "Marketing and growth",
+        "href": "/marketing-growth",
+        "colSpan": "col-span-12 xl:col-span-4",
+        "cardClassName": "bg-blue-light text-gray-night-green",
+        "title": "Marketing & growth",
+        "description": "We support customer acquisition, outreach, and growth operations with dedicated teams that strengthen market presence and revenue pipelines.",
+        "decoration": "none",
+        "sortOrder": 3
+      },
+      {
+        "lineId": "research-data",
+        "srOnly": "Research and data",
+        "href": "/research-data",
+        "colSpan": "col-span-5 xl:col-span-4",
+        "cardClassName": "bg-gray-tradfi-frost text-gray-night-green",
+        "title": "Research & data",
+        "description": "We provide research, reporting, and data-driven insights that give leadership better visibility into performance and decision-making.",
+        "decoration": "none",
+        "sortOrder": 4
+      },
+      {
+        "lineId": "global-workforce",
+        "srOnly": "Global workforce solutions",
+        "href": "/global-workforce-solutions",
+        "colSpan": "col-span-7 xl:col-span-4",
+        "cardClassName": "bg-orange-light text-gray-night-green",
+        "title": "Global workforce",
+        "description": "We scale flexible teams and managed workforce solutions so businesses can expand capacity without sacrificing quality or control.",
+        "decoration": "none",
+        "sortOrder": 5
+      }
+    ],
+    "quoteSection": {
+      "quote": "All of our businesses are built around our core expertise - trading technology and liquidity provision. All of our businesses are designed to be highly complementary and enhance each other and it is our objective to be the market leader in every business we operate.",
+      "attribution": "Evgeny Gaevoy, founder and CEO of Sidago Group"
+    },
+    "executiveTeamTitle": "Meet the executive team",
+    "executiveTeamHeadingId": "meet-the-executive-team",
+    "executiveTeamItems": [
+      {
+        "name": "Evgeny Gaevoy",
+        "role": "Founder & CEO",
+        "imageSrc": "/images/image_12.jpg",
+        "imageWidth": 775,
+        "imageHeight": 1152,
+        "bio": [
+          "Evgeny has 15+ years of experience growing fintech businesses. He has consistently grown market share in Europe's top fiat exchanges, developed and executed ambitious expansion projects and led agile cross-functional teams. Prior to founding Sidago, Evgeny built and ran the Optiver's European ETF business (HFT and OTC) - one of the largest in the EU.",
+          "Evgeny holds MSc in Finance and EMBA from London Business School. He is an avid reader (particularly enjoys philosophical and sci-fi pieces) and supports Dota 2 as an amateur gamer."
+        ],
+        "socialLinks": [
+          {
+            "type": "x",
+            "href": "https://x.com/EvgenyGaevoy",
+            "label": "EvgenyGaevoy",
+            "sortOrder": 1
+          },
+          {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/in/evgeny-gaevoy-3148a61/",
+            "label": "LinkedIn profile",
+            "sortOrder": 2
+          }
+        ],
+        "sortOrder": 1
+      },
+      {
+        "name": "Marina Gurevich",
+        "role": "Chief Operating Officer",
+        "imageSrc": "/images/image_7.jpg",
+        "imageWidth": 844,
+        "imageHeight": 1152,
+        "bio": [
+          "Prior to joining Sidago, Marina was a growth strategy consultant and the founder of System2Labs. She helped dozens of Private Equity and Venture Capital backed B2B companies accelerate growth.",
+          "Prior to management consulting, Marina gained 10+ years of experience managing strategy, sales and marketing functions of Fortune 100 companies including Procter & Gamble, Philips and Nikon."
+        ],
+        "socialLinks": [
+          {
+            "type": "x",
+            "href": "https://x.com/emgurevich",
+            "label": "Emgurevich",
+            "sortOrder": 1
+          },
+          {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/in/m-gurevich/",
+            "label": "LinkedIn profile",
+            "sortOrder": 2
+          }
+        ],
+        "sortOrder": 2
+      },
+      {
+        "name": "Valentine Samko",
+        "role": "Chief Technology Officer",
+        "imageSrc": "/images/image_8.jpg",
+        "imageWidth": 629,
+        "imageHeight": 846,
+        "bio": [
+          "Valentine has over 20 years of experience in software architecture and development, including 15 years at top tier banks (Barclays, Morgan Stanley, Standard Chartered) and proprietary trading firms (XTX, Dain Capital), working on quantitative algorithms and high performance low latency trading platforms.",
+          "Prior to Sidago, Valentine was working on a low latency trading platform at XTX, a leading global quantitative trading firm. Valentine holds a PhD in Computer Science/Maths."
+        ],
+        "socialLinks": [
+          {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/in/samko/",
+            "label": "LinkedIn profile",
+            "sortOrder": 1
+          }
+        ],
+        "sortOrder": 3
+      },
+      {
+        "name": "Morgan Vincent",
+        "role": "Head of Trading",
+        "imageSrc": "/images/image_11.jpg",
+        "imageWidth": 843,
+        "imageHeight": 1152,
+        "bio": [
+          "Morgan has over 8 years of experience in trading. Prior to Sidago, he was an equity options trader at Optiver, an equity sales trader at Kyte Broking and was building crypto trading algorithms in his spare time.",
+          "Morgan holds MSc in Finance from Skema Business School and MSc in Computer Science. He joined Sidago to pursue his passion and leads the CeFi trading and OTC teams."
+        ],
+        "socialLinks": [
+          {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/in/morgan-vincent-1b01189/",
+            "label": "LinkedIn profile",
+            "sortOrder": 1
+          }
+        ],
+        "sortOrder": 4
+      },
+      {
+        "name": "Yoann Turpin",
+        "role": "Co-founder",
+        "imageSrc": "/images/image_10.jpg",
+        "imageWidth": 1284,
+        "imageHeight": 1152,
+        "bio": [
+          "Yoann has 10+ years of experience as a high-frequency trader at Optiver. Prior to co-founding Sidago, Yoann worked in London's hedge funds and family offices. Yoann is a seasoned startup investor and serves as a board member or advisor to over 10 startups.",
+          "Yoann holds MSc from EdHec business school. In his spare time, Yoann enjoys learning new languages."
+        ],
+        "socialLinks": [
+          {
+            "type": "x",
+            "href": "https://x.com/YoannTurpin1",
+            "label": "YoannTurpin1",
+            "sortOrder": 1
+          },
+          {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/in/yoannturpin/",
+            "label": "LinkedIn profile",
+            "sortOrder": 2
+          }
+        ],
+        "sortOrder": 5
+      },
+      {
+        "name": "Jonathan Chan",
+        "role": "Global Head of Business Development and Partnerships",
+        "imageSrc": "/images/image_9.jpg",
+        "imageWidth": 842,
+        "imageHeight": 1152,
+        "bio": [
+          "Prior to joining Sidago, Jonathan had 10+ years of experience in TradFi across a global leading market maker and a multi-billion dollar asset management firm. Before shifting to business development, Jonathan was an Options Trader at Citadel Securities in Chicago.",
+          "Jonathan graduated with Honors in Bachelor of Science degree from University of Illinois Urbana-Champaign."
+        ],
+        "socialLinks": [
+          {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/in/jonathan-chan-2531a99/",
+            "label": "LinkedIn profile",
+            "sortOrder": 1
+          }
+        ],
+        "sortOrder": 6
+      },
+      {
+        "name": "Alain Passini",
+        "role": "Head of Risk",
+        "imageSrc": "/images/image_3.jpg",
+        "imageWidth": 844,
+        "imageHeight": 1152,
+        "bio": [
+          "Alain is a risk management professional with over 10 years of experience across traditional financial markets as well as digital asset markets. He currently leads the risk function at Sidago, following senior roles at Genesis and Morgan Stanley. Prior to Sidago, Alain has built comprehensive financial risk infrastructure and control processes across prime brokerage and e-trading verticals.",
+          "He holds a MSc in Financial Markets and Investments from SKEMA Business School."
+        ],
+        "socialLinks": [
+          {
+            "type": "linkedin",
+            "href": "https://www.linkedin.com/in/alainpassini/",
+            "label": "LinkedIn profile",
+            "sortOrder": 1
+          }
+        ],
+        "sortOrder": 7
+      },
+      {
+        "name": "Lilian Tan",
+        "role": "Chief Compliance Officer",
+        "imageSrc": "/images/image_13.jpg",
+        "imageWidth": 1279,
+        "imageHeight": 1152,
+        "bio": [
+          "Prior to Sidago, Lilian has built an extensive Compliance career over 10 years across a range of financial service firms. Her previous positions included Head of Compliance in an algorithmic trading firm, Chief Compliance Officer role in a global macro hedge fund and consultant in various compliance consultancy firms. Lilian completed the Bar Vocational Course and holds a Master's degree in Law from University College London."
+        ],
+        "socialLinks": [],
+        "sortOrder": 8
+      },
+      {
+        "name": "Nalaka Gamage",
+        "role": "Chief Financial Officer",
+        "imageSrc": "/images/image_4.jpg",
+        "imageWidth": 844,
+        "imageHeight": 1152,
+        "bio": [
+          "Nalaka has over 15 years of Finance experience across a number of financial services firms. Most recently Nalaka was the group controller at XTX Markets. Prior to this Nalaka held senior finance positions within KCG and GETCO (now acquired by Virtu Financial). Nalaka also worked at Bank of America Merrill Lynch Finance, supporting the global markets and electronic trading teams. Nalaka is a chartered management accountant (ACMA) and holds an MBA."
+        ],
+        "socialLinks": [],
+        "sortOrder": 9
+      }
+    ],
+    "exploreCareersTitle": "Explore Sidago careers",
+    "exploreCareersHeadingId": "explore-sidago-careers",
+    "exploreCareersGallery": [
+      {
+        "src": "/images/company/careers-meeting.png",
+        "width": 1698,
+        "height": 926,
+        "sortOrder": 1
+      },
+      {
+        "src": "/images/company/careers-office.png",
+        "width": 1529,
+        "height": 1029,
+        "sortOrder": 2
+      },
+      {
+        "src": "/images/company/careers-developers.png",
+        "width": 1528,
+        "height": 1029,
+        "sortOrder": 3
+      },
+      {
+        "src": "/images/company/careers-platform.png",
+        "width": 1264,
+        "height": 848,
+        "sortOrder": 4
+      },
+      {
+        "src": "/images/company/careers-team.png",
+        "width": 1408,
+        "height": 768,
+        "sortOrder": 5
+      }
+    ],
+    "exploreCareersLinks": [
+      {
+        "title": "Careers",
+        "description": "Join our dynamic team",
+        "href": "/company/careers",
+        "srText": "Company › Careers",
+        "external": false,
+        "sortOrder": 1
+      },
+      {
+        "title": "Opportunities",
+        "description": "Explore open roles",
+        "href": "/company/opportunities",
+        "srText": "Company › Opportunities",
+        "external": false,
+        "sortOrder": 2
+      },
+      {
+        "title": "Community",
+        "description": "Follow Sidago on LinkedIn",
+        "href": "https://www.linkedin.com/company/sidago-integrated-solutions",
+        "srText": "Company › Sidago on LinkedIn",
+        "external": true,
+        "sortOrder": 3
+      }
+    ],
+    "latestNewsHeading": "Latest Sidago news",
+    "latestNewsHeadingId": "latest-sidago-news",
+    "latestNewsHeadingClassName": "font-blender text-xl uppercase text-[#00F554]",
+    "latestNewsDividerClassName": "border-[#006623]",
+    "latestNewsDesktopColumns": 4,
+    "latestNewsCards": [
+      {
+        "imageSrc": "/images/image_14.jpg",
+        "imageAlt": "Sidago executes first equity CFD trade as SpaceX debuts on Nasdaq",
+        "category": "Announcements",
+        "title": "Sidago executes first equity CFD trade as SpaceX debuts on Nasdaq",
+        "date": "12 Jun 2026",
+        "sortOrder": 1
+      },
+      {
+        "imageSrc": "/images/prediction.png",
+        "imageAlt": "Sidago enters prediction markets as a liquidity provider",
+        "category": "Announcements",
+        "title": "Sidago enters prediction markets as a liquidity provider",
+        "date": "29 May 2026",
+        "sortOrder": 2
+      },
+      {
+        "imageSrc": "/images/Armitage.png",
+        "imageAlt": "Sidago launches Armitage, bringing its DeFi and trading expertise to vault curation",
+        "category": "News",
+        "title": "Sidago launches Armitage, bringing its DeFi and trading expertise to vault curation",
+        "date": "19 May 2026",
+        "sortOrder": 3
+      },
+      {
+        "imageSrc": "/images/Media-CoinDesk.svg",
+        "imageAlt": "Crypto Clarity bill has 30% chance of passing this year, Sidago's Hammond says",
+        "category": "Media",
+        "title": "Crypto Clarity bill has 30% chance of passing this year, Sidago's Hammond says",
+        "date": "11 Apr 2026",
+        "sortOrder": 4
+      },
+      {
+        "imageSrc": "/images/Yield_png.png",
+        "imageAlt": "Unlocking electronic pricing for options-based yield across majors & 50+ altcoins",
+        "category": "Announcements",
+        "title": "Unlocking electronic pricing for options-based yield across majors & 50+ altcoins",
+        "date": "9 Apr 2026",
+        "sortOrder": 5
+      },
+      {
+        "imageSrc": "/images/Media-CoinDesk.svg",
+        "imageAlt": "Crypto giant debuts oil trading, but it's a different model to Hyperliquid's perps",
+        "category": "Media",
+        "title": "Crypto giant debuts oil trading, but it's a different model to Hyperliquid's perps",
+        "date": "25 Mar 2026",
+        "sortOrder": 6
+      },
+      {
+        "imageSrc": "/images/image_17.jpg",
+        "imageAlt": "Sidago launches 24/7 crude oil CFD trading to meet demand for weekend liquidity",
+        "category": "Announcements",
+        "title": "Sidago launches 24/7 crude oil CFD trading to meet demand for weekend liquidity",
+        "date": "24 Mar 2026",
+        "sortOrder": 7
+      },
+      {
+        "imageSrc": "/images/Media-CoinDesk.svg",
+        "imageAlt": "AI mania is helping cap crypto's upside, Sidago says",
+        "category": "Media",
+        "title": "AI mania is helping cap crypto's upside, Sidago says",
+        "date": "10 Feb 2026",
+        "sortOrder": 8
+      }
+    ],
+    "eventsPromoTitle": "Meet the Sidago team",
+    "eventsPromoDescription": "Join us at industry conferences and Sidago's exclusive events near you.",
+    "eventsPromoCtaHref": "/events",
+    "eventsPromoCtaLabel": "Explore events",
+    "eventsPromoCtaSrText": "Events",
+    "cta": [
+      {
+        "title": "Contact",
+        "description": "To access top crypto liquidity",
+        "href": "/contact",
+        "srLabel": "Contact",
+        "backgroundColor": "#FF5D3C",
+        "sortOrder": 1
+      },
+      {
+        "title": "Subscribe",
+        "description": "To get the latest insights",
+        "href": "/insights/subscribe",
+        "srLabel": "Insights › Subscribe",
+        "backgroundColor": "#FA7248",
+        "sortOrder": 2
+      },
+      {
+        "title": "Apply",
+        "description": "To join the Sidago team",
+        "href": "/company/opportunities",
+        "srLabel": "Company › Opportunities",
+        "backgroundColor": "#FF8C69",
+        "sortOrder": 3
       }
     ]
   },
@@ -3540,38 +3996,6 @@
         "showServicesField": false,
         "description": "Contact Sidago for general enquiries that do not fit another topic.",
         "sortOrder": 8
-      }
-    ],
-    "inquiryServices": [
-      {
-        "title": "Help desk & triage",
-        "description": "First-line support for users and internal teams—intake, categorization, resolution, and clean handoffs to specialists.",
-        "sortOrder": 1
-      },
-      {
-        "title": "Technical assistance",
-        "description": "Application troubleshooting, access requests, environment checks, and coordination with engineering when fixes need depth.",
-        "sortOrder": 2
-      },
-      {
-        "title": "Customer success ops",
-        "description": "Onboarding checklists, health monitoring, renewal prep, and proactive outreach so accounts do not stall silently.",
-        "sortOrder": 3
-      },
-      {
-        "title": "Content & knowledge base",
-        "description": "Articles, macros, and internal playbooks that shorten handle time and keep answers aligned with product changes.",
-        "sortOrder": 4
-      },
-      {
-        "title": "Back-office digital tasks",
-        "description": "Data hygiene, catalog updates, moderation, and recurring operational work that frees core teams for higher-value work.",
-        "sortOrder": 5
-      },
-      {
-        "title": "Incident coordination",
-        "description": "Structured comms during outages or escalations—status updates, stakeholder routing, and post-incident summaries.",
-        "sortOrder": 6
       }
     ],
     "cta": [
@@ -3723,6 +4147,7 @@
       "lighterTheme": false,
       "loop": true,
       "lighterBgColor": "bg-[#f0f1f1]",
+      "syncBackgroundColor": true,
       "titles": [
         {
           "title": "Igniting",
@@ -3754,7 +4179,7 @@
       ]
     },
     "accentColor": "#F075E4",
-    "backgroundClassName": "bg-[#151B17]",
+    "backgroundClassName": "bg-[#070807]",
     "videoClass": "events-hero-video",
     "upcomingHeadingId": "meet-us-at-whats-next",
     "upcomingHeading": "Meet us at what's next",
@@ -6598,30 +7023,7 @@
         ]
       },
       "pressRelease": null,
-      "subscribe": {
-        "heading": "Subscribe",
-        "headingId": "subscribe",
-        "emailLabel": "Email",
-        "newslettersLabel": "Newsletters to subscribe to",
-        "disclaimer": "Sidago and its affiliates need the contact information you provide to us to contact you about our products and services. You may unsubscribe from these communications at anytime. For information on how to unsubscribe, as well as our privacy practices and commitment to protecting your privacy, check out our ",
-        "privacyPolicyHref": "/privacy",
-        "privacyPolicyLabel": "Privacy Policy",
-        "disclaimerSuffix": ".",
-        "submitLabel": "Submit",
-        "submitSrText": "Submit subscription",
-        "newsletterOptions": [
-          {
-            "optionId": "market-updates",
-            "label": "Market Updates",
-            "sortOrder": 1
-          },
-          {
-            "optionId": "research-insights",
-            "label": "Research Insights",
-            "sortOrder": 2
-          }
-        ]
-      },
+      "subscribe": null,
       "similarInsights": {
         "heading": "Explore similar Insights",
         "headingId": "explore-similar-insights",

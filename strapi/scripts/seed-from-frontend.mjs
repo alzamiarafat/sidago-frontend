@@ -173,6 +173,12 @@ async function loadPayloadFromFrontendDefaults() {
       ).href
     );
 
+    const companyPageModule = await import(
+      pathToFileURL(
+        path.resolve(path.dirname(candidatePath), "company-page.mjs"),
+      ).href
+    );
+
     return {
       generatedAt: new Date().toISOString(),
       global: {
@@ -195,6 +201,9 @@ async function loadPayloadFromFrontendDefaults() {
       servicesPage: defaultServicesPage,
       careersPage: careersPageModule.careersPageToStrapiSeed(
         defaultCareersPage,
+      ),
+      companyPage: companyPageModule.companyPageToStrapiSeed(
+        companyPageModule.defaultCompanyPage,
       ),
       contactPage: contactPageModule.contactPageToStrapiSeed(),
       brandPage: brandPageModule.brandPageToStrapiSeed(),
@@ -552,6 +561,11 @@ async function pushViaLocalStrapi(payload) {
     strapi,
     "api::careers-page.careers-page",
     payload.careersPage,
+  );
+  await upsertSingleType(
+    strapi,
+    "api::company-page.company-page",
+    payload.companyPage,
   );
   await upsertSingleType(
     strapi,

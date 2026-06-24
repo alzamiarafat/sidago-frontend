@@ -106,6 +106,12 @@ module.exports = {
       "api::careers-page.careers-page",
       payload.careersPage,
     );
+    if (payload?.companyPage) {
+      await upsertSingleType(
+        "api::company-page.company-page",
+        payload.companyPage,
+      );
+    }
     await upsertSingleType(
       "api::contact-page.contact-page",
       payload.contactPage,
@@ -153,6 +159,7 @@ module.exports = {
           "industriesPage",
           "strategyPage",
           "careersPage",
+          "companyPage",
           "contactPage",
           "brandPage",
           "eventsPage",

@@ -1008,6 +1008,194 @@ function normalizeCareersPage(entry) {
   };
 }
 
+function normalizeCompanyBusinessLine(item) {
+  if (!item?.lineId || !item?.title || !item?.description || !item?.href) {
+    return null;
+  }
+
+  return {
+    id: item.lineId.trim(),
+    srOnly: item.srOnly?.trim() || item.title.trim(),
+    href: item.href.trim(),
+    colSpan: item.colSpan?.trim() || "col-span-6",
+    cardClassName:
+      item.cardClassName?.trim() || "bg-gray-defi-ash text-gray-off-white",
+    title: item.title.trim(),
+    description: item.description.trim(),
+    decoration:
+      item.decoration === "algorithmic" || item.decoration === "otc"
+        ? item.decoration
+        : null,
+  };
+}
+
+function normalizeCompanyExecutiveMember(item) {
+  if (!item?.name || !item?.role || !item?.imageSrc) {
+    return null;
+  }
+
+  const social =
+    item.socialLinks?.length > 0
+      ? item.socialLinks
+          .filter((link) => link?.href && link?.type)
+          .slice()
+          .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+          .map((link) => ({
+            type: link.type === "linkedin" ? "linkedin" : "x",
+            href: link.href.trim(),
+            label: link.label?.trim() || link.type,
+          }))
+      : [];
+
+  return {
+    name: item.name.trim(),
+    role: item.role.trim(),
+    image: {
+      src: item.imageSrc.trim(),
+      width: item.imageWidth ?? 775,
+      height: item.imageHeight ?? 1152,
+    },
+    bio: Array.isArray(item.bio) ? item.bio.filter(Boolean) : [],
+    social,
+  };
+}
+
+function normalizeCompanyPage(entry) {
+  const item = unwrapEntity(entry);
+
+  if (!item) {
+    return null;
+  }
+
+  const hero = normalizeHero(item.hero);
+
+  return {
+    hero: hero
+      ? {
+          ...hero,
+          videoSrc: hero.videoSrc?.trim() || "",
+          videoClass: hero.videoClass?.trim() || "company-hero-video",
+          loop: hero.loop ?? true,
+        }
+      : null,
+    whatWeDo: {
+      headingBefore: item.whatWeDoHeadingBefore?.trim() || "",
+      headingHighlight: item.whatWeDoHeadingHighlight?.trim() || "",
+      headingAfter: item.whatWeDoHeadingAfter?.trim() || "",
+      headingId: item.whatWeDoHeadingId?.trim() || "what-sidago-does",
+      intro: item.whatWeDoIntro?.trim() || "",
+      businessLines:
+        item.businessLines?.length > 0
+          ? item.businessLines
+              .slice()
+              .sort(
+                (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((line) => normalizeCompanyBusinessLine(line))
+              .filter(Boolean)
+          : null,
+    },
+    quoteSection: {
+      quote: item.quoteSection?.quote?.trim() || "",
+      attribution: item.quoteSection?.attribution?.trim() || "",
+    },
+    executiveTeam: {
+      title: item.executiveTeamTitle?.trim() || "",
+      headingId:
+        item.executiveTeamHeadingId?.trim() || "meet-the-executive-team",
+      items:
+        item.executiveTeamItems?.length > 0
+          ? item.executiveTeamItems
+              .slice()
+              .sort(
+                (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((member) => normalizeCompanyExecutiveMember(member))
+              .filter(Boolean)
+          : null,
+    },
+    exploreCareers: {
+      title: item.exploreCareersTitle?.trim() || "",
+      headingId:
+        item.exploreCareersHeadingId?.trim() || "explore-sidago-careers",
+      images:
+        item.exploreCareersGallery?.length > 0
+          ? item.exploreCareersGallery
+              .filter((image) => image?.src)
+              .slice()
+              .sort(
+                (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((image) => ({
+                src: image.src.trim(),
+                width: image.width ?? 1152,
+                height: image.height ?? 1182,
+              }))
+          : null,
+      links:
+        item.exploreCareersLinks?.length > 0
+          ? item.exploreCareersLinks
+              .filter((link) => link?.title && link?.description && link?.href)
+              .slice()
+              .sort(
+                (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((link) => ({
+                title: link.title.trim(),
+                description: link.description.trim(),
+                href: link.href.trim(),
+                srText: link.srText?.trim() || link.title.trim(),
+                external: link.external ?? false,
+              }))
+          : null,
+    },
+    latestNews: {
+      heading: item.latestNewsHeading?.trim() || "",
+      headingId: item.latestNewsHeadingId?.trim() || "latest-sidago-news",
+      headingClassName:
+        item.latestNewsHeadingClassName?.trim() ||
+        "font-blender text-xl uppercase text-[#00F554]",
+      dividerClassName:
+        item.latestNewsDividerClassName?.trim() || "border-[#006623]",
+      desktopColumns: item.latestNewsDesktopColumns ?? 4,
+      cards:
+        item.latestNewsCards?.length > 0
+          ? item.latestNewsCards
+              .filter(
+                (card) =>
+                  card?.imageSrc && card?.imageAlt && card?.title && card?.date,
+              )
+              .slice()
+              .sort(
+                (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+              )
+              .map((card) => ({
+                imageSrc: card.imageSrc.trim(),
+                imageAlt: card.imageAlt.trim(),
+                category: card.category?.trim() || "",
+                title: card.title.trim(),
+                date: card.date.trim(),
+              }))
+          : null,
+    },
+    eventsPromo: {
+      title: item.eventsPromoTitle?.trim() || "",
+      description: item.eventsPromoDescription?.trim() || "",
+      ctaHref: item.eventsPromoCtaHref?.trim() || "",
+      ctaLabel: item.eventsPromoCtaLabel?.trim() || "",
+      ctaSrText: item.eventsPromoCtaSrText?.trim() || "",
+    },
+    cta:
+      item.cta?.length > 0
+        ? item.cta
+            .slice()
+            .sort((left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0))
+            .map((ctaItem) => normalizeCtaItem(ctaItem))
+            .filter(Boolean)
+        : null,
+  };
+}
+
 function normalizeInfrastructurePage(entry) {
   const item = unwrapEntity(entry);
 
@@ -1462,6 +1650,15 @@ export const getCareersPage = cache(async () =>
     "careers-page?populate[hero][populate][titles]=*&populate[statistics]=*&populate[quoteSection]=*&populate[valuesItems]=*&populate[teamsItems][populate][links]=*&populate[testimonialsItems]=*&populate[lifeStatsItems]=*",
     normalizeCareersPage,
     (page) => Boolean(page?.hero),
+  ),
+);
+
+export const getCompanyPage = cache(async () =>
+  fetchCMSSingleType(
+    "company-page?populate[hero][populate][titles]=*&populate[quoteSection]=*&populate[businessLines]=*&populate[executiveTeamItems][populate][socialLinks]=*&populate[exploreCareersGallery]=*&populate[exploreCareersLinks]=*&populate[latestNewsCards]=*&populate[cta]=*",
+    normalizeCompanyPage,
+    (page) =>
+      Boolean(page?.hero?.videoSrc || page?.hero?.titles?.length),
   ),
 );
 
