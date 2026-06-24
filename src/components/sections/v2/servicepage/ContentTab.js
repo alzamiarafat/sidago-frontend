@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { getServiceMenuContext } from "@/src/utils/serviceUtils";
 import {
@@ -13,6 +13,7 @@ import {
   getServiceMenuContextFromGroups,
   getServicesMenuGroups,
   normalizeMenuGroups,
+  normalizePath,
 } from "@/src/utils/navigationTabUtils";
 import {
   getActiveStrategyItem,
@@ -34,6 +35,40 @@ function findMenuItemByHref(items, href) {
 
     if (nested) {
       return nested;
+    }
+  }
+
+  return null;
+}
+
+function findMenuItemByPath(items, path) {
+  for (const item of items ?? []) {
+    if (normalizePath(item.href) === path) {
+      return item;
+    }
+
+    const nested = findMenuItemByPath(item.children, path);
+
+    if (nested) {
+      return nested;
+    }
+  }
+
+  return null;
+}
+
+function findMenuHrefForPath(pathname, groups = []) {
+  const path = normalizePath(pathname);
+
+  for (const group of groups) {
+    if (normalizePath(group.href) === path) {
+      return group.href;
+    }
+
+    const child = findMenuItemByPath(group.children, path);
+
+    if (child) {
+      return child.href;
     }
   }
 
@@ -3026,11 +3061,31 @@ export default function ContentTab({
     return menuContext?.tabs?.[0]?.href ?? "";
   });
 
+  const selectTab = useCallback(
+    (href) => {
+      if (!href) {
+        return;
+      }
+
+      const path = normalizePath(href);
+      if (!path || path === "#") {
+        return;
+      }
+
+      setActiveHref(href);
+
+      if (normalizePath(window.location.pathname) !== path) {
+        window.history.pushState({ contentTab: true }, "", path);
+      }
+    },
+    [],
+  );
+
   const [nestedServiceAccordionHref, setNestedServiceAccordionHref] =
     useState("");
 
   useEffect(() => {
-    if (type !== "service" || !menuContext?.group) {
+    if (!menuContext?.group) {
       return;
     }
     const nextTitle =
@@ -3039,7 +3094,10 @@ export default function ContentTab({
       setExpandedGroup(nextTitle);
     }
     if (menuContext.currentItem?.href) {
-      setActiveHref(menuContext.currentItem.href);
+      const nextHref = menuContext.currentItem.href;
+      setActiveHref((current) =>
+        normalizePath(current) === normalizePath(nextHref) ? current : nextHref,
+      );
     }
     // menuContext is a new object each render from resolveConfig; sync only from slug-driven primitives.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- intentional: avoid unstable menuContext reference
@@ -3081,6 +3139,18 @@ export default function ContentTab({
     // only when the URL slug matches a nested path (handled above).
     setNestedServiceAccordionHref("");
   }, [type, slug, expandedGroup]);
+
+  useEffect(() => {
+    const syncFromBrowserPath = () => {
+      const href = findMenuHrefForPath(window.location.pathname, groups);
+      if (href) {
+        setActiveHref(href);
+      }
+    };
+
+    window.addEventListener("popstate", syncFromBrowserPath);
+    return () => window.removeEventListener("popstate", syncFromBrowserPath);
+  }, [groups]);
 
   const activeEntry = useMemo(() => {
     if (groups?.length) {
@@ -3299,7 +3369,7 @@ export default function ContentTab({
                                     : menuGroup.title,
                                 );
                                 if (!isChildActive) {
-                                  setActiveHref(
+                                  selectTab(
                                     (isStrategyMenu || isServiceMenu) &&
                                       firstChildHref
                                       ? firstChildHref
@@ -3310,7 +3380,7 @@ export default function ContentTab({
                               }
 
                               setExpandedGroup(menuGroup.title);
-                              setActiveHref(menuGroup.href);
+                              selectTab(menuGroup.href);
                             }}
                             className={`relative flex min-h-[3.55rem] w-full shrink-0 items-center justify-between overflow-hidden rounded-[0.95rem] px-4 py-3 text-left transition-colors duration-200 ${navGroupButtonClass(isGroupHighlighted)}`}
                           >
@@ -3385,9 +3455,7 @@ export default function ContentTab({
                                           aria-selected={isActive}
                                           aria-controls={getPanelId(node)}
                                           tabIndex={isActive ? 0 : -1}
-                                          onClick={() =>
-                                            setActiveHref(node.href)
-                                          }
+                                          onClick={() => selectTab(node.href)}
                                           className={`relative flex min-h-[2.8rem] w-full shrink-0 items-center gap-3 overflow-hidden rounded-[0.8rem] py-2 text-left transition ${
                                             nested ? "pl-5 pr-3" : "px-3"
                                           } ${navChildButtonClass(isActive)}`}
@@ -3555,7 +3623,7 @@ export default function ContentTab({
                           aria-selected={isActive}
                           aria-controls={panelId}
                           tabIndex={isActive ? 0 : -1}
-                          onClick={() => setActiveHref(item.href)}
+                          onClick={() => selectTab(item.href)}
                           className={tabButtonClass(isActive)}
                         >
                           {isActive ? (
@@ -3588,12 +3656,7 @@ export default function ContentTab({
           </div>
 
           <div className="relative flex min-w-0 flex-1 lg:min-h-[33rem]">
-            <motion.div
-              id={getPanelId(activeItem)}
-              role="tabpanel"
-              aria-labelledby={getTabId(activeItem)}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
+            <div
               className={`flex min-h-0 flex-1 flex-col overflow-hidden md:h-full ${
                 detailContent
                   ? isLightDetailPanel
@@ -3602,6 +3665,18 @@ export default function ContentTab({
                   : `bevel md:flex-row-reverse ${panelClassName} shadow-[0_28px_64px_-10px_rgba(0,0,0,0.28)]`
               }`}
             >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={activeHref}
+                  id={getPanelId(activeItem)}
+                  role="tabpanel"
+                  aria-labelledby={getTabId(activeItem)}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="flex min-h-0 flex-1 flex-col"
+                >
               {!detailContent ? (
                 <div className="h-[16rem] bevel sm:h-[18rem] lg:h-full lg:flex-1 relative">
                   <Image
@@ -3614,23 +3689,15 @@ export default function ContentTab({
                   />
                 </div>
               ) : null}
-              <motion.div
+              <div
                 className={`flex flex-col ${
                   detailContent
                     ? "h-full min-h-0 p-0"
                     : "justify-end px-4 py-6 sm:px-5 lg:flex-1 lg:px-6"
                 } text-gray-night-green`}
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: { staggerChildren: 0.08, delayChildren: 0.06 },
-                  },
-                }}
               >
                 {detailContent ? (
-                  <motion.div
+                  <div
                     className={`flex h-full min-h-0 flex-col overflow-y-auto ${
                       isLightDetailPanel ? "" : "lg:max-h-[38rem]"
                     } ${
@@ -3638,11 +3705,6 @@ export default function ContentTab({
                         ? "bg-[#E7ECE3]"
                         : "bg-gray-defi-charcoal/95"
                     } [scrollbar-color:#e7512f_rgba(255,255,255,0.06)] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-white/[0.05] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[linear-gradient(180deg,#ff7f5f_0%,#e7512f_100%)] [&::-webkit-scrollbar-thumb]:shadow-[0_0_0_1px_rgba(255,255,255,0.06)] [&::-webkit-scrollbar-thumb:hover]:bg-[linear-gradient(180deg,#ff9477_0%,#f16441_100%)]`}
-                    variants={{
-                      hidden: { opacity: 0, y: 8 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.28, ease: "easeOut" }}
                   >
                     <div
                       className={`px-5 py-6 md:px-7 md:py-7 ${
@@ -3799,33 +3861,19 @@ export default function ContentTab({
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ) : (
                   <>
-                    <motion.div
-                      className="text-sm md:text-xl"
-                      variants={{
-                        hidden: { opacity: 0 },
-                        visible: { opacity: 1 },
-                      }}
-                      transition={{ duration: 0.28, ease: "easeOut" }}
-                    >
-                      {activeDescription}
-                    </motion.div>
-                    <motion.div
-                      className="mt-4 text-xs uppercase tracking-[0.18em] opacity-80"
-                      variants={{
-                        hidden: { opacity: 0 },
-                        visible: { opacity: 1 },
-                      }}
-                      transition={{ duration: 0.24, ease: "easeOut" }}
-                    >
+                    <div className="text-sm md:text-xl">{activeDescription}</div>
+                    <div className="mt-4 text-xs uppercase tracking-[0.18em] opacity-80">
                       {group?.title}
-                    </motion.div>
+                    </div>
                   </>
                 )}
-              </motion.div>
-            </motion.div>
+              </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
         </div>

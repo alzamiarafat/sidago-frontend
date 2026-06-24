@@ -129,6 +129,7 @@ export function getServicesMenuGroups() {
       (column) => ({
         ...column,
         title: column.label,
+        groupId: column.groupId || column.id || "",
         children: mapMenuChildren(column.children ?? []),
       }),
     ) ?? []
@@ -170,7 +171,15 @@ function getMenuContext(pathname, groups) {
   const currentPath = normalizePath(pathname);
 
   for (const group of groups) {
-    if (normalizePath(group.href) === currentPath) {
+    const groupSlugPath =
+      group.groupId && currentPath.startsWith("/services/")
+        ? normalizePath(`/services/${group.groupId}`)
+        : "";
+
+    if (
+      normalizePath(group.href) === currentPath ||
+      (groupSlugPath && groupSlugPath === currentPath)
+    ) {
       const visibleTabs = getVisibleTabs(group.children ?? []);
       const defaultItem =
         visibleTabs.length > 0

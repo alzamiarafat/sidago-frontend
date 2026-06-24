@@ -96,7 +96,6 @@ export default function StrategyPageTemplate({ strategyGroups = [] }) {
           {/* <Statistics stats={stats} /> */}
           {/* <PartnerBenefit /> */}
           <ContentTab
-            key={currentPath}
             slug={currentSlug}
             type="strategy"
             strategyGroups={strategyGroups}

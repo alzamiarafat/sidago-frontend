@@ -112,9 +112,9 @@ export const defaultGlobalSettings = {
 export const defaultServicesPage = {
   serviceGroups: [
     {
-      groupId: "dev-it",
+      groupId: "development-it",
       title: "Development & IT",
-      href: "/services/e-commerce/",
+      href: "/services/development-it/",
       children: [
         {
           title: "System Administration",

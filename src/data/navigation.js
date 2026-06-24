@@ -12,9 +12,9 @@ export const mainMenu = [
     isMega: true,
     megaColumns: [
       {
-        id: "dev-it",
+        id: "development-it",
         label: "Development & IT",
-        href: "/services/e-commerce/",
+        href: "/services/development-it/",
         children: [
           {
             label: "System Administration",

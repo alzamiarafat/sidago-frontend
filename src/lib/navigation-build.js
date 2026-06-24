@@ -18,6 +18,8 @@ function mapServiceItems(items = []) {
 export function mapServiceGroupsToProductSections(groups = []) {
   return groups.map((group) => ({
     title: group.title,
+    groupId: group.groupId || group.key || "",
+    href: group.href || "",
     items: mapServiceItems(group.children ?? []),
   }));
 }
