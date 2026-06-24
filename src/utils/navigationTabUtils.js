@@ -171,10 +171,16 @@ function getMenuContext(pathname, groups) {
 
   for (const group of groups) {
     if (normalizePath(group.href) === currentPath) {
+      const visibleTabs = getVisibleTabs(group.children ?? []);
+      const defaultItem =
+        visibleTabs.length > 0
+          ? getDefaultNestedItem(visibleTabs[0]) ?? visibleTabs[0]
+          : group;
+
       return {
         group,
-        currentItem: group,
-        tabs: getVisibleTabs(group.children ?? []),
+        currentItem: defaultItem,
+        tabs: visibleTabs,
       };
     }
 

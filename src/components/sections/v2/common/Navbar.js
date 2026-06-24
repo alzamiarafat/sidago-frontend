@@ -509,8 +509,8 @@ export default function Navigation() {
                             });
                           }}
                           className={`flex w-full items-center gap-4 px-4 py-3 text-left ${isGroupedSection
-                              ? "min-h-[3.3rem] rounded-[1.15rem] bg-transparent"
-                              : "min-h-[3.3rem] rounded-[1.15rem]"
+                            ? "min-h-[3.3rem] rounded-[1.15rem] bg-transparent"
+                            : "min-h-[3.3rem] rounded-[1.15rem]"
                             }`}
                         >
                           <span className="block flex-1 leading-none text-sm uppercase tracking-[0.18em] text-gray-off-white/92">
@@ -577,15 +577,15 @@ export default function Navigation() {
                                                 )
                                               }
                                               className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${isGroupActive
-                                                  ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
-                                                  : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                                ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                                : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
                                                 }`}
                                             >
                                               <span className="flex min-w-0 flex-1 items-center gap-3">
                                                 <span
                                                   className={`h-2 w-2 shrink-0 rounded-full transition ${isGroupActive
-                                                      ? "bg-[#ff8a67]"
-                                                      : "bg-white/20"
+                                                    ? "bg-[#ff8a67]"
+                                                    : "bg-white/20"
                                                     }`}
                                                 />
                                                 <span className="block leading-none">
@@ -655,8 +655,8 @@ export default function Navigation() {
                                                             >
                                                               <div
                                                                 className={`flex items-stretch gap-1 px-2 py-2 ${parentActive
-                                                                    ? "bg-[#202523]/80"
-                                                                    : ""
+                                                                  ? "bg-[#202523]/80"
+                                                                  : ""
                                                                   }`}
                                                               >
                                                                 <Link
@@ -671,16 +671,16 @@ export default function Navigation() {
                                                                   className={`flex min-w-0 flex-1 items-center gap-3 rounded-[0.85rem] px-3 py-2.5 text-left text-[0.78rem] uppercase tracking-[0.14em] leading-[1.35] transition ${pathname?.startsWith(
                                                                     item.href,
                                                                   )
-                                                                      ? "text-gray-off-white"
-                                                                      : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
+                                                                    ? "text-gray-off-white"
+                                                                    : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
                                                                     }`}
                                                                 >
                                                                   <span
                                                                     className={`shrink-0 ${pathname?.startsWith(
                                                                       item.href,
                                                                     )
-                                                                        ? "h-2 w-2 rounded-full bg-[#ff8a67]"
-                                                                        : "h-[1px] w-3 bg-white/30"
+                                                                      ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                      : "h-[1px] w-3 bg-white/30"
                                                                       }`}
                                                                   />
                                                                   <span className="block min-w-0 flex-1 truncate leading-[1.35]">
@@ -707,8 +707,8 @@ export default function Navigation() {
                                                                     )
                                                                   }
                                                                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.85rem] text-[0.72rem] text-[#ff8a67] transition ${nestedOpen
-                                                                      ? "bg-white/[0.08]"
-                                                                      : "bg-white/[0.04] hover:bg-white/[0.07]"
+                                                                    ? "bg-white/[0.08]"
+                                                                    : "bg-white/[0.04] hover:bg-white/[0.07]"
                                                                     }`}
                                                                 >
                                                                   <motion.span
@@ -776,16 +776,16 @@ export default function Navigation() {
                                                                             className={`flex items-center gap-3 rounded-[0.85rem] px-3 py-2.5 text-[0.78rem] uppercase tracking-[0.14em] leading-[1.35] transition ${pathname?.startsWith(
                                                                               sub.href,
                                                                             )
-                                                                                ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
-                                                                                : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
+                                                                              ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
+                                                                              : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
                                                                               }`}
                                                                           >
                                                                             <span
                                                                               className={`shrink-0 ${pathname?.startsWith(
                                                                                 sub.href,
                                                                               )
-                                                                                  ? "h-2 w-2 rounded-full bg-[#ff8a67]"
-                                                                                  : "h-[1px] w-3 bg-white/30"
+                                                                                ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                                : "h-[1px] w-3 bg-white/30"
                                                                                 }`}
                                                                             />
                                                                             <span className="block flex-1 pl-1 leading-[1.35]">
@@ -816,16 +816,16 @@ export default function Navigation() {
                                                             className={`flex items-center gap-3 rounded-[0.95rem] px-4 py-3 text-[0.82rem] uppercase tracking-[0.16em] leading-[1.35] transition ${pathname?.startsWith(
                                                               item.href,
                                                             )
-                                                                ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
-                                                                : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
+                                                              ? "bg-[#202523] text-gray-off-white shadow-[inset_2px_0_0_0_#ff8a67]"
+                                                              : "text-gray-off-white/78 hover:bg-white/[0.04] hover:text-gray-off-white"
                                                               }`}
                                                           >
                                                             <span
                                                               className={`shrink-0 ${pathname?.startsWith(
                                                                 item.href,
                                                               )
-                                                                  ? "h-2 w-2 rounded-full bg-[#ff8a67]"
-                                                                  : "h-[1px] w-3 bg-white/30"
+                                                                ? "h-2 w-2 rounded-full bg-[#ff8a67]"
+                                                                : "h-[1px] w-3 bg-white/30"
                                                                 }`}
                                                             />
                                                             <span className="block flex-1 leading-[1.35]">
@@ -847,16 +847,16 @@ export default function Navigation() {
                                               setMobileNavOpen(false)
                                             }
                                             className={`flex w-full items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${pathname?.startsWith(group.href)
-                                                ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
-                                                : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                              ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                              : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
                                               }`}
                                           >
                                             <span
                                               className={`h-2 w-2 shrink-0 rounded-full transition ${pathname?.startsWith(
                                                 group.href,
                                               )
-                                                  ? "bg-[#ff8a67]"
-                                                  : "bg-white/20"
+                                                ? "bg-[#ff8a67]"
+                                                : "bg-white/20"
                                                 }`}
                                             />
                                             <span className="block flex-1 leading-none">
@@ -873,14 +873,14 @@ export default function Navigation() {
                                       href={item.href}
                                       onClick={() => setMobileNavOpen(false)}
                                       className={`flex min-h-[3.3rem] items-center gap-3 rounded-[1.15rem] px-5 py-4 text-left text-[1rem] tracking-[-0.01em] transition ${pathname?.startsWith(item.href)
-                                          ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
-                                          : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
+                                        ? "bg-[#3c261d] text-gray-off-white shadow-[inset_3px_0_0_0_#ff8a67]"
+                                        : "bg-[#241c19] text-gray-off-white hover:bg-[#2b211d]"
                                         }`}
                                     >
                                       <span
                                         className={`h-2 w-2 shrink-0 rounded-full transition ${pathname?.startsWith(item.href)
-                                            ? "bg-[#ff8a67]"
-                                            : "bg-white/20"
+                                          ? "bg-[#ff8a67]"
+                                          : "bg-white/20"
                                           }`}
                                       />
                                       <span className="block flex-1 leading-none">
@@ -1511,7 +1511,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/otc"
+              // href="/otc"
               >
                 <span itemProp="name">OTC</span>
                 <svg
@@ -1536,7 +1536,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/otc/spot"
+              // href="/otc/spot"
               >
                 <span itemProp="name">Spot</span>
                 <svg
@@ -1561,7 +1561,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/otc/options"
+              // href="/otc/options"
               >
                 <span itemProp="name">Options</span>
                 <svg
@@ -1586,7 +1586,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/otc/forwards"
+              // href="/otc/forwards"
               >
                 <span itemProp="name">Forwards</span>
                 <svg
@@ -1611,7 +1611,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/otc/cfds"
+              // href="/otc/cfds"
               >
                 <span itemProp="name">CFDs</span>
                 <svg
@@ -1636,7 +1636,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/otc/tailored-products"
+              // href="/otc/tailored-products"
               >
                 <span itemProp="name">Tailored products</span>
                 <svg
@@ -1956,7 +1956,7 @@ export default function Navigation() {
                 className="group/interactive flex items-center justify-between hover:opacity-80"
                 itemProp="url"
                 target=""
-                href="/company"
+                href="/strategy"
               >
                 <span itemProp="name">Company</span>
                 <svg
@@ -2122,8 +2122,8 @@ export default function Navigation() {
             <div className="group/menu-item">
               <Link
                 className={`relative font-blender text-sm uppercase transition-all hover:opacity-80  ${pathname === "/services" || pathname.startsWith("/services/")
-                    ? "text-green-dark"
-                    : ""
+                  ? "text-green-dark"
+                  : ""
                   }`}
                 itemProp="url"
                 target=""
@@ -2146,7 +2146,7 @@ export default function Navigation() {
                           className="group/interactive relative row-span-full flex w-[19.25rem] items-end gap-md bg-gray-defi-graphite px-lg py-md bevel group-hover/sub-menu:[&:not(:hover)]:opacity-70"
                           itemProp="url"
                           target=""
-                          href="/otc"
+                          href="/services"
                         >
                           <span className="sr-only">OTC</span>
                           <svg
@@ -2279,9 +2279,9 @@ export default function Navigation() {
             <div className="group/menu-item relative">
               <Link
                 className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${pathname === "/industries" ||
-                    pathname.startsWith("/industries/")
-                    ? "text-green-dark"
-                    : ""
+                  pathname.startsWith("/industries/")
+                  ? "text-green-dark"
+                  : ""
                   }`}
                 itemProp="url"
                 target=""
@@ -2315,8 +2315,8 @@ export default function Navigation() {
                               <a
                                 key={index}
                                 className={`group/interactive relative flex items-center gap-md text-sm ${isActive
-                                    ? "opacity-100"
-                                    : "group-hover/sub-menu:[&:not(:hover)]:opacity-70"
+                                  ? "opacity-100"
+                                  : "group-hover/sub-menu:[&:not(:hover)]:opacity-70"
                                   }`}
                                 href={item.href}
                                 onMouseEnter={(e) => {
@@ -2337,8 +2337,8 @@ export default function Navigation() {
                                       fill="none"
                                       viewBox="0 0 200 200"
                                       className={`absolute origin-top-left left-[1.1rem] top-[0.15rem] w-[5.625rem] transition-all ${item.svgClass ?? ""} -scale-x-100 ${isActive
-                                          ? "text-green-tradfi"
-                                          : "text-gray-tradfi-steel group-hover/interactive:text-green-tradfi"
+                                        ? "text-green-tradfi"
+                                        : "text-gray-tradfi-steel group-hover/interactive:text-green-tradfi"
                                         }`}
                                     >
                                       <path
@@ -2368,8 +2368,8 @@ export default function Navigation() {
                                       fill="none"
                                       viewBox="0 0 20 20"
                                       className={`w-4 shrink-0 transition ${isActive
-                                          ? "text-green-tradfi"
-                                          : "text-gray-defi-ash group-hover/interactive:text-green-tradfi"
+                                        ? "text-green-tradfi"
+                                        : "text-gray-defi-ash group-hover/interactive:text-green-tradfi"
                                         }`}
                                     >
                                       <path
@@ -2425,8 +2425,8 @@ export default function Navigation() {
             <div className="group/menu-item">
               <Link
                 className={`relative font-blender text-sm uppercase transition-all hover:opacity-80 ${pathname === "/strategy" || pathname.startsWith("/strategy/")
-                    ? "text-green-dark"
-                    : ""
+                  ? "text-green-dark"
+                  : ""
                   }`}
                 itemProp="url"
                 target=""
@@ -2447,7 +2447,7 @@ export default function Navigation() {
                           className="group/interactive relative row-span-full flex w-[17.5rem] items-end gap-md bg-gray-defi-graphite px-xl py-lg bevel group-hover/sub-menu:[&:not(:hover)]:opacity-70"
                           itemProp="url"
                           target=""
-                          href="/company"
+                          href="/strategy"
                         >
                           <span className="sr-only">Our Strategy</span>
                           <svg

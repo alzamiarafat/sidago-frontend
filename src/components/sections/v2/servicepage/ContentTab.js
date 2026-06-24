@@ -2882,6 +2882,28 @@ function getStrategyMenuGroups() {
   }));
 }
 
+function shouldUseStrategyFirstChild(pathname, group) {
+  if (!group?.href || !group?.children?.length) {
+    return false;
+  }
+
+  return (
+    normalizeStrategyPath(pathname) === normalizeStrategyPath(group.href)
+  );
+}
+
+function getStrategyDefaultItem(pathname, group) {
+  if (!group) {
+    return null;
+  }
+
+  if (shouldUseStrategyFirstChild(pathname, group)) {
+    return group.children[0];
+  }
+
+  return group;
+}
+
 function resolveConfig(type, slug, serviceGroups, industryGroups, strategyGroups) {
   if (type === "strategy") {
     const pathname = `/strategy/${slug}`;
@@ -2891,13 +2913,22 @@ function resolveConfig(type, slug, serviceGroups, industryGroups, strategyGroups
     const suppliedContext = strategyGroups?.length
       ? getMenuContextFromGroups(pathname, groups)
       : null;
+    const normalizedSuppliedContext =
+      suppliedContext && shouldUseStrategyFirstChild(pathname, suppliedContext.group)
+        ? {
+            ...suppliedContext,
+            currentItem:
+              getStrategyDefaultItem(pathname, suppliedContext.group) ??
+              suppliedContext.currentItem,
+          }
+        : suppliedContext;
     const activeStrategyItem =
-      suppliedContext?.group ??
+      normalizedSuppliedContext?.group ??
       getActiveStrategyItem(pathname) ??
       strategyMenuItems[0];
 
     return {
-      menuContext: suppliedContext || {
+      menuContext: normalizedSuppliedContext || {
         group: {
           title: activeStrategyItem.title,
           href: activeStrategyItem.href,
@@ -2909,8 +2940,7 @@ function resolveConfig(type, slug, serviceGroups, industryGroups, strategyGroups
               normalizeStrategyPath(child.href) ===
               normalizeStrategyPath(pathname),
           ) ??
-          activeStrategyItem.children?.[0] ??
-          activeStrategyItem,
+          getStrategyDefaultItem(pathname, activeStrategyItem),
         tabs: activeStrategyItem.children ?? [],
       },
       groups,
