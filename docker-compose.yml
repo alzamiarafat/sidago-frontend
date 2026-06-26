@@ -1,38 +1,4 @@
 services:
-  sidago-postgres:
-    image: postgres:16-alpine
-    container_name: sidago-postgres
-    environment:
-      POSTGRES_DB: sidago_strapi
-      POSTGRES_USER: sidago
-      POSTGRES_PASSWORD: sidago
-    ports:
-      - "5343:5432"
-    volumes:
-      - sidago-postgres-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U sidago -d sidago_strapi"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    restart: always
-
-  sidago-strapi:
-    build:
-      context: ./strapi
-      dockerfile: Dockerfile
-    container_name: sidago-strapi
-    env_file:
-      - ./strapi/.env
-    volumes:
-      - ./strapi/public/uploads:/app/public/uploads
-    depends_on:
-      sidago-postgres:
-        condition: service_healthy
-    ports:
-      - "9012:9012"
-    restart: always
-
   sidago-nextjs-frontend:
     build:
       context: .
@@ -43,11 +9,6 @@ services:
     container_name: sidago-nextjs-frontend
     env_file:
       - .env
-    depends_on:
-      - sidago-strapi
     ports:
       - "9010:9010"
     restart: always
-
-volumes:
-  sidago-postgres-data:

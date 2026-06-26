@@ -22,6 +22,16 @@ function SubmitArrow() {
   );
 }
 
+const DEFAULT_MESSAGES = {
+  emailRequired: "Email is required.",
+  invalidEmail: "Please enter a valid email address.",
+  newsletterRequired: "Please select at least one newsletter.",
+  success: "Thank you for subscribing.",
+  error: "Something went wrong. Please try again.",
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function SubscribeSection({
   content,
   onSubmit,
@@ -31,24 +41,109 @@ export default function SubscribeSection({
     return null;
   }
 
+  const messages = {
+    ...DEFAULT_MESSAGES,
+    ...content.messages,
+  };
+
   const [email, setEmail] = useState("");
   const [newsletters, setNewsletters] = useState(() =>
     Object.fromEntries(
       content.newsletterOptions.map((option) => [option.id, false]),
     ),
   );
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [formError, setFormError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const toggleNewsletter = (id) => {
     setNewsletters((prev) => ({ ...prev, [id]: !prev[id] }));
+    setFieldErrors((prev) => ({ ...prev, newsletters: "" }));
+    setFormError("");
+    setSuccessMessage("");
   };
 
-  const handleSubmit = (event) => {
+  const validateForm = () => {
+    const nextErrors = {};
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
+      nextErrors.email = messages.emailRequired;
+    } else if (!EMAIL_PATTERN.test(trimmedEmail)) {
+      nextErrors.email = messages.invalidEmail;
+    }
+
+    const selectedNewsletters = Object.entries(newsletters)
+      .filter(([, checked]) => checked)
+      .map(([id]) => id);
+
+    if (!selectedNewsletters.length) {
+      nextErrors.newsletters = messages.newsletterRequired;
+    }
+
+    setFieldErrors(nextErrors);
+    return {
+      isValid: Object.keys(nextErrors).length === 0,
+      selectedNewsletters,
+      trimmedEmail,
+    };
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const hasNewsletter = Object.values(newsletters).some(Boolean);
-    if (!hasNewsletter) {
+    setFormError("");
+    setSuccessMessage("");
+
+    const { isValid, selectedNewsletters, trimmedEmail } = validateForm();
+
+    if (!isValid) {
       return;
     }
-    onSubmit?.({ email, newsletters });
+
+    const payload = {
+      email: trimmedEmail,
+      newsletters: selectedNewsletters,
+      sourcePage:
+        typeof window !== "undefined" ? window.location.pathname : "",
+    };
+
+    if (onSubmit) {
+      onSubmit(payload);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setFormError(result.error ?? messages.error);
+        return;
+      }
+
+      setSuccessMessage(messages.success);
+      setEmail("");
+      setNewsletters(
+        Object.fromEntries(
+          content.newsletterOptions.map((option) => [option.id, false]),
+        ),
+      );
+      setFieldErrors({});
+    } catch {
+      setFormError(messages.error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -71,9 +166,27 @@ export default function SubscribeSection({
               required
               autoComplete="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                setFieldErrors((prev) => ({ ...prev, email: "" }));
+                setFormError("");
+                setSuccessMessage("");
+              }}
+              aria-invalid={Boolean(fieldErrors.email)}
+              aria-describedby={
+                fieldErrors.email ? "subscribe-email-error" : undefined
+              }
               className="v2-subscribe__input"
             />
+            {fieldErrors.email ? (
+              <p
+                id="subscribe-email-error"
+                className="v2-subscribe__field-error"
+                role="alert"
+              >
+                {fieldErrors.email}
+              </p>
+            ) : null}
           </div>
 
           <fieldset className="v2-subscribe__fieldset">
@@ -101,6 +214,11 @@ export default function SubscribeSection({
                 </label>
               ))}
             </div>
+            {fieldErrors.newsletters ? (
+              <p className="v2-subscribe__field-error" role="alert">
+                {fieldErrors.newsletters}
+              </p>
+            ) : null}
           </fieldset>
 
           <p className="v2-subscribe__disclaimer">
@@ -111,10 +229,26 @@ export default function SubscribeSection({
             {content.disclaimerSuffix ?? "."}
           </p>
 
+          {formError ? (
+            <p className="v2-subscribe__form-error" role="alert">
+              {formError}
+            </p>
+          ) : null}
+
+          {successMessage ? (
+            <p className="v2-subscribe__form-success" role="status">
+              {successMessage}
+            </p>
+          ) : null}
+
           <div>
-            <button type="submit" className="v2-subscribe__submit bevel bevel-[0.25rem]">
+            <button
+              type="submit"
+              className="v2-subscribe__submit bevel bevel-[0.25rem]"
+              disabled={isSubmitting}
+            >
               <span className="sr-only">{content.submitSrText}</span>
-              {content.submitLabel}
+              {isSubmitting ? "Submitting..." : content.submitLabel}
               <SubmitArrow />
             </button>
           </div>

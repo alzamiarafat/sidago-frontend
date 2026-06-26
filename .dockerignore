@@ -5,6 +5,5 @@ out
 .env
 .env.*
 !.env.example
-strapi
 npm-debug.log*
 .DS_Store

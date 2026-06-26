@@ -231,6 +231,25 @@
   cursor: not-allowed;
 }
 
+.v2-subscribe__field-error,
+.v2-subscribe__form-error {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #ab290d;
+}
+
+.v2-subscribe__form-success {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #2f6b4f;
+}
+
+.v2-subscribe--dark .v2-subscribe__form-success {
+  color: #8fd4b0;
+}
+
 /* @font-face {
   font-family: "Blender";
   src: url("/fonts/Blender-Regular.woff2") format("woff2");

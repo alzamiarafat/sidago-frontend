@@ -12,11 +12,7 @@
     "inotify:hint": "sh scripts/inotify-nextjs-hint.sh",
     "build": "next build",
     "start": "next start -p 9010",
-    "lint": "eslint",
-    "strapi:dev": "npm --prefix strapi run develop",
-    "strapi:build": "npm --prefix strapi run build",
-    "strapi:seed": "npm --prefix strapi run seed",
-    "strapi:seed:push": "npm --prefix strapi run seed:push"
+    "lint": "eslint"
   },
   "dependencies": {
     "framer-motion": "^12.34.3",
