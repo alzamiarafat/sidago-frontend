@@ -1,5 +1,8 @@
+name: sidago-nextjs-frontend
+
 services:
   sidago-nextjs-frontend:
+    image: sidago-nextjs-frontend:${IMAGE_TAG:-1}
     build:
       context: .
       dockerfile: Dockerfile

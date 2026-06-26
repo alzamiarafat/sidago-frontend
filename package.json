@@ -12,7 +12,9 @@
     "inotify:hint": "sh scripts/inotify-nextjs-hint.sh",
     "build": "next build",
     "start": "next start -p 9010",
-    "lint": "eslint"
+    "lint": "eslint",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d --build"
   },
   "dependencies": {
     "framer-motion": "^12.34.3",

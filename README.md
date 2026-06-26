@@ -41,10 +41,21 @@ Typical local stack:
 
 ## Docker
 
-Run the frontend container:
+Build and run with a fixed image name and tag:
 
 ```bash
-docker compose up --build
+# default tag: 1  →  sidago-nextjs-frontend:1
+npm run docker:up
+
+# custom tag
+IMAGE_TAG=2 docker compose up --build -d
+```
+
+Manual build:
+
+```bash
+docker compose build
+# creates: sidago-nextjs-frontend:1
 ```
 
 Published port: `http://localhost:9010`
