@@ -1,7 +1,6 @@
 
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
@@ -61,8 +60,7 @@ export default async function BusinessProcesses() {
             items={page.solutions.items}
           />
           <WorkOverview {...page.workOverview} />
-          <CTASection />
-          <Footer footer={settings?.footer} />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

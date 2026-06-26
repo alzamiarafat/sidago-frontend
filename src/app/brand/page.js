@@ -1,4 +1,4 @@
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import BrandColorIntroSection from "@/src/components/sections/v2/brand/BrandColorIntroSection";
@@ -54,7 +54,7 @@ export default async function BrandPage() {
           <BrandColorSystemSection />
           <BrandMediaResourcesSection content={content.media} />
           <BrandSubBrandsSection content={content.subBrands} />
-          <Footer footer={settings?.footer} />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

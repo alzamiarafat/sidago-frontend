@@ -1,7 +1,6 @@
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import SimilarInsightsSection from "@/src/components/sections/v2/digital-support-services/SimilarInsightsSection";
 import WhoWeServeAudienceSection from "@/src/components/sections/v2/whoweserve/WhoWeServeAudienceSection";
 import WhoWeServeIntroSection from "@/src/components/sections/v2/whoweserve/WhoWeServeIntroSection";
@@ -52,8 +51,7 @@ export default async function WhoWeServePage() {
             navMutedColor="#333935"
             showDescription={false}
           />
-          <CTASection />
-          <Footer footer={settings?.footer} />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

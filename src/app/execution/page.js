@@ -1,5 +1,4 @@
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
 import "@/src/components/sections/v2/executionpage/execution-hero-mobile.css";
@@ -434,8 +433,7 @@ export default async function ExecutionPage() {
         >
           <HeroBannerSection {...hero} />
           <ExecutionSection content={executionContent} />
-          <CTASection />
-          <Footer footer={settings?.footer} />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

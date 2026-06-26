@@ -1,8 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import AvailablePartner from "@/src/components/sections/v2/servicepage/AvailablePartner";
 
@@ -105,8 +104,7 @@ export default function StrategyPageTemplate({ strategyGroups = [] }) {
           {/* <BuildingProduct /> */}
           {/* <WorkOverview /> */}
           <AvailablePartner bgColor="bg-[#1c2420]" titleColor="text-white" />
-          <CTASection />
-          <Footer />
+          <PageFooter />
         </main>
       </div>
     </div>

@@ -3,9 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import BevelNavArrow from "@/src/components/sections/v2/common/BevelNavArrow";
 import "@/src/components/sections/v2/careers/careers-open-roles.css";
 
@@ -259,8 +258,7 @@ export default function CareersOpenRolesView({
             </div>
           </section>
 
-          <CTASection items={cta} />
-          <Footer footer={footer} />
+          <PageFooter ctaItems={cta} footer={footer} />
         </main>
       </div>
     </div>

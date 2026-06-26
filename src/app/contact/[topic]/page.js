@@ -1,6 +1,5 @@
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import DigitalSupportInquirySection from "@/src/components/sections/v2/contactpage/DigitalSupportInquirySection";
 import { getContactPage } from "@/src/lib/api";
@@ -59,8 +58,7 @@ export default async function ContactTopicPage({ params }) {
               showServicesField={Boolean(topic.showServicesField)}
               services={contact.inquiryServices}
             />
-            <CTASection items={contact.cta} />
-            <Footer />
+            <PageFooter ctaItems={contact.cta} />
           </div>
         </main>
       </div>

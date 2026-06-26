@@ -9,8 +9,7 @@ import {
 import {
   FiChevronDown,
 } from "react-icons/fi";
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import { DotMatrixText } from "@/src/components/sections/v2/common/DotMatrixText";
 import ComplianceLegalHub from "@/src/components/sections/v2/support-compliance/ComplianceLegalHub";
 import ComplianceStandardsFlipCard from "@/src/components/sections/v2/support-compliance/ComplianceStandardsFlipCard";
@@ -361,8 +360,7 @@ export default function SupportComplianceView({ footer, content }) {
       <DataProtectionSection />
       <RegulatorySection reduce={reduce} />
       <FaqSection />
-      <CTASection />
-      <Footer footer={footer} />
+      <PageFooter footer={footer} />
       </div>
     </SupportComplianceContentContext.Provider>
   );

@@ -1,4 +1,4 @@
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import AppStatusScreen from "@/src/components/sections/v2/common/AppStatusScreen";
 import { getGlobalSettings } from "@/src/lib/api";
@@ -30,7 +30,7 @@ export default async function NotFound() {
           description="We couldn't find what you were looking for. It may have moved, the link might be out of date, or the content hasn't been published yet."
           className="min-h-[calc(100svh-var(--header-height))]"
         />
-        <Footer footer={settings.footer} />
+        <PageFooter footer={settings.footer} />
       </div>
     </div>
   );

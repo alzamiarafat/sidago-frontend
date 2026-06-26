@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import ArticleShareSidebarSection from "@/src/components/sections/v2/digital-support-services/ArticleShareSidebarSection";
 import SimilarInsightsSection from "@/src/components/sections/v2/digital-support-services/SimilarInsightsSection";
@@ -34,7 +34,7 @@ export default function ScalableOperationsView({
             content={similarInsights}
             sectionBgColor={similarInsights?.sectionBgColor || "#070B09"}
           />
-          <Footer footer={footer} />
+          <PageFooter footer={footer} />
         </main>
       </div>
     </div>

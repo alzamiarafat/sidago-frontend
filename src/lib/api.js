@@ -1215,6 +1215,17 @@ function normalizeInfrastructurePage(entry) {
 
   return {
     hero: normalizeHero(item.hero),
+    statistics:
+      item.statistics?.length > 0
+        ? item.statistics
+            .filter((statItem) => statItem?.label && statItem?.stat)
+            .slice()
+            .sort(
+              (left, right) => (left.sortOrder ?? 0) - (right.sortOrder ?? 0),
+            )
+            .map((statItem) => normalizeStatisticItem(statItem))
+            .filter(Boolean)
+        : null,
     visionTitle:
       item.visionTitle?.trim() || "",
     visionDescription:
@@ -1625,7 +1636,7 @@ export const getOperationsPage = cache(async () =>
 
 export const getInfrastructurePage = cache(async () =>
   fetchCMSSingleType(
-    "infrastructure?populate[hero][populate][titles]=*&populate[vision]=*&populate[support]=*&populate[profiles]=*",
+    "infrastructure?populate[hero][populate][titles]=*&populate[statistics]=*&populate[vision]=*&populate[support]=*&populate[profiles]=*",
     normalizeInfrastructurePage,
     (page) => Boolean(page?.hero),
   ),

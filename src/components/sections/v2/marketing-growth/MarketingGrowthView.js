@@ -17,8 +17,7 @@ import {
   FiUsers,
   FiZap,
 } from "react-icons/fi";
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CountUpStat from "@/src/components/sections/v2/executionpage/CountUpStat";
 import {
@@ -645,8 +644,7 @@ export default function MarketingGrowthView({ footer, content }) {
           <CaseStudySection reduce={reduce} />
           <ProcessSection reduce={reduce} />
           <FaqSection />
-          <CTASection />
-          <Footer footer={footer} />
+          <PageFooter footer={footer} />
         </main>
       </div>
     </div>

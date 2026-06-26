@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CareersTeamsSection from "@/src/components/sections/v2/careers/CareersTeamsSection";
 import CareersLifeSection from "@/src/components/sections/v2/careers/CareersLifeSection";
@@ -74,8 +73,7 @@ export default function CareersView({
 
 
 
-          <CTASection items={cta?.length ? cta : careersCta} />
-          <Footer footer={footer} />
+          <PageFooter ctaItems={cta?.length ? cta : careersCta} footer={footer} />
         </main>
       </div>
     </div>

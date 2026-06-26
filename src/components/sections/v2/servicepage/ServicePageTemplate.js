@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import Capabilities from "@/src/components/sections/v2/homepage/Capabilities";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
@@ -229,9 +228,7 @@ export default function ServicePageTemplate({
               />
             </>
           )}
-
-          <CTASection />
-          <Footer />
+          <PageFooter />
         </main>
       </div>
     </div>

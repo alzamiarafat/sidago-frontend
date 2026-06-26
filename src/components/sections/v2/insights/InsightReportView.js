@@ -1,7 +1,6 @@
 "use client";
 
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import AtAGlanceSection from "@/src/components/sections/v2/digital-support-services/AtAGlanceSection";
 import ReportContentsSection from "@/src/components/sections/v2/digital-support-services/ReportContentsSection";
@@ -34,8 +33,7 @@ export default function InsightReportView({
             content={similarInsights}
             sectionBgColor={similarInsights?.sectionBgColor || "#FFFFFF"}
           />
-          <CTASection />
-          <Footer footer={footer} />
+          <PageFooter footer={footer} />
         </main>
       </div>
     </div>

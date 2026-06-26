@@ -17,8 +17,7 @@ const CardsGrid = dynamic(() => import("../sections/v2/homepage/CardGrid"));
 const AvailablePartner = dynamic(() =>
   import("../sections/v2/servicepage/AvailablePartner"),
 );
-const CTASection = dynamic(() => import("../sections/v2/common/CTA"));
-const Footer = dynamic(() => import("../sections/v2/common/Footer"));
+const PageFooter = dynamic(() => import("../sections/v2/common/PageFooter"));
 
 export default function Home({ homepage, settings }) {
   if (!homepage) return null;
@@ -57,8 +56,7 @@ export default function Home({ homepage, settings }) {
           <Feed />
           <CardsGrid items={cardsGrid} />
           <AvailablePartner bgColor="bg-[#1c2420]" titleColor="text-white" />
-          <CTASection items={cta} />
-          <Footer footer={footer} />
+          <PageFooter footer={footer} ctaItems={cta} />
         </main>
       </div>
     </div>

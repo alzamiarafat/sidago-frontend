@@ -3,7 +3,7 @@
 import AppStatusScreen, {
   SECONDARY_BUTTON_CLASS,
 } from "@/src/components/sections/v2/common/AppStatusScreen";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import { useGlobal } from "@/src/hooks/useGlobal";
 
@@ -36,7 +36,7 @@ export default function Error({ error, reset }) {
 
       <div className="flex flex-1 flex-col">
         {content}
-        <Footer footer={settings.footer} />
+        <PageFooter footer={settings.footer} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import { getGlobalSettings } from "@/src/lib/api";
 
@@ -20,7 +20,7 @@ export default async function LegalChromeLayout({ children }) {
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,transparent_30%,rgba(0,0,0,0.35)_100%)]" />
           </div>
           <div className="relative z-[1]">{children}</div>
-          <Footer footer={settings?.footer} />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

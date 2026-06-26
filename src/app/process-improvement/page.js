@@ -1,8 +1,7 @@
 
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import ProcessImprovementView from "@/src/components/process-improvement/ProcessImprovementView";
 import { getGlobalSettings, getSitePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
@@ -30,8 +29,7 @@ export default async function ProcessImprovementPage() {
           style={{ colorScheme: "dark" }}
         >
           <ProcessImprovementView content={content} />
-          <CTASection />
-          <Footer footer={settings?.footer} />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

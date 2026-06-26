@@ -1,6 +1,5 @@
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import CompanyHero from "@/src/components/sections/v2/company/CompanyHero";
 import CompanyWhatWeDoSection from "@/src/components/sections/v2/company/CompanyWhatWeDoSection";
 import CompanyQuoteSection from "@/src/components/sections/v2/company/CompanyQuoteSection";
@@ -43,8 +42,7 @@ export default function CompanyView({
             content={latestNews}
             eventsPromo={eventsPromo}
           />
-          {cta?.length ? <CTASection items={cta} /> : null}
-          <Footer footer={footer} />
+          <PageFooter ctaItems={cta} footer={footer} />
         </main>
       </div>
     </div>

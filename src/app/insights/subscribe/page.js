@@ -1,7 +1,6 @@
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import InsightsDiscoverSection from "@/src/components/sections/v2/insights/InsightsDiscoverSection";
 import InsightsSeriesSection from "@/src/components/sections/v2/insights/InsightsSeriesSection";
 import RecommendedInsightsSection from "@/src/components/sections/v2/insights/RecommendedInsightsSection";
@@ -40,8 +39,7 @@ export default async function InsightsSubscribePage() {
             content={content.subscribePageContent}
             className="v2-subscribe--dark v2-subscribe--narrow"
           />
-          <CTASection />
-          <Footer footer={settings?.footer} />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

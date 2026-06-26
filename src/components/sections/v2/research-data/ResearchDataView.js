@@ -9,8 +9,7 @@ import {
   FiDownload,
   FiFileText,
 } from "react-icons/fi";
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 
 const fadeUp = {
@@ -316,8 +315,7 @@ export default function ResearchDataView({ footer, content }) {
           />
           <DatasetsSection datasets={content.datasets} showToast={showToast} />
           <InsightsSection insights={content.insights} />
-          <CTASection />
-          <Footer footer={footer} />
+          <PageFooter footer={footer} />
         </main>
       </div>
       <Toast visible={toastVisible} />

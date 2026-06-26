@@ -1,5 +1,4 @@
-import CTASection from "@/src/components/sections/v2/common/CTA";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import OperationsPageContent from "@/src/components/sections/v2/operationspage/OperationsPageContent";
@@ -71,8 +70,7 @@ export default async function OperationsPage() {
           <div className="relative z-[1]">
             <HeroBannerSection {...hero} />
             <OperationsPageContent videoInMotion={operationsPage.videoInMotion} />
-            <CTASection />
-            <Footer footer={settings?.footer} />
+            <PageFooter footer={settings?.footer} />
           </div>
         </main>
       </div>

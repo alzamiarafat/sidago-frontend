@@ -1,21 +1,61 @@
 
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
+import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import DelegateProfile from "@/src/components/sections/v2/servicepage/DelegateProfile";
 import OurVision from "@/src/components/sections/v2/servicepage/OurVision";
 import Support from "@/src/components/sections/v2/servicepage/Support";
 import "@/src/components/sections/v2/infrastructure/infrastructure-hero-mobile.css";
-import { getInfrastructurePage } from "@/src/lib/api";
+import { getGlobalSettings, getInfrastructurePage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
 
 export const metadata = routeMetadata.forwards;
 
+const INFRASTRUCTURE_STATISTICS = [
+  {
+    stat: "2B",
+    label: "Daily DeFi Trading Volume",
+    width: 244,
+    activeDotColor: "#E7512F",
+    sortOrder: 1,
+  },
+  {
+    stat: "45",
+    label: "DeFi Venues Integrated",
+    width: 248,
+    activeDotColor: "#E7512F",
+    sortOrder: 2,
+  },
+  {
+    stat: "10",
+    label: "Chains Covered",
+    width: 198,
+    activeDotColor: "#E7512F",
+    sortOrder: 3,
+  },
+  {
+    stat: "2K",
+    label: "Governance Votes",
+    width: 192,
+    activeDotColor: "#E7512F",
+    sortOrder: 4,
+  },
+  {
+    stat: "5",
+    label: "Incubated Projects",
+    width: 192,
+    activeDotColor: "#E7512F",
+    sortOrder: 5,
+  },
+];
 
 export default async function InfrastructurePage() {
-  const infrastructurePage = await getInfrastructurePage();
+  const [infrastructurePage, settings] = await Promise.all([
+    getInfrastructurePage(),
+    getGlobalSettings(),
+  ]);
 
   if (!infrastructurePage?.hero) {
     return <CMSPageShell className="flex min-h-svh flex-col bg-gray-night-green text-base" />;
@@ -32,6 +72,11 @@ export default async function InfrastructurePage() {
       .join(" "),
   };
 
+  const statistics =
+    infrastructurePage.statistics?.length > 0
+      ? infrastructurePage.statistics
+      : INFRASTRUCTURE_STATISTICS;
+
   return (
     <div className="flex min-h-svh flex-col bg-gray-night-green text-base">
       <Navigation />
@@ -42,6 +87,10 @@ export default async function InfrastructurePage() {
           style={{ colorScheme: "dark" }}
         >
           <HeroBannerSection {...hero} />
+
+          {statistics.length ? (
+            <Statistics stats={statistics} align="center" />
+          ) : null}
 
           <OurVision
             title={infrastructurePage.visionTitle}
@@ -60,9 +109,7 @@ export default async function InfrastructurePage() {
             description={infrastructurePage.profilesDescription}
             profiles={infrastructurePage.profiles}
           />
-
-          <CTASection />
-          <Footer />
+          <PageFooter footer={settings?.footer} />
         </main>
       </div>
     </div>

@@ -1,6 +1,5 @@
-import CTASection from "@/src/components/sections/v2/common/CTA";
 import CMSPageShell from "@/src/components/sections/v2/common/CMSPageShell";
-import Footer from "@/src/components/sections/v2/common/Footer";
+import PageFooter from "@/src/components/sections/v2/common/PageFooter";
 import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import EventsUpcomingSection from "@/src/components/sections/v2/events/EventsUpcomingSection";
@@ -73,8 +72,7 @@ export default async function EventsPage() {
             content={pageContent.pastConversationsSection}
           />
           <EventsBootcampSection content={pageContent.bootcampSection} />
-          <CTASection items={pageContent.cta} />
-          <Footer footer={settings?.footer} />
+          <PageFooter ctaItems={pageContent.cta} footer={settings?.footer} />
         </main>
       </div>
     </div>
