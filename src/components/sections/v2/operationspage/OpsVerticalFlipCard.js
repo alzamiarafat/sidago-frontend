@@ -17,7 +17,7 @@ function ExpandIcon() {
 function CollapseIcon() {
   return (
     <span
-      className="flex h-7 w-7 shrink-0 items-center justify-center font-blender text-lg leading-none text-gray-night-green/60"
+      className="flex h-7 w-7 shrink-0 items-center justify-center font-blender text-lg leading-none text-white/70"
       aria-hidden
     >
       −

@@ -2,6 +2,9 @@
 .ops-page {
   --ops-or: #168b50;
   --ops-or-soft: rgba(22, 139, 80, 0.14);
+  --ops-vcard-active-bg: #144a34;
+  --ops-vcard-active-ink: #ffffff;
+  --ops-vcard-active-muted: rgba(255, 255, 255, 0.88);
   --ops-bg: rgb(7 11 9);
   --ops-bg2: rgb(21 25 22);
   --ops-bg3: rgb(28 33 30);
@@ -1011,7 +1014,7 @@
 }
 
 .flipper .ops-vcard--back {
-  background: #168b50;
+  background: var(--ops-vcard-active-bg);
 }
 
 .ops-vcard--static {
@@ -1041,11 +1044,11 @@
 }
 
 .ops-vcard--back {
-  background: #168b50;
+  background: var(--ops-vcard-active-bg);
 }
 
 .ops-vcard--back::before {
-  background: #070b09;
+  background: #168b50;
 }
 
 .ops-vcard-icon {
@@ -1080,7 +1083,8 @@
 }
 
 .ops-vcard-name--back {
-  color: #070b09;
+  color: var(--ops-vcard-active-ink);
+  font-size: 1.25rem;
 }
 
 .ops-vcard-desc {
@@ -1094,13 +1098,13 @@
 .ops-vcard-desc--back {
   min-height: 0;
   overflow-y: auto;
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
-  color: #070b09;
+  color: var(--ops-vcard-active-muted);
   overflow-wrap: break-word;
   word-break: normal;
   scrollbar-width: thin;
-  scrollbar-color: rgba(7, 11, 9, 0.35) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
 }
 
 /* ── Video ── */
