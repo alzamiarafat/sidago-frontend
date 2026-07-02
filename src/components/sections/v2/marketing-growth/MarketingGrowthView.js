@@ -108,10 +108,10 @@ function MarketingHero({ reduce }) {
           >
             <Link
               href="/contact"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#E7512F] px-6 py-3 font-blender text-sm uppercase tracking-[0.14em] text-white transition hover:bg-[#cf4526] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E7512F]"
+              className="group/interactive inline-flex min-h-12 items-center justify-center gap-2 bevel bevel-[0.25rem] bg-[#E7512F] px-md py-sm font-blender text-sm font-medium uppercase tracking-[0.14em] text-white transition-opacity hover:text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E7512F]"
             >
               Plan a growth sprint
-              <FiArrowRight className="h-4 w-4" aria-hidden />
+              <FiArrowRight className="h-4 w-4 shrink-0" aria-hidden />
             </Link>
             <button
               type="button"
@@ -120,7 +120,7 @@ function MarketingHero({ reduce }) {
                   .getElementById("services")
                   ?.scrollIntoView({ behavior: reduce ? "auto" : "smooth" })
               }
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/[0.12] px-6 py-3 font-blender text-sm uppercase tracking-[0.14em] text-gray-off-white shadow-[0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:border-white/30 hover:bg-white/[0.18] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40"
+              className="group/interactive inline-flex min-h-12 items-center justify-center gap-2 bevel bevel-[0.25rem] border border-white/20 bg-white/[0.12] px-md py-sm font-blender text-sm font-medium uppercase tracking-[0.14em] text-gray-off-white shadow-[0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:border-white/30 hover:bg-white/[0.18] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40"
             >
               View core services
               <FiArrowRight className="h-4 w-4" aria-hidden />
@@ -164,7 +164,7 @@ function StrategySection({ reduce }) {
               key={item.title}
               variants={fadeUp}
               transition={{ duration: reduce ? 0 : undefined }}
-              className={`group rounded-2xl ${MG.mid} p-6 shadow-[0_14px_44px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_52px_rgba(0,0,0,0.42)]`}
+              className={`group bevel [--bevel-size:0.8rem] ${MG.mid} p-6 shadow-[0_14px_44px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_52px_rgba(0,0,0,0.42)]`}
             >
               <div className="h-1 w-10 rounded-full bg-gradient-to-r from-[#E7512F] to-[#958dec] opacity-80 transition group-hover:opacity-100" />
               <h3 className="mt-5 text-lg text-white">{item.title}</h3>
@@ -213,7 +213,7 @@ function ServicesSection({ reduce }) {
                 key={svc.title}
                 variants={fadeUp}
                 transition={{ duration: reduce ? 0 : undefined }}
-                className={`flex flex-col rounded-2xl ${MG.elevated} p-6 shadow-[0_12px_40px_rgba(0,0,0,0.32)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_52px_rgba(0,0,0,0.4)]`}
+                className={`flex flex-col bevel [--bevel-size:0.8rem] ${MG.elevated} p-6 shadow-[0_12px_40px_rgba(0,0,0,0.32)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_52px_rgba(0,0,0,0.4)]`}
               >
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-white/[0.06] text-green-dark">
                   <Icon className="h-5 w-5" aria-hidden />
@@ -243,7 +243,11 @@ function InsightsSection({ reduce }) {
   return (
     <section className="scroll-mt-24 bg-gray-night-green px-5 text-gray-off-white md:px-10">
       <div className="container py-block">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div
+          className={`overflow-hidden bevel [--bevel-size:0.8rem] ${MG.deep} p-6 shadow-[0_24px_80px_rgba(0,0,0,0.34)] md:p-8 lg:p-10`}
+        >
+          <div className="pointer-events-none absolute" aria-hidden />
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -254,25 +258,35 @@ function InsightsSection({ reduce }) {
               eyebrow="Data-driven insights"
               title="Marketing decisions grounded in evidence"
               description="We combine quantitative signals with qualitative context so leaders see both the trend and the why behind it."
+              className="mb-0"
             />
-            <ul className="mt-8 space-y-5">
-              {pageData.insightBlocks.map((block) => (
-                <li
+            <div className="mt-8 grid gap-4">
+              {pageData.insightBlocks.map((block, index) => (
+                <motion.article
                   key={block.label}
-                  className={`flex gap-4 rounded-xl ${MG.elevated} p-4 shadow-[0_8px_28px_rgba(0,0,0,0.22)]`}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportOnce}
+                  transition={{ duration: reduce ? 0 : 0.35, delay: reduce ? 0 : index * 0.06 }}
+                  className={`grid gap-4 bevel [--bevel-size:0.8rem] ${MG.elevated} p-5 shadow-[0_12px_36px_rgba(0,0,0,0.24)] md:grid-cols-[auto_1fr] md:items-start`}
                 >
-                  <span className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-[#3c85dd] shadow-[0_0_12px_rgba(60,133,221,0.5)]" />
-                  <div>
-                    <p className="font-blender text-xs uppercase tracking-[0.18em] text-green-dark">
+                  <div className="flex items-center gap-3">
+                    <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark md:hidden">
                       {block.label}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-tradfi-silver">
+                  </div>
+                  <div>
+                    <p className="hidden font-blender text-xs uppercase tracking-[0.2em] text-green-dark md:block">
+                      {block.label}
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-tradfi-silver md:mt-2">
                       {block.text}
                     </p>
                   </div>
-                </li>
+                </motion.article>
               ))}
-            </ul>
+            </div>
           </motion.div>
           <motion.div
             initial="hidden"
@@ -280,24 +294,37 @@ function InsightsSection({ reduce }) {
             viewport={viewportOnce}
             variants={fadeUp}
             transition={{ duration: reduce ? 0 : undefined }}
-            className={`rounded-2xl ${MG.elevated} p-6 shadow-[0_14px_44px_rgba(0,0,0,0.35)] md:p-8`}
+            className={`relative bevel [--bevel-size:0.8rem] bg-[linear-gradient(180deg,rgba(50,57,53,0.9),rgba(28,33,30,0.96))] p-6 shadow-[0_18px_54px_rgba(0,0,0,0.34)] md:p-8`}
           >
-            <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
-              Channel mix index
-            </p>
-            <p className="mt-2 text-sm text-gray-tradfi-silver">
-              Illustrative blend across a mature growth program (normalized).
-            </p>
-            <div className="mt-8 space-y-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
+                  Channel mix index
+                </p>
+                <p className="mt-2 max-w-sm text-sm leading-relaxed text-gray-tradfi-silver">
+                  Illustrative blend across a mature growth program, normalized across the funnel.
+                </p>
+              </div>
+              <div className="bevel [--bevel-size:0.7rem] bg-black/20 px-4 py-3 text-right shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]">
+                <p className="font-blender text-[0.65rem] uppercase tracking-[0.18em] text-white/45">
+                  Peak share
+                </p>
+                <p className="mt-1 text-2xl text-white">
+                  {Math.max(...pageData.campaignBars.map((bar) => bar.value))}%
+                </p>
+              </div>
+            </div>
+            <div className="mt-8 grid gap-4">
               {pageData.campaignBars.map((bar) => (
-                <div key={bar.label}>
-                  <div className="mb-1.5 flex justify-between text-xs text-gray-tradfi-silver">
-                    <span>{bar.label}</span>
-                    <span className="font-blender text-green-dark">
-                      {bar.value}%
-                    </span>
+                <div
+                  key={bar.label}
+                  className="bevel [--bevel-size:0.7rem] bg-black/18 px-4 py-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]"
+                >
+                  <div className="mb-2 flex items-center justify-between gap-3 text-xs text-gray-tradfi-silver">
+                    <span className="font-medium text-gray-off-white">{bar.label}</span>
+                    <span className="font-blender text-green-dark">{bar.value}%</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-2.5 overflow-hidden rounded-full bg-white/8">
                     <motion.div
                       className="h-full rounded-full"
                       style={{ backgroundColor: bar.color }}
@@ -314,6 +341,7 @@ function InsightsSection({ reduce }) {
               ))}
             </div>
           </motion.div>
+        </div>
         </div>
       </div>
     </section>
@@ -350,7 +378,7 @@ function ConversionSection({ reduce }) {
                 key={item.title}
                 variants={fadeUp}
                 transition={{ duration: reduce ? 0 : undefined }}
-                className={`rounded-2xl ${MG.mid} p-5 shadow-[0_12px_36px_rgba(0,0,0,0.3)] md:p-6`}
+                className={`bevel [--bevel-size:0.8rem] ${MG.mid} p-5 shadow-[0_12px_36px_rgba(0,0,0,0.3)] md:p-6`}
               >
                 <h3 className="text-lg text-white">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-gray-tradfi-silver">
@@ -365,7 +393,7 @@ function ConversionSection({ reduce }) {
             viewport={viewportOnce}
             variants={fadeUp}
             transition={{ duration: reduce ? 0 : undefined }}
-            className={`rounded-2xl ${MG.deep} bg-[linear-gradient(165deg,rgba(50,57,53,0.55),rgba(7,11,9,0.98))] p-6 shadow-[0_14px_44px_rgba(0,0,0,0.32)] md:p-8`}
+            className={`bevel [--bevel-size:0.8rem] ${MG.deep} bg-[linear-gradient(165deg,rgba(50,57,53,0.55),rgba(7,11,9,0.98))] p-6 shadow-[0_14px_44px_rgba(0,0,0,0.32)] md:p-8`}
           >
             <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
               Program readiness
@@ -433,7 +461,7 @@ function MetricsSection({ reduce }) {
               key={row.label}
               variants={fadeUp}
               transition={{ duration: reduce ? 0 : undefined }}
-              className={`rounded-2xl ${MG.elevated} p-6 text-center shadow-[0_12px_40px_rgba(0,0,0,0.45)] md:p-8`}
+              className={`bevel [--bevel-size:0.8rem] ${MG.elevated} p-6 text-center shadow-[0_12px_40px_rgba(0,0,0,0.45)] md:p-8`}
             >
               <div className="font-blender text-4xl text-white md:text-5xl lg:text-6xl">
                 <CountUpStat value={row.value} />
@@ -478,7 +506,7 @@ function CaseStudySection({ reduce }) {
               key={cs.title}
               variants={fadeUp}
               transition={{ duration: reduce ? 0 : undefined }}
-              className={`flex flex-col rounded-2xl ${MG.elevated} p-6 shadow-[0_14px_44px_rgba(0,0,0,0.32)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_56px_rgba(0,0,0,0.38)] md:p-8`}
+              className={`flex flex-col bevel [--bevel-size:0.8rem] ${MG.elevated} p-6 shadow-[0_14px_44px_rgba(0,0,0,0.32)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_56px_rgba(0,0,0,0.38)] md:p-8`}
             >
               <p className="font-blender text-xs uppercase tracking-[0.2em] text-green-dark">
                 {cs.title}
@@ -529,7 +557,7 @@ function ProcessSection({ reduce }) {
               key={step.step}
               variants={fadeUp}
               transition={{ duration: reduce ? 0 : undefined }}
-              className={`overflow-hidden rounded-2xl ${MG.mid} p-6 shadow-[0_12px_36px_rgba(0,0,0,0.3)]`}
+              className={`overflow-hidden bevel [--bevel-size:0.8rem] ${MG.mid} p-6 shadow-[0_12px_36px_rgba(0,0,0,0.3)]`}
             >
               <span className="font-blender text-3xl text-white/10 md:text-4xl">
                 {step.step}
