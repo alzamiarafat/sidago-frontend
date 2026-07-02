@@ -12,6 +12,7 @@ import {
   getDefaultSitePage,
   normalizeSitePageFromStrapi,
 } from "@/src/data/cms/site-pages.mjs";
+import { defaultHomepage } from "@/src/data/cms/defaults.mjs";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -459,8 +460,13 @@ function normalizeHomepage(entry) {
 
   return {
     hero: {
+      ...defaultHomepage.hero,
       ...normalizedHero,
       titles: normalizedHero?.titles || [],
+      ctaLabel:
+        normalizedHero?.ctaLabel?.trim() || defaultHomepage.hero.ctaLabel,
+      ctaHref:
+        normalizedHero?.ctaHref?.trim() || defaultHomepage.hero.ctaHref,
     },
     insightNews:
       insightNews?.length > 0

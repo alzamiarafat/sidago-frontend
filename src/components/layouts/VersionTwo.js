@@ -42,7 +42,14 @@ export default function Home({ homepage, settings }) {
           className="homepage-main [&_*]:scroll-mt-[calc(var(--header-height)+1.5rem)] dark bg-gray-night-green text-gray-off-white"
           style={{ colorScheme: "dark" }}
         >
-          <HeroBannerSection {...hero} imageSrc="" />
+          <HeroBannerSection
+            {...hero}
+            imageSrc=""
+            ctaButtonClass={
+              hero?.ctaButtonClass ||
+              "group/interactive mt-6 inline-flex items-center justify-between gap-md bevel bevel-[0.25rem] bg-[#E7512F] px-md py-sm text-sm font-medium !text-black transition-opacity hover:!text-black hover:opacity-90"
+            }
+          />
           <InsightNews items={insightNews} />
           <Statistics stats={statistics} align="start" />
           <MarketTicker items={marketTicker} />
