@@ -44,43 +44,41 @@ export default function ComplianceLegalHub({ legalTabs: tabs }) {
               transition={{ duration: 0.35, delay: 0.05 * index }}
               className="group flex h-full flex-col rounded-3xl bg-white/[0.045] p-6 shadow-[0_28px_80px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_36px_100px_rgba(0,0,0,0.55)] md:p-7"
             >
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-3 py-1.5">
                   <FiShield className="h-3.5 w-3.5 text-white/80" aria-hidden />
                   <span className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-white/70">
                     {tab.label}
                   </span>
                 </div>
-                <span className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-white/45">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
               </div>
-              <div className="mt-4 space-y-1">
-                <h3 className="font-saans text-lg leading-snug text-white md:text-xl">
-                  {tab.label}
-                </h3>
-                <p className="text-[0.78rem] text-white/45">
-                  Last updated {tab.lastUpdated}
+              <div className="mt-4 flex flex-1 flex-col">
+                <div className="space-y-1">
+                  <h3 className="font-saans text-lg leading-snug text-white md:text-xl">
+                    {tab.label}
+                  </h3>
+                  <p className="text-[0.78rem] text-white/45">
+                    Last updated {tab.lastUpdated}
+                  </p>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-white/70">
+                  {tab.sections[0]?.body}
                 </p>
-              </div>
-              <p className="mt-4 text-sm leading-relaxed text-white/70">
-                {tab.sections[0]?.body}
-              </p>
-              <div className="mt-4 space-y-2">
-                <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-white/45">
-                  Key highlights
-                </p>
-                <ul className="space-y-1.5">
-                  {tab.sections.slice(1).map((section) => (
-                    <li
-                      key={section.title}
-                      className="flex gap-2 text-[0.82rem] leading-relaxed text-white/70"
-                    >
-                      <span className="mt-1 h-[3px] w-4 shrink-0 rounded-full bg-[#E7512F]" />
-                      <span>{section.title}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-4 space-y-2">
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-white/45">
+                    Key highlights
+                  </p>
+                  <ul className="space-y-1.5">
+                    {tab.sections.slice(1).map((section) => (
+                      <li
+                        key={section.title}
+                        className="flex gap-2 text-[0.82rem] leading-relaxed text-white/70"
+                      >
+                        <span>{section.title}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
