@@ -1,6 +1,11 @@
 "use client";
 
 import { useGlobal } from "@/src/hooks/useGlobal";
+import {
+  getFooterPolicyLinksClass,
+  getFooterTextAlignClass,
+  resolveFooter,
+} from "@/src/lib/footer-config";
 
 function YoutubeIcon() {
   return (
@@ -66,33 +71,77 @@ function FooterSocialIcon({ platform }) {
   return null;
 }
 
+function FooterLegalLine({ text, className = "" }) {
+  const emailMatch = text.match(/^Email:\s*(.+)$/i);
+
+  if (emailMatch) {
+    const email = emailMatch[1].trim();
+
+    return (
+      <p className={className}>
+        Email:{" "}
+        <a
+          href={`mailto:${email}`}
+          className="transition-colors hover:text-gray-tradfi-silver"
+        >
+          {email}
+        </a>
+      </p>
+    );
+  }
+
+  return <p className={className}>{text}</p>;
+}
+
+function splitLegalBlocks(legalBlocks) {
+  const contactLines = [];
+  let copyrightLine = null;
+
+  for (const block of legalBlocks) {
+    const text = block?.text?.trim();
+
+    if (!text) {
+      continue;
+    }
+
+    if (text.startsWith("©") || /copyright/i.test(text)) {
+      copyrightLine = block;
+      continue;
+    }
+
+    contactLines.push(block);
+  }
+
+  return { contactLines, copyrightLine };
+}
+
 export default function Footer({ footer }) {
   const settings = useGlobal();
-  const footerData = footer || settings?.footer;
-
-  const navLinks = footerData?.navLinks || [];
-  const socialLinks = footerData?.socialLinks || [];
-  const legalBlocks = footerData?.legalBlocks || [];
-  const policyLinks = footerData?.policyLinks || [];
-
-  if (
-    navLinks.length === 0 &&
-    socialLinks.length === 0 &&
-    legalBlocks.length === 0 &&
-    policyLinks.length === 0
-  ) {
-    return null;
-  }
+  const {
+    navLinks,
+    socialLinks,
+    legalBlocks,
+    policyLinks,
+    contactAlign,
+    copyrightAlign,
+    policyLinksAlign,
+  } = resolveFooter(footer || settings?.footer);
+  const { contactLines, copyrightLine } = splitLegalBlocks(legalBlocks);
+  const legalTextClass =
+    "text-sm leading-relaxed text-gray-off-white lg:text-xs";
+  const contactAlignClass = getFooterTextAlignClass(contactAlign);
+  const copyrightAlignClass = getFooterTextAlignClass(copyrightAlign);
+  const policyLinksAlignClass = getFooterPolicyLinksClass(policyLinksAlign);
 
   return (
     <footer className="flex flex-1 flex-col justify-end bg-gray-defi-shadow">
-      <div className="container flex flex-col gap-[3rem] py-block lg:gap-2xl">
+      <div className="container flex flex-col gap-2xl py-block lg:gap-[3rem]">
         <div className="flex justify-between text-gray-off-white">
           <div className="flex flex-wrap gap-x-[4.875rem] gap-y-[3rem] font-blender text-xl uppercase lg:gap-x-[6rem] lg:text-sm">
             {navLinks.map((link, index) => (
               <a
                 key={`${link.label}-${index}`}
-                className="relative hover:text-gray-tradfi-silver"
+                className="relative transition-colors hover:text-gray-tradfi-silver"
                 href={link.href}
               >
                 <span className="sr-only">{link.srLabel}</span>
@@ -105,8 +154,10 @@ export default function Footer({ footer }) {
             {socialLinks.map((link, index) => (
               <a
                 key={`${link.label}-${index}`}
-                className="relative hover:text-gray-tradfi-silver"
+                className="relative transition-colors hover:text-gray-tradfi-silver"
                 href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span className="sr-only">{link.label}</span>
                 <FooterSocialIcon platform={link.platform} />
@@ -117,17 +168,32 @@ export default function Footer({ footer }) {
 
         <hr className="my-0 border-gray-defi-ash" />
 
-        <div className="flex flex-col gap-md text-xs text-gray-defi-ash">
-          {legalBlocks.map((block, index) => (
-            <div key={index}>{block.text}</div>
+        <div
+          className={`flex w-full flex-col gap-2 ${contactAlignClass}`}
+        >
+          {contactLines.map((block, index) => (
+            <FooterLegalLine
+              key={`${block.sortOrder ?? index}-${block.text}`}
+              text={block.text}
+              className={legalTextClass}
+            />
           ))}
         </div>
 
-        <div className="flex gap-2xl text-sm text-gray-off-white lg:justify-end lg:text-xs">
+        {copyrightLine ? (
+          <FooterLegalLine
+            text={copyrightLine.text}
+            className={`w-full text-xs text-gray-defi-ash lg:text-xs ${copyrightAlignClass}`}
+          />
+        ) : null}
+
+        <div
+          className={`flex flex-wrap gap-x-2xl gap-y-2 text-sm text-gray-off-white lg:text-xs ${policyLinksAlignClass}`}
+        >
           {policyLinks.map((link, index) => (
             <a
               key={`${link.label}-${index}`}
-              className="relative hover:text-gray-tradfi-silver"
+              className="relative transition-colors hover:text-gray-tradfi-silver"
               href={link.href}
             >
               <span className="sr-only">{link.srLabel}</span>

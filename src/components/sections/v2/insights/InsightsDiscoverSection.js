@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useCallback, useMemo, useState } from "react";
+import { resolveCardCategorySlugs } from "@/src/components/sections/v2/insights/data";
 
 const MOBILE_INITIAL_VISIBLE = 3;
 
@@ -26,38 +28,46 @@ function PlusToggle({ open, className = "" }) {
   );
 }
 
-function FilterDiamondIcon() {
+function FilterCheckbox({ label, checked, onToggle }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 18 18"
-      className="h-[1.125rem] min-h-[1.125rem] w-[1.125rem] min-w-[1.125rem] group-hover:text-gray-defi-ash"
-      aria-hidden
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={checked}
+      onClick={onToggle}
+      className="group flex items-center gap-sm text-left text-sm transition-opacity hover:opacity-80 lg:text-lg"
     >
-      <path
-        stroke="currentColor"
-        d="M14.331.5 17.5 3.669v10.662L14.331 17.5H3.67L.5 14.331V3.67L3.669.5z"
-      />
-    </svg>
-  );
-}
-
-function FilterLink({ href, label }) {
-  return (
-    <Link
-      href={href}
-      style={{ position: "relative" }}
-      className="group flex items-center gap-sm text-sm lg:text-lg"
-    >
-      <span className="sr-only">Insights</span>
-      <FilterDiamondIcon />
+      <span
+        className={`inline-flex h-[1.125rem] w-[1.125rem] shrink-0 items-center justify-center rounded-full border border-current transition-colors ${
+          checked ? "bg-gray-off-white text-gray-night-green" : ""
+        }`}
+        aria-hidden
+      >
+        {checked ? (
+          <span className="h-2 w-2 rounded-full bg-gray-night-green" />
+        ) : null}
+      </span>
       {label}
-    </Link>
+    </button>
   );
 }
 
-function MobileFilterGroup({ group }) {
+function resolveFilterItemSlug(item) {
+  if (item.slug) {
+    return item.slug;
+  }
+
+  if (typeof item.href === "string") {
+    const match = item.href.match(/[?&]category=([^&]+)/);
+    if (match?.[1]) {
+      return decodeURIComponent(match[1]);
+    }
+  }
+
+  return null;
+}
+
+function MobileFilterGroup({ group, selectedSlugs, onToggleSlug }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -79,9 +89,21 @@ function MobileFilterGroup({ group }) {
       >
         <div className="flex-1">
           <div className="flex flex-col gap-md pt-xl transition-all">
-            {group.items.map((item) => (
-              <FilterLink key={item.href} href={item.href} label={item.label} />
-            ))}
+            {group.items.map((item) => {
+              const slug = resolveFilterItemSlug(item);
+              if (!slug) {
+                return null;
+              }
+
+              return (
+                <FilterCheckbox
+                  key={slug}
+                  label={item.label}
+                  checked={selectedSlugs.has(slug)}
+                  onToggle={() => onToggleSlug(slug)}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
@@ -89,12 +111,12 @@ function MobileFilterGroup({ group }) {
   );
 }
 
-function InsightsFilterPanel({ filterGroups }) {
+function InsightsFilterPanel({ filterGroups, selectedSlugs, onToggleSlug }) {
   if (!filterGroups?.length) {
     return null;
   }
 
-  const [desktopOpen, setDesktopOpen] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState(true);
 
   return (
     <section className="bg-gray-night-green text-gray-off-white">
@@ -103,16 +125,21 @@ function InsightsFilterPanel({ filterGroups }) {
         <div className="font-blender text-sm uppercase">Filter By</div>
         <div className="flex flex-col gap-xl">
           {filterGroups.map((group) => (
-            <MobileFilterGroup key={group.title} group={group} />
+            <MobileFilterGroup
+              key={group.title}
+              group={group}
+              selectedSlugs={selectedSlugs}
+              onToggleSlug={onToggleSlug}
+            />
           ))}
         </div>
       </div>
 
       {/* Desktop */}
-      <div className="hidden cursor-pointer lg:block">
+      <div className="hidden lg:block">
         <button
           type="button"
-          className="w-full text-left"
+          className="w-full cursor-pointer text-left"
           aria-expanded={desktopOpen}
           onClick={() => setDesktopOpen((value) => !value)}
         >
@@ -133,9 +160,21 @@ function InsightsFilterPanel({ filterGroups }) {
               <div key={group.title} className="flex flex-col gap-6 text-xl">
                 <div className="h-7 font-semibold">{group.title}</div>
                 <div className="grid gap-x-10 gap-y-4">
-                  {group.items.map((item) => (
-                    <FilterLink key={item.href} href={item.href} label={item.label} />
-                  ))}
+                  {group.items.map((item) => {
+                    const slug = resolveFilterItemSlug(item);
+                    if (!slug) {
+                      return null;
+                    }
+
+                    return (
+                      <FilterCheckbox
+                        key={slug}
+                        label={item.label}
+                        checked={selectedSlugs.has(slug)}
+                        onToggle={() => onToggleSlug(slug)}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             ))}
@@ -150,8 +189,8 @@ function DiscoverCard({ card }) {
   const cardClassName =
     "flex h-full flex-col bevel bg-gray-defi-charcoal transition-all hover:opacity-90 lg:group-hover/cards:[&:not(:hover)]:opacity-70";
 
-  return (
-    <div style={{ position: "relative" }} className={cardClassName}>
+  const content = (
+    <>
       <Image
         alt={card.imageAlt}
         src={card.imageSrc}
@@ -176,6 +215,29 @@ function DiscoverCard({ card }) {
           </div>
         </div>
       </div>
+    </>
+  );
+
+  if (card.href) {
+    const linkProps = card.external
+      ? { href: card.href, target: "_blank", rel: "noopener noreferrer" }
+      : { href: card.href };
+
+    return (
+      <Link
+        {...linkProps}
+        style={{ position: "relative" }}
+        className={cardClassName}
+      >
+        {card.srText ? <span className="sr-only">{card.srText}</span> : null}
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div style={{ position: "relative" }} className={cardClassName}>
+      {content}
     </div>
   );
 }
@@ -210,35 +272,120 @@ function DiscoverAllLink() {
   );
 }
 
-export default function InsightsDiscoverSection({
+export default function InsightsDiscoverSection(props) {
+  return (
+    <Suspense
+      fallback={
+        <InsightsDiscoverSectionContent
+          {...props}
+          selectedSlugs={new Set()}
+          onToggleSlug={() => {}}
+        />
+      }
+    >
+      <InsightsDiscoverSectionWithSearchParams {...props} />
+    </Suspense>
+  );
+}
+
+function InsightsDiscoverSectionWithSearchParams(props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const selectedSlugs = useMemo(
+    () => new Set(searchParams.getAll("category").filter(Boolean)),
+    [searchParams],
+  );
+
+  const onToggleSlug = useCallback(
+    (slug) => {
+      const next = new Set(selectedSlugs);
+
+      if (next.has(slug)) {
+        next.delete(slug);
+      } else {
+        next.add(slug);
+      }
+
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete("category");
+      [...next].sort().forEach((value) => params.append("category", value));
+
+      const query = params.toString();
+      router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+    },
+    [pathname, router, searchParams, selectedSlugs],
+  );
+
+  return (
+    <InsightsDiscoverSectionContent
+      {...props}
+      selectedSlugs={selectedSlugs}
+      onToggleSlug={onToggleSlug}
+    />
+  );
+}
+
+function InsightsDiscoverSectionContent({
   cards,
   filterGroups,
+  selectedSlugs,
+  onToggleSlug,
 }) {
+  const filteredCards = useMemo(() => {
+    if (!cards?.length) {
+      return [];
+    }
+
+    if (!selectedSlugs.size) {
+      return cards;
+    }
+
+    return cards.filter((card) =>
+      resolveCardCategorySlugs(card).some((slug) => selectedSlugs.has(slug)),
+    );
+  }, [cards, selectedSlugs]);
+
   if (!cards?.length) {
     return null;
   }
+
+  const isFiltering = selectedSlugs.size > 0;
 
   return (
     <section className="bg-gray-night-green text-gray-off-white">
       <div className="container py-block">
         <div className="pb-container">
-          <InsightsFilterPanel filterGroups={filterGroups} />
+          <InsightsFilterPanel
+            filterGroups={filterGroups}
+            selectedSlugs={selectedSlugs}
+            onToggleSlug={onToggleSlug}
+          />
         </div>
 
         <section className="bg-gray-night-green text-gray-off-white">
           <div className="flex flex-col gap-2xl lg:flex">
-            <div className="group/cards grid grid-cols-1 gap-xl lg:grid-cols-4">
-              {cards.map((card, index) => (
-                <div
-                  key={card.href}
-                  className={
-                    index < MOBILE_INITIAL_VISIBLE ? "" : "hidden lg:block"
-                  }
-                >
-                  <DiscoverCard card={card} />
-                </div>
-              ))}
-            </div>
+            {filteredCards.length ? (
+              <div className="group/cards grid grid-cols-1 gap-xl lg:grid-cols-4">
+                {filteredCards.map((card, index) => (
+                  <div
+                    key={card.href}
+                    className={
+                      isFiltering || index < MOBILE_INITIAL_VISIBLE
+                        ? ""
+                        : "hidden lg:block"
+                    }
+                  >
+                    <DiscoverCard card={card} />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-gray-tradfi-silver lg:text-base">
+                No insights match the selected filters.
+              </p>
+            )}
           </div>
         </section>
 

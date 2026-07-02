@@ -259,33 +259,54 @@ export const insightsSeriesContent = {
   ],
 };
 
+export const insightCategorySlugByLabel = {
+  "Market Update": "market-update",
+  Reports: "reports",
+  "DeFi Research": "defi-research",
+  "Governance Digest": "governance-digest",
+  Announcements: "announcements",
+  Media: "media",
+  "Case Studies": "case-studies",
+  Opinions: "opinions",
+  News: "announcements",
+};
+
+export function resolveCardCategorySlugs(card) {
+  if (Array.isArray(card?.categorySlugs) && card.categorySlugs.length) {
+    return card.categorySlugs;
+  }
+
+  const slug = insightCategorySlugByLabel[card?.category];
+  return slug ? [slug] : [];
+}
+
 export const insightsFilterGroups = [
   {
     title: "Market Color",
     items: [
-      { label: "Market Update", href: "/insights?category=market-update" },
-      { label: "Reports", href: "/insights?category=reports" },
+      { label: "Market Update", slug: "market-update" },
+      { label: "Reports", slug: "reports" },
     ],
   },
   {
     title: "Research",
     items: [
-      { label: "DeFi Research", href: "/insights?category=defi-research" },
-      { label: "Governance Digest", href: "/insights?category=governance-digest" },
+      { label: "DeFi Research", slug: "defi-research" },
+      { label: "Governance Digest", slug: "governance-digest" },
     ],
   },
   {
     title: "News",
     items: [
-      { label: "Announcements", href: "/insights?category=announcements" },
-      { label: "Media", href: "/insights?category=media" },
+      { label: "Announcements", slug: "announcements" },
+      { label: "Media", slug: "media" },
     ],
   },
   {
     title: "Views",
     items: [
-      { label: "Case Studies", href: "/insights?category=case-studies" },
-      { label: "Opinions", href: "/insights?category=opinions" },
+      { label: "Case Studies", slug: "case-studies" },
+      { label: "Opinions", slug: "opinions" },
     ],
   },
 ];

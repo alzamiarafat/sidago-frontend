@@ -7,6 +7,11 @@ import {
   normalizeServiceLandingPageFromStrapi,
 } from "@/src/lib/cms-transforms.mjs";
 import { buildMainNavigation } from "@/src/lib/navigation-build.js";
+import { resolveFooter, resolveGlobalSettings } from "@/src/lib/footer-config.js";
+import {
+  getDefaultSitePage,
+  normalizeSitePageFromStrapi,
+} from "@/src/data/cms/site-pages.mjs";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "");
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -109,7 +114,7 @@ function normalizeGlobalSettings(entry) {
       item.socialLinks?.length > 0
         ? item.socialLinks
         : null,
-    footer: footer ? normalizeFooter(footer) : null,
+    footer: resolveFooter(footer ? normalizeFooter(footer) : null),
   };
 }
 
@@ -353,6 +358,9 @@ function normalizeFooter(footer) {
             .map((link) => normalizeFooterLink(link))
             .filter(Boolean)
         : null,
+    contactAlign: footer.contactAlign ?? null,
+    copyrightAlign: footer.copyrightAlign ?? null,
+    policyLinksAlign: footer.policyLinksAlign ?? null,
   };
 }
 
@@ -1577,14 +1585,16 @@ export async function fetchAPI(path, options = {}) {
   return null;
 }
 
-export const getGlobalSettings = cache(async () =>
-  fetchCMSSingleType(
+export const getGlobalSettings = cache(async () => {
+  const settings = await fetchCMSSingleType(
     "global?populate[siteLogo][fields][0]=url&populate[siteLogo][fields][1]=alternativeText&populate[socialLinks]=*&populate[version]=*&populate[footer][populate][navLinks]=*&populate[footer][populate][socialLinks]=*&populate[footer][populate][legalBlocks]=*&populate[footer][populate][policyLinks]=*",
     normalizeGlobalSettings,
     (page) => Boolean(page?.siteName),
     { revalidate: 900 },
-  ),
-);
+  );
+
+  return resolveGlobalSettings(settings);
+});
 
 export const getHomepage = cache(async () =>
   fetchCMSSingleType(
@@ -1926,6 +1936,7 @@ export const getMainNavigation = cache(async () => {
 });
 
 export const getSitePage = cache(async (slug) => {
+  const fallback = getDefaultSitePage(slug);
   const path = `site-pages?filters[slug][$eq]=${encodeURIComponent(slug)}`;
 
   for (let attempt = 1; attempt <= 5; attempt++) {
@@ -1934,7 +1945,7 @@ export const getSitePage = cache(async (slug) => {
     const entry = unwrapEntity(item);
 
     if (entry?.content) {
-      return entry.content;
+      return normalizeSitePageFromStrapi(entry, fallback);
     }
 
     if (attempt < 5) {
@@ -1942,5 +1953,5 @@ export const getSitePage = cache(async (slug) => {
     }
   }
 
-  return null;
+  return fallback.content;
 });
