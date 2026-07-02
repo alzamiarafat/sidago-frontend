@@ -30,7 +30,7 @@ export default function SupportHubTopicGrid({ items, resolveIcon }) {
   return (
     <motion.div
       key={items.map((c) => c.id).join("|")}
-      className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3"
+      className="grid grid-cols-2 gap-4 sm:gap-5"
       variants={stagger}
       initial="hidden"
       animate="visible"
