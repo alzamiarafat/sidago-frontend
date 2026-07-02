@@ -26,7 +26,8 @@ const DEFAULT_MESSAGES = {
   emailRequired: "Email is required.",
   invalidEmail: "Please enter a valid email address.",
   newsletterRequired: "Please select at least one newsletter.",
-  success: "Thank you for subscribing.",
+  success:
+    "Thank you for registering your interest in Sidago Insights. You will receive the next issue directly in your email.",
   error: "Something went wrong. Please try again.",
 };
 
@@ -153,106 +154,106 @@ export default function SubscribeSection({
           {content.heading}
         </h2>
 
-        <form className="v2-subscribe__form" onSubmit={handleSubmit} noValidate>
-          <div className="v2-subscribe__field">
-            <label htmlFor="subscribe-email" className="v2-subscribe__email-label">
-              {content.emailLabel}
-              <span aria-hidden="true">*</span>
-            </label>
-            <input
-              id="subscribe-email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-                setFieldErrors((prev) => ({ ...prev, email: "" }));
-                setFormError("");
-                setSuccessMessage("");
-              }}
-              aria-invalid={Boolean(fieldErrors.email)}
-              aria-describedby={
-                fieldErrors.email ? "subscribe-email-error" : undefined
-              }
-              className="v2-subscribe__input"
-            />
-            {fieldErrors.email ? (
-              <p
-                id="subscribe-email-error"
-                className="v2-subscribe__field-error"
-                role="alert"
-              >
-                {fieldErrors.email}
-              </p>
-            ) : null}
-          </div>
-
-          <fieldset className="v2-subscribe__fieldset">
-            <legend className="v2-subscribe__legend">
-              {content.newslettersLabel}
-              <span aria-hidden="true">*</span>
-            </legend>
-            <div className="v2-subscribe__options">
-              {content.newsletterOptions.map((option) => (
-                <label
-                  key={option.id}
-                  htmlFor={`subscribe-${option.id}`}
-                  className="v2-subscribe__option"
-                >
-                  <input
-                    id={`subscribe-${option.id}`}
-                    name="newsletters"
-                    type="checkbox"
-                    value={option.id}
-                    checked={Boolean(newsletters[option.id])}
-                    onChange={() => toggleNewsletter(option.id)}
-                    className="v2-subscribe__checkbox"
-                  />
-                  <span>{option.label}</span>
-                </label>
-              ))}
-            </div>
-            {fieldErrors.newsletters ? (
-              <p className="v2-subscribe__field-error" role="alert">
-                {fieldErrors.newsletters}
-              </p>
-            ) : null}
-          </fieldset>
-
-          <p className="v2-subscribe__disclaimer">
-            {content.disclaimer}
-            <Link href={content.privacyPolicyHref}>
-              {content.privacyPolicyLabel}
-            </Link>
-            {content.disclaimerSuffix ?? "."}
+        {successMessage ? (
+          <p className="v2-subscribe__form-success" role="status">
+            {successMessage}
           </p>
+        ) : (
+          <form className="v2-subscribe__form" onSubmit={handleSubmit} noValidate>
+            <div className="v2-subscribe__field">
+              <label htmlFor="subscribe-email" className="v2-subscribe__email-label">
+                {content.emailLabel}
+                <span aria-hidden="true">*</span>
+              </label>
+              <input
+                id="subscribe-email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  setFieldErrors((prev) => ({ ...prev, email: "" }));
+                  setFormError("");
+                  setSuccessMessage("");
+                }}
+                aria-invalid={Boolean(fieldErrors.email)}
+                aria-describedby={
+                  fieldErrors.email ? "subscribe-email-error" : undefined
+                }
+                className="v2-subscribe__input"
+              />
+              {fieldErrors.email ? (
+                <p
+                  id="subscribe-email-error"
+                  className="v2-subscribe__field-error"
+                  role="alert"
+                >
+                  {fieldErrors.email}
+                </p>
+              ) : null}
+            </div>
 
-          {formError ? (
-            <p className="v2-subscribe__form-error" role="alert">
-              {formError}
+            <fieldset className="v2-subscribe__fieldset">
+              <legend className="v2-subscribe__legend">
+                {content.newslettersLabel}
+                <span aria-hidden="true">*</span>
+              </legend>
+              <div className="v2-subscribe__options">
+                {content.newsletterOptions.map((option) => (
+                  <label
+                    key={option.id}
+                    htmlFor={`subscribe-${option.id}`}
+                    className="v2-subscribe__option"
+                  >
+                    <input
+                      id={`subscribe-${option.id}`}
+                      name="newsletters"
+                      type="checkbox"
+                      value={option.id}
+                      checked={Boolean(newsletters[option.id])}
+                      onChange={() => toggleNewsletter(option.id)}
+                      className="v2-subscribe__checkbox"
+                    />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+              {fieldErrors.newsletters ? (
+                <p className="v2-subscribe__field-error" role="alert">
+                  {fieldErrors.newsletters}
+                </p>
+              ) : null}
+            </fieldset>
+
+            <p className="v2-subscribe__disclaimer">
+              {content.disclaimer}
+              <Link href={content.privacyPolicyHref}>
+                {content.privacyPolicyLabel}
+              </Link>
+              {content.disclaimerSuffix ?? "."}
             </p>
-          ) : null}
 
-          {successMessage ? (
-            <p className="v2-subscribe__form-success" role="status">
-              {successMessage}
-            </p>
-          ) : null}
+            {formError ? (
+              <p className="v2-subscribe__form-error" role="alert">
+                {formError}
+              </p>
+            ) : null}
 
-          <div>
-            <button
-              type="submit"
-              className="v2-subscribe__submit bevel bevel-[0.25rem]"
-              disabled={isSubmitting}
-            >
-              <span className="sr-only">{content.submitSrText}</span>
-              {isSubmitting ? "Submitting..." : content.submitLabel}
-              <SubmitArrow />
-            </button>
-          </div>
-        </form>
+            <div>
+              <button
+                type="submit"
+                className="v2-subscribe__submit bevel bevel-[0.25rem]"
+                disabled={isSubmitting}
+              >
+                <span className="sr-only">{content.submitSrText}</span>
+                {isSubmitting ? "Submitting..." : content.submitLabel}
+                <SubmitArrow />
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </section>
   );

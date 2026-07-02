@@ -241,8 +241,9 @@
 
 .v2-subscribe__form-success {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.4;
+  max-width: 72rem;
+  font-size: 1rem;
+  line-height: 1.7;
   color: #2f6b4f;
 }
 
