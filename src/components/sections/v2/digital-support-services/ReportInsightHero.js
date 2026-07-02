@@ -21,7 +21,7 @@ function BreadcrumbSeparator() {
 }
 
 /**
- * Report / insight article hero (Wintermute-style split layout).
+ * Report / insight article hero (Sidago-style split layout).
  */
 export default function ReportInsightHero({
   imageSrc = "/images/OTC-report-2025_svg.svg",

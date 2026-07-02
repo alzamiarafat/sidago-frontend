@@ -6,7 +6,7 @@ const tradingItems = [
   {
     title: "CeFi Trading",
     description:
-      "CeFi traders devise innovative trading algorithms that capitalize on short term opportunities and arbitrage in a delta neutral capacity. Wintermute traders work as one team across all tokens, products and strategies, well positioned to take advantage of a large variety of signals.",
+      "CeFi traders devise innovative trading algorithms that capitalize on short term opportunities and arbitrage in a delta neutral capacity. Sidago traders work as one team across all tokens, products and strategies, well positioned to take advantage of a large variety of signals.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ const tradingItems = [
   {
     title: "Technology",
     description:
-      "Technology drives our edge in proprietary trading. While using the best-in-class HFT technology expertise, we apply it in a way that’s specific to digital asset market structure. All Wintermute technology is proprietary and built in house using low-level programming languages and advanced networking infrastructure.",
+      "Technology drives our edge in proprietary trading. While using the best-in-class HFT technology expertise, we apply it in a way that’s specific to digital asset market structure. All Sidago technology is proprietary and built in house using low-level programming languages and advanced networking infrastructure.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -142,9 +142,8 @@ function TradingCard({ item, isFlipped, onToggle, onEnter, onLeave }) {
       onMouseLeave={onLeave}
       onFocus={onEnter}
       onBlur={onLeave}
-      className={`flipper card relative col-span-1 flex h-[15.625rem] w-full shrink-0 justify-center overflow-visible text-left transition-all md:h-[17.8125rem] ${
-        isFlipped ? "flipper--flipped" : ""
-      }`}
+      className={`flipper card relative col-span-1 flex h-[15.625rem] w-full shrink-0 justify-center overflow-visible text-left transition-all md:h-[17.8125rem] ${isFlipped ? "flipper--flipped" : ""
+        }`}
       aria-pressed={isFlipped}
     >
       <div className="front bevel bg-gray-defi-slate">

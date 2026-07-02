@@ -69,7 +69,10 @@ export default async function OperationsPage() {
           />
           <div className="relative z-[1]">
             <HeroBannerSection {...hero} />
-            <OperationsPageContent videoInMotion={operationsPage.videoInMotion} />
+            <OperationsPageContent
+              videoInMotion={operationsPage.videoInMotion}
+              globalReachCta={operationsPage.globalReachCta}
+            />
             <PageFooter footer={settings?.footer} />
           </div>
         </main>

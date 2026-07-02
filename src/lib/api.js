@@ -739,6 +739,7 @@ function normalizeOperationsPage(entry) {
                 ctaItem),
             )
         : null,
+    globalReachCta: normalizeFooterLink(item.globalReachCta),
   };
 }
 
@@ -1644,7 +1645,7 @@ export const getBusinessProcessesPage = cache(async () =>
 
 export const getOperationsPage = cache(async () =>
   fetchCMSSingleType(
-    "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*",
+    "operation?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[capabilities]=*&populate[cta]=*&populate[globalReachCta]=*",
     normalizeOperationsPage,
     (page) => Boolean(page?.hero),
   ),

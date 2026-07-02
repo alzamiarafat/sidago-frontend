@@ -30,6 +30,15 @@ const OPS_BTN_PRIMARY =
 
 const OPS_BTN_SECONDARY = OPS_BTN_PRIMARY;
 
+const CAPABILITY_MATRIX_ID = "capability-matrix";
+
+function scrollToCapabilityMatrix() {
+  document.getElementById(CAPABILITY_MATRIX_ID)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}
+
 const TICKER_ITEMS = [
   "Process Automation",
   "Workforce Solutions",
@@ -355,10 +364,18 @@ function AccordionItem({ item, chipColors }) {
   );
 }
 
+const DEFAULT_GLOBAL_REACH_CTA = {
+  label: "Explore Coverage",
+  href: "/global-workforce-solutions",
+  srLabel: "Explore Sidago global workforce coverage",
+};
+
 export default function OperationsPageContent({
   videoInMotion = DEFAULT_VIDEO_IN_MOTION,
+  globalReachCta,
 }) {
   const { videoSrc, posterSrc, posterAlt } = videoInMotion ?? DEFAULT_VIDEO_IN_MOTION;
+  const reachCta = globalReachCta ?? DEFAULT_GLOBAL_REACH_CTA;
 
   const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
@@ -389,7 +406,7 @@ export default function OperationsPageContent({
       />
 
       {/* What We Handle */}
-      <section className="ops-handle ops-section bg-gray-defi-shadow">
+      <section id={CAPABILITY_MATRIX_ID} className="ops-handle ops-section bg-gray-defi-shadow">
         <div className="container">
           <div className="ops-reveal">
             <SectionHeader eyebrow="What We Handle" />
@@ -464,9 +481,13 @@ export default function OperationsPageContent({
               by trained, managed, and accountable teams — on your timeline and your
               terms.
             </p>
-            <Link href="/contact" className={OPS_BTN_SECONDARY}>
+            <button
+              type="button"
+              onClick={scrollToCapabilityMatrix}
+              className={OPS_BTN_SECONDARY}
+            >
               View Full Capability Matrix →
-            </Link>
+            </button>
           </div>
           <div className="ops-reveal">
             {ACCORDION.map((item) => (
@@ -520,8 +541,9 @@ export default function OperationsPageContent({
                   </div>
                 ))}
               </div>
-              <Link href="/contact" className={OPS_BTN_PRIMARY}>
-                Explore Coverage
+              <Link href={reachCta.href} className={OPS_BTN_PRIMARY}>
+                <span className="sr-only">{reachCta.srLabel}</span>
+                {reachCta.label}
                 <svg viewBox="0 0 16 16" aria-hidden className="h-3.5 w-3.5">
                   <line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   <polyline points="9,3 14,8 9,13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

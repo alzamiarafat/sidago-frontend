@@ -528,7 +528,7 @@ export const openRoles = [
   },
 ];
 
-/** Open roles listing page (Wintermute-style filters + grouped jobs). */
+/** Open roles listing page (Sidago-style filters + grouped jobs). */
 export const openRolesPage = {
   hero: {
     titlePrefix: "Join the",

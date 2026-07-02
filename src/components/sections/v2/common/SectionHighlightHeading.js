@@ -1,5 +1,5 @@
 /**
- * Section title with a highlighted trailing word (e.g. "Wintermute teams").
+ * Section title with a highlighted trailing word (e.g. "Sidago teams").
  */
 export default function SectionHighlightHeading({
   lead,
