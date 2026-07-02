@@ -69,6 +69,24 @@ function SectionFadeTop() {
 }
 
 function DashboardMockup() {
+  const topCards = [
+    {
+      label: "Queue load",
+      value: "128",
+      detail: "active items",
+    },
+    {
+      label: "AI routing",
+      value: "94%",
+      detail: "confidence",
+    },
+    {
+      label: "SLA health",
+      value: "99.2%",
+      detail: "within target",
+    },
+  ];
+
   return (
     <div className="relative mx-auto w-full max-w-lg">
       <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/90 via-slate-950/95 to-slate-900/90 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_40px_120px_rgba(22,139,80,0.12),0_24px_80px_rgba(231,81,47,0.06)] backdrop-blur-xl sm:p-5">
@@ -76,21 +94,32 @@ function DashboardMockup() {
           <span className="text-[0.6rem] uppercase tracking-[0.2em] text-[#168b50]/90">
             Live orchestration
           </span>
-          <span className="h-2 w-2 rounded-full bg-[#168b50] shadow-[0_0_14px_rgba(22,139,80,0.85)]" />
         </div>
         <div className="mt-4 grid grid-cols-3 gap-2">
-          {[72, 54, 88].map((h, i) => (
+          {topCards.map(({ label, value, detail }, i) => (
             <div
-              key={i}
-              className="flex flex-col justify-end rounded-lg bg-white/[0.05] p-2"
+              key={label}
+              className="flex min-h-[4.5rem] flex-col justify-between rounded-lg bg-white/[0.05] p-2 sm:min-h-[5.25rem] sm:p-2.5"
               style={{ minHeight: 72 }}
             >
-              <motion.div
-                className="rounded-sm bg-gradient-to-t from-[#168b50]/55 to-[#E7512F]/35"
-                initial={{ height: 8 }}
-                animate={{ height: h }}
-                transition={{ duration: 1.2, delay: 0.15 * i, ease: "easeOut" }}
-              />
+              <div className="flex items-start gap-2">
+                <p className="text-[0.48rem] font-medium uppercase tracking-[0.18em] text-slate-400 sm:text-[0.52rem]">
+                  {label}
+                </p>
+              </div>
+              <div>
+                <motion.p
+                  className="text-sm font-semibold text-white sm:text-base"
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.15 * i, ease: "easeOut" }}
+                >
+                  {value}
+                </motion.p>
+                <p className="mt-0.5 text-[0.52rem] text-slate-400 sm:text-[0.58rem]">
+                  {detail}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -459,20 +488,36 @@ export default function ProcessImprovementView({ content }) {
                 Compare before and after along the spectrum
               </label>
               <div className="relative mx-auto max-w-2xl">
-                <div className="relative flex h-10 w-full items-center">
+                <div
+                  className="relative flex h-10 w-full items-center"
+                  style={{ "--compare-knob-size": "1rem" }}
+                >
                   <div
                     className="pointer-events-none absolute inset-x-0 top-1/2 flex h-2 w-full -translate-y-1/2 overflow-hidden rounded-full shadow-inner"
                     aria-hidden
                   >
                     <div
                       className="bg-[#E7512F]"
-                      style={{ width: `${compare}%` }}
+                      style={{
+                        width:
+                          compare === 0
+                            ? "0%"
+                            : `calc(${compare}% + (var(--compare-knob-size) / 2))`,
+                      }}
                     />
                     <div className="min-w-0 flex-1 bg-white/90" />
                   </div>
                   <div
-                    className="pointer-events-none absolute top-1/2 z-[1] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-[#E7512F] shadow-[0_2px_12px_rgba(231,81,47,0.55)]"
-                    style={{ left: `${compare}%` }}
+                    className="pointer-events-none absolute z-[1] h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-[#E7512F] shadow-[0_2px_12px_rgba(231,81,47,0.55)]"
+                    style={{
+                      left:
+                        compare === 0
+                          ? "0%"
+                          : compare === 100
+                            ? "100%"
+                            : `calc(${compare}% - 0px)`,
+                      top: "43%",
+                    }}
                     aria-hidden
                   />
                   <input
@@ -482,7 +527,7 @@ export default function ProcessImprovementView({ content }) {
                     max={100}
                     value={compare}
                     onChange={(e) => setCompare(Number(e.target.value))}
-                    className="absolute inset-0 z-[2] m-0 h-full w-full cursor-pointer opacity-[0.04]"
+                    className="process-improvement-range absolute inset-0 z-[2] m-0 h-full w-full cursor-pointer appearance-none border-0 bg-transparent outline-none focus:outline-none focus:ring-0"
                   />
                 </div>
                 <p className="mt-4 text-center text-sm text-slate-400">
@@ -513,31 +558,19 @@ export default function ProcessImprovementView({ content }) {
                   Before
                 </p>
                 <ul className="mt-6 flex flex-col gap-4 text-[0.9375rem] leading-relaxed text-slate-200">
-                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
-                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
-                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
-                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
-                    </span>
+                  <li className="grid grid-cols-[auto_1fr] items-start gap-x-3">
                     <span className="mt-1 w-4 shrink-0 text-center text-slate-500">—</span>
                     <span className="min-w-0 text-slate-200/95">
                       Fragmented status in chat threads
                     </span>
                   </li>
-                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
-                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
-                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
-                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
-                    </span>
+                  <li className="grid grid-cols-[auto_1fr] items-start gap-x-3">
                     <span className="mt-1 w-4 shrink-0 text-center text-slate-500">—</span>
                     <span className="min-w-0 text-slate-200/95">
                       Manual reconciliations every Friday
                     </span>
                   </li>
-                  <li className="grid grid-cols-[auto_auto_1fr] items-start gap-x-3">
-                    <span className="mt-1.5 flex shrink-0 items-center gap-1" aria-hidden>
-                      <span className="h-2 w-2 rounded-sm bg-[#22c55e]" />
-                      <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
-                    </span>
+                  <li className="grid grid-cols-[auto_1fr] items-start gap-x-3">
                     <span className="mt-1 w-4 shrink-0 text-center text-slate-500">—</span>
                     <span className="min-w-0 text-slate-200/95">
                       Heroics rewarded over repeatable playbooks

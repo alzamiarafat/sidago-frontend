@@ -104,7 +104,7 @@ function MarketingHero({ reduce }) {
           </motion.p>
           <motion.div
             variants={fadeUp}
-            className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-10 flex items-start justify-start gap-3 self-start sm:flex-row sm:items-center sm:justify-start"
           >
             <Link
               href="/contact"
@@ -120,9 +120,10 @@ function MarketingHero({ reduce }) {
                   .getElementById("services")
                   ?.scrollIntoView({ behavior: reduce ? "auto" : "smooth" })
               }
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white/[0.08] px-6 py-3 font-blender text-sm uppercase tracking-[0.14em] text-gray-off-white backdrop-blur-sm transition hover:bg-white/[0.12]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/[0.12] px-6 py-3 font-blender text-sm uppercase tracking-[0.14em] text-gray-off-white shadow-[0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:border-white/30 hover:bg-white/[0.18] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40"
             >
               View core services
+              <FiArrowRight className="h-4 w-4" aria-hidden />
             </button>
           </motion.div>
         </motion.div>

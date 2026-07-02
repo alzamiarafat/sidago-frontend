@@ -3,3 +3,41 @@
     padding-top: calc(var(--header-height, 4.5rem) + 1.5rem) !important;
   }
 }
+
+.process-improvement-range::-webkit-slider-runnable-track {
+  height: 100%;
+  background: transparent;
+}
+
+.process-improvement-range:focus {
+  outline: none;
+}
+
+.process-improvement-range:focus-visible {
+  outline: none;
+}
+
+.process-improvement-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 0;
+  margin-top: 0;
+}
+
+.process-improvement-range::-moz-range-track {
+  height: 100%;
+  background: transparent;
+  border: 0;
+}
+
+.process-improvement-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 0;
+}
