@@ -32,7 +32,7 @@ export default function ScalableOperationsView({
           {/* <SubscribeSection content={subscribeContent} /> */}
           <SimilarInsightsSection
             content={similarInsights}
-            sectionBgColor={similarInsights?.sectionBgColor || "#070B09"}
+            sectionBgColor={similarInsights?.sectionBgColor || "#151916"}
           />
           <PageFooter footer={footer} />
         </main>
