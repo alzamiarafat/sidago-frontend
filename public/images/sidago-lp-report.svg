@@ -1,0 +1,271 @@
+<svg width="1111" height="669" viewBox="0 0 1111 669" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- BG -->
+  <rect width="1111" height="669" fill="#0c0c0b"/>
+
+  <!-- ===== SIDEBAR ===== -->
+  <rect width="230" height="669" fill="#111110"/>
+  <rect x="229" y="0" width="1" height="669" fill="#2a2a25"/>
+
+  <!-- Sidago wordmark only -->
+  <text x="20" y="53" font-family="Inter,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#f5f3ee" letter-spacing="0.5">SIDAGO</text>
+
+  <!-- Sidebar divider -->
+  <line x1="16" y1="91" x2="214" y2="91" stroke="#2a2a25"/>
+
+  <!-- Active sidebar item highlight -->
+  <rect x="16" y="108" width="198" height="30" rx="6" fill="#1f1f1c"/>
+  <rect x="16" y="108" width="3" height="30" rx="1.5" fill="#ff4d1a"/>
+
+  <!-- Sidebar nav items -->
+  <!-- Dashboard (active) -->
+  <rect x="26" y="116" width="14" height="14" rx="2" fill="none" stroke="#ff4d1a" stroke-width="1"/>
+  <text x="48" y="127" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee" font-weight="500">Dashboard</text>
+
+  <!-- Volume Orders -->
+  <g transform="translate(26, 151)">
+    <rect width="14" height="14" rx="2" fill="none" stroke="#8a8a82" stroke-width="1"/>
+    <line x1="7" y1="3" x2="7" y2="11" stroke="#8a8a82" stroke-width="1"/>
+    <line x1="3" y1="7" x2="11" y2="7" stroke="#8a8a82" stroke-width="1"/>
+  </g>
+  <text x="48" y="162" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#8a8a82">Volume Orders</text>
+
+  <!-- Analytics -->
+  <g transform="translate(26, 185)">
+    <rect width="14" height="14" rx="2" fill="none" stroke="#8a8a82" stroke-width="1"/>
+    <polyline points="2,10 5,6 8,8 12,3" fill="none" stroke="#8a8a82" stroke-width="1"/>
+  </g>
+  <text x="48" y="196" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#8a8a82">Analytics</text>
+
+  <!-- Divider -->
+  <line x1="16" y1="218" x2="214" y2="218" stroke="#2a2a25"/>
+
+  <!-- Month selector heading -->
+  <text x="16" y="247" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.08em" font-weight="600">PERIOD</text>
+
+  <!-- Month pills -->
+  <!-- Q1 group -->
+  <rect x="16" y="258" width="96" height="22" rx="4" fill="#ff4d1a" opacity="0.15"/>
+  <rect x="16" y="258" width="96" height="22" rx="4" fill="none" stroke="#ff4d1a" stroke-width="0.8"/>
+  <text x="64" y="273" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#ff4d1a" text-anchor="middle" font-weight="500">Q1 2025</text>
+
+  <rect x="118" y="258" width="96" height="22" rx="4" fill="none" stroke="#2a2a25" stroke-width="0.8"/>
+  <text x="166" y="273" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82" text-anchor="middle">Q2 2025</text>
+
+  <rect x="16" y="286" width="96" height="22" rx="4" fill="none" stroke="#2a2a25" stroke-width="0.8"/>
+  <text x="64" y="301" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82" text-anchor="middle">Q3 2025</text>
+
+  <rect x="118" y="286" width="96" height="22" rx="4" fill="none" stroke="#2a2a25" stroke-width="0.8"/>
+  <text x="166" y="301" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82" text-anchor="middle">Q4 2025</text>
+
+  <!-- Divider -->
+  <line x1="16" y1="322" x2="214" y2="322" stroke="#2a2a25"/>
+
+  <!-- Token filter -->
+  <text x="16" y="344" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.08em" font-weight="600">TOKEN PAIR</text>
+
+  <!-- Token items -->
+  <circle cx="24" cy="360" r="4" fill="#ff4d1a"/>
+  <text x="34" y="364" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee" font-weight="500">BTC / USDT</text>
+
+  <circle cx="24" cy="380" r="4" fill="#8a8a82" opacity="0.4"/>
+  <text x="34" y="384" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#8a8a82">ETH / USDT</text>
+
+  <circle cx="24" cy="400" r="4" fill="#8a8a82" opacity="0.4"/>
+  <text x="34" y="404" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#8a8a82">SOL / USDT</text>
+
+  <circle cx="24" cy="420" r="4" fill="#8a8a82" opacity="0.4"/>
+  <text x="34" y="424" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#8a8a82">ARB / USDT</text>
+
+  <!-- Sidebar footer -->
+  <line x1="16" y1="560" x2="214" y2="560" stroke="#2a2a25"/>
+  <!-- Avatar / user -->
+  <circle cx="30" cy="585" r="12" fill="#1f1f1c" stroke="#2a2a25" stroke-width="1"/>
+  <text x="30" y="590" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#ff4d1a" text-anchor="middle" font-weight="700">SD</text>
+  <text x="50" y="581" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#f5f3ee" font-weight="500">Sidago Ops</text>
+  <text x="50" y="595" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82">ops@sidago.io</text>
+
+  <!-- ===== MAIN CONTENT ===== -->
+
+  <!-- Header bar -->
+  <text x="260" y="46" font-family="Inter,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#f5f3ee" letter-spacing="-0.3">LP Report</text>
+  <text x="260" y="66" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#8a8a82">Liquidity performance — Q1 2025</text>
+
+
+
+  <!-- Date badge -->
+  <rect x="930" y="30" width="82" height="28" rx="6" fill="none" stroke="#2a2a25" stroke-width="1"/>
+  <text x="971" y="49" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82" text-anchor="middle">01 Jan – 31 Mar</text>
+
+  <!-- Header divider -->
+  <line x1="260" y1="82" x2="1095" y2="82" stroke="#2a2a25"/>
+
+  <!-- ===== KPI CARDS ===== -->
+  <!-- Card 1 -->
+  <rect x="260" y="98" width="195" height="88" rx="8" fill="#111110" stroke="#2a2a25" stroke-width="1"/>
+  <text x="276" y="118" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">TOTAL VOLUME</text>
+  <text x="276" y="148" font-family="Inter,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#f5f3ee" letter-spacing="-0.5">$2.84B</text>
+  <text x="276" y="168" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#3ddc84">↑ 12.4%  <tspan fill="#8a8a82">vs prev period</tspan></text>
+
+  <!-- Card 2 -->
+  <rect x="465" y="98" width="195" height="88" rx="8" fill="#111110" stroke="#2a2a25" stroke-width="1"/>
+  <text x="481" y="118" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">FEES EARNED</text>
+  <text x="481" y="148" font-family="Inter,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#f5f3ee" letter-spacing="-0.5">$1.17M</text>
+  <text x="481" y="168" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#3ddc84">↑ 8.1%  <tspan fill="#8a8a82">vs prev period</tspan></text>
+
+  <!-- Card 3 -->
+  <rect x="670" y="98" width="195" height="88" rx="8" fill="#111110" stroke="#2a2a25" stroke-width="1"/>
+  <text x="686" y="118" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">AVG SPREAD</text>
+  <text x="686" y="148" font-family="Inter,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#f5f3ee" letter-spacing="-0.5">0.042%</text>
+  <text x="686" y="168" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#ec5b5b">↓ 0.6%  <tspan fill="#8a8a82">tighter spreads</tspan></text>
+
+  <!-- Card 4 -->
+  <rect x="875" y="98" width="210" height="88" rx="8" fill="#111110" stroke="#2a2a25" stroke-width="1"/>
+  <text x="891" y="118" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">UPTIME</text>
+  <text x="891" y="148" font-family="Inter,-apple-system,sans-serif" font-size="24" font-weight="600" fill="#f5f3ee" letter-spacing="-0.5">99.97%</text>
+  <text x="891" y="168" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#3ddc84">↑ 0.02%  <tspan fill="#8a8a82">all exchanges</tspan></text>
+
+  <!-- ===== PIE / DONUT CHART ===== -->
+  <rect x="260" y="202" width="360" height="260" rx="8" fill="#111110" stroke="#2a2a25" stroke-width="1"/>
+  <text x="276" y="224" font-family="Inter,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#f5f3ee">Volume by Token</text>
+  <text x="276" y="240" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82">Share of total Q1 volume</text>
+
+  <!-- Donut chart centered at 390,320 r=75 inner r=46 -->
+  <path d="M390,245 A75,75 0 0,1 441.341,374.673 L421.489,353.533 A46,46 0 0,0 390,274 Z" fill="#ff4d1a"/>
+  <path d="M441.341,374.673 A75,75 0 0,1 332.212,367.807 L354.556,349.322 A46,46 0 0,0 421.489,353.533 Z" fill="#746be6"/>
+  <path d="M332.212,367.807 A75,75 0 0,1 324.277,283.868 L349.69,297.839 A46,46 0 0,0 354.556,349.322 Z" fill="#3ddc84"/>
+  <path d="M324.277,283.868 A75,75 0 0,1 358.067,252.138 L370.414,278.378 A46,46 0 0,0 349.69,297.839 Z" fill="#7fb2f1"/>
+  <path d="M358.067,252.138 A75,75 0 0,1 390,245 L390,274 A46,46 0 0,0 370.414,278.378 Z" fill="#8a8a82" opacity="0.6"/>
+
+  <!-- center hole -->
+  <circle cx="390" cy="320" r="44" fill="#111110"/>
+  <text x="390" y="315" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82" text-anchor="middle">Total</text>
+  <text x="390" y="333" font-family="Inter,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#f5f3ee" text-anchor="middle">$2.84B</text>
+
+  <!-- Legend -->
+  <rect x="276" y="418" width="8" height="8" rx="2" fill="#ff4d1a"/>
+  <text x="290" y="427" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82">BTC <tspan fill="#f5f3ee" font-weight="500">38%</tspan></text>
+
+  <rect x="340" y="418" width="8" height="8" rx="2" fill="#746be6"/>
+  <text x="354" y="427" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82">ETH <tspan fill="#f5f3ee" font-weight="500">26%</tspan></text>
+
+  <rect x="404" y="418" width="8" height="8" rx="2" fill="#3ddc84"/>
+  <text x="418" y="427" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82">SOL <tspan fill="#f5f3ee" font-weight="500">19%</tspan></text>
+
+  <rect x="464" y="418" width="8" height="8" rx="2" fill="#7fb2f1"/>
+  <text x="478" y="427" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82">ARB <tspan fill="#f5f3ee" font-weight="500">10%</tspan></text>
+
+  <rect x="522" y="418" width="8" height="8" rx="2" fill="#8a8a82" opacity="0.6"/>
+  <text x="536" y="427" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82">Other <tspan fill="#f5f3ee" font-weight="500">7%</tspan></text>
+
+  <!-- ===== LINE CHART ===== -->
+  <rect x="636" y="202" width="449" height="260" rx="8" fill="#111110" stroke="#2a2a25" stroke-width="1"/>
+  <text x="652" y="224" font-family="Inter,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#f5f3ee">Daily Volume</text>
+  <text x="652" y="240" font-family="Inter,-apple-system,sans-serif" font-size="11" fill="#8a8a82">USD — Jan to Mar 2025</text>
+
+  <!-- chart area clipping -->
+  <clipPath id="chart-clip">
+    <rect x="652" y="252" width="420" height="170"/>
+  </clipPath>
+
+  <!-- Y grid lines -->
+  <line x1="652" y1="260" x2="1072" y2="260" stroke="#2a2a25" stroke-width="0.5"/>
+  <line x1="652" y1="295" x2="1072" y2="295" stroke="#2a2a25" stroke-width="0.5"/>
+  <line x1="652" y1="330" x2="1072" y2="330" stroke="#2a2a25" stroke-width="0.5"/>
+  <line x1="652" y1="365" x2="1072" y2="365" stroke="#2a2a25" stroke-width="0.5"/>
+  <line x1="652" y1="400" x2="1072" y2="400" stroke="#2a2a25" stroke-width="0.5"/>
+
+  <!-- Y labels -->
+  <text x="1078" y="263" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">50M</text>
+  <text x="1078" y="298" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">40M</text>
+  <text x="1078" y="333" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">30M</text>
+  <text x="1078" y="368" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">20M</text>
+  <text x="1078" y="403" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">10M</text>
+
+  <!-- X labels -->
+  <text x="660" y="418" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">Jan</text>
+  <text x="752" y="418" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">Feb</text>
+  <text x="845" y="418" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">Mar</text>
+  <text x="965" y="418" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82">End of Q1</text>
+
+  <!-- Area fill gradient effect (layered rects to simulate) -->
+  <polygon points="660,400 680,365 700,345 720,355 745,320 768,310 790,295 812,285 835,278 858,265 880,270 900,260 922,268 945,275 968,265 990,272 1010,280 1030,268 1052,260 1070,258 1070,400" fill="url(#area-grad)" opacity="0.25"/>
+  <defs>
+    <linearGradient id="area-grad" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0,258) scale(1,142)">
+      <stop offset="0%" stop-color="#ff4d1a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ff4d1a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Line chart polyline -->
+  <polyline points="660,400 680,365 700,345 720,355 745,320 768,310 790,295 812,285 835,278 858,265 880,270 900,260 922,268 945,275 968,265 990,272 1010,280 1030,268 1052,260 1070,258"
+    fill="none" stroke="#ff4d1a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Peak dot highlight -->
+  <circle cx="1070" cy="258" r="4" fill="#ff4d1a" stroke="#0c0c0b" stroke-width="2"/>
+  <circle cx="900" cy="260" r="4" fill="#ff4d1a" stroke="#0c0c0b" stroke-width="2"/>
+
+  <!-- Tooltip -->
+  <rect x="888" y="236" width="72" height="26" rx="4" fill="#1f1f1c" stroke="#2a2a25" stroke-width="0.5"/>
+  <text x="924" y="248" font-family="Inter,-apple-system,sans-serif" font-size="9" fill="#8a8a82" text-anchor="middle">14 Feb</text>
+  <text x="924" y="258" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#ff4d1a" text-anchor="middle" font-weight="600">$48.2M</text>
+
+  <!-- ===== DATA TABLE ===== -->
+  <rect x="260" y="478" width="825" height="166" rx="8" fill="#111110" stroke="#2a2a25" stroke-width="1"/>
+
+  <!-- Table header -->
+  <rect x="260" y="478" width="825" height="34" rx="8" fill="#151514"/>
+  <rect x="260" y="494" width="825" height="18" fill="#151514"/>
+
+  <text x="280" y="500" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">PAIR</text>
+  <text x="400" y="500" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">VOLUME</text>
+  <text x="530" y="500" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">FEES</text>
+  <text x="650" y="500" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">AVG SPREAD</text>
+  <text x="790" y="500" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">TRADES</text>
+  <text x="930" y="500" font-family="Inter,-apple-system,sans-serif" font-size="10" fill="#8a8a82" letter-spacing="0.06em" font-weight="600">P&amp;L</text>
+
+  <!-- Table divider -->
+  <line x1="260" y1="512" x2="1085" y2="512" stroke="#2a2a25" stroke-width="0.5"/>
+
+  <!-- Row 1 highlight (active) -->
+  <rect x="260" y="513" width="825" height="32" fill="#1a1a18"/>
+  <!-- Row 1 data -->
+  <circle cx="289" cy="530" r="5" fill="#ff4d1a"/>
+  <text x="302" y="534" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee" font-weight="500">BTC / USDT</text>
+  <text x="400" y="534" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$1.08B</text>
+  <text x="530" y="534" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$443K</text>
+  <text x="650" y="534" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">0.038%</text>
+  <text x="790" y="534" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">48,291</text>
+  <text x="930" y="534" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#3ddc84" font-weight="500">+$210K</text>
+
+  <!-- Row 2 -->
+  <line x1="260" y1="545" x2="1085" y2="545" stroke="#2a2a25" stroke-width="0.5"/>
+  <circle cx="289" cy="562" r="5" fill="#746be6"/>
+  <text x="302" y="566" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">ETH / USDT</text>
+  <text x="400" y="566" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$738M</text>
+  <text x="530" y="566" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$303K</text>
+  <text x="650" y="566" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">0.041%</text>
+  <text x="790" y="566" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">31,847</text>
+  <text x="930" y="566" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#3ddc84" font-weight="500">+$144K</text>
+
+  <!-- Row 3 -->
+  <line x1="260" y1="577" x2="1085" y2="577" stroke="#2a2a25" stroke-width="0.5"/>
+  <circle cx="289" cy="594" r="5" fill="#3ddc84"/>
+  <text x="302" y="598" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">SOL / USDT</text>
+  <text x="400" y="598" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$540M</text>
+  <text x="530" y="598" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$221K</text>
+  <text x="650" y="598" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">0.044%</text>
+  <text x="790" y="598" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">24,102</text>
+  <text x="930" y="598" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#3ddc84" font-weight="500">+$98K</text>
+
+  <!-- Row 4 -->
+  <line x1="260" y1="609" x2="1085" y2="609" stroke="#2a2a25" stroke-width="0.5"/>
+  <circle cx="289" cy="626" r="5" fill="#7fb2f1"/>
+  <text x="302" y="630" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">ARB / USDT</text>
+  <text x="400" y="630" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$284M</text>
+  <text x="530" y="630" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">$116K</text>
+  <text x="650" y="630" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">0.049%</text>
+  <text x="790" y="630" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#f5f3ee">18,554</text>
+  <text x="930" y="630" font-family="Inter,-apple-system,sans-serif" font-size="12" fill="#ec5b5b" font-weight="500">-$14K</text>
+
+</svg>

@@ -4,7 +4,10 @@ import Navigation from "@/src/components/sections/v2/common/LazyNavigation";
 import HeroBannerSection from "@/src/components/sections/v2/homepage/HeroBanner";
 import Statistics from "@/src/components/sections/v2/homepage/Statistics";
 import CoverageMatrixSection from "@/src/components/sections/v2/insights/CoverageMatrixSection";
+import PartnerTrading from "@/src/components/sections/v2/industriespage/PartnerTrading";
 import { Discover } from "@/src/components/sections/v2/insights/Discover";
+import InsightsLiquidityReportSection from "@/src/components/sections/v2/insights/InsightsLiquidityReportSection";
+import InsightsPartnerQuotesSection from "@/src/components/sections/v2/insights/InsightsPartnerQuotesSection";
 import "@/src/components/sections/v2/insights/insights-hero-mobile.css";
 import { getGlobalSettings, getInsightsPage } from "@/src/lib/api";
 import { routeMetadata } from "@/src/lib/seo";
@@ -220,7 +223,7 @@ function StudioRail({ section }) {
         </div>
 
         <div className="grid gap-lg md:grid-cols-2 xl:grid-cols-4">
-          {cards.map((card, index) => (
+          {cards.map((card) => (
             <a
               key={card.title}
               href="#"
@@ -266,67 +269,6 @@ function StudioRail({ section }) {
                 <div className="mt-lg flex items-center justify-between font-blender text-xs uppercase text-green-dark">
                   <span>Read insight</span>
                   <ArrowIcon className="h-4 w-4 transition-transform group-hover/interactive:translate-x-1" />
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TimelineSection({ section }) {
-  const items = section?.items?.length > 0 ? section.items : [];
-
-  return (
-    <section
-      id="timeline"
-      className="bg-gray-defi-charcoal text-gray-off-white"
-    >
-      <div className="container py-block">
-        <div className="mb-3xl flex flex-col gap-xl">
-          <div className="flex max-w-4xl flex-col gap-md">
-            <h2 className="font-blender text-xl uppercase text-green-dark">
-              {section?.title}
-            </h2>
-            <p className="max-w-2xl text-base leading-7 text-gray-tradfi-silver lg:text-lg">
-              {section?.subtitle}
-            </p>
-          </div>
-          <hr className="!border-[#AB290E]" />
-        </div>
-
-        <div className="grid gap-md">
-          {items.map((item, index) => (
-            <a
-              key={item.title}
-              href="#"
-              className="group/interactive relative overflow-hidden rounded-[1.4rem] bg-[linear-gradient(180deg,#101510_0%,#0d120e_100%)] px-5 py-5 shadow-[0_12px_30px_rgba(0,0,0,0.16)] transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_20px_44px_rgba(0,0,0,0.22)] lg:px-7 lg:py-6"
-              style={{
-                position: "relative",
-                transitionDelay: `${index * 35}ms`,
-              }}
-            >
-              <div className="pointer-events-none absolute inset-0 rounded-[1.4rem] bg-[radial-gradient(circle_at_top_left,rgba(171,41,14,0.08),transparent_30%)] opacity-0 transition-opacity duration-500 group-hover/interactive:opacity-100" />
-              <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(171,41,14,0.5),rgba(149,141,236,0.12),transparent)]" />
-              <div className="absolute inset-y-5 left-0 w-px bg-[#958dec]/70" />
-              <div className="grid gap-5 md:grid-cols-[10rem_1fr_auto] md:items-center md:gap-6">
-                <div className="pl-4">
-                  <span className="font-blender text-[0.72rem] uppercase tracking-[0.22em] text-green-dark">
-                    {item.category}
-                  </span>
-                  <span className="mt-3 inline-flex rounded-full bg-white/[0.04] px-3 py-1 font-blender text-[0.68rem] uppercase tracking-[0.18em] text-gray-tradfi-silver/78">
-                    {item.date}
-                  </span>
-                </div>
-                <div className="min-w-0">
-                  <h3 className="max-w-5xl text-[1.38rem] leading-[1.14] text-white transition-colors duration-500 group-hover/interactive:text-white/92 md:text-[1.72rem] lg:text-[1.9rem]">
-                    {item.title}
-                  </h3>
-                </div>
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/[0.03] text-green-dark transition-all duration-500 group-hover/interactive:translate-x-1 group-hover/interactive:bg-[#AB290E]/10 group-hover/interactive:text-[#d86b4a]">
-                  <ArrowIcon className="h-4 w-4" />
                 </div>
               </div>
             </a>
@@ -383,9 +325,11 @@ export default async function InsightPage() {
 
           <Statistics stats={insightsPage.statistics} compact />
           <InsightBenefitsSection section={insightsPage.benefits} />
+          <InsightsLiquidityReportSection />
+          <InsightsPartnerQuotesSection />
           <StudioRail section={insightsPage.featuredInsights} />
           <CoverageMatrixSection section={insightsPage.coverageMatrix} />
-          <TimelineSection section={insightsPage.timeline} />
+          <PartnerTrading />
           <Discover section={insightsPage.discover} />
           <PageFooter footer={settings?.footer} />
         </main>

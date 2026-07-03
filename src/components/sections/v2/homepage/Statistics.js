@@ -20,8 +20,10 @@ export default function Statistics({
   const itemCount = stats?.length ?? 0;
   const dense = !compact && itemCount > 5;
   const isStartAlign = align === "start";
+  const useFlexSpread = compact && itemCount === 5;
   const useEvenLayout =
-    compact || dense || itemCount === 4 || itemCount === 5 || itemCount === 6;
+    !useFlexSpread &&
+    (compact || dense || itemCount === 4 || itemCount === 5 || itemCount === 6);
   const matrixFontSizeMobile =
     fontSizeMobile ?? (compact || dense ? 60 : 68);
   const matrixFontSizeDesktop =
@@ -42,7 +44,9 @@ export default function Statistics({
       ? "statistics-even--cols-4"
       : "statistics-even--cols-5";
 
-  const containerClassName = useEvenLayout
+  const containerClassName = useFlexSpread
+    ? "container flex flex-col gap-2xl py-12 lg:flex-row lg:items-start lg:justify-between lg:gap-6 lg:py-14"
+    : useEvenLayout
     ? `statistics-even container ${evenColsClass}${
         !isStartAlign ? " statistics-even--center" : ""
       } ${compact || dense ? "py-12 lg:py-14" : "py-10 lg:py-12"}`
@@ -61,11 +65,14 @@ export default function Statistics({
             <div
               key={statKey}
               className={`group stat flex min-w-0 flex-col ${itemAlignClass} ${
-                useEvenLayout ? "w-full" : "lg:flex-1 lg:py-16"
+                useFlexSpread
+                  ? "w-full shrink-0 lg:w-auto"
+                  : useEvenLayout
+                    ? "w-full"
+                    : "lg:flex-1 lg:py-16"
               }`}
               style={{
-                ["--stat-width"]:
-                  useEvenLayout || !s.width ? undefined : `${s.width}px`,
+                ["--stat-width"]: s.width ? `${s.width}px` : undefined,
                 "--active-color": s.activeDotColor,
               }}
               onMouseEnter={() => setActive(i)}

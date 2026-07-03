@@ -547,6 +547,18 @@ function normalizeHomepage(entry) {
               normalizeCtaItem(ctaItem),
             )
         : [],
+    whoWeServe: {
+      title:
+        item.whoWeServe?.title?.trim() || defaultHomepage.whoWeServe.title,
+      description:
+        item.whoWeServe?.description?.trim() ||
+        defaultHomepage.whoWeServe.description,
+      ctaLabel:
+        item.whoWeServe?.ctaLabel?.trim() ||
+        defaultHomepage.whoWeServe.ctaLabel,
+      href:
+        item.whoWeServe?.href?.trim() || defaultHomepage.whoWeServe.href,
+    },
   };
 }
 
@@ -1605,7 +1617,7 @@ export const getGlobalSettings = cache(async () => {
 
 export const getHomepage = cache(async () =>
   fetchCMSSingleType(
-    "homepage?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[marketTicker]=*&populate[capabilities]=*&populate[cardsGrid]=*&populate[cta]=*",
+    "homepage?populate[hero][populate][titles]=*&populate[insightNews]=*&populate[statistics]=*&populate[marketTicker]=*&populate[capabilities]=*&populate[whoWeServe]=*&populate[cardsGrid]=*&populate[cta]=*",
     normalizeHomepage,
     Boolean,
   ),

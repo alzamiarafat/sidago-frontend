@@ -5,7 +5,7 @@ const fallbackProfiles = [
     description:
       "Track workflow health, delivery coverage, issue queues, and execution trends through a clear operational view built for day-to-day management.",
     cta: "Explore dashboard",
-    href: "/contact",
+    href: "/performance",
     visualType: "dashboard",
     srText: "Sidago infrastructure - Operations Control Dashboard",
   },
@@ -15,7 +15,7 @@ const fallbackProfiles = [
     description:
       "Receive structured updates on performance trends, delivery priorities, support risks, and system changes that affect business continuity.",
     cta: "View brief",
-    href: "/contact",
+    href: "/operations",
     visualType: "brief",
     srText: "Sidago infrastructure - Weekly Operations Brief",
   },

@@ -1,7 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
+
+const LOGO_HEIGHT_PX = 100;
+
+function PartnerLogo({ logo }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      alt="Partner trading venue logo"
+      loading="eager"
+      decoding="async"
+      className="block w-auto shrink-0 pr-[6.25rem]"
+      style={{ height: `${LOGO_HEIGHT_PX}px`, width: "auto" }}
+      src={`/images/partner-trading/Liquidity-–-${logo}.svg`}
+    />
+  );
+}
 
 export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
   const rowOneRef = useRef(null);
@@ -84,12 +99,12 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
 
   return (
     <section className="bg-gray-defi-shadow">
-      <div className="container py-12 md:py-14 lg:py-16">
-        <div className="pb-8 md:pb-10 lg:pb-12">
+      <div className="container py-9 md:py-11 lg:py-12">
+        <div className="pb-5 md:pb-6">
           <div className="relative">
-            <div className="flex flex-col gap-6 lg:gap-8">
+            <div className="flex flex-col gap-4 lg:gap-5">
               <h2
-                className="z-10 inline-block max-w-xl text-2xl sm:text-[1.85rem] lg:text-3xl"
+                className="z-10 inline-block max-w-xl text-xl sm:text-[1.5rem] lg:text-2xl"
                 id="our-partner-trading-venues"
               >
                 Our <span className={titleColor}> partner trading</span> venues
@@ -103,38 +118,30 @@ export default function PartnerTrading({ titleColor = "text-purple-mid" }) {
             className="relative flex flex-col overflow-hidden"
             style={maskStyle}
           >
-            <div ref={rowOneRef} className="flex w-max items-center gap-10 md:gap-16">
+            <div ref={rowOneRef} className="flex w-max items-center">
               {duplicatedRowOne.map((logo, index) => (
-                <Image
+                <span
                   key={`row1-${index}`}
-                  alt="Partner trading venue logo"
                   aria-hidden={index >= rowOne.length}
-                  width={200}
-                  height={64}
-                  unoptimized
-                  className="h-10 w-auto shrink-0 md:h-14 lg:h-16"
-                  style={{ color: "transparent" }}
-                  src={`/images/partner-trading/Liquidity-–-${logo}.svg`}
-                />
+                  className="inline-flex shrink-0"
+                >
+                  <PartnerLogo logo={logo} />
+                </span>
               ))}
             </div>
 
             <div
               ref={rowTwoRef}
-              className="mt-0.5 flex w-max items-center gap-10 md:mt-1 md:gap-16"
+              className="mt-1 flex w-max items-center md:mt-1.5"
             >
               {duplicatedRowTwo.map((logo, index) => (
-                <Image
+                <span
                   key={`row2-${index}`}
-                  alt="Partner trading venue logo"
                   aria-hidden={index >= rowTwo.length}
-                  width={200}
-                  height={64}
-                  unoptimized
-                  className="h-10 w-auto shrink-0 md:h-14 lg:h-16"
-                  style={{ color: "transparent" }}
-                  src={`/images/partner-trading/Liquidity-–-${logo}.svg`}
-                />
+                  className="inline-flex shrink-0"
+                >
+                  <PartnerLogo logo={logo} />
+                </span>
               ))}
             </div>
           </div>
