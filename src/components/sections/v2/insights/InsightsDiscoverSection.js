@@ -2,11 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { resolveCardCategorySlugs } from "@/src/components/sections/v2/insights/data";
 
 const MOBILE_INITIAL_VISIBLE = 3;
+
+function readCategorySlugsFromUrl() {
+  if (typeof window === "undefined") {
+    return new Set();
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  return new Set(params.getAll("category").filter(Boolean));
+}
 
 function PlusToggle({ open, className = "" }) {
   return (
@@ -34,6 +42,7 @@ function FilterCheckbox({ label, checked, onToggle }) {
       type="button"
       role="checkbox"
       aria-checked={checked}
+      onMouseDown={(event) => event.preventDefault()}
       onClick={onToggle}
       className="group flex items-center gap-sm text-left text-sm transition-opacity hover:opacity-80 lg:text-lg"
     >
@@ -273,34 +282,37 @@ function DiscoverAllLink() {
 }
 
 export default function InsightsDiscoverSection(props) {
-  return (
-    <Suspense
-      fallback={
-        <InsightsDiscoverSectionContent
-          {...props}
-          selectedSlugs={new Set()}
-          onToggleSlug={() => {}}
-        />
-      }
-    >
-      <InsightsDiscoverSectionWithSearchParams {...props} />
-    </Suspense>
-  );
-}
+  const [selectedSlugs, setSelectedSlugs] = useState(() => new Set());
+  const pendingScrollRef = useRef(null);
 
-function InsightsDiscoverSectionWithSearchParams(props) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  useEffect(() => {
+    setSelectedSlugs(readCategorySlugsFromUrl());
+  }, []);
 
-  const selectedSlugs = useMemo(
-    () => new Set(searchParams.getAll("category").filter(Boolean)),
-    [searchParams],
-  );
+  useLayoutEffect(() => {
+    if (!pendingScrollRef.current) {
+      return;
+    }
 
-  const onToggleSlug = useCallback(
-    (slug) => {
-      const next = new Set(selectedSlugs);
+    const { x, y } = pendingScrollRef.current;
+    pendingScrollRef.current = null;
+
+    const restoreScroll = () => {
+      window.scrollTo(x, y);
+    };
+
+    restoreScroll();
+    requestAnimationFrame(() => {
+      restoreScroll();
+      requestAnimationFrame(restoreScroll);
+    });
+  }, [selectedSlugs]);
+
+  const onToggleSlug = useCallback((slug) => {
+    pendingScrollRef.current = { x: window.scrollX, y: window.scrollY };
+
+    setSelectedSlugs((current) => {
+      const next = new Set(current);
 
       if (next.has(slug)) {
         next.delete(slug);
@@ -308,15 +320,9 @@ function InsightsDiscoverSectionWithSearchParams(props) {
         next.add(slug);
       }
 
-      const params = new URLSearchParams(searchParams.toString());
-      params.delete("category");
-      [...next].sort().forEach((value) => params.append("category", value));
-
-      const query = params.toString();
-      router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
-    },
-    [pathname, router, searchParams, selectedSlugs],
-  );
+      return next;
+    });
+  }, []);
 
   return (
     <InsightsDiscoverSectionContent
@@ -367,10 +373,13 @@ function InsightsDiscoverSectionContent({
         <section className="bg-gray-night-green text-gray-off-white">
           <div className="flex flex-col gap-2xl lg:flex">
             {filteredCards.length ? (
-              <div className="group/cards grid grid-cols-1 gap-xl lg:grid-cols-4">
+              <div
+                className="group/cards grid grid-cols-1 gap-xl lg:grid-cols-4"
+                style={{ overflowAnchor: "none" }}
+              >
                 {filteredCards.map((card, index) => (
                   <div
-                    key={card.href}
+                    key={`${card.href ?? "card"}-${card.title}-${index}`}
                     className={
                       isFiltering || index < MOBILE_INITIAL_VISIBLE
                         ? ""
