@@ -38,6 +38,12 @@ export const quoteSection = {
   quote:
     "We focus on hiring the fewest number of the most talented and high-performing individuals, who can be versatile and grow within the company. At Sidago, every role is a revenue generating one and expected to make true impact.”",
   attribution: "Marina Gurevich, COO of Sidago",
+  decor: {
+    src: "/images/sidago-gray-logo.svg",
+    alt: "",
+    width: 156,
+    height: 224,
+  },
 };
 
 /** Dotted matrix stats (homepage Statistics component). */
@@ -340,6 +346,12 @@ export const lifeSection = {
   headingId: "sidago-life",
   description:
     "Sidago's culture is all about balance, we work hard and play hard. With an informal, non-hierarchical environment, we bond over shared meals, social events, and unique experiences that build a strong sense of connection and community.",
+  decor: {
+    src: "/images/sidago-gray-logo.svg",
+    alt: "",
+    width: 156,
+    height: 224,
+  },
   stage: {
     label: "Culture orbit",
     footTitle: "Where teams actually connect",

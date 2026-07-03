@@ -1,5 +1,13 @@
+import CareersSectionDotLogo from "@/src/components/sections/v2/careers/CareersSectionDotLogo";
 import CareersLifeCultureStage from "@/src/components/sections/v2/careers/CareersLifeCultureStage";
 import CareersLifeStatsSection from "@/src/components/sections/v2/careers/CareersLifeStatsSection";
+
+const DEFAULT_LIFE_DECOR = {
+  src: "/images/sidago-gray-logo.svg",
+  alt: "",
+  width: 156,
+  height: 224,
+};
 
 const defaultStage = {
   label: "Culture orbit",
@@ -29,6 +37,7 @@ export default function CareersLifeSection({
   highlight = "life",
   headingId = "sidago-life",
   description,
+  decor = DEFAULT_LIFE_DECOR,
   stage = defaultStage,
   statsSection,
   className = "bg-[#151916] text-gray-off-white",
@@ -36,20 +45,26 @@ export default function CareersLifeSection({
   highlightClassName = "text-green-dark",
   descriptionClassName = "z-10 max-w-[85%] text-white md:max-w-[70%]",
 }) {
+  const decorSrc = decor?.src ?? DEFAULT_LIFE_DECOR.src;
+
   return (
     <section className={className} aria-labelledby={headingId}>
       <div className="container pt-block pb-lg">
         <div className="pb-container">
-          <div className="flex flex-col gap-6 lg:gap-8">
-            <h2 id={headingId} className={titleClassName}>
-              {lead ? <>{lead} </> : null}
-              {highlight ? (
-                <span className={highlightClassName}>{highlight}</span>
+          <div className="relative">
+            <CareersSectionDotLogo src={decorSrc} overlay={false} />
+
+            <div className="relative z-10 flex flex-col gap-6 lg:gap-8">
+              <h2 id={headingId} className={titleClassName}>
+                {lead ? <>{lead} </> : null}
+                {highlight ? (
+                  <span className={highlightClassName}>{highlight}</span>
+                ) : null}
+              </h2>
+              {description ? (
+                <div className={descriptionClassName}>{description}</div>
               ) : null}
-            </h2>
-            {description ? (
-              <div className={descriptionClassName}>{description}</div>
-            ) : null}
+            </div>
           </div>
         </div>
 
